@@ -78,7 +78,7 @@
                                                     <tr>
                                                     <?php if ($promo['promo_type_id'] == 3) {?>
                                                         <td><h3>SKU</h3></td>
-                                                        <td><?= $promo['stock_id']; ?></td>
+                                                        <td><?= $promo['product_id']; ?></td>
                                                     <?php } ?>
                                                     </tr>
                                                  

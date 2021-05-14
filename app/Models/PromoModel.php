@@ -29,9 +29,9 @@ class PromoModel extends BaseModel
     function getWhere($where, $limit = '', $page = 1, $filter = array())
     {
         $builder = $this->db->table($this->tableName);
-        $builder->select('promo.*, promo_type.promo_type, product_id.stock_id');
+        $builder->select('promo.*,  promo_type.promo_type, product.product_id');
         $builder->join('promo_type', 'promo_type.promo_type_id = promo.promo_type_id');
-        $builder->join('product_id', 'product_id.product_id_id = promo.product_id_id','left');
+        $builder->join('product', 'product.product_id = promo.product_id','left');
         $builder->where($where);
         $builder->where('promo.deleted',0);
         $query = $builder->get();

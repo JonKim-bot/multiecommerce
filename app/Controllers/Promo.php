@@ -34,6 +34,7 @@ class Promo extends BaseController
 
         $this->pageData["product"] = $product;
         
+
     }
 
     public function change_status($promo_id){
