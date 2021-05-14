@@ -1,0 +1,8 @@
+{
+    "name": "Emenu",
+    "short_name": "Emenu",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "An emenu app."
+  }

@@ -1,0 +1,18 @@
+<?php namespace App\Models;
+
+use App\Core\BaseModel;
+
+class AnnouncementModel extends BaseModel
+{
+
+    public function __construct()
+    {
+
+        parent::__construct();
+
+        $this->tableName = "announcement";
+        $this->primaryKey = "announcement_id";
+
+    }
+    
+}
