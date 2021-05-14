@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Controllers;
 
 use App\Core\BaseController;
@@ -166,10 +167,10 @@ class Product extends BaseController
                     'shop_id' => $this->shop_id,
                 ];
 
-                if(!empty($_POST['is_product'])){
-                    $data['is_product'] = 1;
+                if(!empty($_POST['is_promo'])){
+                    $data['is_promo'] = 1;
                 }else{
-                    $data['is_product'] = 0;
+                    $data['is_promo'] = 0;
 
                 }
                 // dd($data);
@@ -278,10 +279,10 @@ class Product extends BaseController
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
-                if(!empty($_POST['is_product'])){
-                    $data['is_product'] = 1;
+                if(!empty($_POST['is_promo'])){
+                    $data['is_promo'] = 1;
                 }else{
-                    $data['is_product'] = 0;
+                    $data['is_promo'] = 0;
 
                 }
 

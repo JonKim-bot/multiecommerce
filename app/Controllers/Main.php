@@ -21,7 +21,6 @@ use App\Models\OrderDetailModel;
 use App\Models\PaymentMethodModel;
 use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
-
 use App\Models\ShopPaymentMethodModel;
 
 class Main extends BaseController
@@ -45,7 +44,6 @@ class Main extends BaseController
         $this->ProductModel = new ProductModel();
         $this->PaymentMethod = new PaymentMethodModel();
         $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
-
 
         $this->OrderDetailModel = new OrderDetailModel();
 
