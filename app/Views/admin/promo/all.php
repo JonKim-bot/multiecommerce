@@ -35,53 +35,50 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table-responsive">
-                                <table class="table table-striped datatable table-bordered no-footer " id="promo_list_table" data-method="get" data-url="<?= base_url(
-                                    'promo'
-                                ) ?>" style="border-collapse: collapse !important">
+                                <table class="table table-striped table-bordered datatable dataTable no-footer" style="border-collapse: collapse !important">
                                     <thead>
                                         <tr role="row">
-                                            <th data-sort="name" data-filter="name">Promo</th>
+                                            <th class="" >No.</th>
+                                            <th class="" >Code</th>
+                                            
+                                            <th class="" >Promo Type</th>
+
+
+    <th>Status</th>
+
+                                            <th class=""></th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $i = 1;
-                                        foreach ($promo as $row) { ?>
+                                            $i = 1;
+                                            foreach($promo as $row){
+                                         ?>
                                             <tr>
-                                            <td>
-					<div class="col-md-12 animate-box" style="height:50px">
-                        <div class="dish-wrap" style="height:50px">
-                            <!-- <p class="price"><span>$25</span></p> -->
-                            <!-- <p class="price"><span>$25</span></p> -->
-                            
-							<div class="addtocart" style="height:50px">
-                                <div class="dis-tc">
-                                    <span><a href="<?= base_url() ?>/promo/edit/<?= $row[
-    'promo_id'
-] ?>"><i class="fa fa-pen fa-2x">Edit</i></a></span>
-									<span><a href="<?= base_url() ?>/promo/detail/<?= $row[
-    'promo_id'
-] ?>"><i class="fa fa-eye fa-2x">View</i></a></span>
-                                        <span><a href="<?= base_url() ?>/promo/delete/<?= $row[
-    'promo_id'
-] ?>"><i class="fa fa-trash fa-2x">Delete</i></a></span>
-                                </div>
-							</div>
-                                    <h2 class="text-left"><a href="#">Code : <?= $row[
-                                        'code'
-                                    ] ?></a></h2>
-
-							</div>
-						</div>
-					
-                    </div></td>
+                                                
+                                                <td><a href="<?= base_url() ?>/promo/detail/<?= $row['promo_id']?>"><?= $i ?></a></td>
+                                                
+                                                <td><a href="<?= base_url() ?>/promo/detail/<?= $row['promo_id']?>"><?= $row['code'] ?></a>
+                                                <td><a href="<?= base_url() ?>/promo/detail/<?= $row['promo_id']?>"><?= $row['promo_type'] ?></a>
+                                                </td>
+                                                <td>
+                                                <?php if($row['is_active'] == 0) { ?>
+                                            <a class="btn btn-danger" href="<?= base_url("promo/change_status/") . "/" . $row['promo_id'] ?>">Unactive</a>
+                                        <?php }else{ ?>
+                                       
+                                        <a class="btn btn-primary" href="<?= base_url("promo/change_status/") . "/" . $row['promo_id'] ?>">Active</a>
+                                        <?php } ?>
+                                                </td>
+                                                
+                                                <td><a href="<?= base_url() ?>/promo/delete/<?= $row['promo_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
                                             </tr>
-                                        <?php $i++;}
+                                        <?php
+                                        $i++;
+                                            }
                                         ?>
                                     </tbody>
                                 </table>
-                              
                             </div>
                         </div>
                     </div>

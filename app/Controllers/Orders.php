@@ -10,7 +10,7 @@ use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\ProductOptionSelectionModel;
 use App\Models\PromoModel;
-use App\Models\ShopOperatingHourModel;
+// use App\Models\ShopOperatingHourModel;
 
 use App\Models\OrderDetailModel;
 require_once APPPATH .
@@ -28,7 +28,7 @@ class Orders extends BaseController
     {
         $this->pageData = [];
         $this->OrderDetailModel = new OrderDetailModel();
-        $this->ShopOperatingHourModel = new ShopOperatingHourModel();
+        // $this->ShopOperatingHourModel = new ShopOperatingHourModel();
 
         $this->ShopModel = new ShopModel();
         $this->PromoModel = new PromoModel();
@@ -58,26 +58,26 @@ class Orders extends BaseController
         $shop_data = session()->get('shop_data');
     }
 
-    public function generate_operating_hour($shop_id){
-        $days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-        foreach($days as $row_day){
-            $where = [
-                'day' => $row_day,
-                'shop_id' => $shop_id,
-            ];
-            $is_exist = $this->ShopOperatingHourModel->getWhere($where);
-            if(empty($is_exist)){
-                $data = [
-                    'day' => $row_day,
-                    'shop_id' => $shop_id,
-                    'open_at' => '00:00',
-                    'closed_at' => '23:59'
-                ];
-                $this->ShopOperatingHourModel->insertNew($data);
-            }
+    // public function generate_operating_hour($shop_id){
+    //     $days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    //     foreach($days as $row_day){
+    //         $where = [
+    //             'day' => $row_day,
+    //             'shop_id' => $shop_id,
+    //         ];
+    //         $is_exist = $this->ShopOperatingHourModel->getWhere($where);
+    //         if(empty($is_exist)){
+    //             $data = [
+    //                 'day' => $row_day,
+    //                 'shop_id' => $shop_id,
+    //                 'open_at' => '00:00',
+    //                 'closed_at' => '23:59'
+    //             ];
+    //             $this->ShopOperatingHourModel->insertNew($data);
+    //         }
 
-        }
-    }
+    //     }
+    // }
 
     public function kitchen_order($orders_id)
     {
@@ -372,7 +372,7 @@ class Orders extends BaseController
         $where = [
             'orders.shop_id' => $this->shop_id,
         ];
-        $this->generate_operating_hour($this->shop_id);
+        // $this->generate_operating_hour($this->shop_id);
 
         $dateFrom =
             ($_GET and isset($_GET['dateFrom']))

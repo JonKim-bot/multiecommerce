@@ -1,8 +1,8 @@
 <div class="c-subheader justify-content-between px-3">
 	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
 		<li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item"><a href="<?= base_url() ?>/Promo">Promo</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/promo/edit/<?= $promo['promo_id']?>">Edit Promo Details</a></li>
+        <li class="breadcrumb-item"><a href="<?= url("/") ?>/Promo">Promo</a></li>
+        <li class="breadcrumb-item active"><a href="<?= url("/") ?>/promo/edit/<?= $promo['promo_id']?>">Edit Promo Details</a></li>
 	</ol>
 	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/promo/edit/<?=$promo["promo_id"]?>">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= url("/")?>/promo/edit/<?=$promo["promo_id"]?>">
                     <!-- <div class="form-group">
                         <label for="">Profile Picture</label>
                         <div class="custom-file">
@@ -34,6 +34,8 @@
                             <label class="custom-file-label" for="" aria-describedby="">Choose file</label>
                         </div>
                     </div> -->
+                    @csrf
+
                     <div class="form-group">
                                     <label for="">Promocode</label>
                                     <input type="text" class="form-control" read value="<?= $promo['code'] ?>" name="code" placeholder="e.g. OFFER20" required>
@@ -59,14 +61,14 @@
 
                             <div class="form-group" id="product_sku">
                                 <label for="">Product SKU</label>
-                                <select class="form-control select2"  multiple name="product_price_id[]">
+                                <select class="form-control select2"  multiple name="product_id[]">
                                     <?php foreach($product as $row){ ?>
                                     <?php if(in_array($row['stock_id'],explode(',',$promo['stock_id']))) { ?>
-                                        <option selected value="<?= $row['product_price_id']?>">
+                                        <option selected value="<?= $row['product_id']?>">
                                         <td><?= $row['stock_id'] ?></td>
                                         </option>
                                     <?php  }else{?>
-                                        <option value="<?= $row['product_price_id']?>">
+                                        <option value="<?= $row['product_id']?>">
                                         <td><?= $row['stock_id'] ?></td>
                                         </option>
 

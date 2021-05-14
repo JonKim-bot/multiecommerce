@@ -1,8 +1,8 @@
 <div class="c-subheader justify-content-between px-3">
     <ol class="breadcrumb border-0 m-0 px-0 px-md-3">
         <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item"><a href="<?= base_url() ?>/Promo">Promo</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>Promo/add">Create New Promo</a></li>
+        <li class="breadcrumb-item"><a href="<?= url("/") ?>/Promo">Promo</a></li>
+        <li class="breadcrumb-item active"><a href="<?= url("/") ?>Promo/add">Create New Promo</a></li>
     </ol>
     <!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url('/Promo/add'); ?>">
+                            <form role="form" method="POST" enctype="multipart/form-data" action="<?= url('/promo/add'); ?>">
                                 <!-- <div class="form-group">
                                 <label for="">Profile Picture</label>
                                 <div class="custom-file">
@@ -36,6 +36,8 @@
                                     <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
                                 </div>
                             </div> -->
+                            @csrf
+
                                 <?php if (isset($error)) { ?>
                                     <div class="alert-message" role="alert">
                                         <?= $error; ?>
@@ -57,7 +59,7 @@
                                 </div>
                                 <div class="form-group" id="product_sku">
                                 <label for="">Product SKU</label>
-                                <select class="form-control select2" multiple  name="product_id[]">
+                                <select class="form-control select2"   name="product_id[]">
                                     <?php foreach($product as $row){ ?>
                                         <option value="<?= $row['product_id']?>">
                                         <td><?= $row['product_name'] ?></td>
@@ -94,16 +96,11 @@
                                 </div>
 
                                 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="new_member">
                                     <label class="form-check-label" for="new_member">For New Member Only</label>
-                                </div>
-                                <div class="form-group">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="for_affliate">
-                                    <label class="form-check-label" for="for_affliate">For Affliate</label>
-                                </div>
+                                </div> -->
                             </div>
                                 
                                 

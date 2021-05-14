@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Emenu Admin Panel</title>
+    <title>Ecommerce Admin Panel</title>
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons@1.0.0/css/all.min.css">
     <!-- Main styles for this application-->
     <link rel="stylesheet" href="<?= base_url('assets/plugins/select2/select2.css') ?>">
@@ -66,7 +66,7 @@
                 <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="DevUI Logo">
                     <use xlink:href="assets/brand/coreui-pro.svg#signet"></use>
 				</svg> -->
-            <span class="c-sidebar-brand-full" style="font-size:20px;">Emenu </span>
+            <span class="c-sidebar-brand-full" style="font-size:20px;">Ecommerce </span>
             <span class="c-sidebar-brand-minimized" style="font-size:20px;">JlnJln</span>
             <audio id="notification" src="<?= base_url() ?>assets/emenu/4.mp3" style="visibility:hidden" muted></audio>
 
@@ -188,13 +188,7 @@
                         Banner (For emenu page)
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/ShopOperatingHour">
-                        <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
-                        Operating Hour
-
-                    </a>
-                </li>
+              
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
                         <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
@@ -202,12 +196,7 @@
 
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'special' ? 'c-active' : null) ?>" href="<?= base_url() ?>/special">
-                        <i class="cil-user c-sidebar-nav-icon"></i>
-                        Service Provider
-                    </a>
-                </li>
+               
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'promo' ? 'c-active' : null) ?>" href="<?= base_url() ?>/promo">
                         <i class="fa fa-credit-card c-sidebar-nav-icon"></i>

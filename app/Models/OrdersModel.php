@@ -1,5 +1,6 @@
 <?php namespace App\Models;
 
+
 use App\Core\BaseModel;
 
 class OrdersModel extends BaseModel
@@ -39,7 +40,7 @@ class OrdersModel extends BaseModel
         $builder->select('orders.*, order_customer.full_name,order_customer.contact,order_customer.address,
         order_customer.email,orders_status.orders_status,order_detail.product_name,
         order_detail.product_price,order_detail.product_quantity,order_detail.product_id,order_detail.product_total_price,
-        product.*,shop.shop_name,payment_method.payment_method,orders.created_at as created_date,promo.code,promo.amount
+        product.*,shop.shop_name,payment_method.payment_method,orders.created_at as created_date,promo.code,promo.offer_amount
         ');
         $builder->join('shop', 'orders.shop_id = shop.shop_id');
         $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id');

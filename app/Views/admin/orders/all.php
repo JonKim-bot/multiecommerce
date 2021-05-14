@@ -62,13 +62,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
-                                <a onclick="changestatus(1)" class="btn btn-danger text-white">Pending</a>
-                                <a onclick="changestatus(2)" class="btn btn-warning text-white">Processing Orders</a>
+                                <a onclick="changestatus(1)" class="btn btn-danger text-white">Order Accepted</a>
+                                <a onclick="changestatus(2)" class="btn btn-warning text-white">Merchant Preparing</a>
                                 <a onclick="changestatus(3)" class="btn btn-primary text-white">On Delivery</a>
                                 <a onclick="changestatus(4)" class="btn btn-success text-white">Done Orders</a>
                                 <a onclick="changestatus(5)" class="btn btn-secondary text-white">Rejected</a>
-
-                                <a onclick="preorder()" class="btn btn-danger text-white">Preorder</a>
 
                             </div>
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
