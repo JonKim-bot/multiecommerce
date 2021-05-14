@@ -57,8 +57,8 @@
                                         <th data-sort="name" data-filter="name">No</th>
                                         <th data-sort="name" data-filter="name">Image</th>
                                         
-                                        <th data-sort="name" data-filter="name">Show Home</th>
                                         <th data-sort="name" data-filter="name">Product</th>
+                                        <th data-sort="name" data-filter="name">Show Home</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -76,6 +76,8 @@
                                                 <img src="<?= base_url() . $row['image']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
 
                                                 </a></td>
+                                                <td><a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>"><?= $row['product_name'] ?></a></td>
+
 
             
                                                 <td>
