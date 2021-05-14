@@ -135,19 +135,6 @@
                     </a>
                 </li>
                    
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'special' ? 'c-active' : null) ?>" href="<?= base_url() ?>/special">
-                        <i class="cil-user c-sidebar-nav-icon"></i>
-                        Special
-                    </a>
-                </li>
-                
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'special_category' ? 'c-active' : null) ?>" href="<?= base_url() ?>/SpecialCategory">
-                        <i class="cil-user c-sidebar-nav-icon"></i>
-                        Special Category
-                    </a>
-                </li>
                 
                 
             <?php

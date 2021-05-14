@@ -12,7 +12,6 @@ use App\Models\AboutModel;
 use App\Models\CategoryModel;
 use App\Models\OrdersModel;
 use App\Models\MerchantModel;
-use App\Models\ShopOperatingHourModel;
 
 use App\Models\AnnouncementModel;
 
@@ -35,7 +34,6 @@ class Main extends BaseController
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
         $this->OrdersModel = new OrdersModel();
-        $this->ShopOperatingHourModel = new ShopOperatingHourModel();
         $this->MerchantModel = new MerchantModel();
         $this->AnnouncementModel = new AnnouncementModel();
         $this->OrdersStatusModel = new OrdersStatusModel();
@@ -47,6 +45,7 @@ class Main extends BaseController
         $this->ProductModel = new ProductModel();
         $this->PaymentMethod = new PaymentMethodModel();
         $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
+
 
         $this->OrderDetailModel = new OrderDetailModel();
 
@@ -66,7 +65,7 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop[0]['shop_id'],
         ];
-        $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
+        // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);
         $banner = $this->BannerModel->getWhere($where);
@@ -90,7 +89,7 @@ class Main extends BaseController
             $this->pageData['announcement'] = $announcement;
         }
         $this->pageData['shop'] = $shop[0];
-        $this->pageData['shop_operating_hour'] = $shop_operating_hour;
+        // $this->pageData['shop_operating_hour'] = $shop_operating_hour;
 
         $this->pageData['category'] = $category;
         $this->pageData['banner'] = $banner;
@@ -104,7 +103,11 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
-        echo view("main/index", $this->pageData);
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/index");
+        echo view("templateone/footer");
+
+
     }
     
 
