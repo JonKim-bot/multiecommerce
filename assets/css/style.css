@@ -23,15 +23,15 @@
 
 ::-webkit-selection {
   color: #fcfcfc;
-  background: #d9ff88; }
+  background: #f0ad4e; }
 
 ::-moz-selection {
   color: #fcfcfc;
-  background: #d9ff88; }
+  background: #f0ad4e; }
 
 ::selection {
   color: #fcfcfc;
-  background: #d9ff88; }
+  background: #f0ad4e; }
 
 #piegen-page {
   position: relative;
@@ -155,7 +155,7 @@
           outline: none;
           text-decoration: none; }
       #piegen-main-nav ul li.active a {
-        color: #d9ff88; }
+        color: #f0ad4e; }
   #piegen-main-nav .form-group {
     margin-bottom: 40px;
     position: relative;
@@ -254,9 +254,9 @@
         #piegen-hero .flexslider .flex-control-nav li a.flex-active {
           cursor: pointer;
           background: transparent;
-          background: #d9ff88; }
+          background: #f0ad4e; }
           #piegen-hero .flexslider .flex-control-nav li a.flex-active:after {
-            border: 1px solid #d9ff88; }
+            border: 1px solid #f0ad4e; }
     #piegen-hero .flexslider .flex-direction-nav {
       display: none; }
     #piegen-hero .flexslider .slider-text {
@@ -296,7 +296,7 @@
           font-weight: 300;
           color: rgba(255, 255, 255, 0.7); }
           #piegen-hero .flexslider .slider-text > .slider-text-inner h2 a {
-            color: #d9ff88; }
+            color: #f0ad4e; }
         #piegen-hero .flexslider .slider-text > .slider-text-inner p {
           color: #fff;
           font-family: "Lora", Georgia, serif;
@@ -511,7 +511,7 @@
       display: table-cell;
       vertical-align: middle;
       font-size: 40px;
-      color: #d9ff88; }
+      color: #f0ad4e; }
   .piegen-video .overlay {
     position: absolute;
     top: 0;
@@ -576,7 +576,7 @@
     height: 60px;
     text-align: center;
     color: #fff;
-    background: #d9ff88;
+    background: #f0ad4e;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
@@ -793,7 +793,7 @@
       .article-entry .desc .meta .day {
         font-size: 30px;
         position: relative;
-        border-bottom: 1px solid #d9ff88; }
+        border-bottom: 1px solid #f0ad4e; }
       .article-entry .desc .meta .month {
         font-size: 16px;
         font-weight: 400;
@@ -859,10 +859,10 @@
   .piegen-testimony .owl-theme .owl-dots .owl-dot.active span,
   .piegen-testimony .owl-theme .owl-dots .owl-dot:hover span {
     height: 10px;
-    background: #d9ff88; }
+    background: #f0ad4e; }
     .piegen-testimony .owl-theme .owl-dots .owl-dot.active span:after,
     .piegen-testimony .owl-theme .owl-dots .owl-dot:hover span:after {
-      border: 1px solid #d9ff88; }
+      border: 1px solid #f0ad4e; }
 
 .testimony blockquote {
   border: none; }
@@ -983,19 +983,19 @@
     outline: none !important; }
 
 .btn-primary {
-  background: #d9ff88;
+  background: #f0ad4e;
   color: #fff;
-  border: 2px solid #d9ff88; }
+  border: 2px solid #f0ad4e; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
     background: #ff7121 !important;
     border-color: #ff7121 !important; }
   .btn-primary.btn-outline {
     background: transparent;
     color: #7d7d7d;
-    color: #d9ff88;
-    border: 1px solid #d9ff88; }
+    color: #f0ad4e;
+    border: 1px solid #f0ad4e; }
     .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-      background: #d9ff88;
+      background: #f0ad4e;
       color: #fff; }
 
 .btn-success {
@@ -1225,7 +1225,7 @@
       font-size: 16px;
       color: rgba(48, 48, 48, 0.5); }
     .contact-info li a {
-      color: #d9ff88; }
+      color: #f0ad4e; }
 
 
 input[type="text"] {
@@ -1239,7 +1239,7 @@ input[type="text"] {
 
 .piegen-social-icons i {
   font-size: 24px;
-  color: #d9ff88; }
+  color: #f0ad4e; }
 
 #map {
   width: 100%;
@@ -1266,7 +1266,7 @@ input[type="text"] {
     text-decoration: none !important; }
   #footer p.piegen-social-icons i {
     font-size: 24px;
-    color: #d9ff88; }
+    color: #f0ad4e; }
   #footer p .block {
     color: #969696;
     font-size: 14px; }
@@ -1290,7 +1290,7 @@ input[type="text"] {
     width: 100%;
     padding: 14px 0;
     font-size: 16px;
-    border: 2px solid #d9ff88;
+    border: 2px solid #f0ad4e;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;

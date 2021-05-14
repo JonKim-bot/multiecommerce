@@ -283,9 +283,9 @@
   }
 }
       #btn-promo{
-         background: #d9ff88;
+         background: #f0ad4e;
    color: #fff;
-    border: 2px solid #d9ff88;
+    border: 2px solid #f0ad4e;
 
 
 

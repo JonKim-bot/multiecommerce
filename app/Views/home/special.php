@@ -1,7 +1,7 @@
 <link href="<?= base_url() ?>/assets/emenu/redcayne/css/style.css" rel="stylesheet" />
 
 <div id="piegen-page">
-		<header style="background:#d9ff88">
+		<header style="background:#f0ad4e">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">

@@ -37,7 +37,7 @@
             
 
                 <div class="col-md-7 responsive-wrap">
-                <div style="height:50px;background:#d9ff88;padding:10px">
+                <div style="height:50px;background:#f0ad4e;padding:10px">
     <a href="<?= base_url() ?>">
         <i class="fas fa-arrow-circle-left fa-2x text-white"></i>
     </a>
