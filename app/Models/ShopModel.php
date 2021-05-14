@@ -35,7 +35,6 @@ class ShopModel extends BaseModel
         $builder->select('shop.*, bank.bank,
         GROUP_CONCAT(tag.tag) AS categories,
         GROUP_CONCAT(tag.tag_id) AS categories_tag
-
         ');
         $builder->join('bank', 'shop.bank_id = bank.bank_id');
         $builder->join('shop_tag', 'shop.shop_id = shop_tag.shop_id');

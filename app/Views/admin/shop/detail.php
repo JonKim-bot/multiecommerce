@@ -132,13 +132,7 @@
                                                         ] ?></td>
 
                                                     </tr>
-                                                    <tr>
-                                                        <td><h3>Shop Category</h3></td>
-                                                        <td><?= $shop[
-                                                            'categories'
-                                                        ] ?></td>
-
-                                                    </tr>
+                                                 
                                                     <tr>
                                                         <td><h3>Contact</h3></td>
                                                         <td><?= $shop[
@@ -187,20 +181,6 @@
     'insta'
 ] ?></a>    
                                                         </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><h3>Bank Account</h3></td>
-                                                        <td><?= $shop[
-                                                            'bank_account'
-                                                        ] ?></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td><h3>Bank Holder</h3></td>
-                                                        <td><?= $shop[
-                                                            'bank_holder_name'
-                                                        ] ?></td>
-
                                                     </tr>
                                                    
                                                     

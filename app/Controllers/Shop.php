@@ -121,13 +121,10 @@ class Shop extends BaseController
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
                     'contact' => $input['contact'],
-                    'delivery_fee' => $input['delivery_fee'],
-
-                    'bank_id' => $input['bank_id'],
+                    // 'delivery_fee' => $input['delivery_fee'],
                     'address' => $input['address'],
-
-                    'bank_holder_name' => $input['bank_holder_name'],
-                    'bank_account' => $input['bank_account'],
+                    // 'bank_holder_name' => $input['bank_holder_name'],
+                    // 'bank_account' => $input['bank_account'],
                 ];
                 if (!empty($icon)) {
                     $data['icon'] = $icon;
@@ -271,20 +268,18 @@ class Shop extends BaseController
                     'lat' => $input['lat'],
                     'insta' => $input['insta'],
                     'facebook' => $input['facebook'],
-
                     'lng' => $input['lng'],
                     'state' => $input['state'],
                     'taman' => $input['taman'],
 
-                    'bank_id' => $input['bank_id'],
                     'address' => $input['address'],
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
                     'contact' => $input['contact'],
-                    'delivery_fee' => $input['delivery_fee'],
+                    // 'delivery_fee' => $input['delivery_fee'],
 
-                    'bank_holder_name' => $input['bank_holder_name'],
-                    'bank_account' => $input['bank_account'],
+                    // 'bank_holder_name' => $input['bank_holder_name'],
+                    // 'bank_account' => $input['bank_account'],
 
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
@@ -316,14 +311,14 @@ class Shop extends BaseController
                 $where = [
                     'shop_id' => $shop_id,
                 ];
-                $this->ShopTagModel->hardDeleteWhere($where);
-                foreach ($_POST['tag_id'] as $tag) {
-                    $data = [
-                        'tag_id' => $tag,
-                        'shop_id' => $shop_id,
-                    ];
-                    $this->ShopTagModel->insertNew($data);
-                }
+                // $this->ShopTagModel->hardDeleteWhere($where);
+                // foreach ($_POST['tag_id'] as $tag) {
+                //     $data = [
+                //         'tag_id' => $tag,
+                //         'shop_id' => $shop_id,
+                //     ];
+                //     $this->ShopTagModel->insertNew($data);
+                // }
                 $session = session();
 
                 $shop = $this->ShopModel->getWhere($where);

@@ -89,7 +89,7 @@
                         <?php }?>
                         </select>
                     </div> -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                     <label for="banner">Shop Category</label>
 
                     <select name="tag_id[]" class="select" id="" required multiple>
@@ -106,7 +106,7 @@
                            
                         <?php }?>
                         </select>
-                    </div>
+                    </div> -->
                     <!-- <div class="form-group">
                         <label for="">Bank Holder Name</label>
                         <input type="text" class="form-control" value="<?= $shop['bank_holder_name'] ?>" name="bank_holder_name" placeholder="e.g. Lim Jin" required>
