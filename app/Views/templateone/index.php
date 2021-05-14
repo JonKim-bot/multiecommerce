@@ -20,9 +20,6 @@
                     </div>          
                 </div>
                 <?php } ?>
-
-                <!-- Single Slider -->
-                
             </div>
         </section>
         <!-- slider Area End-->
@@ -66,24 +63,26 @@
                 </div>
             </div>
         </section> -->
+        <?php if(!empty($about)){ ?>
         <section class="about spad">
-       <div class="container">
-           <div class="row">
-               <div class="col-lg-6">
-                   <div class="about__text">
-                       <div class="label">AbouT us</div>
-                       <h2><span>We provide services</span> for multiple customers in various industries and segments</h2>
-                       <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis.</p>
-                       <a href="#" class="primary-btn">Contact us</a>
-                   </div>
-               </div>
-               <div class="col-lg-6">
-                   <div class="about__video" style="background:url('locksmith/img/about-pic.jpg')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about__text">
+                            <div class="label">AbouT us</div>
+                            <h2><?= $about['title'] ?></h2>
+                            <p><?= $about['description'] ?></p>
+                            <a href="#" class="primary-btn">Contact us</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about__video" style="background:url('<?= base_url() . $about['banner'] ?>')">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+        <?php } ?>
 <section class="services spad">
         <div class="container">
             <div class="row">
