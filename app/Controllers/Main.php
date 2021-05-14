@@ -127,8 +127,6 @@ class Main extends BaseController
                     }
                 }
                 $order_detail[$key]['order_detail_option'] = $option_selection_arr;
-                
-                
             }
         }
         return $order_detail;

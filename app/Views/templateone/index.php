@@ -9,7 +9,7 @@
                         <div class="rowr">
                             <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-8  col-sm-10">
                                 <div class="hero-caption text-center">
-                                    <span>Fashion Sale</span>
+                                    <!-- <span>Fashion Sale</span> -->
                                     <h1 data-animation="bounceIn" data-delay="0.2s">Minimal Menz Style</h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s">Consectetur adipisicing elit. Laborum fuga incidunt laboriosam voluptas iure, delectus dignissimos facilis neque nulla earum.</p>
                                     <a href="#" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a>
@@ -24,7 +24,7 @@
                         <div class="row justify-content-end">
                             <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-10">
                                 <div class="hero-caption text-center">
-                                    <span>Fashion Sale</span>
+                                    <!-- <span>Fashion Sale</span> -->
                                     <h1 data-animation="bounceIn" data-delay="0.2s">Minimal Menz Style</h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s">Consectetur adipisicing elit. Laborum fuga incidunt laboriosam voluptas iure, delectus dignissimos facilis neque nulla earum.</p>
                                     <a href="#" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a>
