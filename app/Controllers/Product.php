@@ -46,6 +46,22 @@ class Product extends BaseController
             $this->isMerchant = true;
         }
     }
+    public function change_status($product_id){
+        $where = [
+            'product_id' => $product_id
+
+        ];
+        $product = $this->ProductModel->getWhere($where)[0];
+        if($product['is_home'] == 1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        $this->ProductModel->updateWhere($where,['is_home' => $status]);
+
+        return redirect()->to(base_url('product', "refresh"));
+
+    }
 
     public function index()
     {
@@ -144,16 +160,16 @@ class Product extends BaseController
                     'product_price' => $input['product_price'],
                     'product_description' => $input['product_description'],
                     'product_name' => $input['product'],
-                    'promo_price' => $input['promo_price'],
+                    'product_price' => $input['product_price'],
 
                     'created_by' => session()->get('login_id'),
                     'shop_id' => $this->shop_id,
                 ];
 
-                if(!empty($_POST['is_promo'])){
-                    $data['is_promo'] = 1;
+                if(!empty($_POST['is_product'])){
+                    $data['is_product'] = 1;
                 }else{
-                    $data['is_promo'] = 0;
+                    $data['is_product'] = 0;
 
                 }
                 // dd($data);
@@ -257,15 +273,15 @@ class Product extends BaseController
                     'product_price' => $input['product_price'],
                     'product_description' => $input['product_description'],
                     'product_name' => $input['product'],
-                    'promo_price' => $input['promo_price'],
+                    'product_price' => $input['product_price'],
 
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
-                if(!empty($_POST['is_promo'])){
-                    $data['is_promo'] = 1;
+                if(!empty($_POST['is_product'])){
+                    $data['is_product'] = 1;
                 }else{
-                    $data['is_promo'] = 0;
+                    $data['is_product'] = 0;
 
                 }
 

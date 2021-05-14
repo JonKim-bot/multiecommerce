@@ -56,8 +56,9 @@
                                         <tr role="row">
                                         <th data-sort="name" data-filter="name">No</th>
                                         <th data-sort="name" data-filter="name">Image</th>
-
-                                            <th data-sort="name" data-filter="name">Product</th>
+                                        
+                                        <th data-sort="name" data-filter="name">Product</th>
+                                        <th data-sort="name" data-filter="name">Show Home</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -76,8 +77,15 @@
 
                                                 </a></td>
 
-                                                <td><a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>"><?= $row['product_name'] ?></a></td>
-                                                
+            
+                                                <td>
+                                                <?php if($row['is_home'] == 0) { ?>
+                                                          <a class="btn btn-danger" href="<?= base_url("product/change_status/") . "/" . $row['product_id'] ?>">No</a>
+                                                        <?php }else{ ?>
+                                                    
+                                                        <a class="btn btn-primary" href="<?= base_url("product/change_status/") . "/" . $row['product_id'] ?>">Yes</a>
+                                                        <?php } ?>
+                                                </td>
                                                 <td>
                                                 <a href="<?= base_url() ?>/product/edit/<?= $row['product_id']?>" class="btn btn-warning" ><i class="fa fa-pen"></i> Edit</a>
                                                 <a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>" class="btn btn-primary" ><i class="fa fa-eye"></i> View</a>
