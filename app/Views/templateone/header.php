@@ -164,12 +164,12 @@
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="index.php">Home</a></li>
-                                    <li><a href="shop.php">Shop</a></li>
+                                    <li><a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>">Home</a></li>
+                                    <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
 
-                                    <li><a href="product.php">Product</a></li>
-                                    <li><a href="cart.php">Cart</a></li>
-                                    <li><a href="payment.php">Payment</a></li>
+                                    <li><a href="<?= base_url() ?>/main/product_detail/<?= $shop['slug'] ?>/1">Product</a></li>
+                                    <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
+                                    <li><a href="<?= base_url() ?>/main/payment/<?= $shop['slug'] ?>">Payment</a></li>
 
                                     <!-- <li><a href="#">Pages  <i class="fas fa-angle-down"></i></a>
                                         <ul class="submenu">

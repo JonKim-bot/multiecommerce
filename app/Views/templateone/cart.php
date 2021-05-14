@@ -1,4 +1,3 @@
-<?php include 'header.php' ?>
 
     <main>
         <!-- Hero area Start-->
@@ -207,5 +206,3 @@
         </div>
     </section>
         <!--================End Cart Area =================-->
-    </main>
-    <?php include 'footer.php' ?>

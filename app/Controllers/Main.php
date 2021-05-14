@@ -29,7 +29,9 @@ class Main extends BaseController
 
     public function __construct()
     {
+        
         $this->ShopModel = new ShopModel();
+        
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
         $this->OrdersModel = new OrdersModel();
@@ -50,10 +52,23 @@ class Main extends BaseController
 
         $this->pageData = array();
     }
+
+    public function get_shop($slug){
+        $where =[
+            'slug' => $slug
+        ];
+        $shop = $this->ShopModel->getWhere($where);
+        $this->show_404_if_empty($shop);
+        $where = [
+            'shop_id' => $shop[0]['shop_id'],
+        ];
+        return $shop[0];
+    }
     
-    public function failed()
+    public function failed($slug)
     {
-        
+        $this->pageData['shop'] = $this->get_shop($slug);
+
         echo view("templateone/header", $this->pageData);
         echo view("templateone/failed");
         echo view("templateone/footer");
@@ -61,8 +76,9 @@ class Main extends BaseController
     }
 
     
-    public function success()
+    public function success($slug)
     {
+        $this->pageData['shop'] = $this->get_shop($slug);
 
         echo view("templateone/header", $this->pageData);
         echo view("templateone/success");
@@ -70,8 +86,10 @@ class Main extends BaseController
 
     }
 
-    public function product_detail($product_id)
+    public function product_detail($slug,$product_id)
     {
+        $this->pageData['shop'] = $this->get_shop($slug);
+
         $where =[
             'product.product_id' => $product_id
         ];
@@ -86,15 +104,9 @@ class Main extends BaseController
 
     public function payment($slug)
     {
-        $where =[
-            'slug' => $slug
-        ];
-        $shop = $this->ShopModel->getWhere($where);
-        $this->show_404_if_empty($shop);
-        
-        $where = [
-            'shop_id' => $shop[0]['shop_id'],
-        ];
+
+        $this->pageData['shop'] = $this->get_shop($slug);
+
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
       
         // $this->debug($product);
@@ -108,15 +120,8 @@ class Main extends BaseController
     
     public function cart($slug)
     {
-        $where =[
-            'slug' => $slug
-        ];
-        $shop = $this->ShopModel->getWhere($where);
-        $this->show_404_if_empty($shop);
-        
-        $where = [
-            'shop_id' => $shop[0]['shop_id'],
-        ];
+        $this->pageData['shop'] = $this->get_shop($slug);
+
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
       
         // $this->debug($product);
@@ -132,15 +137,11 @@ class Main extends BaseController
 
     public function index($slug)
     {
-        $where =[
-            'slug' => $slug
-        ];
-        $shop = $this->ShopModel->getWhere($where);
-        $this->show_404_if_empty($shop);
-        
+        $shop = $this->get_shop($slug);
         $where = [
-            'shop_id' => $shop[0]['shop_id'],
+            'shop_id' => $shop['shop_id']
         ];
+        $this->pageData['shop'] = $shop;
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);
@@ -156,7 +157,7 @@ class Main extends BaseController
         $shop[0]['merchant_name'] = $this->MerchantModel->getWhere($where)[0]['name'];
             
         $where = [
-            'shop_id' => $shop[0]['shop_id'],
+            'shop_id' => $shop['shop_id'],
             'is_active' => 1,
         ];
         $announcement = $this->AnnouncementModel->getWhere($where);
@@ -164,7 +165,6 @@ class Main extends BaseController
             $announcement = $announcement[0];
             $this->pageData['announcement'] = $announcement;
         }
-        $this->pageData['shop'] = $shop[0];
         // $this->pageData['shop_operating_hour'] = $shop_operating_hour;
 
         $this->pageData['category'] = $category;
@@ -190,18 +190,14 @@ class Main extends BaseController
       
     public function product($slug)
     {
-        $where =[
-            'slug' => $slug
-        ];
-        $shop = $this->ShopModel->getWhere($where);
-        $this->show_404_if_empty($shop);
-        
+        $shop = $this->get_shop($slug);
         $where = [
-            'shop_id' => $shop[0]['shop_id'],
+            'shop_id' => $shop['shop_id']
         ];
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);
+        $this->pageData['shop'] = $shop;
 
         $this->pageData['category'] = $category;
         
