@@ -56,10 +56,10 @@
                         <label for="">Contact</label>
                         <input type="number" class="form-control" name="contact" value="<?= $shop['contact'] ?>" placeholder="e.g. 012-123-1232" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="">Delivery Fee (PER KM)</label>
                         <input type="number" step="any" class="form-control" name="delivery_fee" value="<?= $shop['delivery_fee'] ?>" placeholder="e.g. RM 3" required>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="">Email</label>
                         <input type="text" class="form-control" name="email" value="<?= $shop['email'] ?>" placeholder="e.g. xxx.com" required>
@@ -74,7 +74,7 @@
                         <label for="icon">Icon</label>
                         <input type="file" class="form-control" name="icon" placeholder="Banner">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                     <label for="banner">Bank</label>
 
                     <select name="bank_id" class="select" id="" required>
@@ -88,7 +88,7 @@
 
                         <?php }?>
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                     <label for="banner">Shop Category</label>
 
@@ -107,14 +107,14 @@
                         <?php }?>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="">Bank Holder Name</label>
                         <input type="text" class="form-control" value="<?= $shop['bank_holder_name'] ?>" name="bank_holder_name" placeholder="e.g. Lim Jin" required>
                     </div>
                     <div class="form-group">
                         <label for="">Bank Account</label>
                         <input type="text" class="form-control" value="<?= $shop['bank_account'] ?>" name="bank_account" placeholder="e.g. 123213123123" required>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="">Insta</label>
                         <input type="text" class="form-control" value="<?= $shop['insta'] ?>" name="insta" placeholder="e.g. https://www.facebook.com/PieGen-Software-111184540529485/?ref=bookmarks" >
@@ -124,7 +124,6 @@
                         <label for="">Facaebook</label>
                         <input type="text" class="form-control" value="<?= $shop['facebook'] ?>" name="facebook" placeholder="e.g. https://www.instagram.com/piegen_software/" >
                     </div>
-
              
                     <div class="form-group">
                         <label for="">Address</label>
