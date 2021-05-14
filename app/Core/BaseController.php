@@ -67,6 +67,38 @@ class BaseController extends Controller
             $this->show404();
         }
     }
+    function upload_image_base($image_name){
+        if (!empty($_FILES[$image_name]['name'])) {
+            $file = $this->request->getFile($image_name);
+            $new_name = $file->getRandomName();
+            $banner = $file->move('./public/images/', $new_name);
+            if ($banner) {
+                $banner = '/public/images/' . $new_name;
+                // $data[$image_name] = $banner;
+                return $banner;
+            }else{
+                return "";
+            }
+        }else{
+            return "";
+        }
+    }
+    function upload_multiple_image($image_name){
+        if ( !empty($_FILES[$image_name]['name'][0]) && $_FILES[$image_name]['name'][0] != "" ) {
+
+            $getUpload = $this->request->getFileMultiple('cover_image');
+            $image  = [];
+            foreach ($getUpload as $files){
+                $thumbnail = $files->getName();
+                $banner = $files->move('./public/images/', $thumbnail);
+                $banner = '/public/images/' . $thumbnail;
+                $image[] = $banner;
+            }
+            return $image;
+        }else {
+            return "";
+        }
+    }
     public function hash($password)
     {
 

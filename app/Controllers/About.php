@@ -151,3 +151,4 @@ class About extends BaseController
         return redirect()->to(base_url('about', 'refresh'));
     }
 }
+

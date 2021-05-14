@@ -190,6 +190,12 @@
                 </li>
               
                 <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Brand 
+                    </a>
+                </li>
+                <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
                         <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
                         Announcement

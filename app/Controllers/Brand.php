@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Core\BaseController;
-use App\Models\BannerModel;
+use App\Models\BrandModel;
 
-class Banner extends BaseController
+class Brand extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
-        $this->BannerModel = new BannerModel();
+        $this->BrandModel = new BrandModel();
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -27,11 +27,11 @@ class Banner extends BaseController
         $where = [
             'shop_id' => $this->shop_id,
         ];
-        $banner = $this->BannerModel->getWhere($where);
-        $this->pageData['banner'] = $banner;
+        $brand = $this->BrandModel->getWhere($where);
+        $this->pageData['brand'] = $brand;
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/banner/all');
+        echo view('admin/brand/all');
         echo view('admin/footer');
     }
 
@@ -43,69 +43,64 @@ class Banner extends BaseController
             $error = false;
 
             if (!$error) {
-                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
-                    $file = $this->request->getFile('banner');
-                    $new_name = $file->getRandomName();
-                    $banner = $file->move('./public/images/banner/', $new_name);
-                    if ($banner) {
-                        $banner = '/public/images/banner/' . $new_name;
-                    } else {
-                        $error = true;
-                        $error_message = 'Upload failed.';
-                    }
-                }
-
+                
                 $data = [
-                    'banner' => $banner,
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
+                    'icons' => $this->request->getPost('icons'),
+
                     'shop_id' => $this->shop_id,
                     'created_by' => session()->get('login_id'),
                 ];
+                
+                // $image = $this->upload_image_base('banner');
 
+                // if($image != ""){
+                //     $data['banner'] = $image;
+                // }
+          
                 // $this->debug($data);
                 // dd($data);
 
-                $this->BannerModel->insertNew($data);
+                $this->BrandModel->insertNew($data);
 
-                return redirect()->to(base_url('banner', 'refresh'));
+                return redirect()->to(base_url('brand', 'refresh'));
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/banner/add');
+        echo view('admin/brand/add');
         echo view('admin/footer');
     }
 
-    public function detail($banner_id)
+    public function detail($brand_id)
     {
         $where = [
-            'banner_id' => $banner_id,
+            'brand_id' => $brand_id,
         ];
-        $banner = $this->BannerModel->getWhere($where);
+        $brand = $this->BrandModel->getWhere($where);
         if ($this->isMerchant = true) {
-            $this->check_is_merchant_from_shop($banner[0]['shop_id']);
+            $this->check_is_merchant_from_shop($brand[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
 
-        $this->pageData['banner'] = $banner[0];
+        $this->pageData['brand'] = $brand[0];
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/banner/detail');
+        echo view('admin/brand/detail');
         echo view('admin/footer');
     }
 
-    public function edit($banner_id)
+    public function edit($brand_id)
     {
         $where = [
-            'banner_id' => $banner_id,
+            'brand_id' => $brand_id,
         ];
 
-        $this->pageData['banner'] = $this->BannerModel->getWhere($where)[0];
-
+        $this->pageData['brand'] = $this->BrandModel->getWhere($where)[0];
         if ($this->isMerchant = true) {
             $this->check_is_merchant_from_shop(
-                $this->pageData['banner']['shop_id']
+                $this->pageData['brand']['shop_id']
             );
         }
         if ($_POST) {
@@ -115,6 +110,8 @@ class Banner extends BaseController
 
             if (!$error) {
                 $data = [
+                    'icons' => $this->request->getPost('icons'),
+
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
                     'created_by' => session()->get('login_id'),
@@ -122,33 +119,31 @@ class Banner extends BaseController
                     'modified_by' => session()->get('login_id'),
                 ];
 
-                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
-                    $file = $this->request->getFile('banner');
-                    $new_name = $file->getRandomName();
-                    $banner = $file->move('./public/images/banner/', $new_name);
-                    if ($banner) {
-                        $banner = '/public/images/banner/' . $new_name;
-                        $data['banner'] = $banner;
-                    }
-                }
+                // $image = $this->upload_image_base('banner');
 
-                $this->BannerModel->updateWhere($where, $data);
+                // if($image != ""){
+                //     $data['banner'] = $image;
+                // }
+          
+          
+
+                $this->BrandModel->updateWhere($where, $data);
 
                 return redirect()->to(
-                    base_url('banner/detail/' . $banner_id, 'refresh')
+                    base_url('brand/detail/' . $brand_id, 'refresh')
                 );
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/banner/edit');
+        echo view('admin/brand/edit');
         echo view('admin/footer');
     }
 
-    public function delete($banner_id)
+    public function delete($brand_id)
     {
-        $this->BannerModel->softDelete($banner_id);
+        $this->BrandModel->softDelete($brand_id);
 
-        return redirect()->to(base_url('banner', 'refresh'));
+        return redirect()->to(base_url('brand', 'refresh'));
     }
 }
