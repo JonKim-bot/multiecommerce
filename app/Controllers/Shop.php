@@ -33,7 +33,7 @@ class Shop extends BaseController
         $this->pageData['tag'] = $this->TagModel->getAll();
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant = true;
+            $this->isMerchant == true;
         }
         $this->pageData['isMerchant'] = $this->isMerchant;
 

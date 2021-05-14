@@ -86,7 +86,7 @@ class Promo extends BaseController
             'promo_id' => $promo_id,
         ];
         $promo = $this->PromoModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($promo[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
@@ -105,7 +105,7 @@ class Promo extends BaseController
         ];
 
         $this->pageData['promo'] = $this->PromoModel->getWhere($where)[0];
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['promo']['shop_id']
             );

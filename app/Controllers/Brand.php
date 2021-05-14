@@ -79,7 +79,7 @@ class Brand extends BaseController
             'brand_id' => $brand_id,
         ];
         $brand = $this->BrandModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($brand[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
@@ -98,7 +98,7 @@ class Brand extends BaseController
         ];
 
         $this->pageData['brand'] = $this->BrandModel->getWhere($where)[0];
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['brand']['shop_id']
             );
@@ -111,10 +111,8 @@ class Brand extends BaseController
             if (!$error) {
                 $data = [
                     'icons' => $this->request->getPost('icons'),
-
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'created_by' => session()->get('login_id'),
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];

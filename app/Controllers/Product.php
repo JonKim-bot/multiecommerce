@@ -44,7 +44,7 @@ class Product extends BaseController
         // }
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant = true;
+            $this->isMerchant == true;
         }
     }
     public function change_status($product_id){
@@ -223,7 +223,7 @@ class Product extends BaseController
         $product = $this->ProductModel->getWhere($where);
         $product_option = $this->ProductOptionModel->getWhere($where);
 
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($product[0]['shop_id']);
         }
         // $this->debug($product);
@@ -259,7 +259,7 @@ class Product extends BaseController
         ] = $this->ProductCategoryModel->getWhere($where);
 
         $this->pageData['product'] = $this->ProductModel->getWhere($where)[0];
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['product']['shop_id']
             );

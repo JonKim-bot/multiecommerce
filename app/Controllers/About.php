@@ -83,7 +83,7 @@ class About extends BaseController
             'about_id' => $about_id,
         ];
         $about = $this->AboutModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($about[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
@@ -102,7 +102,7 @@ class About extends BaseController
         ];
 
         $this->pageData['about'] = $this->AboutModel->getWhere($where)[0];
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['about']['shop_id']
             );

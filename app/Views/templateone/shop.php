@@ -1,4 +1,3 @@
-<?php include 'header.php' ?>
     <main>
         <!-- Hero area Start-->
         <div class="hero-area section-bg2">
@@ -370,4 +369,3 @@
         </div>
         <!-- listing-area Area End -->
     </main>
-    <?php include 'footer.php' ?>

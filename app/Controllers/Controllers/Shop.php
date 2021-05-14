@@ -31,7 +31,7 @@ class Shop extends BaseController
         $this->pageData['tag'] = $this->TagModel->getAll();
         if (session()->get('admin_data') == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant = true;
+            $this->isMerchant == true;
         }
         $this->pageData['isMerchant'] = $this->isMerchant;
 
@@ -72,7 +72,7 @@ class Shop extends BaseController
     {
         $bank = $this->BankModel->getAll();
 
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->show_404_if_empty([]);
         }
 

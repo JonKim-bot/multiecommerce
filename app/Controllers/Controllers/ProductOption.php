@@ -37,7 +37,7 @@ class ProductOption extends BaseController
         }
         if (session()->get('admin_data') == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant = true;
+            $this->isMerchant == true;
         }
     }
 

@@ -83,7 +83,7 @@ class Banner extends BaseController
             'banner_id' => $banner_id,
         ];
         $banner = $this->BannerModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($banner[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
@@ -103,7 +103,7 @@ class Banner extends BaseController
 
         $this->pageData['banner'] = $this->BannerModel->getWhere($where)[0];
 
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['banner']['shop_id']
             );

@@ -104,7 +104,7 @@ class Announcement extends BaseController
             'announcement_id' => $announcement_id,
         ];
         $announcement = $this->AnnouncementModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($announcement[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
@@ -125,7 +125,7 @@ class Announcement extends BaseController
         $this->pageData['announcement'] = $this->AnnouncementModel->getWhere(
             $where
         )[0];
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['announcement']['shop_id']
             );

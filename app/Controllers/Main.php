@@ -51,7 +51,80 @@ class Main extends BaseController
         $this->pageData = array();
     }
 
+    public function product_detail($product_id)
+    {
+        $where =[
+            'product.product_id' => $product_id
+        ];
+        $product = $this->ProductModel->getWhere($where);
+       
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/product");
+        echo view("templateone/footer");
+
+    }
+    public function payment($slug)
+    {
+        $where =[
+            'slug' => $slug
+        ];
+        $shop = $this->ShopModel->getWhere($where);
+        $this->show_404_if_empty($shop);
+        $where = [
+            'shop_id' => $shop[0]['shop_id'],
+        ];
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/payment");
+        echo view("templateone/footer");
+
+    }
+
+    public function payment($slug)
+    {
+        $where =[
+            'slug' => $slug
+        ];
+        $shop = $this->ShopModel->getWhere($where);
+        $this->show_404_if_empty($shop);
+        
+        $where = [
+            'shop_id' => $shop[0]['shop_id'],
+        ];
+        // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
+      
+        // $this->debug($product);
+        // $this->debug($product);
+        // $this->debug($product);
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/payment");
+        echo view("templateone/footer");
+
+    }
     
+    public function cart($slug)
+    {
+        $where =[
+            'slug' => $slug
+        ];
+        $shop = $this->ShopModel->getWhere($where);
+        $this->show_404_if_empty($shop);
+        
+        $where = [
+            'shop_id' => $shop[0]['shop_id'],
+        ];
+        // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
+      
+        // $this->debug($product);
+        // $this->debug($product);
+        // $this->debug($product);
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/cart");
+        echo view("templateone/footer");
+
+    }
+    
+
+
     public function index($slug)
     {
         $where =[
@@ -105,8 +178,39 @@ class Main extends BaseController
         echo view("templateone/index");
         echo view("templateone/footer");
 
+    }
+    
+
+    
+      
+    public function product($slug)
+    {
+        $where =[
+            'slug' => $slug
+        ];
+        $shop = $this->ShopModel->getWhere($where);
+        $this->show_404_if_empty($shop);
+        
+        $where = [
+            'shop_id' => $shop[0]['shop_id'],
+        ];
+        // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
+        $product = $this->ProductModel->getWhere($where);
+        $category = $this->CategoryModel->getWhere($where);
+
+        $this->pageData['category'] = $category;
+        
+        
+        $this->pageData['product'] = $product;
+        // $this->debug($product);
+        // $this->debug($product);
+        // $this->debug($product);
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/shop");
+        echo view("templateone/footer");
 
     }
+    
     
 
 

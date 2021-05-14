@@ -25,7 +25,7 @@ class OrderCustomer extends BaseController
         }
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant = true;
+            $this->isMerchant == true;
         } else {
             $this->isMerchant = false;
         }
@@ -53,7 +53,7 @@ class OrderCustomer extends BaseController
             'order_customer.order_customer_id' => $order_customer_id,
         ];
         $order_customer = $this->OrderCustomerModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($order_customer[0]['shop_id']);
         }
         $this->show_404_if_empty($order_customer);

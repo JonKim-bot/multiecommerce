@@ -52,7 +52,7 @@ class Orders extends BaseController
 
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant = true;
+            $this->isMerchant == true;
         }
 
         $shop_data = session()->get('shop_data');
@@ -86,7 +86,7 @@ class Orders extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders[0]['shop_id']);
         }
         foreach ($orders as $key_main => $row) {
@@ -150,7 +150,7 @@ class Orders extends BaseController
         }
 
         $orders_csv = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders_csv[0]['shop_id']);
         }
         $filter = [
@@ -245,7 +245,7 @@ class Orders extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders[0]['shop_id']);
         }
         foreach ($orders as $key_main => $row) {
@@ -305,7 +305,7 @@ class Orders extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders[0]['shop_id']);
         }
         foreach ($orders as $key_main => $row) {
@@ -339,7 +339,7 @@ class Orders extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders[0]['shop_id']);
         }
         foreach ($orders as $key_main => $row) {
@@ -439,7 +439,7 @@ class Orders extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders[0]['shop_id']);
         }
         foreach ($orders as $key_main => $row) {
@@ -521,7 +521,7 @@ class Orders extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
-        if ($this->isMerchant = true) {
+        if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($orders[0]['shop_id']);
         }
         foreach ($orders as $key_main => $row) {
