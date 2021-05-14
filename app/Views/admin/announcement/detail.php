@@ -53,7 +53,7 @@
                                             '/' .
                                             $announcement[
                                                 'announcement_id'
-                                            ] ?>">Show</a>
+                                            ] ?>">Hide</a>
                                         <?php } else { ?>
                                             <a class="btn btn-danger" href="<?= base_url(
                                                 'Announcement/change_status/'
@@ -61,18 +61,11 @@
                                                 '/' .
                                                 $announcement[
                                                     'announcement_id'
-                                                ] ?>">Hide</a>
+                                                ] ?>">Show</a>
                                        
                                         <?php } ?>
                                         <div class="general-info mb-5">
-                                            <div class="row mb-5">
-                                                <div class="col-lg-12 col-xl-12">
-                                                    <img src="<?= base_url() .
-                                                        $announcement[
-                                                            'banner'
-                                                        ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
-                                                </div>
-                                            </div>
+                                          
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <tr>
@@ -83,9 +76,16 @@
 
                                                     </tr>
                                                     <tr>
-                                                        <td><h3>Description</h3></td>
+                                                        <td><h3>Link Text</h3></td>
                                                         <td><?= $announcement[
                                                             'description'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Link</h3></td>
+                                                        <td><?= $announcement[
+                                                            'link'
                                                         ] ?></td>
 
                                                     </tr>

@@ -16,9 +16,7 @@ class Announcement extends BaseController
             uri_string() != 'access/login'
         ) {
             //  redirect()->to(base_url('access/login/'));
-            echo "<script>location.href='" .
-                base_url() .
-                "/access/login';</script>";
+            // echo "<script>location.href='".base_url()."/access/login';</script>";
         }
     }
 
@@ -61,30 +59,14 @@ class Announcement extends BaseController
 
             if (!$error) {
                 $data = [
+                    'link' => $this->request->getPost('link'),
+
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
                     'shop_id' => $this->shop_id,
                     'created_by' => session()->get('login_id'),
                 ];
-                if (
-                    $_FILES['announcement'] and
-                    !empty($_FILES['announcement']['name'])
-                ) {
-                    $file = $this->request->getFile('announcement');
-                    $new_name = $file->getRandomName();
-                    $announcement = $file->move(
-                        './public/images/announcement/',
-                        $new_name
-                    );
-                    if ($announcement) {
-                        $announcement =
-                            '/public/images/announcement/' . $new_name;
-                        $data['banner'] = $announcement;
-                    } else {
-                        $error = true;
-                        $error_message = 'Upload failed.';
-                    }
-                }
+                
 
                 // $this->debug($data);
                 // dd($data);
@@ -139,29 +121,13 @@ class Announcement extends BaseController
 
             if (!$error) {
                 $data = [
+                    'link' => $this->request->getPost('link'),
+
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'created_by' => session()->get('login_id'),
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
-
-                if (
-                    $_FILES['announcement'] and
-                    !empty($_FILES['announcement']['name'])
-                ) {
-                    $file = $this->request->getFile('announcement');
-                    $new_name = $file->getRandomName();
-                    $announcement = $file->move(
-                        './public/images/announcement/',
-                        $new_name
-                    );
-                    if ($announcement) {
-                        $announcement =
-                            '/public/images/announcement/' . $new_name;
-                        $data['banner'] = $announcement;
-                    }
-                }
 
                 $this->AnnouncementModel->updateWhere($where, $data);
 

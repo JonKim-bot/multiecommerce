@@ -273,7 +273,7 @@
             </div>
             <?php if($announcement['is_active'] == 1){ ?>
             <div class="header-bottom text-center">
-                <p><?= $announcement['title'] ?><a href="#" class="browse-btn"><?= $announcement['description'] ?>/a>
+                <p><?= $announcement['title'] ?><a href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
                 &nbsp;
                     <i class="fa fa-times" style="cursor:pointer" id="close_promo_btn"></i>
                 </a>
