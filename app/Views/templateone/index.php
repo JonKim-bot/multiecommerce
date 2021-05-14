@@ -94,72 +94,21 @@
                 </div>
             </div>
             <div class="row">
+            <?php foreach($brand as $row){ ?>
+
                 <div class="col-lg-4 col-md-6">
                     <div class="services__item">
                         <div class="services__item__icon">
-                        <i class="fa fa-adjust fa-3x" aria-hidden="true"></i>
+                        <i class="fa <?= $row['icons'] ?> fa-3x" aria-hidden="true"></i>
                         </div>
                         <div class="services__item__text">
-                            <h4>Locksmith Services</h4>
-                            <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+                            <h4><?= $row['title'] ?></h4>
+                            <p><?= $row['description'] ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                        <i class="fa fa-adjust fa-3x" aria-hidden="true"></i>
-                    </div>
-                        <div class="services__item__text">
-                            <h4>Safes & Locks</h4>
-                            <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                        <i class="fa fa-adjust fa-3x" aria-hidden="true"></i>
-                        </div>
-                        <div class="services__item__text">
-                            <h4>Access Control</h4>
-                            <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                        <i class="fa fa-adjust fa-3x" aria-hidden="true"></i>
-                        </div>
-                        <div class="services__item__text">
-                            <h4>Security Doors</h4>
-                            <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                </div> 
-                <div class="col-lg-4 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                        <i class="fa fa-adjust fa-3x" aria-hidden="true"></i>
-                        </div>
-                        <div class="services__item__text">
-                            <h4>Alarm System</h4>
-                            <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="services__item">
-                        <div class="services__item__icon">
-                        <i class="fa fa-adjust fa-3x" aria-hidden="true"></i>
-                        </div>
-                        <div class="services__item__text">
-                            <h4>Video Surveillance</h4>
-                            <p>Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
+
             </div>
         </div>
     </section>
@@ -176,8 +125,13 @@
                                     <h2>Trending This Week</h2>
                                 </div>
                                 <div class="nav nav-tabs property-controls" id="nav-tab" role="tablist">
-                                    <a class="nav-link active" data-filter="all">Men</a>
-                                    <a class="nav-link" data-filter=".women">Women</a>
+                                    <a class="nav-link active" data-filter="all">All</a>
+                                  <?php foreach ($category as $key => $row) { ?>
+
+                                    <a class="nav-link" data-filter=".category<?= strtolower(
+                                        $row['category_id']
+                                    ) ?>"><?= $row['category'] ?></a>
+                                    <?php } ?>
                                 </div>
                             </nav>
                             <!--End Nav Button  -->
@@ -191,12 +145,19 @@
                         <!-- Tab 1 -->  
                         <div class="latest-items-active property-filter row">
                             <!-- Single -->
-                            
-                            <div class="col-md-3 mix all">
+                            <?php foreach ($product as $row) { ?>
+
+                            <div class="col-md-3 mix all <?php
+                                if(strpos($row['category_id'], ',') !== false){
+                                    echo str_replace(',',' category',strtolower($row['category_id']));
+                                }else{
+                                    echo 'category' . $row['category_id'];
+                                }
+                                ?>">
                                 <div class="properties pb-30 ">
                                     <div class="properties-card">
                                         <div class="properties-img">
-                                            <a href="product.php"><img src="assets/img/gallery/latest1.jpg" alt=""></a>
+                                            <a href="product.php"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
                                             <div class="socal_icon">
                                                 <a href="#"><i class="ti-shopping-cart"></i></a>
                                                 <a href="#"><i class="ti-heart"></i></a>
@@ -204,79 +165,23 @@
                                             </div>
                                         </div>
                                         <div class="properties-caption properties-caption2">
-                                            <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
+                                            <h3><a href="product.php"><?= $row['product_name'] ?></a></h3>
                                             <div class="properties-footer">
                                                 <div class="price">
-                                                    <span>$98.00 <span>$120.00</span></span>
+                                                    <span>RM<?= $row['product_price'] ?>
+                                                    <?php if($row['is_promo'] == 1){ ?>
+                                                        <span>RM<?= $row['promo_price'] ?></span>
+                                                    <?php } ?>
+                                                    
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 mix women">
-                                <div class="properties pb-30 ">
-                                    <div class="properties-card">
-                                        <div class="properties-img">
-                                            <a href="product.php"><img src="assets/img/gallery/latest1.jpg" alt=""></a>
-                                            <div class="socal_icon">
-                                                <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                <a href="#"><i class="ti-zoom-in"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="properties-caption properties-caption2">
-                                            <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                            <div class="properties-footer">
-                                                <div class="price">
-                                                    <span>$98.00 <span>$120.00</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix women">
-                                <div class="properties pb-30 ">
-                                    <div class="properties-card">
-                                        <div class="properties-img">
-                                        <a href="product.php"><img src="assets/img/gallery/latest3.jpg" alt=""></a>
-                                            <div class="socal_icon">
-                                                <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                <a href="#"><i class="ti-zoom-in"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="properties-caption properties-caption2">
-                                            <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                            <div class="properties-footer">
-                                                <div class="price">
-                                                    <span>$98.00 <span>$120.00</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 mix women">
-                                <div class="properties pb-30 ">
-                                    <div class="properties-card">
-                                        <div class="properties-img">
-                                        <a href="product.php"><img src="assets/img/gallery/latest2.jpg" alt=""></a>
-                                            <div class="socal_icon">
-                                                <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                <a href="#"><i class="ti-zoom-in"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="properties-caption properties-caption2">
-                                            <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                            <div class="properties-footer">
-                                                <div class="price">
-                                                    <span>$98.00 <span>$120.00</span></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php } ?>
+
                             <!-- Single -->
                             
                             <!-- Single -->

@@ -14,6 +14,7 @@ use App\Models\OrdersModel;
 use App\Models\MerchantModel;
 
 use App\Models\AnnouncementModel;
+use App\Models\BrandModel;
 
 use App\Models\ProductOptionSelectionModel;
 
@@ -37,6 +38,8 @@ class Main extends BaseController
         $this->OrdersModel = new OrdersModel();
         $this->MerchantModel = new MerchantModel();
         $this->AnnouncementModel = new AnnouncementModel();
+        $this->BrandModel = new BrandModel();
+
         $this->OrdersStatusModel = new OrdersStatusModel();
         $this->ProductOptionSelectionModel = new ProductOptionSelectionModel();
 
@@ -143,17 +146,23 @@ class Main extends BaseController
         ];
         $this->pageData['shop'] = $shop;
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
-        $product = $this->ProductModel->getWhere($where);
+        $product = $this->ProductModel->getWhere([
+            'shop_id' => $shop['shop_id'],
+            'is_home' => 1,
+        ]);
+        $brand = $this->BrandModel->getWhere($where);
+
         $category = $this->CategoryModel->getWhere($where);
         $banner = $this->BannerModel->getWhere($where);
         $about = $this->AboutModel->getWhere($where);
-        $payment_method = $this->PaymentMethod->getAll();
-        $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
-        $shop_payment_method = array_column($shop_payment_method,'payment_method_id');
-        // $this->debug($shop_payment_method);
-        $this->pageData['shop_payment_method'] = $shop_payment_method;
-        
-        $this->pageData['payment_method'] = $payment_method;
+        // $payment_method = $this->PaymentMethod->getAll();
+        // $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
+        // $shop_payment_method = array_column($shop_payment_method,'payment_method_id');
+        // // $this->debug($shop_payment_method);
+        // $this->pageData['shop_payment_method'] = $shop_payment_method;
+        // $this->pageData['payment_method'] = $payment_method;
+        $this->pageData['brand'] = $brand;
+
         $shop[0]['merchant_name'] = $this->MerchantModel->getWhere($where)[0]['name'];
             
         $where = [
@@ -174,11 +183,8 @@ class Main extends BaseController
             $this->pageData['about'] = $about;
         }
         
-        
         $this->pageData['product'] = $product;
-        // $this->debug($product);
-        // $this->debug($product);
-        // $this->debug($product);
+
         echo view("templateone/header", $this->pageData);
         echo view("templateone/index");
         echo view("templateone/footer");
@@ -194,6 +200,11 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop['shop_id']
         ];
+        $announcement = $this->AnnouncementModel->getWhere($where);
+        if(!empty($announcement)){
+            $announcement = $announcement[0];
+            $this->pageData['announcement'] = $announcement;
+        }
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);

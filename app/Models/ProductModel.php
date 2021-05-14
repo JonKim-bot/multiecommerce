@@ -22,8 +22,7 @@ class ProductModel extends BaseModel
        
 
         $sql = ('SELECT product.*,
-         GROUP_CONCAT(product_category.category_id) AS category_id
-
+        GROUP_CONCAT(product_category.category_id) AS category_id
         FROM product
         LEFT JOIN product_category
         ON product_category.product_id = product.product_id
@@ -35,13 +34,19 @@ class ProductModel extends BaseModel
 
         }
 
+        if(!empty($where['is_home'])){
+            $sql .= " AND product.is_home = '1' ";
+            unset($where['is_home']);
+        }
+
+
         if(!empty($where['category_id'])){
             $sql .= " AND product_category.category_id = ".$where['category_id']." AND product_category.deleted = 0
             ";
             unset($where['category_id']);
         }
         $sql .= " GROUP BY product.product_id";
-        // $this->debug($sql);
+        
         $query = $this->db->query($sql, [$where]);
 
         return $query->getResultArray();

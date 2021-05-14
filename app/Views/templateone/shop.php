@@ -33,7 +33,7 @@
                             <!-- single one -->
                             <div class="single-listing">
                                 <!-- select-Categories  -->
-                                <div class="select-Categories pb-30">
+                                <!-- <div class="select-Categories pb-30">
                                     <div class="select-job-items2 mb-30">
                                         <div class="col-xl-12">
                                             <select name="select2">
@@ -45,40 +45,13 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="select-job-items2 mb-30">
-                                        <div class="col-xl-12">
-                                            <select name="select2">
-                                                <option value="">Type</option>
-                                                <option value="">Type 1</option>
-                                                <option value="">Type 2</option>
-                                                <option value="">Type 3</option>
-                                                <option value="">Type 4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="select-job-items2 mb-30">
-                                        <div class="col-xl-12">
-                                            <select name="select2">
-                                                <option value="">Size</option>
-                                                <option value="">XXL</option>
-                                                <option value="">XL</option>
-                                                <option value="">LG</option>
-                                                <option value="">M</option>
-                                                <option value="">sm</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="select-job-items2 mb-30">
-                                        <div class="col-xl-12">
-                                            <select name="select2">
-                                                <option value="">Color</option>
-                                                <option value="">Read</option>
-                                                <option value="">Green</option>
-                                                <option value="">Blue</option>
-                                                <option value="">skyblue</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                   
+                                </div> -->
+                                <div class="product__sidebar__search">
+                                    <form action="#">
+                                        <input type="text" placeholder="Search">
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
                                 </div>
                                 <!-- select-Categories End -->
                                 <!-- Range Slider Start -->
