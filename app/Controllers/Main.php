@@ -50,6 +50,25 @@ class Main extends BaseController
 
         $this->pageData = array();
     }
+    
+    public function failed()
+    {
+        
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/failed");
+        echo view("templateone/footer");
+
+    }
+
+    
+    public function success()
+    {
+
+        echo view("templateone/header", $this->pageData);
+        echo view("templateone/success");
+        echo view("templateone/footer");
+
+    }
 
     public function product_detail($product_id)
     {
@@ -63,21 +82,7 @@ class Main extends BaseController
         echo view("templateone/footer");
 
     }
-    public function payment($slug)
-    {
-        $where =[
-            'slug' => $slug
-        ];
-        $shop = $this->ShopModel->getWhere($where);
-        $this->show_404_if_empty($shop);
-        $where = [
-            'shop_id' => $shop[0]['shop_id'],
-        ];
-        echo view("templateone/header", $this->pageData);
-        echo view("templateone/payment");
-        echo view("templateone/footer");
-
-    }
+    
 
     public function payment($slug)
     {

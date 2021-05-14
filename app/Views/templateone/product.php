@@ -1,4 +1,3 @@
-<?php include 'header.php' ?>
 
     <main>
         <!-- Hero area Start-->
@@ -237,4 +236,3 @@
         </section>
         <!-- Books review End -->
     </main>
-    <?php include 'footer.php' ?>
