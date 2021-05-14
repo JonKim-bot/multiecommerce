@@ -75,57 +75,20 @@
                                 </aside>
                                 <!-- range end -->
                                 <!-- select-Categories  -->
-                                <div class="select-Categories pb-30">
-                                    <div class="small-tittle mb-20">
-                                        <h4>Filter by Genres</h4>
-                                    </div>
-                                    <label class="container">History
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Horror - Thriller
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Love Stories
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Science Fiction
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Biography
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
+                               
                                 <!-- select-Categories End -->
                                 <!-- select-Categories start -->
                                 <div class="select-Categories pb-20">
                                     <div class="small-tittle mb-20">
-                                        <h4>Filter by Brand</h4>
+                                        <h4>Filter by Category</h4>
                                     </div>
-                                    <label class="container">Green Publications
-                                        <input type="checkbox">
+                                    <?php foreach($category as $row){ ?>
+                                    <label class="container"><?= $row['category'] ?>
+                                        <input type="checkbox" class="category_check" value="<?= $row['category_id'] ?>">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">Anondo Publications
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Rinku Publications
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Sheba Publications
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Red Publications
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <?php } ?>
+                                   
                                 </div>
                                 <!-- select-Categories End -->
                             </div>
@@ -134,207 +97,8 @@
                     </div>
                     <!--?  Right content -->
                     <div class="col-xl-9 col-lg-8 col-md-8">
-                        <div class="latest-items latest-items2">
-                            <div class="row">
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest5.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest6.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest7.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest8.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest6.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest1.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest2.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest3.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="product.php"><img src="assets/img/gallery/latest4.jpg" alt=""></a>
-                                                <div class="socal_icon">
-                                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                                    <a href="#"><i class="ti-heart"></i></a>
-                                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="product.php">Cashmere Tank + Bag</a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <span>$98.00 <span>$120.00</span></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="latest-items latest-items2 product_list">
+                            
                         </div>
                     </div>
                 </div>

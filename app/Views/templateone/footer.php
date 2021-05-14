@@ -146,6 +146,38 @@
 
 
 <script>
+    function get_selected_category(){
+        var checked_array = [];
+        $(".category_check:checked").each(function(){
+            checked_array.push($(this).val());
+        });
+        alert(checked_array);
+        return checked_array;
+    }
+
+    $('.category_check').click(function(e) {
+        get_product_list();
+    });
+    function get_product_list(){
+
+            let post_data = {
+                'shop_id' : "<?= $shop['shop_id'] ?>"
+            }
+            var checked_array = get_selected_category();
+            if(checked_array != []){
+                post_data.category_ids = checked_array;
+            }
+            $.ajax({
+            url: "<?= base_url() ?>/main/product_list",
+            method:"POST",
+            data: post_data,
+            success:function(data)
+            {
+                $('.product_list').html(data);
+            }
+            });
+        }
+    get_product_list();
 
     
             $('.property-controls a').on('click', function () {

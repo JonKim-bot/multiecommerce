@@ -17,6 +17,36 @@ class ProductModel extends BaseModel
         
     }
 
+    function getWhereIn($where,$limit = "", $page = 1, $filter = array()){
+        $builder = $this->db->table($this->tableName);
+       
+
+        $sql = ('SELECT product.*,
+        GROUP_CONCAT(product_category.category_id) AS category_id
+        FROM product
+        LEFT JOIN product_category
+        ON product_category.product_id = product.product_id
+        ');
+        if(!empty($where['shop_id'])){
+            $sql .= "WHERE product.shop_id = ? AND product.deleted = 0";
+        }else{
+            $sql .= "WHERE product.product_id = ? AND product.deleted = 0";
+
+        }
+
+
+        if(!empty($where['category_ids'])){
+            $sql .= " AND product_category.category_id IN (".implode(",",$where['category_ids']).") AND product_category.deleted = 0
+            ";
+            unset($where['category_ids']);
+        }
+        $sql .= " GROUP BY product.product_id";
+        
+        $query = $this->db->query($sql, [$where]);
+
+        return $query->getResultArray();
+    }
+
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
        

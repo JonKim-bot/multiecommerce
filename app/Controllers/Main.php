@@ -192,7 +192,17 @@ class Main extends BaseController
     }
     
 
-    
+    public function product_list(){
+        $where = [
+            'shop_id' => $_POST['shop_id']
+        ];
+        if(!empty($_POST['category_ids'])){
+            $where['category_ids'] = $_POST['category_ids'];
+        }
+        $product = $this->ProductModel->getWhereIn($where);
+        $this->pageData['product'] = $product;
+        echo view("templateone/product_list",$this->pageData);
+    }
       
     public function product($slug)
     {
