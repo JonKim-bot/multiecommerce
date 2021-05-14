@@ -48,14 +48,14 @@
                                    
                                 </div> -->
                                 <div class="product__sidebar__search">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    <form>
+                                        <input type="text" placeholder="Search" class="search_bar">
+                                        <button><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
                                 <!-- select-Categories End -->
                                 <!-- Range Slider Start -->
-                                <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow mb-40">
+                                <!-- <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow mb-40">
                                     <div class="small-tittle">
                                         <h4>Filter by Price</h4>
                                     </div>
@@ -72,7 +72,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </aside>
+                                </aside> -->
                                 <!-- range end -->
                                 <!-- select-Categories  -->
                                

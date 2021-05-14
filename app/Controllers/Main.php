@@ -199,8 +199,14 @@ class Main extends BaseController
         if(!empty($_POST['category_ids'])){
             $where['category_ids'] = $_POST['category_ids'];
         }
+        if(!empty($_POST['keyword'])){
+            $where['product_name'] = $_POST['keyword'];
+        }
+        
         $product = $this->ProductModel->getWhereIn($where);
+        $product_max_price =  $this->ProductModel->getMaxPrice();
         $this->pageData['product'] = $product;
+        $this->pageData['product_max_price'] = $product_max_price[0]['max(product_price)'];
         echo view("templateone/product_list",$this->pageData);
     }
       

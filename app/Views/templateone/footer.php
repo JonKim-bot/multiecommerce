@@ -151,10 +151,11 @@
         $(".category_check:checked").each(function(){
             checked_array.push($(this).val());
         });
-        alert(checked_array);
         return checked_array;
     }
-
+    $(".search_bar").on("keyup", function() {
+        get_product_list();
+    });
     $('.category_check').click(function(e) {
         get_product_list();
     });
@@ -163,9 +164,13 @@
             let post_data = {
                 'shop_id' : "<?= $shop['shop_id'] ?>"
             }
+            var keyword = $('.search_bar').val();
             var checked_array = get_selected_category();
             if(checked_array != []){
                 post_data.category_ids = checked_array;
+            }
+            if(keyword != ""){
+                post_data.keyword = keyword;
             }
             $.ajax({
             url: "<?= base_url() ?>/main/product_list",
@@ -173,6 +178,7 @@
             data: post_data,
             success:function(data)
             {
+                
                 $('.product_list').html(data);
             }
             });

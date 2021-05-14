@@ -21,32 +21,35 @@ class ProductModel extends BaseModel
         $builder = $this->db->table($this->tableName);
        
 
-        $sql = ('SELECT product.*,
-        GROUP_CONCAT(product_category.category_id) AS category_id
-        FROM product
-        LEFT JOIN product_category
-        ON product_category.product_id = product.product_id
-        ');
+        $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id ');
         if(!empty($where['shop_id'])){
             $sql .= "WHERE product.shop_id = ? AND product.deleted = 0";
         }else{
             $sql .= "WHERE product.product_id = ? AND product.deleted = 0";
-
+        }
+        if(!empty($where['product_name'])){
+            $sql .= " AND product_name LIKE '%".$where['product_name']."%' ";
+            unset($where['product_name']);
         }
 
-
         if(!empty($where['category_ids'])){
-            $sql .= " AND product_category.category_id IN (".implode(",",$where['category_ids']).") AND product_category.deleted = 0
-            ";
+            $sql .= " AND product_category.category_id IN (".implode(",",$where['category_ids']).") AND product_category.deleted = 0";
             unset($where['category_ids']);
         }
         $sql .= " GROUP BY product.product_id";
-        
         $query = $this->db->query($sql, [$where]);
 
         return $query->getResultArray();
     }
+    function getMaxPrice(){
+        $builder = $this->db->table($this->tableName);
+       
+        $sql = ('SELECT max(product_price) FROM product');
+        
+        $query = $this->db->query($sql);
 
+        return $query->getResultArray();
+    }
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
        

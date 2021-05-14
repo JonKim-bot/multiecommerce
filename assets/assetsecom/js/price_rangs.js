@@ -2378,7 +2378,7 @@ var $range = $(".js-range-slider"),
     $inputTo = $(".js-input-to"),
     instance,
     min = 0,
-    max = 1000,
+    max = 10000,
     from = 10,
     to = 100;
 
@@ -2396,8 +2396,6 @@ $range.ionRangeSlider({
     prettify_separator: ".",
   values_separator: " - ",
   force_edges: true
-  
-
 });
 
 instance = $range.data("ionRangeSlider");

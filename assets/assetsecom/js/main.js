@@ -1,5 +1,6 @@
 (function ($)
 
+
     { "use strict"
     
 /* 0. Proloder */

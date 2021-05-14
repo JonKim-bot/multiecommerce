@@ -1,4 +1,5 @@
 <div class="row">
+    <input type="hidden" id="max_product_price" value="<?= $product_max_price ?>">
     <?php foreach($product as $row){ ?>
     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
         <div class="properties pb-30">
