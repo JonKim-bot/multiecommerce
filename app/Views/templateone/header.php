@@ -158,7 +158,7 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="index.php"><img src="<?= base_url() ?>/assets/assetsecom/img/logo/logo.png" alt=""></a>
+                            <a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -271,13 +271,15 @@
                     </div>
                 </div>
             </div>
+            <?php if($announcement['is_active'] == 1){ ?>
             <div class="header-bottom text-center">
-                <p>Sale Up To 50% Biggest Discounts. Hurry! Limited Perriod Offer  <a href="#" class="browse-btn">Shop Now</a>
+                <p><?= $announcement['title'] ?><a href="#" class="browse-btn"><?= $announcement['description'] ?>/a>
                 &nbsp;
                     <i class="fa fa-times" style="cursor:pointer" id="close_promo_btn"></i>
                 </a>
                 </p>
                 
             </div>
+            <?php  }?>
         </div>
     </header>

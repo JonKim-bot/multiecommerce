@@ -43,17 +43,16 @@
                                 <?php } ?>
                                 <div class="form-group">
                                     <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="e.g. Best Restaurant In Town" required>
+                                    <input type="text" class="form-control" name="title" placeholder="e.g. Best Store In Town" required>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="announcement">Announcement</label>
-                                    <input type="file" class="form-control" name="announcement" placeholder="Announcement">
+                                    <label for="">Link</label>
+                                    <input type="text" class="form-control" name="link" value="" placeholder="e.g. www.yourproductlink.com" required>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "></textarea>
+                                    <label for="">Link Text</label>
+                                    <textarea class="form-control " name="description" placeholder="Eg : Shop Now ! "></textarea>
                                 </div>
 
 

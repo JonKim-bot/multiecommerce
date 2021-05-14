@@ -39,15 +39,19 @@
                                     <input type="text" class="form-control" name="title" value="<?= $announcement['title']?>" placeholder="e.g. Best Restaurant In Town" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Decription</label>
-                                    <textarea class="form-control textarea" name="description" placeholder="Eg : Open since 1997 "><?= $announcement['description']?></textarea>
+                                    <label for="">Link</label>
+                                    <input type="text" class="form-control" name="link" value="<?= $announcement['link']?>" placeholder="e.g. www.yourproductlink.com" required>
                                 </div>
-                    <div class="form-group">
+                                <div class="form-group">
+                                    <label for="">Link Text</label>
+                                    <textarea class="form-control " name="description" placeholder="Eg : Shop Now ! "><?= $announcement['description']?></textarea>
+                                </div>
+                    <!-- <div class="form-group">
                                     <label for="announcement">Image</label>
                                     <input type="file" class="form-control" name="announcement" placeholder="Announcement" >
                                     <label for="" class="small text-danger">*Leave blank if not change image</label>
 
-                                </div>
+                                </div> -->
                     
                     <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>
