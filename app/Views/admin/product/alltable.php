@@ -57,8 +57,8 @@
                                         <th data-sort="name" data-filter="name">No</th>
                                         <th data-sort="name" data-filter="name">Image</th>
                                         
-                                        <th data-sort="name" data-filter="name">Product</th>
                                         <th data-sort="name" data-filter="name">Show Home</th>
+                                        <th data-sort="name" data-filter="name">Product</th>
                                             <th></th>
                                         </tr>
                                     </thead>
