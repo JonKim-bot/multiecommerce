@@ -111,11 +111,11 @@
                                             <div class="product__details__widget" style="overflow: visible">
                                                 <div class="quantity" style="float:left">
                                                 <div class="pro-qty">
-                                                  <span class="fa fa-minus dec qtybtn"></span>
-                                                       <input type="text" value="1">
-                                                  <span class="fa fa-plus inc qtybtn"></span></div>
+                                                  <span class="fa fa-minus dec qtybtn minus_qty"></span>
+                                                       <input type="text" class="text-white" value="1" id="product_quantity">
+                                                  <span class="fa fa-plus inc qtybtn add_qty"></span></div>
                                                 </div>
-                                                <a  class="white-btn mr-10">Add to Cart</a>
+                                                <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
                                                 <a href="#" class="border-btn share-btn"><i class="fas fa-share-alt"></i></a>
                                             </div>
                                         </div>

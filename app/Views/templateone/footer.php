@@ -142,6 +142,8 @@
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js"></script>
 
 
 
@@ -176,24 +178,47 @@
     var selected_count = 0;
 
     $(".product_option_select").on('change', function(){
-        
-        var selected_value = get_selected_value();
-        item_price = "RM " + calculate_total(selected_value,"<?= $product['product_price'] ?>");
+        var selected_value = get_selected_value().selected_value;
+        var product_price = <?= $product['product_price'] ?>;
+        var product_quantity = $('#product_quantity').val();
+        var total_price =  ( product_price * product_quantity );
+       
+
+        item_price =  calculate_total(selected_value,total_price);
         $('#product_price').text((item_price));
 
     });
     function calculate_total(selected_value,item_price){
-        selected_value.map(option => 
-            item_price = parseFloat(item_price) + parseFloat(option.selection_price)
-        )
-        // console.log(item_price);
+        var product_quantity = $('#product_quantity').val();
 
-        // item_price = item_price
+        selected_value.map(option => 
+           item_price = parseFloat(item_price) + (parseFloat(option.selection_price) * parseFloat(product_quantity)) 
+        )
         return item_price.toFixed(2)
-        
+    }
+    $(".add_qty").on('click', function(){
+        var product_quantity = parseFloat($('#product_quantity').val()) + 1;
+        $('#product_quantity').val(product_quantity);
+        calculate_product_price();
+    });
+    $(".minus_qty").on('click', function(){
+        var product_quantity = parseFloat($('#product_quantity').val()) - 1;
+        $('#product_quantity').val(product_quantity);
+        calculate_product_price();
+    });
+
+
+    function calculate_product_price(){
+       var total_selection_price = get_selected_value().selected_total_price;
+
+       var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
+       var product_quantity = $('#product_quantity').val();
+       var total_price =  ( product_price * product_quantity );
+       $('#product_price').text(total_price.toFixed(2));
     }
     function get_selected_value(){
         selected_count = 0;
+        selected_total_price = 0;
         selected_value = [];
         $(".product_option_select option:selected").each(function(){
             var option_selected = {
@@ -205,13 +230,35 @@
             }
             selected_value.push(option_selected);
             if(option_selected.product_option_id > 0){
+                selected_total_price = parseFloat(option_selected.selection_price) + parseFloat(selected_total_price);
                 selected_count = selected_count + 1;
                 //count total selected value
             }
         });
-        return selected_value;
+        return {
+            selected_value : selected_value,
+            selected_total_price : selected_total_price,
+            selected_count : selected_count,
+        };
 
     }
+
+    $(".add-to-cart-button").on('click', function(){
+        var selected_count = get_selected_value().selected_count;
+        var selected_value = get_selected_value().selected_value;
+
+        if(validate(selected_count) == false){
+            return;
+        }
+        var product = {
+            product_id : "<?= $product['product_id'] ?>",
+            product_name : "<?=  $product['product_name'] ?>",
+            product_selection : selected_value
+        }
+        // console.log(product)
+
+    });
+
     function get_product_list(){
 
             let post_data = {
@@ -235,7 +282,7 @@
                 $('.product_list').html(data);
             }
             });
-        }
+    }
     get_product_list();
 
     
