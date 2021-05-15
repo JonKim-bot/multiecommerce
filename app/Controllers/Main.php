@@ -304,9 +304,16 @@ class Main extends BaseController
             $product = $this->ProductModel->getWhere(array(
                 "product_id" => $input['product_id'],
             ))[0];
-            $product_selection =array_column($input['product_selection'],'product_option_selection_id');
-            sort($product_selection);
-            $product_selection = implode('_',$product_selection);
+
+            if(!empty($input['product_selection'])){
+                
+                $product_selection = array_column($input['product_selection'],'product_option_selection_id');
+                sort($product_selection);
+                $product_selection = implode('_',$product_selection);
+            }else{
+                $product_selection = '';
+                $input['product_selection'] = '';
+            }
             
             $cart_index = $input['product_id'] . "_" . $input['product_name'] . "_" . $product_selection;
 
@@ -331,13 +338,21 @@ class Main extends BaseController
             
             $this->session->set("cart", $cart);
 
-            die(json_encode(array(
-                "status" => true,
-            )));
+            $this->load_shopping_cart();
+
+            // die(json_encode(array(
+            //     "status" => true,
+            // )));
         }
     }
 
     public function load_shopping_cart(){
+        $cart = $this->session->get("cart");
+        $this->pageData['cart'] = $cart;
+        $this->pageData['total'] = array_sum(array_column($cart,'total'));
+        echo view("templateone/header_cart",$this->pageData);
+
+
 
     }
 

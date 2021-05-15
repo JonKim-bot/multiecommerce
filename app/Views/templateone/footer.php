@@ -162,6 +162,11 @@
         get_product_list();
     });
 
+    function get_header_cart(){
+        $.post("<?= base_url('main/load_shopping_cart') ?>", {}, function(html){
+            $('.shopping-cart').html(html);
+        });
+    }
     function validate(total_selected){
         if (total_selected < <?= $total_min ?>)
         {
@@ -262,18 +267,13 @@
             product_selection : selected_value
         }
         $.post("<?= base_url('main/add_to_cart') ?>", postParam, function(data){
-            data = jQuery.parseJSON(data);
-            if(data.status){
-                alert('item added')
-                // window.location.replace("<?= base_url('main/cart') ?>");
-            } else {
-                alert("ADD TO CART FAILED");
-            }
+                get_header_cart();
         });
         // console.log(product)
 
     });
 
+    get_header_cart();
     function get_product_list(){
 
             let post_data = {

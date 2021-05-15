@@ -87,6 +87,10 @@
   transform-origin: right top 0;
   transform: scale(1);
 }
+.cart__table tbody tr td.cart__item .cart__item__pic img {
+    border: 1px solid #e8eff4;
+    width: 84px;
+}
 .shopping-cart:after {
   bottom: 100%;
   left: 89%;
