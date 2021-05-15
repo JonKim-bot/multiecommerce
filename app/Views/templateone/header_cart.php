@@ -26,6 +26,13 @@
 }
 </style>
 <div class="col-lg-12">
+    <div class="c-cartnoti show" style="display: flex;
+    justify-content: space-between;">
+        <span class="title-cart">Your Cart</span>
+        <span class="c-close closeit" aria-expanded="true">
+          <i class="fas fa-times"></i>
+        </span>
+    </div>
     <div class="cart__table">
         <table>
             <tbody>
@@ -44,9 +51,9 @@
                 <tr colspan="2">
                     <td class="cart__quantity"  colspan="2">
                         <div class="c-quantity" style="display:flex;justify-content: flex-end;">
-                            <div class="dec button mr-2" onclick="minusQuantity('<?= $key ?>')">-</div>
-                            <input type="text" class="custom-control" value="1">
-                            <div class="inc button ml-2" onclick="addQuantity('<?= $key ?>')">+</div>
+                            <div class="dec button mr-2 qtybtn" onclick="minusQuantity('<?= $key ?>')">-</div>
+                            <input type="text" class="custom-control" value="<?= $row['quantity'] ?>">
+                            <div class="inc button ml-2 qtybtn" onclick="addQuantity('<?= $key ?>')">+</div>
                         </div>
                     </td>
                 </tr>
@@ -54,7 +61,7 @@
                 <tr>
                     <td class="cart__price text-left" style="text-align:left;font-size:25px">RM <?= $total ?></td>
                     <td class="cart__price">
-                    <a class="btn btn-primary btn-block w-100" href="cart.php" style="margin-top:20px">Pay</a>
+                    <a class="btn btn-primary btn-block w-100" href="<?= base_url() ?>" style="margin-top:20px">Pay</a>
                     </td>
 
                 </tr>
@@ -62,3 +69,17 @@
         </table>
     </div>
 </div>
+
+<script>
+ $(document).ready(function() {
+
+$('.closeit').click(function(e) {
+
+var $item = $(".shopping-cart");
+if ($item.hasClass("active")) {
+  $item.removeClass("active");
+}
+});
+});
+
+</script>

@@ -288,6 +288,8 @@
 
         $.post("<?= base_url('main/add_qty') ?>", postParam, function(html){
             get_ajax_cart();
+            get_header_cart();
+
             get_total();
         });
     }
@@ -299,6 +301,7 @@
         $("#promo-code").prop("readonly", false);
         $("#apply_promo").text("APPLY");
         var discount = $('#discount').text().replace('RM',"");    
+        
         var subtotal = $('#subtotal').text().replace('RM',"");
         var delivery_fee = $('#delivery_fee').text().replace('RM',"");
 
@@ -317,6 +320,7 @@
         $.post("<?= base_url('main/clear_cart') ?>", {}, function(html){
             get_ajax_cart();
             get_total();
+            get_header_cart();
 
         });
     }
@@ -343,6 +347,8 @@
         $.post("<?= base_url('main/delete_item') ?>", postParam, function(data){
             get_ajax_cart();
             get_total();
+            get_header_cart();
+
             check_promo();
         });
     }
@@ -365,6 +371,8 @@
         $.post("<?= base_url('main/minus_qty') ?>", postParam, function(data){
             get_ajax_cart();
             get_total();
+            get_header_cart();
+
 
         });
     }
@@ -430,7 +438,9 @@
         'showNavArrows' :   true
             });
 
- $(document).click(function() {
+//  $(document).click(function() {
+$('.closeit').click(function(e) {
+
     var $item = $(".shopping-cart");
     if ($item.hasClass("active")) {
       $item.removeClass("active");
