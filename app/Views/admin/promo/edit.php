@@ -65,13 +65,13 @@
                                 <label for="">Product SKU</label>
                                 <select class="form-control select2"  multiple name="product_price_id[]">
                                     <?php foreach($product as $row){ ?>
-                                    <?php if(in_array($row['stock_id'],explode(',',$promo['stock_id']))) { ?>
-                                        <option selected value="<?= $row['product_price_id']?>">
-                                        <td><?= $row['stock_id'] ?></td>
+                                    <?php if(in_array($row['product_id'],explode(',',$promo['product_id']))) { ?>
+                                        <option selected value="<?= $row['product_id']?>">
+                                        <td><?= $row['product_name'] ?></td>
                                         </option>
                                     <?php  }else{?>
-                                        <option value="<?= $row['product_price_id']?>">
-                                        <td><?= $row['stock_id'] ?></td>
+                                        <option value="<?= $row['product_id']?>">
+                                        <td><?= $row['product_name'] ?></td>
                                         </option>
 
 

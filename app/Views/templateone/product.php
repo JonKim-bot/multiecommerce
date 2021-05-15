@@ -186,7 +186,7 @@
        
 
         item_price =  calculate_total(selected_value,total_price);
-        $('#product_price').text((item_price));
+        $('#product_price').text("RM " + (item_price));
 
     });
     function calculate_total(selected_value,item_price){
@@ -203,9 +203,13 @@
         calculate_product_price();
     });
     $(".minus_qty").on('click', function(){
-        var product_quantity = parseFloat($('#product_quantity').val()) - 1;
-        $('#product_quantity').val(product_quantity);
-        calculate_product_price();
+        var product_qty =  $('#product_quantity').val();
+        if(product_qty > 1){
+            var product_quantity = parseFloat($('#product_quantity').val()) - 1;
+            $('#product_quantity').val(product_quantity);
+            calculate_product_price();
+        }
+
     });
 
 
@@ -215,7 +219,7 @@
        var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
        var product_quantity = $('#product_quantity').val();
        var total_price =  ( product_price * product_quantity );
-       $('#product_price').text(total_price.toFixed(2));
+       $('#product_price').text("RM " + total_price.toFixed(2));
     }
     function get_selected_value(){
         selected_count = 0;

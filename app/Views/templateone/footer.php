@@ -194,6 +194,9 @@
                     if(promo_type_id == 1){
                         $('#delivery_fee').text("RM" + 0);
                     }               
+                    $("#promo-code").prop("readonly", true);
+                    $("#apply_promo").text("CANCEL");
+                    $("#promo_type_id").val(promo_type_id);
                     document.getElementById('discount').innerText = "RM " +  discount
                     document.getElementById('promo_id').value = promo_id
                     document.getElementById('subtotal').innerText = "RM " +  parseFloat(parseFloat(subtotal) - parseFloat(discount)).toFixed(2)
@@ -260,10 +263,21 @@
     function check_promo(){
         var promo_id = $('#promo_id').val();
         var promo_code = $('#promo_code').val();
-
         if(promo_id > 0){
             $('#promo_id').val('0');
             applyPromo(promo_code);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    function check_promo_validate(){
+        var promo_id = $('#promo_id').val();
+        if(promo_id > 0){
+            return true;
+        }else{
+            return false;
         }
     }
     function addQuantity(index){
@@ -277,7 +291,27 @@
             get_total();
         });
     }
-    
+    function cancel_promo(){
+        // alert("canceling");
+        // window.location.href = window.location.href;
+        var promo_type_id = $('#promo_type_id').val();
+        $('#promo_id').val('0');
+        $("#promo-code").prop("readonly", false);
+        $("#apply_promo").text("APPLY");
+        var discount = $('#discount').text().replace('RM',"");    
+        var subtotal = $('#subtotal').text().replace('RM',"");
+        var delivery_fee = $('#delivery_fee').text().replace('RM',"");
+
+        var subtotal = parseFloat(subtotal) + parseFloat(discount);    
+        var grand_total = parseFloat(subtotal) + parseFloat(delivery_fee);
+        $('#grand_total').text("RM " + grand_total);
+        $('#subtotal').text("RM " + subtotal);
+        $('#discount').text("RM " + '0');
+        if(promo_type_id == 1){
+            $('#delivery_fee').text("RM " + "<?= $shop['delivery_fee'] ?>");
+        }
+
+    }
     function clearCart(){
         
         $.post("<?= base_url('main/clear_cart') ?>", {}, function(html){
@@ -310,14 +344,17 @@
             get_ajax_cart();
             get_total();
             check_promo();
-
-
         });
     }
 
     
     $('#apply_promo').on('click', function () {
-        applyPromo();
+
+        if(check_promo_validate() == false){
+            applyPromo();
+        }else{
+            cancel_promo();
+        }
     });
     
     function minusQuantity(index){

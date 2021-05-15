@@ -16,9 +16,9 @@
                     <h3><a href="<?= base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
                     <div class="properties-footer">
                         <div class="price">
-                            <span>RM<?= $row['product_price'] ?>
+                            <span>RM <?= $row['product_price'] ?>
                             <?php if($row['is_promo'] == 1){ ?>
-                                <span>RM<?= $row['promo_price'] ?></span>
+                                <span>RM <?= $row['promo_price'] ?></span>
                             <?php } ?>
                             
                             </span>

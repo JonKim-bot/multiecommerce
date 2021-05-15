@@ -2,12 +2,34 @@
 .header-area .header-mid .menu-wrapper .header-right .cart::after {
     content: "<?= $cart_count ?>";
 }
+.c-quantity .button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #a3a4ff;
+    background: #EFEFEF;
+    align-self: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    cursor: pointer;
+}
+ .custom-control {
+    width: 15%;
+    border-radius: 20px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    font-weight: bold;
+    border: unset;
+}
 </style>
 <div class="col-lg-12">
     <div class="cart__table">
         <table>
             <tbody>
-            <?php foreach($cart as $row){ ?>
+            <?php foreach($cart as $key=> $row){ ?>
                 <tr>
                     <td class="cart__item p0">
                         <div class="cart__item__pic">
@@ -18,6 +40,15 @@
                         </div>
                     </td>
                     <td class="cart__price text-right p0" style="text-align:right">RM <?=number_format($row['total'], 2)?></td>
+                </tr>
+                <tr colspan="2">
+                    <td class="cart__quantity"  colspan="2">
+                        <div class="c-quantity" style="display:flex;justify-content: flex-end;">
+                            <div class="dec button mr-2" onclick="minusQuantity('<?= $key ?>')">-</div>
+                            <input type="text" class="custom-control" value="1">
+                            <div class="inc button ml-2" onclick="addQuantity('<?= $key ?>')">+</div>
+                        </div>
+                    </td>
                 </tr>
             <?php } ?>
                 <tr>

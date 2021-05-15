@@ -68,6 +68,8 @@
                                 <input type="text" id="promo-code" placeholder="Promo code">
                                 <button id="apply_promo">APPLY</button>
                                 <input type="hidden" id="promo_id" value="0">
+                                <input type="hidden" id="promo_type_id" value="0">
+
                             </form>
                         </div>
 
@@ -139,7 +141,7 @@
         postParam.push ({name : 'delivery_fee' , value : $('#delivery_fee').text().replace("RM","")});
 
 
-        alert(JSON.stringify(postParam));
+        // alert(JSON.stringify(postParam));
         $.post("<?= base_url('main/submit_order') ?>", postParam, function(data){
             data = jQuery.parseJSON(data);
             if(data.status){
