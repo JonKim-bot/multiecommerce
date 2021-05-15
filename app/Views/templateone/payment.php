@@ -70,6 +70,8 @@
                         <div class="billing-address">
                             <div class="row">
                                 <div class="col-md-6">
+                                <h4>Status</h4>
+                                <p><?= $orders['orders_status'] ?></p>
                                 <h4>Receiver</h4>
                     
                                     <p><?= $orders['full_name'] ?></p>
@@ -77,7 +79,11 @@
                                     <p><?= $orders['contact'] ?></p>
                                 </div>
                                 <div class="col-md-6">
-
+                                <?php if($orders['payment_method_id'] == 3){ ?>
+                                <h4>Payment Status
+                                    </h4>
+                                    <p><?= $orders['is_paid'] == 1 ? "Paid" : 'Not Paid' ?></p>
+                                    <?php } ?>
                                     <h4>Address
                                     </h4>
                                     <p><?= $orders['address'] ?></p>
@@ -93,6 +99,10 @@
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
+                    <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
+
+                        <?php }else{ ?>
+
                         <div class="billing-address">
                         <h4>Payment Method
                                     </h4>
@@ -116,11 +126,18 @@
 
 
                         <?php } ?>
+                        <?php } ?>
                         
                       
                         
                             <div class="row">
-                               <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px">Pay</a>
+                            <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
+
+                               <a class="btn btn-primary m-auto w-50 p-t-20" id="" style="margin-top:20px">Paid</a>
+                            <?php }else{ ?>
+                                <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px">Pay</a>
+
+                            <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -138,12 +155,11 @@ $("#payment_button").on('click', function(){
     var postParam = {
         orders_id : <?= $orders['orders_id'] ?>,
         payment_method_id : payment_method_id,
-
     }
     $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
         data = JSON.parse(data);
         if(data.status){
-            window.open = data.url;
+            window.open (data.url);
         }
     });
 
