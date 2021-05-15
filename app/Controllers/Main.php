@@ -159,6 +159,10 @@ class Main extends BaseController
                 'promo.is_active' => 1,
             ];
             $promo = $this->PromoModel->getWhere($where);
+            $whereshop = [
+                'shop.shop_id' => $_POST['shop_id']
+            ];
+            $shop = $this->ShopModel->getWhere($whereshop)[0];
             if(!empty($promo)){
                 $promo = $promo[0];
                 $grand_total = str_replace("RM","",$_POST['grand_total']);
@@ -172,8 +176,8 @@ class Main extends BaseController
                         $newTotal = str_replace("RM","",$_POST['grand_total']) - $discount_amount;
                     }
                 }else{
-                    $discount_amount  = $_POST['delivery_fee'];
-                    $newTotal =  str_replace("RM","",$_POST['grand_total']) - $_POST['delivery_fee'];
+                    $discount_amount  = $shop['delivery_fee'];
+                    $newTotal =  str_replace("RM","",$_POST['grand_total']) - $shop['delivery_fee'];
                 }
 
                 $min = str_replace("RM","",$promo['minimum']);

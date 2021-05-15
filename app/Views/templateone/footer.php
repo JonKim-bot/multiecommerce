@@ -148,11 +148,14 @@
 
 <script>
 
-    function applyPromo(){
+    function applyPromo(promo_code = ''){
         var base_url =  "<?= base_url() ?>";
 
         // var order_info = new FormData(order_info);
         // var host = window.location.hostname;
+        if(promo_code == ''){
+            var promocode =  document.getElementById('promo-code').value;
+        }
         var promo_id = document.getElementById('promo_id').value;
         if(promo_id != "0"){
             Swal.fire({
@@ -161,20 +164,17 @@
                 type: 'error'
             })
             return;
-
         }
-
         var url = base_url + "/Main/apply_promo";
         var grand_total =  $('#grand_total').text().replace("RM","");
-
-        var promocode =  document.getElementById('promo-code').value;
-        var grand_total2 =   $('#subtotal').text().replace("RM","");
+        var subtotal =   $('#subtotal').text().replace("RM","");
         var shop_id = "<?= $shop['shop_id'] ?>";
+        var delivery_fee =  $('#delivery_fee').text().replace("RM","");
 
         $.ajax({
             url: url,
             method:"POST",
-            data:{grand_total :  grand_total, promocode : promocode , shop_id : shop_id},
+            data:{grand_total :  grand_total,delivery_fee : delivery_fee, promocode : promocode , shop_id : shop_id},
             dataType: "json",
 
             success:function(data)
@@ -189,15 +189,15 @@
                     })
                     let amount = data.amount
                     let discount = data.discount
-
-
                     let promo_id = data.promo_id
-                    
-                    document.getElementById('grand-total').innerText = "RM " +  parseFloat(amount).toFixed(2)
-                    document.getElementById('subtotal').innerText = "RM " +  parseFloat(parseFloat(subtotal) - parseFloat(discount)).toFixed(2)
-                    document.getElementById('promo_id').value = promo_id
-                    
+                    let promo_type_id = data.promo_type_id;
+                    if(promo_type_id == 1){
+                        $('#delivery_fee').text("RM" + 0);
+                    }               
                     document.getElementById('discount').innerText = "RM " +  discount
+                    document.getElementById('promo_id').value = promo_id
+                    document.getElementById('subtotal').innerText = "RM " +  parseFloat(parseFloat(subtotal) - parseFloat(discount)).toFixed(2)
+                    document.getElementById('grand_total').innerText = "RM " +  parseFloat(amount).toFixed(2)
 
             }else{
                 
@@ -257,6 +257,15 @@
         });
     }
   
+    function check_promo(){
+        var promo_id = $('#promo_id').val();
+        var promo_code = $('#promo_code').val();
+
+        if(promo_id > 0){
+            $('#promo_id').val('0');
+            applyPromo(promo_code);
+        }
+    }
     function addQuantity(index){
         
         var postParam = {
@@ -274,6 +283,7 @@
         $.post("<?= base_url('main/clear_cart') ?>", {}, function(html){
             get_ajax_cart();
             get_total();
+
         });
     }
 
@@ -283,8 +293,10 @@
             var grand_total = (data.data).toFixed(2);
             var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
             $('#grand_total').text("RM " + grand_total);
-
             $('#subtotal').text("RM " + subtotal);
+
+            check_promo();
+
         });
     }
 
@@ -297,6 +309,8 @@
         $.post("<?= base_url('main/delete_item') ?>", postParam, function(data){
             get_ajax_cart();
             get_total();
+            check_promo();
+
 
         });
     }
