@@ -65,13 +65,14 @@
                         <div class="cart__coupon">
                             <h4>Promo Codes</h4>
                             <form>
-                                <input type="text" id="promo-code" placeholder="Promo code">
-                                <button id="apply_promo">APPLY</button>
+                                <input type="text" id="promo_code" placeholder="Promo code">
+                                <a id="apply_promo" class="text-white" style="padding-top:12px">APPLY</a>
                                 <input type="hidden" id="promo_id" value="0">
                                 <input type="hidden" id="promo_type_id" value="0">
 
                             </form>
                         </div>
+
 
                         <form id="checkout_form"  class="row contact_form"  method="post">
 

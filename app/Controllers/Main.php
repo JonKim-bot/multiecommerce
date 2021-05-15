@@ -76,6 +76,7 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop[0]['shop_id'],
         ];
+        $this->session->set("shop", $shop);
         return $shop[0];
     }
     
@@ -151,7 +152,7 @@ class Main extends BaseController
     }
 
     public function apply_promo(){
-        if($_POST){
+        if(isset($_POST)){
             $where = [
                 'code' => $_POST['promocode'],
                 'promo.shop_id' => $_POST['shop_id'],
@@ -207,15 +208,6 @@ class Main extends BaseController
                 )));
 
             }
-        }
-    }
-
-    public function deactive_promo(){
-        if($_POST){
-            die(json_encode(array(
-                'status' => true,
-                'amount' => $newTotal
-            )));
         }
     }
 
@@ -492,6 +484,8 @@ class Main extends BaseController
         $this->pageData['cart'] = $cart;
         $this->pageData['cart_count'] = count($this->pageData['cart']);
         $this->pageData['total'] = array_sum(array_column($cart,'total'));
+        // $shop = $this->get_shop($_POST['slug']);
+        $this->pageData['shop'] = $this->session->get("shop")[0];
         echo view("templateone/header_cart",$this->pageData);
     }
 
