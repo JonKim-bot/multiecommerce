@@ -38,95 +38,9 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cart__item">
-                                        <div class="cart__item__pic">
-                                            <img src="locksmith/img/cart/cart-1.jpg" alt="">
-                                        </div>
-                                        <div class="cart__item__text">
-                                            <h6>Vanilla Salted Caramel</h6>
-                                            <span>$ 15.00</span>
-                                        </div>
-                                    </td>
-                                    <td class="cart__quantity">
-                                        <div class="quantity">
-                                        <div class="pro-qty">
-                                              <span class="fa fa-minus dec qtybtn"></span>
-                                                   <input type="text" value="1">
-                                              <span class="fa fa-plus inc qtybtn"></span></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 30.00</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__item">
-                                        <div class="cart__item__pic">
-                                            <img src="locksmith/img/cart/cart-2.jpg" alt="">
-                                        </div>
-                                        <div class="cart__item__text">
-                                            <h6>German Chocolate</h6>
-                                            <span>$ 32.50</span>
-                                        </div>
-                                    </td>
-                                    <td class="cart__quantity">
-                                        <div class="quantity">
-                                        <div class="pro-qty">
-                                              <span class="fa fa-minus dec qtybtn"></span>
-                                                   <input type="text" value="1">
-                                              <span class="fa fa-plus inc qtybtn"></span></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 35.50</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__item">
-                                        <div class="cart__item__pic">
-                                            <img src="locksmith/img/cart/cart-3.jpg" alt="">
-                                        </div>
-                                        <div class="cart__item__text">
-                                            <h6>SWEET AUTUMN LEAVES</h6>
-                                            <span>$ 23.50</span>
-                                        </div>
-                                    </td>
-                                    <td class="cart__quantity">
-                                        <div class="quantity">
-                                        <div class="pro-qty">
-                                              <span class="fa fa-minus dec qtybtn"></span>
-                                                   <input type="text" value="1">
-                                              <span class="fa fa-plus inc qtybtn"></span></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 47.00</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__item">
-                                        <div class="cart__item__pic">
-                                            <img src="locksmith/img/cart/cart-4.jpg" alt="">
-                                        </div>
-                                        <div class="cart__item__text">
-                                            <h6>Gluten Free Mini Dozen</h6>
-                                            <span>$ 15.0</span>
-                                        </div>
-                                    </td>
-                                    <td class="cart__quantity">
-                                        <div class="quantity">
-                                        <div class="pro-qty">
-                                              <span class="fa fa-minus dec qtybtn"></span>
-                                                   <input type="text" value="1">
-                                              <span class="fa fa-plus inc qtybtn"></span></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 30.00</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
+                            <tbody id="ajax_cart">
+                                
+                                
                             </tbody>
                         </table>
                     </div>

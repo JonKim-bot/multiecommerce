@@ -25,6 +25,7 @@
                     <td class="cart__price">
                     <a class="btn btn-primary btn-block w-100" href="cart.php" style="margin-top:20px">Pay</a>
                     </td>
+                    
                 </tr>
             </tbody>
         </table>

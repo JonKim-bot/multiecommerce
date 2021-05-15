@@ -110,7 +110,6 @@
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
 <script src="<?= base_url() ?>/assets/assetsecom/js/vendor/modernizr-3.5.0.min.js"></script>
-<script src="<?= base_url() ?>/assets/assetsecom/js/vendor/jquery-1.12.4.min.js"></script>
 <script src="<?= base_url() ?>/assets/assetsecom/js/popper.min.js"></script>
 <script src="<?= base_url() ?>/assets/assetsecom/js/bootstrap.min.js"></script>
 
@@ -167,113 +166,18 @@
             $('.shopping-cart').html(html);
         });
     }
-    function validate(total_selected){
-        if (total_selected < <?= $total_min ?>)
-        {
-            Swal.fire({
-                    title: "Option",
-                    text: "Please select all the required option",
-                    type: 'error'
-            })
-            return false;
-        }
-    }
-
-    var selected_value = [];
-    var selected_count = 0;
-
-    $(".product_option_select").on('change', function(){
-        var selected_value = get_selected_value().selected_value;
-        var product_price = <?= $product['product_price'] ?>;
-        var product_quantity = $('#product_quantity').val();
-        var total_price =  ( product_price * product_quantity );
-       
-
-        item_price =  calculate_total(selected_value,total_price);
-        $('#product_price').text((item_price));
-
-    });
-    function calculate_total(selected_value,item_price){
-        var product_quantity = $('#product_quantity').val();
-
-        selected_value.map(option => 
-           item_price = parseFloat(item_price) + (parseFloat(option.selection_price) * parseFloat(product_quantity)) 
-        )
-        return item_price.toFixed(2)
-    }
-    $(".add_qty").on('click', function(){
-        var product_quantity = parseFloat($('#product_quantity').val()) + 1;
-        $('#product_quantity').val(product_quantity);
-        calculate_product_price();
-    });
-    $(".minus_qty").on('click', function(){
-        var product_quantity = parseFloat($('#product_quantity').val()) - 1;
-        $('#product_quantity').val(product_quantity);
-        calculate_product_price();
-    });
-
-
-    function calculate_product_price(){
-       var total_selection_price = get_selected_value().selected_total_price;
-
-       var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
-       var product_quantity = $('#product_quantity').val();
-       var total_price =  ( product_price * product_quantity );
-       $('#product_price').text(total_price.toFixed(2));
-    }
-    function get_selected_value(){
-        selected_count = 0;
-        selected_total_price = 0;
-        selected_value = [];
-        $(".product_option_select option:selected").each(function(){
-            var option_selected = {
-                selection_name : $(this).attr("selection_name"),
-                selection_price : $(this).attr("selection_price"),
-                product_option_name : $(this).attr("product_option_name"),
-                product_option_id : $(this).attr("product_option_id"),
-                product_option_selection_id : $(this).val(),
-            }
-            selected_value.push(option_selected);
-            if(option_selected.product_option_id > 0){
-                selected_total_price = parseFloat(option_selected.selection_price) + parseFloat(selected_total_price);
-                selected_count = selected_count + 1;
-                //count total selected value
-            }
+    function get_ajax_cart(){
+        $.post("<?= base_url('main/load_cart') ?>", {}, function(html){
+            $('#ajax_cart').html(html);
         });
-        return {
-            selected_value : selected_value,
-            selected_total_price : selected_total_price,
-            selected_count : selected_count,
-        };
-
     }
+  
 
-    $(".add-to-cart-button").on('click', function(){
-        var selected_count = get_selected_value().selected_count;
-        var selected_value = get_selected_value().selected_value;
-        var total_selection_price = get_selected_value().selected_total_price;
-
-        var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
-
-        if(validate(selected_count) == false){
-            return;
-        }
-        var postParam = {
-            product_id : "<?= $product['product_id'] ?>",
-            product_single_price : product_price,
-            product_name : "<?=  $product['product_name'] ?>",
-            quantity : $('#product_quantity').val(),
-            product_price :  $('#product_price').text(),
-            product_selection : selected_value
-        }
-        $.post("<?= base_url('main/add_to_cart') ?>", postParam, function(data){
-                get_header_cart();
-        });
-        // console.log(product)
-
-    });
+    
 
     get_header_cart();
+    get_ajax_cart();
+
     function get_product_list(){
 
             let post_data = {

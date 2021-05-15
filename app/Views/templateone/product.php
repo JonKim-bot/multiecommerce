@@ -75,11 +75,9 @@
                                                 <div class="select-job-items2 mb-30">
                                                     <div class="col-xl-12">
                                                     <?php if($row['minimum_required'] != 1){ ?>
-
                                                         <select name="select2[]" class="product_option_select">
                                                     <?php }else{ ?>
                                                         <select name="select2[]" class="product_option_select" require>
-
                                                     <?php } ?>
                                                            <?php foreach($row['selection'] as $key=> $rowselect){ ?>
                                                                 <?php if($key == 0){ ?>
@@ -87,7 +85,7 @@
                                                                     product_option_name="0"
 
                                                                     selection_name="0"
-                                                                    product_option_id="0"><?= $row['name'] ?></option>
+                                                                    product_option_id="0"><?= $row['name'] ?> <?= $row['minimum_required'] == 1 ? "*Required" : '' ?></option>
                                                                 <?php }else{ ?>
                                                                     <option value="<?= $rowselect['product_option_selection_id'] ?>"
                                                                     product_option_name="<?= $row['name'] ?>"
@@ -152,9 +150,8 @@
                         <!-- Tab 1 -->  
                         <div class="row">
                             <div class="offset-xl-1 col-lg-9">
-                                <p>Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes and sizes enjoying themselves .Born between the two world wars, Beryl Cook eventually left Kendrick School in Reading at the age of 15, where she went to secretarial school and then into an insurance office. After moving to London and then Hampton, she eventually married her next door neighbour from Reading, John Cook. He was an officer in the Merchant Navy and after he left the sea in 1956, they bought a pub for a year before John took a job in Southern Rhodesia with a motor company. Beryl bought their young son a box of watercolours, and when showing him how to use it, she decided that she herself quite enjoyed painting. John subsequently bought her a child’s painting set for her birthday and it was with this that she produced her first significant work, a half-length portrait of a dark-skinned lady with a vacant expression and large drooping breasts. It was aptly named ‘Hangover’ by Beryl’s husband and</p>
+                                <p><?= $product['product_description'] ?></p>
 
-                                <p>It is often frustrating to attempt to plan meals that are designed for one. Despite this fact, we are seeing more and more recipe books and Internet websites that are dedicated to the act of cooking for one. Divorce and the death of spouses or grown children leaving for college are all reasons that someone accustomed to cooking for more than one would suddenly need to learn how to adjust all the cooking practices utilized before into a streamlined plan of cooking that is more efficient for one person creating less.</p>
                             </div>
                         </div>
                     </div>
@@ -166,5 +163,113 @@
     </main>
 
     <script>
- 
+   function validate(total_selected){
+        if (total_selected < <?= $total_min ?>)
+        {
+            Swal.fire({
+                    title: "Option",
+                    text: "Please select all the required option",
+                    type: 'error'
+            })
+            return false;
+        }
+    }
+    var selected_value = [];
+    var selected_count = 0;
+
+    $(".product_option_select").on('change', function(){
+        var selected_value = get_selected_value().selected_value;
+        var product_price = <?= $product['product_price'] ?>;
+        var product_quantity = $('#product_quantity').val();
+        var total_price =  ( product_price * product_quantity );
+       
+
+        item_price =  calculate_total(selected_value,total_price);
+        $('#product_price').text((item_price));
+
+    });
+    function calculate_total(selected_value,item_price){
+        var product_quantity = $('#product_quantity').val();
+
+        selected_value.map(option => 
+           item_price = parseFloat(item_price) + (parseFloat(option.selection_price) * parseFloat(product_quantity)) 
+        )
+        return item_price.toFixed(2)
+    }
+    $(".add_qty").on('click', function(){
+        var product_quantity = parseFloat($('#product_quantity').val()) + 1;
+        $('#product_quantity').val(product_quantity);
+        calculate_product_price();
+    });
+    $(".minus_qty").on('click', function(){
+        var product_quantity = parseFloat($('#product_quantity').val()) - 1;
+        $('#product_quantity').val(product_quantity);
+        calculate_product_price();
+    });
+
+
+    function calculate_product_price(){
+       var total_selection_price = get_selected_value().selected_total_price;
+
+       var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
+       var product_quantity = $('#product_quantity').val();
+       var total_price =  ( product_price * product_quantity );
+       $('#product_price').text(total_price.toFixed(2));
+    }
+    function get_selected_value(){
+        selected_count = 0;
+        selected_total_price = 0;
+        selected_value = [];
+        $(".product_option_select option:selected").each(function(){
+            var option_selected = {
+                selection_name : $(this).attr("selection_name"),
+                selection_price : $(this).attr("selection_price"),
+                product_option_name : $(this).attr("product_option_name"),
+                product_option_id : $(this).attr("product_option_id"),
+                product_option_selection_id : $(this).val(),
+            }
+            selected_value.push(option_selected);
+            if(option_selected.product_option_id > 0){
+                selected_total_price = parseFloat(option_selected.selection_price) + parseFloat(selected_total_price);
+                selected_count = selected_count + 1;
+                //count total selected value
+            }
+        });
+        return {
+            selected_value : selected_value,
+            selected_total_price : selected_total_price,
+            selected_count : selected_count,
+        };
+
+    }
+
+    $(".add-to-cart-button").on('click', function(){
+        var selected_count = get_selected_value().selected_count;
+        var selected_value = get_selected_value().selected_value;
+        var total_selection_price = get_selected_value().selected_total_price;
+
+        var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
+
+        if(validate(selected_count) == false){
+            return;
+        }
+        var postParam = {
+            product_id : "<?= $product['product_id'] ?>",
+            product_single_price : product_price,
+            product_name : "<?=  $product['product_name'] ?>",
+            quantity : $('#product_quantity').val(),
+            product_price :  $('#product_price').text(),
+            product_selection : selected_value
+        }
+        $.post("<?= base_url('main/add_to_cart') ?>", postParam, function(data){
+            Swal.fire({
+                    title: "Item added",
+                    text: "Item added to cart",
+                    type: 'success'
+            })
+                get_header_cart();
+        });
+        // console.log(product)
+
+    });
     </script>

@@ -24,6 +24,7 @@
 
 
     <link rel="stylesheet" href="<?= base_url() ?>/assets/locksmith/css/style.css" type="text/css">
+    <script src="<?= base_url() ?>/assets/assetsecom/js/vendor/jquery-1.12.4.min.js"></script>
 
 <style>
 

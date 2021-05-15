@@ -129,6 +129,7 @@ class Main extends BaseController
             ];
             $product_option[$key]['selection'] = $this->ProductOptionSelectionModel->getWhere($where);
         }
+
         $total_minrequired = array_sum(array_column($product_option,'minimum_required'));
         $this->pageData['total_min'] = $total_minrequired;
         $this->pageData['shop'] = $shop;
@@ -172,7 +173,15 @@ class Main extends BaseController
     public function cart($slug)
     {
         $this->pageData['shop'] = $this->get_shop($slug);
-
+        $shop = $this->get_shop($slug);
+        $where = [
+            'shop_id' => $shop['shop_id']
+        ];
+        $announcement = $this->AnnouncementModel->getWhere($where);
+        if(!empty($announcement)){
+            $announcement = $announcement[0];
+            $this->pageData['announcement'] = $announcement;
+        }
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
       
         // $this->debug($product);
@@ -350,14 +359,17 @@ class Main extends BaseController
         $cart = $this->session->get("cart");
         $this->pageData['cart'] = $cart;
         $this->pageData['cart_count'] = count($this->pageData['cart']);
-
         $this->pageData['total'] = array_sum(array_column($cart,'total'));
         echo view("templateone/header_cart",$this->pageData);
-
-
-
     }
 
+    public function load_cart(){
+        $cart = $this->session->get("cart");
+        $this->pageData['cart'] = $cart;
+        $this->pageData['cart_count'] = count($this->pageData['cart']);
+        $this->pageData['total'] = array_sum(array_column($cart,'total'));
+        echo view("templateone/ajax_cart",$this->pageData);
+    }
 
     public function get_order_detail_option($order_detail){
  
