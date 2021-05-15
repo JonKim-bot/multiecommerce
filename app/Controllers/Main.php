@@ -491,14 +491,8 @@ class Main extends BaseController
         );
         $orders = $this->OrdersModel->getWhere($where)[0];
 
-        $total_order = $this->OrdersModel->getAll();
 
-        $where = array(
-            'DATE(orders.created_at)' => date('Y-m-d', strtotime($orders['created_at'])),
-        );
-        $today_order = $this->OrdersModel->getWhere($where);
-
-        $code = date('i', strtotime($orders['created_at'])) . $orders_id . date('s', strtotime($orders['created_at'])) . count($today_order);
+        $code = date('i', strtotime($orders['created_at'])) . $orders_id . date('s', strtotime($orders['created_at'])) . $orders['shop_id'];
 
         $where = array(
             'orders.orders_id' => $orders_id,
