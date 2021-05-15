@@ -54,6 +54,15 @@ class Main extends BaseController
 
 
         $this->pageData = array();
+
+        $this->session = session();
+        if (!empty($this->session->get("cart"))) {
+            $this->pageData['cart'] = $this->session->get("cart");
+            $this->pageData['cart_count'] = count($this->pageData['cart']);
+        } else {
+            $this->pageData['cart'] = array();
+            $this->pageData['cart_count'] = 0;
+        }
     }
 
     public function get_shop($slug){
@@ -91,8 +100,16 @@ class Main extends BaseController
 
     public function product_detail($slug,$product_id)
     {
-        $this->pageData['shop'] = $this->get_shop($slug);
-
+        $shop = $this->get_shop($slug);
+        $where = [
+            'shop_id' => $shop['shop_id']
+        ];
+        $this->pageData['shop'] = $shop;
+        $announcement = $this->AnnouncementModel->getWhere($where);
+        if(!empty($announcement)){
+            $announcement = $announcement[0];
+            $this->pageData['announcement'] = $announcement;
+        }
         $where =[
             'product.product_id' => $product_id
         ];
@@ -108,8 +125,16 @@ class Main extends BaseController
     public function payment($slug)
     {
 
-        $this->pageData['shop'] = $this->get_shop($slug);
-
+        $shop = $this->get_shop($slug);
+        $where = [
+            'shop_id' => $shop['shop_id']
+        ];
+        $this->pageData['shop'] = $shop;
+        $announcement = $this->AnnouncementModel->getWhere($where);
+        if(!empty($announcement)){
+            $announcement = $announcement[0];
+            $this->pageData['announcement'] = $announcement;
+        }
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
       
         // $this->debug($product);
@@ -240,7 +265,66 @@ class Main extends BaseController
     }
     
     
+    public function add_to_cart()
+    {
+        if ($_POST) {
+            $input = $this->request->getPost();
 
+            $error = false;
+
+            $where = array(
+                'product_price.product_id' => $input['product_id'],
+                'product_price.color_id' => $input['color_id'],
+                'product_price.size_id' => $input['size_id'],
+                'product_price.deleted' => 0,
+            );
+            $price = $this->ProductPriceModel->getWhere($where);
+            $product_sku = $this->ProductPriceModel->getWhere($where)[0]['stock_id'];
+            $product_weight = $this->ProductPriceModel->getWhere($where)[0]['weight'];
+            $price = $price[0]['price'];
+            $product = $this->ProductModel->getWhere(array(
+                "product_id" => $input['product_id'],
+            ))[0];
+            $size = $this->SizeModel->getWhere(array(
+                "size_id" => $input['size_id'],
+            ))[0];
+            $color = $this->ColorModel->getWhere(array(
+                "color_id" => $input['color_id'],
+            ))[0];
+
+            $cart_index = $input['product_id'] . "_" . $input['color_id'] . "_" . $input['size_id'];
+
+            $cart = $this->session->get("cart");
+
+            if (!empty($cart[$cart_index])) {
+                $cart[$cart_index]['quantity'] = $cart[$cart_index]['quantity'] + $input['quantity'];
+                $cart[$cart_index]['total'] = $price * ($cart[$cart_index]['quantity']);
+            } else {
+                $data = array(
+                    "product_id" => $input['product_id'],
+                    "color_id" => $input['color_id'],
+                    "size_id" => $input['size_id'],
+                    "quantity" => $input['quantity'],
+                    "weight" => $product_weight,
+                    "product" => $product['product'],
+                    "product_sku" => $product_sku,
+                    "size" => $size['size'],
+                    "color" => $color['color'],
+                    "thumbnail" => $product['thumbnail'],
+                    "price" => $price,
+                    "total" => $price * $input['quantity'],
+                );
+
+                $cart[$cart_index] = $data;
+            }
+
+            $this->session->set("cart", $cart);
+
+            die(json_encode(array(
+                "status" => true,
+            )));
+        }
+    }
 
     public function get_order_detail_option($order_detail){
  
@@ -348,5 +432,66 @@ class Main extends BaseController
         echo view("main/order_detail", $this->pageData);
     }
     
+    public function add_qty()
+    {
+        if ($_POST) {
+
+            $input = $this->request->getPost();
+            $index = $input['index'];
+            $cart = $this->session->get('cart');
+
+            $cart[$index]['quantity'] += 1;
+            $cart[$index]['total'] = $cart[$index]['quantity'] * $cart[$index]['price'];
+
+            $this->session->set("cart", $cart);
+
+            die(json_encode(array(
+                "status" => true,
+            )));
+        }
+    }
+
+    public function minus_qty()
+    {
+        if ($_POST) {
+            $input = $this->request->getPost();
+            $index = $input['index'];
+            $cart = $this->session->get('cart');
+
+            if ($cart[$index]['quantity'] == 1) {
+                if(isset($_SESSION['product_sku'])){
+                    $this->cancelPromo();
+                }
+                unset($cart[$index]);
+            } else {
+                $cart[$index]['quantity'] -= 1;
+                $cart[$index]['total'] = $cart[$index]['quantity'] * $cart[$index]['price'];
+
+            }
+            $this->session->set("cart", $cart);
+
+            die(json_encode(array(
+
+                "status" => true,
+            )));
+        }
+    }
+
+    public function delete_item()
+    {
+        if ($_POST) {
+            $input = $this->request->getPost();
+            $index = $input['index'];
+            $cart = $this->session->get('cart');
+            
+            unset($cart[$index]);
+
+            $this->session->set("cart", $cart);
+
+            die(json_encode(array(
+                "status" => true,
+            )));
+        }
+    }
     
 }

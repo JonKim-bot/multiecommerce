@@ -139,11 +139,78 @@
                     </div>
                     
                 </div>
+                
 
             </div>
         </div>
+        
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card">
+            <div class="card-header">
+                Product Image
+                <div class="card-header-actions">
+                    <a class="card-header-action">
+                        <i class="cil-arrow-circle-top c-icon minimize-card"></i>
+                    </a>
+                    <a class="card-header-action" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">
+                        <i class="cil-plus c-icon"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped datatable table-bordered no-footer " id="product_category_list_table" data-method="get" data-url="<?= base_url("product_category") ?>" style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th data-sort="name" data-filter="name">No</th>
+
+                                            <th data-sort="name" data-filter="name">Product Image</th>
+                                            <th data-sort="name" data-filter="name">Thumbnail</th>
+
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $i = 1; foreach($product_image as $row){ ?>
+                                        <tr>
+                                            <td><?= $i ?></td>
+                                            <td>
+                                            <img src="<?= base_url($row['product_image']) ?>" class="img-fluid d-block m-auto" alt="" style="width:auto;height:50px;">
+
+                                            </td>
+                                            <td>
+                                            <a class="btn btn-<?= $row['is_first'] == 1 ? "success" : "danger" ?>" id="<?= $row['product_image_id'] ?>" href="<?= base_url() ?>/product/change_status/<?= $row['product_image_id']?>">
+                                                    <?= $row['is_first'] == 1 ? "YES" : "NO" ?></a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning edit_image" id="<?= $row['product_image_id'] ?>">
+                                                    <i class="fa fa-edit"></i>
+                                                    Edit</a>
+                                                <a href="<?= base_url() ?>/product/delete_image/<?= $row['product_image_id']?>"
+                                                    class="btn btn-danger delete-button"><i class="fa fa-trash"></i>
+                                                    Delete</a>
+                                            </td>
+                                        </tr>
+                                        <?php $i++; } ?>
+                                    </tbody>
+                                </table>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+                    
+                    </div>
+    
+
             <div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="optionModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -173,3 +240,78 @@
                         </div>
                     </div>
                 </div>
+                </div>
+                    
+                    </div>
+    
+                <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="imageModalLabel"><?= $product['product_name']  ?></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form enctype="multipart/form-data"  method="POST" action="<?=base_url('/product/add_image/');?>">
+                            <div class="modal-body">
+                            <div class="form-group">
+                                <label for="">Product Picture</label>
+                                    <input type="file" class="form-control"  name="product_pic" >
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="">Product Order Number</label>
+                                    <input type="number" class="form-control"  name="order_number" >
+                            </div> -->
+                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="EditimageModal" tabindex="-1" role="dialog" aria-labelledby="EditimageModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="EditimageModalLabel">Edit <?= $product['product_name']  ?></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form enctype="multipart/form-data"  method="POST" action="<?=base_url('/product/edit_image/');?>">
+                            <div class="modal-body">
+                            <div class="form-group">
+                                <label for="">Product Picture</label>
+                                    <input type="file" class="form-control"  name="product_pic" >
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="">Product Order Number</label>
+                                    <input type="number" class="form-control"  name="order_number" >
+                            </div> -->
+                            <input type="hidden" name="product_image_id" id="product_image">
+                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                   $(document).on('click','.edit_image',function (e){
+                        $('#EditimageModal').modal('show');
+                        var product_image_id  = $(this).attr('id');
+                        $('#product_image').val(product_image_id)
+                    });
+
+                </script>

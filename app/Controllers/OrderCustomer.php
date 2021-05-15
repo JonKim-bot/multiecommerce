@@ -25,7 +25,7 @@ class OrderCustomer extends BaseController
         }
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant == true;
+            $this->isMerchant = true;
         } else {
             $this->isMerchant = false;
         }

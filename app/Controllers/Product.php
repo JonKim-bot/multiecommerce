@@ -8,6 +8,7 @@ use App\Models\ProductModel;
 use App\Models\BankModel;
 use App\Models\ProductOptionModel;
 use App\Models\MerchantModel;
+use App\Models\ProductImageModel;
 
 use App\Models\CategoryModel;
 use App\Models\ProductCategoryModel;
@@ -19,6 +20,7 @@ class Product extends BaseController
         $this->pageData = [];
         $this->ProductModel = new ProductModel();
         $this->ProductOptionModel = new ProductOptionModel();
+        $this->ProductImageModel = new ProductImageModel();
 
         $this->MerchantModel = new MerchantModel();
         $this->CategoryModel = new CategoryModel();
@@ -47,9 +49,10 @@ class Product extends BaseController
             $this->isMerchant = true;
         }
     }
-    public function change_status($product_id){
+    public function change_status_home($product_id){
         $where = [
             'product_id' => $product_id
+
 
         ];
         $product = $this->ProductModel->getWhere($where)[0];
@@ -214,6 +217,103 @@ class Product extends BaseController
             base_url('product/detail/' . $product_id, 'refresh')
         );
     }
+
+
+    public function add_image()
+    {
+
+        if ($_POST) {
+
+            $input = $this->request->getPost();
+            
+            $product_pic = $this->upload_image('product_pic');
+            $product_pic_data = [
+                'product_id' => $input['product_id'],
+                'product_image' => $product_pic,
+                // 'order_number' => $_POST['order_number']
+            ];
+            $this->ProductImageModel->insertNew($product_pic_data);
+
+
+            return redirect()->to(base_url('product/detail/' . $input['product_id'], "refresh"));
+
+        }
+    }
+    public function change_all_status($product_image){
+        $where = [
+            'product_id' => $product_image['product_id']
+        ];
+        $data = [
+            'is_first' => 0
+        ];
+        $this->ProductImageModel->updateWhere($where,$data);
+      
+    }
+    public function delete_image($product_image_id)
+    {
+
+        $where = array(
+            'product_image.product_image_id' => $product_image_id,
+        );
+        $product_id = $this->ProductImageModel->getWhere($where)[0]['product_id'];
+        $this->ProductImageModel->softDelete($product_image_id);
+        return redirect()->to(base_url('product/detail/' . $product_id, "refresh"));
+    }
+
+    public function edit_image()
+    {
+
+        if ($_POST) {
+
+            $input = $this->request->getPost();
+            
+            $product_pic = $this->upload_image('product_pic');
+            $where = [
+                'product_image_id' => $_POST['product_image_id']
+            ];
+            $product_pic_data = [
+              
+                // 'order_number' => $_POST['order_number']
+
+            ];
+            if(!empty($product_pic)){
+                $product_pic_data['product_image'] = $product_pic;
+            }
+            $this->ProductImageModel->updateWhere($where,$product_pic_data);
+
+
+            return redirect()->to(base_url('product/detail/' . $input['product_id'], "refresh"));
+
+        }
+
+    }
+    public function change_status($product_image_id)
+    {
+        $input = $this->request->getPost();
+        
+        $where = [
+            'product_image_id' => $product_image_id
+        ];
+        $product_image = $this->ProductImageModel->getWhere($where)[0];
+        if($product_image['is_first'] == 1){
+            $is_thumbnail = 0;
+        }else{
+            $is_thumbnail = 1;
+        }
+        $this->change_all_status($product_image);
+        $this->ProductImageModel->updateWhere($where,['is_first' => $is_thumbnail]);
+        $where = [
+            'product_id' => $product_image['product_id']
+        ];
+        $data = [
+            'image' => $product_image['product_image']
+        ];
+        $this->ProductModel->updateWhere($where,$data);
+        return redirect()->to(base_url('product/detail/' . $product_image['product_id'], "refresh"));
+
+        
+    }
+
     public function detail($product_id)
     {
         $where = [
@@ -222,6 +322,7 @@ class Product extends BaseController
 
         $product = $this->ProductModel->getWhere($where);
         $product_option = $this->ProductOptionModel->getWhere($where);
+        $product_image = $this->ProductImageModel->getWhere($where);
 
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($product[0]['shop_id']);
@@ -234,7 +335,8 @@ class Product extends BaseController
 
         $this->pageData['product'] = $product[0];
         $this->pageData['product_option'] = $product_option;
-        
+        $this->pageData['product_image'] = $product_image;
+
 
         echo view('admin/header', $this->pageData);
         echo view('admin/product/detail');

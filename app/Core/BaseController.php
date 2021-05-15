@@ -67,6 +67,23 @@ class BaseController extends Controller
             $this->show404();
         }
     }
+    public function upload_image($name){
+        if ($_FILES[$name] and !empty($_FILES[$name]['name'])) {
+            $file = $this->request->getFile($name);
+            $new_name = $file->getRandomName();
+            $$name = $file->move('./assets/img/'.$name.'/', $new_name);
+            if ($name) {
+
+                $name = '/assets/img/'.$name.'/' . $new_name;
+                return $name;
+            } else {
+               return "";
+            }
+        }else{
+            return "";
+        }
+
+    }
     function upload_image_base($image_name){
         if (!empty($_FILES[$image_name]['name'])) {
             $file = $this->request->getFile($image_name);

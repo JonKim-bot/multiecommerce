@@ -82,10 +82,10 @@
             
                                                 <td>
                                                 <?php if($row['is_home'] == 0) { ?>
-                                                          <a class="btn btn-danger" href="<?= base_url("product/change_status/") . "/" . $row['product_id'] ?>">No</a>
+                                                          <a class="btn btn-danger" href="<?= base_url("product/change_status_home/") . "/" . $row['product_id'] ?>">No</a>
                                                         <?php }else{ ?>
                                                     
-                                                        <a class="btn btn-primary" href="<?= base_url("product/change_status/") . "/" . $row['product_id'] ?>">Yes</a>
+                                                        <a class="btn btn-primary" href="<?= base_url("product/change_status_home/") . "/" . $row['product_id'] ?>">Yes</a>
                                                         <?php } ?>
                                                 </td>
                                                 <td>
