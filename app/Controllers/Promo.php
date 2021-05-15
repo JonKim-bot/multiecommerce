@@ -81,11 +81,13 @@ class Promo extends BaseController
                 $data['offer_percent'] = $_POST['offer_percent'];
             }
             
-            $data['product_id_id'] =join(",",$_POST['product_id_id']); ;
+            $data['product_id'] =join(",",$_POST['product_id']); ;
 
         }
         return $data;
     }
+
+    
     public function add()
     {
 

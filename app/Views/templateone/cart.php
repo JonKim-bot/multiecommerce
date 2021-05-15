@@ -69,7 +69,7 @@
                                 <button type="submit">APPLY</button>
                             </form>
                         </div>
-                        
+
                         <form id="checkout_form"  class="row contact_form"  method="post">
 
                         <div class="billing_details">
@@ -111,6 +111,8 @@
                         <div class="cart__total">
                             <h4>Cart Total</h4>
                             <ul>
+                            <li>Discount <span id="discount">RM 0</span></li>
+
                                 <li>Delivery Fee  <span id="delivery_fee">RM <?= $shop['delivery_fee'] ?></span></li>
 
                                 <li>Subtotal <span id="subtotal"></span></li>

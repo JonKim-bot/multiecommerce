@@ -147,6 +147,90 @@
 
 
 <script>
+
+    function applyPromo(){
+        var base_url =  "<?= base_url() ?>";
+
+        // var order_info = new FormData(order_info);
+        // var host = window.location.hostname;
+        var promo_id = document.getElementById('promo_id').value;
+        if(promo_id != "0"){
+            Swal.fire({
+                title: "Promocode already applyed",
+                text: "Promocode already applyed",
+                type: 'error'
+            })
+            return;
+
+        }
+
+        var url = base_url + "/Main/apply_promo";
+        var grand_total =  $('#grand_total').text().replace("RM","");
+
+        var promocode =  document.getElementById('promo-code').value;
+        var grand_total2 =   $('#subtotal').text().replace("RM","");
+        var shop_id = "<?= $shop['shop_id'] ?>";
+
+        $.ajax({
+            url: url,
+            method:"POST",
+            data:{grand_total :  grand_total, promocode : promocode , shop_id : shop_id},
+            dataType: "json",
+
+            success:function(data)
+            {
+                
+                if(data.status){
+
+                    Swal.fire({
+                        title: "Discount added",
+                        text: "Discount added",
+                        type: 'success'
+                    })
+                    let amount = data.amount
+                    let discount = data.discount
+
+
+                    let promo_id = data.promo_id
+                    
+                    document.getElementById('grand-total').innerText = "RM " +  parseFloat(amount).toFixed(2)
+                    document.getElementById('subtotal').innerText = "RM " +  parseFloat(parseFloat(subtotal) - parseFloat(discount)).toFixed(2)
+                    document.getElementById('promo_id').value = promo_id
+                    
+                    document.getElementById('discount').innerText = "RM " +  discount
+
+            }else{
+                
+                if(data.error == "Invalid"){
+
+                    Swal.fire({
+                        title: "Promocode not valid",
+                        text: "Invalid Promocode",
+                        type: 'error'
+                    })
+                }else{
+                Swal.fire({
+                    title: "Minimum spend",
+                    text: "Minimum spend RM " + data.min,
+                    type: 'error'
+                })   
+                }
+
+            }
+
+            // alert(JSON.stringify(order_info))
+        
+        }
+
+        // alert("success");
+        // window.open(
+        //     'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
+        //     '_blank' // <- This is what makes it open in a new window.
+        //   );
+
+    
+    });
+ }
     function get_selected_category(){
         var checked_array = [];
         $(".category_check:checked").each(function(){

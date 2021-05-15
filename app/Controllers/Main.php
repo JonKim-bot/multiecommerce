@@ -147,6 +147,63 @@ class Main extends BaseController
         $this->OrdersModel->updateWhere($where,$data);
         
     }
+
+    public function apply_promo(){
+        if($_POST){
+            $where = [
+                'code' => $_POST['promocode'],
+                'shop_id' => $_POST['shop_id'],
+
+                'is_active' => 1,
+            ];
+            $promo = $this->PromoModel->getWhere($where);
+            if(!empty($promo)){
+                $promo = $promo[0];
+                $grand_total = str_replace("RM","",$_POST['grand_total']);
+                if($promo['discount_type_id'] == 1){
+
+                    $discount_amount = str_replace("RM","",$promo['amount']);
+                    $newTotal = str_replace("RM","",$_POST['grand_total']) - str_replace("RM","",$promo['amount']);
+                }else{
+
+                    $discount_amount  = str_replace("RM","",$_POST['grand_total']) * ($promo['percent'] / 100);
+
+                    $newTotal = str_replace("RM","",$_POST['grand_total']) - $discount_amount;
+                }
+                
+
+                $min = str_replace("RM","",$promo['minimum']);
+
+                if($grand_total < $min){
+
+                    die(json_encode(array(
+                        'status' => false,
+                        
+                        'error' => "Min",
+                        'min' => $min,
+
+                    )));
+                }else{
+                    $initial_used = $promo['used'];
+                    $this->PromoModel->updateWhere($where,['used' => ($initial_used + 1)]);
+                    die(json_encode(array(
+                        'status' => true,
+                        'promo_id' => $promo['promo_id'],
+                        'discount' => round($discount_amount,2),
+                        'amount' => $newTotal
+                    )));
+                }
+
+            }else{
+                die(json_encode(array(
+                    'status' => false,
+                    'error' => "Invalid",
+                )));
+
+            }
+        }
+    }
+
     public function make_payment(){
         $where = [
             'orders.orders_id' => $_POST['orders_id'],
