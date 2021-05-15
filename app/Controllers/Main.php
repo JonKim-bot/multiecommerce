@@ -139,10 +139,7 @@ class Main extends BaseController
         $this->pageData['shop'] = $shop;
         $this->pageData['product_option'] = $product_option;
         $this->pageData['product_image'] = $product_image;
-
         $this->pageData['product'] = $product;
-
-       
         echo view("templateone/header", $this->pageData);
         echo view("templateone/product");
         echo view("templateone/footer");
@@ -279,6 +276,7 @@ class Main extends BaseController
     {
         $shop = $this->get_shop($slug);
         $where = [
+
             'shop_id' => $shop['shop_id']
         ];
         $announcement = $this->AnnouncementModel->getWhere($where);
@@ -484,6 +482,34 @@ class Main extends BaseController
         echo view("main/order_detail", $this->pageData);
     }
 
+   
+    public function generate_orders_code($orders_id)
+    {
+
+        $where = array(
+            'orders.orders_id' => $orders_id,
+        );
+        $orders = $this->OrdersModel->getWhere($where)[0];
+
+        $total_order = $this->OrdersModel->getAll();
+
+        $where = array(
+            'DATE(orders.created_at)' => date('Y-m-d', strtotime($orders['created_at'])),
+        );
+        $today_order = $this->OrdersModel->getWhere($where);
+
+        $code = date('i', strtotime($orders['created_at'])) . $orders_id . date('s', strtotime($orders['created_at'])) . count($today_order);
+
+        $where = array(
+            'orders.orders_id' => $orders_id,
+        );
+        $data = array(
+            'order_code' => $code,
+        );
+        $this->OrdersModel->updateWhere($where, $data);
+
+        return $code;
+    }
     public function submit_order($byStripe = false)
     {
         if($_POST){
@@ -527,7 +553,7 @@ class Main extends BaseController
                     $order_data['promo_id'] = $_POST['promo_id'];
                 }
                 $order_id = $this->OrdersModel->insertNew($order_data);
-    
+                $code = $this->generate_orders_code($order_id);
                 // $this->debug($_POST['product']);
                 foreach($cart as $row){
                     $order_detail_data = [
@@ -539,7 +565,7 @@ class Main extends BaseController
                         'product_total_price' => $row['total'],
                     ];
                     $order_detail_id = $this->OrderDetailModel->insertNew($order_detail_data);
-                    if($row['product_selection']  != '0'){
+                    if($row['product_selection']  != '0' && $row['product_selection'] != ""){
                         foreach($row['product_selection'] as $rowaddon){
                             $order_detail_selection = [
                                 'order_detail_id' => $order_detail_id,
@@ -551,7 +577,7 @@ class Main extends BaseController
                     }
                         
                 }
-                $url = base_url() . "/main/payment/capital-shop/". $order_id;
+                $url = base_url() . "/main/payment/capital-shop/". $code;
                 $where = [
                     'shop_id' => $_POST['shop_id'],
                 ];
