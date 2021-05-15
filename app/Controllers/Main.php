@@ -330,13 +330,17 @@ class Main extends BaseController
             }
             
             $this->session->set("cart", $cart);
-            $this->debug($cart);
 
             die(json_encode(array(
                 "status" => true,
             )));
         }
     }
+
+    public function load_shopping_cart(){
+
+    }
+
 
     public function get_order_detail_option($order_detail){
  
