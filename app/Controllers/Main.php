@@ -349,6 +349,8 @@ class Main extends BaseController
     public function load_shopping_cart(){
         $cart = $this->session->get("cart");
         $this->pageData['cart'] = $cart;
+        $this->pageData['cart_count'] = count($this->pageData['cart']);
+
         $this->pageData['total'] = array_sum(array_column($cart,'total'));
         echo view("templateone/header_cart",$this->pageData);
 

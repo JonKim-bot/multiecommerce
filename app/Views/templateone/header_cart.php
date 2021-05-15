@@ -1,3 +1,8 @@
+<style>
+.header-area .header-mid .menu-wrapper .header-right .cart::after {
+    content: "<?= $cart_count ?>";
+}
+</style>
 <div class="col-lg-12">
     <div class="cart__table">
         <table>
