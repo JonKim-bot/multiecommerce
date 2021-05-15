@@ -55,6 +55,10 @@
                                     <label for="">Enter Promocode</label>
                                     <input type="text" class="form-control" name="code" placeholder="e.g. OFFER20" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Minimum spend</label>
+                                    <input type="number" class="form-control" name="minimum" placeholder="e.g. RM5" required>
+                                </div>
                                 <div class="form-group" id="product_sku">
                                 <label for="">Product SKU</label>
                                 <select class="form-control select2" multiple  name="product_id[]">

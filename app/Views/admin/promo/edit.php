@@ -38,6 +38,10 @@
                                     <label for="">Promocode</label>
                                     <input type="text" class="form-control" read value="<?= $promo['code'] ?>" name="code" placeholder="e.g. OFFER20" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Minimum spend</label>
+                                    <input type="number" class="form-control" value="<?= $promo['minimum'] ?>" name="minimum" placeholder="e.g. RM5" required>
+                                </div>
 
                                 <div class="form-group">
                                 <label for="">Promo Type</label>

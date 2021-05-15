@@ -87,7 +87,7 @@ class Promo extends BaseController
         return $data;
     }
 
-    
+
     public function add()
     {
 
@@ -106,6 +106,8 @@ class Promo extends BaseController
                     "discount_type_id" => $this->request->getPost("discount_type_id"),
                     'is_newmemberonly' => $new_member,
                     'is_affliate' => $affliate,
+                    'minimum' =>  $this->request->getPost("minimum"),
+
                     'created_by' => session()->get('login_id'),
                 );
                 $data = $this->get_promo($promo_type_id,$data);
@@ -176,6 +178,7 @@ class Promo extends BaseController
                     "code" => $this->request->getPost("code"),
                     "promo_type_id" => $this->request->getPost("promo_type_id"),
                     "discount_type_id" => $this->request->getPost("discount_type_id"),
+                    'minimum' =>  $this->request->getPost("minimum"),
 
                     'is_newmemberonly' => $new_member,
                     'is_affliate' => $affliate,
