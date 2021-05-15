@@ -159,6 +159,36 @@
     $('.category_check').click(function(e) {
         get_product_list();
     });
+
+
+    var selected_value = [];
+    $(".product_option_select").on('change', function(){
+        selected_value = [];
+        $(".product_option_select option:selected").each(function(){
+            var option_selected = {
+                selection_name : $(this).attr("selection_name"),
+                selection_price : $(this).attr("selection_price"),
+                product_option_name : $(this).attr("product_option_name"),
+                product_option_id : $(this).attr("product_option_id"),
+                product_option_selection_id : $(this).val(),
+            }
+            selected_value.push(option_selected);
+        });
+        console.log(selected_value)
+    });
+    function calculate_total(selected_value,item_price){
+        selected_value.map(option => 
+            item_price = parseFloat(item_price) + parseFloat(option.selection_price)
+        )
+        // console.log(item_price);
+
+        // item_price = item_price
+        return item_price.toFixed(2)
+        
+    }
+    function get_selected_value(){
+
+    }
     function get_product_list(){
 
             let post_data = {

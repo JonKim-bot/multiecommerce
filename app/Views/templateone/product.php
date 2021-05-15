@@ -76,16 +76,25 @@
                                                     <div class="col-xl-12">
                                                     <?php if($row['minimum_required'] != 1){ ?>
 
-                                                        <select name="select2[]">
+                                                        <select name="select2[]" class="product_option_select">
                                                     <?php }else{ ?>
-                                                        <select name="select2[]" require>
+                                                        <select name="select2[]" class="product_option_select" require>
 
                                                     <?php } ?>
                                                            <?php foreach($row['selection'] as $key=> $rowselect){ ?>
                                                                 <?php if($key == 0){ ?>
-                                                                    <option value="0"><?= $row['name'] ?></option>
+                                                                    <option value="0" selection_price="0"
+                                                                    product_option_name="0"
+
+                                                                    selection_name="0"
+                                                                    product_option_id="0"><?= $row['name'] ?></option>
                                                                 <?php }else{ ?>
-                                                                    <option value="<?= $rowselect['product_option_selection_id'] ?>"><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></option>
+                                                                    <option value="<?= $rowselect['product_option_selection_id'] ?>"
+                                                                    product_option_name="<?= $row['name'] ?>"
+                                                                     selection_price="<?= $rowselect['selection_price'] ?>" 
+                                                                     selection_name="<?= $rowselect['product_option_name'] ?>"
+                                                                     product_option_id="<?= $row['product_option_id'] ?>">
+                                                                     <?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></option>
 
                                                                 <?php } ?>
 
@@ -117,7 +126,7 @@
                                                        <input type="text" value="1">
                                                   <span class="fa fa-plus inc qtybtn"></span></div>
                                                 </div>
-                                                <a href="cart.php" class="white-btn mr-10">Add to Cart</a>
+                                                <a  class="white-btn mr-10">Add to Cart</a>
                                                 <a href="#" class="border-btn share-btn"><i class="fas fa-share-alt"></i></a>
                                             </div>
                                         </div>
@@ -166,3 +175,7 @@
         </section>
         <!-- Books review End -->
     </main>
+
+    <script>
+ 
+    </script>
