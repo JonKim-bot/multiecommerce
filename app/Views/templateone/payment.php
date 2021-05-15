@@ -45,7 +45,14 @@
                                         </div>
                                         <div class="cart__item__text ">
                                             <h6><?= $row['product_name'] ?></h6>
+                                            <h6>Quantity : <?= $row['product_quantity'] ?></h6>
+
                                             <span>RM <?= $row['product_price'] ?></span>
+                                            <?php if(!empty($row['order_detail_option'])){ ?>
+                                            <?php foreach($row['order_detail_option'] as $row_option){ ?>
+                                                <li><?= $row_option['option_name'] ?> - <?= $row_option['product_option_name'] ?><br> RM <?= $row_option['selection_price'] ?></li>
+                                            <?php  } ?>
+                                            <?php  } ?>
                                         </div>
                                     </td>
                                    

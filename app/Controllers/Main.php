@@ -23,9 +23,7 @@ use App\Models\OrderDetailModel;
 use App\Models\PaymentMethodModel;
 use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
-use App\Models\ShopPaymentMethodModel;
 use App\Models\OrderDetailOptionModel;
-use App\Models\PaymentMethodModel;
 
 class Main extends BaseController
 {
