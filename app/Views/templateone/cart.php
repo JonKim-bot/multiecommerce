@@ -69,6 +69,7 @@
                                 <button type="submit">APPLY</button>
                             </form>
                         </div>
+                        
                         <form id="checkout_form"  class="row contact_form"  method="post">
 
                         <div class="billing_details">

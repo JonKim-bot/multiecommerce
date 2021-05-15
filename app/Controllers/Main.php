@@ -137,6 +137,31 @@ class Main extends BaseController
 
     }
     
+    public function make_payment(){
+        $where = [
+            'orders.order_code' => $_POST['orders_id'],
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+
+        $shop = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
+        $order_url = base_url()  . "/main/order_detail/" . $orders[0]['orders_id'];
+        $message = "MyOrder|我的订单 -> Note " . $order_url;
+        $message = rawurlencode($message);
+        $url =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
+
+        if($_POST['payment_method_id'] != 3){
+            die(json_encode([
+                'status' => true,
+                'url' => $url,
+            ]));
+        }else{
+            //payment method link
+            die(json_encode([
+                'status' => true,
+                'url' => $url,
+            ]));
+        }
+    }
 
     public function payment($slug,$order_code)
     {

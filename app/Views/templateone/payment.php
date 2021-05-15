@@ -120,7 +120,7 @@
                       
                         
                             <div class="row">
-                               <a class="btn btn-primary m-auto w-50 p-t-20" href="success.php" style="margin-top:20px">Pay</a>
+                               <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px">Pay</a>
                             </div>
                         </div>
                     </div>
@@ -130,3 +130,46 @@
     </section>
         <!--================End Cart Area =================-->
     </main>
+
+<script>
+
+$("#payment_button").on('click', function(){
+    var payment_method_id = getPaymentMethod();
+    var postParam = {
+        orders_id : <?= $orders['orders_id'] ?>,
+        payment_method_id : payment_method_id,
+
+    }
+    $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
+        if(payment_method_id)
+    });
+
+});
+function getPaymentMethod(){
+    var online_banking = document.getElementById('payment_method_1');
+    var cod = document.getElementById('payment_method_2');
+    var credit_card = document.getElementById('payment_method_3');
+    if(online_banking != null && online_banking.checked ) {
+
+        return "1";
+
+    }else if( cod != null && cod.checked) {
+
+        return "2";
+    }else if(credit_card != null && credit_card.checked){
+
+        return "3";
+
+    }else{
+        
+        Swal.fire({
+                title: "Error",
+                text: "Please select a payment method",
+                type: 'error'
+        })
+        return;
+    }
+}
+
+
+</script>
