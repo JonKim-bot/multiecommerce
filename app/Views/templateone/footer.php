@@ -246,15 +246,30 @@
     $(".add-to-cart-button").on('click', function(){
         var selected_count = get_selected_value().selected_count;
         var selected_value = get_selected_value().selected_value;
+        var total_selection_price = get_selected_value().selected_total_price;
+
+        var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
 
         if(validate(selected_count) == false){
             return;
         }
-        var product = {
+        var postParam = {
             product_id : "<?= $product['product_id'] ?>",
+            product_single_price : product_price,
             product_name : "<?=  $product['product_name'] ?>",
+            quantity : $('#product_quantity').val(),
+            product_price :  $('#product_price').text(),
             product_selection : selected_value
         }
+        $.post("<?= base_url('main/add_to_cart') ?>", postParam, function(data){
+            data = jQuery.parseJSON(data);
+            if(data.status){
+                alert('item added')
+                // window.location.replace("<?= base_url('main/cart') ?>");
+            } else {
+                alert("ADD TO CART FAILED");
+            }
+        });
         // console.log(product)
 
     });

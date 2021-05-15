@@ -194,6 +194,7 @@ class Main extends BaseController
         ];
         $this->pageData['shop'] = $shop;
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
+
         $product = $this->ProductModel->getWhere([
             'shop_id' => $shop['shop_id'],
             'is_home' => 1,
@@ -290,58 +291,46 @@ class Main extends BaseController
     
     public function add_to_cart()
     {
+        // $this->session->set("cart", array());
+
         if ($_POST) {
             $input = $this->request->getPost();
-
             $error = false;
 
             $where = array(
-                'product_price.product_id' => $input['product_id'],
-                'product_price.color_id' => $input['color_id'],
-                'product_price.size_id' => $input['size_id'],
-                'product_price.deleted' => 0,
+                'product_id' => $input['product_id'],
             );
-            $price = $this->ProductPriceModel->getWhere($where);
-            $product_sku = $this->ProductPriceModel->getWhere($where)[0]['stock_id'];
-            $product_weight = $this->ProductPriceModel->getWhere($where)[0]['weight'];
-            $price = $price[0]['price'];
+       
             $product = $this->ProductModel->getWhere(array(
                 "product_id" => $input['product_id'],
             ))[0];
-            $size = $this->SizeModel->getWhere(array(
-                "size_id" => $input['size_id'],
-            ))[0];
-            $color = $this->ColorModel->getWhere(array(
-                "color_id" => $input['color_id'],
-            ))[0];
-
-            $cart_index = $input['product_id'] . "_" . $input['color_id'] . "_" . $input['size_id'];
+            $product_selection =array_column($input['product_selection'],'product_option_selection_id');
+            sort($product_selection);
+            $product_selection = implode('_',$product_selection);
+            
+            $cart_index = $input['product_id'] . "_" . $input['product_name'] . "_" . $product_selection;
 
             $cart = $this->session->get("cart");
 
             if (!empty($cart[$cart_index])) {
                 $cart[$cart_index]['quantity'] = $cart[$cart_index]['quantity'] + $input['quantity'];
-                $cart[$cart_index]['total'] = $price * ($cart[$cart_index]['quantity']);
+                $cart[$cart_index]['total'] = $_POST['product_single_price']  * ($cart[$cart_index]['quantity']);
             } else {
                 $data = array(
                     "product_id" => $input['product_id'],
-                    "color_id" => $input['color_id'],
-                    "size_id" => $input['size_id'],
+                    'product_selection' => $input['product_selection'],
                     "quantity" => $input['quantity'],
-                    "weight" => $product_weight,
-                    "product" => $product['product'],
-                    "product_sku" => $product_sku,
-                    "size" => $size['size'],
-                    "color" => $color['color'],
-                    "thumbnail" => $product['thumbnail'],
-                    "price" => $price,
-                    "total" => $price * $input['quantity'],
+                    "product_name" => $product['product_name'],
+                    "thumbnail" => $product['image'],
+                    "price" => $_POST['product_single_price'],
+                    "total" => $_POST['product_single_price'] * $input['quantity'],
                 );
 
                 $cart[$cart_index] = $data;
             }
-
+            
             $this->session->set("cart", $cart);
+            $this->debug($cart);
 
             die(json_encode(array(
                 "status" => true,
