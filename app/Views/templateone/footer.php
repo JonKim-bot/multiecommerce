@@ -184,6 +184,14 @@
             get_total();
         });
     }
+    
+    function clearCart(){
+        
+        $.post("<?= base_url('main/clear_cart') ?>", {}, function(html){
+            get_ajax_cart();
+            get_total();
+        });
+    }
 
     function get_total(){
         $.post("<?= base_url('main/get_total') ?>", {}, function(data){

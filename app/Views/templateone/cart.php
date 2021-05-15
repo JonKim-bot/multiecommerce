@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="cart__btn__right">
-                                    <a href="#" class="primary-btn">Clear shopping cart</a>
+                                    <a class="primary-btn" onclick="clearCart()">Clear shopping cart</a>
                                 </div>
                             </div>
                         </div>

@@ -254,12 +254,15 @@ class Main extends BaseController
         $where = [
             'shop_id' => $_POST['shop_id']
         ];
+        $shop = $this->ShopModel->getWhere($where)[0];
         if(!empty($_POST['category_ids'])){
             $where['category_ids'] = $_POST['category_ids'];
         }
         if(!empty($_POST['keyword'])){
             $where['product_name'] = $_POST['keyword'];
         }
+        
+        $this->pageData['shop'] = $shop;
         
         $product = $this->ProductModel->getWhereIn($where);
         $product_max_price =  $this->ProductModel->getMaxPrice();
@@ -483,10 +486,16 @@ class Main extends BaseController
             'status' => true,
             'data' => $total
         ]));
+
+    }
+    public function clear_cart(){
+        $this->session->set("cart", []);
+        $this->load_shopping_cart();
     }
     public function add_qty()
     {
         if ($_POST) {
+
 
             $input = $this->request->getPost();
             $index = $input['index'];
