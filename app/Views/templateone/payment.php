@@ -92,11 +92,11 @@
 
 
                 <div class="col-lg-9 col-md-6">
-                    <div class="cart__right">
+                    <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
                         <div class="billing-address">
-                        <form action="">
+                        <h4>Payment Method
+                                    </h4>
                         <?php foreach ($payment_method as $row) { ?>
-                            <div class="col-md-12">
                                 <div class="radio">
                                 <?php if (
                                     in_array(
@@ -104,9 +104,9 @@
                                         $shop_payment_method
                                     )
                                 ) { ?>
-                                <label><input type="radio" class="paymentmethod" name="optradio" id="payment_method_<?= $row[
+                                <label><input type="radio" class="paymentmethod mt-2" name="optradio" id="payment_method_<?= $row[
                                     'payment_method_id'
-                                ] ?>" class="mr-2"> 
+                                ] ?>" > 
                                 <?= $row['payment_method'] ?>
                                 </label>
                                 <?php } ?>
@@ -114,7 +114,6 @@
                             </div>
 
 
-                        </div>
 
                         <?php } ?>
                         
