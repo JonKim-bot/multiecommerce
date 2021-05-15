@@ -25,6 +25,7 @@ use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\ShopPaymentMethodModel;
 use App\Models\OrderDetailOptionModel;
+use App\Models\PaymentMethodModel;
 
 class Main extends BaseController
 {
@@ -36,13 +37,14 @@ class Main extends BaseController
         $this->ShopModel = new ShopModel();
         $this->ProductOptionModel = new ProductOptionModel();
         $this->OrderCustomerModel = new OrderCustomerModel();
-        $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
+        $this->PaymentMethodModel = new PaymentMethodModel();
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
         $this->OrdersModel = new OrdersModel();
         $this->MerchantModel = new MerchantModel();
         $this->AnnouncementModel = new AnnouncementModel();
         $this->BrandModel = new BrandModel();
+        $this->PaymentMethod = new PaymentMethodModel();
         $this->ProductImageModel = new ProductImageModel();
         $this->OrdersStatusModel = new OrdersStatusModel();
         $this->ProductOptionSelectionModel = new ProductOptionSelectionModel();
@@ -145,8 +147,13 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop['shop_id']
         ];
+        $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
         $this->pageData['shop'] = $shop;
         $announcement = $this->AnnouncementModel->getWhere($where);
+        $this->pageData['shop_payment_method'] = $shop_payment_method;
+        $payment_method = $this->PaymentMethod->getAll();
+        $this->pageData['payment_method'] = $payment_method;
+
         if(!empty($announcement)){
             $announcement = $announcement[0];
             $this->pageData['announcement'] = $announcement;
