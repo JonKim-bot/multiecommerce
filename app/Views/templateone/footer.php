@@ -265,6 +265,7 @@
     }
   
     function check_promo(){
+      
         var promo_id = $('#promo_id').val();
         var promo_code = $('#promo_code').val();
         if(promo_id > 0){
@@ -275,6 +276,7 @@
             return false;
         }
     }
+
     
     function check_promo_validate(){
         var promo_id = $('#promo_id').val();
@@ -296,6 +298,12 @@
 
             get_total();
         });
+    }
+
+    function reset(){
+        $('#grand_total').text("RM 0" );
+        $('#subtotal').text("RM " + "0");
+        $('#discount').text("RM " + '0');
     }
     function cancel_promo(){
         // alert("canceling");
@@ -332,12 +340,17 @@
     function get_total(){
         $.post("<?= base_url('main/get_total') ?>", {}, function(data){
             data = JSON.parse(data);
+            if(data.data == 0){
+                alert("cancel");
+                reset();
+                return;
+            }else{
+                check_promo();
+            }
             var grand_total = (data.data).toFixed(2);
             var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
             $('#grand_total').text("RM " + grand_total);
             $('#subtotal').text("RM " + subtotal);
-
-            check_promo();
 
         });
     }
@@ -350,10 +363,11 @@
 
         $.post("<?= base_url('main/delete_item') ?>", postParam, function(data){
             get_ajax_cart();
-            get_total();
             get_header_cart();
-
             check_promo();
+            get_total();
+            
+            
         });
     }
 
