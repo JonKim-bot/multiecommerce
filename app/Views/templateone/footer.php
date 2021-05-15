@@ -172,6 +172,39 @@
         });
     }
   
+    function addQuantity(index){
+        
+        var postParam = {
+            index: index
+        };
+
+        $.post("<?= base_url('main/add_qty') ?>", postParam, function(html){
+            get_ajax_cart();
+        });
+    }
+
+
+    function deleteItem(index){
+        var postParam = {
+            index: index
+        };
+
+        $.post("<?= base_url('main/delete_item') ?>", postParam, function(data){
+            get_ajax_cart();
+
+        });
+    }
+    
+    function minusQuantity(index){
+        var postParam = {
+            index: index
+        };
+
+        $.post("<?= base_url('main/minus_qty') ?>", postParam, function(data){
+            get_ajax_cart();
+
+        });
+    }
 
     
 

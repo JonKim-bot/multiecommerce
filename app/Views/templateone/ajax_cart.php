@@ -1,4 +1,4 @@
-<?php foreach($cart as $row){ ?>
+<?php foreach ($cart as $key => $row) { ?>
 
 <tr>
     <td class="cart__item">
@@ -21,13 +21,13 @@
     <td class="cart__quantity">
         <div class="quantity">
         <div class="pro-qty">
-                <span class="fa fa-minus dec qtybtn"></span>
+                <span class="fa fa-minus dec qtybtn" onclick="minusQuantity('<?= $key ?>')"></span>
                     <input type="text" value="<?= $row['quantity'] ?>">
-                <span class="fa fa-plus inc qtybtn"></span></div>
+                <span class="fa fa-plus inc qtybtn" onclick="addQuantity('<?= $key ?>')"></span></div>
             </div>
         </div>
     </td>
     <td class="cart__price">RM  <?= $row['total'] ?></td>
-    <td class="cart__close"><span class="icon_close"></span></td>
+    <td class="cart__close" onclick="deleteItem('<?= $key ?>')"><span class="fa fa-times fa-2x"></span></td>
 </tr>
 <?php } ?>

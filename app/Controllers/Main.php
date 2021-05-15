@@ -487,12 +487,8 @@ class Main extends BaseController
 
             $cart[$index]['quantity'] += 1;
             $cart[$index]['total'] = $cart[$index]['quantity'] * $cart[$index]['price'];
-
             $this->session->set("cart", $cart);
-
-            die(json_encode(array(
-                "status" => true,
-            )));
+            $this->load_shopping_cart();
         }
     }
 
@@ -515,10 +511,8 @@ class Main extends BaseController
             }
             $this->session->set("cart", $cart);
 
-            die(json_encode(array(
+            $this->load_shopping_cart();
 
-                "status" => true,
-            )));
         }
     }
 
