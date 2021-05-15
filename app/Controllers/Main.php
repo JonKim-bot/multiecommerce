@@ -17,6 +17,8 @@ use App\Models\MerchantModel;
 
 use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
+use App\Models\OrderCustomerModel;
+
 
 use App\Models\ProductOptionSelectionModel;
 use App\Models\ProductOptionModel;
@@ -26,6 +28,7 @@ use App\Models\PaymentMethodModel;
 use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\ShopPaymentMethodModel;
+use App\Models\OrderDetailOptionModel;
 
 class Main extends BaseController
 {
@@ -36,6 +39,7 @@ class Main extends BaseController
         
         $this->ShopModel = new ShopModel();
         $this->ProductOptionModel = new ProductOptionModel();
+        $this->OrderCustomerModel = new OrderCustomerModel();
 
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
@@ -54,9 +58,9 @@ class Main extends BaseController
         $this->ProductModel = new ProductModel();
         $this->PaymentMethod = new PaymentMethodModel();
         $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
+        $this->OrderDetailOptionModel = new OrderDetailOptionModel();
 
         $this->OrderDetailModel = new OrderDetailModel();
-
 
         $this->pageData = array();
 
@@ -489,14 +493,13 @@ class Main extends BaseController
                 $error = true;
                 $message = "No Items in Cart.";
             }
-            $this->debug($cart);
 
             if(!$error){
 
                 $customer_data = [
                     'full_name' => $_POST['name'],
                     'contact' => $_POST['contact'],
-                    'address' => $_POST['delivery_address'],
+                    'address' => $_POST['address'],
                     'email' => $_POST['email'],
                     'city' => $_POST['city'],
                     'post_code' => $_POST['post_code'],
@@ -520,11 +523,10 @@ class Main extends BaseController
                 // if($_POST['customer_id'] > 0){
                 //     $order_data['customer_id'] = $_POST['customer_id'];
                 // }
-                if($_POST['promo_id'] > 0){
+                if(!empty($_POST['promo_id']) && $_POST['promo_id'] > 0){
                     $order_data['promo_id'] = $_POST['promo_id'];
                 }
                 $order_id = $this->OrdersModel->insertNew($order_data);
-    
     
                 // $this->debug($_POST['product']);
                 foreach($cart as $row){
@@ -537,12 +539,12 @@ class Main extends BaseController
                         'product_total_price' => $row['total'],
                     ];
                     $order_detail_id = $this->OrderDetailModel->insertNew($order_detail_data);
-                    if($row['selection']  != '0'){
-                        foreach($row['selection'] as $rowaddon){
+                    if($row['product_selection']  != '0'){
+                        foreach($row['product_selection'] as $rowaddon){
                             $order_detail_selection = [
                                 'order_detail_id' => $order_detail_id,
                                 'product_option_selection_id' => $rowaddon['product_option_selection_id'],
-                                'ids' => json_encode($row['selection']),
+                                'ids' => json_encode($row['product_selection']),
                             ];
                             $oder_detail_selection = $this->OrderDetailOptionModel->insertNew($order_detail_selection);
                         }
@@ -580,8 +582,7 @@ class Main extends BaseController
                 die(json_encode(
                     array(
                         'status' => false,
-                        'url' => $url,
-                        'orders_id' => $order_id,
+                        'message' => $message,
                         )
                 )) ;
             }

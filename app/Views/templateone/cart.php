@@ -110,7 +110,7 @@
                         <div class="cart__total">
                             <h4>Cart Total</h4>
                             <ul>
-                                <li>Delivery Fee  <span>RM <?= $shop['delivery_fee'] ?></span></li>
+                                <li>Delivery Fee  <span id="delivery_fee">RM <?= $shop['delivery_fee'] ?></span></li>
 
                                 <li>Subtotal <span id="subtotal"></span></li>
                                 <li>Total <span id="grand_total"></span></li>
@@ -130,13 +130,18 @@
       
       
         var postParam = $(this).serializeArray();
+        postParam.push ({name : 'grand_total' , value : $('#grand_total').text().replace("RM","")});
+        postParam.push ({name : 'subtotal' , value : $('#subtotal').text().replace("RM","")});
+        postParam.push ({name : 'delivery_fee' , value : $('#delivery_fee').text().replace("RM","")});
 
+
+        alert(JSON.stringify(postParam));
         $.post("<?= base_url('main/submit_order') ?>", postParam, function(data){
             data = jQuery.parseJSON(data);
             if(data.status){
                 window.location.replace(data.url);
             }else{
-                alert(data.data);
+                alert(data.message);
             }
         });
       

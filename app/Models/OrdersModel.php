@@ -24,7 +24,7 @@ class OrdersModel extends BaseModel
         product.*,shop.shop_name,payment_method.payment_method,,orders.created_at as created_date
         ');
         $builder->join('shop', 'orders.shop_id = shop.shop_id');
-        $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id');
+        $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
 
         $builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id');
         $builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id');
@@ -43,8 +43,7 @@ class OrdersModel extends BaseModel
         product.*,shop.shop_name,payment_method.payment_method,orders.created_at as created_date,promo.code,promo.offer_amount
         ');
         $builder->join('shop', 'orders.shop_id = shop.shop_id');
-        $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id');
-
+        $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
         $builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id');
         $builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id');
         $builder->join('order_detail', 'order_detail.orders_id = orders.orders_id');
