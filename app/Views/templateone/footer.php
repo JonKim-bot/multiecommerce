@@ -169,6 +169,7 @@
     function get_ajax_cart(){
         $.post("<?= base_url('main/load_cart') ?>", {}, function(html){
             $('#ajax_cart').html(html);
+
         });
     }
   
@@ -180,6 +181,18 @@
 
         $.post("<?= base_url('main/add_qty') ?>", postParam, function(html){
             get_ajax_cart();
+            get_total();
+        });
+    }
+
+    function get_total(){
+        $.post("<?= base_url('main/get_total') ?>", {}, function(data){
+            data = JSON.parse(data);
+            var grand_total = (data.data).toFixed(2);
+            var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
+            $('#grand_total').text("RM " + grand_total);
+
+            $('#subtotal').text("RM " + subtotal);
         });
     }
 
@@ -191,6 +204,7 @@
 
         $.post("<?= base_url('main/delete_item') ?>", postParam, function(data){
             get_ajax_cart();
+            get_total();
 
         });
     }
@@ -202,12 +216,13 @@
 
         $.post("<?= base_url('main/minus_qty') ?>", postParam, function(data){
             get_ajax_cart();
+            get_total();
 
         });
     }
 
     
-
+    get_total();
     get_header_cart();
     get_ajax_cart();
 

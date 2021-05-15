@@ -476,7 +476,14 @@ class Main extends BaseController
         // $this->debug($product);
         echo view("main/order_detail", $this->pageData);
     }
-    
+    public function get_total(){
+        $cart = $this->session->get('cart');
+        $total = array_sum(array_column($cart,'total'));
+        die(json_encode([
+            'status' => true,
+            'data' => $total
+        ]));
+    }
     public function add_qty()
     {
         if ($_POST) {

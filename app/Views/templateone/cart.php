@@ -109,8 +109,10 @@
                         <div class="cart__total">
                             <h4>Cart Total</h4>
                             <ul>
-                                <li>Subtotal <span>$284.00</span></li>
-                                <li>Total <span>$284.00</span></li>
+                                <li>Delivery Fee  <span>RM <?= $shop['delivery_fee'] ?></span></li>
+
+                                <li>Subtotal <span id="subtotal"></span></li>
+                                <li>Total <span id="grand_total"></span></li>
                             </ul>
                             <a href="payment.php">PROCEED TO CHECKOUT</a>
                         </div>
