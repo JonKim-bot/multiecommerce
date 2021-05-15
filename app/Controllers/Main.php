@@ -10,6 +10,8 @@ use App\Models\ProductModel;
 use App\Models\BannerModel;
 use App\Models\AboutModel;
 use App\Models\CategoryModel;
+use App\Models\ProductImageModel;
+
 use App\Models\OrdersModel;
 use App\Models\MerchantModel;
 
@@ -17,6 +19,7 @@ use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
 
 use App\Models\ProductOptionSelectionModel;
+use App\Models\ProductOptionModel;
 
 use App\Models\OrderDetailModel;
 use App\Models\PaymentMethodModel;
@@ -32,13 +35,15 @@ class Main extends BaseController
     {
         
         $this->ShopModel = new ShopModel();
-        
+        $this->ProductOptionModel = new ProductOptionModel();
+
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
         $this->OrdersModel = new OrdersModel();
         $this->MerchantModel = new MerchantModel();
         $this->AnnouncementModel = new AnnouncementModel();
         $this->BrandModel = new BrandModel();
+        $this->ProductImageModel = new ProductImageModel();
 
         $this->OrdersStatusModel = new OrdersStatusModel();
         $this->ProductOptionSelectionModel = new ProductOptionSelectionModel();
@@ -104,16 +109,34 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop['shop_id']
         ];
-        $this->pageData['shop'] = $shop;
         $announcement = $this->AnnouncementModel->getWhere($where);
         if(!empty($announcement)){
             $announcement = $announcement[0];
             $this->pageData['announcement'] = $announcement;
         }
         $where =[
-            'product.product_id' => $product_id
+            'product_id' => $product_id
         ];
-        $product = $this->ProductModel->getWhere($where);
+        $product = $this->ProductModel->getWhere($where)[0];
+        $product_image = $this->ProductImageModel->getWhere($where);
+        $where = [
+            'product_id' => $product['product_id']
+        ];
+        $product_option = $this->ProductOptionModel->getWhere($where);
+        foreach($product_option  as $key=> $row){
+            $where = [
+                'product_option_selection.product_option_id' => $row['product_option_id']
+            ];
+            $product_option[$key]['selection'] = $this->ProductOptionSelectionModel->getWhere($where);
+        }
+        $total_minrequired = array_sum(array_column($product_option,'minimum_required'));
+        $this->pageData['total_min'] = $total_minrequired;
+        $this->pageData['shop'] = $shop;
+        $this->pageData['product_option'] = $product_option;
+        $this->pageData['product_image'] = $product_image;
+
+        $this->pageData['product'] = $product;
+
        
         echo view("templateone/header", $this->pageData);
         echo view("templateone/product");
