@@ -106,21 +106,10 @@
                                                 <?php } ?>
                                                
                                             </div>
-                                            <div class="review">
-                                                <div class="rating">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star-half-alt"></i>
-                                                </div>
-                                                <p>(120 Review)</p>
-                                            </div>
-                                           
                                             
                                             
-                                            <div class="product__details__widget">
-                                                <div class="quantity">
+                                            <div class="product__details__widget" style="overflow: visible">
+                                                <div class="quantity" style="float:left">
                                                 <div class="pro-qty">
                                                   <span class="fa fa-minus dec qtybtn"></span>
                                                        <input type="text" value="1">

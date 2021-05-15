@@ -195,7 +195,6 @@
     function get_selected_value(){
         selected_count = 0;
         selected_value = [];
-
         $(".product_option_select option:selected").each(function(){
             var option_selected = {
                 selection_name : $(this).attr("selection_name"),
