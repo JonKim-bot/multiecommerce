@@ -479,8 +479,209 @@ class Main extends BaseController
         // $this->debug($product);
         echo view("main/order_detail", $this->pageData);
     }
+
+    public function submit_order($byStripe = false)
+    {
+        if($_POST){
+            $customer_data = [
+                'full_name' => $_POST['name'],
+                'contact' => $_POST['contact'],
+                'address' => $_POST['delivery_address'],
+                'email' => $_POST['email'],
+                'url' => $_POST['url'],
+                'shop_id' => $_POST['shop_id'],
+            ];
+            
+            $order_customer_id = $this->OrderCustomerModel->insertNew($customer_data);
+
+            $order_data = [
+                'order_customer_id' => $order_customer_id,
+                'orders_status_id' => 1,
+                'delivery_time' => $_POST['delivery_time'],
+                'delivery_date' => $_POST['delivery_date'],
+                'delivery_method' => $_POST['delivery_option'],
+                'payment_method_id' => $_POST['payment_method_id'],
+                'is_preorder' => $_POST['is_preorder'],
+                'delivery_fee' => $_POST['delivery_fee'],
+                'grand_total' => $_POST['grand_total'],
+                'created_at' => date('d-m-Y H:i:s'),
+                'subtotal' => $_POST['subtotal'],
+                'shop_id' => $_POST['shop_id'],
+            ];
+            if($_POST['customer_id'] > 0){
+                $order_data['customer_id'] = $_POST['customer_id'];
+            }
+            if($_POST['promo_id'] > 0){
+                $order_data['promo_id'] = $_POST['promo_id'];
+            }
+            $order_id = $this->OrdersModel->insertNew($order_data);
+
+            // $this->debug($_POST['product']);
+            if(!empty($_POST['product'])){
+
+                foreach($_POST['product'] as $row){
+                    $order_detail_data = [
+                        'orders_id' => $order_id,
+                        'product_id' => $row['product_id'],
+                        'product_quantity' => $row['product_quantity'],
+                        'product_name' => $row['product_name'],
+                        'product_price' => $row['product_price'],
+                        'product_total_price' => $row['product_total_price'],
+                        'remark' => $row['item_remark'],
+
+                        'delivery_fee' => $_POST['delivery_fee'],
+    
+                    ];
+                    $order_detail_id = $this->OrderDetailModel->insertNew($order_detail_data);
+                    if($row['item_addon'] != "0"){
+                        foreach($row['item_addon'] as $rowaddon){
+                            $order_detail_selection = [
+                                'order_detail_id' => $order_detail_id,
+                                'product_option_selection_id' => $rowaddon,
+                                'ids' => json_encode($row['item_addon']),
+                            ];
+                            $oder_detail_selection = $this->OrderDetailOptionModel->insertNew($order_detail_selection);
+                        }
+                    }
+                        
+                }
+            }
+            $url = base_url() . "/main/order_detail/". $order_id;
+            $where = [
+                'shop_id' => $_POST['shop_id'],
+            ];
+
+            $shop = $this->ShopModel->getWhere($where)[0];
+            // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
+
+            $shop_token = $this->ShopTokenModel->getWhere($where);
+
+
+
+
+            foreach($shop_token as $row){
+                $this->send_notification($row['token'],$shop['shop_name'],$shop['image']);
+            }
+            
+            if($_POST['email'] != ""){
+                $this->EmailModel->send_email($_POST['email'],$order_id);
+            }
+            if($shop['email'] != ""){
+                $this->EmailModel->send_email($shop['email'],$order_id);
+            }
+
+            if($byStripe == false){
+                
+
+                die(json_encode(array(
+                    'status' => true,
+                    'url' => $url,
+                    'contact' => $shop['contact'],
+                )));
+            }else{
+                return array(
+                    'url' => $url,
+                    'orders_id' => $order_id,
+                );
+            }
+
+            
+
+        }
+    
+
+    }
+
+
+    public function submit_order()
+    {
+        if ($_POST) {
+            $input = $this->request->getPost();
+
+            $error = false;
+
+            $cart = $this->session->get("cart");
+            if (empty($cart)) {
+                $error = true;
+                $message = "No Items in Cart.";
+            }
+
+
+            if (!$error) {
+                $data = array(
+                    "status_id" => 1,
+                    "user_id" => $this->session->get("user_id"),
+                    "r_name" => $input["r_name"],
+                    "r_contact" => $input["r_contact"],
+                    "r_address" => $input["r_address"],
+                    "r_country" => $input["r_country"],
+                    "r_city" => $input["r_city"],
+                    "r_state" => $input["r_state"],
+                    "r_postcode" => $input["r_postcode"],
+                );
+                if(isset($_SESSION['promo_id'])){
+                    $data['promo_id'] = $_SESSION['promo_id'];  
+                }
+
+                $orders_id = $this->OrdersModel->insertNew($data);
+
+
+                $total_price = 0;
+                $total_weight = 0;
+                foreach ($cart as $row) {
+                    $this->validate_dynamod_stock($row['product_sku']);
+                    $total_price += $row['total'];
+                    $total_weight += $row['weight'] * $row['quantity'];
+
+                    $data = array(
+                        "orders_id" => $orders_id,
+                        "product_id" => $row['product_id'],
+                        "size_id" => $row['size_id'],
+                        "color_id" => $row['color_id'],
+                        "quantity" => $row['quantity'],
+                        "price" => $row['price'],
+                    );
+
+                    $this->OrdersDetailModel->insertNew($data);
+                }
+
+                // $total_weight_price =  $this->calculate_weight_price($total_weight,$input['r_country']);
+                // $total_price = $total_price + $total_weight_price;
+
+                // if(!isset($_SESSION['product_sku']) && isset($_SESSION['promo_id'])){
+                //     $total_price = $total_price - $_SESSION['discount_amount'];
+                // }
+
+                $where = array(
+                    "orders_id" => $orders_id,
+                );
+
+                $data = array(
+                    "total" => $total_price,
+                );
+
+                $this->OrdersModel->updateWhere($where, $data);
+                $this->EmailModel->send_email("yongrou74@hotmail.com",$orders_id);
+
+                $this->cancelPromo();
+                $this->session->set("cart", array());
+
+                die(json_encode(array(
+                    "status" => true,
+                    "data" => $orders_id,
+                )));
+            } else {
+                die(json_encode(array(
+                    "status" => false,
+                    "message" => $message,
+                )));
+            }
+        }
+    }
+
     public function get_total(){
         $cart = $this->session->get('cart');
+
         $total = array_sum(array_column($cart,'total'));
         die(json_encode([
             'status' => true,

@@ -1934,6 +1934,18 @@
 	text-align: center;
 }
 
+.cart__total button {
+    color: #ffffff;
+    display: block;
+    background: #292621;
+    font-size: 16px;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 14px 20px 12px;
+    text-align: center;
+}
+
 /*---------------------
   Checkout
 -----------------------*/

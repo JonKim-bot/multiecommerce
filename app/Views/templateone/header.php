@@ -172,7 +172,6 @@
                                     <li><a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>">Home</a></li>
                                     <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
 
-                                    <li><a href="<?= base_url() ?>/main/product_detail/<?= $shop['slug'] ?>/1">Product</a></li>
                                     <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
                                     <li><a href="<?= base_url() ?>/main/payment/<?= $shop['slug'] ?>">Payment</a></li>
 

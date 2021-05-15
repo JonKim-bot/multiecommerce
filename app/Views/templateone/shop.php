@@ -7,11 +7,11 @@
                         <div class="slider-area">
                             <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
                                 <div class="hero-caption hero-caption2">
-                                    <h2>Category</h2>
+                                    <h2>Product</h2>
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb justify-content-center">
                                             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Category</a></li> 
+                                            <li class="breadcrumb-item"><a href="#">Product</a></li> 
                                         </ol>
                                     </nav>
                                 </div>

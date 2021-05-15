@@ -27,7 +27,7 @@
             </div>
         </div>
     </td>
-    <td class="cart__price">RM  <?= $row['total'] ?></td>
+    <td class="cart__price">RM  <?=number_format($row['total'], 2)?></td>
     <td class="cart__close" onclick="deleteItem('<?= $key ?>')"><span class="fa fa-times fa-2x"></span></td>
 </tr>
 <?php } ?>

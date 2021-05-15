@@ -17,7 +17,7 @@
                             <h6><?= $row['product_name'] ?></h6>
                         </div>
                     </td>
-                    <td class="cart__price text-right p0" style="text-align:right">RM <?= $row['total'] ?></td>
+                    <td class="cart__price text-right p0" style="text-align:right">RM <?=number_format($row['total'], 2)?></td>
                 </tr>
             <?php } ?>
                 <tr>
@@ -25,7 +25,7 @@
                     <td class="cart__price">
                     <a class="btn btn-primary btn-block w-100" href="cart.php" style="margin-top:20px">Pay</a>
                     </td>
-                    
+
                 </tr>
             </tbody>
         </table>

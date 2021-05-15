@@ -1,4 +1,5 @@
 
+
     <main>
         <!-- Hero area Start-->
         <div class="hero-area section-bg2">
@@ -48,7 +49,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="cart__btn__continue">
-                                    <a href="#" class="primary-btn">Continute shopping</a>
+                                    <a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>" class="primary-btn">Continute shopping</a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
@@ -68,11 +69,12 @@
                                 <button type="submit">APPLY</button>
                             </form>
                         </div>
+                        <form id="checkout_form"  class="row contact_form"  method="post">
+
                         <div class="billing_details">
                     <div class="row">
                         <div class="col-lg-12">
                             <h3>Billing Details</h3>
-                            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="first" name="name" />
                                     <span class="placeholder" data-placeholder="First name"></span>
@@ -101,7 +103,6 @@
                                 </div>
                                 
                                 
-                            </form>
                         </div>
                         
                     </div>
@@ -114,11 +115,31 @@
                                 <li>Subtotal <span id="subtotal"></span></li>
                                 <li>Total <span id="grand_total"></span></li>
                             </ul>
-                            <a href="payment.php">PROCEED TO CHECKOUT</a>
+                            <button type="submit" class="text-white">PROCEED TO CHECKOUT</button>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </section>
+
+    <script>
+     $(document).on("submit", "#checkout_form", function(e){
+        e.preventDefault();
+      
+      
+        var postParam = $(this).serializeArray();
+
+        $.post("<?= base_url('main/submit_order') ?>", postParam, function(data){
+            data = jQuery.parseJSON(data);
+            if(data.status){
+                window.location.replace("<?= base_url('main/make_payment') ?>/" + data.data);
+            }else{
+                alert(data.data);
+            }
+        });
+      
+    });
+    </script>
         <!--================End Cart Area =================-->
