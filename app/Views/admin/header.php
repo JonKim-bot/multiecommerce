@@ -188,6 +188,7 @@
                         Banner (For emenu page)
                     </a>
                 </li>
+
               
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
@@ -209,14 +210,12 @@
                         Promocode
                     </a>
                 </li>
-                <?php if(session()->get('admin_data')['shop_id'] != 1){ ?>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop_payment_method' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop_payment_method">
                         <i class="fa fa-credit-card c-sidebar-nav-icon"></i>
                      Payment Method
                     </a>
                 </li>
-                <?php   } ?>
 
             <?php
             } 

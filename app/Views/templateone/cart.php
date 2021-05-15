@@ -81,28 +81,28 @@
                                 </div>
                                
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="number" name="number" />
+                                    <input type="text" class="form-control" id="number" name="contact" />
                                     <span class="placeholder" data-placeholder="Phone number"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="email" name="compemailany" />
+                                    <input type="text" class="form-control" id="email" name="email" />
                                     <span class="placeholder" data-placeholder="Email Address"></span>
                                 </div>
                                
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="add1" name="add1" />
+                                    <input type="text" class="form-control" id="add1" name="address" />
                                     <span class="placeholder" data-placeholder="Address line 01"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="add2" name="add2" />
+                                    <input type="text" class="form-control" id="add2" name="post_code" />
                                     <span class="placeholder" data-placeholder="Post code"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
                                     <input type="text" class="form-control" id="city" name="city" />
                                     <span class="placeholder" data-placeholder="Town/City"></span>
                                 </div>
-                                
-                                
+                                <input type="" name="shop_id" value="<?= $shop['shop_id'] ?>">
+                                hidden
                         </div>
                         
                     </div>
