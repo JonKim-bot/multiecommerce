@@ -210,6 +210,15 @@ class Main extends BaseController
         }
     }
 
+    public function deactive_promo(){
+        if($_POST){
+            die(json_encode(array(
+                'status' => true,
+                'amount' => $newTotal
+            )));
+        }
+    }
+
     public function make_payment(){
         $where = [
             'orders.orders_id' => $_POST['orders_id'],
