@@ -489,11 +489,9 @@ class Main extends BaseController
         ]);
         $this->pageData["shop"] = $shop[0];
 
-        $order_url = base_url()  . "/main/order_detail/" . $orders_id;
+        $order_url = base_url()  . "/main/payment/" . $shop['slug'] .  "/" . $order_code;
         $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
-        
-        
         $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop_contact. "&text=" . $message;
         // $this->debug($orders);
 
