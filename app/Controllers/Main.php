@@ -11,18 +11,14 @@ use App\Models\BannerModel;
 use App\Models\AboutModel;
 use App\Models\CategoryModel;
 use App\Models\ProductImageModel;
-
 use App\Models\OrdersModel;
 use App\Models\MerchantModel;
-
 use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
 use App\Models\OrderCustomerModel;
-
-
+use App\Models\ShopPaymentMethodModel;
 use App\Models\ProductOptionSelectionModel;
 use App\Models\ProductOptionModel;
-
 use App\Models\OrderDetailModel;
 use App\Models\PaymentMethodModel;
 use App\Models\EmailModel;
@@ -40,7 +36,7 @@ class Main extends BaseController
         $this->ShopModel = new ShopModel();
         $this->ProductOptionModel = new ProductOptionModel();
         $this->OrderCustomerModel = new OrderCustomerModel();
-
+        $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
         $this->OrdersModel = new OrdersModel();
@@ -48,20 +44,15 @@ class Main extends BaseController
         $this->AnnouncementModel = new AnnouncementModel();
         $this->BrandModel = new BrandModel();
         $this->ProductImageModel = new ProductImageModel();
-
         $this->OrdersStatusModel = new OrdersStatusModel();
         $this->ProductOptionSelectionModel = new ProductOptionSelectionModel();
-
         $this->EmailModel = new EmailModel();
-
         $this->BannerModel = new BannerModel();
         $this->ProductModel = new ProductModel();
         $this->PaymentMethod = new PaymentMethodModel();
         $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
         $this->OrderDetailOptionModel = new OrderDetailOptionModel();
-
         $this->OrderDetailModel = new OrderDetailModel();
-
         $this->pageData = array();
 
         $this->session = session();
