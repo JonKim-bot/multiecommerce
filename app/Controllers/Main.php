@@ -147,7 +147,7 @@ class Main extends BaseController
     }
     
 
-    public function payment($slug,$order_id)
+    public function payment($slug,$order_code)
     {
 
         $shop = $this->get_shop($slug);
@@ -160,6 +160,27 @@ class Main extends BaseController
             $announcement = $announcement[0];
             $this->pageData['announcement'] = $announcement;
         }
+
+        $where = [
+            'orders.order_code' => $order_code,
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+        // $this->debug($orders);
+        foreach($orders as $key_main=> $row){
+            $order_detail = $this->OrderDetailModel->getWhere([
+                'orders_id' => $row['orders_id']
+            ]);   
+            $orders[$key_main]['order_detail'] = $this->get_order_detail_option($order_detail);
+ 
+        }
+        // $this->debug($orders);
+        $this->show_404_if_empty($orders);
+        $order_url = base_url()  . "/main/order_detail/" . $orders[0]['orders_id'];
+        $message = "MyOrder|我的订单 -> Note " . $order_url;
+        $message = rawurlencode($message);
+        
+        $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
+        $this->pageData['orders'] = $orders[0];
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
       
         // $this->debug($product);
@@ -536,7 +557,7 @@ class Main extends BaseController
                     // 'is_preorder' => $_POST['is_preorder'],
                     'delivery_fee' => $_POST['delivery_fee'],
                     'grand_total' => $_POST['grand_total'],
-                    'created_at' => date('d-m-Y H:i:s'),
+                    // 'created_at' => date('d-m-Y H:i:s'),
                     'subtotal' => $_POST['subtotal'],
                     'shop_id' => $_POST['shop_id'],
                 ];

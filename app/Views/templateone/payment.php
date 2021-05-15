@@ -37,33 +37,22 @@
                                 </tr>
                             </thead>
                             <tbody>
+                               <?php foreach($orders['order_detail'] as $row){ ?>
+                                <tr>
+                                    <td class="cart__item">
+                                        <div class="cart__item__pic">
+                                            <img src="<?= base_url() . $row['image'] ?>" alt="">
+                                        </div>
+                                        <div class="cart__item__text ">
+                                            <h6><?= $row['product_name'] ?></h6>
+                                            <span>RM <?= $row['product_price'] ?></span>
+                                        </div>
+                                    </td>
+                                   
+                                    <td class="cart__price text-right" style="text-align:right">RM <?= $row['product_total_price'] ?></td>
+                                </tr>
+                                <?php } ?>
                                
-                                <tr>
-                                    <td class="cart__item">
-                                        <div class="cart__item__pic">
-                                            <img src="locksmith/img/cart/cart-1.jpg" alt="">
-                                        </div>
-                                        <div class="cart__item__text ">
-                                            <h6>Vanilla Salted Caramel</h6>
-                                            <span>$ 15.00</span>
-                                        </div>
-                                    </td>
-                                   
-                                    <td class="cart__price text-right" style="text-align:right">$ 30.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__item">
-                                        <div class="cart__item__pic">
-                                            <img src="locksmith/img/cart/cart-1.jpg" alt="">
-                                        </div>
-                                        <div class="cart__item__text ">
-                                            <h6>Vanilla Salted Caramel</h6>
-                                            <span>$ 15.00</span>
-                                        </div>
-                                    </td>
-                                   
-                                    <td class="cart__price text-right" style="text-align:right">$ 30.00</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -75,17 +64,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                 <h4>Receiver</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illo!</p>
+                                    <p><?= $orders['full_name'] ?></p>
                                     <h4>Contact Number</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illo!</p>
+                                    <p><?= $orders['contact'] ?></p>
                                 </div>
                                 <div class="col-md-6">
 
                                     <h4>Address
                                     </h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illo!</p>
+                                    <p><?= $orders['address'] ?></p>
                                     <h4>Date & Time:</h4>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, illo!</p>
+                                    <p><?= $orders['created_at'] ?></p>
                                 </div>
                             </div>
                         </div>
