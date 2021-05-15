@@ -137,9 +137,19 @@ class Main extends BaseController
 
     }
     
+    public function update_orders_status($orders_id,$payment_method_id){
+        $data = [
+            'payment_method_id' => $payment_method_id
+        ];
+        $where = [
+            'orders.orders_id' => $_POST['orders_id'],
+        ];
+        $this->OrdersModel->updateWhere($where,$data);
+        
+    }
     public function make_payment(){
         $where = [
-            'orders.order_code' => $_POST['orders_id'],
+            'orders.orders_id' => $_POST['orders_id'],
         ];
         $orders = $this->OrdersModel->getWhere($where);
 
@@ -149,7 +159,9 @@ class Main extends BaseController
         $message = rawurlencode($message);
         $url =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
 
+
         if($_POST['payment_method_id'] != 3){
+            $this->update_orders_status($_POST['orders_id'],$_POST['payment_method_id']);
             die(json_encode([
                 'status' => true,
                 'url' => $url,

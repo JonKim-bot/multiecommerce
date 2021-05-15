@@ -141,7 +141,10 @@ $("#payment_button").on('click', function(){
 
     }
     $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
-        if(payment_method_id)
+        data = JSON.parse(data);
+        if(data.status){
+            window.open = data.url;
+        }
     });
 
 });
