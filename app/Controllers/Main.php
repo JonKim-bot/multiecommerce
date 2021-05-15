@@ -146,7 +146,7 @@ class Main extends BaseController
     }
     
 
-    public function payment($slug)
+    public function payment($slug,$order_id)
     {
 
         $shop = $this->get_shop($slug);
@@ -483,11 +483,14 @@ class Main extends BaseController
     public function submit_order($byStripe = false)
     {
         if($_POST){
+            $error = false;
             $cart = $this->session->get("cart");
             if (empty($cart)) {
                 $error = true;
                 $message = "No Items in Cart.";
             }
+            $this->debug($cart);
+
             if(!$error){
 
                 $customer_data = [
@@ -524,7 +527,6 @@ class Main extends BaseController
     
     
                 // $this->debug($_POST['product']);
-                $this->debug($cart);
                 foreach($cart as $row){
                     $order_detail_data = [
                         'orders_id' => $order_id,
@@ -539,19 +541,18 @@ class Main extends BaseController
                         foreach($row['selection'] as $rowaddon){
                             $order_detail_selection = [
                                 'order_detail_id' => $order_detail_id,
-                                'product_option_selection_id' => $rowaddon,
-                                'ids' => json_encode($row['item_addon']),
+                                'product_option_selection_id' => $rowaddon['product_option_selection_id'],
+                                'ids' => json_encode($row['selection']),
                             ];
                             $oder_detail_selection = $this->OrderDetailOptionModel->insertNew($order_detail_selection);
                         }
                     }
                         
                 }
-                $url = base_url() . "/main/order_detail/". $order_id;
+                $url = base_url() . "/main/payment/capital-shop/". $order_id;
                 $where = [
                     'shop_id' => $_POST['shop_id'],
                 ];
-    
                 $shop = $this->ShopModel->getWhere($where)[0];
                 // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
                 // $shop_token = $this->ShopTokenModel->getWhere($where);
@@ -568,10 +569,21 @@ class Main extends BaseController
 
                 $this->session->set("cart", array());
 
-                return array(
-                    'url' => $url,
-                    'orders_id' => $order_id,
-                );
+                die(json_encode(
+                    array(
+                        'status' => true,
+                        'url' => $url,
+                        'orders_id' => $order_id,
+                        )
+                )) ;
+            }else{
+                die(json_encode(
+                    array(
+                        'status' => false,
+                        'url' => $url,
+                        'orders_id' => $order_id,
+                        )
+                )) ;
             }
 
             
@@ -582,91 +594,7 @@ class Main extends BaseController
     }
 
 
-    public function submit_order()
-    {
-        if ($_POST) {
-            $input = $this->request->getPost();
-
-            $error = false;
-
-            $cart = $this->session->get("cart");
-            if (empty($cart)) {
-                $error = true;
-                $message = "No Items in Cart.";
-            }
-
-
-            if (!$error) {
-                $data = array(
-                    "status_id" => 1,
-                    "user_id" => $this->session->get("user_id"),
-                    "r_name" => $input["r_name"],
-                    "r_contact" => $input["r_contact"],
-                    "r_address" => $input["r_address"],
-                    "r_country" => $input["r_country"],
-                    "r_city" => $input["r_city"],
-                    "r_state" => $input["r_state"],
-                    "r_postcode" => $input["r_postcode"],
-                );
-                if(isset($_SESSION['promo_id'])){
-                    $data['promo_id'] = $_SESSION['promo_id'];  
-                }
-
-                $orders_id = $this->OrdersModel->insertNew($data);
-
-
-                $total_price = 0;
-                $total_weight = 0;
-                foreach ($cart as $row) {
-                    $this->validate_dynamod_stock($row['product_sku']);
-                    $total_price += $row['total'];
-                    $total_weight += $row['weight'] * $row['quantity'];
-
-                    $data = array(
-                        "orders_id" => $orders_id,
-                        "product_id" => $row['product_id'],
-                        "size_id" => $row['size_id'],
-                        "color_id" => $row['color_id'],
-                        "quantity" => $row['quantity'],
-                        "price" => $row['price'],
-                    );
-
-                    $this->OrdersDetailModel->insertNew($data);
-                }
-
-                // $total_weight_price =  $this->calculate_weight_price($total_weight,$input['r_country']);
-                // $total_price = $total_price + $total_weight_price;
-
-                // if(!isset($_SESSION['product_sku']) && isset($_SESSION['promo_id'])){
-                //     $total_price = $total_price - $_SESSION['discount_amount'];
-                // }
-
-                $where = array(
-                    "orders_id" => $orders_id,
-                );
-
-                $data = array(
-                    "total" => $total_price,
-                );
-
-                $this->OrdersModel->updateWhere($where, $data);
-                $this->EmailModel->send_email("yongrou74@hotmail.com",$orders_id);
-
-                $this->cancelPromo();
-                $this->session->set("cart", array());
-
-                die(json_encode(array(
-                    "status" => true,
-                    "data" => $orders_id,
-                )));
-            } else {
-                die(json_encode(array(
-                    "status" => false,
-                    "message" => $message,
-                )));
-            }
-        }
-    }
+   
 
     public function get_total(){
         $cart = $this->session->get('cart');
