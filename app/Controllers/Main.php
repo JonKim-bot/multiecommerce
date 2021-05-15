@@ -148,7 +148,8 @@ class Main extends BaseController
         $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
         $this->pageData['shop'] = $shop;
         $announcement = $this->AnnouncementModel->getWhere($where);
-        $this->pageData['shop_payment_method'] = $shop_payment_method;
+        $this->pageData['shop_payment_method'] = array_column($shop_payment_method,'payment_method_id');
+        
         $payment_method = $this->PaymentMethod->getAll();
         $this->pageData['payment_method'] = $payment_method;
 

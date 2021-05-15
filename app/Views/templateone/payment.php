@@ -71,6 +71,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                 <h4>Receiver</h4>
+                    
                                     <p><?= $orders['full_name'] ?></p>
                                     <h4>Contact Number</h4>
                                     <p><?= $orders['contact'] ?></p>
@@ -87,11 +88,38 @@
                         </div>
                     </div>
                 </div>
+                
 
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right">
                         <div class="billing-address">
+                        <form action="">
+                        <?php foreach ($payment_method as $row) { ?>
+                            <div class="col-md-12">
+                                <div class="radio">
+                                <?php if (
+                                    in_array(
+                                        $row['payment_method_id'],
+                                        $shop_payment_method
+                                    )
+                                ) { ?>
+                                <label><input type="radio" class="paymentmethod" name="optradio" id="payment_method_<?= $row[
+                                    'payment_method_id'
+                                ] ?>" class="mr-2"> 
+                                <?= $row['payment_method'] ?>
+                                </label>
+                                <?php } ?>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <?php } ?>
+                        
+                      
+                        
                             <div class="row">
                                <a class="btn btn-primary m-auto w-50 p-t-20" href="success.php" style="margin-top:20px">Pay</a>
                             </div>
