@@ -160,21 +160,27 @@
         get_product_list();
     });
 
+    function validate(total_selected){
+        if (total_selected < <?= $total_min ?>)
+        {
+            Swal.fire({
+                    title: "Option",
+                    text: "Please select all the required option",
+                    type: 'error'
+            })
+            return false;
+        }
+    }
 
     var selected_value = [];
+    var selected_count = 0;
+
     $(".product_option_select").on('change', function(){
-        selected_value = [];
-        $(".product_option_select option:selected").each(function(){
-            var option_selected = {
-                selection_name : $(this).attr("selection_name"),
-                selection_price : $(this).attr("selection_price"),
-                product_option_name : $(this).attr("product_option_name"),
-                product_option_id : $(this).attr("product_option_id"),
-                product_option_selection_id : $(this).val(),
-            }
-            selected_value.push(option_selected);
-        });
-        console.log(selected_value)
+        
+        var selected_value = get_selected_value();
+        item_price = "RM " + calculate_total(selected_value,"<?= $product['product_price'] ?>");
+        $('#product_price').text((item_price));
+
     });
     function calculate_total(selected_value,item_price){
         selected_value.map(option => 
@@ -187,6 +193,24 @@
         
     }
     function get_selected_value(){
+        selected_count = 0;
+        selected_value = [];
+
+        $(".product_option_select option:selected").each(function(){
+            var option_selected = {
+                selection_name : $(this).attr("selection_name"),
+                selection_price : $(this).attr("selection_price"),
+                product_option_name : $(this).attr("product_option_name"),
+                product_option_id : $(this).attr("product_option_id"),
+                product_option_selection_id : $(this).val(),
+            }
+            selected_value.push(option_selected);
+            if(option_selected.product_option_id > 0){
+                selected_count = selected_count + 1;
+                //count total selected value
+            }
+        });
+        return selected_value;
 
     }
     function get_product_list(){

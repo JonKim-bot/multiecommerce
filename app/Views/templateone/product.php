@@ -68,7 +68,7 @@
                                             <h3><?= $product['product_name'] ?></h3>
                                             <!-- <p>By Evan Winter</p> -->
                                             <div class="price">
-                                                <span>RM <?= $product['product_price'] ?></span>
+                                                <span id="product_price">RM <?= $product['product_price'] ?></span>
                                             </div>
                                             <div class="select-Categories pb-30">
                                                 <?php foreach($product_option as $row){ ?>
