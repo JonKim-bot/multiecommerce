@@ -63,10 +63,11 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="cart__right">
                         <div class="cart__coupon">
-                            <h4>Discount Codes</h4>
-                            <form action="#">
-                                <input type="text" placeholder="Coupon code">
-                                <button type="submit">APPLY</button>
+                            <h4>Promo Codes</h4>
+                            <form>
+                                <input type="text" id="promo-code" placeholder="Promo code">
+                                <button id="apply_promo">APPLY</button>
+                                <input type="hidden" id="promo_id" value="0">
                             </form>
                         </div>
 

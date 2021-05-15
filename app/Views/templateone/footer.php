@@ -300,6 +300,11 @@
 
         });
     }
+
+    
+    $('#apply_promo').on('click', function () {
+        applyPromo();
+    });
     
     function minusQuantity(index){
         var postParam = {

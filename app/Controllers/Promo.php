@@ -107,6 +107,7 @@ class Promo extends BaseController
                     'is_newmemberonly' => $new_member,
                     'is_affliate' => $affliate,
                     'minimum' =>  $this->request->getPost("minimum"),
+                    'shop_id' => $this->shop_id,
 
                     'created_by' => session()->get('login_id'),
                 );
@@ -179,7 +180,7 @@ class Promo extends BaseController
                     "promo_type_id" => $this->request->getPost("promo_type_id"),
                     "discount_type_id" => $this->request->getPost("discount_type_id"),
                     'minimum' =>  $this->request->getPost("minimum"),
-
+                    'shop_id' => $this->shop_id,
                     'is_newmemberonly' => $new_member,
                     'is_affliate' => $affliate,
                     'created_by' => session()->get('login_id'),

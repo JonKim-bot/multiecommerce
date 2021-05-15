@@ -24,6 +24,7 @@ use App\Models\PaymentMethodModel;
 use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\OrderDetailOptionModel;
+use App\Models\PromoModel;
 
 class Main extends BaseController
 {
@@ -31,7 +32,8 @@ class Main extends BaseController
 
     public function __construct()
     {
-        
+        $this->PromoModel = new PromoModel();
+
         $this->ShopModel = new ShopModel();
         $this->ProductOptionModel = new ProductOptionModel();
         $this->OrderCustomerModel = new OrderCustomerModel();
@@ -152,42 +154,42 @@ class Main extends BaseController
         if($_POST){
             $where = [
                 'code' => $_POST['promocode'],
-                'shop_id' => $_POST['shop_id'],
+                'promo.shop_id' => $_POST['shop_id'],
 
-                'is_active' => 1,
+                'promo.is_active' => 1,
             ];
             $promo = $this->PromoModel->getWhere($where);
             if(!empty($promo)){
                 $promo = $promo[0];
                 $grand_total = str_replace("RM","",$_POST['grand_total']);
-                if($promo['discount_type_id'] == 1){
+                if($promo['promo_type_id'] != 1){
 
-                    $discount_amount = str_replace("RM","",$promo['amount']);
-                    $newTotal = str_replace("RM","",$_POST['grand_total']) - str_replace("RM","",$promo['amount']);
+                    if($promo['discount_type_id'] == 1){
+                        $discount_amount = str_replace("RM","",$promo['offer_amount']);
+                        $newTotal = str_replace("RM","",$_POST['grand_total']) - str_replace("RM","",$promo['offer_amount']);
+                    }else{
+                        $discount_amount  = str_replace("RM","",$_POST['grand_total']) * ($promo['offer_percent'] / 100);
+                        $newTotal = str_replace("RM","",$_POST['grand_total']) - $discount_amount;
+                    }
                 }else{
-
-                    $discount_amount  = str_replace("RM","",$_POST['grand_total']) * ($promo['percent'] / 100);
-
-                    $newTotal = str_replace("RM","",$_POST['grand_total']) - $discount_amount;
+                    $discount_amount  = $_POST['delivery_fee'];
+                    $newTotal =  str_replace("RM","",$_POST['grand_total']) - $_POST['delivery_fee'];
                 }
-                
 
                 $min = str_replace("RM","",$promo['minimum']);
-
                 if($grand_total < $min){
 
                     die(json_encode(array(
                         'status' => false,
-                        
                         'error' => "Min",
                         'min' => $min,
-
                     )));
                 }else{
                     $initial_used = $promo['used'];
                     $this->PromoModel->updateWhere($where,['used' => ($initial_used + 1)]);
                     die(json_encode(array(
                         'status' => true,
+                        'promo_type_id' => $promo['promo_type_id'],
                         'promo_id' => $promo['promo_id'],
                         'discount' => round($discount_amount,2),
                         'amount' => $newTotal
