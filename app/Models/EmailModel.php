@@ -46,8 +46,7 @@ class EmailModel extends BaseModel
             'shop_id' => $orders[0]['shop_id']
         ])[0]['contact'];
         
-
-        $order_url = base_url()  . "/main/order_detail/" . $orders_id;
+        $order_url = base_url() . "/main/payment/" . $this->pageData['shop']['slug'] . '/' . $orders[0]['order_code'];
         $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
         
@@ -55,7 +54,7 @@ class EmailModel extends BaseModel
         $this->pageData["orders"] = $orders[0];
 
         $view = view('admin/orders/orders_tracking', $this->pageData);
-        $email->setFrom('noreply.piegenemenu@gmail.com', 'Piegen Emenu');
+        $email->setFrom('piegensoftware20@gmail.com', $this->pageData['shop']['shop_name'] . " orders");
         if($orders[0]['email'] != ""){
 
             $email->setTo($orders[0]['email']);
@@ -64,13 +63,12 @@ class EmailModel extends BaseModel
             $email->setMessage($view);
     
             if ($email->send()) {
-                // echo "sent";
                 return true;
     
             } else {
     
-                // $message = $email->printDebugger();
-                // die($message);
+                $message = $email->printDebugger();
+                die($message);
             }
         }
     }
@@ -89,12 +87,13 @@ class EmailModel extends BaseModel
                 'orders_id' => $row['orders_id']
             ]);   
         }
+        
         $this->pageData['shop'] = $this->ShopModel->getWhere(['shop_id' => $orders[0]['shop_id']])[0];
         // $this->show_404_if_empty($admin);
         $this->pageData["orders"] = $orders[0];
 
         $view = view('admin/orders/email_order', $this->pageData);
-        $email->setFrom('noreply.piegenemenu@gmail.com', 'Piegen Emenu');
+        $email->setFrom('piegensoftware20@gmail.com', $this->pageData['shop']['shop_name'] . " orders");
         $email->setTo($sent_to);
 
         $email->setSubject($orders[0]['shop_name'] . ' Orders');
@@ -106,8 +105,8 @@ class EmailModel extends BaseModel
 
         } else {
 
-            // $message = $email->printDebugger();
-            // die($message);
+            $message = $email->printDebugger();
+            die($message);
         }
     }
 

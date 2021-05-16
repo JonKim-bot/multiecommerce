@@ -153,7 +153,7 @@
                                      
                                             <tr>
                                                 <td>Created Date :</td>
-                                                <td><?= $orders['created_date'] ?></td>    
+                                                <td><?= $orders['orders_date'] ?></td>    
                                             </tr>
                                                     
                                                 </table>

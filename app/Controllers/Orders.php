@@ -373,6 +373,7 @@ class Orders extends BaseController
     public function index()
     {
         $where = [
+            
             'orders.shop_id' => $this->shop_id,
         ];
         // $this->generate_operating_hour($this->shop_id);

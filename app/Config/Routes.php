@@ -31,7 +31,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->match(['get','post','put','delete'],'/main', 'Main::index/(:text)');
-$routes->match(['get','post','put','delete'],'/', 'Home::index/');
+// $routes->match(['get','post','put','delete'],'/', 'Home::index/');
 
 //Dashboard Routes
 $routes->match(['get','post','put','delete'], '/dashboard', 'Dashboard::index', ['filter' => 'auth']);

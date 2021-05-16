@@ -54,14 +54,14 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPUser = "noreply.piegenemenu@gmail.com";
+	public $SMTPUser = "piegensoftware20@gmail.com";
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var string
 	 */
-	public $SMTPPass = 'Password123=';
+	public $SMTPPass = 'boitan123=';
 
 	/**
 	 * SMTP Port
