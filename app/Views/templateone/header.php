@@ -22,9 +22,11 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/nice-select.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/style.css">
 
+    <script src="https://kit.fontawesome.com/3d15aa1b08.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="<?= base_url() ?>/assets/locksmith/css/style.css" type="text/css">
     <script src="<?= base_url() ?>/assets/assetsecom/js/vendor/jquery-1.12.4.min.js"></script>
+
 
 <style>
 
@@ -114,7 +116,7 @@
 </head>
 <body>
     <!--? Preloader Start -->
-    <!-- <div id="preloader-active">
+    <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
@@ -123,7 +125,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
     <!-- Preloader Start -->
     <header>
         <div class="header-area">

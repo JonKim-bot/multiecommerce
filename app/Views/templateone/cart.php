@@ -128,6 +128,7 @@
                     </div>
                 </div>
                 </form>
+
             </div>
         </div>
     </section>
@@ -136,7 +137,9 @@
      $(document).on("submit", "#checkout_form", function(e){
         e.preventDefault();
       
-      
+        $('#preloader-active').css({
+            'display': 'block'
+        });
         var postParam = $(this).serializeArray();
         postParam.push ({name : 'grand_total' , value : $('#grand_total').text().replace("RM","")});
         postParam.push ({name : 'subtotal' , value : $('#subtotal').text().replace("RM","")});
@@ -151,6 +154,9 @@
             }else{
                 alert(data.message);
             }
+            $('#preloader-active').css({
+                'display': 'none'
+            });
         });
       
     });

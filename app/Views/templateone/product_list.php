@@ -13,6 +13,7 @@
                     </div>
                 </div>
                 <div class="properties-caption properties-caption2">
+                
                     <h3><a href="<?= base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
                     <div class="properties-footer">
                         <div class="price">

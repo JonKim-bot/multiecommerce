@@ -13,7 +13,7 @@
                             <div class="single-footer-caption mb-20">
                                 <!-- logo -->
                                 <div class="footer-logo mb-35">
-                                    <a href="index.php"><img src="<?= base_url() ?>/assets/assetsecom/img/logo/logo2_footer.png" alt=""></a>
+                                    <a href="<?=  base_url() ?>/main/index/<?= $shop['slug'] ?>"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -21,13 +21,17 @@
                     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Shop Men</h4>
+                                <h4>Shop Contact</h4>
                                 <ul>
-                                    <li><a href="#">Clothing Fashion</a></li>
-                                    <li><a href="#">Winter</a></li>
-                                    <li><a href="#">Summer</a></li>
-                                    <li><a href="#">Formal</a></li>
-                                    <li><a href="#">Casual</a></li>
+                                    <li>
+                                    <i class="fa fa-facebook text-white fa-2x"></i>
+
+                                    <a href="<?= $shop['facebook'] ?>"><?= $shop['facebook'] ?></a></li>
+                                    <li>
+                                    <i class="fa fa-instagram text-white fa-2x"></i>
+                                    <a href="<?= $shop['insta'] ?>">
+                                    <?= $shop['insta'] ?></a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -245,6 +249,7 @@
         get_product_list();
     });
     $('.category_check').click(function(e) {
+    
         get_product_list();
     });
     <?php if ($shop['is_active'] == 0) { ?>
