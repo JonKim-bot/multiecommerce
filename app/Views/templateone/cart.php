@@ -144,8 +144,9 @@
         postParam.push ({name : 'grand_total' , value : $('#grand_total').text().replace("RM","")});
         postParam.push ({name : 'subtotal' , value : $('#subtotal').text().replace("RM","")});
         postParam.push ({name : 'delivery_fee' , value : $('#delivery_fee').text().replace("RM","")});
+        postParam.push ({name : 'promo_id' , value : $('#promo_id').val()});
 
-
+        
         // alert(JSON.stringify(postParam));
         $.post("<?= base_url('main/submit_order') ?>", postParam, function(data){
             data = jQuery.parseJSON(data);

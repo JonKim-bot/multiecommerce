@@ -373,7 +373,7 @@ class Orders extends BaseController
     public function index()
     {
         $where = [
-            
+
             'orders.shop_id' => $this->shop_id,
         ];
         // $this->generate_operating_hour($this->shop_id);
@@ -530,6 +530,7 @@ class Orders extends BaseController
         }
         foreach ($orders as $key_main => $row) {
             $order_detail = $this->OrderDetailModel->getWhere([
+
                 'orders_id' => $row['orders_id'],
             ]);
 
@@ -544,11 +545,11 @@ class Orders extends BaseController
             ];
             $promo = $this->PromoModel->getWhere($where)[0];
             if ($promo['discount_type_id'] == 1) {
-                $amount = str_replace('RM', '', $promo['amount']);
+                $amount = str_replace('RM', '', $promo['offer_amount']);
             } else {
                 $amount =
                     str_replace('RM', '', $orders[0]['grand_total']) *
-                    ($promo['percent'] / 100);
+                    ($promo['offer_percent'] / 100);
             }
             $orders[0]['amount'] = $amount;
         }

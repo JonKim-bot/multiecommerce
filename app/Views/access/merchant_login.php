@@ -5,7 +5,7 @@
             <div class="card-body">
                 
                 <div class="" style="display:flex;">
-                    <h5 class="text-muted">Emenu Merchant Portal</h5>
+                    <h5 class="text-muted">Ecommerce Merchant Portal</h5>
                     <ul class="c-header-nav mfs-auto rm-flex">
                         <li class="c-header-nav-item c-d-legacy-none">
                             <button class="c-class-toggler c-header-nav-btn" type="button" id="header-tooltip" data-target="body" data-class="c-dark-theme" data-toggle="c-tooltip" data-placement="bottom" title="" data-original-title="Toggle Light/Dark Mode" aria-describedby="tooltip615585">
@@ -45,12 +45,12 @@
                         </div>
                       
                     </div>
-                    <div class="row mt-2">
+                    <!-- <div class="row mt-2">
                      
                         <div class="col-12">
                             <a class="btn btn-dark px-4 w-100" href="<?= base_url()  . "/access/register" ?>">Register</a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </form>
             </div>

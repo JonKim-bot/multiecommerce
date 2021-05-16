@@ -264,7 +264,7 @@
                 </li>
             </ul>
             <ul class="c-header-nav">
-                <li class="c-header-nav-item dropdown d-md-down-none mx-2">
+                <!-- <li class="c-header-nav-item dropdown d-md-down-none mx-2">
                     <a class="c-header-nav-link">
                         <i class="cil-bell c-icon"></i>
                         <span class="badge badge-pill badge-danger">5</span>
@@ -282,11 +282,13 @@
                         <i class="cil-envelope-open c-icon"></i>
                         <span class="badge badge-pill badge-info">7</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="c-header-nav-item dropdown">
                     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        <div class="c-avatar"><img class="c-avatar-img" src="<?= base_url() ?>/assets/img/core/aohsuehfu.png" alt=""></div>
+                        <div class="c-avatar">
+                            <i class="fa fa-user fa-2x"></i>
+                        </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pt-0">
                         <div class="dropdown-header bg-light py-2">

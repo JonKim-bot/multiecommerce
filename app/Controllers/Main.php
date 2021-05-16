@@ -59,6 +59,7 @@ class Main extends BaseController
         $this->OrderDetailOptionModel = new OrderDetailOptionModel();
         $this->OrderDetailModel = new OrderDetailModel();
         $this->pageData = array();
+        date_default_timezone_set("Asia/Kuala_Lumpur");
 
         $this->session = session();
         if (!empty($this->session->get("cart"))) {
@@ -244,7 +245,7 @@ class Main extends BaseController
             }
         }
     }
-    
+
 
     public function make_payment(){
         $where = [
@@ -696,12 +697,15 @@ class Main extends BaseController
     
                 $order_data = [
                     'order_customer_id' => $order_customer_id,
+
                     'orders_status_id' => 1,
                     // 'delivery_method' => $_POST['delivery_option'],
                     // 'payment_method_id' => $_POST['payment_method_id'],
                     // 'is_preorder' => $_POST['is_preorder'],
+                    'created_at' => date('Y-m-d H:i:s'),
                     'delivery_fee' => $_POST['delivery_fee'],
                     'grand_total' => $_POST['grand_total'],
+                    'promo_id' => $_POST['promo_id'],
                     // 'created_at' => date('d-m-Y H:i:s'),
                     'subtotal' => $_POST['subtotal'],
                     'shop_id' => $_POST['shop_id'],

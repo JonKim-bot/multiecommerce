@@ -136,14 +136,14 @@
                                                 <td>RM <?= $orders['grand_total'] ?></td>    
                                             </tr>
                                             
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>Delivery Date :</td>
                                                 <td><?= $orders['delivery_date'] ?></td>    
                                             </tr>
                                             <tr>
                                                 <td>Delivery Time :</td>
                                                 <td><?= $orders['delivery_time'] ?></td>    
-                                            </tr>
+                                            </tr> -->
                                            
                                             <tr>
                                                 <td>Delivery Fee :</td>
@@ -153,7 +153,7 @@
                                      
                                             <tr>
                                                 <td>Created Date :</td>
-                                                <td><?= $orders['orders_date'] ?></td>    
+                                                <td><?= $orders['created_date'] ?></td>    
                                             </tr>
                                                     
                                                 </table>
