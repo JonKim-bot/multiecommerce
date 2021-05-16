@@ -151,6 +151,12 @@ class Main extends BaseController
         
     }
 
+    function get_page_number($product){
+        $max_per_page = 6; //Max results per page
+        $total_product = count($product);  //Total number of posts returned
+        $pages = ceil($total_product / $max_per_page);
+        return $pages;
+    }
     public function apply_promo(){
         if(isset($_POST)){
             $where = [
@@ -690,11 +696,11 @@ class Main extends BaseController
                     }
                         
                 }
-                $url = base_url() . "/main/payment/capital-shop/". $code;
                 $where = [
                     'shop_id' => $_POST['shop_id'],
                 ];
                 $shop = $this->ShopModel->getWhere($where)[0];
+                $url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $code;
                 // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
                 // $shop_token = $this->ShopTokenModel->getWhere($where);
                 // foreach($shop_token as $row){

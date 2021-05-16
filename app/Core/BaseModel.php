@@ -1,6 +1,7 @@
 <?php
 
 
+
 namespace App\Core;
 
 use CodeIgniter\Model;

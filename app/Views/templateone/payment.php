@@ -66,7 +66,7 @@
                     
                 </div>
                 <div class="col-lg-9 col-md-6">
-                    <div class="cart__right">
+                    <div class="cart__right" style="padding-left:0px">
                         <div class="billing-address">
                             <div class="row">
                                 <div class="col-md-6">

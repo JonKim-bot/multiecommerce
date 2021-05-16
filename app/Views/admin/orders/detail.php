@@ -104,11 +104,7 @@
                                                 <td>Pick Up Method :</td>
                                                 <td><?= $orders['delivery_fee'] == 0 ? "Self Pick Up" : 'Delivery' ?></td>    
                                             </tr>
-                                            <tr>
-                                                <td>Preorder :</td>
-                                                <td><?= $orders['is_preorder']  == 1 ? "YES" : "NO" ?></td>
-    
-                                            </tr>
+                                           
                                             <tr>
 
                                                 <td>Customer Name :</td>

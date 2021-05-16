@@ -341,7 +341,6 @@
         $.post("<?= base_url('main/get_total') ?>", {}, function(data){
             data = JSON.parse(data);
             if(data.data == 0){
-                alert("cancel");
                 reset();
                 return;
             }else{

@@ -100,9 +100,25 @@
                         <div class="latest-items latest-items2 product_list">
                             
                         </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="product__pag">
+                                    <a href="#">1</a>
+                                    <a href="#">2</a>
+                                    <a href="#">3</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="product__show">
+                                    <p>Showing 1–6 of 8 results</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </div>
+        
         <!-- listing-area Area End -->
     </main>
