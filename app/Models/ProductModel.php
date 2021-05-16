@@ -17,7 +17,7 @@ class ProductModel extends BaseModel
         
     }
 
-    function getWhereIn($where,$offset = '', $page = 1, $filter = array()){
+    function getWhereIn($where,$offset = 0, $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
        
 
@@ -42,7 +42,7 @@ class ProductModel extends BaseModel
         if($page > 1){
             $offset = ($page - 1) * $limit;
         }
-        $sql .= 'LIMIT '.$limit.' OFFSET '.$offset.'';
+        $sql .= ' LIMIT '.$limit.' OFFSET '.$offset.'';
         
         $query = $this->db->query($sql, [$where]);
 
