@@ -15,18 +15,7 @@ class ShopModel extends BaseModel
 
     }
 
-    
-    function getWhere($where, $limit = '', $page = 1, $filter = array())
-    {
-        $builder = $this->db->table($this->tableName);
-        $builder->select('shop.*, bank.bank,
-        ');
-        $builder->join('bank', 'shop.bank_id = bank.bank_id');
-        
-        $builder->where($where);
-        $query = $builder->get();
-        return $query->getResultArray();
-    }
+
 
 
     function getWhereNormal($where, $limit = '', $page = 1, $filter = array())
@@ -36,9 +25,9 @@ class ShopModel extends BaseModel
         GROUP_CONCAT(tag.tag) AS categories,
         GROUP_CONCAT(tag.tag_id) AS categories_tag
         ');
-        $builder->join('bank', 'shop.bank_id = bank.bank_id');
-        $builder->join('shop_tag', 'shop.shop_id = shop_tag.shop_id');
-        $builder->join('tag', 'tag.tag_id = shop_tag.tag_id');
+        $builder->join('bank', 'shop.bank_id = bank.bank_id','left');
+        $builder->join('shop_tag', 'shop.shop_id = shop_tag.shop_id','left');
+        $builder->join('tag', 'tag.tag_id = shop_tag.tag_id','left');
         
         $builder->where($where);
         $query = $builder->get();

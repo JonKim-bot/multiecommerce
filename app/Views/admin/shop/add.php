@@ -75,7 +75,7 @@
                                     <input type="file" class="form-control" name="icon" placeholder="Banner" required>
                                 </div>
                                 
-                                
+<!--                                 
                                 <div class="form-group">
                                 <label for="banner">Bank</label>
 
@@ -93,11 +93,11 @@
                                 <div class="form-group">
                                     <label for="">Bank Account</label>
                                     <input type="text" class="form-control" name="bank_account" placeholder="e.g. 123213123123" required>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="">Address</label>
-                                    <textarea class="form-control textarea" name="address" placeholder="Address"></textarea>
+                                    <textarea class="form-control " name="address" placeholder="Address"></textarea>
                                 </div>  
                                
                                 <div class="form-group">

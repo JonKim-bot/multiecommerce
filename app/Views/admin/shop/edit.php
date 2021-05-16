@@ -41,13 +41,17 @@
                     
                     <div class="form-group">
                         <label for="">Shop</label>
-                        <input type="text" class="form-control" name="shop" value="<?= $shop['shop_name'] ?>" placeholder="e.g. Restaurant Lim" required>
+                        <input type="text" class="form-control" name="shop" value="<?= $shop['shop_name'] ?>" placeholder="e.g. Capital Shop" required>
                     </div>
                     <div class="form-group">
                           <label for="">Shop Chinese Name (If shop name got chinese character enter here)</label>
-                          <input type="text" class="form-control" name="shop_name" placeholder="e.g. Restaurant 中文" value="<?= $shop['shop_chinese_name'] ?>">
+                          <input type="text" class="form-control" name="shop_name" placeholder="e.g. Capital 中文" value="<?= $shop['shop_chinese_name'] ?>">
                       </div>
 
+                    <div class="form-group">
+                        <label for="">Description</label>
+                        <input type="text" class="form-control" name="description" value="<?= $shop['description'] ?>" placeholder="e.g. Capital Shop open since" required>
+                    </div>
                     <div class="form-group">
                         <label for="">Operating Time</label>
                         <input type="text" class="form-control" name="operating_hour" value="<?= $shop['operating_hour'] ?>" placeholder="e.g. Monday-Sunday - 8AM - 10PM" required>
@@ -57,10 +61,10 @@
                         <label for="">Contact</label>
                         <input type="number" class="form-control" name="contact" value="<?= $shop['contact'] ?>" placeholder="e.g. 012-123-1232" required>
                     </div>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label for="">Delivery Fee (PER KM)</label>
                         <input type="number" step="any" class="form-control" name="delivery_fee" value="<?= $shop['delivery_fee'] ?>" placeholder="e.g. RM 3" required>
-                    </div> -->
+                    </div>
                     <div class="form-group">
                         <label for="">Email</label>
                         <input type="text" class="form-control" name="email" value="<?= $shop['email'] ?>" placeholder="e.g. xxx.com" required>
@@ -130,7 +134,7 @@
                         <label for="">Address</label>
                         <textarea class="form-control" name="address" id="address" placeholder="Address"><?= $shop['address'] ?>"</textarea>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <div class="row">
                         <div class="col-md-6 form-group">
                                 <label for="">Latitute</label>
@@ -143,7 +147,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <div class="row">
                         <div class="col-md-6 form-group">

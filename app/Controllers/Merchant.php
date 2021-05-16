@@ -37,6 +37,11 @@ class Merchant extends BaseController
         echo view('admin/footer');
     }
     
+    function startsWith($string, $startString)
+    {
+        $len = strlen($startString);
+        return substr($string, 0, $len) === $startString;
+    }
     public function add()
     {
 
@@ -77,6 +82,12 @@ class Merchant extends BaseController
             //     $thumbnail = $files->getName();
             //     $files->move('./assets/img/merchant', $thumbnail);
             // }
+
+            $input['contact'] = str_replace("-","",$input['contact']);
+            $input['contact'] = str_replace("+","",$input['contact']);
+            if (!$this->startsWith($input['contact'], '6')) {
+                $input['contact'] = '6' . $input['contact'];
+            }
 
             if (!$error) {
 

@@ -43,160 +43,159 @@ class Access extends BaseController
         $len = strlen($startString); 
         return (substr($string, 0, $len) === $startString); 
     } 
-    public function register()
-    {
+    // public function register()
+    // {
 
-        // $input = $this->request->getVar();
-        // $check = $this->request->getGet();
-        if ($_POST) {
+    //     // $input = $this->request->getVar();
+    //     // $check = $this->request->getGet();
+    //     if ($_POST) {
 
 
-            $input = $this->request->getPost();
+    //         $input = $this->request->getPost();
 
-            // $this->debug($input);
+    //         // $this->debug($input);
 
-            $error = false;
+    //         $error = false;
 
                
 
-            if (!$error) {
-            if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
-                $file = $this->request->getFile('banner');
-                $new_name = $file->getRandomName();
+    //         if (!$error) {
+    //         if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+    //             $file = $this->request->getFile('banner');
+    //             $new_name = $file->getRandomName();
 
-                $banner = $file->move('./public/images/shop/', $new_name);
-                if ($banner) {
-                    $banner = '/public/images/shop/' . $new_name;
-                } else {
-                    $error = true;
-                    $error_message = "Upload failed.";
-                }
-            } 
-            if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
-                $file = $this->request->getFile('icon');
-                $new_name = $file->getRandomName();
-                $icon = $file->move('./public/images/shop/', $new_name);
-                if ($icon) {
-                    $icon = '/public/images/shop/' . $new_name;
-                } else {
-                    $error = true;
-                    $error_message = "Upload failed.";
-                }
-            } 
-
-
-            $input['contact'] = str_replace("-","",$input['contact']);
-            $input['contact'] = str_replace("+","",$input['contact']);
-
-            if(!$this->startsWith($input['contact'],"6")){
-                $input['contact'] = "6" . $input['contact'];
-            }
+    //             $banner = $file->move('./public/images/shop/', $new_name);
+    //             if ($banner) {
+    //                 $banner = '/public/images/shop/' . $new_name;
+    //             } else {
+    //                 $error = true;
+    //                 $error_message = "Upload failed.";
+    //             }
+    //         } 
+    //         if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
+    //             $file = $this->request->getFile('icon');
+    //             $new_name = $file->getRandomName();
+    //             $icon = $file->move('./public/images/shop/', $new_name);
+    //             if ($icon) {
+    //                 $icon = '/public/images/shop/' . $new_name;
+    //             } else {
+    //                 $error = true;
+    //                 $error_message = "Upload failed.";
+    //             }
+    //         } 
 
 
+    //         $input['contact'] = str_replace("-","",$input['contact']);
+    //         $input['contact'] = str_replace("+","",$input['contact']);
 
-            $data = array(
-                "shop_name" => $input['shop'],
-                "shop_chinese_name" => $input['shop_name'],
-                "slug" => $this->slugify($input['shop']),
-                "email" => $input['email'],
-                "operating_hour" => $input['operating_hour'],
-                "contact" => $input['contact'],
-                "delivery_fee" => $input['delivery_fee'],
-                'insta' => $input['insta'],
-                'facebook' => $input['facebook'],
+    //         if(!$this->startsWith($input['contact'],"6")){
+    //             $input['contact'] = "6" . $input['contact'];
+    //         }
 
-                "bank_id" => $input['bank_id'],
-                "address" => $input['address'],
 
-                "bank_holder_name" => $input['bank_holder_name'],
-                "bank_account" => $input['bank_account'],
 
-            );
+    //         $data = array(
+    //             "shop_name" => $input['shop'],
+    //             "shop_chinese_name" => $input['shop_name'],
+    //             "slug" => $this->slugify($input['shop']),
+    //             "email" => $input['email'],
+    //             "operating_hour" => $input['operating_hour'],
+    //             "contact" => $input['contact'],
+    //             "delivery_fee" => $input['delivery_fee'],
+    //             'insta' => $input['insta'],
+    //             'facebook' => $input['facebook'],
+
+    //             "address" => $input['address'],
+                
+    //             // "bank_id" => $input['bank_id'],
+    //             // "bank_holder_name" => $input['bank_holder_name'],
+    //             // "bank_account" => $input['bank_account'],
+
+    //         );
                
-            if(!empty($icon)){
-                $data['icon'] = $icon;
+    //         if(!empty($icon)){
+    //             $data['icon'] = $icon;
 
-            }
-            if(!empty($banner)){
-                $data['image'] = $banner;
-            }
+    //         }
+    //         if(!empty($banner)){
+    //             $data['image'] = $banner;
+    //         }
 
 
-            // $this->debug($data);
-            // dd($data);
+    //         // $this->debug($data);
+    //         // dd($data);
 
-            $shop_id =   $this->ShopModel->insertNew($data);
+    //         $shop_id =   $this->ShopModel->insertNew($data);
 
-            $where = [
-                'shop_id' => $shop_id
-            ];
-            $this->ShopTagModel->hardDeleteWhere($where);
-            foreach($_POST['tag_id'] as $tag){
-                $data = [
-                    'tag_id' => $tag,
-                    'shop_id' => $shop_id
-                ];
-                $this->ShopTagModel->insertNew($data);
-            } 
-            $exists = $this->checkExists($input["username"]);
-            // $this->debug($exists);
+    //         $where = [
+    //             'shop_id' => $shop_id
+    //         ];
+    //         // $this->ShopTagModel->hardDeleteWhere($where);
+    //         // foreach($_POST['tag_id'] as $tag){
+    //         //     $data = [
+    //         //         'tag_id' => $tag,
+    //         //         'shop_id' => $shop_id
+    //         //     ];
+    //         //     $this->ShopTagModel->insertNew($data);
+    //         // } 
+    //         $exists = $this->checkExists($input["username"]);
+    //         // $this->debug($exists);
 
-            if ($exists) {
-                $error = true;
-                $this->pageData["error"] = "Username already exists.";
-                $this->pageData["input"] = $input;
-            }
+    //         if ($exists) {
+    //             $error = true;
+    //             $this->pageData["error"] = "Username already exists.";
+    //             $this->pageData["input"] = $input;
+    //         }
 
-            if ($input["password"] != $input["password2"]) {
-                $error = true;
-                $this->pageData["error"] = "Passwords do not match";
-                $this->pageData["input"] = $input;
-            }
+    //         if ($input["password"] != $input["password2"]) {
+    //             $error = true;
+    //             $this->pageData["error"] = "Passwords do not match";
+    //             $this->pageData["input"] = $input;
+    //         }
 
-            //single upload
-            // $getUpload = $this->request->getFile('thumbnail');
-            // $thumbnail = $getUpload->getName();
-            // $tempName = $getUpload->getTempName();
-            // $getUpload->move('./assets/img/merchant', $thumbnail);
+    //         //single upload
+    //         // $getUpload = $this->request->getFile('thumbnail');
+    //         // $thumbnail = $getUpload->getName();
+    //         // $tempName = $getUpload->getTempName();
+    //         // $getUpload->move('./assets/img/merchant', $thumbnail);
 
-            //multiple upload
-            // $getUpload = $this->request->getFileMultiple('thumbnail');
-            // foreach ($getUpload as $files){
-            //     $thumbnail = $files->getName();
-            //     $files->move('./assets/img/merchant', $thumbnail);
-            // }
+    //         //multiple upload
+    //         // $getUpload = $this->request->getFileMultiple('thumbnail');
+    //         // foreach ($getUpload as $files){
+    //         //     $thumbnail = $files->getName();
+    //         //     $files->move('./assets/img/merchant', $thumbnail);
+    //         // }
 
-            if (!$error) {
+    //         if (!$error) {
 
-                $hash = $this->hash($input['password']);
+    //             $hash = $this->hash($input['password']);
 
-                $data = array(
-                    'role_id' => 2,
-                    'shop_id' => $shop_id,
-                    'username' => $input['username'],
-                    'contact' => $input['contact'],
-                    'email' => $input['email'],
-                    'real_password' => $input['password'],
+    //             $data = array(
+    //                 'role_id' => 2,
+    //                 'shop_id' => $shop_id,
+    //                 'username' => $input['username'],
+    //                 'contact' => $input['contact'],
+    //                 'email' => $input['email'],
+    //                 'real_password' => $input['password'],
+    //                 'password' => $hash['password'],
+    //                 'salt' => $hash['salt'],
+    //             );
 
-                    'password' => $hash['password'],
-                    'salt' => $hash['salt'],
-                );
+    //             // $this->debug($data);
+    //             // dd($data);
 
-                // $this->debug($data);
-                // dd($data);
+    //             $this->MerchantModel->insertNew($data);
 
-                $this->MerchantModel->insertNew($data);
+    //             return redirect()->to(base_url('/access/loginMerchant', "refresh"));
 
-                return redirect()->to(base_url('/access/loginMerchant', "refresh"));
+    //         }
+    //     }
+    //     }
 
-            }
-        }
-        }
-
-        echo view('access/header', $this->pageData);
-        echo view('access/merchant_register');
-        echo view('access/footer');
-    }
+    //     echo view('access/header', $this->pageData);
+    //     echo view('access/merchant_register');
+    //     echo view('access/footer');
+    // }
 
 
 

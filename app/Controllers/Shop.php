@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Controllers;
 
 use App\Core\BaseController;
@@ -110,7 +111,8 @@ class Shop extends BaseController
                     }
                 }
 
-                $input['contact'] = str_replace('-', '', $input['contact']);
+                $input['contact'] = str_replace("-","",$input['contact']);
+                $input['contact'] = str_replace("+","",$input['contact']);
                 if (!$this->startsWith($input['contact'], '6')) {
                     $input['contact'] = '6' . $input['contact'];
                 }
@@ -121,7 +123,7 @@ class Shop extends BaseController
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
                     'contact' => $input['contact'],
-                    // 'delivery_fee' => $input['delivery_fee'],
+                    'delivery_fee' => $input['delivery_fee'],
                     'address' => $input['address'],
                     // 'bank_holder_name' => $input['bank_holder_name'],
                     // 'bank_account' => $input['bank_account'],
@@ -264,8 +266,8 @@ class Shop extends BaseController
                     'shop_name' => $input['shop'],
                     'slug' => $this->slugify($input['shop']),
                     'shop_chinese_name' => $input['shop_name'],
-                    'url' => $input['url'],
-                    'lat' => $input['lat'],
+                    // 'url' => $input['url'],
+                    // 'lat' => $input['lat'],
                     'insta' => $input['insta'],
                     'facebook' => $input['facebook'],
                     'lng' => $input['lng'],
@@ -276,7 +278,8 @@ class Shop extends BaseController
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
                     'contact' => $input['contact'],
-                    // 'delivery_fee' => $input['delivery_fee'],
+                    'delivery_fee' => $input['delivery_fee'],
+                    'description' => $input['description'],
 
                     // 'bank_holder_name' => $input['bank_holder_name'],
                     // 'bank_account' => $input['bank_account'],
