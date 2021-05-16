@@ -30,3 +30,17 @@
     </div>
     <?php } ?>
 </div>
+<div class="row">
+    <div class="col-lg-6 col-md-6">
+        <div class="product__pag">
+        <?php for($i = 1;$i <= $pages;$i++) { ?>
+            <a onclick="get_product_list('<?= $i ?>')"><?= $i ?></a>
+        <?php } ?>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="product__show">
+            <p>Showing 1–6 of 8 results</p>
+        </div>
+    </div>
+</div>
