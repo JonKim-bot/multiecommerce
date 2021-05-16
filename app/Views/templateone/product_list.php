@@ -40,7 +40,7 @@
     </div>
     <div class="col-lg-6 col-md-6">
         <div class="product__show">
-            <p>Showing 1–6 of 8 results</p>
+            <p>Showing <?= $active_page ?>–<?= $pages ?> of <?= $product_total ?> results</p>
         </div>
     </div>
 </div>

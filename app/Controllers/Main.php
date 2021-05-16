@@ -394,6 +394,9 @@ class Main extends BaseController
         $product_total = $this->ProductModel->getWhereInTotal($where);
         $product_max_price =  $this->ProductModel->getMaxPrice();
         $this->pageData['product'] = $product;
+        $this->pageData['product_total'] = count($product_total);
+        $this->pageData['active_page'] = $_POST['page'];
+
         $this->pageData['pages'] = $this->get_page_number($product_total);
         $this->pageData['product_max_price'] = $product_max_price[0]['max(product_price)'];
         echo view("templateone/product_list",$this->pageData);
