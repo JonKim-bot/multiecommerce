@@ -35,13 +35,11 @@
                     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Shop Women</h4>
+                                <h4>Shop Contact</h4>
                                 <ul>
-                                    <li><a href="#">Clothing Fashion</a></li>
-                                    <li><a href="#">Winter</a></li>
-                                    <li><a href="#">Summer</a></li>
-                                    <li><a href="#">Formal</a></li>
-                                    <li><a href="#">Casual</a></li>
+                                    <li><a href="mailto:<?= $shop['email'] ?>?subject=Product Enquiry">Email : <?= $shop['email'] ?></a></li>
+                                    <li><a  href="tel:<?= $shop['contact'] ?>">Contact : <?= $shop['contact'] ?></a></li>
+
                                 </ul>
                             </div>
                         </div>
@@ -49,13 +47,12 @@
                     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Baby Collection</h4>
+                                <h4>Trending Product</h4>
                                 <ul>
-                                    <li><a href="#">Clothing Fashion</a></li>
-                                    <li><a href="#">Winter</a></li>
-                                    <li><a href="#">Summer</a></li>
-                                    <li><a href="#">Formal</a></li>
-                                    <li><a href="#">Casual</a></li>
+
+                                    <?php foreach($trending_product as $row){ ?>
+                                    <li><a href="<?=  base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id']  ?>"><?= $row['product_name'] ?></a></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </div>
@@ -65,12 +62,10 @@
                             <div class="footer-tittle">
                                 <h4>Quick Links</h4>
                                 <ul>
-                                    <li><a href="#">Track Your Order</a></li>
-                                    <li><a href="#">Support</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">Carrier</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
+
+                                <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
+
                                 </ul>
                             </div>
                         </div>

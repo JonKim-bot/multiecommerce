@@ -103,6 +103,14 @@ class Main extends BaseController
 
     }
 
+    function get_trending_product($shop_id){
+        $product = $this->ProductModel->getWhere([
+            'shop_id' => $shop_id,
+            'is_home' => 1,
+        ]);
+        return $product;
+    }
+
     public function product_detail($slug,$product_id)
     {
         $shop = $this->get_shop($slug);
@@ -136,6 +144,8 @@ class Main extends BaseController
         $this->pageData['product_option'] = $product_option;
         $this->pageData['product_image'] = $product_image;
         $this->pageData['product'] = $product;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
         echo view("templateone/header", $this->pageData);
         echo view("templateone/product");
         echo view("templateone/footer");
@@ -290,7 +300,8 @@ class Main extends BaseController
         $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
         $this->pageData['orders'] = $orders[0];
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
-      
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
@@ -313,7 +324,8 @@ class Main extends BaseController
             $this->pageData['announcement'] = $announcement;
         }
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
-      
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
@@ -372,6 +384,7 @@ class Main extends BaseController
         }
         
         $this->pageData['product'] = $product;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
         echo view("templateone/index");
@@ -401,6 +414,7 @@ class Main extends BaseController
         $this->pageData['product'] = $product;
         $this->pageData['product_total'] = count($product_total);
         $this->pageData['active_page'] = $_POST['page'];
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         $this->pageData['pages'] = $this->get_page_number($product_total);
         $this->pageData['product_max_price'] = $product_max_price[0]['max(product_price)'];
@@ -427,6 +441,8 @@ class Main extends BaseController
         $this->pageData['category'] = $category;
         $this->pageData['product'] = $product;
         $this->pageData['pages'] = $this->get_page_number($product);
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
