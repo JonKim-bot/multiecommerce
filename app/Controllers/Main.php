@@ -731,15 +731,8 @@ class Main extends BaseController
                         )
                 )) ;
             }
-
-            
-
         }
-    
-
     }
-
-
    
 
     public function get_total(){
