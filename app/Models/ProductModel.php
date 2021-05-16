@@ -17,7 +17,7 @@ class ProductModel extends BaseModel
         
     }
 
-    function getWhereIn($where,$limit = "", $page = 1, $filter = array()){
+    function getWhereIn($where,$offset = '', $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
        
 
@@ -37,6 +37,13 @@ class ProductModel extends BaseModel
             unset($where['category_ids']);
         }
         $sql .= " GROUP BY product.product_id";
+
+        $limit = 6;
+        if($page > 1){
+            $offset = ($page - 1) * $limit;
+        }
+        $sql .= 'LIMIT '.$limit.' OFFSET '.$offset.'';
+        
         $query = $this->db->query($sql, [$where]);
 
         return $query->getResultArray();
@@ -50,7 +57,7 @@ class ProductModel extends BaseModel
 
         return $query->getResultArray();
     }
-    function getWhere($where,$limit = "", $page = 1, $filter = array()){
+    function getWhere($where,$limit = "", $offset = "", $filter = array()){
         $builder = $this->db->table($this->tableName);
        
 
@@ -79,7 +86,7 @@ class ProductModel extends BaseModel
             unset($where['category_id']);
         }
         $sql .= " GROUP BY product.product_id";
-        
+      
         $query = $this->db->query($sql, [$where]);
 
         return $query->getResultArray();
