@@ -17,10 +17,9 @@ class ProductModel extends BaseModel
         
     }
 
-    function getWhereIn($where,$offset = 0, $page = 1, $filter = array()){
+    function getWhereIn($where, $page = 1,$limit = 6, $filter = array()){
         $builder = $this->db->table($this->tableName);
        
-
         $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id ');
         if(!empty($where['shop_id'])){
             $sql .= "WHERE product.shop_id = ? AND product.deleted = 0";
@@ -38,7 +37,7 @@ class ProductModel extends BaseModel
         }
         $sql .= " GROUP BY product.product_id";
 
-        $limit = 6;
+        $offset = 0;
         if($page > 1){
             $offset = ($page - 1) * $limit;
         }

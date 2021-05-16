@@ -390,7 +390,7 @@ class Main extends BaseController
         
         $this->pageData['shop'] = $shop;
         
-        $product = $this->ProductModel->getWhereIn($where);
+        $product = $this->ProductModel->getWhereIn($where,$_POST['page']);
         $product_max_price =  $this->ProductModel->getMaxPrice();
         $this->pageData['product'] = $product;
         $this->pageData['product_max_price'] = $product_max_price[0]['max(product_price)'];
@@ -400,6 +400,7 @@ class Main extends BaseController
     public function product($slug)
     {
         $shop = $this->get_shop($slug);
+
         $where = [
 
             'shop_id' => $shop['shop_id']

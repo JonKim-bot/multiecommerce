@@ -400,7 +400,10 @@
     get_header_cart();
     get_ajax_cart();
 
-    function get_product_list(){
+    // function get_selected_page(){
+
+    // }
+    function get_product_list(page = 1){
 
             let post_data = {
                 'shop_id' : "<?= $shop['shop_id'] ?>"
@@ -413,6 +416,8 @@
             if(keyword != ""){
                 post_data.keyword = keyword;
             }
+            post_data.page = page;
+            // post_data.page = $('')
             $.ajax({
             url: "<?= base_url() ?>/main/product_list",
             method:"POST",
