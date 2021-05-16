@@ -47,7 +47,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="banner">Image</label>
+                                    <label for="banner">Image 312x148</label>
                                     <input type="file" class="form-control" name="banner" placeholder="Banner" required>
                                 </div>
                                 

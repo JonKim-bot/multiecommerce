@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shop | eCommers</title>
-    <meta name="description" content="">
+    <title>Shop | <?= $shop['shop_name'] ?></title>
+    <meta name="description" content="<?= $shop['description'] ?><">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>/assets/assetsecom/img/icon/favicon.png">
 

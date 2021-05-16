@@ -43,7 +43,7 @@
                                     <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $about['description']?></textarea>
                                 </div>
                     <div class="form-group">
-                                    <label for="about">Icon</label>
+                                    <label for="about">Image 750x375</label>
                                     <input type="file" class="form-control" name="banner" placeholder="About" >
                                     <label for="" class="small text-danger">*Leave blank if not change image</label>
 
