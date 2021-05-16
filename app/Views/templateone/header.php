@@ -235,7 +235,7 @@
                     </div>
                 </div>
             </div>
-            <?php if($announcement['is_active'] == 1){ ?>
+            <?php if(!empty($announcement) && $announcement['is_active'] == 1){ ?>
             <div class="header-bottom text-center">
                 <p><?= $announcement['title'] ?><a target="_blank" href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
                 &nbsp;

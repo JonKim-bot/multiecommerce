@@ -96,8 +96,8 @@
               </td>
             </tr>
                                             <tr>
-                                                <td>Orders ID :</td>
-                                                <td><?= $orders['orders_id'] ?></td>
+                                                <td>Orders Code :</td>
+                                                <td><?= $orders['order_code'] ?></td>
     
                                             </tr>
                                             <tr>

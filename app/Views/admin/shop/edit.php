@@ -152,12 +152,12 @@
                         <div class="row">
                         <div class="col-md-6 form-group">
                                 <label for="">State</label>
-                                <input type="text" class="form-control" value="<?= $shop['state'] ?>" readonly value="" id="state" name="state">
+                                <input type="text" class="form-control" value="<?= $shop['state'] ?>"  value="" id="state" name="state">
                             </div>
                             <div class="col-md-6 form-group">
                                 
                                 <label for="">Taman</label>
-                                <input type="text" class="form-control" value="<?= $shop['taman'] ?>" readonly value="" id="taman" name="taman">
+                                <input type="text" class="form-control" value="<?= $shop['taman'] ?>"  value="" id="taman" name="taman">
                             </div>
 
                         </div>
@@ -165,7 +165,7 @@
                     <div class="form-group">
                         <label for="">Google Map url</label>
                         <p style="overflow: auto;"><a target="_blank" id="url" href="<?= $shop['url'] ?>"><?= $shop['url'] ?></a></p>
-                        <input type="text" name="url" value="<?= $shop['url'] ?>" class="form-control" readonly id="urlinput">
+                        <input type="text" name="url" value="<?= $shop['url'] ?>" class="form-control"  id="urlinput">
                     </div>
                     <div id="map">
                     </div>

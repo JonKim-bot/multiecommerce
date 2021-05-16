@@ -214,6 +214,7 @@ class Shop extends BaseController
     function startsWith($string, $startString)
     {
         $len = strlen($startString);
+
         return substr($string, 0, $len) === $startString;
     }
 
@@ -270,7 +271,7 @@ class Shop extends BaseController
                     // 'lat' => $input['lat'],
                     'insta' => $input['insta'],
                     'facebook' => $input['facebook'],
-                    'lng' => $input['lng'],
+                    // 'lng' => $input['lng'],
                     'state' => $input['state'],
                     'taman' => $input['taman'],
 

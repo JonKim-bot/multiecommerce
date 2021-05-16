@@ -44,6 +44,7 @@ class Orders extends BaseController
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
         ) {
+
             //  redirect()->to(base_url('access/login/'));
             echo "<script>location.href='" .
                 base_url() .
@@ -273,11 +274,13 @@ class Orders extends BaseController
     }
     public function notify_customer($orders_id)
     {
-        $url = base_url() . '/main/order_detail/' . $orders_id;
+        
         $where = [
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];
+        $shop = $this->ShopModel->getWhere(['shop_id' => $orders['shop_id']])[0];
+        $url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $orders['order_code'];
         $orders['contact'] = str_replace('+', '', $orders['contact']);
 
         $orders['contact'] = str_replace('-', '', $orders['contact']);

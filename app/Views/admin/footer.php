@@ -133,20 +133,7 @@
     }
 
 
-    <?php 
-
-    if(isset($_SESSION['shop_data']) && $_SESSION['shop_data']['url'] == ""){ ?>
-
-
-        Swal.fire({
-            title: "Address Incomplete",
-            text: "Please go to this link to add your address",
-            type: 'warning',
-            confirmButtonText: '<a href=" <?= base_url() ?>/shop/edit/<?= $_SESSION['shop_data']['shop_id'] ?>">Go Add</a>',
-            showCancelButton: true,
-        })
-
-    <?php } ?>
+   
 
     function Sound(source, volume, loop)
     {

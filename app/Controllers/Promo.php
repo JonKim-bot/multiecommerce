@@ -58,7 +58,7 @@ class Promo extends BaseController
     {
 
       
-        $promo = $this->PromoModel->getAll();
+        $promo = $this->PromoModel->getWhere(['promo.shop_id' => $this->shop_id]);
         $this->pageData['promo'] = $promo;
 
         echo view('admin/header', $this->pageData);

@@ -112,17 +112,23 @@ class Main extends BaseController
         return $product;
     }
 
+    function get_annoucement($where){
+        $announcement = $this->AnnouncementModel->getWhere($where);
+        if(!empty($announcement)){
+            $announcement = $announcement[0];
+            return $announcement;
+        }else{
+            return [];
+        }
+    }
     public function product_detail($slug,$product_id)
     {
         $shop = $this->get_shop($slug);
         $where = [
             'shop_id' => $shop['shop_id']
         ];
-        $announcement = $this->AnnouncementModel->getWhere($where);
-        if(!empty($announcement)){
-            $announcement = $announcement[0];
-            $this->pageData['announcement'] = $announcement;
-        }
+        $this->pageData['announcement'] = $this->get_annoucement($where);
+
         $where =[
             'product_id' => $product_id
         ];
@@ -277,16 +283,13 @@ class Main extends BaseController
         ];
         $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
         $this->pageData['shop'] = $shop;
-        $announcement = $this->AnnouncementModel->getWhere($where);
+        $this->pageData['announcement'] = $this->get_annoucement($where);
         $this->pageData['shop_payment_method'] = array_column($shop_payment_method,'payment_method_id');
         
         $payment_method = $this->PaymentMethod->getAll();
         $this->pageData['payment_method'] = $payment_method;
 
-        if(!empty($announcement)){
-            $announcement = $announcement[0];
-            $this->pageData['announcement'] = $announcement;
-        }
+       
 
         $where = [
             'orders.order_code' => $order_code,
@@ -327,11 +330,8 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop['shop_id']
         ];
-        $announcement = $this->AnnouncementModel->getWhere($where);
-        if(!empty($announcement)){
-            $announcement = $announcement[0];
-            $this->pageData['announcement'] = $announcement;
-        }
+        $this->pageData['announcement'] = $this->get_annoucement($where);
+
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
@@ -378,11 +378,8 @@ class Main extends BaseController
             'shop_id' => $shop['shop_id'],
             'is_active' => 1,
         ];
-        $announcement = $this->AnnouncementModel->getWhere($where);
-        if(!empty($announcement)){
-            $announcement = $announcement[0];
-            $this->pageData['announcement'] = $announcement;
-        }
+        $this->pageData['announcement'] = $this->get_annoucement($where);
+
         // $this->pageData['shop_operating_hour'] = $shop_operating_hour;
 
         $this->pageData['category'] = $category;
@@ -438,11 +435,8 @@ class Main extends BaseController
 
             'shop_id' => $shop['shop_id']
         ];
-        $announcement = $this->AnnouncementModel->getWhere($where);
-        if(!empty($announcement)){
-            $announcement = $announcement[0];
-            $this->pageData['announcement'] = $announcement;
-        }
+        $this->pageData['announcement'] = $this->get_annoucement($where);
+
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);
