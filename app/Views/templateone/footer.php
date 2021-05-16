@@ -405,6 +405,9 @@
     // }
     function get_product_list(page = 1){
 
+    //     background: #1b2839;
+	// border-color: #1b2839;
+           
             let post_data = {
                 'shop_id' : "<?= $shop['shop_id'] ?>"
             }
@@ -426,6 +429,10 @@
             {
                 
                 $('.product_list').html(data);
+                $('#page' + page).css("background-color", "#1b2839");
+                $('#page' + page).css("border-color", "#1b2839");
+                $('#page' + page).css("color", "white");
+
             }
             });
     }

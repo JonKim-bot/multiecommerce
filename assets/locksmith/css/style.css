@@ -1145,6 +1145,7 @@
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 	margin-right: 10px;
+	cursor: pointer;
 }
 
 .product__pag a:last-child {
