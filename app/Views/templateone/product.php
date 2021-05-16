@@ -170,6 +170,14 @@
 
     <script>
    function validate(total_selected){
+        var selected_value = get_selected_value().selected_value
+        .filter(value =>  value.product_option_selection_id  != '0')
+        .map(value => parseFloat(value.product_option_selection_id))
+        .sort(function(a, b) {
+            return a - b;
+        }).join('_');
+        
+        console.log(selected_value);
         if (total_selected < <?= $total_min ?>)
         {
             Swal.fire({
