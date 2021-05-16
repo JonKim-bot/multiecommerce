@@ -30,13 +30,7 @@
                                 <a class="card-header-action">
                                     <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                                 </a>
-                                <a class="card-header-action" href="<?php echo site_url(
-                                    'contact/edit'
-                                ) .
-                                    '/' .
-                                    $contact['contact_id']; ?>">
-                                    <button class="btn btn-warning"><i class="cil-pencil c-icon"></i>Edit</button></i>
-                                </a>
+                             
                             </div>
                         </div>
                         <div class="c-card-body">
@@ -63,9 +57,17 @@
 
                                                     </tr>
                                                     <tr>
-                                                        <td><h3>Description</h3></td>
+                                                        <td><h3>Contact</h3></td>
                                                         <td><?= $contact[
-                                                            'description'
+                                                            'contact'
+                                                        ] ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><h3>Email</h3></td>
+                                                        <td><?= $contact[
+                                                            'email'
                                                         ] ?></td>
 
                                                     </tr>
