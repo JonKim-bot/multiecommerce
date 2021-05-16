@@ -103,9 +103,9 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="product__pag">
-                                    <a href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
+                                <?php for($i = 1;$i <= $pages;$i++) { ?>
+                                    <a onclick="changePageNumber('<?= $i ?>')"><?= $i ?></a>
+                                <?php } ?>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6">

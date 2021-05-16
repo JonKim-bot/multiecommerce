@@ -413,11 +413,9 @@ class Main extends BaseController
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);
         $this->pageData['shop'] = $shop;
-
         $this->pageData['category'] = $category;
-        
-        
         $this->pageData['product'] = $product;
+        $this->pageData['pages'] = $this->get_page_number($product);
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
