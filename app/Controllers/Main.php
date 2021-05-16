@@ -31,6 +31,7 @@ class Main extends BaseController
 {
 
 
+
     public function __construct()
     {
         $this->PromoModel = new PromoModel();
@@ -140,6 +141,14 @@ class Main extends BaseController
 
         $total_minrequired = array_sum(array_column($product_option,'minimum_required'));
         $this->pageData['total_min'] = $total_minrequired;
+        $product_option_required = $this->ProductOptionModel->getWhere([
+            'product_id' => $product['product_id'],
+            'minimum_required >' => 0 
+        ]);
+        $required_option = array_column($product_option_required,'product_option_id');
+        sort($required_option);
+        $required_option = join("_",$required_option);
+        $this->pageData['required_option_id'] = $required_option;
         $this->pageData['shop'] = $shop;
         $this->pageData['product_option'] = $product_option;
         $this->pageData['product_image'] = $product_image;

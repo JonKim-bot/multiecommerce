@@ -89,12 +89,13 @@
                                                                 <?php if($key == 0){ ?>
                                                                     <option value="0" selection_price="0"
                                                                     product_option_name="0"
-
+                                                                    min_required = "<?= $row['minimum_required'] ?>"
                                                                     selection_name="0"
                                                                     product_option_id="0"><?= $row['name'] ?> <?= $row['minimum_required'] == 1 ? "*Required" : '' ?></option>
                                                                 <?php }else{ ?>
                                                                     <option value="<?= $rowselect['product_option_selection_id'] ?>"
                                                                     product_option_name="<?= $row['name'] ?>"
+                                                                    min_required = "<?= $row['minimum_required'] ?>"
                                                                      selection_price="<?= $rowselect['selection_price'] ?>" 
                                                                      selection_name="<?= $rowselect['product_option_name'] ?>"
                                                                      product_option_id="<?= $row['product_option_id'] ?>">
@@ -170,15 +171,18 @@
 
     <script>
    function validate(total_selected){
+    var selected_value = get_selected_value().selected_value;
+    console.log(selected_value)
+
         var selected_value = get_selected_value().selected_value
-        .filter(value =>  value.product_option_selection_id  != '0')
-        .map(value => parseFloat(value.product_option_selection_id))
+        .filter(value =>  value.product_option_id  != '0' && value.min_required != '0')
+        .map(value => parseFloat(value.product_option_id))
         .sort(function(a, b) {
             return a - b;
         }).join('_');
         
         console.log(selected_value);
-        if (total_selected < <?= $total_min ?>)
+        if (selected_value !=  "<?= $required_option_id?>")
         {
             Swal.fire({
                     title: "Option",
@@ -252,6 +256,8 @@
                 selection_price : $(this).attr("selection_price"),
                 product_option_name : $(this).attr("product_option_name"),
                 product_option_id : $(this).attr("product_option_id"),
+                min_required : $(this).attr("min_required"),
+
                 product_option_selection_id : $(this).val(),
             }
             selected_value.push(option_selected);
