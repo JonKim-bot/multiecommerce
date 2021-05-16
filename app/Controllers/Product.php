@@ -166,6 +166,9 @@ class Product extends BaseController
                     'product_name' => $input['product'],
                     'product_price' => $input['product_price'],
 
+                    'promo_price' => $input['promo_price'],
+
+                    
                     'created_by' => session()->get('login_id'),
                     'shop_id' => $this->shop_id,
                 ];
@@ -377,7 +380,7 @@ class Product extends BaseController
                     'product_description' => $input['product_description'],
                     'product_name' => $input['product'],
                     'product_price' => $input['product_price'],
-
+                    'promo_price' => $input['promo_price'],
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];

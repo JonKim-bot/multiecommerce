@@ -69,7 +69,12 @@
                                             <h3><?= $product['product_name'] ?></h3>
                                             <!-- <p>By Evan Winter</p> -->
                                             <div class="price">
-                                                <span id="product_price">RM <?= $product['product_price'] ?></span>
+                                            <?php if($product['is_promo'] == 1){ ?>
+                                                    <span id="product_price">RM <?= $product['promo_price'] ?></span>
+                                                    <span style="text-decoration: line-through;">RM <?= $product['product_price'] ?></span>
+                                                <?php }else{ ?>
+                                                    <span id="product_price">RM <?= $product['product_price'] ?></span>
+                                                <?php } ?>
                                             </div>
                                             <div class="select-Categories pb-30">
                                                 <?php foreach($product_option as $row){ ?>
@@ -180,11 +185,13 @@
 
     $(".product_option_select").on('change', function(){
         var selected_value = get_selected_value().selected_value;
-        var product_price = <?= $product['product_price'] ?>;
+        <?php if($product['is_promo'] != 1){ ?>
+            var product_price = <?= $product['product_price'] ?>;
+        <?php }else{ ?>
+            var product_price = <?= $product['promo_price'] ?>;
+        <?php } ?>
         var product_quantity = $('#product_quantity').val();
         var total_price =  ( product_price * product_quantity );
-       
-
         item_price =  calculate_total(selected_value,total_price);
         $('#product_price').text("RM " + (item_price));
 
@@ -215,8 +222,14 @@
 
     function calculate_product_price(){
        var total_selection_price = get_selected_value().selected_total_price;
+       <?php if($product['is_promo'] != 1){ ?>
+            var product_price = <?= $product['product_price'] ?>;
+            var product_price =  product_price + parseFloat(total_selection_price);
+        <?php }else{ ?>
+            var product_price = <?= $product['promo_price'] ?>;
+            var product_price =  product_price + parseFloat(total_selection_price);
+        <?php } ?>
 
-       var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
        var product_quantity = $('#product_quantity').val();
        var total_price =  ( product_price * product_quantity );
        $('#product_price').text("RM " + total_price.toFixed(2));
@@ -252,8 +265,11 @@
         var selected_count = get_selected_value().selected_count;
         var selected_value = get_selected_value().selected_value;
         var total_selection_price = get_selected_value().selected_total_price;
-
-        var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
+        <?php if($product['is_promo'] != 1){ ?>
+            var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
+        <?php }else{ ?>
+            var product_price = <?= $product['promo_price'] ?> + parseFloat(total_selection_price);
+        <?php } ?>
 
         if(validate(selected_count) == false){
             return;
