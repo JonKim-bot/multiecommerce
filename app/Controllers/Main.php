@@ -157,6 +157,7 @@ class Main extends BaseController
         $pages = ceil($total_product / $max_per_page);
         return $pages;
     }
+    
     public function apply_promo(){
         if(isset($_POST)){
             $where = [
@@ -224,7 +225,8 @@ class Main extends BaseController
         $orders = $this->OrdersModel->getWhere($where);
 
         $shop = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
-        $order_url = base_url()  . "/main/order_detail/" . $orders[0]['orders_id'];
+        $order_url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $orders[0]['order_code'];
+
         $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
         $url =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;

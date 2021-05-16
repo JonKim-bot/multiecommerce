@@ -61,7 +61,7 @@
                                                 <td>Order Status :</td>
                                                 <td class="badge badge-primary" style="font-size: 20px;"> <?= $orders['orders_status'] ?></td>    
                                             </tr>
-                                            <?php if(trim(strtolower($orders['payment_method'])) == "credit card"){ ?>
+                                            <!-- <?php if(trim(strtolower($orders['payment_method'])) == "credit card"){ ?>
               <tr>
               <td>Customer Receipt Link : </td>
               <td>
@@ -70,19 +70,19 @@
             </tr>
 
 
-            <?php }   ?>
+            <?php }   ?> -->
             <tr>
               <td>Merchant Receipt Link : </td>
               <td>
               <a href="<?= base_url(). "/orders/view_receipt/". $orders['orders_id'] ?>" target="_blank">Click me to view receipt</a>
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>Kitchen order Link : </td>
               <td>
               <a href="<?= base_url(). "/orders/kitchen_order/". $orders['orders_id'] ?>" target="_blank">Click me to view kitchen order</a>
               </td>
-            </tr>
+            </tr> -->
             <tr>
               <td>Notify Customer On Current Status Via Whatsapp</td>
               <td>

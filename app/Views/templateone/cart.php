@@ -118,6 +118,7 @@
                             <li>Discount <span id="discount">RM 0</span></li>
 
                                 <li>Delivery Fee  <span id="delivery_fee">RM <?= $shop['delivery_fee'] ?></span></li>
+                                
 
                                 <li>Subtotal <span id="subtotal"></span></li>
                                 <li>Total <span id="grand_total"></span></li>
