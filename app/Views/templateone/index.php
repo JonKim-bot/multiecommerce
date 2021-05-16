@@ -13,7 +13,7 @@
                                     <!-- <span>Fashion Sale</span> -->
                                     <h1 data-animation="bounceIn" data-delay="0.2s"><?= $row['title'] ?></h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s"><?= $row['description'] ?></p>
-                                    <a href="#" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a>
+                                    <a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <div class="label">AbouT us</div>
                             <h2><?= $about['title'] ?></h2>
                             <p><?= $about['description'] ?></p>
-                            <a href="#" class="primary-btn">Contact us</a>
+                            <a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>#contactForm_" class="primary-btn">Contact us</a>
                         </div>
                     </div>
                     <div class="col-lg-6">

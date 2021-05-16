@@ -175,7 +175,6 @@
                                     <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
 
                                     <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
-                                    <li><a href="<?= base_url() ?>/main/payment/<?= $shop['slug'] ?>">Payment</a></li>
 
                                     <!-- <li><a href="#">Pages  <i class="fas fa-angle-down"></i></a>
                                         <ul class="submenu">
