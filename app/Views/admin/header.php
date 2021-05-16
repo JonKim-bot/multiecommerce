@@ -151,6 +151,12 @@
                     </a>
                 </li>
                 <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'ProductCategory' ? 'c-active' : null) ?>" href="<?= base_url() ?>/ProductCategory">
+                        <i class="fa fa-server c-sidebar-nav-icon"></i>
+                        Product Category (Step 1)
+                    </a>
+                </li>
+                <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'product' ? 'c-active' : null) ?>" href="<?= base_url() ?>/product">
                         <i class="fa fa-product-hunt c-sidebar-nav-icon"></i>
                         Product (Step 2)
@@ -177,12 +183,7 @@
                     </a>
                 </li>
                
-                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'ProductCategory' ? 'c-active' : null) ?>" href="<?= base_url() ?>/ProductCategory">
-                        <i class="fa fa-server c-sidebar-nav-icon"></i>
-                        Product Category (Step 1)
-                    </a>
-                </li>
+                
                  <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about">
                         <i class="fa fa-cog c-sidebar-nav-icon"></i>

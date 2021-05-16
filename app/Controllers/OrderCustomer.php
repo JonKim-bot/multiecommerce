@@ -61,7 +61,7 @@ class OrderCustomer extends BaseController
             'order_customer.full_name' => $order_customer[0]['full_name'],
         ];
         $orders = $this->OrderCustomerModel->getWhereOrders($where);
-
+        
         // $this->show_404_if_empty($admin);
         $total_order = array_column($orders, 'grand_total');
 
