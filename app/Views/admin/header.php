@@ -156,6 +156,13 @@
                         Product (Step 2)
                     </a>
                 </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'contact' ? 'c-active' : null) ?>" href="<?= base_url() ?>/contact">
+                        <i class="fa fa-phone c-sidebar-nav-icon"></i>
+                        Contact 
+                    </a>
+                </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>

@@ -238,6 +238,7 @@
     
     });
  }
+
     function get_selected_category(){
         var checked_array = [];
         $(".category_check:checked").each(function(){
@@ -251,7 +252,32 @@
     $('.category_check').click(function(e) {
         get_product_list();
     });
+    <?php if ($shop['is_active'] == 0) { ?>
+        Swal.fire({
+            title: "Dear Customer",
+            text: "We would like to inform you that <?= $shop[
+                'shop_name'
+            ] ?> are temporarily closed",
+            type: 'info'
+        })
 
+    <?php } ?>
+
+    $('#contactForm_').submit(function(e) {
+        e.preventDefault();
+        var postParam = $(this).serializeArray();
+        $.post("<?= base_url('main/submit_contact') ?>", postParam, function(data){
+            data = jQuery.parseJSON(data);
+            if(data.status){
+                Swal.fire({
+                    title: "Thank you !",
+                    text: "Form submitted",
+                    type: 'success'
+                });
+            }
+
+        });
+    });
     function get_header_cart(){
         $.post("<?= base_url('main/load_shopping_cart') ?>", {slug : "<?= $shop['slug'] ?>"}, function(html){
             $('.shopping-cart').html(html);

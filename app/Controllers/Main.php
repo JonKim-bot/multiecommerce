@@ -25,6 +25,7 @@ use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\OrderDetailOptionModel;
 use App\Models\PromoModel;
+use App\Models\ContactModel;
 
 class Main extends BaseController
 {
@@ -41,6 +42,7 @@ class Main extends BaseController
         $this->AboutModel = new AboutModel();
         $this->CategoryModel = new CategoryModel();
         $this->OrdersModel = new OrdersModel();
+        $this->ContactModel = new ContactModel();
         $this->MerchantModel = new MerchantModel();
         $this->AnnouncementModel = new AnnouncementModel();
         $this->BrandModel = new BrandModel();
@@ -385,6 +387,7 @@ class Main extends BaseController
         $shop = $this->ShopModel->getWhere($where)[0];
         if(!empty($_POST['category_ids'])){
             $where['category_ids'] = $_POST['category_ids'];
+
         }
         if(!empty($_POST['keyword'])){
             $where['product_name'] = $_POST['keyword'];
@@ -531,6 +534,17 @@ class Main extends BaseController
         return $order_detail;
     }
 
+    public function submit_contact(){
+        if($_POST){
+            $data = $_POST;
+            $this->ContactModel->insertNew($data);
+            die(json_encode([
+                'status' => true,
+                'data' => $data,
+            ]));
+        }
+    }
+
     public function view_order_status($orders_id = "")
     {
         $where = array(
@@ -552,7 +566,6 @@ class Main extends BaseController
         $this->pageData["orders_status"] = $this->OrdersStatusModel->getAll();
         
         $this->pageData['shop'] = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
-    
 
 
         $shop_contact = $this->ShopModel->getWhere([
@@ -560,7 +573,9 @@ class Main extends BaseController
         ])[0]['contact'];
         
 
-        $order_url = base_url()  . "/main/order_detail/" . $orders_id;
+        // $order_url = base_url()  . "/main/order_detail/" . $orders_id;
+        $order_url = base_url() . "/main/payment/" .  $this->pageData['shop']['slug'] . '/' . $orders[0]['order_code'];
+
         $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
         

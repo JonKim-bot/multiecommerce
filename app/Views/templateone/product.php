@@ -120,7 +120,7 @@
                                                   <span class="fa fa-plus inc qtybtn add_qty"></span></div>
                                                 </div>
                                                 <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
-                                                <a href="#" class="border-btn share-btn"><i class="fas fa-share-alt"></i></a>
+                                                <!-- <a href="#" class="border-btn share-btn"><i class="fas fa-share-alt"></i></a> -->
                                             </div>
                                         </div>
                                     </div>

@@ -21,11 +21,13 @@ class ProductModel extends BaseModel
     function getWhereInTotal($where, $page = 1,$limit = 6, $filter = array()){
         $builder = $this->db->table($this->tableName);
        
-        $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id ');
+        $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id 
+        WHERE product.is_active = 1
+        ');
         if(!empty($where['shop_id'])){
-            $sql .= "WHERE product.shop_id = ? AND product.deleted = 0";
+            $sql .= "AND product.shop_id = ? AND product.deleted = 0";
         }else{
-            $sql .= "WHERE product.product_id = ? AND product.deleted = 0";
+            $sql .= "AND product.product_id = ? AND product.deleted = 0";
         }
         if(!empty($where['product_name'])){
             $sql .= " AND product_name LIKE '%".$where['product_name']."%' ";
@@ -45,11 +47,14 @@ class ProductModel extends BaseModel
     function getWhereIn($where, $page = 1,$limit = 6, $filter = array()){
         $builder = $this->db->table($this->tableName);
        
-        $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id ');
+        $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id 
+        WHERE product.is_active = 1
+
+        ');
         if(!empty($where['shop_id'])){
-            $sql .= "WHERE product.shop_id = ? AND product.deleted = 0";
+            $sql .= "AND product.shop_id = ? AND product.deleted = 0";
         }else{
-            $sql .= "WHERE product.product_id = ? AND product.deleted = 0";
+            $sql .= "AND product.product_id = ? AND product.deleted = 0";
         }
         if(!empty($where['product_name'])){
             $sql .= " AND product_name LIKE '%".$where['product_name']."%' ";
