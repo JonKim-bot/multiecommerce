@@ -325,19 +325,20 @@ class Product extends BaseController
 
         $product = $this->ProductModel->getWhere($where);
         $product_option = $this->ProductOptionModel->getWhere($where);
-        $product_image = $this->ProductImageModel->getWhere($where);
-
+        
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($product[0]['shop_id']);
         }
         // $this->debug($product);
-
+        
         // $merchant = $this->MerchantModel->getWhere($where);
-
+        
         // $this->show_404_if_empty($admin);
-
+        
         $this->pageData['product'] = $product[0];
+        
         $this->pageData['product_option'] = $product_option;
+        $product_image = $this->ProductImageModel->getWhere($where);
         $this->pageData['product_image'] = $product_image;
 
 

@@ -75,6 +75,7 @@
 
 
                         <form id="checkout_form"  class="row contact_form"  method="post">
+                        
 
                         <div class="billing_details">
                     <div class="row">
@@ -107,6 +108,7 @@
                                     <span class="placeholder" data-placeholder="Town/City"></span>
                                 </div>
                                 <input type="hidden" name="shop_id" value="<?= $shop['shop_id'] ?>">
+
                                 
                         </div>
                         
@@ -142,11 +144,12 @@
         });
         var postParam = $(this).serializeArray();
         postParam.push ({name : 'grand_total' , value : $('#grand_total').text().replace("RM","")});
-        postParam.push ({name : 'subtotal' , value : $('#subtotal').text().replace("RM","")});
         postParam.push ({name : 'delivery_fee' , value : $('#delivery_fee').text().replace("RM","")});
+        postParam.push ({name : 'subtotal' , value : $('#subtotal').text().replace("RM","")});
         postParam.push ({name : 'promo_id' , value : $('#promo_id').val()});
 
         
+
         // alert(JSON.stringify(postParam));
         $.post("<?= base_url('main/submit_order') ?>", postParam, function(data){
             data = jQuery.parseJSON(data);

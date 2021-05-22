@@ -546,6 +546,7 @@ class Orders extends BaseController
             $promo = $this->PromoModel->getWhere($where)[0];
             if ($promo['discount_type_id'] == 1) {
                 $amount = str_replace('RM', '', $promo['offer_amount']);
+                
             } else {
                 $amount =
                     str_replace('RM', '', $orders[0]['grand_total']) *

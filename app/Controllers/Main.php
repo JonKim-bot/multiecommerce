@@ -253,6 +253,7 @@ class Main extends BaseController
         ];
         $orders = $this->OrdersModel->getWhere($where);
 
+
         $shop = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
         $order_url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $orders[0]['order_code'];
 
@@ -488,6 +489,7 @@ class Main extends BaseController
 
             $cart = $this->session->get("cart");
 
+            
             if (!empty($cart[$cart_index])) {
                 $cart[$cart_index]['quantity'] = $cart[$cart_index]['quantity'] + $input['quantity'];
                 $cart[$cart_index]['total'] = $_POST['product_single_price']  * ($cart[$cart_index]['quantity']);
@@ -511,6 +513,7 @@ class Main extends BaseController
 
             // die(json_encode(array(
             //     "status" => true,
+            
             // )));
         }
     }
@@ -698,6 +701,7 @@ class Main extends BaseController
                 $order_data = [
                     'order_customer_id' => $order_customer_id,
 
+
                     'orders_status_id' => 1,
                     // 'delivery_method' => $_POST['delivery_option'],
                     // 'payment_method_id' => $_POST['payment_method_id'],
@@ -706,6 +710,7 @@ class Main extends BaseController
                     'delivery_fee' => $_POST['delivery_fee'],
                     'grand_total' => $_POST['grand_total'],
                     'promo_id' => $_POST['promo_id'],
+
                     // 'created_at' => date('d-m-Y H:i:s'),
                     'subtotal' => $_POST['subtotal'],
                     'shop_id' => $_POST['shop_id'],
@@ -775,6 +780,7 @@ class Main extends BaseController
                         'message' => $message,
                         )
                 )) ;
+                
             }
         }
     }
@@ -782,8 +788,10 @@ class Main extends BaseController
 
     public function get_total(){
         $cart = $this->session->get('cart');
-
-        $total = array_sum(array_column($cart,'total'));
+        $total = 0;
+        if(!empty($cart)){
+            $total = array_sum(array_column($cart,'total'));
+        }
         die(json_encode([
             'status' => true,
             'data' => $total

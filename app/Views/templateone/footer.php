@@ -80,6 +80,7 @@
         </div>
         <!-- footer-bottom area -->
        
+       
     </div>
 </footer>
 <!-- Scroll Up -->
@@ -266,6 +267,7 @@
 
         });
     });
+    
     function get_header_cart(){
         $.post("<?= base_url('main/load_shopping_cart') ?>", {slug : "<?= $shop['slug'] ?>"}, function(html){
             $('.shopping-cart').html(html);
@@ -362,6 +364,7 @@
             }
             var grand_total = (data.data).toFixed(2);
             var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
+            
             $('#grand_total').text("RM " + grand_total);
             $('#subtotal').text("RM " + subtotal);
 
