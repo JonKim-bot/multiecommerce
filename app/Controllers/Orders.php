@@ -284,6 +284,7 @@ class Orders extends BaseController
         $orders['contact'] = str_replace('+', '', $orders['contact']);
 
         $orders['contact'] = str_replace('-', '', $orders['contact']);
+        
         if (!$this->startsWith($orders['contact'], '6')) {
             $orders['contact'] = '6' . $orders['contact'];
         }
