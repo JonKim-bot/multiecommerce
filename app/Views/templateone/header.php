@@ -6,7 +6,7 @@
     <title>Shop | <?= $shop['shop_name'] ?></title>
     <meta name="description" content="<?= $shop['description'] ?><">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() ?>/assets/assetsecom/img/icon/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() . $shop['icon'] ?>">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/bootstrap.min.css">

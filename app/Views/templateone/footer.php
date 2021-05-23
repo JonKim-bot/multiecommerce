@@ -160,6 +160,7 @@
         var delivery_fee =  $('#delivery_fee').text().replace("RM","");
 
         $.ajax({
+
             url: url,
             method:"POST",
             data:{grand_total :  grand_total,delivery_fee : delivery_fee, promocode : promocode , shop_id : shop_id},
@@ -366,7 +367,7 @@
             var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
             
             $('#grand_total').text("RM " + grand_total);
-            $('#subtotal').text("RM " + subtotal);
+            $('#subtotal').text("RM " + subtotal.toFixed(2));
 
         });
     }

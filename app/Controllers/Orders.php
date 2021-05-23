@@ -264,6 +264,7 @@ class Orders extends BaseController
             'shop.shop_id' => $orders[0]['shop_id'],
         ])[0];
 
+        
         echo view('admin/header', $this->pageData);
         echo view('admin/orders/receipt');
     }

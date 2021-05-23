@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Jost:wght@200;300;400;500;600;700;800;900&display=swap");
+
 .section-bg{
     background-color:#FEF4F4
 }
@@ -2797,7 +2798,7 @@ hr{
     -o-transition:all .4s ease-out 0s;
     transition:all .4s ease-out 0s;
     position:absolute;
-    content:"1";
+    content:"0";
     background:#FF2020;
     color:#fff;
     text-align:center;

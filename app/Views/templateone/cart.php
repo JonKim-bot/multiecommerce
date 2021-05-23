@@ -82,30 +82,24 @@
                         <div class="col-lg-12">
                             <h3>Billing Details</h3>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="first" name="name" required/>
-                                    <span class="placeholder" data-placeholder="First name"></span>
+                                    <input type="text" class="form-control" id="first" placeholder="First name" name="name" required/>
                                 </div>
                                
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="tel" class="form-control" id="number" name="contact" required/>
-                                    <span class="placeholder" data-placeholder="Phone number"></span>
+                                    <input type="tel" class="form-control" id="number" placeholder="Phone number" name="contact" required/>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="email" class="form-control" id="email" name="email" required/>
-                                    <span class="placeholder" data-placeholder="Email Address"></span>
+                                    <input type="email" class="form-control" id="email"  placeholder="Email Address" name="email" required/>
                                 </div>
                                
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="add1" name="address" required/>
-                                    <span class="placeholder" data-placeholder="Address line"></span>
+                                    <input type="text" class="form-control" id="add1" placeholder="Address " name="address" required/>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="add2" name="post_code" required/>
-                                    <span class="placeholder" data-placeholder="Post code"></span>
+                                    <input type="text" class="form-control" id="add2" placeholder="Post code" name="post_code" required/>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="city" name="city" required/>
-                                    <span class="placeholder" data-placeholder="Town/City"></span>
+                                    <input type="text" class="form-control" id="city" placeholder="Town/City" name="city" required/>
                                 </div>
                                 <input type="hidden" name="shop_id" value="<?= $shop['shop_id'] ?>">
 
@@ -120,6 +114,7 @@
                             <li>Discount <span id="discount">RM 0</span></li>
 
                                 <li>Delivery Fee  <span id="delivery_fee">RM <?= $shop['delivery_fee'] ?></span></li>
+
                                 
 
                                 <li>Subtotal <span id="subtotal"></span></li>
