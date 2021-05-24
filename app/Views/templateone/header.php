@@ -95,22 +95,21 @@
     border: 1px solid #e8eff4;
     width: 84px;
 }
-.shopping-cart:after {
-  bottom: 100%;
-  left: 89%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-bottom-color: white;
-  border-width: 8px;
-  margin-left: -8px;
-}
+
 .cart__table tbody tr .p0 {
     padding-top: 0px;
     padding-bottom: 0px;
+}
+.cart_count{
+    color: black;
+    background: red;
+    border-radius: 50%;
+    padding: 0px 10px;
+    font-weight: bold;
+    /* bottom: 20px; */
+    position: relative;
+    right: -24px;
+    top: 18px;
 }
 
     </style>
@@ -196,7 +195,10 @@
                             </nav>
                         </div>
                         <!-- Header Right -->
+
                         <div class="header-right">
+                            <a class="cart_count">0</a>
+
                             <ul>
                                 <!-- <li>
                                     <div class="nav-search search-switch hearer_icon">

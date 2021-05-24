@@ -269,6 +269,7 @@
         });
     });
     
+
     function get_header_cart(){
         $.post("<?= base_url('main/load_shopping_cart') ?>", {slug : "<?= $shop['slug'] ?>"}, function(html){
             $('.shopping-cart').html(html);
@@ -361,6 +362,7 @@
                 reset();
                 return;
             }else{
+
                 check_promo();
             }
             var grand_total = (data.data).toFixed(2);
@@ -368,6 +370,7 @@
             
             $('#grand_total').text("RM " + grand_total);
             $('#subtotal').text("RM " + subtotal.toFixed(2));
+            $('.cart_count').text(data.count);
 
         });
     }

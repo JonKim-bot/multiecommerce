@@ -1,7 +1,22 @@
 <style>
-.header-area .header-mid .menu-wrapper .header-right .cart::after {
+
+/* .header-area .header-mid .menu-wrapper .header-right .cart::after{
+    -webkit-transition:all .4s ease-out 0s;
+    -moz-transition:all .4s ease-out 0s;
+    -ms-transition:all .4s ease-out 0s;
+    -o-transition:all .4s ease-out 0s;
+    transition:all .4s ease-out 0s;
+    position:absolute;
     content: "<?= $cart_count ?>";
-}
+    z-index: 9999;
+    color:#fff;
+    text-align:center;
+    border-radius:50%;
+    font-size:12px;
+    top:-50px;
+    right:0px;
+    padding:1px 7px
+} */
 .c-quantity .button {
     width: 30px;
     height: 30px;

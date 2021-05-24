@@ -51,6 +51,7 @@
                                     <div class="h1-testimonial-active" style="width:90%">
                                     <?php foreach($product_image as $row){ ?>
 
+
                                         <div class="single-testimonial text-center">
                                         <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
    
@@ -303,6 +304,7 @@
                     type: 'success'
             })
                 get_header_cart();
+                get_total();
         });
         // console.log(product)
 

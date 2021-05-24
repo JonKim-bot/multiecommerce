@@ -1,4 +1,5 @@
 <style>
+
 @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Jost:wght@200;300;400;500;600;700;800;900&display=swap");
 
 :root {
@@ -2804,7 +2805,7 @@ hr{
     -o-transition:all .4s ease-out 0s;
     transition:all .4s ease-out 0s;
     position:absolute;
-    content:"0";
+    /* content:""; */
     background:var(--themecolor);
     color:#fff;
     text-align:center;

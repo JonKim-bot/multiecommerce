@@ -816,6 +816,7 @@ class Main extends BaseController
         }
         die(json_encode([
             'status' => true,
+            'count' => count($cart),
             'data' => $total
         ]));
 
@@ -872,6 +873,7 @@ class Main extends BaseController
             $cart = $this->session->get('cart');
             
             unset($cart[$index]);
+
 
             $this->session->set("cart", $cart);
 

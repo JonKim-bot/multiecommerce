@@ -361,12 +361,12 @@ class Product extends BaseController
         echo view('admin/product/detail');
         echo view('admin/footer');
     }
-    public function make_image(){
-        $product = $this->ProductModel->getAll();
-        foreach($product as $row){
-            $this->make_product_image($row['image'],$row['product_id']);
-        }
-    }
+    // public function make_image(){
+    //     $product = $this->ProductModel->getAll();
+    //     foreach($product as $row){
+    //         $this->make_product_image($row['image'],$row['product_id']);
+    //     }
+    // }
     public function edit($product_id)
     {
         $where = [
