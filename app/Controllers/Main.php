@@ -91,6 +91,8 @@ class Main extends BaseController
         $this->pageData['shop'] = $this->get_shop($slug);
 
         echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
         echo view("templateone/failed");
         echo view("templateone/footer");
 
@@ -102,6 +104,8 @@ class Main extends BaseController
         $this->pageData['shop'] = $this->get_shop($slug);
 
         echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
         echo view("templateone/success");
         echo view("templateone/footer");
 
@@ -165,14 +169,16 @@ class Main extends BaseController
         $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
+        $this->load_css($shop);
         echo view("templateone/product");
         echo view("templateone/footer");
 
     }
 
-    public function load_css($shop_id = 0){
-        echo view("templateone/ecomcss");
-        echo view("templateone/lockcss");
+    public function load_css($shop){
+        $this->pageData['color'] = $shop['colour'];
+        echo view("templateone/ecomcss",$this->pageData);
+        echo view("templateone/lockcss",$this->pageData);
     }
     
     public function update_orders_status($orders_id,$payment_method_id){
@@ -328,6 +334,8 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
         echo view("templateone/payment");
         echo view("templateone/footer");
 
@@ -349,7 +357,7 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         echo view("templateone/header", $this->pageData);
-        $this->load_css($shop['shop_id']);
+        $this->load_css($this->pageData['shop']);
 
         echo view("templateone/cart");
         echo view("templateone/footer");
@@ -405,6 +413,8 @@ class Main extends BaseController
         $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
+        $this->load_css($shop);
+
         echo view("templateone/index");
         echo view("templateone/footer");
 
@@ -462,6 +472,8 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
         echo view("templateone/shop");
         echo view("templateone/footer");
 
@@ -779,6 +791,7 @@ class Main extends BaseController
                     array(
                         'status' => true,
                         'url' => $url,
+                        
                         'orders_id' => $order_id,
                         )
                 )) ;

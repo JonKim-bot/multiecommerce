@@ -36,9 +36,9 @@
                                     <?php foreach($product_image as $row){ ?>
                                     <div class="single-testimonial text-center">
                                     <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images_">
-                                            <i class="fa fa-eye text-dark fa-2x icon_view hvr-glow"></i>
    
                                             <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
+                                            <i class="fa fa-eye text-dark fa-2x icon_view hvr-glow"></i>
                                             </a>
                                     </div>
                                     <!-- Single Testimonial -->
@@ -53,9 +53,9 @@
 
                                         <div class="single-testimonial text-center">
                                         <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
-                                            <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i>
    
                                             <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
+                                        <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i>
                                             </a>
 
                                         </div>

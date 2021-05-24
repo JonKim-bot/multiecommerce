@@ -37,7 +37,7 @@
   Helper CSS
 -----------------------*/
 :root{
-	--themecolor:orange;
+	--themecolor: <?= $color ?>;
 }
 .section-title {
 	margin-bottom: 65px;

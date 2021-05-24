@@ -321,6 +321,20 @@ class Shop extends BaseController
                         $data['footer_logo'] = $icon;
                     }
                 }
+
+                
+                if ($_FILES['header_icon'] and !empty($_FILES['header_icon']['name'])) {
+                    $file = $this->request->getFile('header_icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['header_icon'] = $icon;
+                    }
+                }
+
+                 
+              
                 $this->ShopModel->updateWhere($where, $data);
                 $where = [
                     'shop_id' => $shop_id,

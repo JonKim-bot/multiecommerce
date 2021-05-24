@@ -6,7 +6,7 @@
     <title>Shop | <?= $shop['shop_name'] ?></title>
     <meta name="description" content="<?= $shop['description'] ?><">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() . $shop['icon'] ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url() . $shop['header_icon'] ?>">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/bootstrap.min.css">
@@ -122,7 +122,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="<?= base_url() ?>/assets/assetsecom/img/icon/loder.png" alt="loder">
+                    <img src="<?= base_url() . $shop['header_icon'] ?>" alt="loder">
                 </div>
             </div>
         </div>

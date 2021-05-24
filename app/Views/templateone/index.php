@@ -83,7 +83,8 @@
             </div>
         </section>
         <?php } ?>
-<section class="services spad">
+        <?php if(!empty($brand)){ ?>
+        <section class="services spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -103,6 +104,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><?= $row['title'] ?></h4>
+
                             <p><?= $row['description'] ?></p>
                         </div>
                     </div>
@@ -112,6 +114,7 @@
             </div>
         </div>
     </section>
+    <?php } ?>
         <!--items Product  End -->
         <!-- Latest-items Start -->
         <div class="latest-items section-padding fix">

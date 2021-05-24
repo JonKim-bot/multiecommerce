@@ -47,7 +47,7 @@
                                         <div class="general-info">
                                         <div class="row mb-5">
                                                 <div class="col-lg-12 col-xl-12">
-                                                    <h1 class="text-center">Icon</h1>
+                                                    <h1 class="text-center">Logo</h1>
                                                     <img src="<?= base_url() .
                                                         $shop[
                                                             'icon'
@@ -58,6 +58,14 @@
                                                     <img src="<?= base_url() .
                                                         $shop[
                                                             'footer_logo'
+                                                        ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
+                                                </div>
+
+                                                <div class="col-lg-12 col-xl-12">
+                                                    <h1 class="text-center">Header Icon</h1>
+                                                    <img src="<?= base_url() .
+                                                        $shop[
+                                                            'header_icon'
                                                         ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
                                                 </div>
                                             </div>

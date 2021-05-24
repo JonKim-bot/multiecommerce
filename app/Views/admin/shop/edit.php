@@ -81,15 +81,23 @@
                             <input type="text" class="form-control color" name="colour" value="<?=$shop['colour']?>" placeholder="Colour" required>
                         </div>
 
+
                     <div class="form-group">
-                        <label for="icon">Icon Header</label>
+                        <label for="icon">Icon Shop</label>
                         <input type="file" class="form-control" name="icon" placeholder="Banner">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="icon">Header Icon</label>
+                        <input type="file" class="form-control" name="header_icon" placeholder="Banner">
                     </div>
 
                     <div class="form-group">
                         <label for="icon">Icon Footer</label>
                         <input type="file" class="form-control" name="icon_footer" placeholder="Banner">
                     </div>
+
+         
                     <!-- <div class="form-group">
                     <label for="banner">Bank</label>
 

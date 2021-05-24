@@ -5,6 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title><?= $shop['shop_name'] ?> | Emenu</title>
 
+
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="description" content="" />
       <meta name="keywords" content="" />
@@ -13,7 +14,7 @@
       <meta property="og:title" content=""/>
 
       <meta property="og:image" content=""/>
-      
+
       <meta property="og:url" content=""/>
       <meta property="og:site_name" content=""/>
       <meta property="og:description" content=""/>
