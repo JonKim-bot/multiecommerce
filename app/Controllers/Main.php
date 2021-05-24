@@ -307,6 +307,7 @@ class Main extends BaseController
 
        
 
+
         $where = [
             'orders.order_code' => $order_code,
         ];
@@ -811,17 +812,18 @@ class Main extends BaseController
     public function get_total(){
         $cart = $this->session->get('cart');
         $total = 0;
+        $cart_count = 0;
         if(!empty($cart)){
+            $cart_count = count($cart);
             $total = array_sum(array_column($cart,'total'));
         }
         die(json_encode([
+            'count' => $cart_count,
             'status' => true,
-            'count' => count($cart),
             'data' => $total
-            
         ]));
-
     }
+
     public function clear_cart(){
         $this->session->set("cart", []);
         $this->load_shopping_cart();
