@@ -129,6 +129,20 @@ class Product extends BaseController
         echo view('admin/footer');
     }
 
+    public function make_product_image($image,$product_id,$update = ""){
+        $data = [
+            'product_image' => $image,
+            'is_first' => 1,
+            'product_id' => $product_id,
+        ];
+        if($update == ""){
+            $this->ProductImageModel->insertNew($data);
+        }else{
+
+            $this->ProductImageModel->insertNew($data);
+        }
+
+    }
     public function add()
     {
         $where = [
@@ -172,17 +186,18 @@ class Product extends BaseController
                     'created_by' => session()->get('login_id'),
                     'shop_id' => $this->shop_id,
                 ];
-
+                
                 if(!empty($_POST['is_promo'])){
                     $data['is_promo'] = 1;
                 }else{
                     $data['is_promo'] = 0;
-
+                    
                 }
                 // dd($data);
-
+                
                 $product_id = $this->ProductModel->insertNew($data);
-
+                $this->make_product_image($banner,$product_id);
+                
                 if (!empty($input['category'])) {
                     foreach ($input['category'] as $row) {
                         $data = [
@@ -346,7 +361,12 @@ class Product extends BaseController
         echo view('admin/product/detail');
         echo view('admin/footer');
     }
-
+    public function make_image(){
+        $product = $this->ProductModel->getAll();
+        foreach($product as $row){
+            $this->make_product_image($row['image'],$row['product_id']);
+        }
+    }
     public function edit($product_id)
     {
         $where = [
@@ -409,6 +429,7 @@ class Product extends BaseController
                 }
 
                 $this->ProductModel->updateWhere($where, $data);
+                // $this->make_product_image($banner,$product_id);
 
                 if (!empty($this->request->getPost('category'))) {
                     $this->ProductCategoryModel
