@@ -1,4 +1,5 @@
 
+
 <div class="c-subheader justify-content-between px-3">
 	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
 		<li class="breadcrumb-item">Home</li>
@@ -180,19 +181,7 @@
                                                     'orders_status'
                                                 ] ?></td>    
                                             </tr>
-                                            <tr>
-                                                <td>Delivery Date</td>
-                                                <td><?= $row[
-                                                    'delivery_date'
-                                                ] ?></td>    
-
-                                            </tr>
-                                            <tr>
-                                                <td>Delivery Time</td>
-                                                <td><?= $row[
-                                                    'delivery_time'
-                                                ] ?></td>    
-                                            </tr>
+                                            
                                             <tr>
                                                 <td>Delivery Fee</td>
                                                 <td><?= $row[

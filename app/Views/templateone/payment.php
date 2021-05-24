@@ -88,7 +88,7 @@
                                     </h4>
                                     <p><?= $orders['address'] ?></p>
                                     <h4>Date & Time:</h4>
-                                    <p><?= $orders['created_at'] ?></p>
+                                    <p><?= $orders['created_date_'] ?></p>
                                 </div>
                             </div>
                         </div>

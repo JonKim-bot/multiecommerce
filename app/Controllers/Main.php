@@ -818,6 +818,7 @@ class Main extends BaseController
             'status' => true,
             'count' => count($cart),
             'data' => $total
+            
         ]));
 
     }
