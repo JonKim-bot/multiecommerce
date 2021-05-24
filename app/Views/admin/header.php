@@ -189,13 +189,13 @@
                  <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about">
                         <i class="fa fa-cog c-sidebar-nav-icon"></i>
-                        About (For emenu page)
+                        About (For home page)
                     </a>
                 </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'banner' ? 'c-active' : null) ?>" href="<?= base_url() ?>/banner">
                         <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
-                        Banner (For emenu page)
+                        Banner (For home page)
                     </a>
                 </li>
 
@@ -263,6 +263,7 @@
                         <i class="cil-moon c-icon c-d-dark-none"></i>
                         <i class="cil-sun c-icon c-d-default-none"></i>
                     </button>
+
                 </li>
             </ul>
             <ul class="c-header-nav">
