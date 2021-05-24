@@ -53,6 +53,13 @@
                                                             'icon'
                                                         ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
                                                 </div>
+                                                <div class="col-lg-12 col-xl-12">
+                                                    <h1 class="text-center">Footer Icon</h1>
+                                                    <img src="<?= base_url() .
+                                                        $shop[
+                                                            'footer_logo'
+                                                        ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
+                                                </div>
                                             </div>
                                             <div class="row mb-5">
                                                 <div class="col-lg-12 col-xl-12">
@@ -101,6 +108,16 @@
                                                         ] ?></td>
 
                                                     </tr>
+                                                    <tr>
+                                                        <td><h3>Color </h3></td>
+                                                        <td style="background-color:<?= $shop[
+                                                            'colour'
+                                                        ] ?>"><?= $shop[
+                                                            'colour'
+                                                        ] ?></td>
+
+                                                    </tr>
+
                                                     <tr>
                                                         <td><h3>Google map location</h3></td>
                                                         <td style="overflow:auto"><a target="_blank" href="<?= $shop[

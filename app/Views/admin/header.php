@@ -45,7 +45,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js"></script>
 
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-  
+  <link href="<?=base_url('assets/plugins/colorpicker/jquery.minicolors.css')?>" rel="stylesheet">
+        <script src="<?=base_url('assets/plugins/colorpicker/jquery.minicolors.js')?>"></script>
+
 <!-- include summernote css/js -->
 <script src="https://cdn.tiny.cloud/1/k2b6d8s5puch1kgdbkgjnz7s6d5hxg4k9e3dzo0dj5axcg6i/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 

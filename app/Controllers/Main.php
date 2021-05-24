@@ -60,7 +60,6 @@ class Main extends BaseController
         $this->OrderDetailModel = new OrderDetailModel();
         $this->pageData = array();
         date_default_timezone_set("Asia/Kuala_Lumpur");
-
         $this->session = session();
         if (!empty($this->session->get("cart"))) {
             $this->pageData['cart'] = $this->session->get("cart");
@@ -69,6 +68,9 @@ class Main extends BaseController
             $this->pageData['cart'] = array();
             $this->pageData['cart_count'] = 0;
         }
+
+        
+
     }
 
     public function get_shop($slug){
@@ -166,6 +168,11 @@ class Main extends BaseController
         echo view("templateone/product");
         echo view("templateone/footer");
 
+    }
+
+    public function load_css($shop_id = 0){
+        echo view("templateone/ecomcss");
+        echo view("templateone/lockcss");
     }
     
     public function update_orders_status($orders_id,$payment_method_id){
@@ -342,6 +349,8 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         echo view("templateone/header", $this->pageData);
+        $this->load_css($shop['shop_id']);
+
         echo view("templateone/cart");
         echo view("templateone/footer");
 

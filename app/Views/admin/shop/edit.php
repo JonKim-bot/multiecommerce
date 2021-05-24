@@ -76,8 +76,19 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="icon">Icon</label>
+                            <label for="">Theme Colour</label>
+
+                            <input type="text" class="form-control color" name="colour" value="<?=$shop['colour']?>" placeholder="Colour" required>
+                        </div>
+
+                    <div class="form-group">
+                        <label for="icon">Icon Header</label>
                         <input type="file" class="form-control" name="icon" placeholder="Banner">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="icon">Icon Footer</label>
+                        <input type="file" class="form-control" name="icon_footer" placeholder="Banner">
                     </div>
                     <!-- <div class="form-group">
                     <label for="banner">Bank</label>

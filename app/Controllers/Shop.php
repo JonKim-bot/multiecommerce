@@ -181,6 +181,7 @@ class Shop extends BaseController
         if ($this->isMerchant == true) {
             $where = [
                 'shop.shop_id' => $this->shop_id,
+
             ];
         } else {
             $where = [
@@ -271,10 +272,9 @@ class Shop extends BaseController
                     // 'lat' => $input['lat'],
                     'insta' => $input['insta'],
                     'facebook' => $input['facebook'],
-                    // 'lng' => $input['lng'],
+                    'colour' => $input['colour'],
                     'state' => $input['state'],
                     'taman' => $input['taman'],
-
                     'address' => $input['address'],
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
@@ -309,6 +309,16 @@ class Shop extends BaseController
                     if ($icon) {
                         $icon = '/public/images/shop/' . $new_name;
                         $data['icon'] = $icon;
+                    }
+                }
+
+                if ($_FILES['icon_footer'] and !empty($_FILES['icon_footer']['name'])) {
+                    $file = $this->request->getFile('icon_footer');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['footer_logo'] = $icon;
                     }
                 }
                 $this->ShopModel->updateWhere($where, $data);
