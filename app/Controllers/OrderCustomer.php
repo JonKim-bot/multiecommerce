@@ -56,7 +56,6 @@ class OrderCustomer extends BaseController
 
         $url = $this->exports_to_csv($orders_csv, 'order_customer');
 
-        return redirect()->to($url);
     }
 
     public function unset_array($filter, $orgininal)

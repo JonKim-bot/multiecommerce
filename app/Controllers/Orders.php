@@ -209,27 +209,30 @@ class Orders extends BaseController
             $order_details = $this->OrderDetailModel->getWhere([
                 'orders_id' => $data_array['orders_id'],
             ]);
-            foreach($order_details as $key=> $row){
-                if($row['product_option_selection_id'] != null){
-                    $where = [
-                        'product_option_selection_id' => explode(',',$row['product_option_selection_id']),
-                    ];
-                    $order_details_name = $this->ProductOptionSelectionModel->getWhereIn($where['product_option_selection_id']);
-                    $order_details_name = $this->return_option_text($order_details_name);
-                  
-                    $order_details[$key]['orders_detail_name'] = $order_details_name;
+            if(!empty($order_details)){
+
+                foreach($order_details as $key=> $row){
+                    if($row['product_option_selection_id'] != null){
+                        $where = [
+                            'product_option_selection_id' => explode(',',$row['product_option_selection_id']),
+                        ];
+                        $order_details_name = $this->ProductOptionSelectionModel->getWhereIn($where['product_option_selection_id']);
+                        $order_details_name = $this->return_option_text($order_details_name);
+                      
+                        $order_details[$key]['orders_detail_name'] = $order_details_name;
+                    }
                 }
+                $order_details = $this->unset_array($filter, $order_details);
+    
+                $headerdetail = array_keys($order_details[0]);
+    
+                fputcsv($handle, $headerdetail);
+    
+                foreach ($order_details as $order_detail) {
+                    fputcsv($handle, $order_detail);
+                }
+                fputcsv($handle, []);
             }
-            $order_details = $this->unset_array($filter, $order_details);
-
-            $headerdetail = array_keys($order_details[0]);
-
-            fputcsv($handle, $headerdetail);
-
-            foreach ($order_details as $order_detail) {
-                fputcsv($handle, $order_detail);
-            }
-            fputcsv($handle, []);
         }
         fclose($handle);
         header('Content-type: text/csv');
@@ -258,6 +261,7 @@ class Orders extends BaseController
             );
         }
         // $this->show_404_if_empty($admin);
+
 
         $this->pageData['orders'] = $orders[0];
         $this->pageData['shop'] = $this->ShopModel->getWhere([
