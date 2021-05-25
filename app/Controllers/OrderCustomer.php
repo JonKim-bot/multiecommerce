@@ -31,6 +31,68 @@ class OrderCustomer extends BaseController
         }
     }
 
+    public function export_customer()
+    {
+        
+        $order_customer = $this->OrderCustomerModel->getWhere([
+            'orders.shop_id' => $this->shop_id,
+        ]);
+        $filter = [
+            'order_customer_id',
+            'modified_date',
+            'modified_by',
+            'created_by',
+            'created_at',
+            'delivery_date',
+
+            'deleted',
+            'is_active',
+            'image',
+            'receipt_url',
+            'shop_id',
+            'product_id',
+        ];
+        $orders_csv = $this->unset_array($filter, $order_customer);
+
+        $url = $this->exports_to_csv($orders_csv, 'order_customer');
+
+        return redirect()->to($url);
+    }
+
+    public function unset_array($filter, $orgininal)
+    {
+        foreach ($filter as $key => $row) {
+            foreach ($orgininal as $dual_key => $ori) {
+                unset($orgininal[$dual_key][$row]);
+            }
+        }
+
+        return $orgininal;
+    }
+   
+    public function exports_to_csv($data, $file_name)
+    {
+        
+        $path = './public/csv/' . $file_name . '.csv';
+        $path_return = '/public/csv/' . $file_name . '.csv';
+
+        $handle = fopen($path, 'w');
+        $header = array_keys($data[0]);
+        //get all key from array and make it become header
+        fputcsv($handle, $header);
+
+        foreach ($data as $data_array) {
+            fputcsv($handle, $data_array);
+            
+        }
+        fclose($handle);
+        header('Content-type: text/csv');
+        header('Content-Disposition: attachment; filename="orders.csv"');
+        ob_clean();
+        readfile(base_url() . $path_return);
+        return base_url() . $path_return;
+        exit();
+    }
     public function index()
     {
         if ($this->isMerchant) {

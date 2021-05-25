@@ -34,6 +34,12 @@
                     
                     <div class="row">
                         <div class="col-sm-12">
+                        <div class="card" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a class="btn btn-primary text-white" onclick ="export_to_csv()">Export Orders To Csv</a></h5>
+
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-striped datatable table-bordered no-footer " id="order_customer_list_table" data-method="get" data-url="<?= base_url("order_customer") ?>" style="border-collapse: collapse !important">
                                     <thead>
@@ -70,3 +76,12 @@
                 </div>
             </div>
         </div>
+
+        <script>
+        function export_to_csv(){
+
+            var url = "<?= base_url() ?>/OrderCustomer/export_customer" ;
+            window.location.href = url;
+        }
+
+        </script>
