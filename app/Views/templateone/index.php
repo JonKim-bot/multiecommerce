@@ -215,7 +215,7 @@
                         <h2 class="contact-title">Get in Touch</h2>
                     </div>
                     <div class="col-lg-8">
-                        <form class="form-contact "  id="contactForm_" >
+                        <form class="form-contact"  id="contactForm_" >
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">

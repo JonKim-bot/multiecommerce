@@ -26,6 +26,8 @@ use App\Models\OrdersStatusModel;
 use App\Models\OrderDetailOptionModel;
 use App\Models\PromoModel;
 use App\Models\ContactModel;
+use App\Models\OrdersLogModel;
+use App\Models\PremierResponseModel;
 
 class Main extends BaseController
 {
@@ -37,6 +39,9 @@ class Main extends BaseController
         $this->PromoModel = new PromoModel();
 
         $this->ShopModel = new ShopModel();
+        $this->OrdersLogModel = new OrdersLogModel();
+
+        $this->PremierResponseModel = new PremierResponseModel();
         $this->ProductOptionModel = new ProductOptionModel();
         $this->OrderCustomerModel = new OrderCustomerModel();
         $this->PaymentMethodModel = new PaymentMethodModel();
@@ -73,11 +78,19 @@ class Main extends BaseController
 
     }
 
-    public function get_shop($slug){
-        $where =[
-            'slug' => $slug
-        ];
+    public function get_shop($slug,$is_id = false){
+        if(!$is_id){
+            
+            $where =[
+                'slug' => $slug
+            ];
+        }else{
+            $where =[
+                'shop.shop_id' => $slug
+            ];
+        }
         $shop = $this->ShopModel->getWhere($where);
+
         $this->show_404_if_empty($shop);
         $where = [
             'shop_id' => $shop[0]['shop_id'],
@@ -258,7 +271,47 @@ class Main extends BaseController
             }
         }
     }
+    function startsWith ($string, $startString) 
+    { 
+        $len = strlen($startString); 
+        return (substr($string, 0, $len) === $startString); 
+    } 
 
+    public function order_history($slug){
+        $shop = $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+     
+        
+        if(!$this->startsWith($_POST['keyword'],"0")){
+            $_POST['keyword'] = "+6" . $_POST['keyword'];
+        }
+
+        $order_history = $this->OrdersModel->getHistory($_POST['keyword']);
+        $this->debug($order_history);
+        $this->pageData['order_history'] = $order_history;
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($shop);
+        echo view("templateone/search");
+        echo view("templateone/footer");
+    }
+    public function search($slug){
+        
+
+        $shop = $this->get_shop($slug);
+     
+        
+        $this->pageData['shop'] = $shop;
+
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+        
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($shop);
+        echo view("templateone/search");
+        echo view("templateone/footer");
+    }
+
+    
 
     public function make_payment(){
         $where = [
@@ -282,6 +335,7 @@ class Main extends BaseController
                 'url' => $url,
             ]));
         }else{
+            $this->premier_pay($_POST['orders_id']);
             //payment method link
             die(json_encode([
                 'status' => true,
@@ -382,6 +436,7 @@ class Main extends BaseController
         ]);
         $brand = $this->BrandModel->getWhere($where);
 
+
         $category = $this->CategoryModel->getWhere($where);
         $banner = $this->BannerModel->getWhere($where);
         $about = $this->AboutModel->getWhere($where);
@@ -421,6 +476,7 @@ class Main extends BaseController
 
     }
     
+
 
     public function product_list(){
         $where = [
@@ -825,6 +881,7 @@ class Main extends BaseController
     }
 
     public function clear_cart(){
+
         $this->session->set("cart", []);
         $this->load_shopping_cart();
     }
@@ -844,6 +901,181 @@ class Main extends BaseController
         }
     }
 
+    function generateId() {
+        date_default_timezone_set('Asia/Kuala_Lumpur');
+        $year    = date('Y');
+        $month   = date('m');
+        $day     = date('d');
+        $hour    = date('H');
+        $min     = date('i');
+        $sec     = date('s');
+        $mil     = date('u');
+
+        $transId = $year.$month.$day.$hour.$min.$sec.$mil;
+        return $transId;
+    }
+    function update_order_payment_id($orders_id,$order_payment_id){
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $data = [
+            'order_payment_id' => $order_payment_id,
+        ];
+
+        $this->OrdersModel->updateWhere($where,$data); 
+        $data['orders_id'] = $orders_id;    
+        $data['is_order'] = 1;    
+
+        $this->OrdersLogModel->insertNew($data);    
+
+    }
+    
+    function premier_pay($orders_id){
+    
+        $timestamp = round(microtime(true) * 1000);
+        //$nonce_string = md5(rand(1,99999999));
+        $strsTime = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        $nonce_string = substr(str_shuffle($strsTime), mt_rand(0, strlen($strsTime) - 11), 40);
+        $orderId = $this->generateId();
+
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];    
+        $this->update_order_payment_id($orders_id,$orderId);
+        $amount = str_replace('.','',$orders['grand_total']);
+        $amount = floatval($amount);
+        $shop = $this->get_shop($orders['shop_id'],true);
+        $redirect_url = base_url() . "/main/payment/" . $shop['slug']  . "/" . $orders['order_code'] ;
+        
+        //staging key
+        $client_id = '16225290295158143777';
+        $client_secret = 'a29bc326-f8c5-5a83-91b5-b39345add487';
+        // //live key
+        // $client_id = '16225262392817499070';
+        // $client_secret = '1e153144-c9da-59e7-909f-bcae8677025d';
+
+        //their key
+        // $client_id = '1580791973248000000';
+        // $client_secret = 'a1b6d087-f977-5c5c-a8d1-793a3e6784b2';
+
+        // $amount = 0011;
+
+        $payload = [
+            "title" => "Ecommerce purchase",
+            "description" => "You are making a purchase for " . $shop['shop_name'],
+            "currency" => "MYR",
+            "amount" => $amount,//0010, //$orders_amount,
+            "redirectUrl" => $redirect_url,//url('/'),
+            "callbackUrl" => base_url() . '/ajax/premier_callback' ,
+            "orderReferenceNo" => $orderId,
+        ];
+        ksort($payload);
+        $json_encoded_payload = json_encode($payload, JSON_UNESCAPED_SLASHES);
+        
+        // print(">>> Request - <br>".print_r($json_encoded_payload,true)."<br><br>");
+        
+        $base64_json_encoded_payload = base64_encode($json_encoded_payload);
+        
+        $final_array = [
+            'data='.$base64_json_encoded_payload,
+            'timestamp='.$timestamp,
+            'nonce='.$nonce_string
+        ];
+        //$final_string = implode('&amp;', $final_array);
+        $final_string = implode("&", $final_array);
+        $hash_data = hash_hmac('sha512', $final_string, $client_secret, true);
+        $base64 = base64_encode($hash_data);
+        
+        $url = 'https://sb-api.glypay.com/glypay/api/merchant/order/store/'.$client_id.'/online';
+        // $url = 'https://api.premierpay.com.my/premierpay/api/merchant/order/store/'.$client_id.'/online';
+
+        // echo "<<< Response<br>";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_encoded_payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'x-signature: '.$base64,
+            'x-timestamp: '.$timestamp,
+            'x-nonce: '.$nonce_string
+        )); 
+        // curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
+        
+        $result = curl_exec($ch);
+        die();
+        // $this->debug($result);
+    }
+    function premier_callback(){
+        
+        
+        try {
+
+            if($_REQUEST){
+
+                $response = json_encode($_REQUEST, true);
+
+                $where = [
+                    'response' => $response,
+                    'type' => 'callback',
+                ];
+                
+                $senang = $this->PremierResponseModel->getWhere($where);
+                if(empty($senang)){
+
+                    $data = array(
+                        'response' => $response,
+                        'type' => 'callback',
+                    );
+                    $this->PremierResponseModel->insertNew($data);
+    
+                    // return redirect()->to(url('success'));
+    
+                    $this->call_back_to_order($_REQUEST['transId']);
+                }
+                // $this->debug($_REQUEST);
+                
+            }
+        } catch(Error $e){
+
+            $data = array(
+                'response' => $e->getMessage(),
+                'type' => basename($_SERVER['REQUEST_URI']),
+            );
+            $this->PremierResponseModel->insertNew($data);
+
+        }
+            // if ($_REQUEST['status_id'] == 1){
+            
+    }
+    public function update_order($orders_id,$payment_method_id){
+       
+        $where = array(
+            "orders.orders_id" => $orders_id,
+        );
+        $data = array(
+            "is_paid" => 1,
+            "payment_method_id" => $payment_method_id,
+        );
+        $orders = $this->OrdersModel->updateWhere($where,$data);
+
+    }
+    function call_back_to_order($order_id){
+
+        $where = [
+            'orders_log.order_payment_id' => $order_id
+        ];
+
+        $orderlog = $this->OrdersLogModel->getWhere($where)[0];
+
+        $where = [
+            'orders.orders_id' =>  $orderlog['orders_id']
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+        $this->update_order($orderlog['orders_id'],3);
+        
+    }
     public function minus_qty()
     {
         if ($_POST) {

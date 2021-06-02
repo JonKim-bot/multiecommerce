@@ -14,8 +14,8 @@ use App\Models\ProductOptionSelectionModel;
 use App\Models\ProductModel;
 use App\Models\OrderDetailOptionModel;
 use App\Models\ShopOperatingHourModel;
-
-require_once('./public/config.php');
+use App\Models\OrdersLogModel;
+use App\Models\PremierResponseModel;
 // require_once(APPPATH.'/libraries/config.php'); 
 
 
@@ -26,7 +26,9 @@ class Ajax extends BaseController
 public function __construct()
     {
         $this->ShopOperatingHourModel = new ShopOperatingHourModel();
+        $this->OrdersLogModel = new OrdersLogModel();
 
+        $this->PremierResponseModel = new PremierResponseModel();
         $this->EmailModel = new EmailModel();
         $this->ProductModel = new ProductModel();
         $this->OrderDetailOptionModel = new OrderDetailOptionModel();
@@ -384,6 +386,10 @@ public function __construct()
             if($shop['email'] != ""){
                 $this->EmailModel->send_email($shop['email'],$order_id);
             }
+            if($_POST['payment_method_id'] == 3){
+                $this->premier_pay($order_id);
+            }
+
 
             if($byStripe == false){
                 
@@ -405,6 +411,185 @@ public function __construct()
         }
     
 
+    }
+
+    
+    function generateId() {
+        date_default_timezone_set('Asia/Kuala_Lumpur');
+        $year    = date('Y');
+        $month   = date('m');
+        $day     = date('d');
+        $hour    = date('H');
+        $min     = date('i');
+        $sec     = date('s');
+        $mil     = date('u');
+
+        $transId = $year.$month.$day.$hour.$min.$sec.$mil;
+        return $transId;
+    }
+    function update_order_payment_id($orders_id,$order_payment_id){
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $data = [
+            'order_payment_id' => $order_payment_id,
+        ];
+
+        $this->OrdersModel->updateWhere($where,$data); 
+        $data['orders_id'] = $orders_id;    
+        $data['is_order'] = 1;    
+
+        $this->OrdersLogModel->insertNew($data);    
+
+    }
+    
+    function premier_pay($orders_id){
+    
+        $timestamp = round(microtime(true) * 1000);
+        //$nonce_string = md5(rand(1,99999999));
+        $strsTime = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        $nonce_string = substr(str_shuffle($strsTime), mt_rand(0, strlen($strsTime) - 11), 40);
+        $orderId = $this->generateId();
+
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];    
+        $this->update_order_payment_id($orders_id,$orderId);
+        $amount = str_replace('.','',$orders['grand_total']);
+        $amount = floatval($amount);
+        $redirect_url = base_url() . "/main/order_detail/" . $orders_id ;
+
+        
+        //staging key
+        $client_id = '16225290295158143777';
+        $client_secret = 'a29bc326-f8c5-5a83-91b5-b39345add487';
+        // //live key
+        // $client_id = '16225262392817499070';
+        // $client_secret = '1e153144-c9da-59e7-909f-bcae8677025d';
+
+        //their key
+        // $client_id = '1580791973248000000';
+        // $client_secret = 'a1b6d087-f977-5c5c-a8d1-793a3e6784b2';
+
+        // $amount = 0011;
+
+        $payload = [
+            "title" => "GGmanhotpot purchase",
+            "description" => "You are making a purchase for ggmanhotpot",
+            "currency" => "MYR",
+            "amount" => $amount,//0010, //$orders_amount,
+            "redirectUrl" => $redirect_url,//url('/'),
+            "callbackUrl" => base_url() . '/ajax/premier_callback' ,
+            "orderReferenceNo" => $orderId,
+        ];
+        ksort($payload);
+        $json_encoded_payload = json_encode($payload, JSON_UNESCAPED_SLASHES);
+        
+        // print(">>> Request - <br>".print_r($json_encoded_payload,true)."<br><br>");
+        
+        $base64_json_encoded_payload = base64_encode($json_encoded_payload);
+        
+        $final_array = [
+            'data='.$base64_json_encoded_payload,
+            'timestamp='.$timestamp,
+            'nonce='.$nonce_string
+        ];
+        //$final_string = implode('&amp;', $final_array);
+        $final_string = implode("&", $final_array);
+        $hash_data = hash_hmac('sha512', $final_string, $client_secret, true);
+        $base64 = base64_encode($hash_data);
+        
+        $url = 'https://sb-api.glypay.com/glypay/api/merchant/order/store/'.$client_id.'/online';
+        // $url = 'https://api.premierpay.com.my/premierpay/api/merchant/order/store/'.$client_id.'/online';
+
+        // echo "<<< Response<br>";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_encoded_payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'x-signature: '.$base64,
+            'x-timestamp: '.$timestamp,
+            'x-nonce: '.$nonce_string
+        )); 
+        // curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
+        
+        $result = curl_exec($ch);
+        die();
+        // $this->debug($result);
+    }
+    function premier_callback(){
+        
+        
+        try {
+
+            if($_REQUEST){
+
+                $response = json_encode($_REQUEST, true);
+
+                $where = [
+                    'response' => $response,
+                    'type' => 'callback',
+                ];
+                
+                $senang = $this->PremierResponseModel->getWhere($where);
+                if(empty($senang)){
+
+                    $data = array(
+                        'response' => $response,
+                        'type' => 'callback',
+                    );
+                    $this->PremierResponseModel->insertNew($data);
+    
+                    // return redirect()->to(url('success'));
+                    if($_REQUEST['status'] == "success"){
+                        $this->call_back_to_order($_REQUEST['transId']);
+                    }
+                }
+                // $this->debug($_REQUEST);
+                
+            }
+        } catch(Error $e){
+
+            $data = array(
+                'response' => $e->getMessage(),
+                'type' => basename($_SERVER['REQUEST_URI']),
+            );
+            $this->PremierResponseModel->insertNew($data);
+
+        }
+            // if ($_REQUEST['status_id'] == 1){
+            
+    }
+    public function update_order($orders_id,$payment_method_id){
+       
+        $where = array(
+            "orders.orders_id" => $orders_id,
+        );
+        $data = array(
+            "is_paid" => 1,
+            "payment_method_id" => $payment_method_id,
+        );
+        $orders = $this->OrdersModel->updateWhere($where,$data);
+
+    }
+    function call_back_to_order($order_id){
+
+        $where = [
+            'orders_log.order_payment_id' => $order_id
+        ];
+
+
+        $orderlog = $this->OrdersLogModel->getWhere($where)[0];
+
+        $where = [
+            'orders.orders_id' =>  $orderlog['orders_id']
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+        $this->update_order($orderlog['orders_id'],3);
+        
     }
 
 }

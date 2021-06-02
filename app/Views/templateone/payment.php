@@ -121,12 +121,12 @@
                                 </label>
                                 <?php } ?>
                                 </div>
-                            </div>
 
 
 
                         <?php } ?>
                         <?php } ?>
+                        </div>
                         
                       
                         
@@ -158,8 +158,19 @@ $("#payment_button").on('click', function(){
     }
     $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
         data = JSON.parse(data);
-        if(data.status){
-            window.open (data.url);
+      
+        if(payment_method_id == 3){
+                // pay by online banking
+            if(data.code == 0){
+                window.open(data.data);
+            }else{
+                alert(data.message);
+            }
+        }else{
+            // pay by others
+            if(data.status){
+                window.open (data.url);
+            }
         }
     });
 

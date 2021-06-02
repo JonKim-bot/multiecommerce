@@ -101,6 +101,10 @@
     
                                             </tr>
                                             <tr>
+                                                <td>Payment Status :</td>
+                                                <td><?= $orders['is_paid'] == 1 ?  "PAID" : "UNPAID" ?></td>    
+                                            </tr>
+                                            <tr>
                                                 <td>Pick Up Method :</td>
                                                 <td><?= $orders['delivery_fee'] == 0 ? "Self Pick Up" : 'Delivery' ?></td>    
                                             </tr>
