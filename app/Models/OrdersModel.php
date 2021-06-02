@@ -61,18 +61,18 @@ class OrdersModel extends BaseModel
 
     function getHistory($keyword){
         $builder = $this->db->table($this->tableName);
-        $builder->select('orders.*,order_customer.email as email_order_cus,customer.email as email_cus,customer.contact as contact_cus,order_customer.contact');
+        $builder->select('orders.*,orders.created_at as created_date ,orders.created_at as created_date_,order_customer.email as email_order_cus,customer.email as email_cus,customer.contact as contact_cus,order_customer.contact');
         $builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id','left');
         $builder->join('customer', 'customer.customer_id = orders.customer_id','left');
         $builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id','left');
 
-        $builder->groupBy('orders.orders_id');
         
-        $builder->where('customer.email =', $keyword);
+        $builder->orWhere('customer.email =', $keyword);
         $builder->orWhere('customer.contact =', $keyword);
         $builder->orWhere('order_customer.email =', $keyword);
         $builder->orWhere('order_customer.contact =', $keyword);
         $builder->orderBy('orders.orders_id','DESC');
+        $builder->groupBy('orders.orders_id');
         $query = $builder->get();
         return $query->getResultArray();
     }

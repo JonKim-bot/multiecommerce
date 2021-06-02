@@ -282,17 +282,16 @@ class Main extends BaseController
         $this->pageData['shop'] = $shop;
         $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
      
-        
-        if(!$this->startsWith($_POST['keyword'],"0")){
-            $_POST['keyword'] = "+6" . $_POST['keyword'];
+        if($this->startsWith($_GET['keyword'],"0")){
+            $_GET['keyword'] = "+6" . $_GET['keyword'];
         }
 
-        $order_history = $this->OrdersModel->getHistory($_POST['keyword']);
-        $this->debug($order_history);
+        $order_history = $this->OrdersModel->getHistory($_GET['keyword']);
+
         $this->pageData['order_history'] = $order_history;
         echo view("templateone/header", $this->pageData);
         $this->load_css($shop);
-        echo view("templateone/search");
+        echo view("templateone/order_history");
         echo view("templateone/footer");
     }
     public function search($slug){

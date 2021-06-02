@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-lg-12 col-md-6">
                     <div class="contact__form">
-                        <form novalidate action="<?= base_url() ?>/main/order_history/<?= $shop['slug'] ?>" method="POST">
+                        <form novalidate action="<?= base_url() ?>/main/order_history/<?= $shop['slug'] ?>" method="GET">
                             <input type="email" name="keyword" placeholder="Email or phone number">
                             <button type="submit" class="site-btn">Search</button>
                         </form>
