@@ -162,7 +162,7 @@ $("#payment_button").on('click', function(){
         if(payment_method_id == 3){
                 // pay by online banking
             if(data.code == 0){
-                window.open(data.data);
+                location.href = (data.data);
             }else{
                 alert(data.message);
             }

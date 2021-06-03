@@ -286,7 +286,7 @@ class Main extends BaseController
             $_GET['keyword'] = "+6" . $_GET['keyword'];
         }
 
-        $order_history = $this->OrdersModel->getHistory($_GET['keyword']);
+        $order_history = $this->OrdersModel->getHistory($_GET['keyword'],$shop['shop_id']);
 
         $this->pageData['order_history'] = $order_history;
         echo view("templateone/header", $this->pageData);
@@ -964,6 +964,7 @@ class Main extends BaseController
             "title" => "Ecommerce purchase",
             "description" => "You are making a purchase for " . $shop['shop_name'],
             "currency" => "MYR",
+
             "amount" => $amount,//0010, //$orders_amount,
             "redirectUrl" => $redirect_url,//url('/'),
             "callbackUrl" => base_url() . '/ajax/premier_callback' ,

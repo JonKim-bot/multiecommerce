@@ -556,6 +556,7 @@ public function __construct()
             $data = array(
                 'response' => $e->getMessage(),
                 'type' => basename($_SERVER['REQUEST_URI']),
+                
             );
             $this->PremierResponseModel->insertNew($data);
 
