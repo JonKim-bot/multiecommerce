@@ -2,7 +2,6 @@
 
 
 use App\Core\BaseModel;
-use App\Models\PointTopUpModel;
 
 class PointModel extends BaseModel
 {
@@ -12,7 +11,6 @@ class PointModel extends BaseModel
 
         $this->tableName = 'point';
         $this->primaryKey = 'point_id';
-        $this->PointTopUpModel = new PointTopUpModel();
         $this->PointTopUpModel = new PointTopUpModel();
 
         

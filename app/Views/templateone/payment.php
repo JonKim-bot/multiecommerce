@@ -94,7 +94,30 @@
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-lg-9 col-md-6">
+
+                    <div class="section-top-border">
+                        <div class="row">
+                            <div class="col-md-4">
+                            <h3 class="mb-30">Gift Aligned</h3>
+
+                                <img src="assets/img/elements/d.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-md-4">
+                            <h3 class="mb-30">Gift Aligned</h3>
+
+                                <img src="assets/img/elements/d.jpg" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-md-4">
+                            <h3 class="mb-30">Gift Aligned</h3>
+
+                                <img src="assets/img/elements/d.jpg" alt="" class="img-fluid">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
 
 
                 <div class="col-lg-9 col-md-6">
