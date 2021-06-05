@@ -256,6 +256,7 @@ class Shop extends BaseController
             $this->pageData['shop_function'] = array_column($this->ShopFunctionModel->getWhere([ 'shop_function.shop_id' => $shop_id]),'function_id');
 
         }
+        $this->pageData['isMerchant'] = $this->isMerchant;
 
         $bank = $this->BankModel->getAll();
         $this->pageData['bank'] = $bank;

@@ -226,13 +226,13 @@
 
                     </div>
                     <!-- Show Search Box -->
-                    <div class="search_input" id="search_input_box">
+                    <!-- <div class="search_input" id="search_input_box">
                         <form class="search-inner d-flex justify-content-between ">
                             <input type="text" class="form-control" id="search_input" placeholder="Search Here">
                             <button type="submit" class="btn"></button>
                             <span class="ti-close" id="close_search" title="Close Search"></span>
                         </form>
-                    </div>
+                    </div> -->
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>

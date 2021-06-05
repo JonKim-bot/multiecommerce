@@ -74,7 +74,7 @@
                         <label for="banner">Banner</label>
                         <input type="file" class="form-control" name="banner" placeholder="Banner">
                     </div>
-                    
+                    <?php if($isMerchant == false){ ?>
                     <div class="form-group">
                         <label for="">Shop Function
                         </label>
@@ -85,7 +85,6 @@
                             <?php }else{?>
                                 <option value="<?= $row['function_id'] ?>"><?= $row['function']?></option>
 
-                        
                             <?php }
                             
                         }
@@ -93,6 +92,7 @@
                         </select>
 
                     </div>
+                    <?php } ?>
                     
                     <div class="form-group">
                             <label for="">Theme Colour</label>

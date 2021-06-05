@@ -77,6 +77,199 @@ class Main extends BaseController
         
 
     }
+    public function voucher($slug){
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/voucher");
+        echo view("templateone/footer");
+    }
+    public function gift($slug){
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/gift");
+        echo view("templateone/footer");
+    }
+    public function gift_detail($slug){
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/gift_detail");
+        echo view("templateone/footer");
+    }
+    public function voucher_detail($slug){
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/voucher_detail");
+        echo view("templateone/footer");
+    }
+	public function signup($slug)
+    {
+     
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+		if($_POST){
+
+			$input = $this->request->getPost();
+			$customer_data = $this->CustomerModel->getWhere(['email' => $input["email"]]);
+			if (empty($customer_data)) {
+
+				$hash = $this->hash($input['password']);
+				$input['contact'] = str_replace("-","",$input['contact']);
+				$input['contact'] = str_replace("+","",$input['contact']);
+
+				if(!$this->startsWith($input['contact'],"6")){
+					$input['contact'] = "6" . $input['contact'];
+				}
+
+				$data = [
+					'email' => $input['email'],
+					'contact' => $input['contact'],
+					'real_password' => $input['password'],
+					'password' => $hash['password'],
+					'salt' => $hash['salt'],		
+					'role_id' => 3,
+					"last_login" => date("Y-m-d H:i:s"),
+					'login_method' => 'signup',
+				];
+				$customer_id = $this->CustomerModel->insertNew($data);
+				$where = [
+					'customer_id' => $customer_id
+				];
+				$customer = $this->CustomerModel->getWhere($where);
+				$login_data = $customer[0];
+				$login_id = $customer[0]["customer_id"];
+				$this->session->set("login_data", $login_data);
+				$this->session->set("login_id", $login_id);
+		
+                return redirect()->to(base_url('/home/index', "refresh"));
+			}else{
+				$this->pageData['error'] = "User Existed";
+			}
+
+		}
+        
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/signup");
+        echo view("templateone/footer");
+
+	}
+    public function profile($slug)
+    {
+     
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+		if($_POST){
+
+			$input = $this->request->getPost();
+			$customer_data = $this->CustomerModel->getWhere(['email' => $input["email"]]);
+			if (empty($customer_data)) {
+
+				$hash = $this->hash($input['password']);
+				$input['contact'] = str_replace("-","",$input['contact']);
+				$input['contact'] = str_replace("+","",$input['contact']);
+
+				if(!$this->startsWith($input['contact'],"6")){
+					$input['contact'] = "6" . $input['contact'];
+				}
+
+				$data = [
+					'email' => $input['email'],
+					'contact' => $input['contact'],
+					'real_password' => $input['password'],
+					'password' => $hash['password'],
+					'salt' => $hash['salt'],		
+					'role_id' => 3,
+					"last_login" => date("Y-m-d H:i:s"),
+					'login_method' => 'signup',
+				];
+				$customer_id = $this->CustomerModel->insertNew($data);
+				$where = [
+					'customer_id' => $customer_id
+				];
+				$customer = $this->CustomerModel->getWhere($where);
+				$login_data = $customer[0];
+				$login_id = $customer[0]["customer_id"];
+				$this->session->set("login_data", $login_data);
+				$this->session->set("login_id", $login_id);
+		
+                return redirect()->to(base_url('/home/index', "refresh"));
+			}else{
+				$this->pageData['error'] = "User Existed";
+			}
+
+		}
+        
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/profile");
+        echo view("templateone/footer");
+
+	}
+    
+
+    public function login($slug)
+    {
+          
+  
+        $shop= $this->get_shop($slug);
+        $this->pageData['shop'] = $shop;
+
+        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
+
+		if($_POST){
+
+			$input = $this->request->getPost();
+			$customer_data = $this->CustomerModel->getWhere(['email' => $input["email"]]);
+			if (!empty($customer_data)) {
+				$where = [
+					'customer_id' => $customer_data[0]['customer_id']
+				];
+				$customer = $this->CustomerModel->getWhere($where);
+				$login_data = $customer[0];
+				$login_id = $customer[0]["customer_id"];
+				$this->session->set("login_data", $login_data);
+				$this->session->set("login_id", $login_id);
+
+				return redirect()->to(base_url('/home/index', "refresh"));
+			}else{
+				$this->pageData['error'] = "User Not Found";
+			}
+
+		}
+        echo view("templateone/header", $this->pageData);
+        $this->load_css($this->pageData['shop']);
+
+        echo view("templateone/login");
+        echo view("templateone/footer");
+	}
 
     public function get_shop($slug,$is_id = false){
         if(!$is_id){
@@ -123,6 +316,7 @@ class Main extends BaseController
         echo view("templateone/footer");
 
     }
+
 
     function get_trending_product($shop_id){
         $product = $this->ProductModel->getWhere([
