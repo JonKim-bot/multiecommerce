@@ -76,10 +76,29 @@
                     </div>
                     
                     <div class="form-group">
+                        <label for="">Shop Function
+                        </label>
+                        <select name="shop_function[]" class="select" id="" multiple >
+                        <?php foreach($function as $row){ ?>
+                            <?php if(  in_array($row['function_id'],$shop_function)){ ?>
+                            <option selected value="<?= $row['function_id'] ?>"><?= $row['function']?></option>
+                            <?php }else{?>
+                                <option value="<?= $row['function_id'] ?>"><?= $row['function']?></option>
+
+                        
+                            <?php }
+                            
+                        }
+                            ?>
+                        </select>
+
+                    </div>
+                    
+                    <div class="form-group">
                             <label for="">Theme Colour</label>
 
                             <input type="text" class="form-control color" name="colour" value="<?=$shop['colour']?>" placeholder="Colour" required>
-                        </div>
+                    </div>
 
 
                     <div class="form-group">

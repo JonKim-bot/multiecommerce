@@ -9,6 +9,9 @@ use App\Models\BankModel;
 use App\Models\MerchantModel;
 use App\Models\TagModel;
 use App\Models\ShopTagModel;
+use App\Models\ShopFunctionModel;
+use App\Models\FunctionModel;
+
 
 class Shop extends BaseController
 {
@@ -18,6 +21,9 @@ class Shop extends BaseController
         $this->ShopModel = new ShopModel();
         $this->MerchantModel = new MerchantModel();
         $this->BankModel = new BankModel();
+        $this->ShopFunctionModel = new ShopFunctionModel();
+        $this->FunctionModel = new FunctionModel();
+
         $this->TagModel = new TagModel();
         $this->ShopTagModel = new ShopTagModel();
 
@@ -37,6 +43,7 @@ class Shop extends BaseController
             $this->isMerchant == true;
         }
         $this->pageData['isMerchant'] = $this->isMerchant;
+        $this->pageData['function'] = $this->FunctionModel->getAll();
 
         // $this->debug( $this->isMerchant);
 
@@ -52,6 +59,8 @@ class Shop extends BaseController
             
         } else {
             $shop = $this->ShopModel->getAll();
+
+
         }
         $this->pageData['shop'] = $shop;
 
@@ -244,6 +253,8 @@ class Shop extends BaseController
             $where = [
                 'shop.shop_id' => $shop_id,
             ];
+            $this->pageData['shop_function'] = array_column($this->ShopFunctionModel->getWhere([ 'shop_function.shop_id' => $shop_id]),'function_id');
+
         }
 
         $bank = $this->BankModel->getAll();
@@ -288,6 +299,19 @@ class Shop extends BaseController
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
+
+                // $this->debug($input['shop_function']);
+                $this->ShopFunctionModel->hardDeleteWhere([ 'shop_function.shop_id' => $shop_id]);
+                if(!empty($input['shop_function'])){
+                    foreach($input['shop_function'] as $row_function){
+                        
+                        $data_ = [
+                            'function_id' => $row_function,
+                            'shop_id' => $shop_id,
+                        ];
+                        $this->ShopFunctionModel->insertNew($data_);
+                    }
+                }
 
                 if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
                     $file = $this->request->getFile('banner');
