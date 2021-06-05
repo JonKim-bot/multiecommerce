@@ -146,7 +146,7 @@
                 <!-- Nav Card -->
                 <div class="tab-content" id="nav-tabContent">
                         <!-- Tab 1 -->  
-                        <div class="latest-items-active property-filter row">
+                        <div class="latest-items-active2 property-filter row">
                             <!-- Single -->
                             <?php foreach ($product as $row) { ?>
 

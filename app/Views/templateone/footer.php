@@ -517,7 +517,7 @@ $('.closeit').click(function(e) {
     $(".shopping-cart").toggleClass("active");
   });
 
-
+  
   
 })();
 </script>

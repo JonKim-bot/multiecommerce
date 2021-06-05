@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9 col-md-6">
+                <!-- <div class="col-lg-9 col-md-6">
 
                     <div class="section-top-border">
                         <div class="row">
@@ -117,8 +117,46 @@
                         </div>
                     </div>
                     
+                </div> -->
+                <section class="items-product1 pt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-items mb-20">
+                            <div class="items-img">
+                                <img src="http://localhost/multiecome/assets/img/product_pic/1621041685_add88c508de11da87ab3.jpg" alt="">
+                            </div>
+                            <div class="items-details">
+                                <h4><a href="pro-details.html">Men's Fashion</a></h4>
+                                <a href="pro-details.html" class="browse-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-items mb-20">
+                            <div class="items-img">
+                            <img src="http://localhost/multiecome/assets/img/product_pic/1621041685_add88c508de11da87ab3.jpg" alt="">
+                            </div>
+                            <div class="items-details">
+                                <h4><a href="pro-details.html">Women's Fashion</a></h4>
+                                <a href="pro-details.html" class="browse-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                        <div class="single-items mb-20">
+                            <div class="items-img">
+                            <img src="http://localhost/multiecome/assets/img/product_pic/1621041685_add88c508de11da87ab3.jpg" alt="">
+                            </div>
+                            <div class="items-details">
+                                <h4><a href="pro-details.html">Baby Fashion</a></h4>
+                                <a href="pro-details.html" class="browse-btn">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+            </div>
+        </section>
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
