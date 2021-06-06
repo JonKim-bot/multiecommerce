@@ -12,6 +12,8 @@ use App\Models\ProductOptionSelectionModel;
 use App\Models\PromoModel;
 use App\Models\ShopFunctionModel;
 use App\Models\PointModel;
+use App\Models\CustomerModel;
+use App\Models\ShopRateModel;
 
 // use App\Models\ShopOperatingHourModel;
 
@@ -30,10 +32,13 @@ class Orders extends BaseController
     public function __construct()
     {
         $this->pageData = [];
+        
+        $this->ShopRateModel = new ShopRateModel();
+
         $this->ShopFunctionModel = new ShopFunctionModel();
         $this->PointModel = new PointModel();
         $this->OrderDetailModel = new OrderDetailModel();
-        // $this->ShopOperatingHourModel = new ShopOperatingHourModel();
+        $this->CustomerModel = new CustomerModel();
 
         $this->ShopModel = new ShopModel();
         $this->PromoModel = new PromoModel();
@@ -131,7 +136,7 @@ class Orders extends BaseController
         $this->OrdersModel->updateWhere($where,$data);
         if($is_paid == 1 && $this->check_exist_function(1,$orders['shop_id'])){
             $this->give_point($orders_id);
-            
+
         }
         return redirect()->to(
             base_url('orders', 'refresh')
@@ -149,13 +154,13 @@ class Orders extends BaseController
             'customer_id' => $orders['customer_id'],
         ];
         $point = $this->PointModel->getWhere($where);
-        if(empty($point)){
-            if($orders['customer_id'] > 0){
+        // if(empty($point)){
+        //     if($orders['customer_id'] > 0){
                 $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
                 $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
                 $this->purchase_orders_percent($orders);
-            }
-        }
+        //     }
+        // }
 
     }
     public function unset_array($filter, $orgininal)
@@ -276,7 +281,7 @@ class Orders extends BaseController
                     'customer_id' => $grand_parent['customer_id'],
 
                     'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                    'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                    'remarks' => 'Downline Task Commission for ' . $grand_parent['name'] . ' with downline ' . $customer['name'] ,
                     'orders_id' => $orders['orders_id'],
                 ];
 
@@ -285,7 +290,7 @@ class Orders extends BaseController
 
            
                 $where = [
-                    'customer.referal_id' => $grand_parent['referal_id'],
+                    'customer.customer_id' => $grand_parent['referal_id'],
                 ];
 
                 $grand_grand_parent = $this->CustomerModel->getWhere($where);
@@ -303,7 +308,7 @@ class Orders extends BaseController
                         'is_commission' => 1,
                         'customer_id' => $grand_grand_parent['customer_id'],
                         'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                        'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                        'remarks' => 'Downline Task Commission for ' . $grand_grand_parent['name'] . ' with downline ' . $customer['name'] ,
                         'orders_id' => $orders['orders_id'],
                     ];
                     // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);

@@ -73,7 +73,7 @@ class PointModel extends BaseModel
     }
     function point_commision_in($data)
     {
-        $balance = $this->get_balance($customer_id);
+        $balance = $this->get_balance($data['customer_id']);
 
         $data = [
             'customer_id' => $data['customer_id'],
