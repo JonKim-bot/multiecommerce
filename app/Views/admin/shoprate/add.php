@@ -42,28 +42,18 @@
                                     </div>
                                 <?php } ?>
                                 <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="e.g. Best Restaurant In Town" required>
+                                    <label for="form_register_no">Rate Name</label>
+                                    <select class="form-control "  name="rate_name">
+                                        <?php foreach ($array_rate
+                                            as $row) { ?>
+                                            <option value="<?= $row?>"><?= $row?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <div class="help-block with-errors"></div>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label for="">Icons
-                                    <br>
-                                    Referrence
-                                    <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="blank">https://fontawesome.com/v4.7.0/cheatsheet/</a>
-
-                                    </label>
-                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" required>
-                                </div>
-                                
-                                <!-- <div class="form-group">
-                                    <label for="shoprate">Image</label>
-                                    <input type="file" class="form-control" name="banner" placeholder="Shoprate" required>
-                                </div>
-                                 -->
-                                <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "></textarea>
+                                    <label for="">Rate</label>
+                                    <input class="form-control" name="rate" placeholder="Eg : 5 "/>
                                 </div>
 
                             

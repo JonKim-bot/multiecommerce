@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Core\BaseController;
 use App\Models\ShopRateModel;
 
-class ShopRate extends BaseController
+class Shoprate extends BaseController
 {
     public function __construct()
     {
@@ -20,6 +20,13 @@ class ShopRate extends BaseController
                 base_url() .
                 "/access/login';</script>";
         }
+        $array_rate = [
+            'first_rate',
+            'second_rate',
+            'thrid_rate',
+
+        ];
+        $this->pageData['array_rate'] = $array_rate;
     }
 
     public function index()
@@ -45,9 +52,8 @@ class ShopRate extends BaseController
             if (!$error) {
                 
                 $data = [
-                    'title' => $this->request->getPost('title'),
-                    'description' => $this->request->getPost('description'),
-                    'icons' => $this->request->getPost('icons'),
+                    'rate_name' => $this->request->getPost('rate_name'),
+                    'rate' => $this->request->getPost('rate'),
 
                     'shop_id' => $this->shop_id,
                     'created_by' => session()->get('login_id'),
@@ -73,10 +79,10 @@ class ShopRate extends BaseController
         echo view('admin/footer');
     }
 
-    public function detail($shoprate_id)
+    public function detail($shop_rate_id)
     {
         $where = [
-            'shoprate_id' => $shoprate_id,
+            'shop_rate_id' => $shop_rate_id,
         ];
         $shoprate = $this->ShopRateModel->getWhere($where);
         if ($this->isMerchant == true) {
@@ -91,10 +97,10 @@ class ShopRate extends BaseController
         echo view('admin/footer');
     }
 
-    public function edit($shoprate_id)
+    public function edit($shop_rate_id)
     {
         $where = [
-            'shoprate_id' => $shoprate_id,
+            'shop_rate_id' => $shop_rate_id,
         ];
 
         $this->pageData['shoprate'] = $this->ShopRateModel->getWhere($where)[0];
@@ -110,9 +116,8 @@ class ShopRate extends BaseController
 
             if (!$error) {
                 $data = [
-                    'icons' => $this->request->getPost('icons'),
-                    'title' => $this->request->getPost('title'),
-                    'description' => $this->request->getPost('description'),
+                    'rate_name' => $this->request->getPost('rate_name'),
+                    'rate' => $this->request->getPost('rate'),
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
@@ -128,7 +133,7 @@ class ShopRate extends BaseController
                 $this->ShopRateModel->updateWhere($where, $data);
 
                 return redirect()->to(
-                    base_url('shoprate/detail/' . $shoprate_id, 'refresh')
+                    base_url('shoprate/detail/' . $shop_rate_id, 'refresh')
                 );
             }
         }
@@ -138,9 +143,9 @@ class ShopRate extends BaseController
         echo view('admin/footer');
     }
 
-    public function delete($shoprate_id)
+    public function delete($shop_rate_id)
     {
-        $this->ShopRateModel->softDelete($shoprate_id);
+        $this->ShopRateModel->softDelete($shop_rate_id);
 
         return redirect()->to(base_url('shoprate', 'refresh'));
     }

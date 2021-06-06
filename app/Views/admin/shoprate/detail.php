@@ -5,7 +5,7 @@
             'shoprate'
         ) ?>">Shoprate</a></li>
         <li class="breadcrumb-item active"><a href="<?= base_url() ?>/shoprate/detail/<?= $shoprate[
-    'shoprate_id'
+    'shop_rate_id'
 ] ?>">Shoprate Details</a></li>
     </ol>
     <!-- <div class="c-subheader-nav d-md-down-none mfe-2">
@@ -34,7 +34,7 @@
                                     'shoprate/edit'
                                 ) .
                                     '/' .
-                                    $shoprate['shoprate_id']; ?>">
+                                    $shoprate['shop_rate_id']; ?>">
                                     <button class="btn btn-warning"><i class="cil-pencil c-icon"></i>Edit</button></i>
                                 </a>
                             </div>
@@ -49,26 +49,20 @@
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <tr>
-                                                        <td><h3>Title</h3></td>
+                                                        <td><h3>Rate Name</h3></td>
                                                         <td><?= $shoprate[
-                                                            'title'
+                                                            'rate_name'
                                                         ] ?></td>
 
                                                     </tr>
                                                     <tr>
-                                                        <td><h3>Icons</h3></td>
+                                                        <td><h3>Rate</h3></td>
                                                         <td><?= $shoprate[
-                                                            'icons'
+                                                            'rate'
                                                         ] ?></td>
 
                                                     </tr>
-                                                    <tr>
-                                                        <td><h3>Description</h3></td>
-                                                        <td><?= $shoprate[
-                                                            'description'
-                                                        ] ?></td>
-
-                                                    </tr>
+                                                   
                                                     
                                                 </table>
                                             </div>

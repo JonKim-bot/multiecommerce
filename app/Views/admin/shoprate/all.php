@@ -39,9 +39,9 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No.</th>
-                                            <th data-sort="name" data-filter="name">Banner</th>
+                                            <th data-sort="name" data-filter="name">Rate Name</th>
+                                            <th data-sort="name" data-filter="name">Rate </th>
 
-                                            <th data-sort="name" data-filter="name">Shoprate</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -52,18 +52,14 @@
                                          ?>
                                             <tr>
                                                 
-                                                <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shoprate_id']?>"><?= $i ?></a></td>
-                                                <!-- <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shoprate_id']?>">
-                                                <img src="<?= base_url() . $row['banner']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
+                                                <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shop_rate_id']?>"><?= $i ?></a></td>
+                                          
+                                                <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shop_rate_id']?>"><?= $row['rate_name'] ?></a></td>
 
-                                                </a></td> -->
-                                                <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shoprate_id']?>">
-                                                <i class="fa <?= $row['icons'] ?> fa-2x"></i>
-                                                </a></td>
 
-                                                <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shoprate_id']?>"><?= $row['title'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/shoprate/detail/<?= $row['shop_rate_id']?>"><?= $row['rate'] ?></a></td>
                                                 
-                                                <td><a href="<?= base_url() ?>/shoprate/delete/<?= $row['shoprate_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
+                                                <td><a href="<?= base_url() ?>/shoprate/delete/<?= $row['shop_rate_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
                                             </tr>
                                         <?php
                                         $i++;

@@ -2,7 +2,7 @@
 	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
 		<li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item"><a href="<?= base_url() ?>/Shoprate">Shoprate</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/shoprate/edit/<?= $shoprate['shoprate_id']?>">Edit Shoprate Details</a></li>
+        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/shoprate/edit/<?= $shoprate['shop_rate_id']?>">Edit Shoprate Details</a></li>
 	</ol>
 	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/shoprate/edit/<?=$shoprate["shoprate_id"]?>">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/shoprate/edit/<?=$shoprate["shop_rate_id"]?>">
                     <!-- <div class="form-group">
                         <label for="">Profile Picture</label>
                         <div class="custom-file">
@@ -35,23 +35,26 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" value="<?= $shoprate['title']?>" placeholder="e.g. Best Restaurant In Town" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Decription</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $shoprate['description']?></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Icons
-                                    <br>
-                                    Referrence
-                                    <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="blank">https://fontawesome.com/v4.7.0/cheatsheet/</a>
+                    <label for="form_register_no">Rate Name </label>
+                    <select class="form-control "  name="rate_name">
+                        <?php foreach ($array_rate
+                            as $row) { ?>
+                            <?php if($row == $shoprate['rate_name']){ ?>
+                            
+                                <option selected value="<?= $row?>"><?= $row?></option>
+                            <?php }else{ ?>
+                                <option value="<?= $row?>"><?= $row?></option>
 
-                                    </label>
-                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" value="<?= $shoprate['icons'] ?>" required>
-                                </div>
-                                
+                            <?php } ?>
+                        <?php } ?>
+                    </select>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group">
+                    <label for="">Rate</label>
+                    <input class="form-control" name="rate" value="<?= $shoprate['rate'] ?>" placeholder="Eg : 5 "/>
+                </div>
+
                     
                     <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>
