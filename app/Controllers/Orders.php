@@ -221,6 +221,100 @@ class Orders extends BaseController
 
         // return redirect()->to($url);
     }
+    public function purchase_orders_percent($user, $orders)
+    {
+        // $where = [
+        //     'user.user_id' => $user['referral_id']
+        // ];
+        $where = [
+            'customer.customer_id' => $orders['customer_id'],
+        ];
+        $customer = $this->CustomerModel->getWhere($where)[0];
+        $where = [
+            'customer.referal_id' => $customer['referal_id'],
+        ];
+        $parent = $this->CustomerModel->getWhere($where);
+        // $discount_amount  = ($this->parseFloat($total)) * ($promo['offer_percent'] / 100);
+        $shop_rate_col = array_column($this->ShopRateModel->getWhere(['shop_id' => $orders['shop_id']]),'rate_name');
+
+        if (!empty($parent) && in_array('first_rate',$shop_rate_col)) {
+            $where_col = [
+                'rate_name' => 'first_rate',
+                'shop_id' => $orders['shop_id']
+            ];
+            $shop_rate = $this->ShopRateModel->getWhere($where_col)[0];
+            $parent = $parent[0];
+            $data = [
+                'percent' => $shop_rate['rate'],
+                'is_commission' => 1,
+                'customer_id' => $parent['customer_id'],
+                'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
+                'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                'orders_id' => $orders['orders_id'],
+            ];
+            // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
+
+            $this->PointModel->point_commision_in($data);
+            $where = [
+                'customer.customer_id' => $parent[0]['referal_id'],
+            ];
+
+
+            $grand_parent = $this->CustomerModel->getWhere($where);
+
+            if (!empty($grand_parent)  && in_array('second_rate',$shop_rate_col)) {
+                $grand_parent = $grand_parent[0];
+
+                $where_col = [
+                    'rate_name' => 'second_rate',
+                    'shop_id' => $orders['shop_id']
+                ];
+                $shop_rate = $this->ShopRateModel->getWhere($where_col)[0];
+                $data = [
+                    'percent' => $shop_rate['rate'],
+                    'is_commission' => 1,
+                    'customer_id' => $grand_parent['customer_id'],
+
+                    'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
+                    'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                    'orders_id' => $orders['orders_id'],
+                ];
+
+                // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
+                $this->PointModel->point_commision_in($data);
+
+           
+                $where = [
+                    'customer.referal_id' => $grand_parent['referal_id'],
+                ];
+
+                $grand_grand_parent = $this->CustomerModel->getWhere($where);
+
+                if (!empty($grand_grand_parent)  && in_array('thrid_rate',$shop_rate_col)) {
+                    $grand_grand_parent = $grand_grand_parent[0];
+
+                    $where_col = [
+                        'rate_name' => 'thrid_rate',
+                        'shop_id' => $orders['shop_id']
+                    ];
+                    $shop_rate = $this->ShopRateModel->getWhere($where_col)[0];
+                    $data = [
+                        'percent' => $shop_rate['rate'],
+                        'is_commission' => 1,
+                        'customer_id' => $grand_grand_parent['customer_id'],
+    
+                        'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
+                        'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                        'orders_id' => $orders['orders_id'],
+                    ];
+                    // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
+
+                    $this->PointModel->point_commision_in($data);
+
+                }
+            }
+        }
+    }
 
     public function return_option_text($array){
         $text = '';

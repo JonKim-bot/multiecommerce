@@ -65,9 +65,23 @@ class PointModel extends BaseModel
             'customer_id' => $customer_id,
             'point_in' => $amount,
             'orders_id' => $orders_id,
-
             'balance' => $balance + $amount,
             'remarks' => $remarks,
+        ];
+
+        $this->insertNew($data);
+    }
+    function point_commision_in($data)
+    {
+        $balance = $this->get_balance($customer_id);
+
+        $data = [
+            'customer_id' => $data['customer_id'],
+            'point_in' => $data['amount'],
+            'is_commission' => 1,
+            'percent' => $data['percent'],
+            'balance' => $balance + $data['amount'],
+            'remarks' => $data['remarks'],
         ];
 
         $this->insertNew($data);
