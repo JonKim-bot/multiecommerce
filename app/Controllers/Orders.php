@@ -10,6 +10,9 @@ use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\ProductOptionSelectionModel;
 use App\Models\PromoModel;
+use App\Models\ShopFunctionModel;
+use App\Models\PointModel;
+
 // use App\Models\ShopOperatingHourModel;
 
 use App\Models\OrderDetailModel;
@@ -27,6 +30,8 @@ class Orders extends BaseController
     public function __construct()
     {
         $this->pageData = [];
+        $this->ShopFunctionModel = new ShopFunctionModel();
+        $this->PointModel = new PointModel();
         $this->OrderDetailModel = new OrderDetailModel();
         // $this->ShopOperatingHourModel = new ShopOperatingHourModel();
 
@@ -108,7 +113,49 @@ class Orders extends BaseController
         echo view('admin/header', $this->pageData);
         echo view('admin/orders/kitchen_order');
     }
+    public function set_paid($orders_id){
+       
+        $where = array(
+            "orders.orders_id" => $orders_id,
+        );
+        $orders = $this->OrdersModel->getWhere($where)[0];
+        if($orders['is_paid'] == 1){
+            $is_paid = 0;
+        }else{
+            $is_paid = 1;
+        }
 
+        $data = array(
+            "is_paid" => $is_paid,
+        );
+        $this->OrdersModel->updateWhere($where,$data);
+        if($is_paid == 1 && $this->check_exist_function(1,$orders['shop_id'])){
+            $this->give_point($orders_id);
+        }
+        return redirect()->to(
+            base_url('orders', 'refresh')
+        );
+
+    }
+    public function give_point($orders_id){
+
+        $where = [
+            'orders.orders_id' => $orders_id,
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];
+        $where = [
+            'orders_id' => $orders_id,
+            'customer_id' => $orders['customer_id'],
+        ];
+        $point = $this->PointModel->getWhere($where);
+        if(empty($point)){
+            if($orders['customer_id'] > 0){
+                $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
+                $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
+            }
+        }
+
+    }
     public function unset_array($filter, $orgininal)
     {
         foreach ($filter as $key => $row) {
@@ -524,7 +571,17 @@ class Orders extends BaseController
         }
         return $order_detail;
     }
-
+    public function check_exist_function($function_id,$shop_id){
+        $where = [
+            'shop_function.shop_id' => $shop_id
+        ];
+        $shop_function = array_column($this->ShopFunctionModel->getWhere($where),'function_id');
+        if(in_array($function_id,$shop_function)){ 
+            return true;
+        }else{
+            return false;
+        }
+    }
     public function detail($orders_id)
     {
         $where = [

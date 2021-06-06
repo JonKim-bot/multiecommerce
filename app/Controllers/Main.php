@@ -16,6 +16,8 @@ use App\Models\MerchantModel;
 use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
 use App\Models\OrderCustomerModel;
+use App\Models\PointModel;
+
 use App\Models\ShopPaymentMethodModel;
 use App\Models\ProductOptionSelectionModel;
 use App\Models\ProductOptionModel;
@@ -41,6 +43,7 @@ class Main extends BaseController
     {
         $this->PromoModel = new PromoModel();
         $this->CustomerModel = new CustomerModel();
+        $this->PointModel = new PointModel();
 
         $this->ShopModel = new ShopModel();
         $this->OrdersLogModel = new OrdersLogModel();
@@ -285,11 +288,13 @@ class Main extends BaseController
                 return redirect()->to(base_url('/main/index/' . $shop['slug'], "refresh"));
 			}else{
 				$this->pageData['error'] = "Email or password incorrect";
+
 			}
 
 		}
        
         $this->load_view('login',$slug);
+
 
 	}
     
@@ -350,7 +355,7 @@ class Main extends BaseController
         $shop = $this->ShopModel->getWhere($where);
         $this->show_404_if_empty($shop);
         $where_shop = [
-            'shop_id' => $shop[0]['shop_id']
+            'shop_function.shop_id' => $shop[0]['shop_id']
         ];
         $shop['shop_function'] = array_column($this->ShopFunctionModel->getWhere($where_shop),'function_id');
         $this->pageData['trending_product'] = $this->get_trending_product($shop[0]['shop_id']);
@@ -1004,8 +1009,6 @@ class Main extends BaseController
     
                 $order_data = [
                     'order_customer_id' => $order_customer_id,
-
-
                     'orders_status_id' => 1,
                     // 'delivery_method' => $_POST['delivery_option'],
                     // 'payment_method_id' => $_POST['payment_method_id'],
@@ -1019,9 +1022,9 @@ class Main extends BaseController
                     'subtotal' => $_POST['subtotal'],
                     'shop_id' => $_POST['shop_id'],
                 ];
-                // if($_POST['customer_id'] > 0){
-                //     $order_data['customer_id'] = $_POST['customer_id'];
-                // }
+                if($_POST['customer_id'] > 0){
+                    $order_data['customer_id'] = $_POST['customer_id'];
+                }
                 if(!empty($_POST['promo_id']) && $_POST['promo_id'] > 0){
                     $order_data['promo_id'] = $_POST['promo_id'];
                 }
@@ -1276,16 +1279,37 @@ class Main extends BaseController
             // if ($_REQUEST['status_id'] == 1){
             
     }
+    public function give_point($orders_id){
+
+        $where = [
+            'orders.orders_id' => $orders_id,
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];
+        $where = ['point.orders_id' => $orders_id];
+        $point = $this->PointModel->getWhere($where);
+        if(empty($point)){
+            if($orders['customer_id'] > 0){
+                $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
+                $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
+            }
+        }
+
+    }
     public function update_order($orders_id,$payment_method_id){
        
         $where = array(
             "orders.orders_id" => $orders_id,
+
         );
         $data = array(
             "is_paid" => 1,
             "payment_method_id" => $payment_method_id,
         );
         $orders = $this->OrdersModel->updateWhere($where,$data);
+        $shop = $this->get_shop($orders['shop_id']);
+        if($this->check_exist_function(1)){
+            $this->give_point($orders_id);
+        }
 
     }
     function call_back_to_order($order_id){

@@ -11,20 +11,18 @@ class PointModel extends BaseModel
 
         $this->tableName = 'point';
         $this->primaryKey = 'point_id';
-        $this->PointTopUpModel = new PointTopUpModel();
 
         
 
         $this->builder = $this->db->table($this->tableName);
     }
 
-    function get_balance($user_id)
+    function get_balance($customer_id)
     {
         $balance = 0;
         $this->builder->select('*');
         $this->builder->from($this->table_name);
-        $this->builder->where('user_id', $user_id);
-        $this->builder->where('is_commissiontier !=', '1');
+        $this->builder->where('customer_id', $customer_id);
         $this->builder->orderBy('point_id', 'DESC');
         $query = $this->builder->get()->getResultArray();
 
@@ -33,12 +31,12 @@ class PointModel extends BaseModel
         }
         return $balance;
     }
-    function get_refferal_point($user_id)
+    function get_refferal_point($customer_id)
     {
         $balance = 0;
         $this->builder->select('*');
         $this->builder->from($this->table_name);
-        $this->builder->where('user_id', $user_id);
+        $this->builder->where('customer_id', $customer_id);
         // $this->builder->where('point.is_commissiontier', 1);
         $this->builder->orderBy('point_id', 'DESC');
         $query = $this->builder->get()->getResultArray();
@@ -48,10 +46,10 @@ class PointModel extends BaseModel
         }
         return $balance;
     }
-    function record_top_up($user_id, $amount)
+    function record_top_up($customer_id, $amount)
     {
         $data = [
-            'user_id' => $user_id,
+            'customer_id' => $customer_id,
             'amount' => $amount,
         ];
 
@@ -59,13 +57,15 @@ class PointModel extends BaseModel
         return $top_up_id;
     }
 
-    function point_in($user_id, $amount, $remarks)
+    function point_in($customer_id, $amount, $remarks,$orders_id)
     {
-        $balance = $this->get_balance($user_id);
+        $balance = $this->get_balance($customer_id);
 
         $data = [
-            'user_id' => $user_id,
+            'customer_id' => $customer_id,
             'point_in' => $amount,
+            'orders_id' => $orders_id,
+
             'balance' => $balance + $amount,
             'remarks' => $remarks,
         ];
@@ -73,23 +73,23 @@ class PointModel extends BaseModel
         $this->insertNew($data);
     }
 
-    function point_out($user_id, $amount, $remarks, $voucher_id = '')
+    function point_out($customer_id, $amount, $remarks, $voucher_id = '')
     {
-        $balance = $this->get_balance($user_id);
+        $balance = $this->get_balance($customer_id);
 
         $data = [
-            'user_id' => $user_id,
+            'customer_id' => $customer_id,
             'point_out' => $amount,
             'balance' => $balance - $amount,
             'remarks' => $remarks,
             'voucher_id' => $voucher_id,
         ];
         // $user_bank = $this->user_model->get_user_bank([
-        //     'user.user_id' => $user_id
+        //     'user.customer_id' => $customer_id
         // ])[0];
 
         // $data_withdrawal = [
-        //     'user_id' => $user_id,
+        //     'customer_id' => $customer_id,
         //     'amount' => $amount,
         //     'bank_account' => $user_bank['bank_account'],
         //     'bank_name' => $user_bank['bank_name'],
@@ -99,23 +99,23 @@ class PointModel extends BaseModel
         $this->insertNew($data);
     }
 
-    function finance($user_id, $data)
+    function finance($customer_id, $data)
     {
-        $balance = $this->get_balance($user_id);
+        $balance = $this->get_balance($customer_id);
 
         $data = [
-            'user_id' => $user_id,
+            'customer_id' => $customer_id,
             'is_commissiontier' => 1,
             'point_in' => $data['amount'],
             'balance' => $balance + $data['amount'],
             'remarks' => $data['remarks'],
         ];
         // $user_bank = $this->user_model->get_user_bank([
-        //     'user.user_id' => $user_id
+        //     'user.customer_id' => $customer_id
         // ])[0];
 
         // $data_withdrawal = [
-        //     'user_id' => $user_id,
+        //     'customer_id' => $customer_id,
 
         //     'amount' => $amount,
         //     'bank_account' => $user_bank['bank_account'],
@@ -126,11 +126,11 @@ class PointModel extends BaseModel
         $this->insertNew($data);
     }
 
-    function get_total_point_in($user_id)
+    function get_total_point_in($customer_id)
     {
         $this->builder->select('SUM(point_in) as total_point_in');
         $this->builder->from($this->table_name);
-        $this->builder->where('user_id', $user_id);
+        $this->builder->where('customer_id', $customer_id);
 
         $query = $this->builder->get()->getResultArray();
 
@@ -143,11 +143,11 @@ class PointModel extends BaseModel
         return $result;
     }
     
-    function get_total_point_out($user_id)
+    function get_total_point_out($customer_id)
     {
         $this->builder->select('SUM(point_out) as total_point_out');
         $this->builder->from($this->table_name);
-        $this->builder->where('user_id', $user_id);
+        $this->builder->where('customer_id', $customer_id);
 
         $query = $this->builder->get()->getResultArray();
 
@@ -168,7 +168,7 @@ class PointModel extends BaseModel
         $this->builder->from($this->table_name);
         $this->builder->join(
             'user',
-            'point.user_id = user.user_id AND user.deleted = 0',
+            'point.customer_id = user.customer_id AND user.deleted = 0',
             'left'
         );
         $this->builder->orderBy('point.created_date DESC');
@@ -204,14 +204,14 @@ class PointModel extends BaseModel
         $this->builder->join(
 
             'user',
-            'point.user_id = user.user_id AND user.deleted = 0',
+            'point.customer_id = user.customer_id AND user.deleted = 0',
             'left'
         );
         $this->builder->orderBy('point.created_date DESC');
         if (!empty($where)) {
             $this->builder->where($where);
         }
-        $this->builder->whereIn('point.user_id', $wherein);
+        $this->builder->whereIn('point.customer_id', $wherein);
         $query = $this->builder->get();
         return $query->getResultArray();
     }
@@ -224,7 +224,7 @@ class PointModel extends BaseModel
         $this->builder->from($this->table_name);
         $this->builder->join(
             'user',
-            'point.user_id = user.user_id AND user.deleted = 0',
+            'point.customer_id = user.customer_id AND user.deleted = 0',
             'left'
         );
         $this->builder->orderBy('point.created_date DESC');
@@ -281,12 +281,12 @@ class PointModel extends BaseModel
     {
         $user = $this->builder
             ->query(
-                'SELECT user.user_id, user.name as user, user.contact FROM point JOIN user ON user.user_id = point.user_id GROUP BY point.user_id'
+                'SELECT user.customer_id, user.name as user, user.contact FROM point JOIN user ON user.customer_id = point.customer_id GROUP BY point.customer_id'
             )
             ->getResultArray();
 
         foreach ($user as $key => $row) {
-            $user[$key]['balance'] = $this->get_balance($row['user_id']);
+            $user[$key]['balance'] = $this->get_balance($row['customer_id']);
         }
 
         return $user;

@@ -549,7 +549,6 @@ class BaseModel extends Model
         $this->builder->where($this->tableName . ".deleted", 0);
         $this->builder->where($where);
 
-                // die($this->builder->getCompiledSelect(false));
 
         if ($limit != '') {
             $count = $this->getCount($filter);
@@ -564,9 +563,12 @@ class BaseModel extends Model
             // $this->db->limit($limit, $offset);
         }
 
-
+        // if(!empty($where['customer_id'])){
+        //     die($this->builder->getCompiledSelect(false));
+        // }
 
         $query = $this->builder->get();
+
         return $query->getResultArray();
 
     }
@@ -671,6 +673,7 @@ class BaseModel extends Model
         $this->builder->join("role", $this->tableName . '.role_id = role.role_id', 'left');
         $this->builder->where("username = ", $username);
         $this->builder->where("password = SHA2(CONCAT(salt,'" . $password . "'),512)");
+
 
         $query = $this->builder->get();
         return $query->getResultArray();
