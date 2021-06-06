@@ -178,6 +178,7 @@ class Promo extends BaseController
                 $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
                 $new_member = isset($_POST['new_member']) ? 1 : 0 ;
                 if($affliate == 1){
+                    
                     $new_member = 1;
                 }
                 $data = array(

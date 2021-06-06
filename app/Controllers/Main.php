@@ -453,7 +453,7 @@ class Main extends BaseController
                     'customer_id' => $grand_parent['customer_id'],
 
                     'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                    'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                    'remarks' => 'Downline Task Commission for ' . $grand_parent['name'] . ' with downline ' . $customer['name'] ,
                     'orders_id' => $orders['orders_id'],
                 ];
 
@@ -462,7 +462,7 @@ class Main extends BaseController
 
            
                 $where = [
-                    'customer.referal_id' => $grand_parent['referal_id'],
+                    'customer.customer_id' => $grand_parent['referal_id'],
                 ];
 
                 $grand_grand_parent = $this->CustomerModel->getWhere($where);
@@ -480,7 +480,7 @@ class Main extends BaseController
                         'is_commission' => 1,
                         'customer_id' => $grand_grand_parent['customer_id'],
                         'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                        'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                        'remarks' => 'Downline Task Commission for ' . $grand_grand_parent['name'] . ' with downline ' . $customer['name'] ,
                         'orders_id' => $orders['orders_id'],
                     ];
                     // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);

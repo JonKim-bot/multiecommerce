@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Core\BaseController;
-use App\Models\ShopRateModel;
+use App\Models\VoucherModel;
 
-class ShopRate extends BaseController
+class Voucher extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
-        $this->ShopRateModel = new ShopRateModel();
+        $this->VoucherModel = new VoucherModel();
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -27,14 +27,30 @@ class ShopRate extends BaseController
         $where = [
             'shop_id' => $this->shop_id,
         ];
-        $shoprate = $this->ShopRateModel->getWhere($where);
-        $this->pageData['shoprate'] = $shoprate;
+        $voucher = $this->VoucherModel->getWhere($where);
+        $this->pageData['voucher'] = $voucher;
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/all');
+        echo view('admin/voucher/all');
         echo view('admin/footer');
     }
 
+    public function change_status($voucher_id){
+        $where = [
+            'voucher_id' => $voucher_id
+
+        ];
+        $voucher = $this->VoucherModel->getWhere($where)[0];
+        if($voucher['is_active'] == 1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        $this->VoucherModel->updateWhere($where,['is_active' => $status]);
+
+        return redirect()->to(base_url('voucher' ,"refresh"));
+
+    }
     public function add()
     {
         if ($_POST) {
@@ -43,64 +59,58 @@ class ShopRate extends BaseController
             $error = false;
 
             if (!$error) {
-                
+                $banner = $this->upload_image('banner');
                 $data = [
-                    'title' => $this->request->getPost('title'),
+                    'voucher' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'icons' => $this->request->getPost('icons'),
-
-                    'shop_id' => $this->shop_id,
+                    'redeem_point' => $this->request->getPost('redeem_point'),
+                    'valid_until' => $this->request->getPost('valid_until'),
+                    'redeem_instruction' => $this->request->getPost('redeem_instruction'),
+                    'shop_id' =>$this->shop_id,
                     'created_by' => session()->get('login_id'),
                 ];
-                
-                // $image = $this->upload_image_base('banner');
+                if(!empty($banner)){
+                    $data['banner'] = $banner;
+                }
+                $this->VoucherModel->insertNew($data);
 
-                // if($image != ""){
-                //     $data['banner'] = $image;
-                // }
-          
-                // $this->debug($data);
-                // dd($data);
-
-                $this->ShopRateModel->insertNew($data);
-
-                return redirect()->to(base_url('shoprate', 'refresh'));
+                return redirect()->to(base_url('voucher', 'refresh'));
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/add');
+        echo view('admin/voucher/add');
         echo view('admin/footer');
     }
 
-    public function detail($shoprate_id)
+    public function detail($voucher_id)
     {
         $where = [
-            'shoprate_id' => $shoprate_id,
+            'voucher_id' => $voucher_id,
         ];
-        $shoprate = $this->ShopRateModel->getWhere($where);
+        $voucher = $this->VoucherModel->getWhere($where);
         if ($this->isMerchant == true) {
-            $this->check_is_merchant_from_shop($shoprate[0]['shop_id']);
+            $this->check_is_merchant_from_shop($voucher[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
 
-        $this->pageData['shoprate'] = $shoprate[0];
+        $this->pageData['voucher'] = $voucher[0];
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/detail');
+        echo view('admin/voucher/detail');
         echo view('admin/footer');
     }
 
-    public function edit($shoprate_id)
+    public function edit($voucher_id)
     {
         $where = [
-            'shoprate_id' => $shoprate_id,
+            'voucher_id' => $voucher_id,
         ];
 
-        $this->pageData['shoprate'] = $this->ShopRateModel->getWhere($where)[0];
+        $this->pageData['voucher'] = $this->VoucherModel->getWhere($where)[0];
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
-                $this->pageData['shoprate']['shop_id']
+                $this->pageData['voucher']['shop_id']
             );
         }
         if ($_POST) {
@@ -109,39 +119,41 @@ class ShopRate extends BaseController
             $input = $this->request->getPost();
 
             if (!$error) {
+           
+                $banner = $this->upload_image('banner');
                 $data = [
-                    'icons' => $this->request->getPost('icons'),
-                    'title' => $this->request->getPost('title'),
+                    'voucher' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
+                    'redeem_point' => $this->request->getPost('redeem_point'),
+                    'valid_until' => $this->request->getPost('valid_until'),
+                    'redeem_instruction' => $this->request->getPost('redeem_instruction'),
+                    'shop_id' =>$this->shop_id,
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
 
-                // $image = $this->upload_image_base('banner');
+            
+                if(!empty($banner)){
+                    $data['banner'] = $banner;
+                }
 
-                // if($image != ""){
-                //     $data['banner'] = $image;
-                // }
-          
-          
-
-                $this->ShopRateModel->updateWhere($where, $data);
+                $this->VoucherModel->updateWhere($where, $data);
 
                 return redirect()->to(
-                    base_url('shoprate/detail/' . $shoprate_id, 'refresh')
+                    base_url('voucher/detail/' . $voucher_id, 'refresh')
                 );
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/edit');
+        echo view('admin/voucher/edit');
         echo view('admin/footer');
     }
 
-    public function delete($shoprate_id)
+    public function delete($voucher_id)
     {
-        $this->ShopRateModel->softDelete($shoprate_id);
+        $this->VoucherModel->softDelete($voucher_id);
 
-        return redirect()->to(base_url('shoprate', 'refresh'));
+        return redirect()->to(base_url('voucher', 'refresh'));
     }
 }

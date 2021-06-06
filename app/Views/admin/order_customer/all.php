@@ -36,7 +36,7 @@
                         <div class="col-sm-12">
                         <div class="card" style="width: 18rem;">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a class="btn btn-primary text-white" onclick ="export_to_csv()">Export Orders To Csv</a></h5>
+                                    <h5 class="card-title"><a class="btn btn-primary text-white" onclick ="export_to_csv()">Export Customer To Csv</a></h5>
 
                                 </div>
                             </div>

@@ -293,6 +293,7 @@ class Product extends BaseController
               
                 // 'order_number' => $_POST['order_number']
 
+                
             ];
             if(!empty($product_pic)){
                 $product_pic_data['product_image'] = $product_pic;

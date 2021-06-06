@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Core\BaseController;
-use App\Models\ShopRateModel;
+use App\Models\GiftModel;
 
-class ShopRate extends BaseController
+class Gift extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
-        $this->ShopRateModel = new ShopRateModel();
+        $this->GiftModel = new GiftModel();
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -27,11 +27,11 @@ class ShopRate extends BaseController
         $where = [
             'shop_id' => $this->shop_id,
         ];
-        $shoprate = $this->ShopRateModel->getWhere($where);
-        $this->pageData['shoprate'] = $shoprate;
+        $gift = $this->GiftModel->getWhere($where);
+        $this->pageData['gift'] = $gift;
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/all');
+        echo view('admin/gift/all');
         echo view('admin/footer');
     }
 
@@ -62,45 +62,45 @@ class ShopRate extends BaseController
                 // $this->debug($data);
                 // dd($data);
 
-                $this->ShopRateModel->insertNew($data);
+                $this->GiftModel->insertNew($data);
 
-                return redirect()->to(base_url('shoprate', 'refresh'));
+                return redirect()->to(base_url('gift', 'refresh'));
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/add');
+        echo view('admin/gift/add');
         echo view('admin/footer');
     }
 
-    public function detail($shoprate_id)
+    public function detail($gift_id)
     {
         $where = [
-            'shoprate_id' => $shoprate_id,
+            'gift_id' => $gift_id,
         ];
-        $shoprate = $this->ShopRateModel->getWhere($where);
+        $gift = $this->GiftModel->getWhere($where);
         if ($this->isMerchant == true) {
-            $this->check_is_merchant_from_shop($shoprate[0]['shop_id']);
+            $this->check_is_merchant_from_shop($gift[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
 
-        $this->pageData['shoprate'] = $shoprate[0];
+        $this->pageData['gift'] = $gift[0];
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/detail');
+        echo view('admin/gift/detail');
         echo view('admin/footer');
     }
 
-    public function edit($shoprate_id)
+    public function edit($gift_id)
     {
         $where = [
-            'shoprate_id' => $shoprate_id,
+            'gift_id' => $gift_id,
         ];
 
-        $this->pageData['shoprate'] = $this->ShopRateModel->getWhere($where)[0];
+        $this->pageData['gift'] = $this->GiftModel->getWhere($where)[0];
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
-                $this->pageData['shoprate']['shop_id']
+                $this->pageData['gift']['shop_id']
             );
         }
         if ($_POST) {
@@ -125,23 +125,23 @@ class ShopRate extends BaseController
           
           
 
-                $this->ShopRateModel->updateWhere($where, $data);
+                $this->GiftModel->updateWhere($where, $data);
 
                 return redirect()->to(
-                    base_url('shoprate/detail/' . $shoprate_id, 'refresh')
+                    base_url('gift/detail/' . $gift_id, 'refresh')
                 );
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/edit');
+        echo view('admin/gift/edit');
         echo view('admin/footer');
     }
 
-    public function delete($shoprate_id)
+    public function delete($gift_id)
     {
-        $this->ShopRateModel->softDelete($shoprate_id);
+        $this->GiftModel->softDelete($gift_id);
 
-        return redirect()->to(base_url('shoprate', 'refresh'));
+        return redirect()->to(base_url('gift', 'refresh'));
     }
 }

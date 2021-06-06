@@ -214,6 +214,25 @@
                     </a>
                 </li>
                 <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Voucher
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Gift
+                    </a>
+                </li>
+                <li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/wallet">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Transaction
+                    </a>
+                </li>
+                <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
                         <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
                         Announcement

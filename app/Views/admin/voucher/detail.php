@@ -2,11 +2,11 @@
     <ol class="breadcrumb border-0 m-0 px-0 px-md-3">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item"><a href="<?= base_url(
-            'brand'
-        ) ?>">Brand</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/brand/detail/<?= $brand[
-    'brand_id'
-] ?>">Brand Details</a></li>
+            'voucher'
+        ) ?>">Voucher</a></li>
+        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/voucher/detail/<?= $voucher[
+    'voucher_id'
+] ?>">Voucher Details</a></li>
     </ol>
     <!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -25,16 +25,16 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="c-card-header">
-                            Brand Info
+                            Voucher Info
                             <div class="card-header-actions">
                                 <a class="card-header-action">
                                     <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                                 </a>
                                 <a class="card-header-action" href="<?php echo site_url(
-                                    'brand/edit'
+                                    'voucher/edit'
                                 ) .
                                     '/' .
-                                    $brand['brand_id']; ?>">
+                                    $voucher['voucher_id']; ?>">
                                     <button class="btn btn-warning"><i class="cil-pencil c-icon"></i>Edit</button></i>
                                 </a>
                             </div>
@@ -50,25 +50,40 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td><h3>Title</h3></td>
-                                                        <td><?= $brand[
-                                                            'title'
-                                                        ] ?></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td><h3>Icons</h3></td>
-                                                        <td><?= $brand[
-                                                            'icons'
+                                                        <td><?= $voucher[
+                                                            'voucher'
                                                         ] ?></td>
 
                                                     </tr>
                                                     <tr>
                                                         <td><h3>Description</h3></td>
-                                                        <td><?= $brand[
+                                                        <td><?= $voucher[
                                                             'description'
                                                         ] ?></td>
 
                                                     </tr>
+                                                    <tr>
+                                                        <td><h3>Valid until</h3></td>
+                                                        <td><?= $voucher[
+                                                            'valid_until'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Redeem Point</h3></td>
+                                                        <td><?= $voucher[
+                                                            'redeem_point'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Redeem instruction</h3></td>
+                                                        <td><?= $voucher[
+                                                            'redeem_instruction'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                 
                                                     
                                                 </table>
                                             </div>

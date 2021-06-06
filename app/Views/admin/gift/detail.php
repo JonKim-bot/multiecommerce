@@ -2,11 +2,11 @@
     <ol class="breadcrumb border-0 m-0 px-0 px-md-3">
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item"><a href="<?= base_url(
-            'brand'
-        ) ?>">Brand</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/brand/detail/<?= $brand[
-    'brand_id'
-] ?>">Brand Details</a></li>
+            'gift'
+        ) ?>">Gift</a></li>
+        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/gift/detail/<?= $gift[
+    'gift_id'
+] ?>">Gift Details</a></li>
     </ol>
     <!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -25,16 +25,16 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="c-card-header">
-                            Brand Info
+                            Gift Info
                             <div class="card-header-actions">
                                 <a class="card-header-action">
                                     <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                                 </a>
                                 <a class="card-header-action" href="<?php echo site_url(
-                                    'brand/edit'
+                                    'gift/edit'
                                 ) .
                                     '/' .
-                                    $brand['brand_id']; ?>">
+                                    $gift['gift_id']; ?>">
                                     <button class="btn btn-warning"><i class="cil-pencil c-icon"></i>Edit</button></i>
                                 </a>
                             </div>
@@ -50,21 +50,21 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td><h3>Title</h3></td>
-                                                        <td><?= $brand[
+                                                        <td><?= $gift[
                                                             'title'
                                                         ] ?></td>
 
                                                     </tr>
                                                     <tr>
                                                         <td><h3>Icons</h3></td>
-                                                        <td><?= $brand[
+                                                        <td><?= $gift[
                                                             'icons'
                                                         ] ?></td>
 
                                                     </tr>
                                                     <tr>
                                                         <td><h3>Description</h3></td>
-                                                        <td><?= $brand[
+                                                        <td><?= $gift[
                                                             'description'
                                                         ] ?></td>
 
