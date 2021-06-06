@@ -131,6 +131,7 @@ class Orders extends BaseController
         $this->OrdersModel->updateWhere($where,$data);
         if($is_paid == 1 && $this->check_exist_function(1,$orders['shop_id'])){
             $this->give_point($orders_id);
+            
         }
         return redirect()->to(
             base_url('orders', 'refresh')
@@ -152,6 +153,7 @@ class Orders extends BaseController
             if($orders['customer_id'] > 0){
                 $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
                 $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
+                $this->purchase_orders_percent($orders);
             }
         }
 
@@ -221,7 +223,7 @@ class Orders extends BaseController
 
         // return redirect()->to($url);
     }
-    public function purchase_orders_percent($user, $orders)
+    public function purchase_orders_percent($orders)
     {
         // $where = [
         //     'user.user_id' => $user['referral_id']
@@ -231,7 +233,7 @@ class Orders extends BaseController
         ];
         $customer = $this->CustomerModel->getWhere($where)[0];
         $where = [
-            'customer.referal_id' => $customer['referal_id'],
+            'customer.customer_id' => $customer['referal_id'],
         ];
         $parent = $this->CustomerModel->getWhere($where);
         // $discount_amount  = ($this->parseFloat($total)) * ($promo['offer_percent'] / 100);
@@ -256,10 +258,8 @@ class Orders extends BaseController
 
             $this->PointModel->point_commision_in($data);
             $where = [
-                'customer.customer_id' => $parent[0]['referal_id'],
+                'customer.customer_id' => $parent['referal_id'],
             ];
-
-
             $grand_parent = $this->CustomerModel->getWhere($where);
 
             if (!empty($grand_parent)  && in_array('second_rate',$shop_rate_col)) {
@@ -302,7 +302,6 @@ class Orders extends BaseController
                         'percent' => $shop_rate['rate'],
                         'is_commission' => 1,
                         'customer_id' => $grand_grand_parent['customer_id'],
-    
                         'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
                         'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
                         'orders_id' => $orders['orders_id'],
