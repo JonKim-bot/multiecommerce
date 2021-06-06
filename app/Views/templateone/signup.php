@@ -1,5 +1,4 @@
 
-    <main class="login-bg">
         <!-- Register Area Start -->
         <div class="register-form-area">
             <div class="register-form text-center">
@@ -32,7 +31,7 @@
                     <?php if(in_array(6,$shop_function)){ ?>
                         <div class="single-input-fields">
                             <label>Referal Code</label>
-                            <input type="text" name="referal_code" placeholder="Optional">
+                            <input type="text" name="referal_code" value="<?= $referal_code ?>" placeholder="Optional">
                         </div>
                     <?php } ?>
                     <div class="single-input-fields">
@@ -50,4 +49,3 @@
             </div>
         </div>
         <!-- Register Area End -->
-    </main>

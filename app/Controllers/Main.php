@@ -101,6 +101,7 @@ class Main extends BaseController
 
         $session->destroy();
 
+
         return redirect()->to( base_url('main/index/' . $slug, "refresh") );
     }
     public function voucher($slug){
@@ -143,6 +144,8 @@ class Main extends BaseController
     }
     public function validate_contact($contact){
         $input['contact'] = $contact;
+        $input['contact'] = str_replace(" ","",$input['contact']);
+
         $input['contact'] = str_replace("-","",$input['contact']);
         $input['contact'] = str_replace("+","",$input['contact']);
 
@@ -230,7 +233,7 @@ class Main extends BaseController
 		if($_POST){
 
 			$input = $this->request->getPost();
-			$customer_data = $this->CustomerModel->getWhere(['email' => $input["email"]]);
+			$customer_data = $this->CustomerModel->getWhere(['customer.shop_id' => $input['shop_id'] ,'email' => $input["email"]]);
 			if (empty($customer_data)) {
 
 				$hash = $this->hash($input['password']);
@@ -238,6 +241,7 @@ class Main extends BaseController
                 $input['contact'] = $this->validate_contact($input['contact']);
 
 				$data = [
+                    'shop_id' => $input['shop_id'],
 					'email' => $input['email'],
 					'contact' => $input['contact'],
 					'real_password' => $input['password'],
@@ -293,31 +297,42 @@ class Main extends BaseController
     public function profile($slug)
     {
           
-  
         $shop= $this->get_shop($slug);
-    
+        $this->validate_function(1);
+
 		if($_POST){
 
 			$input = $this->request->getPost();
-			$customer_data = $this->CustomerModel->getWhere(['email' => $input["email"]]);
-			if (!empty($customer_data)) {
-				$where = [
-					'customer_id' => $customer_data[0]['customer_id']
-				];
-				$customer = $this->CustomerModel->getWhere($where);
-				$login_data = $customer[0];
-				$login_id = $customer[0]["customer_id"];
-				$this->session->set("login_data", $login_data);
-				$this->session->set("login_id", $login_id);
+            $where = [
+                'customer_id' => $this->session->get('customer_id'),
+            ];
+            $input['contact'] = $this->validate_contact($input['contact']);
+            $data = [
+                'email' => $input['email'],
+                'address' => $input['address'],
+                'name' => $input['name'],
+                'city' => $input['city'],
+                'post_code' => $input['post_code'],
+                'contact' => $input['contact'],
+                'role_id' => 3,
+                "last_login" => date("Y-m-d H:i:s"),
+            ];
+            if($input['password'] != ""){
+                $hash = $this->hash($input['password']);
+                $data['real_password'] = $input['password'];
+                $data['password'] = $hash['password'];
 
-				return redirect()->to(base_url('/home/index', "refresh"));
-			}else{
-				$this->pageData['error'] = "User Not Found";
-			}
+                $data['salt'] = $hash['salt'];
+            }
+
+            $this->CustomerModel->updateWhere($where,$data);
+            $this->set_customer_session($where['customer_id']);                
+            return redirect()->to(base_url('/main/profile/' . $shop['slug'], "refresh"));
+        
 
 		}
      
-        $this->load_view('login',$slug);
+        $this->load_view('profile',$slug);
 
 	}
 

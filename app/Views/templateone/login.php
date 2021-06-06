@@ -1,12 +1,11 @@
 
-    <main class="login-bg">
         <!-- login Area Start -->
         <div class="login-form-area">
             <div class="login-form">
                 <!-- Login Heading -->
                 <div class="login-heading">
                     <span>Login</span>
-                    <p>Enter Login details to get access</p>
+                    <p>Login now to get voucher benefit ! </p>
                 </div>
                 <!-- Single Input Fields -->
                 <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/login/<?= $shop['slug'] ?>">
@@ -42,4 +41,3 @@
             </div>
         </div>
         <!-- login Area End -->
-    </main>

@@ -181,8 +181,9 @@
                                             <li><a href="<?= base_url() ?>/main/login/<?= $shop['slug'] ?>">Login</a></li>
                                             <li><a href="<?= base_url() ?>/main/signup/<?= $shop['slug'] ?>">Signup</a></li>
                                         <?php }else{ ?>
+                                            <li><a href="<?= base_url() ?>/main/profile/<?= $shop['slug'] ?>">Profile</a></li>
                                             <li><a href="<?= base_url() ?>/main/logout/<?= $shop['slug'] ?>">Logout</a></li>
-                        
+
                                         <?php } ?>
                                     <?php }  ?>
                                     <!-- <li><a href="#">Pages  <i class="fas fa-angle-down"></i></a>
