@@ -1285,7 +1285,10 @@ class Main extends BaseController
             'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];
-        $where = ['point.orders_id' => $orders_id];
+        $where = [
+            'orders_id' => $orders_id,
+            'customer_id' => $orders['customer_id'],
+        ];
         $point = $this->PointModel->getWhere($where);
         if(empty($point)){
             if($orders['customer_id'] > 0){
