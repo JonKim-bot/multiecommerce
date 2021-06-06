@@ -25,9 +25,12 @@ use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\OrderDetailOptionModel;
 use App\Models\PromoModel;
+use App\Models\CustomerModel;
+
 use App\Models\ContactModel;
 use App\Models\OrdersLogModel;
 use App\Models\PremierResponseModel;
+use App\Models\ShopFunctionModel;
 
 class Main extends BaseController
 {
@@ -37,6 +40,7 @@ class Main extends BaseController
     public function __construct()
     {
         $this->PromoModel = new PromoModel();
+        $this->CustomerModel = new CustomerModel();
 
         $this->ShopModel = new ShopModel();
         $this->OrdersLogModel = new OrdersLogModel();
@@ -63,6 +67,8 @@ class Main extends BaseController
         $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
         $this->OrderDetailOptionModel = new OrderDetailOptionModel();
         $this->OrderDetailModel = new OrderDetailModel();
+        $this->ShopFunctionModel = new ShopFunctionModel();
+
         $this->pageData = array();
         date_default_timezone_set("Asia/Kuala_Lumpur");
         $this->session = session();
@@ -79,8 +85,6 @@ class Main extends BaseController
     }
     public function voucher($slug){
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
@@ -88,10 +92,9 @@ class Main extends BaseController
         echo view("templateone/voucher");
         echo view("templateone/footer");
     }
+   
     public function gift($slug){
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
@@ -101,19 +104,13 @@ class Main extends BaseController
     }
     public function gift_detail($slug){
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
-
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
-
         echo view("templateone/gift_detail");
         echo view("templateone/footer");
     }
     public function voucher_detail($slug){
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
@@ -121,14 +118,27 @@ class Main extends BaseController
         echo view("templateone/voucher_detail");
         echo view("templateone/footer");
     }
-	public function signup($slug)
+    public function check_referal_code_exist($referal_code){
+        $where = [
+            'customer.referal_code' => $referal_code,
+        ];
+        $exist = $this->CustomerModel->getWhere($where);
+        if(empty($exist)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+	public function signup($slug,$referal_code = "")
     {
      
+        if($referal_code != ""){
+            if($this->check_referal_code_exist($referal_code) == false){
+                $this->show_404_if_empty([]);
+            }
+        }
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
-
+        $this->pageData['referal_code'] = $referal_code;
 		if($_POST){
 
 			$input = $this->request->getPost();
@@ -181,10 +191,7 @@ class Main extends BaseController
     {
      
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
-
+  
 		if($_POST){
 
 			$input = $this->request->getPost();
@@ -240,10 +247,7 @@ class Main extends BaseController
           
   
         $shop= $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
-
+    
 		if($_POST){
 
 			$input = $this->request->getPost();
@@ -283,12 +287,22 @@ class Main extends BaseController
             ];
         }
         $shop = $this->ShopModel->getWhere($where);
-
         $this->show_404_if_empty($shop);
+        $where_shop = [
+            'shop_id' => $shop[0]['shop_id']
+        ];
+        $shop['shop_function'] = array_column($this->ShopFunctionModel->getWhere($where_shop),'function_id');
+        $this->pageData['trending_product'] = $this->get_trending_product($shop[0]['shop_id']);
+        
+        $this->pageData['shop_function'] = array_column($this->ShopFunctionModel->getWhere($where_shop),'function_id');
         $where = [
             'shop_id' => $shop[0]['shop_id'],
         ];
+
+        $this->pageData['announcement'] = $this->get_annoucement($where);
+
         $this->session->set("shop", $shop);
+        $this->pageData['shop'] = $shop[0];
         return $shop[0];
     }
     
@@ -338,11 +352,7 @@ class Main extends BaseController
     public function product_detail($slug,$product_id)
     {
         $shop = $this->get_shop($slug);
-        $where = [
-            'shop_id' => $shop['shop_id']
-        ];
-        $this->pageData['announcement'] = $this->get_annoucement($where);
-
+ 
         $where =[
             'product_id' => $product_id
         ];
@@ -369,11 +379,9 @@ class Main extends BaseController
         sort($required_option);
         $required_option = join("_",$required_option);
         $this->pageData['required_option_id'] = $required_option;
-        $this->pageData['shop'] = $shop;
         $this->pageData['product_option'] = $product_option;
         $this->pageData['product_image'] = $product_image;
         $this->pageData['product'] = $product;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
         $this->load_css($shop);
@@ -473,8 +481,6 @@ class Main extends BaseController
 
     public function order_history($slug){
         $shop = $this->get_shop($slug);
-        $this->pageData['shop'] = $shop;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
      
         if($this->startsWith($_GET['keyword'],"0")){
             $_GET['keyword'] = "+6" . $_GET['keyword'];
@@ -493,11 +499,6 @@ class Main extends BaseController
 
         $shop = $this->get_shop($slug);
      
-        
-        $this->pageData['shop'] = $shop;
-
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
-        
         echo view("templateone/header", $this->pageData);
         $this->load_css($shop);
         echo view("templateone/search");
@@ -545,15 +546,10 @@ class Main extends BaseController
             'shop_id' => $shop['shop_id']
         ];
         $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
-        $this->pageData['shop'] = $shop;
-        $this->pageData['announcement'] = $this->get_annoucement($where);
         $this->pageData['shop_payment_method'] = array_column($shop_payment_method,'payment_method_id');
         
         $payment_method = $this->PaymentMethod->getAll();
         $this->pageData['payment_method'] = $payment_method;
-
-       
-
 
         $where = [
             'orders.order_code' => $order_code,
@@ -576,7 +572,6 @@ class Main extends BaseController
         $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
         $this->pageData['orders'] = $orders[0];
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         // $this->debug($product);
         // $this->debug($product);
@@ -591,15 +586,9 @@ class Main extends BaseController
     
     public function cart($slug)
     {
-        $this->pageData['shop'] = $this->get_shop($slug);
         $shop = $this->get_shop($slug);
-        $where = [
-            'shop_id' => $shop['shop_id']
-        ];
-        $this->pageData['announcement'] = $this->get_annoucement($where);
-
+  
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         // $this->debug($product);
         // $this->debug($product);
@@ -620,7 +609,6 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop['shop_id']
         ];
-        $this->pageData['shop'] = $shop;
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
 
         $product = $this->ProductModel->getWhere([
@@ -647,7 +635,6 @@ class Main extends BaseController
             'shop_id' => $shop['shop_id'],
             'is_active' => 1,
         ];
-        $this->pageData['announcement'] = $this->get_annoucement($where);
 
         // $this->pageData['shop_operating_hour'] = $shop_operating_hour;
 
@@ -659,7 +646,6 @@ class Main extends BaseController
         }
         
         $this->pageData['product'] = $product;
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         echo view("templateone/header", $this->pageData);
         $this->load_css($shop);
@@ -692,7 +678,6 @@ class Main extends BaseController
         $this->pageData['product'] = $product;
         $this->pageData['product_total'] = count($product_total);
         $this->pageData['active_page'] = $_POST['page'];
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         $this->pageData['pages'] = $this->get_page_number($product_total);
         $this->pageData['product_max_price'] = $product_max_price[0]['max(product_price)'];
@@ -707,16 +692,13 @@ class Main extends BaseController
 
             'shop_id' => $shop['shop_id']
         ];
-        $this->pageData['announcement'] = $this->get_annoucement($where);
 
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
         $category = $this->CategoryModel->getWhere($where);
-        $this->pageData['shop'] = $shop;
         $this->pageData['category'] = $category;
         $this->pageData['product'] = $product;
         $this->pageData['pages'] = $this->get_page_number($product);
-        $this->pageData['trending_product'] = $this->get_trending_product($shop['shop_id']);
 
         // $this->debug($product);
         // $this->debug($product);
