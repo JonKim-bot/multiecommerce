@@ -176,7 +176,15 @@
 
                                     <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
                                     <li><a href="<?= base_url() ?>/main/search/<?= $shop['slug'] ?>">Search</a></li>
-
+                                    <?php if(in_array(1,$shop_function)){ ?>
+                                        <?php if(empty($customer_data)){ ?>
+                                            <li><a href="<?= base_url() ?>/main/login/<?= $shop['slug'] ?>">Login</a></li>
+                                            <li><a href="<?= base_url() ?>/main/signup/<?= $shop['slug'] ?>">Signup</a></li>
+                                        <?php }else{ ?>
+                                            <li><a href="<?= base_url() ?>/main/logout/<?= $shop['slug'] ?>">Logout</a></li>
+                        
+                                        <?php } ?>
+                                    <?php }  ?>
                                     <!-- <li><a href="#">Pages  <i class="fas fa-angle-down"></i></a>
                                         <ul class="submenu">
                                             <li><a href="login.html">Login</a></li>

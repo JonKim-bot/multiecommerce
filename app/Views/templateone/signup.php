@@ -13,8 +13,8 @@
 
                 <div class="input-box">
                      <?php if (isset($error)) { ?>
-                        <div class="alert-message" role="alert">
-                            <?= $error; ?>
+                        <div class="alert-message text-danger" role="alert">
+                            <h2 class="text-danger">* <?= $error; ?></h2>
                         </div>
                     <?php } ?>
                     <div class="single-input-fields">

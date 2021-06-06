@@ -80,6 +80,12 @@ class Main extends BaseController
             $this->pageData['cart_count'] = 0;
         }
 
+        if (!empty($this->session->get("customer_data"))) {
+            $this->pageData['customer_data'] = $this->session->get("customer_data");
+        } else {
+            $this->pageData['customer_data'] = array();
+        }
+
         //1 membership
         //2 Gift
         //3 Upsales
@@ -87,6 +93,15 @@ class Main extends BaseController
         //5 SMS Blast
         //6 Member Referal
 
+    }
+    
+    public function logout($slug)
+    {
+        $session = session();
+
+        $session->destroy();
+
+        return redirect()->to( base_url('main/index/' . $slug, "refresh") );
     }
     public function voucher($slug){
         $shop= $this->get_shop($slug);
@@ -186,8 +201,13 @@ class Main extends BaseController
         $customer = $this->CustomerModel->getWhere($where);
         $login_data = $customer[0];
         $login_id = $customer[0]["customer_id"];
-        $this->session->set("login_data", $login_data);
-        $this->session->set("login_id", $login_id);
+        $this->session->set("customer_data", $login_data);
+        $this->session->set("customer_id", $login_id);
+    }
+    public function validate_function($function_id){
+        if($this->check_exist_function($function_id) == false){
+            $this->show_404_if_empty([]);
+        }
     }
     public function check_exist_function($function_id){
         if(in_array($function_id,$this->pageData['shop_function'])){ 
@@ -204,6 +224,7 @@ class Main extends BaseController
                 $this->show_404_if_empty([]);
             }
         }
+        $this->validate_function(1);
         $this->check_exist_function(1);
         $this->pageData['referal_code'] = $referal_code;
 		if($_POST){
@@ -214,7 +235,7 @@ class Main extends BaseController
 
 				$hash = $this->hash($input['password']);
 				
-                $input['contact'] = $this->validate_contact($input['contafct']);
+                $input['contact'] = $this->validate_contact($input['contact']);
 
 				$data = [
 					'email' => $input['email'],
@@ -239,66 +260,37 @@ class Main extends BaseController
 			}
 
 		}
-        
      
         $this->load_view('signup',$slug);
-
-        
-
 	}
-    public function profile($slug)
+    public function login($slug)
     {
      
         $shop= $this->get_shop($slug);
-  
+        $this->validate_function(1);
+
 		if($_POST){
 
 			$input = $this->request->getPost();
-			$customer_data = $this->CustomerModel->getWhere(['email' => $input["email"]]);
-			if (empty($customer_data)) {
+			$customer_data = $this->CustomerModel->login_customer($input['email'],$input['password']);
+			if (!empty($customer_data)) {
 
-				$hash = $this->hash($input['password']);
-				$input['contact'] = str_replace("-","",$input['contact']);
-				$input['contact'] = str_replace("+","",$input['contact']);
-
-				if(!$this->startsWith($input['contact'],"6")){
-					$input['contact'] = "6" . $input['contact'];
-				}
-
-				$data = [
-					'email' => $input['email'],
-					'contact' => $input['contact'],
-					'real_password' => $input['password'],
-					'password' => $hash['password'],
-					'salt' => $hash['salt'],		
-					'role_id' => 3,
-					"last_login" => date("Y-m-d H:i:s"),
-					'login_method' => 'signup',
-				];
-				$customer_id = $this->CustomerModel->insertNew($data);
-				$where = [
-					'customer_id' => $customer_id
-				];
-				$customer = $this->CustomerModel->getWhere($where);
-				$login_data = $customer[0];
-				$login_id = $customer[0]["customer_id"];
-				$this->session->set("login_data", $login_data);
-				$this->session->set("login_id", $login_id);
+                $customer_data = $customer_data[0];
+                $this->set_customer_session($customer_data['customer_id']);
 		
-                return redirect()->to(base_url('/home/index', "refresh"));
+                return redirect()->to(base_url('/main/index/' . $shop['slug'], "refresh"));
 			}else{
-				$this->pageData['error'] = "User Existed";
+				$this->pageData['error'] = "Email or password incorrect";
 			}
 
 		}
-        
        
-        $this->load_view('profile',$slug);
+        $this->load_view('login',$slug);
 
 	}
     
 
-    public function login($slug)
+    public function profile($slug)
     {
           
   

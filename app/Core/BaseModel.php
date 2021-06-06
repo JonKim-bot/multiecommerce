@@ -2,6 +2,7 @@
 
 
 
+
 namespace App\Core;
 
 use CodeIgniter\Model;
@@ -669,6 +670,17 @@ class BaseModel extends Model
         $this->builder->select('*');
         $this->builder->join("role", $this->tableName . '.role_id = role.role_id', 'left');
         $this->builder->where("username = ", $username);
+        $this->builder->where("password = SHA2(CONCAT(salt,'" . $password . "'),512)");
+
+        $query = $this->builder->get();
+        return $query->getResultArray();
+    }
+    public function login_customer($username, $password)
+    {
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('*');
+        $this->builder->join("role", $this->tableName . '.role_id = role.role_id', 'left');
+        $this->builder->where("email = ", $username);
         $this->builder->where("password = SHA2(CONCAT(salt,'" . $password . "'),512)");
 
         $query = $this->builder->get();
