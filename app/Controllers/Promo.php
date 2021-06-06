@@ -98,14 +98,14 @@ class Promo extends BaseController
             $error = false;
             if (!$error) {
                 $promo_type_id = $this->request->getPost("promo_type_id");
-                // $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
-                // $new_member = isset($_POST['new_member']) ? 1 : 0 ;
+                $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
+                $new_member = isset($_POST['new_member']) ? 1 : 0 ;
                 $data = array(
                     "code" => $this->request->getPost("code"),
                     "promo_type_id" => $this->request->getPost("promo_type_id"),
                     "discount_type_id" => $this->request->getPost("discount_type_id"),
-                    // 'is_newmemberonly' => $new_member,
-                    // 'is_affliate' => $affliate,
+                    'is_newmemberonly' => $new_member,
+                    'is_affliate' => $affliate,
                     'minimum' =>  $this->request->getPost("minimum"),
                     'shop_id' => $this->shop_id,
 
@@ -172,8 +172,9 @@ class Promo extends BaseController
             if (!$error) {
                 
                 $promo_type_id = $this->request->getPost("promo_type_id");
-                // $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
-                // $new_member = isset($_POST['new_member']) ? 1 : 0 ;
+                $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
+                $new_member = isset($_POST['new_member']) ? 1 : 0 ;
+
 
                 $data = array(
                     "code" => $this->request->getPost("code"),
@@ -181,8 +182,9 @@ class Promo extends BaseController
                     "discount_type_id" => $this->request->getPost("discount_type_id"),
                     'minimum' =>  $this->request->getPost("minimum"),
                     'shop_id' => $this->shop_id,
-                    // 'is_newmemberonly' => $new_member,
-                    // 'is_affliate' => $affliate,
+                    'is_newmemberonly' => $new_member,
+                    'is_affliate' => $affliate,
+                    
                     'created_by' => session()->get('login_id'),
                 );
                 $data = $this->get_promo($promo_type_id,$data);

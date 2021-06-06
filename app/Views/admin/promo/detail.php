@@ -76,6 +76,10 @@
                                                     <?php } ?>
                                                     </tr>
                                                     <tr>
+                                                        <td><h3>New member only</h3></td>
+                                                        <td><?= $promo['is_newmemberonly'] == 1 ? "YES" : "NO" ?></td>
+                                                    </tr>
+                                                    <tr>
                                                     <?php if ($promo['promo_type_id'] == 3) {?>
                                                         <td><h3>SKU</h3></td>
                                                         <td><?= $promo['product_id']; ?></td>

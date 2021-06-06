@@ -479,13 +479,45 @@ class Main extends BaseController
         $pages = ceil($total_product / $max_per_page);
         return $pages;
     }
-    
+    public function check_if_member_new($promo){
+        if(!empty($this->session->get('customer_id'))){
+            $where = [
+                'orders.customer_id' => $this->session->get('customer_id'),
+            ];
+            $orders = $this->OrdersModel->getWhere($where);
+            if(empty($orders)){
+                if($promo['is_affliate']){
+                    // for referal person
+                    if($this->session->get('customer_data')['referal_id'] > 0){
+                        return true;
+                    }else{
+                        die(json_encode(array(
+                            'status' => false,
+                            'error' => "Invalid",
+                        )));
+                    }
+                }
+                return true;
+            }else{
+
+                die(json_encode(array(
+                    'status' => false,
+                    'error' => "Invalid",
+                )));
+            }
+        }else{
+            die(json_encode(array(
+                'status' => false,
+                'error' => "Invalid",
+            )));
+        }
+    }
     public function apply_promo(){
         if(isset($_POST)){
+
             $where = [
                 'code' => $_POST['promocode'],
                 'promo.shop_id' => $_POST['shop_id'],
-
                 'promo.is_active' => 1,
             ];
             $promo = $this->PromoModel->getWhere($where);
@@ -494,6 +526,9 @@ class Main extends BaseController
             ];
             $shop = $this->ShopModel->getWhere($whereshop)[0];
             if(!empty($promo)){
+                if($promo['is_newmemberonly'] == 1){
+                    $this->check_if_member_new($promo);
+                }
                 $promo = $promo[0];
                 $grand_total = str_replace("RM","",$_POST['grand_total']);
                 if($promo['promo_type_id'] != 1){

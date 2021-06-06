@@ -98,7 +98,7 @@
                                 </div>
 
                                 
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="new_member">
                                     <label class="form-check-label" for="new_member">For New Member Only</label>
@@ -106,8 +106,8 @@
                                 <div class="form-group">
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="for_affliate">
-                                    <label class="form-check-label" for="for_affliate">For Affliate</label>
-                                </div> -->
+                                    <label for="">Is Refered</label>
+                                </div>
                             </div>
                                 
                                 
