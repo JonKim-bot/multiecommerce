@@ -126,15 +126,85 @@ class Main extends BaseController
             return true;
         }
     }
+    public function validate_contact($contact){
+        $input['contact'] = $contact;
+        $input['contact'] = str_replace("-","",$input['contact']);
+        $input['contact'] = str_replace("+","",$input['contact']);
+
+        if(!$this->startsWith($input['contact'],"6")){
+            $input['contact'] = "6" . $input['contact'];
+        }
+        return $input['contact'];
+    }
+    function check_if_referral_code_exist($referal_code){
+        $where = [
+            'customer.referal_code' => $referal_code
+        ];
+        $customer = $this->CustomerModel->getWhere($where);
+        if(!empty($customer)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    function get_referal_id($referal_code){
+        if($referal_code != ""){
+
+            $where = [
+                'customer.referal_code' => $referal_code
+            ];
+            $customer = $this->CustomerModel->getWhere($where);
+            if(!empty($customer)){
+                return $customer[0]['customer_id'];
+            }else{
+                return 0;
+            }
+        }
+
+    }
+    function generate_refferal_code($customer_id){
+
+        $where = [
+            'customer.customer_id' => $customer_id
+
+        ];
+        $customer = $this->CustomerModel->getWhere($where)[0];
+        $customer_name = str_replace(' ','',$customer['username']);
+        $customer_code = substr($customer_name,0,4) . date('is');
+        if($this->check_if_referral_code_exist($customer_code) == true){
+            //if merchant_code existed 
+            //regenerate it
+            $customer_code = substr($customer_name,0,4) . date('is');
+        }
+        $this->CustomerModel->updateWhere($where,['referal_code' => $customer_code]);
+    }
+    public function set_customer_session($customer_id){
+        $where = [
+            'customer_id' => $customer_id
+        ];
+        $customer = $this->CustomerModel->getWhere($where);
+        $login_data = $customer[0];
+        $login_id = $customer[0]["customer_id"];
+        $this->session->set("login_data", $login_data);
+        $this->session->set("login_id", $login_id);
+    }
+    public function check_exist_function($function_id){
+        if(in_array($function_id,$this->pageData['shop_function'])){ 
+            return true;
+        }else{
+            return false;
+        }
+    }
 	public function signup($slug,$referal_code = "")
     {
-     
+        $shop= $this->get_shop($slug);
         if($referal_code != ""){
             if($this->check_referal_code_exist($referal_code) == false){
                 $this->show_404_if_empty([]);
             }
         }
-        $shop= $this->get_shop($slug);
+        $this->check_exist_function(1);
         $this->pageData['referal_code'] = $referal_code;
 		if($_POST){
 
@@ -143,12 +213,8 @@ class Main extends BaseController
 			if (empty($customer_data)) {
 
 				$hash = $this->hash($input['password']);
-				$input['contact'] = str_replace("-","",$input['contact']);
-				$input['contact'] = str_replace("+","",$input['contact']);
-
-				if(!$this->startsWith($input['contact'],"6")){
-					$input['contact'] = "6" . $input['contact'];
-				}
+				
+                $input['contact'] = $this->validate_contact($input['contafct']);
 
 				$data = [
 					'email' => $input['email'],
@@ -160,17 +226,14 @@ class Main extends BaseController
 					"last_login" => date("Y-m-d H:i:s"),
 					'login_method' => 'signup',
 				];
-				$customer_id = $this->CustomerModel->insertNew($data);
-				$where = [
-					'customer_id' => $customer_id
-				];
-				$customer = $this->CustomerModel->getWhere($where);
-				$login_data = $customer[0];
-				$login_id = $customer[0]["customer_id"];
-				$this->session->set("login_data", $login_data);
-				$this->session->set("login_id", $login_id);
-		
-                return redirect()->to(base_url('/home/index', "refresh"));
+                if(!empty($input['referal_code'])){
+                    $data['referal_id'] = $this->get_referal_id($input['referal_code']);
+                }
+                $customer_id = $this->CustomerModel->insertNew($data);
+                $data['referal_code'] = $this->generate_refferal_code($customer_id);             
+
+                $this->set_customer_session($customer_id);
+                return redirect()->to(base_url('/main/index/' . $shop['slug'], "refresh"));
 			}else{
 				$this->pageData['error'] = "User Existed";
 			}
@@ -370,6 +433,7 @@ class Main extends BaseController
         $required_option = array_column($product_option_required,'product_option_id');
         sort($required_option);
         $required_option = join("_",$required_option);
+        //sort require option and get required stuff
         $this->pageData['required_option_id'] = $required_option;
         $this->pageData['product_option'] = $product_option;
         $this->pageData['product_image'] = $product_image;

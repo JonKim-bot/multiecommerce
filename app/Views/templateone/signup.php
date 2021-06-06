@@ -32,7 +32,7 @@
                     <?php if(in_array(6,$shop_function)){ ?>
                         <div class="single-input-fields">
                             <label>Referal Code</label>
-                            <input type="text" name="contact" placeholder="Optional">
+                            <input type="text" name="referal_code" placeholder="Optional">
                         </div>
                     <?php } ?>
                     <div class="single-input-fields">
