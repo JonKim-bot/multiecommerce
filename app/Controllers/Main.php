@@ -375,7 +375,7 @@ class Main extends BaseController
         $this->pageData['product_image'] = $product_image;
         $this->pageData['product'] = $product;
 
-        $this->load_view('product_detail',$shop);
+        $this->load_view('product',$shop);
 
 
     }
