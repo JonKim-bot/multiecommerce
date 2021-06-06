@@ -80,43 +80,40 @@ class Main extends BaseController
             $this->pageData['cart_count'] = 0;
         }
 
-        
+        //1 membership
+        //2 Gift
+        //3 Upsales
+        //4 Customer Analysis
+        //5 SMS Blast
+        //6 Member Referal
 
     }
     public function voucher($slug){
         $shop= $this->get_shop($slug);
 
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
 
-        echo view("templateone/voucher");
-        echo view("templateone/footer");
+        $this->load_view('voucher',$slug);
+
     }
    
     public function gift($slug){
         $shop= $this->get_shop($slug);
 
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
 
-        echo view("templateone/gift");
-        echo view("templateone/footer");
+        $this->load_view('gift',$slug);
+
     }
     public function gift_detail($slug){
         $shop= $this->get_shop($slug);
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
-        echo view("templateone/gift_detail");
-        echo view("templateone/footer");
+   
+        $this->load_view('gift_detail',$slug);
+
     }
     public function voucher_detail($slug){
         $shop= $this->get_shop($slug);
 
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
+        $this->load_view('voucher_detail',$slug);
 
-        echo view("templateone/voucher_detail");
-        echo view("templateone/footer");
     }
     public function check_referal_code_exist($referal_code){
         $where = [
@@ -180,11 +177,10 @@ class Main extends BaseController
 
 		}
         
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
+     
+        $this->load_view('signup',$slug);
 
-        echo view("templateone/signup");
-        echo view("templateone/footer");
+        
 
 	}
     public function profile($slug)
@@ -233,11 +229,8 @@ class Main extends BaseController
 
 		}
         
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
-
-        echo view("templateone/profile");
-        echo view("templateone/footer");
+       
+        $this->load_view('profile',$slug);
 
 	}
     
@@ -268,11 +261,9 @@ class Main extends BaseController
 			}
 
 		}
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
+     
+        $this->load_view('login',$slug);
 
-        echo view("templateone/login");
-        echo view("templateone/footer");
 	}
 
     public function get_shop($slug,$is_id = false){
@@ -310,12 +301,17 @@ class Main extends BaseController
     {
         $this->pageData['shop'] = $this->get_shop($slug);
 
+
+        $this->load_view('failed',$slug);
+
+
+    }
+
+    public function load_view($view_name,$shop){
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
-
-        echo view("templateone/failed");
+        echo view("templateone/" . $view_name);
         echo view("templateone/footer");
-
     }
 
     
@@ -323,11 +319,7 @@ class Main extends BaseController
     {
         $this->pageData['shop'] = $this->get_shop($slug);
 
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
-
-        echo view("templateone/success");
-        echo view("templateone/footer");
+        $this->load_view('success',$slug);
 
     }
 
@@ -383,10 +375,8 @@ class Main extends BaseController
         $this->pageData['product_image'] = $product_image;
         $this->pageData['product'] = $product;
 
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($shop);
-        echo view("templateone/product");
-        echo view("templateone/footer");
+        $this->load_view('product_detail',$shop);
+
 
     }
 
@@ -489,20 +479,18 @@ class Main extends BaseController
         $order_history = $this->OrdersModel->getHistory($_GET['keyword'],$shop['shop_id']);
 
         $this->pageData['order_history'] = $order_history;
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($shop);
-        echo view("templateone/order_history");
-        echo view("templateone/footer");
+
+        $this->load_view('order_history',$shop);
+
     }
     public function search($slug){
         
 
         $shop = $this->get_shop($slug);
      
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($shop);
-        echo view("templateone/search");
-        echo view("templateone/footer");
+  
+        $this->load_view('search',$shop);
+
     }
 
     
@@ -576,11 +564,9 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
+       
+        $this->load_view('payment',$slug);
 
-        echo view("templateone/payment");
-        echo view("templateone/footer");
 
     }
     
@@ -593,11 +579,9 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
+        
+        $this->load_view('cart',$slug);
 
-        echo view("templateone/cart");
-        echo view("templateone/footer");
 
     }
     
@@ -647,11 +631,9 @@ class Main extends BaseController
         
         $this->pageData['product'] = $product;
 
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($shop);
+    
+        $this->load_view('index',$slug);
 
-        echo view("templateone/index");
-        echo view("templateone/footer");
 
     }
     
@@ -703,11 +685,9 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         // $this->debug($product);
-        echo view("templateone/header", $this->pageData);
-        $this->load_css($this->pageData['shop']);
+    
+        $this->load_view('shop',$slug);
 
-        echo view("templateone/shop");
-        echo view("templateone/footer");
 
     }
     

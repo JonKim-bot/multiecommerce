@@ -30,10 +30,10 @@
                         <input type="tel" name="contact" placeholder="Enter contact" required>
                     </div>
                     <?php if(in_array(6,$shop_function)){ ?>
-                    <div class="single-input-fields">
-                        <label>Referal Code</label>
-                        <input type="text" name="contact" placeholder="Optional">
-                    </div>
+                        <div class="single-input-fields">
+                            <label>Referal Code</label>
+                            <input type="text" name="contact" placeholder="Optional">
+                        </div>
                     <?php } ?>
                     <div class="single-input-fields">
                         <label>Password</label>
