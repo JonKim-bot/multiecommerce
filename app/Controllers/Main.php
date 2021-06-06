@@ -214,6 +214,7 @@ class Main extends BaseController
         if($this->check_exist_function($function_id) == false){
             $this->show_404_if_empty([]);
         }
+
     }
     public function check_exist_function($function_id){
         if(in_array($function_id,$this->pageData['shop_function'])){ 
@@ -236,7 +237,7 @@ class Main extends BaseController
 		if($_POST){
 
 			$input = $this->request->getPost();
-			$customer_data = $this->CustomerModel->getWhere(['customer.shop_id' => $input['shop_id'] ,'email' => $input["email"]]);
+			$customer_data = $this->CustomerModel->getWhere(['customer.shop_id' => $shop['shop_id'] ,'email' => $input["email"]]);
 			if (empty($customer_data)) {
 
 				$hash = $this->hash($input['password']);
@@ -244,7 +245,7 @@ class Main extends BaseController
                 $input['contact'] = $this->validate_contact($input['contact']);
 
 				$data = [
-                    'shop_id' => $input['shop_id'],
+                    'shop_id' => $shop['shop_id'],
 					'email' => $input['email'],
 					'contact' => $input['contact'],
 					'real_password' => $input['password'],
@@ -486,7 +487,7 @@ class Main extends BaseController
             ];
             $orders = $this->OrdersModel->getWhere($where);
             if(empty($orders)){
-                if($promo['is_affliate']){
+                if($promo['is_affliate'] == 1){
                     // for referal person
                     if($this->session->get('customer_data')['referal_id'] > 0){
                         return true;
@@ -494,6 +495,7 @@ class Main extends BaseController
                         die(json_encode(array(
                             'status' => false,
                             'error' => "Invalid",
+                            'message' => 'This promo code is for referal member only',
                         )));
                     }
                 }
@@ -502,12 +504,16 @@ class Main extends BaseController
 
                 die(json_encode(array(
                     'status' => false,
+                    'message' => 'This promo code is for new member only',
+
                     'error' => "Invalid",
                 )));
             }
         }else{
             die(json_encode(array(
                 'status' => false,
+                'message' => 'This promo code is for login only',
+
                 'error' => "Invalid",
             )));
         }
@@ -526,10 +532,10 @@ class Main extends BaseController
             ];
             $shop = $this->ShopModel->getWhere($whereshop)[0];
             if(!empty($promo)){
-                if($promo['is_newmemberonly'] == 1){
+                $promo = $promo[0];
+                if($promo['is_newmemberonly'] == 1 || $promo['is_affliate'] == 1){
                     $this->check_if_member_new($promo);
                 }
-                $promo = $promo[0];
                 $grand_total = str_replace("RM","",$_POST['grand_total']);
                 if($promo['promo_type_id'] != 1){
 
@@ -569,6 +575,8 @@ class Main extends BaseController
                 die(json_encode(array(
                     'status' => false,
                     'error' => "Invalid",
+                    'message' => 'Error',
+
                 )));
 
             }

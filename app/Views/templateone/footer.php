@@ -134,6 +134,7 @@
 
 
 
+
 <script>
 
     function applyPromo(promo_code = ''){
@@ -148,6 +149,7 @@
         if(promo_id != "0"){
             Swal.fire({
                 title: "Promocode already applyed",
+
                 text: "Promocode already applyed",
                 type: 'error'
             })
@@ -201,7 +203,7 @@
 
                     Swal.fire({
                         title: "Promocode not valid",
-                        text: "Invalid Promocode",
+                        text: data.message,
                         type: 'error'
                     })
                 }else{

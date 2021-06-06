@@ -100,6 +100,9 @@ class Promo extends BaseController
                 $promo_type_id = $this->request->getPost("promo_type_id");
                 $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
                 $new_member = isset($_POST['new_member']) ? 1 : 0 ;
+                if($affliate == 1){
+                    $new_member = 1;
+                }
                 $data = array(
                     "code" => $this->request->getPost("code"),
                     "promo_type_id" => $this->request->getPost("promo_type_id"),
@@ -174,8 +177,9 @@ class Promo extends BaseController
                 $promo_type_id = $this->request->getPost("promo_type_id");
                 $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
                 $new_member = isset($_POST['new_member']) ? 1 : 0 ;
-
-
+                if($affliate == 1){
+                    $new_member = 1;
+                }
                 $data = array(
                     "code" => $this->request->getPost("code"),
                     "promo_type_id" => $this->request->getPost("promo_type_id"),
@@ -184,7 +188,7 @@ class Promo extends BaseController
                     'shop_id' => $this->shop_id,
                     'is_newmemberonly' => $new_member,
                     'is_affliate' => $affliate,
-                    
+
                     'created_by' => session()->get('login_id'),
                 );
                 $data = $this->get_promo($promo_type_id,$data);

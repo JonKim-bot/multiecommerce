@@ -119,10 +119,9 @@
                                     <label class="form-check-label" for="new_member">For New Member Only</label>
                                 </div>
                                 <div class="form-group">
-                                <label for="">Is Refered</label>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="new_member">
-                                    <label class="form-check-label" for="new_member">For Affliate</label>
+                                    <input type="checkbox" class="form-check-input" name="for_affliate">
+                                    <label class="form-check-label" for="new_member">For Refered member only (person who been referal in)</label>
                                 </div>
                             </div>
                     <div class="form-group">
