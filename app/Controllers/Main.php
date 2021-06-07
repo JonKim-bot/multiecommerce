@@ -134,6 +134,7 @@ class Main extends BaseController
                 'orders.grand_total >=' => $gift['order_amount']
             ];
             $orders = $this->OrdersModel->getClosed($where)[0];
+
             $data = [
                 'orders_id' => $orders['orders_id'],
                 'customer_id' => $this->session->get('customer_id'),
@@ -160,20 +161,30 @@ class Main extends BaseController
                 'orders.customer_id' => $this->session->get('customer_id'),
             ];
             $orders = $this->OrdersModel->getWhere($where);
+      
             if(!empty($orders)){
-                $where = [
-                    'customer_gift.orders_id' => $orders[0]['orders_id']
-                ];
+                $customer_gift_count = 0;
+                foreach($orders as $row){
+
+                    $where = [
+                        'customer_gift.orders_id' => $row['orders_id']
+                    ];
+
+                    $customer_gift_count += count($this->CustomerGiftModel->getWhere($where));
+                }
+                
                 //check how many reddeem already on this custonmer gift id
-                $customer_gift_count = count($this->CustomerGiftModel->getWhere($where));
             }else{
                 $customer_gift_count = 0;
+
             }
             $gift[$key]['count_gift'] =  $customer_gift_count;
             $gift[$key]['count'] = count($orders) - $customer_gift_count;
 
         }
+
         $this->pageData['gift'] = $gift;
+
 
         echo view("templateone/gift_col" ,$this->pageData);
     }

@@ -41,21 +41,7 @@
         redeem(gift_id);
     });
 
-    function redeem(gift_id){
-        let postParam = {
-            slug : "<?= $shop['slug'] ?>",
-            gift_id : gift_id,
-        }
-        $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
-            // $('.gift_col').html(html);
-            Swal.fire({
-                title: "Redeem successful",
-                text: "Redeem successful",
-                type: 'success'
-            });
-            load_gift();
-        });
-    }
+
 
 
 </script>
