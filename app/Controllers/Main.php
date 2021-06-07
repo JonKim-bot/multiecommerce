@@ -167,7 +167,7 @@ class Main extends BaseController
                 ])) ; 
             }
             $remarks = 'Deduct ' . $voucher['redeem_point'] . " for voucher " .$voucher['voucher'];
-            $this->PointModel->point_in($customer_id,$voucher['redeem_point'],$remarks);
+            $this->PointModel->point_out($customer_id,$voucher['redeem_point'],$remarks,$voucher_id);
             $data = [
                 'customer_id' => $customer_id,
                 'redeem_date' => date('Y-m-d h:i:s'),
@@ -242,6 +242,8 @@ class Main extends BaseController
     public function load_voucher(){
         $slug = $_POST['slug'];
         $shop= $this->get_shop($slug);
+        $this->pageData['selected'] = $_POST['selected'];
+
         if($_POST['selected'] == 1){
             $where = [
                 'voucher.shop_id' => $shop['shop_id']

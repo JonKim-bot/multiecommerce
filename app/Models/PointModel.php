@@ -66,6 +66,7 @@ class PointModel extends BaseModel
             'point_in' => $amount,
             'orders_id' => $orders_id,
             'balance' => $balance + $amount,
+            
             'remarks' => $remarks,
 
         ];
