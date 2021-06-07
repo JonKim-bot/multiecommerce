@@ -277,6 +277,7 @@
             $('.shopping-cart').html(html);
         });
     }
+    
     function get_ajax_cart(){
         $.post("<?= base_url('main/load_cart') ?>", {}, function(html){
             $('#ajax_cart').html(html);

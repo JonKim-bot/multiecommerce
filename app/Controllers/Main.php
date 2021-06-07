@@ -112,15 +112,29 @@ class Main extends BaseController
 
         $session->destroy();
 
-
         return redirect()->to( base_url('main/index/' . $slug, "refresh") );
     }
     public function voucher($slug){
-        $shop= $this->get_shop($slug);
 
+        $shop= $this->get_shop($slug);
 
         $this->load_view('voucher',$slug);
 
+    }
+    public function redeem(){
+        if($_POST){
+            $gift_id = $_POST['gift_id'];
+            $where = [
+                'gift.gift_id' => $gift_id,
+            ];
+            $gift = $this->GiftModel->getWhere($where)[0];
+            $where = [
+                'orders.customer_id' => $this->session->get('customer_id'),
+                'orders.grand_total <=' => $gift['order_amount']
+            ];
+            $orders = $this->OrdersModel->getClosed($where);
+            $this->debug($orders);
+        }
     }
     public function load_gift(){
         $slug = $_POST['slug'];
@@ -128,7 +142,28 @@ class Main extends BaseController
         $where = [
             'gift.shop_id' => $shop['shop_id']
         ];
-        $this->pageData['gift'] = $this->GiftModel->getWhere($where);
+        $gift = $this->GiftModel->getWhere($where);
+        foreach($gift as $key=> $row){
+            $where = [
+                'orders.grand_total >=' => $row['order_amount'],
+                'orders.customer_id' => $this->session->get('customer_id'),
+            ];
+            $orders = $this->OrdersModel->getWhere($where);
+            if(!empty($orders)){
+                $where = [
+                    'customer_gift.orders_id' => $orders[0]['orders_id']
+                ];
+                //check how many reddeem already on this custonmer gift id
+                $customer_gift_count = count($this->CustomerGiftModel->getWhere($where));
+            }else{
+                $customer_gift_count = 0;
+            }
+            $gift[$key]['count_gift'] =  $customer_gift_count;
+            $gift[$key]['count'] = count($orders) - $customer_gift_count;
+
+        }
+        $this->pageData['gift'] = $gift;
+
         echo view("templateone/gift_col" ,$this->pageData);
     }
    
@@ -720,6 +755,7 @@ class Main extends BaseController
      
   
         $this->load_view('search',$shop);
+
 
     }
 

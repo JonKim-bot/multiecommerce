@@ -57,6 +57,34 @@ class OrdersModel extends BaseModel
         return $query->getResultArray();
     }
 
+    // function getAvaliableVoucher($customer_id,$amount){
+    //     $where = [
+    //         'orders.grand_total >=' => $amount,
+    //         'orders.customer_id' => $customer_id,
+    //         'customer_gift.orders_id'
+    //     ];
+    //     $builder = $this->db->table($this->tableName);
+    //     $builder->select('orders.*, order_customer.full_name,order_customer.contact,order_customer.address,
+    //     order_customer.email,orders_status.orders_status,order_detail.product_name,
+    //     order_detail.product_price,order_detail.product_quantity,order_detail.product_id,order_detail.product_total_price,
+    //     product.*,shop.shop_name,payment_method.payment_method,orders.created_at as created_date ,orders.created_at as created_date_,promo.code,promo.offer_amount
+    //     ');
+    //     $builder->join('shop', 'orders.shop_id = shop.shop_id');
+    //     $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
+    //     $builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id','left');
+    //     $builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id','left');
+    //     $builder->join('order_detail', 'order_detail.orders_id = orders.orders_id','left');
+    //     $builder->join('product', 'product.product_id = order_detail.product_id','left');
+    //     $builder->join('promo', 'promo.promo_id = orders.promo_id','left');
+    //     $builder->join('customer_gift', 'customer_gift.orders_id = orders.orders_id','left');
+
+    //     $builder->groupBy('orders.orders_id');
+        
+    //     $builder->where($where);
+    //     $builder->orderBy('orders.orders_id','DESC');
+    //     $query = $builder->get();
+    //     return $query->getResultArray();
+    // }
 
 
     function getHistory($keyword,$shop_id){
@@ -78,6 +106,17 @@ class OrdersModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }
+    
+    function getClosed($where){
+        $builder = $this->db->table($this->tableName);
+        $builder->select('orders.*');
+        $builder->where($where);
+        $builder->orderBy('orders.grand_total','DESC');
+        $builder->groupBy('orders.orders_id');
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
 
     function getWhereHistory($where,$limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);

@@ -72,16 +72,14 @@
         }
         $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
             $('.gift_col').html(html);
+            Swal.fire({
+                title: "Promocode already applyed",
+
+                text: "Promocode already applyed",
+                type: 'error'
+            })
         });
     }
-    function redeem(){
-        let postParam = {
-            slug : "<?= $shop['slug'] ?>"
-        }
-        $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
-            $('.gift_col').html(html);
-        });
-    }
-    }
+ 
     load_gift();
    </script>

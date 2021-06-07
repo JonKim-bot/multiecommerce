@@ -118,7 +118,7 @@
                                                 <div class="quantity" style="float:left">
                                                 <div class="pro-qty">
                                                   <span class="fa fa-minus dec qtybtn minus_qty"></span>
-                                                       <input type="text" class="text-white" value="1" id="product_quantity">
+                                                       <input type="text" readonly class="text-white" value="1" id="product_quantity">
                                                   <span class="fa fa-plus inc qtybtn add_qty"></span></div>
                                                 </div>
                                                 <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>

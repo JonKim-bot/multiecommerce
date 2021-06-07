@@ -68,7 +68,7 @@
                      
                         <div class="c-quantity" style="display:flex;justify-content: flex-end;">
                             <div class="dec button mr-2 qtybtn" onclick="minusQuantity('<?= $key ?>')">-</div>
-                            <input type="text" class="custom-control" value="<?= $row['quantity'] ?>">
+                            <input type="text" readonly class="custom-control" value="<?= $row['quantity'] ?>">
                             <div class="inc button ml-2 qtybtn" onclick="addQuantity('<?= $key ?>')">+</div>
                         </div>
                     </td>

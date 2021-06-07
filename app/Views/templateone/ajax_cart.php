@@ -22,7 +22,7 @@
         <div class="quantity">
         <div class="pro-qty">
                 <span class="fa fa-minus dec qtybtn" onclick="minusQuantity('<?= $key ?>')"></span>
-                    <input type="text" value="<?= $row['quantity'] ?>">
+                    <input type="text" readonly value="<?= $row['quantity'] ?>">
                 <span class="fa fa-plus inc qtybtn" onclick="addQuantity('<?= $key ?>')"></span></div>
             </div>
         </div>
