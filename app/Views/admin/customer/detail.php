@@ -141,7 +141,16 @@
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Downline</th>
-                                                                <td><?= $downline ?></td>
+                                                                <td>
+                                                                    <ul>
+                                                                    
+                                                                    <?php foreach($downline as $row){ ?>
+                                                                        <li><a href="<?= base_url() ?>/customer/detail/<?= $row['customer_id'] ?>" target="_blank"><?= $row['contact'] ?></a></li>
+
+                                                                    <?php } ?>
+                                                                    </ul>
+                                                                
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

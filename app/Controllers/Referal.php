@@ -11,7 +11,6 @@ class Referal extends BaseController
 
         $this->pageData = array();
 
-        // $this->MarketPlaceModel = new MarketPlaceModel();
         $this->CustomerModel = new CustomerModel();
     }
 

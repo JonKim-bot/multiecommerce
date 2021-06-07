@@ -109,6 +109,41 @@ class Customer extends BaseController
         echo view('admin/footer');
     }
 
+    function get_recursive_downline($downline, $child = [])
+    {
+        // $this->debug($downline);
+        $got_child = false;
+
+        $parent = $child;
+
+        if (empty($parent)) {
+            $parent = $downline;
+        }
+
+        $child = [];
+
+        foreach ($parent as $row) {
+            $where = [
+                'customer.referal_id' => $row['customer_id'],
+            ];
+            $customers = $this->CustomerModel->getWhere($where);
+            // $this->debug($customers);
+            if (!empty($customers)) {
+                $got_child = true;
+
+                foreach ($customers as $customer) {
+                    array_push($downline, $customer);
+                    array_push($child, $customer);
+                }
+            }
+        }
+        // $this->debug($downline);
+        if ($got_child) {
+            return $this->get_recursive_downline($downline, $child);
+        } else {
+            return $downline;
+        }
+    }
     public function detail($customer_id)
     {
 
@@ -138,13 +173,10 @@ class Customer extends BaseController
         $this->pageData['orders'] = $orders;
         // $this->show_404_if_empty($customer);
 
-        if($customer[0]['referal_id'] > 0 ){
-            $this->pageData['downline'] = $this->CustomerModel->getWhere([
-                'customer.customer_id' => $customer[0]['referal_id']
-            ])[0]['contact'];
-        }else{
-            $this->pageData['downline'] = "none";
-        }
+     
+        $downline = $this->get_recursive_downline($customer);
+        $this->pageData['downline'] = $downline;
+
         $this->pageData["customer"] = $customer[0];
         $where = [
             'customer.shop_id' => $this->shop_id,
