@@ -227,7 +227,7 @@
                 </li>
                 <li>
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/wallet">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'transaction' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction">
                         <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
                         Transaction
                     </a>
