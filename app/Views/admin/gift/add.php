@@ -15,7 +15,7 @@
 
     <div class="container-fluid">
 
-        <div class="fade-in"    >
+        <div class="fade-in">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -41,21 +41,26 @@
                                         <?= $error; ?>
                                     </div>
                                 <?php } ?>
+                                              
+                                        
+                                <div class="form-group">
+                                    <label for="about">Image</label>
+                                    <input type="file" class="form-control" name="banner" placeholder="About" required>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="e.g. Best Restaurant In Town" required>
+                                    <input type="text" class="form-control" name="title" placeholder="e.g. Gift" required>
                                 </div>
-                                
                                 <div class="form-group">
-                                    <label for="">Icons
-                                    <br>
-                                    Referrence
-                                    <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="blank">https://fontawesome.com/v4.7.0/cheatsheet/</a>
-
-                                    </label>
-                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" required>
+                                    <label for="">Order Amount Above</label>
+                                    <input type="number" class="form-control" name="order_amount" placeholder="e.g. 45" required>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label for="">Valid until</label>
+                                    <input type="date" class="form-control" name="valid_until" placeholder="e.g. Gift" required>
+                                </div>
+                  
                                 <!-- <div class="form-group">
                                     <label for="gift">Image</label>
                                     <input type="file" class="form-control" name="banner" placeholder="Gift" required>
@@ -63,9 +68,9 @@
                                  -->
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "></textarea>
+                                    <textarea class="form-control" name="description" placeholder="Eg : Gift for purchase over RM100 "></textarea>
                                 </div>
-
+                           
                             
                                 <div class="form-group">
                                     <button class="btn btn-primary float-right" type="submit"> Submit</button>

@@ -35,6 +35,22 @@ class Gift extends BaseController
         echo view('admin/footer');
     }
 
+    public function change_status($gift_id){
+        $where = [
+            'gift_id' => $gift_id
+
+        ];
+        $gift = $this->GiftModel->getWhere($where)[0];
+        if($gift['is_active'] == 1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        $this->GiftModel->updateWhere($where,['is_active' => $status]);
+
+        return redirect()->to(base_url('gift' ,"refresh"));
+
+    }
     public function add()
     {
         if ($_POST) {
@@ -43,25 +59,18 @@ class Gift extends BaseController
             $error = false;
 
             if (!$error) {
-                
+                $banner = $this->upload_image('banner');
                 $data = [
-                    'title' => $this->request->getPost('title'),
+                    'gift' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
-                    'icons' => $this->request->getPost('icons'),
-
-                    'shop_id' => $this->shop_id,
+                    'order_amount' => $this->request->getPost('order_amount'),
+                    'valid_until' => $this->request->getPost('valid_until'),
+                    'shop_id' =>$this->shop_id,
                     'created_by' => session()->get('login_id'),
                 ];
-                
-                // $image = $this->upload_image_base('banner');
-
-                // if($image != ""){
-                //     $data['banner'] = $image;
-                // }
-          
-                // $this->debug($data);
-                // dd($data);
-
+                if(!empty($banner)){
+                    $data['banner'] = $banner;
+                }
                 $this->GiftModel->insertNew($data);
 
                 return redirect()->to(base_url('gift', 'refresh'));
@@ -109,21 +118,22 @@ class Gift extends BaseController
             $input = $this->request->getPost();
 
             if (!$error) {
+           
+                $banner = $this->upload_image('banner');
                 $data = [
-                    'icons' => $this->request->getPost('icons'),
-                    'title' => $this->request->getPost('title'),
+                    'gift' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
+                    'order_amount' => $this->request->getPost('order_amount'),
+                    'valid_until' => $this->request->getPost('valid_until'),
+                    'shop_id' =>$this->shop_id,
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];
 
-                // $image = $this->upload_image_base('banner');
-
-                // if($image != ""){
-                //     $data['banner'] = $image;
-                // }
-          
-          
+            
+                if(!empty($banner)){
+                    $data['banner'] = $banner;
+                }
 
                 $this->GiftModel->updateWhere($where, $data);
 

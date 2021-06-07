@@ -36,7 +36,7 @@
                     </div> -->
                     <div class="form-group">
                         <label for="about">Image</label>
-                        <input type="file" class="form-control" name="banner" placeholder="About" required>
+                        <input type="file" class="form-control" name="banner" placeholder="About" >
                     </div>
 
                     <div class="form-group">

@@ -40,8 +40,14 @@
                                         <tr role="row">
                                             <th>No.</th>
                                             <th data-sort="name" data-filter="name">Banner</th>
-
                                             <th data-sort="name" data-filter="name">Gift</th>
+
+
+                                            <th data-sort="name" data-filter="name">Description</th>
+                                            <th data-sort="name" data-filter="name">Valid Until</th>
+                                            <th data-sort="name" data-filter="name">Order Amount</th>
+                                            <th data-sort="name" data-filter="name">Is Active</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -53,16 +59,24 @@
                                             <tr>
                                                 
                                                 <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>"><?= $i ?></a></td>
-                                                <!-- <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>">
-                                                <img src="<?= base_url() . $row['banner']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
-
-                                                </a></td> -->
+                                             
                                                 <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>">
-                                                <i class="fa <?= $row['icons'] ?> fa-2x"></i>
+                                                <img src="<?= base_url() . $row['banner']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
                                                 </a></td>
 
-                                                <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>"><?= $row['title'] ?></a></td>
-                                                
+                                                <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>"><?= $row['gift'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>"><?= $row['description'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>"><?= $row['valid_until'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/gift/detail/<?= $row['gift_id']?>"><?= $row['order_amount'] ?></a></td>
+                                               <td>
+                                               
+                                                <?php if($row['is_active'] == 0) { ?>
+                                            <a class="btn btn-danger" href="<?= base_url("gift/change_status/") . "/" . $row['gift_id'] ?>">Unactive</a>
+                                        <?php }else{ ?>
+                                       
+                                        <a class="btn btn-primary" href="<?= base_url("gift/change_status/") . "/" . $row['gift_id'] ?>">Active</a>
+                                        <?php } ?>
+                                               </td>
                                                 <td><a href="<?= base_url() ?>/gift/delete/<?= $row['gift_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
                                             </tr>
                                         <?php

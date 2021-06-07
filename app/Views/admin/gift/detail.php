@@ -51,14 +51,7 @@
                                                     <tr>
                                                         <td><h3>Title</h3></td>
                                                         <td><?= $gift[
-                                                            'title'
-                                                        ] ?></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td><h3>Icons</h3></td>
-                                                        <td><?= $gift[
-                                                            'icons'
+                                                            'gift'
                                                         ] ?></td>
 
                                                     </tr>
@@ -69,6 +62,22 @@
                                                         ] ?></td>
 
                                                     </tr>
+                                                    <tr>
+                                                        <td><h3>Valid until</h3></td>
+                                                        <td><?= $gift[
+                                                            'valid_until'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Order Amount Above</h3></td>
+                                                        <td><?= $gift[
+                                                            'order_amount'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                  
+                                                 
                                                     
                                                 </table>
                                             </div>

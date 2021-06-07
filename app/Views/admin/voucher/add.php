@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Valid until</label>
-                                    <input type="date" class="form-control" name="valid_until" placeholder="e.g. Voucher" required>
+                                    <input type="date" class="form-control" name="date" placeholder="e.g. Voucher" required>
                                 </div>
                   
                                 <!-- <div class="form-group">

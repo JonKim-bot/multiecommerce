@@ -35,23 +35,33 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" value="<?= $gift['title']?>" placeholder="e.g. Best Restaurant In Town" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Decription</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $gift['description']?></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Icons
-                                    <br>
-                                    Referrence
-                                    <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="blank">https://fontawesome.com/v4.7.0/cheatsheet/</a>
+                        <label for="about">Image</label>
+                        <input type="file" class="form-control" name="banner" placeholder="About" >
+                    </div>
 
-                                    </label>
-                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" value="<?= $gift['icons'] ?>" required>
-                                </div>
-                                
+                    <div class="form-group">
+                        <label for="">Title</label>
+                        <input type="text" class="form-control" value="<?= $gift['gift'] ?>" name="title" placeholder="e.g. Gift" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Order Amount Above</label>
+                        <input type="number" class="form-control" value="<?= $gift['order_amount'] ?>" name="order_amount" placeholder="e.g. 45" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Valid until</label>
+                        <input type="date" class="form-control" value="<?= $gift['valid_until'] ?>" name="valid_until" placeholder="e.g. Gift" required>
+                    </div>
+        
+                    <!-- <div class="form-group">
+                        <label for="gift">Image</label>
+                        <input type="file" class="form-control" name="banner" placeholder="Gift" required>
+                    </div>
+                        -->
+                    <div class="form-group">
+                        <label for="">Description</label>
+                        <textarea class="form-control"  name="description" placeholder="Eg : Gift for purchase over RM100 "><?= $gift['description'] ?></textarea>
+                    </div>
+              
                     
                     <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>
