@@ -117,7 +117,7 @@
 
 
                                             <th data-sort="name" data-filter="name">Redeem Date</th>
-                                            <th data-sort="name" data-filter="name">Point Used</th>
+                                            <th data-sort="name" data-filter="name">Is Approve</th>
 
                                         </tr>
                                     </thead>
@@ -135,7 +135,15 @@
 
                                                 <td><?= $row['gift'] ?></td>
                                                 <td><?= $row['redeem_date'] ?></td>
-                                                <td><?= $row['point_used'] ?></td>
+                                                <td>
+                                                
+                                                <?php if($row['is_approve'] == 0) { ?>
+                                            <a class="btn btn-danger" href="<?= base_url("gift/approve/") . "/" . $row['customer_gift_id'] ?>">Unactive</a>
+                                        <?php }else{ ?>
+                                       
+                                        <a class="btn btn-primary" href="<?= base_url("gift/approve/") . "/" . $row['customer_gift_id'] ?>">Active</a>
+                                        <?php } ?>
+                                                </td>
 
                                             </tr>
                                         <?php

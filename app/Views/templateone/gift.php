@@ -37,9 +37,9 @@
                                 <div class="select-Categories pb-30">
                                     <div class="select-job-items2 mb-30">
                                         <div class="col-xl-12">
-                                            <select name="select2">
-                                                <option value="">All</option>
-                                                <option value="">My Gift</option>
+                                            <select name="select2" id="gift_select">
+                                                <option value="1">All</option>
+                                                <option value="2">My Gift</option>
                                             </select>
                                         </div>
                                     </div>
@@ -67,16 +67,23 @@
    
    <script>
     
-        function load_gift(){
+        function load_gift(selected = 1){
              let postParam = {
-                 slug : "<?= $shop['slug'] ?>"
+                 slug : "<?= $shop['slug'] ?>",
+                 selected : selected,
              }
              $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
                  $('.gift_col').html(html);
                  
              });
          }
-      
+         
+
+        $("#gift_select").on("change", function() {
+            var selected_value = $(this).val();
+            load_gift(selected_value);    
+        });
+
          function redeem(gift_id){
             let postParam = {
                 slug : "<?= $shop['slug'] ?>",
@@ -87,7 +94,7 @@
                 Swal.fire({
                     title: "Redeem done",
                     text: "Please wait for admin to verify your gift and contact you",
-                    type: 'info'
+                    type: 'success'
                 });
                 load_gift();
             });

@@ -18,7 +18,7 @@ class CustomerGiftModel extends BaseModel
     
     function getAll($limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
-        $builder->select('customer_gift.*, customer.name,gift.gift');
+        $builder->select('customer_gift.*, customer.name,gift.gift,gift.*');
         $builder->join('customer', 'customer.customer_id = customer_gift.customer_id');
         $builder->join('gift', 'gift.gift_id = customer_gift.gift_id');
         $query = $builder->get();
@@ -26,7 +26,7 @@ class CustomerGiftModel extends BaseModel
     }
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
-        $builder->select('customer_gift.*, customer.name,gift.gift');
+        $builder->select('customer_gift.*, customer.name,gift.gift,gift.*');
         $builder->join('customer', 'customer.customer_id = customer_gift.customer_id');
         $builder->join('gift', 'gift.gift_id = customer_gift.gift_id');
         $builder->where($where);

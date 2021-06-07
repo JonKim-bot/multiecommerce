@@ -10,7 +10,7 @@ class Gift extends BaseController
 {
     public function __construct()
     {
-        
+
         $this->pageData = [];
         $this->GiftModel = new GiftModel();
         $this->CustomerGiftModel = new CustomerGiftModel();
@@ -108,6 +108,22 @@ class Gift extends BaseController
         echo view('admin/header', $this->pageData);
         echo view('admin/gift/detail');
         echo view('admin/footer');
+    }
+    public function approve($customer_gift_id){
+        $where = [
+            'customer_gift.customer_gift_id' => $customer_gift_id
+
+        ];
+        $gift = $this->CustomerGiftModel->getWhere($where)[0];
+        if($gift['is_approve'] == 1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        $this->CustomerGiftModel->updateWhere($where,['is_approve' => $status]);
+
+        return redirect()->to(base_url('gift/detail/' . $gift['gift_id'], "refresh"));
+
     }
 
     public function edit($gift_id)

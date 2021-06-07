@@ -148,45 +148,69 @@ class Main extends BaseController
             ])) ;           
         }
     }
+
     public function load_gift(){
         $slug = $_POST['slug'];
         $shop= $this->get_shop($slug);
-        $where = [
-            'gift.shop_id' => $shop['shop_id']
-        ];
-        $gift = $this->GiftModel->getWhere($where);
-        foreach($gift as $key=> $row){
+        $this->pageData['selected'] = $_POST['selected'];
+        if($_POST['selected'] == 1){
             $where = [
-                'orders.grand_total >=' => $row['order_amount'],
-                'orders.customer_id' => $this->session->get('customer_id'),
+                'gift.shop_id' => $shop['shop_id']
             ];
-            $orders = $this->OrdersModel->getWhere($where);
-      
-            if(!empty($orders)){
-                $customer_gift_count = 0;
-                foreach($orders as $row){
-
-                    $where = [
-                        'customer_gift.orders_id' => $row['orders_id']
-                    ];
-
-                    $customer_gift_count += count($this->CustomerGiftModel->getWhere($where));
+            $gift = $this->GiftModel->getWhere($where);
+            foreach($gift as $key=> $row){
+                $where = [
+                    'orders.grand_total >=' => $row['order_amount'],
+                    'orders.customer_id' => $this->session->get('customer_id'),
+                ];
+                $orders = $this->OrdersModel->getWhere($where);
+          
+                if(!empty($orders)){
+                    $customer_gift_count = 0;
+                    foreach($orders as $row){
+    
+                        $where = [
+                            'customer_gift.orders_id' => $row['orders_id']
+                        ];
+    
+                        $customer_gift_count += count($this->CustomerGiftModel->getWhere($where));
+                    }
+                    
+                    //check how many reddeem already on this custonmer gift id
+                }else{
+                    $customer_gift_count = 0;
+    
                 }
-                
-                //check how many reddeem already on this custonmer gift id
-            }else{
-                $customer_gift_count = 0;
-
+                $gift[$key]['count_gift'] =  $customer_gift_count;
+                $gift[$key]['count'] = count($orders) - $customer_gift_count;
+    
             }
-            $gift[$key]['count_gift'] =  $customer_gift_count;
-            $gift[$key]['count'] = count($orders) - $customer_gift_count;
+    
+            $this->pageData['gift'] = $gift;
 
+        }else{
+            $where = [
+                'customer_gift.is_approve' => 1,
+                'customer_gift.customer_id' => $this->session->get('customer_id'),
+            ];
+
+            $customer_gift = $this->CustomerGiftModel->getWhere($where);
+            $this->pageData['gift'] = $customer_gift;
         }
-
-        $this->pageData['gift'] = $gift;
 
 
         echo view("templateone/gift_col" ,$this->pageData);
+    }
+
+    public function load_voucher(){
+        $slug = $_POST['slug'];
+        $shop= $this->get_shop($slug);
+        $where = [
+            'voucher.shop_id' => $shop['shop_id']
+        ];
+        $voucher = $this->VoucherModel->getWhere($where);
+  
+        echo view("templateone/voucher_col" ,$this->pageData);
     }
    
     public function gift($slug){
