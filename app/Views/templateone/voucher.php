@@ -17,6 +17,7 @@
                                     </nav>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div> 
@@ -84,19 +85,29 @@
             load_voucher(selected_value);    
         });
 
-         function redeem(voucher_id){
+         function redeem_voucher(voucher_id){
             let postParam = {
                 slug : "<?= $shop['slug'] ?>",
                 voucher_id : voucher_id,
             }
-            $.post("<?= base_url('main/redeem_voucher') ?>", postParam, function(html){
+            $.post("<?= base_url('main/redeem_voucher') ?>", postParam, function(data){
                 // $('.voucher_col').html(html);
-                Swal.fire({
-                    title: "Redeem done",
-                    text: "Redeem voucher success",
-                    type: 'success'
-                });
-                load_voucher();
+                data = JSON.parse(data);
+                if(data.status){
+
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        type: 'success'
+                    });
+                    load_voucher();
+                }else{
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        type: 'error'
+                    });
+                }
             });
         }
        

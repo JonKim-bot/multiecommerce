@@ -157,16 +157,29 @@ class Main extends BaseController
             ];
             $voucher = $this->VoucherModel->getWhere($where)[0];
             
+            $customer_id  =  $this->session->get('customer_id');
+            $point_balance = $this->PointModel->get_balance($customer_id);
+            if($voucher['redeem_point'] > $point_balance){
+                die(json_encode([
+                    'status' => false,
+                    'title' => 'Redeem failed',
+                    'message' => 'Point not enough'
+                ])) ; 
+            }
+            $remarks = 'Deduct ' . $voucher['redeem_point'] . " for voucher " .$voucher['voucher'];
+            $this->PointModel->point_in($customer_id,$voucher['redeem_point'],$remarks);
             $data = [
-                'customer_id' => $this->session->get('customer_id'),
+                'customer_id' => $customer_id,
                 'redeem_date' => date('Y-m-d h:i:s'),
                 'voucher_id' => $voucher_id,
-                'point_used' => $voucher['point_used'],
+                'point_used' => $voucher['redeem_point'],
             ];
-            $gift = $this->CustomerGiftModel->insertNew($data);
+            $voucher = $this->CustomerVoucherModel->insertNew($data);
             die(json_encode([
                 'status' => true,
-                'message' => 'Reddeem successful'
+            
+                'title' => 'Redeem successful',
+                'message' => 'Reddem successful'
             ])) ;           
         }
     }

@@ -57,7 +57,7 @@ class PointModel extends BaseModel
         return $top_up_id;
     }
 
-    function point_in($customer_id, $amount, $remarks,$orders_id)
+    function point_in($customer_id, $amount, $remarks,$orders_id = 0)
     {
         $balance = $this->get_balance($customer_id);
 
@@ -242,6 +242,7 @@ class PointModel extends BaseModel
             'point.customer_id = customer.customer_id AND customer.deleted = 0',
             'left'
         );
+
         $this->builder->orderBy('point.created_date DESC');
         if (!empty($where)) {
             $this->builder->where($where);
