@@ -1,8 +1,8 @@
 <div class="c-subheader justify-content-between px-3">
 	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
 		<li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item"><a href="<?= base_url() ?>/Tag">Tag</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/tag/edit/<?= $tag['tag_id']?>">Edit Tag Details</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url() ?>customer">Customer</a></li>
+        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/customer/edit/<?= $customer['customer_id']?>">Edit Customer Details</a></li>
 	</ol>
 	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -14,11 +14,11 @@
 <main class="c-main">
 	
 <div class="container-fluid">
-    
+	
 	<div class="fade-in">
         <div class="card">
             <div class="card-header">
-                Edit Tag Details
+                Edit Customer Details
                 <div class="card-header-actions">
                     <a class="card-header-action">
                         <i class="cil-arrow-circle-top c-icon minimize-card"></i>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/tag/edit/<?=$tag["tag_id"]?>">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/customer/edit/<?=$customer["customer_id"]?>">
                     <!-- <div class="form-group">
                         <label for="">Profile Picture</label>
                         <div class="custom-file">
@@ -34,35 +34,48 @@
                             <label class="custom-file-label" for="" aria-describedby="">Choose file</label>
                         </div>
                     </div> -->
+                    <div class="form-group">
+                        <label for="">Profile Picture</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="thumbnail" id="thumbnail" multiple>
+                            <label class="custom-file-label" for="" aria-describedby="">Choose file</label>
+                        </div>
+                        <small class="smallalert">* LEAVE BLANK IF NOT CHANGE THUMBNAIL **</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" class="form-control" name="customer" placeholder="Username" value="<?= $customer["username"]?>" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name" value="<?= $customer["name"]?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Password</label>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <small class="smallalert"> * LEAVE BLANK IF NOT CHANGE PASSWORD **</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Confirm Password</label>
+                        <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+                        <small class="smallalert"> * LEAVE BLANK IF NOT CHANGE PASSWORD **</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Contact Number</label>
+                        <input type="text" class="form-control" name="contact" placeholder="Contact Number" value="<?= $customer["contact"]?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="email" placeholder="Email" value="<?= $customer["email"]?>" required>
+                    </div>
                     
-                    <div class="form-group">
-                        <label for="">Tag</label>
-                        <input type="text" class="form-control" name="tag" placeholder="Tag" value="<?= $tag["tag"]?>" required>
-                    </div>
-                   
-                    <div class="form-group">
-                        <label for="">Title</label>
-                        <input type="text" class="form-control" name="meta_title" value="<?= $tag["meta_title"]?>" placeholder="e.g. Orchard" required>
-                    </div>
-                    <div class="form-group">
-                                    <label for="banner">Icon</label>
-                                    <input type="file" class="form-control" name="banner" placeholder="Banner" >
-                                    <label for="" class="small text-danger">*Leave blank if not change image</label>
 
-                                </div>
-                    <div class="form-group">
-                        <label for="">Meta Description</label>
-                        <textarea class="form-control" name="meta_description"  placeholder="Orchard is a nice place..."><?= $tag["meta_description"]?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Meta Keywords</label>
-                        <input type="text" class="form-control" name="meta_keywords" value="<?= $tag["meta_keywords"]?>" placeholder="Comma Separated">
-                    </div>
+                   
+                
+                    
                     <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>
                     </div>
-                    
-                   
                 </form>
             </div>
             

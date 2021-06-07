@@ -1,37 +1,29 @@
-<?php
-
-namespace App\Controllers;
+<?php namespace App\Controllers;
 
 use App\Core\BaseController;
-use App\Models\CategoryModel;
+use App\Models\CustomerModel;
 
-class OrderCustomer extends BaseController
+class Customer extends BaseController
 {
+
     public function __construct()
     {
-        $this->pageData = [];
-        $this->CategoryModel = new CategoryModel();
-        if (
-            session()->get('admin_data') == null &&
-            uri_string() != 'access/login'
-        ) {
-            //  redirect()->to(base_url('access/login/'));
-            echo "<script>location.href='" .
-                base_url() .
-                "/access/login';</script>";
-        }
-        if (session()->get('admin_data')['type'] == 'MERCHANT') {
-            //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant == true;
-        }
+
+        $this->pageData = array();
+        $this->CustomerModel = new CustomerModel();
+  
     }
 
     public function index()
     {
-        $customer = $this->CategoryModel->getWhere([
-            'shop_id' => $this->shop_id,
-        ]);
+
+ 
+        $where = [
+            'customer.shop_id' => $this->shop_id,
+        ];
+        $customer = $this->CustomerModel->getWhere($where);
         $this->pageData['customer'] = $customer;
+
 
         echo view('admin/header', $this->pageData);
         echo view('admin/customer/all');
@@ -40,25 +32,70 @@ class OrderCustomer extends BaseController
 
     public function add()
     {
+
+        // $input = $this->request->getVar();
+        // $check = $this->request->getGet();
+
         if ($_POST) {
+
             $input = $this->request->getPost();
+
+            // $this->debug($input);
 
             $error = false;
 
+            $exists = $this->checkExists($input["username"]);
+            // $this->debug($exists);
+
+            if ($exists) {
+                $error = true;
+                $this->pageData["error"] = "Username already exists.";
+                $this->pageData["input"] = $input;
+            }
+
+            if ($input["password"] != $input["password2"]) {
+                $error = true;
+                $this->pageData["error"] = "Passwords do not match";
+                $this->pageData["input"] = $input;
+            }
+
+            //single upload
+            // $getUpload = $this->request->getFile('thumbnail');
+            // $thumbnail = $getUpload->getName();
+            // $tempName = $getUpload->getTempName();
+            // $getUpload->move('./assets/img/customer', $thumbnail);
+
+            //multiple upload
+            // $getUpload = $this->request->gPetFileMultiple('thumbnail');
+            // foreach ($getUpload as $files){
+            //     $thumbnail = $files->getName();
+            //     $files->move('./assets/img/customer', $thumbnail);
+            // }
+
             if (!$error) {
-                $data = [
-                    'category' => $this->request->getPost('customer'),
+
+                $hash = $this->hash($input['password']);
+
+                $data = array(
+                    'role_id' => 1,
+                    'name' => $input['name'],
+                    'username' => $input['username'],
+                    'contact' => $input['contact'],
+                    'email' => $input['email'],
+                    'password' => $hash['password'],
+                    'salt' => $hash['salt'],
                     'created_by' => session()->get('login_id'),
-                    'shop_id' => session()->get('admin_data')['shop_id'],
-                ];
+                );
 
                 // $this->debug($data);
                 // dd($data);
 
-                $this->CategoryModel->insertNew($data);
+                $this->CustomerModel->insertNew($data);
 
-                return redirect()->to(base_url('OrderCustomer', 'refresh'));
+                return redirect()->to(base_url('customer', "refresh"));
+
             }
+
         }
 
         echo view('admin/header', $this->pageData);
@@ -68,16 +105,15 @@ class OrderCustomer extends BaseController
 
     public function detail($customer_id)
     {
-        $where = [
-            'category_id' => $customer_id,
-        ];
-        $customer = $this->CategoryModel->getWhere($where);
-        if ($this->isMerchant == true) {
-            $this->check_is_merchant_from_shop($customer[0]['shop_id']);
-        }
-        // $this->show_404_if_empty($admin);
 
-        $this->pageData['customer'] = $customer[0];
+        $where = array(
+            "customer_id" => $customer_id,
+        );
+        $customer = $this->CustomerModel->getWhere($where);
+
+        // $this->show_404_if_empty($customer);
+
+        $this->pageData["customer"] = $customer[0];
 
         echo view('admin/header', $this->pageData);
         echo view('admin/customer/detail');
@@ -86,53 +122,73 @@ class OrderCustomer extends BaseController
 
     public function edit($customer_id)
     {
-        $where = [
-            'category_id' => $customer_id,
-        ];
 
-        $this->pageData['category'] = $this->CategoryModel->getWhere($where)[0];
+        $where = array(
 
-        if ($this->isMerchant == true) {
-            $this->check_is_merchant_from_shop(
-                $this->pageData['category']['shop_id']
-            );
-        }
+            "customer_id" => $customer_id,
+        );
+
+        $this->pageData["customer"] = $this->CustomerModel->getWhere($where)[0];
+
         if ($_POST) {
+
             $error = false;
 
             $input = $this->request->getPost();
 
-            if (!$error) {
-                $data = [
-                    'category' => $this->request->getPost('customer'),
-                    'shop_id' => session()->get('admin_data')['shop_id'],
-                    'modified_date' => date('Y-m-d H:i:s'),
-                    'modified_by' => session()->get('login_id'),
-                ];
+            $exists = $this->checkExists($input["username"], $customer_id);
 
-                //    if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
-                //         $file = $this->request->getFile('banner');
-                //         $new_name = $file->getRandomName();
-                //         $banner = $file->move('./public/images/article/', $new_name);
-                //         if ($banner) {
-                //             $banner = '/public/images/article/' . $new_name;
-                //             $data['image'] = $banner;
-                //         } else {
-                //             $error = true;
-                //             $error_message = "Upload failed.";
-                //         }
-
-                //     } else {
-                //         $error = true;
-                //         $error_message = "Please upload a receipt.";
-                //     }
-
-                $this->CategoryModel->updateWhere($where, $data);
-
-                return redirect()->to(
-                    base_url('OrderCustomer/detail/' . $customer_id, 'refresh')
-                );
+            if ($exists) {
+                $error = true;
+                $this->pageData["error"] = "Username already exists.";
+                $this->pageData["input"] = $input;
             }
+            if (!empty($input['password'])) {
+                if ($input["password"] != $input["password2"]) {
+                    $error = true;
+                    $this->pageData["error"] = "Passwords do not match";
+                    $this->pageData["input"] = $input;
+                }
+            }
+
+            //single upload
+            $getUpload = $this->request->getFile('thumbnail');
+            $thumbnail = $getUpload->getName();
+
+            //multiple upload
+            // $getUpload = $this->request->getFileMultiple('thumbnail');
+
+            if (!$error) {
+
+                $where = array(
+                    'customer_id' => $customer_id,
+                );
+
+                $data = array(
+                    'username' => $input['username'],
+                    'name' => $input['name'],
+                    'contact' => $input['contact'],
+                    'email' => $input['email'],
+                    "modified_date" => date("Y-m-d H:i:s"),
+                    'modified_by' => session()->get('login_id'),
+                );
+
+                if (!empty($thumbnail)) {
+                    $data['thumbnail'] = $thumbnail;
+                    $getUpload->move('./assets/img/customer', $thumbnail);
+
+                    // foreach ($getUpload as $files){
+                    //     $thumbnail = $files->getName();
+                    //     $files->move('./assets/img/customer', $thumbnail);
+                // }
+                }
+
+                $this->CustomerModel->updateWhere($where, $data);
+
+                return redirect()->to(base_url('customer/detail/' . $customer_id, "refresh"));
+
+            }
+
         }
 
         echo view('admin/header', $this->pageData);
@@ -142,8 +198,15 @@ class OrderCustomer extends BaseController
 
     public function delete($customer_id)
     {
-        $this->CategoryModel->softDelete($customer_id);
 
-        return redirect()->to(base_url('OrderCustomer', 'refresh'));
+        $this->CustomerModel->softDelete($customer_id);
+
+        return redirect()->to(base_url('customer', "refresh"));
     }
+
+    public function test()
+    {
+        die("hello world");
+    }
+
 }
