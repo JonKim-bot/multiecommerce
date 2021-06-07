@@ -17,6 +17,11 @@
                     <div class="properties-footer">
                         <div class="price">
                             <span>Purchase over > RM <?= $row['order_amount'] ?></span>
+                            <br>
+                            <?php if($selected == 2){ ?>
+                                <span>Redeem Date : <?= $row['redeem_date'] ?></span>
+
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

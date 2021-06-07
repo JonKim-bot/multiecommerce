@@ -18,7 +18,7 @@ class CustomerVoucherModel extends BaseModel
     
     function getAll($limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
-        $builder->select('customer_voucher.*, customer.name,voucher.voucher');
+        $builder->select('customer_voucher.*, customer.name,voucher.*');
         $builder->join('customer', 'customer.customer_id = customer_voucher.customer_id');
         $builder->join('voucher', 'voucher.voucher_id = customer_voucher.voucher_id');
         $query = $builder->get();
@@ -26,7 +26,7 @@ class CustomerVoucherModel extends BaseModel
     }
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
-        $builder->select('customer_voucher.*, customer.name,voucher.voucher');
+        $builder->select('customer_voucher.*, customer.name,voucher.*');
         $builder->join('customer', 'customer.customer_id = customer_voucher.customer_id');
         $builder->join('voucher', 'voucher.voucher_id = customer_voucher.voucher_id');
         $builder->where($where);

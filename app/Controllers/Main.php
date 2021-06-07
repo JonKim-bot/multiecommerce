@@ -191,7 +191,9 @@ class Main extends BaseController
         $this->pageData['selected'] = $_POST['selected'];
         if($_POST['selected'] == 1){
             $where = [
-                'gift.shop_id' => $shop['shop_id']
+                'gift.shop_id' => $shop['shop_id'],
+                'DATE(gift.valid_until) <=' => date('Y-m-d'), 
+
             ];
             $gift = $this->GiftModel->getWhere($where);
             foreach($gift as $key=> $row){
@@ -222,18 +224,16 @@ class Main extends BaseController
     
             }
 
-    
-            $this->pageData['gift'] = $gift;
-
         }else{
             $where = [
                 'customer_gift.is_approve' => 1,
+                'DATE(gift.valid_until) <=' => date('Y-m-d'), 
                 'customer_gift.customer_id' => $this->session->get('customer_id'),
             ];
 
-            $customer_gift = $this->CustomerGiftModel->getWhere($where);
-            $this->pageData['gift'] = $customer_gift;
+            $gift = $this->CustomerGiftModel->getWhere($where);
         }
+        $this->pageData['gift'] = $gift;
 
 
         echo view("templateone/gift_col" ,$this->pageData);
@@ -246,9 +246,18 @@ class Main extends BaseController
 
         if($_POST['selected'] == 1){
             $where = [
-                'voucher.shop_id' => $shop['shop_id']
+                'voucher.shop_id' => $shop['shop_id'],
+                'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
             ];
             $voucher = $this->VoucherModel->getWhere($where);
+        }else{
+            $where = [
+                'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
+
+                'customer_voucher.customer_id' => $this->session->get('customer_id'),
+            ];
+
+            $voucher = $this->CustomerVoucherModel->getWhere($where);
         }
         $this->pageData['voucher'] = $voucher;
         echo view("templateone/voucher_col" ,$this->pageData);
