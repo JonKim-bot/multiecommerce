@@ -116,7 +116,7 @@
 </head>
 <body>
     <!-- ? Preloader Start -->
-    <div id="preloader-active">
+    <!-- <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
@@ -125,7 +125,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Preloader Start -->
     <header>
         <div class="header-area">
@@ -175,7 +175,14 @@
                                     <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
 
                                     <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
-                                    <li><a href="<?= base_url() ?>/main/search/<?= $shop['slug'] ?>">Search</a></li>
+                                    <?php if(empty($customer_data)){ ?>
+
+                                        <li><a href="<?= base_url() ?>/main/search/<?= $shop['slug'] ?>">Search</a></li>
+                                    <?php }else{ ?>
+                                        <li><a href="<?= base_url() ?>/main/order_history/<?= $shop['slug'] ?>?keyword=<?= $customer_data['contact'] ?>">Order History</a></li>
+
+                                    <?php } ?>
+
                                     <?php if(in_array(1,$shop_function)){ ?>
                                         <?php if(empty($customer_data)){ ?>
                                             <li><a href="<?= base_url() ?>/main/login/<?= $shop['slug'] ?>">Login</a></li>

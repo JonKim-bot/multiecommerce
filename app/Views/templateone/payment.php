@@ -120,40 +120,22 @@
                 </div> -->
                 <section class="items-product1 pt-30">
             <div class="container">
+            <h1 class="text-center">Purchase to get gift</h1>
                 <div class="row">
+                <?php foreach($shop_gift as $row){ ?>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-items mb-20">
                             <div class="items-img">
-                                <img src="http://localhost/multiecome/assets/img/product_pic/1621041685_add88c508de11da87ab3.jpg" alt="">
+                                <img src="<?= base_url() . $row['banner']?>" alt="">
                             </div>
                             <div class="items-details">
-                                <h4><a href="pro-details.html">Men's Fashion</a></h4>
-                                <a href="pro-details.html" class="browse-btn">Shop Now</a>
+                                <h4><a href="pro-details.html">Purchase > RM <?= $row['order_amount'] ?></a></h4>
+                                <a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-items mb-20">
-                            <div class="items-img">
-                            <img src="http://localhost/multiecome/assets/img/product_pic/1621041685_add88c508de11da87ab3.jpg" alt="">
-                            </div>
-                            <div class="items-details">
-                                <h4><a href="pro-details.html">Women's Fashion</a></h4>
-                                <a href="pro-details.html" class="browse-btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-items mb-20">
-                            <div class="items-img">
-                            <img src="http://localhost/multiecome/assets/img/product_pic/1621041685_add88c508de11da87ab3.jpg" alt="">
-                            </div>
-                            <div class="items-details">
-                                <h4><a href="pro-details.html">Baby Fashion</a></h4>
-                                <a href="pro-details.html" class="browse-btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
+                   
                 </div>
             </div>
         </section>

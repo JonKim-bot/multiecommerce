@@ -33,6 +33,10 @@ use App\Models\ContactModel;
 use App\Models\OrdersLogModel;
 use App\Models\PremierResponseModel;
 use App\Models\ShopFunctionModel;
+use App\Models\GiftModel;
+use App\Models\VoucherModel;
+use App\Models\CustomerVoucherModel;
+use App\Models\CustomerGiftModel;
 
 class Main extends BaseController
 {
@@ -41,10 +45,14 @@ class Main extends BaseController
 
     public function __construct()
     {
+        $this->GiftModel = new GiftModel();
+        $this->CustomerVoucherModel = new CustomerVoucherModel();
+        $this->VoucherModel = new VoucherModel();
+        $this->CustomerGiftModel = new CustomerGiftModel();
+
         $this->PromoModel = new PromoModel();
         $this->CustomerModel = new CustomerModel();
         $this->PointModel = new PointModel();
-
         $this->ShopModel = new ShopModel();
         $this->OrdersLogModel = new OrdersLogModel();
 
@@ -122,8 +130,9 @@ class Main extends BaseController
         $this->load_view('gift',$slug);
 
     }
-    public function gift_detail($slug){
+    public function gift_detail($slug,$gift_id){
         $shop= $this->get_shop($slug);
+
    
         $this->load_view('gift_detail',$slug);
 
@@ -744,11 +753,13 @@ class Main extends BaseController
         $where = [
             'shop_id' => $shop['shop_id']
         ];
+        $shop_gift = $this->GiftModel->getWhere(array_merge($where,['is_active' => 1]));
         $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
         $this->pageData['shop_payment_method'] = array_column($shop_payment_method,'payment_method_id');
         
         $payment_method = $this->PaymentMethod->getAll();
         $this->pageData['payment_method'] = $payment_method;
+        $this->pageData['shop_gift'] = $shop_gift;
 
         $where = [
             'orders.order_code' => $order_code,
