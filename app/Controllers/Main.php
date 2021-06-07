@@ -122,6 +122,12 @@ class Main extends BaseController
         $this->load_view('voucher',$slug);
 
     }
+    public function load_gift(){
+        $slug = $_POST['slug'];
+        $shop= $this->get_shop($slug);
+
+        echo view("templateone/gift_col" );
+    }
    
     public function gift($slug){
         $shop= $this->get_shop($slug);
@@ -695,6 +701,7 @@ class Main extends BaseController
         if($this->startsWith($_GET['keyword'],"0")){
             $_GET['keyword'] = "+6" . $_GET['keyword'];
         }
+
 
         $order_history = $this->OrdersModel->getHistory($_GET['keyword'],$shop['shop_id']);
 
