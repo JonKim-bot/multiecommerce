@@ -16,8 +16,12 @@ class Referal extends BaseController
     }
 
     public function index()
+
     {
-        $users = $this->CustomerModel->getAll();
+        $where = [
+            'customer.shop_id' => $this->shop_id,
+        ];
+        $users = $this->CustomerModel->getWhere($where);
         for($i = 0; $i < count($users); $i++){
             $users[$i]['family'] = $this->CustomerModel->getTree($users[$i]['customer_id']);
         }
