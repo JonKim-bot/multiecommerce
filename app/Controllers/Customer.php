@@ -3,6 +3,7 @@
 use App\Core\BaseController;
 use App\Models\CustomerModel;
 use App\Models\OrdersModel;
+use App\Models\PointModel ;
 
 
 class Customer extends BaseController
@@ -14,6 +15,7 @@ class Customer extends BaseController
         $this->pageData = array();
         $this->CustomerModel = new CustomerModel();
         $this->OrdersModel = new OrdersModel();
+        $this->PointModel  = new PointModel ();
 
     }
 
@@ -144,6 +146,14 @@ class Customer extends BaseController
             $this->pageData['downline'] = "none";
         }
         $this->pageData["customer"] = $customer[0];
+        $where = [
+            'customer.shop_id' => $this->shop_id,
+            'customer.customer_id' => $customer_id,
+        ];
+        $record = $this->PointModel->get_transaction_by_customer($where);
+        $this->pageData['transaction'] = $record;
+        $this->pageData['total_point'] =  $this->PointModel->get_balance($customer_id);
+
 
         echo view('admin/header', $this->pageData);
         echo view('admin/customer/detail');
@@ -206,6 +216,7 @@ class Customer extends BaseController
                 if (!empty($thumbnail)) {
                     $data['thumbnail'] = $thumbnail;
                     $getUpload->move('./assets/img/customer', $thumbnail);
+
 
                     // foreach ($getUpload as $files){
                     //     $thumbnail = $files->getName();
