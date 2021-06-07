@@ -118,6 +118,8 @@
                     </div>
                     
                 </div> -->
+                <div class="col-lg-10 col-md-6">
+
                 <section class="items-product1 pt-30">
             <div class="container">
             <h1 class="text-center">Purchase to get gift</h1>
@@ -129,7 +131,7 @@
                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                             </div>
                             <div class="items-details">
-                                <h4><a href="pro-details.html">Purchase > RM <?= $row['order_amount'] ?></a></h4>
+                                <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
                                 <a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
                             </div>
                         </div>
@@ -139,6 +141,7 @@
                 </div>
             </div>
         </section>
+        </div>
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
