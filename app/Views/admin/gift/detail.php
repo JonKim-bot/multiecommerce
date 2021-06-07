@@ -118,7 +118,7 @@
 
                                             <th data-sort="name" data-filter="name">Redeem Date</th>
                                             <th data-sort="name" data-filter="name">Is Approve</th>
-
+                                            <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -138,12 +138,13 @@
                                                 <td>
                                                 
                                                 <?php if($row['is_approve'] == 0) { ?>
-                                            <a class="btn btn-danger" href="<?= base_url("gift/approve/") . "/" . $row['customer_gift_id'] ?>">Unactive</a>
+                                            <a class="btn btn-danger" href="<?= base_url("gift/approve/") . "/" . $row['customer_gift_id'] ?>">Not Approved</a>
                                         <?php }else{ ?>
                                        
-                                        <a class="btn btn-primary" href="<?= base_url("gift/approve/") . "/" . $row['customer_gift_id'] ?>">Active</a>
+                                        <a class="btn btn-primary" href="<?= base_url("gift/approve/") . "/" . $row['customer_gift_id'] ?>">Approved</a>
                                         <?php } ?>
                                                 </td>
+                                                <td><a href="<?= base_url() ?>/gift/delete_customer_gift/<?= $row['customer_gift_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
 
                                             </tr>
                                         <?php

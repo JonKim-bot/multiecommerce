@@ -12,6 +12,7 @@ class Gift extends BaseController
     {
 
         $this->pageData = [];
+
         $this->GiftModel = new GiftModel();
         $this->CustomerGiftModel = new CustomerGiftModel();
 
@@ -173,7 +174,17 @@ class Gift extends BaseController
         echo view('admin/gift/edit');
         echo view('admin/footer');
     }
+   public function delete_customer_gift($customer_gift_id)
+    {
+        $where = [
+            'customer_gift.customer_gift_id' => $customer_gift_id
 
+        ];
+        $gift = $this->CustomerGiftModel->getWhere($where)[0];
+        $this->CustomerGiftModel->hardDelete($customer_gift_id);
+
+        return redirect()->to(base_url('gift/detail/' . $gift['gift_id'], "refresh"));
+    }
     public function delete($gift_id)
     {
         $this->GiftModel->softDelete($gift_id);
