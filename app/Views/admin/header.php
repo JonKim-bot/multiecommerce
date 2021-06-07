@@ -244,6 +244,13 @@
                         Referal
                     </a>
                 </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Order Analysis
+                    </a>
+                </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
                         <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
