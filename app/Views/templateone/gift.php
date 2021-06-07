@@ -85,9 +85,9 @@
             $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
                 // $('.gift_col').html(html);
                 Swal.fire({
-                    title: "Redeem successful",
-                    text: "Redeem successful",
-                    type: 'success'
+                    title: "Redeem done",
+                    text: "Please wait for admin to verify your gift and contact you",
+                    type: 'info'
                 });
                 load_gift();
             });
