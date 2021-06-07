@@ -136,6 +136,13 @@ class Customer extends BaseController
         $this->pageData['orders'] = $orders;
         // $this->show_404_if_empty($customer);
 
+        if($customer[0]['referal_id'] > 0 ){
+            $this->pageData['downline'] = $this->CustomerModel->getWhere([
+                'customer.customer_id' => $customer[0]['referal_id']
+            ])[0]['contact'];
+        }else{
+            $this->pageData['downline'] = "none";
+        }
         $this->pageData["customer"] = $customer[0];
 
         echo view('admin/header', $this->pageData);

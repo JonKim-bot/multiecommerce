@@ -83,13 +83,7 @@
                             <a class="card-header-action">
                                 <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                             </a>
-                            <a class="card-header-action" href="<?php echo site_url(
-                                'customer/edit'
-                            ) .
-                                '/' .
-                                $customer['customer_id']; ?>">
-                                <button class="btn btn-warning"><i class="cil-pencil c-icon"></i>Edit</button></i>
-                            </a>
+                      
                         </div>
                     </div>
                     <div class="c-card-body">
@@ -144,6 +138,10 @@
                                                                 <td><?= $customer[
                                                                     'city'
                                                                 ] ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Downline</th>
+                                                                <td><?= $downline ?></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
