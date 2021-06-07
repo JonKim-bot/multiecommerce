@@ -3,7 +3,23 @@
         <div class="register-form-area">
             <div class="register-form text-center">
                 <!-- Login Heading -->
+                <div class="button-group-area mt-40">
+					<a href="<?= base_url() ?>/main/voucher/<?= $shop['slug']  ?>" class="genric-btn primary radius">
+                    <i class="fa fa-gift"></i>
+                    Voucher
+                    
+                    </a>
+					<a href="<?= base_url() ?>/main/gift/<?= $shop['slug']  ?>" class="genric-btn primary radius">
+                    <i class="fa fa-gift"></i>
+
+                    Gift</a>
+					<a href="<?= base_url() ?>/main/point_history/<?= $shop['slug']  ?>" class="genric-btn primary radius">
+                    <i class="fa fa-credit-card"></i>
+
+                    Point History</a>
+				</div>
                 <div class="register-heading">
+
                     <span>Profile</span>
                     <?php if(in_array(6,$shop_function)){ ?>
                     <p>Referal your friend to enjoy voucher reward</p>
@@ -57,7 +73,7 @@
                 </div>
                 <!-- form Footer -->
                 <div class="register-footer">
-                <p>Don’t have an account? <a href="<?= base_url()  ?>/main/signup/<?= $shop['slug'] ?>">Sign Up</a>  here</p>
+                <!-- <p>Don’t have an account? <a href="<?= base_url()  ?>/main/signup/<?= $shop['slug'] ?>">Sign Up</a>  here</p> -->
 
                     <button class="submit-btn3">Save</button>
                 </div>

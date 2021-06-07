@@ -66,7 +66,7 @@ class PointModel extends BaseModel
             'point_in' => $amount,
             'orders_id' => $orders_id,
             'balance' => $balance + $amount,
-            
+
             'remarks' => $remarks,
 
         ];
@@ -88,6 +88,7 @@ class PointModel extends BaseModel
 
         $this->insertNew($data);
     }
+
 
     function point_out($customer_id, $amount, $remarks, $voucher_id = '')
     {
@@ -232,7 +233,7 @@ class PointModel extends BaseModel
         return $query->getResultArray();
     }
 
-    function get_transaction_by_customer($where = [])
+    function get_transaction_by_customer($where = [],$limit = "")
     {
         $this->builder->select(
             'point.*, customer.name AS customer, customer.name, customer.contact, (point_in - point_out) AS transaction'

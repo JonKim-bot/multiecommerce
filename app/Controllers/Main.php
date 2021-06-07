@@ -142,6 +142,7 @@ class Main extends BaseController
                 'gift_id' => $gift_id,
             ];
             $gift = $this->CustomerGiftModel->insertNew($data);
+
             die(json_encode([
                 'status' => true,
                 'message' => 'Reddeem successful'
@@ -244,6 +245,7 @@ class Main extends BaseController
         $shop= $this->get_shop($slug);
         $this->pageData['selected'] = $_POST['selected'];
 
+
         if($_POST['selected'] == 1){
             $where = [
                 'voucher.shop_id' => $shop['shop_id'],
@@ -274,13 +276,24 @@ class Main extends BaseController
     public function gift_detail($slug,$gift_id){
         $shop= $this->get_shop($slug);
 
+        $where = [
+            'gift.gift_id' => $gift_id,
+        ];
    
+        $gift = $this->GiftModel->getWhere($where)[0];
+        $this->pageData['gift'] = $gift;
         $this->load_view('gift_detail',$slug);
 
     }
-    public function voucher_detail($slug){
+    public function voucher_detail($slug,$voucher_id){
         $shop= $this->get_shop($slug);
 
+        $where = [
+            'voucher.voucher_id' => $voucher_id,
+        ];
+   
+        $voucher = $this->VoucherModel->getWhere($where)[0];
+        $this->pageData['voucher'] = $voucher;
         $this->load_view('voucher_detail',$slug);
 
     }
@@ -456,6 +469,7 @@ class Main extends BaseController
         $shop= $this->get_shop($slug);
         $this->validate_function(1);
 
+        $this->pageData['point'] = $this->PointModel->get_balance($this->session->get('customer_id'));
 		if($_POST){
 
 			$input = $this->request->getPost();
@@ -471,6 +485,7 @@ class Main extends BaseController
                 'post_code' => $input['post_code'],
                 'contact' => $input['contact'],
                 'role_id' => 3,
+
                 "last_login" => date("Y-m-d H:i:s"),
             ];
             if($input['password'] != ""){
@@ -843,6 +858,21 @@ class Main extends BaseController
         $this->pageData['order_history'] = $order_history;
 
         $this->load_view('order_history',$shop);
+
+    }
+
+    
+    public function point_history($slug){
+        $shop = $this->get_shop($slug);
+
+        $where = [
+            'point.customer_id' => $this->session->get('customer_id'),
+        ];
+        $point_history = $this->PointModel->get_transaction_by_customer($where);
+
+        $this->pageData['point_history'] = $point_history;
+
+        $this->load_view('point_history',$shop);
 
     }
     public function search($slug){
