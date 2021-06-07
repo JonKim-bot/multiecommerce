@@ -2,7 +2,7 @@
 	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
 		<li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item"><a href="<?= base_url() ?>customer">Customer</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>customer/add">Create New Customer</a></li>
+        <!-- <li class="breadcrumb-item active"><a href="<?= base_url() ?>customer/add">Create New Customer</a></li> -->
 	</ol>
 	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">

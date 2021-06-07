@@ -2,6 +2,8 @@
 
 use App\Core\BaseController;
 use App\Models\CustomerModel;
+use App\Models\OrdersModel;
+
 
 class Customer extends BaseController
 {
@@ -11,7 +13,8 @@ class Customer extends BaseController
 
         $this->pageData = array();
         $this->CustomerModel = new CustomerModel();
-  
+        $this->OrdersModel = new OrdersModel();
+
     }
 
     public function index()
@@ -27,6 +30,7 @@ class Customer extends BaseController
 
         echo view('admin/header', $this->pageData);
         echo view('admin/customer/all');
+
         echo view('admin/footer');
     }
 
@@ -106,11 +110,30 @@ class Customer extends BaseController
     public function detail($customer_id)
     {
 
+      
         $where = array(
             "customer_id" => $customer_id,
         );
         $customer = $this->CustomerModel->getWhere($where);
+        $where = [
+            'orders.customer_id' => $customer[0]['customer_id'],
+        ];
+        if ($this->isMerchant == true) {
+            $this->check_is_merchant_from_shop($customer[0]['shop_id']);
+        }
+        $orders = $this->OrdersModel->getWhere($where);
+        
+        // $this->show_404_if_empty($admin);
+        $total_order = array_column($orders, 'grand_total');
 
+        if (!empty($total_order)) {
+            $this->pageData['orders_total'] = $total_order[0];
+        } else {
+            $this->pageData['orders_total'] = 0;
+        }
+        //  $this->debug( $this->pageData["orders_total"]);
+        $this->pageData['orders_count'] = count($orders);
+        $this->pageData['orders'] = $orders;
         // $this->show_404_if_empty($customer);
 
         $this->pageData["customer"] = $customer[0];

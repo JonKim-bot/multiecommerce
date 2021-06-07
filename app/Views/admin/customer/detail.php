@@ -4,9 +4,9 @@
         <li class="breadcrumb-item"><a href="<?= base_url(
             'customer'
         ) ?>">Customer</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/customer/detail/<?= $customer[
+        <!-- <li class="breadcrumb-item active"><a href="<?= base_url() ?>/customer/detail/<?= $customer[
     'customer_id'
-] ?>">Product Details</a></li>
+] ?>">Customer Details</a></li> -->
 	</ol>
 	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -23,31 +23,56 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="c-card-header">
-                        Profile Picture
-                        <div class="card-header-actions">
-                            <a class="card-header-action">
-                                <i class="cil-arrow-circle-top c-icon minimize-card"></i>
-                            </a>
-                            
+                <div class="c-card-header">
+                            OrderCustomer Info
+                            <div class="card-header-actions">
+                                <a class="card-header-action">
+                                    <i class="cil-arrow-circle-top c-icon minimize-card"></i>
+                                </a>
+                              
+                            </div>
                         </div>
-                    </div>
-                    <div class="c-card-body">
-                        <div class="view-info">
+                        <div class="c-card-body">
+                            <div class="view-info">
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="general-info">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-xl-12">
-                                                <img src="" width="200" class="img-fluid d-block m-auto" alt="">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="general-info">
+                                           
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                <tr>
+
+                                                    <th>Order Date</th>
+                                                    <th>Total Price</th>
+                                                    <th>Print</th>
+
+                                                </tr>
+
+                                            <?php foreach ($orders as $row) { ?>
+                                 
+                                                <td><?= $row[
+                                                    'created_at'
+                                                ] ?> </td>
+                                                <td> RM<?= $row[
+                                                    'grand_total'
+                                                ] ?></td>
+                                                <td>
+              <a class="btn btn-primary" href="<?= base_url() .
+                  '/orders/view_receipt/' .
+                  $row['orders_id'] ?>" target="_blank">Print</a>
+              </td>
+                                            </tr>
+                                            <?php } ?>
+
+                                                    
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -69,7 +94,6 @@
                     </div>
                     <div class="c-card-body">
                         <div class="view-info">
-
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="general-info">
@@ -103,6 +127,24 @@
                                                                 ] ?></td>
                                                             </tr>
                                                             
+                                                            <tr>
+                                                                <th scope="row">Address</th>
+                                                                <td><?= $customer[
+                                                                    'address'
+                                                                ] ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Post code</th>
+                                                                <td><?= $customer[
+                                                                    'post_code'
+                                                                ] ?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">City</th>
+                                                                <td><?= $customer[
+                                                                    'city'
+                                                                ] ?></td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
