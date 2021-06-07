@@ -231,11 +231,17 @@
                         <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
                         Transaction
                     </a>
-                </li>
+            </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
                         <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
                         Member
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Referal
                     </a>
                 </li>
                 <li>

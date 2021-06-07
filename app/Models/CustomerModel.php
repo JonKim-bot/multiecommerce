@@ -33,5 +33,33 @@ class CustomerModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }   
+    public function getTree($customer_id)
+    {
+        $this->builder->select("*");
+        $this->builder->where("referal_id", $customer_id);
+        $this->builder->where("deleted", 0);
+
+        $users = $this->builder->get()->getResultArray();
+        foreach ($users as $key => $row) {
     
+            $this->builder->select("*");
+            $this->builder->where("referal_id", $row['customer_id']);
+            $this->builder->where("deleted", 0);
+
+            $child = $this->builder->get()->getResultArray();
+            foreach ($child as $ckey => $crow) {
+         
+                $this->builder->select("*");
+                $this->builder->where("referal_id", $crow['customer_id']);
+                $this->builder->where("deleted", 0);
+
+                $gchild = $this->builder->get()->getResultArray();
+              
+                $child[$ckey]['child'] = $gchild;
+            }
+            $users[$key]['child'] = $child;
+        }
+
+        return $users;
+    }
 }
