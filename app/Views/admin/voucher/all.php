@@ -16,7 +16,7 @@
 	
 <div class="container-fluid">
 	
-	<div class="fade-in">
+<div class="fade-in">
         <div class="card">
             <div class="card-header">
                 Vouchers

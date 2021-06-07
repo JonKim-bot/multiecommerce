@@ -88,9 +88,72 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+
+                    <div class="col-md-6">
                     <div class="card">
-                        
+                    <div class="fade-in">
+        <div class="card">
+            <div class="card-header">
+                Gifts
+                <div class="card-header-actions">
+                    <a class="card-header-action">
+                        <i class="cil-arrow-circle-top c-icon minimize-card"></i>
+                    </a>
+                  
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                            <table class="table table-striped datatable table-bordered no-footer " id="gift_list_table" data-method="get" data-url="<?= base_url("gift") ?>" style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>No.</th>
+                                            <th data-sort="name" data-filter="name">Customer</th>
+                                            <th data-sort="name" data-filter="name">Gift</th>
+
+
+                                            <th data-sort="name" data-filter="name">Redeem Date</th>
+                                            <th data-sort="name" data-filter="name">Point Used</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $i = 1;
+                                            foreach($customer_gift as $row){
+                                         ?>
+                                            <tr>
+                                                
+                                                <td><?= $i ?></td>
+                                             
+                                             
+                                                <td><a href="<?= base_url() ?>/customer/detail/<?= $row['customer_id']?>"><?= $row['name'] ?></a></td>
+
+                                                <td><?= $row['gift'] ?></td>
+                                                <td><?= $row['redeem_date'] ?></td>
+                                                <td><?= $row['point_used'] ?></td>
+
+                                            </tr>
+                                        <?php
+                                        $i++;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
                     </div>
                 </div>
             </div>
+                    </div>
+        

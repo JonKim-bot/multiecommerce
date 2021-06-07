@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 use App\Models\GiftModel;
+use App\Models\CustomerGiftModel;
 
 class Gift extends BaseController
 {
@@ -11,6 +12,8 @@ class Gift extends BaseController
     {
         $this->pageData = [];
         $this->GiftModel = new GiftModel();
+        $this->CustomerGiftModel = new CustomerGiftModel();
+
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -88,12 +91,18 @@ class Gift extends BaseController
             'gift_id' => $gift_id,
         ];
         $gift = $this->GiftModel->getWhere($where);
+        $where = [
+            'customer_gift.gift_id' => $gift_id,
+        ];
+        $c_gift = $this->CustomerGiftModel->getWhere($where);
+
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($gift[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
 
         $this->pageData['gift'] = $gift[0];
+        $this->pageData['customer_gift'] = $c_gift;
 
         echo view('admin/header', $this->pageData);
         echo view('admin/gift/detail');

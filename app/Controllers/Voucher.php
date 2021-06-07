@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 use App\Models\VoucherModel;
+use App\Models\CustomerVoucherModel;
 
 class Voucher extends BaseController
 {
@@ -11,6 +12,8 @@ class Voucher extends BaseController
     {
         $this->pageData = [];
         $this->VoucherModel = new VoucherModel();
+        $this->CustomerVoucherModel = new CustomerVoucherModel();
+
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -89,12 +92,18 @@ class Voucher extends BaseController
             'voucher_id' => $voucher_id,
         ];
         $voucher = $this->VoucherModel->getWhere($where);
+        $where = [
+            'customer_voucher.voucher_id' => $voucher_id,
+        ];
+        $c_voucher = $this->CustomerVoucherModel->getWhere($where);
+
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($voucher[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
 
         $this->pageData['voucher'] = $voucher[0];
+        $this->pageData['customer_voucher'] = $c_voucher;
 
         echo view('admin/header', $this->pageData);
         echo view('admin/voucher/detail');
