@@ -8,11 +8,11 @@
                         <div class="slider-area">
                             <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
                                 <div class="hero-caption hero-caption2">
-                                    <h2>Category</h2>
+                                    <h2>Gift</h2>
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb justify-content-center">
-                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Category</a></li> 
+                                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Gift</a></li> 
                                         </ol>
                                     </nav>
                                 </div>
@@ -66,10 +66,22 @@
     </main>
    
    <script>
-   function get_header_cart(){
-        $.post("<?= base_url('main/load_gift') ?>", {slug : "<?= $shop['slug'] ?>"}, function(html){
+   function load_gift(){
+        let postParam = {
+            slug : "<?= $shop['slug'] ?>"
+        }
+        $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
             $('.gift_col').html(html);
         });
     }
-    get_header_cart();
+    function redeem(){
+        let postParam = {
+            slug : "<?= $shop['slug'] ?>"
+        }
+        $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
+            $('.gift_col').html(html);
+        });
+    }
+    }
+    load_gift();
    </script>

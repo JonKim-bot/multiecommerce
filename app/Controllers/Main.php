@@ -125,8 +125,11 @@ class Main extends BaseController
     public function load_gift(){
         $slug = $_POST['slug'];
         $shop= $this->get_shop($slug);
-
-        echo view("templateone/gift_col" );
+        $where = [
+            'gift.shop_id' => $shop['shop_id']
+        ];
+        $this->pageData['gift'] = $this->GiftModel->getWhere($where);
+        echo view("templateone/gift_col" ,$this->pageData);
     }
    
     public function gift($slug){
