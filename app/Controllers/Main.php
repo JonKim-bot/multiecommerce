@@ -126,14 +126,25 @@ class Main extends BaseController
             $gift_id = $_POST['gift_id'];
             $where = [
                 'gift.gift_id' => $gift_id,
+
             ];
             $gift = $this->GiftModel->getWhere($where)[0];
             $where = [
                 'orders.customer_id' => $this->session->get('customer_id'),
-                'orders.grand_total <=' => $gift['order_amount']
+                'orders.grand_total >=' => $gift['order_amount']
             ];
-            $orders = $this->OrdersModel->getClosed($where);
-            $this->debug($orders);
+            $orders = $this->OrdersModel->getClosed($where)[0];
+            $data = [
+                'orders_id' => $orders['orders_id'],
+                'customer_id' => $this->session->get('customer_id'),
+                'redeem_date' => date('Y-m-d h:i:s'),
+                'gift_id' => $gift_id,
+            ];
+            $gift = $this->CustomerGiftModel->insertNew($data);
+            die(json_encode([
+                'status' => true,
+                'message' => 'Reddeem successful'
+            ])) ;           
         }
     }
     public function load_gift(){

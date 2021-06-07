@@ -66,20 +66,20 @@
     </main>
    
    <script>
-   function load_gift(){
-        let postParam = {
-            slug : "<?= $shop['slug'] ?>"
-        }
-        $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
-            $('.gift_col').html(html);
-            Swal.fire({
-                title: "Promocode already applyed",
+    
+        function load_gift(){
+             let postParam = {
+                 slug : "<?= $shop['slug'] ?>"
+             }
+             $.post("<?= base_url('main/load_gift') ?>", postParam, function(html){
+                 $('.gift_col').html(html);
+                 
+             });
+         }
+      
+       
+    
+        load_gift();
+        
 
-                text: "Promocode already applyed",
-                type: 'error'
-            })
-        });
-    }
- 
-    load_gift();
    </script>

@@ -10,6 +10,7 @@ class Gift extends BaseController
 {
     public function __construct()
     {
+        
         $this->pageData = [];
         $this->GiftModel = new GiftModel();
         $this->CustomerGiftModel = new CustomerGiftModel();

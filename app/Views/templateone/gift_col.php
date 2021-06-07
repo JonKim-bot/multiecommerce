@@ -25,7 +25,8 @@
                                 
 
 <script>
-    $('.redeem').click(function(e) {
+    $(".redeem").on("click", function() {
+        
         var gift_id = $(this).attr('id');
         var chance = $(this).attr('chance');
         var amount = $(this).attr('amount');
@@ -39,7 +40,8 @@
         }
         redeem(gift_id);
     });
-   function redeem(gift_id){
+
+    function redeem(gift_id){
         let postParam = {
             slug : "<?= $shop['slug'] ?>",
             gift_id : gift_id,
@@ -48,11 +50,12 @@
             // $('.gift_col').html(html);
             Swal.fire({
                 title: "Redeem successful",
-
                 text: "Redeem successful",
                 type: 'success'
-            })
+            });
+            load_gift();
         });
     }
-    
+
+
 </script>

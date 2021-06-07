@@ -111,8 +111,8 @@ class OrdersModel extends BaseModel
         $builder = $this->db->table($this->tableName);
         $builder->select('orders.*');
         $builder->where($where);
-        $builder->orderBy('orders.grand_total','DESC');
-        $builder->groupBy('orders.orders_id');
+        $builder->orderBy('orders.grand_total','ASC');
+        $builder->limit(1);
         $query = $builder->get();
         return $query->getResultArray();
     }
