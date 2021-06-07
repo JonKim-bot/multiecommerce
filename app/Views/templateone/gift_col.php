@@ -16,7 +16,7 @@
                     <h3><a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>""><?= $row['gift'] ?></a></h3>
                     <div class="properties-footer">
                         <div class="price">
-                            <span>RM <?= $row['order_amount'] ?></span>
+                            <span>Purchase over > RM <?= $row['order_amount'] ?></span>
                         </div>
                     </div>
                 </div>

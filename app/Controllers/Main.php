@@ -148,6 +148,29 @@ class Main extends BaseController
             ])) ;           
         }
     }
+    public function redeem_voucher(){
+        if($_POST){
+            $voucher_id = $_POST['voucher_id'];
+            $where = [
+                'voucher.voucher_id' => $voucher_id,
+
+            ];
+            $voucher = $this->VoucherModel->getWhere($where)[0];
+            
+            $data = [
+                'customer_id' => $this->session->get('customer_id'),
+                'redeem_date' => date('Y-m-d h:i:s'),
+                'voucher_id' => $voucher_id,
+                'point_used' => $voucher['point_used'],
+            ];
+            $gift = $this->CustomerGiftModel->insertNew($data);
+            die(json_encode([
+                'status' => true,
+                'message' => 'Reddeem successful'
+            ])) ;           
+        }
+    }
+
 
     public function load_gift(){
         $slug = $_POST['slug'];
@@ -185,6 +208,7 @@ class Main extends BaseController
                 $gift[$key]['count'] = count($orders) - $customer_gift_count;
     
             }
+
     
             $this->pageData['gift'] = $gift;
 
@@ -205,11 +229,13 @@ class Main extends BaseController
     public function load_voucher(){
         $slug = $_POST['slug'];
         $shop= $this->get_shop($slug);
-        $where = [
-            'voucher.shop_id' => $shop['shop_id']
-        ];
-        $voucher = $this->VoucherModel->getWhere($where);
-  
+        if($_POST['selected'] == 1){
+            $where = [
+                'voucher.shop_id' => $shop['shop_id']
+            ];
+            $voucher = $this->VoucherModel->getWhere($where);
+        }
+        $this->pageData['voucher'] = $voucher;
         echo view("templateone/voucher_col" ,$this->pageData);
     }
    
@@ -218,6 +244,7 @@ class Main extends BaseController
 
 
         $this->load_view('gift',$slug);
+
 
     }
     public function gift_detail($slug,$gift_id){

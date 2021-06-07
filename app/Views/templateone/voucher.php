@@ -37,9 +37,9 @@
                                 <div class="select-Categories pb-30">
                                     <div class="select-job-items2 mb-30">
                                         <div class="col-xl-12">
-                                            <select name="select2">
-                                                <option value="">All</option>
-                                                <option value="">My Voucher</option>
+                                            <select name="select2" id="voucher_select">
+                                                <option value="1">All</option>
+                                                <option value="2">My Voucher</option>
                                             </select>
                                         </div>
                                     </div>
@@ -67,26 +67,33 @@
    
    <script>
     
-        function load_voucher(){
+        function load_voucher(selected = 1){
              let postParam = {
-                 slug : "<?= $shop['slug'] ?>"
+                 slug : "<?= $shop['slug'] ?>",
+                 selected : selected,
              }
              $.post("<?= base_url('main/load_voucher') ?>", postParam, function(html){
                  $('.voucher_col').html(html);
                  
              });
          }
-      
+         
+
+        $("#voucher_select").on("change", function() {
+            var selected_value = $(this).val();
+            load_voucher(selected_value);    
+        });
+
          function redeem(voucher_id){
             let postParam = {
                 slug : "<?= $shop['slug'] ?>",
                 voucher_id : voucher_id,
             }
-            $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
+            $.post("<?= base_url('main/redeem_voucher') ?>", postParam, function(html){
                 // $('.voucher_col').html(html);
                 Swal.fire({
                     title: "Redeem done",
-                    text: "Please wait for admin to verify your voucher and contact you",
+                    text: "Redeem voucher success",
                     type: 'success'
                 });
                 load_voucher();

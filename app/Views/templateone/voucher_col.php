@@ -6,7 +6,8 @@
                     <a href="<?= base_url() . "/main/voucher_detail/" . $shop['slug'] . "/" .  $row['voucher_id'] ?>"><img witdh="200px" src="<?= base_url() . $row['banner']?>" alt=""></a>
                     <div class="socal_icon">
                         <!-- <a href="#"><i class="ti-shopping-cart"></i></a> -->
-                        <a class="redeem" amount = "<?= $row['order_amount'] ?>" chance = "<?= $row['count'] ?>" style="cursor:pointer" id="<?= $row['voucher_id'] ?>" style="cursor_pointer"><i class="ti-hand-stop"></i></a>
+                        <a class="redeem_voucher" amount = "<?= $row['redeem_point'] ?>" 
+                        style="cursor:pointer" id="<?= $row['voucher_id'] ?>" style="cursor_pointer"><i class="ti-hand-stop"></i></a>
                         <!-- <a href="#"><i class="ti-zoom-in"></i></a> -->
                     </div>
                 </div>
@@ -14,7 +15,7 @@
                     <h3><a href="<?= base_url() . "/main/voucher_detail/" . $shop['slug'] . "/" .  $row['voucher_id'] ?>""><?= $row['voucher'] ?></a></h3>
                     <div class="properties-footer">
                         <div class="price">
-                            <span><?= $row['redeem_point'] ?></span>
+                            <span>Point Required : <?= $row['redeem_point'] ?></span>
                         </div>
                     </div>
                 </div>
@@ -25,20 +26,12 @@
                                 
 
 <script>
-    $(".redeem").on("click", function() {
+    $(".redeem_voucher").on("click", function() {
         
         var voucher_id = $(this).attr('id');
-        var chance = $(this).attr('chance');
         var amount = $(this).attr('amount');
-        if(chance <= 0){
-            Swal.fire({
-                title: "Redeem failed",
-                text: "You minimum purchase amount must over " + amount,
-                type: 'error'
-            });
-            return;
-        }
-        redeem(voucher_id);
+       
+        redeem_voucher(voucher_id);
     });
 
 
