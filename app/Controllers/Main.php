@@ -255,7 +255,6 @@ class Main extends BaseController
         }else{
             $where = [
                 'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
-
                 'customer_voucher.customer_id' => $this->session->get('customer_id'),
             ];
 
@@ -280,6 +279,7 @@ class Main extends BaseController
             'gift.gift_id' => $gift_id,
         ];
    
+
         $gift = $this->GiftModel->getWhere($where)[0];
         $this->pageData['gift'] = $gift;
         $this->load_view('gift_detail',$slug);
