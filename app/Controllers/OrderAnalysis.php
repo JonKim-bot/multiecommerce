@@ -3,12 +3,15 @@
 namespace App\Controllers;
 
 use App\Core\BaseController;
+use App\Models\OrdersModel;
 
 class OrderAnalysis extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
+        $this->OrdersModel = new OrdersModel();
+
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -21,6 +24,14 @@ class OrderAnalysis extends BaseController
     public function index()
     {
      
+        $shop_id = $this->shop_id;
+        $total_today_orders = $this->OrdersModel->get_total_today_orders($shop_id);
+        $total_number_orders = $this->OrdersModel->get_total_number_orders($shop_id);
+        $new_registered_member = $this->OrdersModel->get_new_registered_member($shop_id);
+        $this->pageData['total_today_orders'] = $total_today_orders;
+        $this->pageData['total_number_orders'] = $total_number_orders;
+        $this->pageData['new_registered_member'] = $new_registered_member;
+
         echo view('admin/header', $this->pageData);
         echo view('admin/orderanalysis/all');
         echo view('admin/footer');

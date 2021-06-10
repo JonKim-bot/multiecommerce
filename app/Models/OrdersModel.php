@@ -158,6 +158,71 @@ class OrdersModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }
+
+    function get_total_today_orders($shop_id){
+        $where = [
+            'orders.shop_id' => $shop_id,
+            'DATE(orders.created_at)' => date('Y-m-d')
+        ];
+        $builder = $this->db->table($this->tableName);
+        $builder->select('sum(orders.grand_total) as total');
+     
+        // $this->debug($where);
+        $builder->where($where);
+        $wherenot = [
+            '1' , '5'
+        ];
+        $builder->whereNotIn('orders_status_id',$wherenot);
+        $builder->orderBy('orders.orders_id','DESC');
+        $total = 0;
+        $query = $builder->get()->getResultArray();
+        if(!empty($query)){
+            if($query[0]['total'] != null){
+
+                return $query[0]['total'];
+            }else{
+                return $total;
+            }
+        }else{
+            return $total;
+        }
+    }
+
+    function get_total_number_orders($shop_id){
+        $where = [
+            'orders.shop_id' => $shop_id,
+            'DATE(orders.created_at)' => date('Y-m-d')
+        ];
+        $builder = $this->db->table($this->tableName);
+        $builder->select('*');
+     
+        // $this->debug($where);
+        $builder->where($where);
+        $wherenot = [
+            '1' , '5'
+        ];
+        $builder->whereNotIn('orders_status_id',$wherenot);
+        $builder->orderBy('orders.orders_id','DESC');
+
+        $query = $builder->get();
+        return count($query->getResultArray());
+    }
+    function get_new_registered_member($shop_id){
+        $where = [
+            'customer.shop_id' => $shop_id,
+
+            'DATE(customer.created_date)' => date('Y-m-d')
+        ];
+        $builder = $this->db->table('customer');
+        $builder->select('*');
+     
+        // $this->debug($where);
+        $builder->where($where);
+       
+        $query = $builder->get();
+        return count($query->getResultArray());
+    }
+  
   
    
 }

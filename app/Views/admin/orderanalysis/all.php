@@ -22,8 +22,8 @@
                   <div class="card text-white bg-primary">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
                       <div>
-                        <div class="text-value-lg">9.823</div>
-                        <div>Members online</div>
+                        <div class="text-value-lg"><?= $total_today_orders  ?></div>
+                        <div>Today Sales</div>
                       </div>
                       <div class="btn-group">
                         <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
@@ -44,8 +44,8 @@
                   <div class="card text-white bg-info">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
                       <div>
-                        <div class="text-value-lg">9.823</div>
-                        <div>Members online</div>
+                      <div class="text-value-lg"><?= $total_number_orders  ?></div>
+                        <div>Today Orders</div>
                       </div>
                       <div class="btn-group">
                         <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
@@ -66,8 +66,8 @@
                   <div class="card text-white bg-warning">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
                       <div>
-                        <div class="text-value-lg">9.823</div>
-                        <div>Members online</div>
+                      <div class="text-value-lg"><?= $new_registered_member  ?></div>
+                        <div>Today registered member</div>
                       </div>
                       <div class="btn-group">
                         <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
@@ -84,7 +84,7 @@
                   </div>
                 </div>
                 <!-- /.col-->
-                <div class="col-sm-6 col-lg-3">
+                <!-- <div class="col-sm-6 col-lg-3">
                   <div class="card text-white bg-danger">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
                       <div>
@@ -104,7 +104,7 @@
                       <canvas class="chart" id="card-chart4" height="70"></canvas>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <!-- /.col-->
               </div>
               <!-- /.row-->
