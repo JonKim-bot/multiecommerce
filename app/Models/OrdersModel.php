@@ -222,6 +222,51 @@ class OrdersModel extends BaseModel
         $query = $builder->get();
         return count($query->getResultArray());
     }
+    function get_days($date_from,$date_to){
+
+        $date_from = strtotime($date_from,);
+        $date_to = strtotime($date_to,);
+        $days = $date_to - $date_from;
+        $days = ($days / (60 * 60 * 24));
+
+        return $days;
+    }
+    function get_total_sales($shop_id,$date_from,$date_to){
+        $full_data = array();
+
+        $where = [
+            'DATE(orders.created_at) >=' => $date_from,
+            'DATE(orders.created_at) <='  => $date_to,
+
+        ];
+        $days = $this->get_days($date_from,$date_to);
+        for ($i = 0; $i < $days; $i++) {
+            $current = Date('Y-m-d', strtotime($date_from . " +" . $i . " days"));
+            $where = [
+                'orders.shop_id' => $shop_id,
+                'DATE(orders.created_at)'  => $current,
+            ];
+            $builder = $this->db->table($this->tableName);
+            $builder->select('sum(orders.grand_total) as total,DATE(orders.created_at) as created_at');
+            $builder->where($where);
+            $wherenot = [
+                '1' , '5'
+            ];
+            // $builder->whereNotIn('orders_status_id',$wherenot);
+            $builder->orderBy('orders.orders_id','ASC');
+    
+            $result = $builder->get()->getResultArray();
+            $data = [
+                'created_at' => $current,
+                'total' => $result[0]['total'] ? $result[0]['total'] : 0
+            ];
+            array_push($full_data, $data);
+
+        }
+        return $full_data;
+        // $this->debug($where);
+    }
+  
   
   
    

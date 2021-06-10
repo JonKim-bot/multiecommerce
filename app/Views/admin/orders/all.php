@@ -33,7 +33,7 @@
             <div class="card-body">
                 <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
                     
-                <form method="GET" id="filter_form">
+                    <form method="GET" id="filter_form">
                         <div class="row">
                             <div class="form-group col-sm-12 col-md-3">
                                 <label for="" class="c-label">Date From</label>
@@ -60,7 +60,8 @@
                                 ? $_GET['status_id']
                                 : '' ?>" name="status_id">
                         </div>
-                        </form>
+                        
+                    </form>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
