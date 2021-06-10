@@ -26,12 +26,12 @@
                         <div>Members online</div>
                       </div>
                       <div class="btn-group">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
                                 <i class="fa fa-facebook fa-3x"></i>
                           </svg>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                        <!-- </button> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div> -->
                       </div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -48,11 +48,11 @@
                         <div>Members online</div>
                       </div>
                       <div class="btn-group">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                           </svg>
-                        </button>
+                        <!-- </button> -->
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
                       </div>
                     </div>
@@ -70,12 +70,12 @@
                         <div>Members online</div>
                       </div>
                       <div class="btn-group">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                           </svg>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                        <!-- </button> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div> -->
                       </div>
                     </div>
                     <div class="c-chart-wrapper mt-3" style="height:70px;">
@@ -92,12 +92,12 @@
                         <div>Members online</div>
                       </div>
                       <div class="btn-group">
-                        <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
                             <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
                           </svg>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+                        <!-- </button> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div> -->
                       </div>
                     </div>
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
@@ -108,40 +108,7 @@
                 <!-- /.col-->
               </div>
               <!-- /.row-->
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between">
-                    <div>
-                      <h4 class="card-title mb-0">Traffic</h4>
-                      <div class="small text-muted">September 2019</div>
-                    </div>
-                    <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
-                      <div class="btn-group btn-group-toggle mx-3" data-toggle="buttons">
-                        <label class="btn btn-outline-secondary">
-                          <input id="option1" type="radio" name="options" autocomplete="off"> Day
-                        </label>
-                        <label class="btn btn-outline-secondary active">
-                          <input id="option2" type="radio" name="options" autocomplete="off" checked=""> Month
-                        </label>
-                        <label class="btn btn-outline-secondary">
-                          <input id="option3" type="radio" name="options" autocomplete="off"> Year
-                        </label>
-                      </div>
-                      <button class="btn btn-primary" type="button">
-                        <svg class="c-icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-cloud-download"></use>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
-                    <canvas class="chart" id="main-chart" height="300"></canvas>
-                  </div>
-                </div>
-               
-                </div>
-                <!-- /.col-->
-              </div>
+              
               <!-- /.row-->
             </div>
           </div>
