@@ -1,26 +1,26 @@
 <div class="table-responsive">
-                            <table class="table table-striped datatable table-bordered no-footer " id="brand_list_table" data-method="get" data-url="<?= base_url("brand") ?>" style="border-collapse: collapse !important">
+                            <table class="table table-striped datatable table-bordered no-footer " id="category_list_table" data-method="get" data-url="<?= base_url("category") ?>" style="border-collapse: collapse !important">
                                     <thead>
                                         <tr role="row">
                                             <th>No.</th>
-                                            <th data-sort="name" data-filter="name">Banner</th>
 
-                                            <th data-sort="name" data-filter="name">Brand</th>
-                                            <th></th>
+                                            <th data-sort="name" data-filter="name">Category</th>
+                                            <th data-sort="name" data-filter="name">Sold</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             $i = 1;
-                                            foreach($brand as $row){
+                                            foreach($top_product_cat as $row){
                                          ?>
                                             <tr>
                                                 
-                                                <td><a href="<?= base_url() ?>/brand/detail/<?= $row['brand_id']?>"><?= $i ?></a></td>
+                                                <td><a href="<?= base_url() ?>/category/detail/<?= $row['category_id']?>"><?= $i ?></a></td>
                                           
-                                                <td><a href="<?= base_url() ?>/brand/detail/<?= $row['brand_id']?>"><?= $row['title'] ?></a></td>
-                                                
-                                                <td><a href="<?= base_url() ?>/brand/delete/<?= $row['brand_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
+
+                                                <td><a href="<?= base_url() ?>/category/detail/<?= $row['category_id']?>"><?= $row['category'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/category/detail/<?= $row['category_id']?>"><?= $row['sales'] ?></a></td>
+
                                             </tr>
                                         <?php
                                         $i++;

@@ -382,25 +382,54 @@ class OrdersModel extends BaseModel
         return $result;
     }
 
+    // function get_top_product_cat($shop_id,$date_from,$date_to){
+    //     $full_data = array();
+    //     $where = [
+    //         'DATE(order_detail.created_at) >=' => $date_from,
+    //         'DATE(order_detail.created_at) <='  => $date_to,
+    //         'orders.shop_id' => $shop_id,
+    //         'orders.is_paid' => 1
+    //     ];
+    //     $days = $this->get_days($date_from,$date_to);
+        
+    //     $builder = $this->db->table('order_detail');
+    //         $builder->select('product.*,GROUP_CONCAT(product_category.category_id) AS category_id,sum(order_detail.product_quantity) as total,DATE(order_detail.created_at) as created_date');
+    //     $builder->join('product', 'product.product_id = order_detail.product_id','left');
+    //     $builder->join('orders', 'orders.orders_id = order_detail.orders_id');
+    //     $builder->join('product_category', 'product_category.product_id = product.product_id');
 
+    //     $builder->where($where);
+    //     $builder->groupBy('orders.orders_id');
+
+    //     $builder->orderBy('total','DESC');
+
+    //     $result = $builder->get()->getResultArray();
+    //     return $result;
+    // }
     function get_top_product_cat($shop_id,$date_from,$date_to){
         $full_data = array();
         $where = [
             'DATE(order_detail.created_at) >=' => $date_from,
             'DATE(order_detail.created_at) <='  => $date_to,
-
+            'orders.shop_id' => $shop_id,
+            'orders.is_paid' => 1
         ];
         $days = $this->get_days($date_from,$date_to);
         
         $builder = $this->db->table('order_detail');
-        $builder->select('count(product_id) as total,DATE(order_detail.created_at) as created_date');
-        $builder->join('count(product_id) as total,DATE(order_detail.created_at) as created_date');
+        $builder->select('product.*,sum(order_detail.product_quantity) as total,DATE(order_detail.created_at) as created_date');
+        $builder->join('product', 'product.product_id = order_detail.product_id','left');
+        $builder->join('orders', 'orders.orders_id = order_detail.orders_id');
 
         $builder->where($where);
         $builder->groupBy('order_detail.product_id');
+        $builder->orderBy('total','DESC');
+
         $result = $builder->get()->getResultArray();
         return $result;
     }
+
+
         // $this->debug($where);
   
   

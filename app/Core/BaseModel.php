@@ -573,6 +573,8 @@ class BaseModel extends Model
 
     }
 
+    
+
     public function getAllWithRole($limit = '', $page = 1, $filter = array())
     {
         $this->builder->select("*, role.role AS role");

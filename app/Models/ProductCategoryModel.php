@@ -16,7 +16,9 @@ class ProductCategoryModel extends BaseModel
     public function getWhere($where, $limit = '', $page = 1, $filter = array())
     {
         $this->builder = $this->db->table($this->tableName);
-        $this->builder->select("*");
+        $this->builder->select("product_category.*,category.category");
+        $this->builder->join('category', 'product_category.category_id = category.category_id');
+
         $this->builder->where($where);
 
         // die($this->builder->getCompiledSelect(false));

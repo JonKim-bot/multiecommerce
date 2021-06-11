@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 use App\Models\OrdersModel;
+use App\Models\ProductCategoryModel;
 
 class OrderAnalysis extends BaseController
 {
@@ -11,6 +12,8 @@ class OrderAnalysis extends BaseController
     {
         $this->pageData = [];
         $this->OrdersModel = new OrdersModel();
+        $this->ProductCategoryModel = new ProductCategoryModel();
+
 
         if (
             session()->get('admin_data') == null &&
@@ -93,7 +96,44 @@ class OrderAnalysis extends BaseController
 
         $shop_id = $this->shop_id;
         $top_product_cat = $this->OrdersModel->get_top_product_cat($shop_id,$date_from,$date_to);
-        $this->pageData['top_product_cat'] = $top_product_cat;
+        $top_category_array = [];
+        $data_category_sales = [];
+        foreach($top_product_cat as $key=> $row){
+                $where = [
+                    'product_category.product_id' => $row['product_id']
+                ];
+                $product_category = $this->ProductCategoryModel->getWhere($where);
+                if(!empty($product_category)){
+                    $category = $product_category;
+                    foreach($category as $keycategory => $row_category){
+           
+
+                        if (!in_array($row_category['category'], $top_category_array) ){
+                            $data = [
+                                'category' => $row_category['category'],
+                                'sales' => $row['total'],
+                                'category_id' => $row_category['category_id'],
+                            ]; 
+                            // if not existed push
+                            array_push($top_category_array,$row_category['category']);
+                            array_push($data_category_sales,$data);
+                        }else{
+                            //if exiseted add
+                            foreach($data_category_sales as $key_sales => $row_category_sales){
+                                if($row_category_sales['category'] == $row_category['category']){
+                                    $data_category_sales[$key_sales]['category'] = $row_category['category'];
+                                    $data_category_sales[$key_sales]['sales'] = $data_category_sales[$key_sales]['sales'] + $row['total'] ;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                
+        }
+
+        $this->pageData['top_product_cat'] = $data_category_sales;
         echo view('admin/orderanalysis/top_product_cat_table',$this->pageData);
     }
     
