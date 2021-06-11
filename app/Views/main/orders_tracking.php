@@ -172,7 +172,7 @@ p {
                 <div class="card-body row">
                 <div class="col"> <strong>Prepared BY:</strong> <br> <?= $shop['shop_name'] ?>, | <i class="fa fa-phone"></i> <?= $shop['contact'] ?> </div>
                     <div class="col"> <strong>Status:</strong> <br> <?= $orders['orders_status'] ?> </div>
-                    <div class="col"> <strong>Receipt #:</strong> <br> <a href="<?= base_url() . "/main/payment/" . $shop['slug'] . '/' . $orders['order_code'] ?>"><?=  base_url() . "/main/<br>payment/" . $shop['slug'] . '/' . $orders['order_code'] ?></a> </div>
+                    <div class="col"> <strong>Receipt #:</strong> <br> <a href="<?= base_url() . "/main/payment/" .  $orders['order_code'] ?>"><?=  base_url() . "/main/<br>payment/" .  $orders['order_code'] ?></a> </div>
                 </div>
             </article>
             <div class="track">

@@ -431,7 +431,7 @@ class Orders extends BaseController
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];
         $shop = $this->ShopModel->getWhere(['shop_id' => $orders['shop_id']])[0];
-        $url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $orders['order_code'];
+        $url = base_url() . "/main/payment/" .  $orders['order_code'];
         $orders['contact'] = str_replace('+', '', $orders['contact']);
 
         $orders['contact'] = str_replace('-', '', $orders['contact']);

@@ -105,7 +105,7 @@
                                                         <td>
                                                         <a href="<?= base_url() ?>/main/index/<?= $shop[
     'slug'
-] ?>"><?= base_url() ?>/main/index/<?= $shop['slug'] ?></a>
+] ?>"><?= base_url() ?>/main/index</a>
                                                         </td>
 
                                                     </tr>
