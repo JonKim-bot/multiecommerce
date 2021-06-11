@@ -48,6 +48,30 @@ class OrderAnalysis extends BaseController
         $this->pageData['total_sales'] = $total_sales;
         echo view('admin/orderanalysis/total_sales_chart',$this->pageData);
     }
+
+    public function get_total_order()
+    {
+     
+        $date_from = $_POST['date_from'];
+        $date_to = $_POST['date_to'];
+
+        $shop_id = $this->shop_id;
+        $total_order = $this->OrdersModel->get_total_order($shop_id,$date_from,$date_to);
+        $this->pageData['total_order'] = $total_order;
+        echo view('admin/orderanalysis/total_order_chart',$this->pageData);
+    }
+
+    public function get_total_rate()
+    {
+     
+        $date_from = $_POST['date_from'];
+        $date_to = $_POST['date_to'];
+
+        $shop_id = $this->shop_id;
+        $total_rate = $this->OrdersModel->get_rate($shop_id,$date_from,$date_to);
+        $this->pageData['total_rate'] = $total_rate;
+        echo view('admin/orderanalysis/total_rate_chart',$this->pageData);
+    }
     public function detail()
     {
       

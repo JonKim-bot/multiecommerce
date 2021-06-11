@@ -73,7 +73,7 @@
                     <div class="tab-pane" id="total_order" role="tabpanel">
                         <div class="card">
                             
-                            <div class="card-header">Total Sales
+                            <div class="card-header">Total Orders
                                 <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted"></small></a></div>
                             </div>
                             <div class="card-body">
@@ -81,23 +81,23 @@
                                 <div class="form-group col-sm-12 col-md-3">
                                     <label for="" class="c-label">Date From</label>
                                     <br>
-                                    <input type="date" class="form-control filter" id="date_from_sales" name="dateFrom" value="">
+                                    <input type="date" class="form-control filter" id="date_from_order" name="dateFrom" value="">
                                 </div>
                                 <div class="form-group col-sm-12 col-md-3">
                                     <label for="" class="c-label">Date To</label>
                                     <br>
-                                    <input type="date" class="form-control filter" id="date_to_sales" name="dateTo" value="">
+                                    <input type="date" class="form-control filter" id="date_to_order" name="dateTo" value="">
                                 </div>
                             
                                 <div class="form-group col-sm-12 col-md-3">
                                     <label for="" class="c-label">Submit</label>
                                     <br>
-                                    <button id="btn_get_total_sales" class="form-control filter btn-primary btn" name="dateTo" >Submit</button>
+                                    <button id="btn_get_total_order" class="form-control filter btn-primary btn" name="dateTo" >Submit</button>
                                 </div>
                             </div>
                             
                             <div class="card-body">
-                                <div class="total_sales_chart">
+                                <div class="total_order_chart">
                             </div>
                         </div>
                         </div>
@@ -106,10 +106,35 @@
                     </div>
                     <div class="tab-pane" id="rate" role="tabpanel">
                     <div class="card">
-                        <div class="card-header">Line Chart
-                            <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted">docs</small></a></div>
+                            
+                            <div class="card-header">24 Hours Orders
+                                <div class="card-header-actions"><a class="card-header-action" href="http://www.chartjs.org" target="_blank"><small class="text-muted"></small></a></div>
+                            </div>
+                            <div class="card-body">
+                            <div class="row">
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="" class="c-label">Date From</label>
+                                    <br>
+                                    <input type="date" class="form-control filter" id="date_from_rate" name="dateFrom" value="">
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="" class="c-label">Date To</label>
+                                    <br>
+                                    <input type="date" class="form-control filter" id="date_to_rate" name="dateTo" value="">
+                                </div>
+                            
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="" class="c-label">Submit</label>
+                                    <br>
+                                    <button id="btn_get_total_rate" class="form-control filter btn-primary btn" name="dateTo" >Submit</button>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="total_rate_chart">
+                            </div>
                         </div>
-                        <div class="card-body">
+                        </div>
                         </div>
                     </div>
                     </div>
@@ -131,6 +156,18 @@
                 get_total_sales(date_from,date_to);
         });
 
+        $('#btn_get_total_order').on('click', function () {
+                let date_from = $('#date_from_order').val();    
+                let date_to = $('#date_to_order').val();    
+                get_total_order(date_from,date_to);
+        });
+
+        $('#btn_get_total_rate').on('click', function () {
+                let date_from = $('#date_from_rate').val();    
+                let date_to = $('#date_to_rate').val();    
+                get_total_rate(date_from,date_to);
+        });
+
           function get_total_sales(date_from,date_to){
               let postParam = {
                   date_from : date_from , 
@@ -138,6 +175,26 @@
               }
                 $.post("<?=base_url('OrderAnalysis/get_total_sales') ?>", postParam, function(html){
                     $('.total_sales_chart').html(html);
+                });
+            }
+
+            function get_total_order(date_from,date_to){
+              let postParam = {
+                  date_from : date_from , 
+                  date_to : date_to,
+              }
+                $.post("<?=base_url('OrderAnalysis/get_total_order') ?>", postParam, function(html){
+                    $('.total_order_chart').html(html);
+                });
+            }
+
+            function get_total_rate(date_from,date_to){
+              let postParam = {
+                  date_from : date_from , 
+                  date_to : date_to,
+              }
+                $.post("<?=base_url('OrderAnalysis/get_total_rate') ?>", postParam, function(html){
+                    $('.total_rate_chart').html(html);
                 });
             }
 

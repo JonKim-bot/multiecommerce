@@ -172,7 +172,7 @@ class OrdersModel extends BaseModel
         $wherenot = [
             '1' , '5'
         ];
-        $builder->whereNotIn('orders_status_id',$wherenot);
+        // $builder->whereNotIn('orders_status_id',$wherenot);
         $builder->orderBy('orders.orders_id','DESC');
         $total = 0;
         $query = $builder->get()->getResultArray();
@@ -201,7 +201,7 @@ class OrdersModel extends BaseModel
         $wherenot = [
             '1' , '5'
         ];
-        $builder->whereNotIn('orders_status_id',$wherenot);
+        // $builder->whereNotIn('orders_status_id',$wherenot);
         $builder->orderBy('orders.orders_id','DESC');
 
         $query = $builder->get();
@@ -240,7 +240,7 @@ class OrdersModel extends BaseModel
 
         ];
         $days = $this->get_days($date_from,$date_to);
-        for ($i = 0; $i < $days; $i++) {
+        for ($i = 0; $i <= $days; $i++) {
             $current = Date('Y-m-d', strtotime($date_from . " +" . $i . " days"));
             $where = [
                 'orders.shop_id' => $shop_id,
@@ -264,6 +264,73 @@ class OrdersModel extends BaseModel
 
         }
         return $full_data;
+        // $this->debug($where);
+    }
+
+    function get_total_order($shop_id,$date_from,$date_to){
+        $full_data = array();
+
+        $where = [
+            'DATE(orders.created_at) >=' => $date_from,
+            'DATE(orders.created_at) <='  => $date_to,
+
+        ];
+        $days = $this->get_days($date_from,$date_to);
+        for ($i = 0; $i <= $days; $i++) {
+            $current = Date('Y-m-d', strtotime($date_from . " +" . $i . " days"));
+            $where = [
+                'orders.shop_id' => $shop_id,
+                'DATE(orders.created_at)'  => $current,
+            ];
+            $builder = $this->db->table($this->tableName);
+            $builder->select('count(orders_id) as total,DATE(orders.created_at) as created_at');
+            $builder->where($where);
+            $wherenot = [
+                '1' , '5'
+            ];
+            // $builder->whereNotIn('orders_status_id',$wherenot);
+            $builder->orderBy('orders.orders_id','ASC');
+    
+            $result = $builder->get()->getResultArray();
+            $data = [
+                'created_at' => $current,
+                'total' => $result[0]['total'] ? $result[0]['total'] : 0
+            ];
+            array_push($full_data, $data);
+
+        }
+        return $full_data;
+        // $this->debug($where);
+    }
+
+    function get_rate($shop_id,$date_from,$date_to){
+        $full_data = array();
+
+        for ($i = 0; $i <= 24 ; $i++) {
+            
+            $builder = $this->db->table($this->tableName);
+            $builder->select('count(orders_id) as total,HOUR(created_at) as hour');
+            $where = [
+                'DATE(orders.created_at) >=' => $date_from,
+                'DATE(orders.created_at) <='  => $date_to,
+                'HOUR(orders.created_at)' => round($i,2) . ": 00",
+                'orders.shop_id' => $shop_id,
+            ];
+            $builder->where($where);
+
+            $builder->orderBy('orders.orders_id','ASC');
+    
+            $result = $builder->get()->getResultArray();
+            $data = $result;
+            $data = [
+                'hour' => round($i,2) . ": 00",
+                'total' => $result[0]['total'] ? $result[0]['total'] : 0
+            ];
+            array_push($full_data, $data);
+
+        }
+        return $full_data;
+
         // $this->debug($where);
     }
   

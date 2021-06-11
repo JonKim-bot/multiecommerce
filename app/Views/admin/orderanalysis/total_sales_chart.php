@@ -1,5 +1,5 @@
 
-<div id="columnchart_values" style="width: 100%"></div>
+<div id="columnchart_values" style="width: 100%;"></div>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">

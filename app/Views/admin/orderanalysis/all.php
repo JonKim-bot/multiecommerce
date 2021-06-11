@@ -22,13 +22,13 @@
                   <div class="card text-white bg-primary">
                     <div class="card-body card-body pb-0 d-flex justify-content-between align-items-start">
                       <div>
-                        <div class="text-value-lg"><?= $total_today_orders  ?></div>
+                        <div class="text-value-lg">RM <?= $total_today_orders  ?></div>
                         <div>Today Sales</div>
                       </div>
                       <div class="btn-group">
                         <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
-                                <i class="fa fa-facebook fa-3x"></i>
+                                <i class="fa fa-credit-card fa-3x"></i>
                           </svg>
                         <!-- </button> -->
                         <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div> -->
@@ -50,7 +50,7 @@
                       <div class="btn-group">
                         <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+                          <i class="fa fa-shopping-cart fa-3x"></i>
                           </svg>
                         <!-- </button> -->
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
@@ -72,7 +72,7 @@
                       <div class="btn-group">
                         <!-- <button class="btn btn-transparent dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
                           <svg class="c-icon">
-                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+                          <i class="fa fa-users fa-3x"></i>
                           </svg>
                         <!-- </button> -->
                         <!-- <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div> -->
