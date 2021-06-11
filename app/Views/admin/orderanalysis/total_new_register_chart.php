@@ -1,5 +1,5 @@
 
-<div id="order_chart" style="width: 100%;500px"></div>
+<div id="new_register_chart" style="width: 100%;500px"></div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
@@ -18,7 +18,7 @@
       title: 'New Register Member',
       curveType: 'function',
     };
-    var chart = new google.visualization.LineChart(document.getElementById('order_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('new_register_chart'));
 
     chart.draw(data, options);
 }

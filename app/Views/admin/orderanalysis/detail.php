@@ -346,6 +346,7 @@
                 $.post("<?=base_url('OrderAnalysis/get_new_register') ?>", postParam, function(html){
                     $('.total_new_register_chart').html(html);
                 });
+                
             }
 
             function get_top_product(date_from,date_to){
