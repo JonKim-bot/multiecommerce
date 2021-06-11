@@ -43,6 +43,7 @@ class API extends BaseController
                 $user = $this->UserModel->getWhere($where);
                 if(!empty($user)){
                     $referral_id = $user[0]['user_id'];
+                    
                 } else {
                     $error = true;
                     $message = "Invalid referral code";

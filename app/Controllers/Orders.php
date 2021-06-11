@@ -10,6 +10,7 @@ use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
 use App\Models\ProductOptionSelectionModel;
 use App\Models\PromoModel;
+
 use App\Models\ShopFunctionModel;
 use App\Models\PointModel;
 use App\Models\CustomerModel;
@@ -154,13 +155,13 @@ class Orders extends BaseController
             'customer_id' => $orders['customer_id'],
         ];
         $point = $this->PointModel->getWhere($where);
-        // if(empty($point)){
-        //     if($orders['customer_id'] > 0){
+        if(empty($point)){
+            if($orders['customer_id'] > 0){
                 $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
                 $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
                 $this->purchase_orders_percent($orders);
-        //     }
-        // }
+            }
+        }
 
     }
     public function unset_array($filter, $orgininal)

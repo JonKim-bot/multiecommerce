@@ -245,14 +245,13 @@ class OrdersModel extends BaseModel
             $where = [
                 'orders.shop_id' => $shop_id,
                 'DATE(orders.created_at)'  => $current,
+                'orders.is_paid' => 1
+
             ];
             $builder = $this->db->table($this->tableName);
             $builder->select('sum(orders.grand_total) as total,DATE(orders.created_at) as created_at');
             $builder->where($where);
-            $wherenot = [
-                '1' , '5'
-            ];
-            // $builder->whereNotIn('orders_status_id',$wherenot);
+           
             $builder->orderBy('orders.orders_id','ASC');
     
             $result = $builder->get()->getResultArray();
@@ -270,17 +269,15 @@ class OrdersModel extends BaseModel
     function get_total_order($shop_id,$date_from,$date_to){
         $full_data = array();
 
-        $where = [
-            'DATE(orders.created_at) >=' => $date_from,
-            'DATE(orders.created_at) <='  => $date_to,
-
-        ];
+    
         $days = $this->get_days($date_from,$date_to);
         for ($i = 0; $i <= $days; $i++) {
             $current = Date('Y-m-d', strtotime($date_from . " +" . $i . " days"));
             $where = [
                 'orders.shop_id' => $shop_id,
                 'DATE(orders.created_at)'  => $current,
+                'orders.is_paid' => 1
+
             ];
             $builder = $this->db->table($this->tableName);
             $builder->select('count(orders_id) as total,DATE(orders.created_at) as created_at');
@@ -315,6 +312,7 @@ class OrdersModel extends BaseModel
                 'DATE(orders.created_at) <='  => $date_to,
                 'HOUR(orders.created_at)' => round($i,2) . ": 00",
                 'orders.shop_id' => $shop_id,
+
             ];
             $builder->where($where);
 
@@ -333,7 +331,77 @@ class OrdersModel extends BaseModel
 
         // $this->debug($where);
     }
-  
+    function get_new_register($shop_id,$date_from,$date_to){
+        $full_data = array();
+
+        $days = $this->get_days($date_from,$date_to);
+        for ($i = 0; $i <= $days; $i++) {
+            $current = Date('Y-m-d', strtotime($date_from . " +" . $i . " days"));
+            $where = [
+                'customer.shop_id' => $shop_id,
+                'DATE(customer.created_date)'  => $current,
+            ];
+            $builder = $this->db->table('customer');
+            $builder->select('count(customer_id) as total,DATE(customer.created_date) as created_date');
+            $builder->where($where);
+         
+    
+            $result = $builder->get()->getResultArray();
+            $data = [
+                'created_at' => $current,
+                'total' => $result[0]['total'] ? $result[0]['total'] : 0
+            ];
+            array_push($full_data, $data);
+
+        }
+        return $full_data;
+
+        // $this->debug($where);
+    }
+
+    function get_top_product($shop_id,$date_from,$date_to){
+        $full_data = array();
+        $where = [
+            'DATE(order_detail.created_at) >=' => $date_from,
+            'DATE(order_detail.created_at) <='  => $date_to,
+            'orders.shop_id' => $shop_id,
+            'orders.is_paid' => 1
+        ];
+        $days = $this->get_days($date_from,$date_to);
+        
+        $builder = $this->db->table('order_detail');
+        $builder->select('product.*,sum(order_detail.product_quantity) as total,DATE(order_detail.created_at) as created_date');
+        $builder->join('product', 'product.product_id = order_detail.product_id','left');
+        $builder->join('orders', 'orders.orders_id = order_detail.orders_id');
+
+        $builder->where($where);
+        $builder->groupBy('order_detail.product_id');
+        $builder->orderBy('total','DESC');
+
+        $result = $builder->get()->getResultArray();
+        return $result;
+    }
+
+
+    function get_top_product_cat($shop_id,$date_from,$date_to){
+        $full_data = array();
+        $where = [
+            'DATE(order_detail.created_at) >=' => $date_from,
+            'DATE(order_detail.created_at) <='  => $date_to,
+
+        ];
+        $days = $this->get_days($date_from,$date_to);
+        
+        $builder = $this->db->table('order_detail');
+        $builder->select('count(product_id) as total,DATE(order_detail.created_at) as created_date');
+        $builder->join('count(product_id) as total,DATE(order_detail.created_at) as created_date');
+
+        $builder->where($where);
+        $builder->groupBy('order_detail.product_id');
+        $result = $builder->get()->getResultArray();
+        return $result;
+    }
+        // $this->debug($where);
   
   
    

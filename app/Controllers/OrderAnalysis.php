@@ -72,6 +72,42 @@ class OrderAnalysis extends BaseController
         $this->pageData['total_rate'] = $total_rate;
         echo view('admin/orderanalysis/total_rate_chart',$this->pageData);
     }
+    
+    public function get_new_register()
+    {
+     
+        $date_from = $_POST['date_from'];
+        $date_to = $_POST['date_to'];
+
+        $shop_id = $this->shop_id;
+        $total_new_register = $this->OrdersModel->get_new_register($shop_id,$date_from,$date_to);
+        $this->pageData['total_new_register'] = $total_new_register;
+        echo view('admin/orderanalysis/total_new_register_chart',$this->pageData);
+    }
+    
+    public function get_top_product_cat()
+    {
+     
+        $date_from = $_POST['date_from'];
+        $date_to = $_POST['date_to'];
+
+        $shop_id = $this->shop_id;
+        $top_product_cat = $this->OrdersModel->get_top_product_cat($shop_id,$date_from,$date_to);
+        $this->pageData['top_product_cat'] = $top_product_cat;
+        echo view('admin/orderanalysis/top_product_cat_table',$this->pageData);
+    }
+    
+    public function get_top_product()
+    {
+     
+        $date_from = $_POST['date_from'];
+        $date_to = $_POST['date_to'];
+
+        $shop_id = $this->shop_id;
+        $top_product = $this->OrdersModel->get_top_product($shop_id,$date_from,$date_to);
+        $this->pageData['top_product'] = $top_product;
+        echo view('admin/orderanalysis/top_product_table',$this->pageData);
+    }
     public function detail()
     {
       
