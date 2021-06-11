@@ -25,11 +25,11 @@
                     <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#total_sales" role="tab" aria-controls="home">
                         <svg class="c-icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
-                        </svg> Total sales <span class="badge badge-success">New</span></a></li>
+                        </svg> Total sales</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#total_order" role="tab" aria-controls="profile">
                         <svg class="c-icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-basket"></use>
-                        </svg> Total Number of orders<span class="badge badge-pill badge-danger">29</span></a></li>
+                        </svg> Total Number of orders</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#rate" role="tab" aria-controls="messages">
                         <svg class="c-icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
@@ -346,7 +346,7 @@
                 $.post("<?=base_url('OrderAnalysis/get_new_register') ?>", postParam, function(html){
                     $('.total_new_register_chart').html(html);
                 });
-                
+
             }
 
             function get_top_product(date_from,date_to){

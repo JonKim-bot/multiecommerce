@@ -96,6 +96,10 @@ class Main extends BaseController
         } else {
             $this->pageData['customer_data'] = array();
         }
+        $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
+        $slug = $subdomain_arr[0];
+        $this->$slug = 'capital-shop';
+        $this->shop= $this->get_shop($slug);
 
         //1 membership
         //2 Gift
@@ -116,7 +120,6 @@ class Main extends BaseController
     }
     public function voucher($slug){
 
-        $shop= $this->get_shop($slug);
 
         $this->load_view('voucher',$slug);
 
@@ -548,7 +551,7 @@ class Main extends BaseController
 
     }
 
-    public function load_view($view_name,$shop){
+    public function load_view($view_name,$shop = $this->slug){
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
         echo view("templateone/" . $view_name);
@@ -982,9 +985,9 @@ class Main extends BaseController
     
 
 
-    public function index($slug)
+    public function index()
     {
-        $shop = $this->get_shop($slug);
+        $shop = $this->shop;
         $where = [
             'shop_id' => $shop['shop_id']
         ];
@@ -1027,7 +1030,7 @@ class Main extends BaseController
         $this->pageData['product'] = $product;
 
     
-        $this->load_view('index',$slug);
+        $this->load_view('index');
 
 
     }
