@@ -282,10 +282,7 @@ class OrdersModel extends BaseModel
             $builder = $this->db->table($this->tableName);
             $builder->select('count(orders_id) as total,DATE(orders.created_at) as created_at');
             $builder->where($where);
-            $wherenot = [
-                '1' , '5'
-            ];
-            // $builder->whereNotIn('orders_status_id',$wherenot);
+
             $builder->orderBy('orders.orders_id','ASC');
     
             $result = $builder->get()->getResultArray();
