@@ -98,8 +98,7 @@ class Main extends BaseController
         }
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
         $slug = $subdomain_arr[0];
-        $this->slug = 'testshop';
-        $slug = 'testshop';
+        $slug = 'capital-shop';
         $this->shop= $this->get_shop($slug);
 
         //1 membership

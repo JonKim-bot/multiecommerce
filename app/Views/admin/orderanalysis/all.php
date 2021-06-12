@@ -6,9 +6,7 @@
         <div class="c-subheader px-3">
           <!-- Breadcrumb-->
           <ol class="breadcrumb border-0 m-0">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
+            <li class="breadcrumb-item">Store Perfomance</li>
             <!-- Breadcrumb Menu-->
           </ol>
         </div>
@@ -103,14 +101,3 @@
                     <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                       <canvas class="chart" id="card-chart4" height="70"></canvas>
                     </div>
-                  </div>
-                </div> -->
-                <!-- /.col-->
-              </div>
-              <!-- /.row-->
-              
-              <!-- /.row-->
-            </div>
-          </div>
-        </main>
-        

@@ -202,52 +202,58 @@
               
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
                         Brand 
                     </a>
                 </li>
                      
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shoprate' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Shoprate">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
-                        Shop rate 
+                        <i class="fa fa-percent c-sidebar-nav-icon"></i>
+                        Referal rate 
                     </a>
                 </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-bookmark-o c-sidebar-nav-icon"></i>
                         Voucher
                     </a>
                 </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-bookmark c-sidebar-nav-icon"></i>
                         Gift
                     </a>
                 </li>
                 <li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'transaction' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
                         Transaction
                     </a>
             </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-users c-sidebar-nav-icon"></i>
                         Member
                     </a>
                 </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
                         Referal
                     </a>
                 </li>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        <i class="fa fa-building c-sidebar-nav-icon"></i>
+                       Store Perfomance
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis/detail">
+                        <i class="fa fa-search c-sidebar-nav-icon"></i>
                         Order Analysis
                     </a>
                 </li>
@@ -267,7 +273,7 @@
                 </li>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop_payment_method' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop_payment_method">
-                        <i class="fa fa-credit-card c-sidebar-nav-icon"></i>
+                        <i class="fa fa-qrcode c-sidebar-nav-icon"></i>
                      Payment Method
                     </a>
                 </li>
