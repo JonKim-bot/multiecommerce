@@ -125,8 +125,8 @@
                 </div>
             </div>
         </div>
-    </div> -->
-    <!-- Preloader Start
+    </div>
+    <!-- Preloader Start -->
     <header>
         <div class="header-area">
             <!-- <div class="header-top d-none d-sm-block">

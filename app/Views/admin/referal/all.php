@@ -49,7 +49,7 @@
                                 <div class="card-header" id="heading_<?= $parent['customer_id']; ?>">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?= $parent['customer_id']; ?>">
-                                            <?= $parent['contact']; ?> : Referrals (<?= count($parent['family']); ?>)
+                                            <?= $parent['email']; ?> <?= $parent['customer_id']; ?> : Referrals (<?= count($parent['family']); ?>)
                                         </button>
                                     </h5>
                                 </div>
@@ -63,7 +63,7 @@
                                                     <div class="card-header" id="heading_1_<?= $tier_1['customer_id']; ?>">
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_1_<?= $tier_1['customer_id']; ?>">
-                                                                <?= $tier_1['contact']; ?> : Referrals (<?= count($tier_1['child']); ?>)
+                                                                <?= $tier_1['email']; ?> <?= $tier_1['customer_id']; ?> : Referrals (<?= count($tier_1['child']); ?>)
                                                             </button>
                                                         </h5>
                                                     </div>
@@ -77,7 +77,7 @@
                                                                         <div class="card-header" id="heading_2_<?= $tier_2['customer_id']; ?>">
                                                                             <h5 class="mb-0">
                                                                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_2_<?= $tier_2['customer_id']; ?>">
-                                                                                    <?= $tier_2['contact']; ?> : Referrals (<?= count($tier_2['child']); ?>)
+                                                                                    <?= $tier_2['email']; ?> <?= $tier_2['customer_id']; ?> : Referrals (<?= count($tier_2['child']); ?>)
                                                                                 </button>
                                                                             </h5>
                                                                         </div>
@@ -91,7 +91,7 @@
                                                                                             <div class="card-header" id="heading_3_<?= $tier_3['customer_id']; ?>">
                                                                                                 <h5 class="mb-0">
                                                                                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_3_<?= $tier_3['customer_id']; ?>">
-                                                                                                        <?= $tier_3['contact']; ?>
+                                                                                                        <?= $tier_3['email']; ?> <?= $tier_3['customer_id']; ?>
                                                                                                     </button>
                                                                                                 </h5>
                                                                                             </div>

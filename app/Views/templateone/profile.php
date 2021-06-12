@@ -6,7 +6,7 @@
                 <div class="button-group-area mt-40">
                 <?php if(in_array(1,$shop_function)){ ?>
 
-					<a href="<?= base_url() ?>/main/voucher/<?=  $shop['slug']?>" class="genric-btn primary radius">
+					<a href="<?= base_url() ?>/main/voucher" class="genric-btn primary radius">
                     <i class="fa fa-gift"></i>
                     Voucher
                     

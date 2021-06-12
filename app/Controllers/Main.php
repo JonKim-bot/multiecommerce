@@ -45,6 +45,7 @@ class Main extends BaseController
 
 
 
+
     public function __construct()
     {
         $this->GiftModel = new GiftModel();
@@ -782,7 +783,7 @@ class Main extends BaseController
     }
     public function apply_promo(){
         if(isset($_POST)){
-
+            $_POST['promocode'] = trim($_POST['promocode']);
             $where = [
                 'code' => $_POST['promocode'],
                 'promo.shop_id' => $_POST['shop_id'],
@@ -847,6 +848,7 @@ class Main extends BaseController
     function startsWith ($string, $startString) 
     { 
         $len = strlen($startString); 
+        
         return (substr($string, 0, $len) === $startString); 
     } 
 
@@ -857,8 +859,17 @@ class Main extends BaseController
             $_GET['keyword'] = "+6" . $_GET['keyword'];
         }
 
+        if (!empty($this->session->get("customer_data"))) {
+            $where = [
+                'orders.customer_id' => $this->session->get("customer_id"),
 
-        $order_history = $this->OrdersModel->getHistory($_GET['keyword'],$shop['shop_id']);
+            ];
+            $order_history = $this->OrdersModel->getWhere($where);
+
+        }else{
+
+            $order_history = $this->OrdersModel->getHistory($_GET['keyword'],$shop['shop_id']);
+        }
 
         $this->pageData['order_history'] = $order_history;
 

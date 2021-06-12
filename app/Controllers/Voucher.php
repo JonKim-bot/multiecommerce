@@ -109,6 +109,7 @@ class Voucher extends BaseController
 
         $this->pageData['voucher'] = $voucher[0];
         $this->pageData['customer_voucher'] = $c_voucher;
+        
 
         echo view('admin/header', $this->pageData);
         echo view('admin/voucher/detail');
