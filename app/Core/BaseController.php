@@ -63,6 +63,7 @@ class BaseController extends Controller
         }
        
         $this->AdminModel = new AdminModel();
+        $this->ShopFunctionModel = new ShopFunctionModel();
 
     }
     public function getShopFunction($shop_id){
@@ -72,8 +73,8 @@ class BaseController extends Controller
         $shop_function = array_column($this->ShopFunctionModel->getWhere($where),'function_id');
         return $shop_function;
     }
-    public function validate_function($function_id){
-        if($this->check_exist_function($function_id) == false){
+    public function validate_function($function_id,$shop_function){
+        if($this->check_exist_function($function_id,$shop_function) == false){
             $this->show_404_if_empty([]);
         }
 

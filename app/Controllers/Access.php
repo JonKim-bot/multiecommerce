@@ -307,6 +307,7 @@ class Access extends BaseController
                 // $login = $this->UserModel->login($input["username"], $input["password"]);
                 if (!empty($login)) {
                     $admin_data = $login[0];
+                    
                     $login_id = $login[0]["user_id"];
                 } else {
                     $error = true;
@@ -386,7 +387,9 @@ class Access extends BaseController
                     'shop_id' => $admin_data['shop_id']
                 ];
                 $shop = $this->ShopModel->getWhere($where);
+                $shop[0]['shop_function'] = $this->getShopFunction($admin_data['shop_id']);
                 $session->set('shop_data',$shop[0]);
+
 
                 if($admin_data['type'] == "ADMIN"){
                     return redirect()->to( base_url('admin', "refresh") );

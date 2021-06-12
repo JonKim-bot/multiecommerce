@@ -377,21 +377,8 @@ class Main extends BaseController
         $this->session->set("customer_data", $login_data);
         $this->session->set("customer_id", $login_id);
     }
-    public function validate_function($function_id){
-        if($this->check_exist_function($function_id) == false){
-            $this->show_404_if_empty([]);
-        }
-
-    }
-    public function check_exist_function($function_id){
-        if(in_array($function_id,$this->pageData['shop_function'])){ 
-            
-            return true;
-        }else{
-            return false;
-        }
-    }
 	public function signup($referal_code = "")
+
     {
         $shop = $this->shop;
         if($referal_code != ""){
@@ -399,8 +386,8 @@ class Main extends BaseController
                 $this->show_404_if_empty([]);
             }
         }
-        $this->validate_function(1);
-        $this->check_exist_function(1);
+        $this->validate_function(1,$this->pageData['shop_function']);
+        $this->check_exist_function(1,$this->pageData['shop_function']);
         $this->pageData['referal_code'] = $referal_code;
 		if($_POST){
 
@@ -443,7 +430,7 @@ class Main extends BaseController
     {
      
         $shop = $this->shop;
-        $this->validate_function(1);
+        $this->validate_function(1,$this->pageData['shop_function']);
 
 		if($_POST){
 
@@ -472,7 +459,7 @@ class Main extends BaseController
     {
           
         $shop = $this->shop;
-        $this->validate_function(1);
+        $this->validate_function(1,$this->pageData['shop_function']);
 
         $this->pageData['point'] = $this->PointModel->get_balance($this->session->get('customer_id'));
 		if($_POST){
@@ -1636,13 +1623,14 @@ class Main extends BaseController
         );
         $orders = $this->OrdersModel->updateWhere($where,$data);
         $shop = $this->get_shop($orders['shop_id']);
-        if($this->check_exist_function(1)){
+        if($this->check_exist_function(1,$this->pageData['shop_function'])){
             $this->give_point($orders_id);
         }
 
     }
     function call_back_to_order($order_id){
 
+        
         $where = [
             'orders_log.order_payment_id' => $order_id
         ];

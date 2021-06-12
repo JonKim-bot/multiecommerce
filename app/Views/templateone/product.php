@@ -133,6 +133,7 @@
                 </div>
             </div>
         </div>
+        <?php if(in_array(3,$shop_function)){ ?>
         <section class="latest-items section-padding fix">
             <div class="row">
                 <div class="col-xl-12">
@@ -144,6 +145,7 @@
             <div class="container">
                 <div class="latest-items-active">
                     <!-- Single -->
+
                     <div class="properties pb-30">
                         <div class="properties-card">
                             <div class="properties-img">
@@ -272,6 +274,8 @@
                 </div>
             </div>
         </section>
+        <?php } ?>
+
         <!-- services-area End-->
         <!--Books review Start -->
         <section class="our-client section-padding best-selling">

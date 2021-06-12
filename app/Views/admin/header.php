@@ -206,44 +206,62 @@
                         Brand 
                     </a>
                 </li>
-                     
+                <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shoprate' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Shoprate">
                         <i class="fa fa-percent c-sidebar-nav-icon"></i>
-                        Referal rate 
+                        Member rate 
                     </a>
                 </li>
+                <?php } ?>
+                <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
                         <i class="fa fa-bookmark-o c-sidebar-nav-icon"></i>
                         Voucher
                     </a>
                 </li>
+                <?php } ?>
+
+                <?php if(in_array(2,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
                         <i class="fa fa-bookmark c-sidebar-nav-icon"></i>
                         Gift
                     </a>
                 </li>
+                <?php } ?>
                 <li>
+                <?php if(in_array(6,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'transaction' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction">
                         <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
                         Transaction
                     </a>
             </li>
+            <?php } ?>
+            <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
                         <i class="fa fa-users c-sidebar-nav-icon"></i>
                         Member
                     </a>
                 </li>
+                <?php } ?>
+                <?php if(in_array(8,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
                         <i class="fa fa-cog c-sidebar-nav-icon"></i>
                         Referal
                     </a>
                 </li>
+                <?php } ?>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">
@@ -251,12 +269,15 @@
                        Store Perfomance
                     </a>
                 </li>
+                <?php if(in_array(7,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis/detail">
                         <i class="fa fa-search c-sidebar-nav-icon"></i>
                         Order Analysis
                     </a>
                 </li>
+                <?php } ?>
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
                         <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>

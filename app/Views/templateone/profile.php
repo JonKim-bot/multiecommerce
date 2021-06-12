@@ -4,19 +4,28 @@
             <div class="register-form text-center">
                 <!-- Login Heading -->
                 <div class="button-group-area mt-40">
+                <?php if(in_array(1,$shop_function)){ ?>
+
 					<a href="<?= base_url() ?>/main/voucher/<?=  $shop['slug']?>" class="genric-btn primary radius">
                     <i class="fa fa-gift"></i>
                     Voucher
                     
                     </a>
+                <?php } ?>
+                <?php if(in_array(2,$shop_function)){ ?>
+
 					<a href="<?= base_url() ?>/main/gift" class="genric-btn primary radius">
                     <i class="fa fa-gift"></i>
 
                     Gift</a>
-					<a href="<?= base_url() ?>/main/point_history" class="genric-btn primary radius">
+                <?php } ?>
+                <?php if(in_array(6,$shop_function)){ ?>
+
+                    <a href="<?= base_url() ?>/main/point_history" class="genric-btn primary radius">
                     <i class="fa fa-credit-card"></i>
 
                     Point History</a>
+                <?php } ?>
 				</div>
                 <div class="register-heading">
 
