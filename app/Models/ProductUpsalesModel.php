@@ -21,6 +21,7 @@ class ProductUpsalesModel extends BaseModel
         $builder->join('product', 'product.product_id = product_upsales.upsales_product_id');
 
         $builder->where('product.deleted', 0);
+        $builder->where($where);
 
         $query = $builder->get();
         return $query->getResultArray();
