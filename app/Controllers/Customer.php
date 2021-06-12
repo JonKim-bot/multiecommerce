@@ -16,6 +16,11 @@ class Customer extends BaseController
         $this->CustomerModel = new CustomerModel();
         $this->OrdersModel = new OrdersModel();
         $this->PointModel  = new PointModel ();
+        $shop_data = session()->get('shop_data');
+        $shop_function = $this->getShopFunction($shop_data['shop_id']);
+        $this->shop_function = $shop_function;
+        $this->validate_function(1,$shop_function);
+
 
     }
 

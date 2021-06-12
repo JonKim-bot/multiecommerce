@@ -13,7 +13,10 @@ class OrderAnalysis extends BaseController
         $this->pageData = [];
         $this->OrdersModel = new OrdersModel();
         $this->ProductCategoryModel = new ProductCategoryModel();
-
+        $shop_data = session()->get('shop_data');
+        $shop_function = $this->getShopFunction($shop_data['shop_id']);
+        $this->shop_function = $shop_function;
+        $this->validate_function(7,$shop_function);
 
         if (
             session()->get('admin_data') == null &&

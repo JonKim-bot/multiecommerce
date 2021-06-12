@@ -120,6 +120,7 @@ class Main extends BaseController
     }
     public function voucher(){
 
+        $this->check_exist_function(1,$this->pageData['shop_function']);
 
         $this->load_view('voucher');
 
@@ -269,8 +270,9 @@ class Main extends BaseController
     }
    
     public function gift(){
-        $shop = $this->shop;
+        $this->check_exist_function(2,$this->pageData['shop_function']);
 
+        $shop = $this->shop;
 
         $this->load_view('gift');
 
@@ -857,7 +859,8 @@ class Main extends BaseController
     
     public function point_history(){
         $shop = $this->shop;
-
+        $this->check_exist_function(6,$this->pageData['shop_function']);
+        
         $where = [
             'point.customer_id' => $this->session->get('customer_id'),
         ];

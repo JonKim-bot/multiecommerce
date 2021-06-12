@@ -67,6 +67,8 @@ class BaseController extends Controller
 
     }
     public function getShopFunction($shop_id){
+        $this->ShopFunctionModel = new ShopFunctionModel();
+
         $where = [
             'shop_id' => $shop_id, 
         ];
@@ -77,6 +79,7 @@ class BaseController extends Controller
         if($this->check_exist_function($function_id,$shop_function) == false){
             $this->show_404_if_empty([]);
         }
+
 
     }
     public function check_exist_function($function_id,$shop_function){
