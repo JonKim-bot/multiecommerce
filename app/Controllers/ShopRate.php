@@ -42,42 +42,42 @@ class Shoprate extends BaseController
         echo view('admin/footer');
     }
 
-    public function add()
-    {
-        if ($_POST) {
-            $input = $this->request->getPost();
+    // public function add()
+    // {
+    //     if ($_POST) {
+    //         $input = $this->request->getPost();
 
-            $error = false;
+    //         $error = false;
 
-            if (!$error) {
+    //         if (!$error) {
                 
-                $data = [
-                    'rate_name' => $this->request->getPost('rate_name'),
-                    'rate' => $this->request->getPost('rate'),
+    //             $data = [
+    //                 'rate_name' => $this->request->getPost('rate_name'),
+    //                 'rate' => $this->request->getPost('rate'),
 
-                    'shop_id' => $this->shop_id,
-                    'created_by' => session()->get('login_id'),
-                ];
+    //                 'shop_id' => $this->shop_id,
+    //                 'created_by' => session()->get('login_id'),
+    //             ];
                 
-                // $image = $this->upload_image_base('banner');
+    //             // $image = $this->upload_image_base('banner');
 
-                // if($image != ""){
-                //     $data['banner'] = $image;
-                // }
+    //             // if($image != ""){
+    //             //     $data['banner'] = $image;
+    //             // }
           
-                // $this->debug($data);
-                // dd($data);
+    //             // $this->debug($data);
+    //             // dd($data);
 
-                $this->ShopRateModel->insertNew($data);
+    //             $this->ShopRateModel->insertNew($data);
 
-                return redirect()->to(base_url('shoprate', 'refresh'));
-            }
-        }
+    //             return redirect()->to(base_url('shoprate', 'refresh'));
+    //         }
+    //     }
 
-        echo view('admin/header', $this->pageData);
-        echo view('admin/shoprate/add');
-        echo view('admin/footer');
-    }
+    //     echo view('admin/header', $this->pageData);
+    //     echo view('admin/shoprate/add');
+    //     echo view('admin/footer');
+    // }
 
     public function detail($shop_rate_id)
     {
@@ -96,6 +96,7 @@ class Shoprate extends BaseController
         echo view('admin/shoprate/detail');
         echo view('admin/footer');
     }
+
 
     public function edit($shop_rate_id)
     {

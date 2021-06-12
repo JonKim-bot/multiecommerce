@@ -161,6 +161,7 @@ class Main extends BaseController
             ];
             $voucher = $this->VoucherModel->getWhere($where)[0];
             
+
             $customer_id  =  $this->session->get('customer_id');
             $point_balance = $this->PointModel->get_balance($customer_id);
             if($voucher['redeem_point'] > $point_balance){
@@ -384,6 +385,7 @@ class Main extends BaseController
     }
     public function check_exist_function($function_id){
         if(in_array($function_id,$this->pageData['shop_function'])){ 
+            
             return true;
         }else{
             return false;

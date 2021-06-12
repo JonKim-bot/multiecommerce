@@ -68,6 +68,27 @@ class Orders extends BaseController
         }
 
         $shop_data = session()->get('shop_data');
+        $shop_function = $this->getShopFunction($shop_data['shop_id']);
+        $this->shop_function = $shop_function;
+        $this->shop_data = $shop_data;
+
+        if($this->check_exist_function(6,$shop_function)){
+            $rate = [
+                'first_rate'  => 5 ,
+            ];
+
+            $this->generate_rate($rate);
+        }
+        if($this->check_exist_function(8,$shop_function)){
+            $rate = [
+                'first_rate'  => 5 ,
+                'second_rate' => 3,
+                'thrid_rate' => 2,
+            ];
+            $this->generate_rate($rate);
+        }
+
+
     }
 
     // public function generate_operating_hour($shop_id){
@@ -135,7 +156,7 @@ class Orders extends BaseController
             "is_paid" => $is_paid,
         );
         $this->OrdersModel->updateWhere($where,$data);
-        if($is_paid == 1 && $this->check_exist_function(1,$orders['shop_id'])){
+        if($is_paid == 1 && $this->check_exist_function(1,$this->shop_function)){
             $this->give_point($orders_id);
 
         }
@@ -164,6 +185,28 @@ class Orders extends BaseController
         }
 
     }
+
+    public function generate_rate($rate){
+        $shop_id = $this->shop_data['shop_id'];
+        
+        foreach($rate as $key=> $row){
+            $where  = [
+                'rate_name' => $key,
+                'shop_id' => $shop_id
+
+            ];
+            $data  = [
+                'rate_name' => $key,
+                'rate' =>  $row,
+                'shop_id' => $shop_id
+            ];
+            $shop_rate = $this->ShopRateModel->getWhere($where);
+            if(empty($shop_rate)){
+                $this->ShopRateModel->insertNew($data);
+            }
+        }
+    }
+
     public function unset_array($filter, $orgininal)
     {
         foreach ($filter as $key => $row) {
@@ -670,17 +713,17 @@ class Orders extends BaseController
         }
         return $order_detail;
     }
-    public function check_exist_function($function_id,$shop_id){
-        $where = [
-            'shop_function.shop_id' => $shop_id
-        ];
-        $shop_function = array_column($this->ShopFunctionModel->getWhere($where),'function_id');
-        if(in_array($function_id,$shop_function)){ 
-            return true;
-        }else{
-            return false;
-        }
-    }
+    // public function check_exist_function($function_id,$shop_id){
+    //     $where = [
+    //         'shop_function.shop_id' => $shop_id
+    //     ];
+    //     $shop_function = array_column($this->ShopFunctionModel->getWhere($where),'function_id');
+    //     if(in_array($function_id,$shop_function)){ 
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
     public function detail($orders_id)
     {
         $where = [

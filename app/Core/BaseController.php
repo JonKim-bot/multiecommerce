@@ -19,6 +19,8 @@ namespace App\Core;
 use App\Models\AdminModel;
 
 use App\Models\UserModel;
+use App\Models\ShopFunctionModel;
+
 use CodeIgniter\Controller;
 
 class BaseController extends Controller
@@ -62,6 +64,26 @@ class BaseController extends Controller
        
         $this->AdminModel = new AdminModel();
 
+    }
+    public function getShopFunction($shop_id){
+        $where = [
+            'shop_id' => $shop_id, 
+        ];
+        $shop_function = array_column($this->ShopFunctionModel->getWhere($where),'function_id');
+        return $shop_function;
+    }
+    public function validate_function($function_id){
+        if($this->check_exist_function($function_id) == false){
+            $this->show_404_if_empty([]);
+        }
+
+    }
+    public function check_exist_function($function_id,$shop_function){
+        if(in_array($function_id,$shop_function)){ 
+            return true;
+        }else{
+            return false;
+        }
     }
     public function check_is_merchant_from_shop($shop_id_item){
         if($shop_id_item != $this->shop_id){
