@@ -6,7 +6,7 @@ use App\Core\BaseController;
 use App\Models\OrdersModel;
 use App\Models\ProductCategoryModel;
 
-class OrderAnalysis extends BaseController
+class Orderanalysis extends BaseController
 {
     public function __construct()
     {
