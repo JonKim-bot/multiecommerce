@@ -133,148 +133,7 @@
                 </div>
             </div>
         </div>
-        <?php if(in_array(3,$shop_function)){ ?>
-        <section class="latest-items section-padding fix">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section-tittle text-center mb-40">
-                        <h2>You May Like</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="latest-items-active">
-                    <!-- Single -->
-
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                                <a href="pro-details.html"><img src="assets/img/gallery/latest5.jpg" alt=""></a>
-                                <div class="socal_icon">
-                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                                <h3><a href="pro-details.html">Cashmere Tank + Bag</a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                        <span>$98.00 <span>$120.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                                <a href="pro-details.html"><img src="assets/img/gallery/latest6.jpg" alt=""></a>
-                                <div class="socal_icon">
-                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                                <h3><a href="pro-details.html">Cashmere Tank + Bag</a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                        <span>$98.00 <span>$120.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                                <a href="pro-details.html"><img src="assets/img/gallery/latest7.jpg" alt=""></a>
-                                <div class="socal_icon">
-                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                                <h3><a href="pro-details.html">Cashmere Tank + Bag</a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                        <span>$98.00 <span>$120.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                                <a href="pro-details.html"><img src="assets/img/gallery/latest8.jpg" alt=""></a>
-                                <div class="socal_icon">
-                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                                <h3><a href="pro-details.html">Cashmere Tank + Bag</a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                        <span>$98.00 <span>$120.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                                <a href="pro-details.html"><img src="assets/img/gallery/latest6.jpg" alt=""></a>
-                                <div class="socal_icon">
-                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                                <h3><a href="pro-details.html">Cashmere Tank + Bag</a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                        <span>$98.00 <span>$120.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                                <a href="pro-details.html"><img src="assets/img/gallery/latest7.jpg" alt=""></a>
-                                <div class="socal_icon">
-                                    <a href="#"><i class="ti-shopping-cart"></i></a>
-                                    <a href="#"><i class="ti-heart"></i></a>
-                                    <a href="#"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                                <h3><a href="pro-details.html">Cashmere Tank + Bag</a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                        <span>$98.00 <span>$120.00</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <?php } ?>
+        
 
         <!-- services-area End-->
         <!--Books review Start -->
@@ -310,6 +169,51 @@
                 </div>
             </div>
         </section>
+        <?php if(in_array(3,$shop_function)){ ?>
+        <section class="latest-items section-padding fix">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section-tittle text-center mb-40">
+                        <h2>You May Like</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="latest-items-active">
+                    <!-- Single -->
+                    <?php foreach($upsales_product as $row){ ?>
+                    <div class="properties pb-30">
+                        <div class="properties-card">
+                            <div class="properties-img">
+                            <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
+                                <div class="socal_icon">
+                           
+                                    <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="properties-caption properties-caption2">
+                            <h3><a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
+                                <div class="properties-footer">
+                                    <div class="price">
+                                    <?php if($row['is_promo'] == 1){ ?>
+                                        <span>RM <?= $row['promo_price'] ?>
+                                            <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
+                                        </span>
+                                        <?php }else{ ?>
+                                            <span>RM <?= $row['product_price'] ?>
+                                        </span>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+                    <!-- Single -->
+                </div>
+            </div>
+        </section>
+        <?php } ?>
         <!-- Books review End -->
     </main>
 

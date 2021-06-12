@@ -28,7 +28,9 @@ use App\Models\OrdersStatusModel;
 use App\Models\OrderDetailOptionModel;
 use App\Models\PromoModel;
 use App\Models\CustomerModel;
+use App\Models\ProductUpsalesModel;
 
+ 
 use App\Models\ContactModel;
 use App\Models\OrdersLogModel;
 use App\Models\PremierResponseModel;
@@ -49,7 +51,9 @@ class Main extends BaseController
         $this->CustomerVoucherModel = new CustomerVoucherModel();
         $this->VoucherModel = new VoucherModel();
         $this->CustomerGiftModel = new CustomerGiftModel();
+        $this->ProductUpsalesModel = new ProductUpsalesModel();
 
+        
         $this->PromoModel = new PromoModel();
         $this->CustomerModel = new CustomerModel();
         $this->PointModel = new PointModel();
@@ -698,6 +702,12 @@ class Main extends BaseController
         $required_option = array_column($product_option_required,'product_option_id');
         sort($required_option);
         $required_option = join("_",$required_option);
+        $where = [
+
+            'product_upsales.product_id' => $product['product_id'],
+        ];
+        $this->pageData['upsales_product'] = $this->ProductUpsalesModel->getWhere($where);
+
         //sort require option and get required stuff
         $this->pageData['required_option_id'] = $required_option;
         $this->pageData['product_option'] = $product_option;
@@ -860,7 +870,7 @@ class Main extends BaseController
     public function point_history(){
         $shop = $this->shop;
         $this->check_exist_function(6,$this->pageData['shop_function']);
-        
+
         $where = [
             'point.customer_id' => $this->session->get('customer_id'),
         ];

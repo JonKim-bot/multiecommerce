@@ -14,4 +14,15 @@ class ProductUpsalesModel extends BaseModel
         $this->primaryKey = "product_upsales_id";
 
     }
+
+    function getWhere($where,$limit = "", $page = 1, $filter = array()){
+        $builder = $this->db->table($this->tableName);
+        $builder->select('product_upsales.*,product.*');
+        $builder->join('product', 'product.product_id = product_upsales.upsales_product_id');
+
+        $builder->where('product.deleted', 0);
+
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
 }
