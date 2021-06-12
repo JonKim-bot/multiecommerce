@@ -118,6 +118,8 @@
                     </div>
                     
                 </div> -->
+                <?php if(in_array(2,$shop_function)){ ?>
+
                 <div class="col-lg-10 col-md-6">
 
                 <section class="items-product1 pt-30">
@@ -142,6 +144,8 @@
             </div>
         </section>
         </div>
+        <?php } ?>
+
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
