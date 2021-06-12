@@ -16,7 +16,7 @@ class OrderAnalysis extends BaseController
         $shop_data = session()->get('shop_data');
         $shop_function = $this->getShopFunction($shop_data['shop_id']);
         $this->shop_function = $shop_function;
-        $this->validate_function(7,$shop_function);
+
 
         if (
             session()->get('admin_data') == null &&
@@ -153,7 +153,7 @@ class OrderAnalysis extends BaseController
     }
     public function detail()
     {
-      
+        $this->validate_function(7,$this->shop_function);
         echo view('admin/header', $this->pageData);
         echo view('admin/orderanalysis/detail');
         echo view('admin/footer');

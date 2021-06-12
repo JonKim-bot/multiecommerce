@@ -64,6 +64,25 @@
                         </select>
 
                     </div>
+                    <?php if(in_array(3,session()->get('shop_data')['shop_function'])){ ?>
+                    <div class="form-group">
+                        <label for="">Upsales
+                        </label>
+                        <select name="upsales_product_id[]" class="select" id="" multiple required>
+                        <?php foreach($all_product as $row){ ?>
+                            <?php if(in_array($row['product_id'],$upsales_product)){ ?>
+                            <option selected value="<?= $row['product_id'] ?>"><?= $row['product_name']?></option>
+                            <?php }else{?>
+                                <option value="<?= $row['product_id'] ?>"><?= $row['product_name']?></option>
+
+                            <?php }
+                            
+                        }
+                            ?>
+                        </select>
+
+                    </div>
+                    <?php } ?>
                     <div class="form-group">
                         <label for="">Product Price</label>
                         <input type="number" class="form-control" value="<?= $product['product_price'] ?>" name="product_price" placeholder="e.g. RM 100" required min="0" value="0" step="any">

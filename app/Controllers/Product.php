@@ -12,6 +12,7 @@ use App\Models\ProductImageModel;
 
 use App\Models\CategoryModel;
 use App\Models\ProductCategoryModel;
+use App\Models\ProductUpsalesModel;
 
 class Product extends BaseController
 {
@@ -21,6 +22,7 @@ class Product extends BaseController
         $this->ProductModel = new ProductModel();
         $this->ProductOptionModel = new ProductOptionModel();
         $this->ProductImageModel = new ProductImageModel();
+        $this->ProductUpsalesModel = new ProductUpsalesModel();
 
         $this->MerchantModel = new MerchantModel();
         $this->CategoryModel = new CategoryModel();
@@ -48,6 +50,11 @@ class Product extends BaseController
             //  redirect()->to(base_url('access/login/'));
             $this->isMerchant = true;
         }
+        $where = [
+            'product.shop_id' => session()->get('shop_data')['shop_id']
+        ];
+        $all_product = $this->ProductModel->getWhereRaw($where);
+        $this->pageData['all_product'] = $all_product;
     }
     public function change_status_home($product_id){
         $where = [
@@ -109,6 +116,7 @@ class Product extends BaseController
         }
         $product = $this->ProductModel->getWhere($where);
         $this->pageData['product'] = $product;
+
 
         echo view('admin/header', $this->pageData);
         echo view('admin/product/all');
@@ -205,6 +213,17 @@ class Product extends BaseController
                             'product_id' => $product_id,
                         ];
                         $this->ProductCategoryModel->insertNew($data);
+                    }
+                }
+                
+
+                if (!empty($input['upsales_product_id'])) {
+                    foreach ($input['upsales_product_id'] as $row) {
+                        $data = [
+                            'upsales_product_id' => $row,
+                            'product_id' => $product_id,
+                        ];
+                        $this->ProductUpsalesModel->insertNew($data);
                     }
                 }
 
@@ -350,7 +369,7 @@ class Product extends BaseController
         // $merchant = $this->MerchantModel->getWhere($where);
         
         // $this->show_404_if_empty($admin);
-        
+ 
         $this->pageData['product'] = $product[0];
         
         $this->pageData['product_option'] = $product_option;
@@ -380,12 +399,12 @@ class Product extends BaseController
             'product_id' => $product_id,
         ];
         $this->pageData['category'] = $category;
-
+        
         $this->pageData[
             'product_category'
-        ] = $this->ProductCategoryModel->getWhere($where);
-
-        $this->pageData['product'] = $this->ProductModel->getWhere($where)[0];
+            ] = $this->ProductCategoryModel->getWhere($where);
+            
+            $this->pageData['product'] = $this->ProductModel->getWhere($where)[0];
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
                 $this->pageData['product']['shop_id']
@@ -446,11 +465,33 @@ class Product extends BaseController
                         $this->ProductCategoryModel->insertNew($data);
                     }
                 }
+                
+                if (!empty($this->request->getPost('upsales_product_id'))) {
+                    $this->ProductUpsalesModel
+                        ->where('product_id', $product_id)
+                        ->delete();
+
+                    // $this->debug($input['category']);
+                    foreach ($input['upsales_product_id'] as $row) {
+                        $data = [
+                            'upsales_product_id' => $row,
+                            'product_id' => $product_id,
+                        ];
+                        $this->ProductUpsalesModel->insertNew($data);
+                    }
+                }
+
+
                 return redirect()->to(
                     base_url('product/detail/' . $product_id, 'refresh')
                 );
             }
         }
+        $where = [
+            'product_upsales.product_id' => $product_id,
+        ];
+        $this->pageData['upsales_product'] = array_column($this->ProductUpsalesModel->getWhere($where),'upsales_product_id');
+
 
         // $this->debug($this->pageData);
         // $this->debug($this->pageData['product']['category_id']);

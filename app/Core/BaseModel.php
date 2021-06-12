@@ -541,7 +541,35 @@ class BaseModel extends Model
         return $query->getResultArray();
 
     }
-    
+    public function getWhereRaw($where, $limit = '', $page = 1, $filter = array())
+    {
+        $this->builder->select('*');
+        $this->builder->where($this->tableName . ".deleted", 0);
+        $this->builder->where($where);
+
+
+        if ($limit != '') {
+            $count = $this->getCount($filter);
+            $offset = ($page - 1) * $limit;
+            $pages = $count / $limit;
+            $pages = ceil($pages);
+            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter);
+
+            return $pagination;
+
+            // intval($limit);
+            // $this->db->limit($limit, $offset);
+        }
+
+        // if(!empty($where['customer_id'])){
+        //     die($this->builder->getCompiledSelect(false));
+        // }
+
+        $query = $this->builder->get();
+
+        return $query->getResultArray();
+
+    }
 
     public function getWhere($where, $limit = '', $page = 1, $filter = array())
     {

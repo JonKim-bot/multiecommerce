@@ -67,6 +67,8 @@ class BaseController extends Controller
 
     }
     public function getShopFunction($shop_id){
+        $shop_data = session()->get('shop_data');
+
         $this->ShopFunctionModel = new ShopFunctionModel();
 
         $where = [
