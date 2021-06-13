@@ -133,8 +133,8 @@
                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                             </div>
                             <div class="items-details">
-                                <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
-                                <a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
+                                <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
+                                <a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
                             </div>
                         </div>
                     </div>
@@ -145,6 +145,7 @@
         </section>
         </div>
         <?php } ?>
+
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
