@@ -580,6 +580,7 @@ class BaseModel extends Model
 
         if ($limit != '') {
             $count = $this->getCount($filter);
+            
             $offset = ($page - 1) * $limit;
             $pages = $count / $limit;
             $pages = ceil($pages);
