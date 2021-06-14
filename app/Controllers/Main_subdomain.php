@@ -17,6 +17,7 @@ use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
 use App\Models\OrderCustomerModel;
 use App\Models\PointModel;
+use App\Models\SenangResponseModel;
 
 use App\Models\ShopPaymentMethodModel;
 use App\Models\ProductOptionSelectionModel;
@@ -54,7 +55,8 @@ class Main extends BaseController
         $this->CustomerGiftModel = new CustomerGiftModel();
         $this->ProductUpsalesModel = new ProductUpsalesModel();
 
-        
+        $this->SenangResponseModel = new SenangResponseModel();
+
         $this->PromoModel = new PromoModel();
         $this->CustomerModel = new CustomerModel();
         $this->PointModel = new PointModel();
@@ -928,13 +930,93 @@ class Main extends BaseController
                 'url' => $url,
             ]));
         }else{
-            $this->premier_pay($_POST['orders_id']);
+            // $this->premier_pay($_POST['orders_id']);
+            $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
+
             //payment method link
             die(json_encode([
                 'status' => true,
                 'url' => $url,
             ]));
         }
+    }
+    function senang_callback(){
+        
+        
+        try {
+
+            if($_REQUEST){
+
+                $response = json_encode($_REQUEST, true);
+
+                $where = [
+                    'response' => $response,
+                    'type' => 'callback'
+                ];
+                
+                $senang = $this->SenangResponseModel->getWhere($where);
+
+                if(empty($senang)){
+
+                    $data = array(
+                        'response' => $response,
+                        'type' => 'callback',
+                    );
+                    $this->SenangResponseModel->insertNew($data);
+    
+                    // return redirect()->to(url('success'));
+    
+                    $this->call_back_to_order_senang($_REQUEST['order_id']);
+                }
+                // $this->debug($_REQUEST);
+                
+            }
+        } catch(Error $e){
+
+            $data = array(
+                'response' => $e->getMessage(),
+                'type' => basename($_SERVER['REQUEST_URI']),
+            );
+            $this->SenangResponseModel->insertNew($data);
+
+        }
+            // if ($_REQUEST['status_id'] == 1){
+            
+    }
+    function call_back_to_order_senang($order_id){
+
+     
+
+        $this->update_order($order_id,3);
+        
+    }
+    function senang_pay($orders_id){
+
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];    
+        // $this->update_order_payment_id($orders_id,$orderId);
+        $shop = $this->get_shop($orders['shop_id'],true);
+        // $topup['grand_total'] = 2;
+        $detail = 'Pay for order ' . $orders['order_code']; 
+        $merchant_id = '977162365741618';
+        $secretkey = '3609-2141057149';
+        $string = $secretkey . urldecode($detail) . urldecode($orders['grand_total']) . urldecode($orders_id);
+        $hashed_string = md5($string);
+        $data = array(
+            'merchant_id' => $merchant_id,
+            'detail' => $detail,
+            'amount' => $orders['grand_total'],
+            'name' => $orders['full_name'],
+            'order_id' => $orders_id,
+            'email' => $orders['email'],
+            'phone' => $orders['contact'],
+            'hash' => $hashed_string,
+        );
+        $this->pageData['data'] = $data;
+       
+        echo view('admin/senang', $this->pageData);
     }
 
     public function payment($order_code)

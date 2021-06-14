@@ -206,16 +206,32 @@ $("#payment_button").on('click', function(){
         orders_id : <?= $orders['orders_id'] ?>,
         payment_method_id : payment_method_id,
     }
+    //premioer pay
+    // $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
+    //     data = JSON.parse(data);
+      
+    //     if(payment_method_id == 3){
+    //             // pay by online banking
+    //         if(data.code == 0){
+    //             location.href = (data.data);
+    //         }else{
+    //             alert(data.message);
+    //         }
+    //     }else{
+    //         // pay by others
+    //         if(data.status){
+    //             window.open (data.url);
+    //         }
+    //     }
+    // });
+    //senang pay
     $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
         data = JSON.parse(data);
       
         if(payment_method_id == 3){
                 // pay by online banking
-            if(data.code == 0){
-                location.href = (data.data);
-            }else{
-                alert(data.message);
-            }
+                window.open (data.url);
+
         }else{
             // pay by others
             if(data.status){
@@ -223,7 +239,6 @@ $("#payment_button").on('click', function(){
             }
         }
     });
-
 });
 function getPaymentMethod(){
     var online_banking = document.getElementById('payment_method_1');

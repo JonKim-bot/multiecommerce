@@ -921,7 +921,7 @@ class Main extends BaseController
             'hash' => $hashed_string,
         );
         $this->pageData['data'] = $data;
-
+       
         echo view('admin/senang', $this->pageData);
     }
 
@@ -948,8 +948,8 @@ class Main extends BaseController
             ]));
         }else{
             // $this->premier_pay($_POST['orders_id']);
-            $this->senang_pay($_POST['orders_id']);
-
+            // $this->senang_pay($_POST['orders_id']);
+            $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
             
             //payment method link
             die(json_encode([

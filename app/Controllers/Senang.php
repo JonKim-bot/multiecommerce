@@ -66,7 +66,8 @@ class Senang extends Controller
                 $orders = $this->OrdersModel->getWhere($where)[0];
                 $shop = $this->get_shop($orders['shop_id'],true);
                 $url = base_url() . "/main/index/" . $shop['slug'];
-                return redirect()->to($url , "refresh");
+                // return redirect()->to($url , "refresh");
+                $this->debug("success");
                 // $this->debug($_REQUEST);
 
             } else {
@@ -79,7 +80,9 @@ class Senang extends Controller
                 );
                 $this->SenangResponseModel->insertNew($data);
                 $url = base_url() . "/main/index/" . $shop['slug'];
-                return redirect()->to($url , "refresh");
+                $this->debug("failed");
+
+                // return redirect()->to($url , "refresh");
                 // return redirect()->to(base_url('senang/fail/' , "refresh"));
                 // $this->debug($_REQUEST);
 
