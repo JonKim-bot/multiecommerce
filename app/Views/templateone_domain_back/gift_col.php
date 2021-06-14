@@ -3,7 +3,7 @@
         <div class="properties pb-30">
             <div class="properties-card">
                 <div class="properties-img">
-                    <a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>"><img witdh="200px" src="<?= base_url() . $row['banner']?>" alt=""></a>
+                    <a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>"><img witdh="200px" src="<?= base_url() . $row['banner']?>" alt=""></a>
                     <div class="socal_icon">
                         <?php if($selected == 1){ ?>
                         <!-- <a href="#"><i class="ti-shopping-cart"></i></a> -->
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="properties-caption properties-caption2">
-                    <h3><a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>""><?= $row['gift'] ?></a></h3>
+                    <h3><a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>""><?= $row['gift'] ?></a></h3>
                     <div class="properties-footer">
                         <div class="price">
                             <span>Purchase over > RM <?= $row['order_amount'] ?></span>

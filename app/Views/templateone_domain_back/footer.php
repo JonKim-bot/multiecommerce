@@ -13,7 +13,7 @@
                             <div class="single-footer-caption mb-20">
                                 <!-- logo -->
                                 <div class="footer-logo mb-35">
-                                    <a href="<?=  base_url() ?>/main/index"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
+                                    <a href="<?=  base_url() ?>/main/index/<?= $shop['slug'] ?>"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                                 <ul>
 
                                     <?php foreach($trending_product as $row){ ?>
-                                    <li><a href="<?=  base_url() ."/main/product_detail/" .   $row['product_id']  ?>"><?= $row['product_name'] ?></a></li>
+                                    <li><a href="<?=  base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id']  ?>"><?= $row['product_name'] ?></a></li>
                                     <?php } ?>
                                 </ul>
                             </div>
@@ -66,9 +66,9 @@
                             <div class="footer-tittle">
                                 <h4>Quick Links</h4>
                                 <ul>
-                                <li><a href="<?= base_url() ?>/main/product">Shop</a></li>
+                                <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
 
-                                <li><a href="<?= base_url() ?>/main/cart">Cart</a></li>
+                                <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
 
                                 </ul>
                             </div>

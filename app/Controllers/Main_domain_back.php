@@ -16,8 +16,10 @@ use App\Models\MerchantModel;
 use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
 use App\Models\OrderCustomerModel;
-use App\Models\PointModel;
 use App\Models\SenangResponseModel;
+
+use App\Models\PointModel;
+
 
 use App\Models\ShopPaymentMethodModel;
 use App\Models\ProductOptionSelectionModel;
@@ -29,9 +31,7 @@ use App\Models\OrdersStatusModel;
 use App\Models\OrderDetailOptionModel;
 use App\Models\PromoModel;
 use App\Models\CustomerModel;
-use App\Models\ProductUpsalesModel;
 
- 
 use App\Models\ContactModel;
 use App\Models\OrdersLogModel;
 use App\Models\PremierResponseModel;
@@ -40,10 +40,10 @@ use App\Models\GiftModel;
 use App\Models\VoucherModel;
 use App\Models\CustomerVoucherModel;
 use App\Models\CustomerGiftModel;
+use App\Models\ProductUpsalesModel;
 
 class Main extends BaseController
 {
-
 
 
 
@@ -54,7 +54,6 @@ class Main extends BaseController
         $this->VoucherModel = new VoucherModel();
         $this->CustomerGiftModel = new CustomerGiftModel();
         $this->ProductUpsalesModel = new ProductUpsalesModel();
-
         $this->SenangResponseModel = new SenangResponseModel();
 
         $this->PromoModel = new PromoModel();
@@ -65,6 +64,7 @@ class Main extends BaseController
 
         $this->PremierResponseModel = new PremierResponseModel();
         $this->ProductOptionModel = new ProductOptionModel();
+
         $this->OrderCustomerModel = new OrderCustomerModel();
         $this->PaymentMethodModel = new PaymentMethodModel();
         $this->AboutModel = new AboutModel();
@@ -103,10 +103,6 @@ class Main extends BaseController
         } else {
             $this->pageData['customer_data'] = array();
         }
-        $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
-        $slug = $subdomain_arr[0];
-        $slug = 'capital-shop';
-        $this->shop= $this->get_shop($slug);
 
         //1 membership
         //2 Gift
@@ -117,19 +113,20 @@ class Main extends BaseController
 
     }
     
-    public function logout()
+    public function logout($slug)
+
     {
         $session = session();
 
         $session->destroy();
 
-        return redirect()->to( base_url('main/index/', "refresh") );
+        return redirect()->to( base_url('main/index/' . $slug, "refresh") );
     }
-    public function voucher(){
+    public function voucher($slug){
 
-        $this->check_exist_function(1,$this->pageData['shop_function']);
+        $shop= $this->get_shop($slug);
 
-        $this->load_view('voucher');
+        $this->load_view('voucher',$slug);
 
     }
     public function redeem(){
@@ -169,7 +166,6 @@ class Main extends BaseController
             ];
             $voucher = $this->VoucherModel->getWhere($where)[0];
             
-
             $customer_id  =  $this->session->get('customer_id');
             $point_balance = $this->PointModel->get_balance($customer_id);
             if($voucher['redeem_point'] > $point_balance){
@@ -200,7 +196,7 @@ class Main extends BaseController
 
     public function load_gift(){
         $slug = $_POST['slug'];
-        $shop = $this->shop;
+        $shop= $this->get_shop($slug);
         $this->pageData['selected'] = $_POST['selected'];
         if($_POST['selected'] == 1){
             $where = [
@@ -254,7 +250,7 @@ class Main extends BaseController
 
     public function load_voucher(){
         $slug = $_POST['slug'];
-        $shop = $this->shop;
+        $shop= $this->get_shop($slug);
         $this->pageData['selected'] = $_POST['selected'];
 
 
@@ -276,17 +272,16 @@ class Main extends BaseController
         echo view("templateone/voucher_col" ,$this->pageData);
     }
    
-    public function gift(){
-        $this->check_exist_function(2,$this->pageData['shop_function']);
+    public function gift($slug){
+        $shop= $this->get_shop($slug);
 
-        $shop = $this->shop;
 
-        $this->load_view('gift');
+        $this->load_view('gift',$slug);
 
 
     }
-    public function gift_detail($gift_id){
-        $shop = $this->shop;
+    public function gift_detail($slug,$gift_id){
+        $shop= $this->get_shop($slug);
 
         $where = [
             'gift.gift_id' => $gift_id,
@@ -295,11 +290,11 @@ class Main extends BaseController
 
         $gift = $this->GiftModel->getWhere($where)[0];
         $this->pageData['gift'] = $gift;
-        $this->load_view('gift_detail');
+        $this->load_view('gift_detail',$slug);
 
     }
-    public function voucher_detail($voucher_id){
-        $shop = $this->shop;
+    public function voucher_detail($slug,$voucher_id){
+        $shop= $this->get_shop($slug);
 
         $where = [
             'voucher.voucher_id' => $voucher_id,
@@ -307,7 +302,7 @@ class Main extends BaseController
    
         $voucher = $this->VoucherModel->getWhere($where)[0];
         $this->pageData['voucher'] = $voucher;
-        $this->load_view('voucher_detail');
+        $this->load_view('voucher_detail',$slug);
 
     }
     public function check_referal_code_exist($referal_code){
@@ -386,10 +381,10 @@ class Main extends BaseController
         $this->session->set("customer_data", $login_data);
         $this->session->set("customer_id", $login_id);
     }
-	public function signup($referal_code = "")
-
+ 
+	public function signup($slug,$referal_code = "")
     {
-        $shop = $this->shop;
+        $shop= $this->get_shop($slug);
         if($referal_code != ""){
             if($this->check_referal_code_exist($referal_code) == false){
                 $this->show_404_if_empty([]);
@@ -426,19 +421,19 @@ class Main extends BaseController
                 $data['referal_code'] = $this->generate_refferal_code($customer_id);             
 
                 $this->set_customer_session($customer_id);
-                return redirect()->to(base_url('/main/index/' , "refresh"));
+                return redirect()->to(base_url('/main/index/' . $shop['slug'], "refresh"));
 			}else{
 				$this->pageData['error'] = "User Existed";
 			}
 
 		}
      
-        $this->load_view('signup');
+        $this->load_view('signup',$slug);
 	}
-    public function login()
+    public function login($slug)
     {
      
-        $shop = $this->shop;
+        $shop= $this->get_shop($slug);
         $this->validate_function(1,$this->pageData['shop_function']);
 
 		if($_POST){
@@ -450,7 +445,7 @@ class Main extends BaseController
                 $customer_data = $customer_data[0];
                 $this->set_customer_session($customer_data['customer_id']);
 		
-                return redirect()->to(base_url('/main/index/' , "refresh"));
+                return redirect()->to(base_url('/main/index/' . $shop['slug'], "refresh"));
 			}else{
 				$this->pageData['error'] = "Email or password incorrect";
 
@@ -458,16 +453,16 @@ class Main extends BaseController
 
 		}
        
-        $this->load_view('login');
+        $this->load_view('login',$slug);
 
 
 	}
     
 
-    public function profile()
+    public function profile($slug)
     {
           
-        $shop = $this->shop;
+        $shop= $this->get_shop($slug);
         $this->validate_function(1,$this->pageData['shop_function']);
 
         $this->pageData['point'] = $this->PointModel->get_balance($this->session->get('customer_id'));
@@ -499,13 +494,12 @@ class Main extends BaseController
 
             $this->CustomerModel->updateWhere($where,$data);
             $this->set_customer_session($where['customer_id']);                
-            return redirect()->to(base_url('/main/profile/' , "refresh"));
-
+            return redirect()->to(base_url('/main/profile/' . $shop['slug'], "refresh"));
         
 
 		}
      
-        $this->load_view('profile');
+        $this->load_view('profile',$slug);
 
 	}
 
@@ -540,17 +534,17 @@ class Main extends BaseController
         return $shop[0];
     }
     
-    public function failed()
+    public function failed($slug)
     {
-        $this->pageData['shop'] = $this->shop;
+        $this->pageData['shop'] = $this->get_shop($slug);
 
 
-        $this->load_view('failed');
+        $this->load_view('failed',$slug);
 
 
     }
 
-    public function load_view($view_name){
+    public function load_view($view_name,$shop){
         echo view("templateone/header", $this->pageData);
         $this->load_css($this->pageData['shop']);
         echo view("templateone/" . $view_name);
@@ -558,11 +552,11 @@ class Main extends BaseController
     }
 
     
-    public function success()
+    public function success($slug)
     {
-        $this->pageData['shop'] = $this->shop;
+        $this->pageData['shop'] = $this->get_shop($slug);
 
-        $this->load_view('success');
+        $this->load_view('success',$slug);
 
     }
 
@@ -676,9 +670,9 @@ class Main extends BaseController
             return [];
         }
     }
-    public function product_detail($product_id)
+    public function product_detail($slug,$product_id)
     {
-        $shop = $this->shop;
+        $shop = $this->get_shop($slug);
  
         $where =[
             'product_id' => $product_id
@@ -695,6 +689,7 @@ class Main extends BaseController
             ];
             $product_option[$key]['selection'] = $this->ProductOptionSelectionModel->getWhere($where);
         }
+
 
         $total_minrequired = array_sum(array_column($product_option,'minimum_required'));
         $this->pageData['total_min'] = $total_minrequired;
@@ -718,6 +713,7 @@ class Main extends BaseController
         $this->pageData['product'] = $product;
 
         $this->load_view('product',$shop);
+
 
 
     }
@@ -783,10 +779,9 @@ class Main extends BaseController
             )));
         }
     }
-    
     public function apply_promo(){
         if(isset($_POST)){
-            $_POST['promocode'] = trim($_POST['promocode']);
+
             $where = [
                 'code' => $_POST['promocode'],
                 'promo.shop_id' => $_POST['shop_id'],
@@ -851,18 +846,16 @@ class Main extends BaseController
     function startsWith ($string, $startString) 
     { 
         $len = strlen($startString); 
-
         return (substr($string, 0, $len) === $startString); 
     } 
 
-    public function order_history(){
-        $shop = $this->shop;
+    public function order_history($slug){
+        $shop = $this->get_shop($slug);
      
         if($this->startsWith($_GET['keyword'],"0")){
             $_GET['keyword'] = "+6" . $_GET['keyword'];
         }
-
-        if (!empty($this->session->get("customer_data"))) {
+    if (!empty($this->session->get("customer_data"))) {
             $where = [
                 'orders.customer_id' => $this->session->get("customer_id"),
 
@@ -873,7 +866,6 @@ class Main extends BaseController
 
             $order_history = $this->OrdersModel->getHistory($_GET['keyword'],$shop['shop_id']);
         }
-
         $this->pageData['order_history'] = $order_history;
 
         $this->load_view('order_history',$shop);
@@ -881,9 +873,8 @@ class Main extends BaseController
     }
 
     
-    public function point_history(){
-        $shop = $this->shop;
-        $this->check_exist_function(6,$this->pageData['shop_function']);
+    public function point_history($slug){
+        $shop = $this->get_shop($slug);
 
         $where = [
             'point.customer_id' => $this->session->get('customer_id'),
@@ -895,100 +886,15 @@ class Main extends BaseController
         $this->load_view('point_history',$shop);
 
     }
-    public function search(){
+    public function search($slug){
         
 
-        $shop = $this->shop;
+        $shop = $this->get_shop($slug);
      
   
-        $this->load_view('search');
+        $this->load_view('search',$shop);
 
 
-    }
-
-    
-
-    public function make_payment(){
-        $where = [
-            'orders.orders_id' => $_POST['orders_id'],
-        ];
-        $orders = $this->OrdersModel->getWhere($where);
-
-
-        $shop = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
-        $order_url = base_url() . "/main/payment/" .  $orders[0]['order_code'];
-
-        $message = "MyOrder|我的订单 -> Note " . $order_url;
-        $message = rawurlencode($message);
-        $url =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
-
-
-        if($_POST['payment_method_id'] != 3){
-            $this->update_orders_status($_POST['orders_id'],$_POST['payment_method_id']);
-            die(json_encode([
-                'status' => true,
-                'url' => $url,
-            ]));
-        }else{
-            // $this->premier_pay($_POST['orders_id']);
-            $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
-
-            //payment method link
-            die(json_encode([
-                'status' => true,
-                'url' => $url,
-            ]));
-        }
-    }
-    function senang_callback(){
-        
-        
-        try {
-
-            if($_REQUEST){
-
-                $response = json_encode($_REQUEST, true);
-
-                $where = [
-                    'response' => $response,
-                    'type' => 'callback'
-                ];
-                
-                $senang = $this->SenangResponseModel->getWhere($where);
-
-                if(empty($senang)){
-
-                    $data = array(
-                        'response' => $response,
-                        'type' => 'callback',
-                    );
-                    $this->SenangResponseModel->insertNew($data);
-    
-                    // return redirect()->to(url('success'));
-    
-                    $this->call_back_to_order_senang($_REQUEST['order_id']);
-                }
-                // $this->debug($_REQUEST);
-                
-            }
-        } catch(Error $e){
-
-            $data = array(
-                'response' => $e->getMessage(),
-                'type' => basename($_SERVER['REQUEST_URI']),
-            );
-            $this->SenangResponseModel->insertNew($data);
-
-        }
-            // if ($_REQUEST['status_id'] == 1){
-            
-    }
-    function call_back_to_order_senang($order_id){
-
-     
-
-        $this->update_order($order_id,3);
-        
     }
     function senang_pay($orders_id){
 
@@ -1019,10 +925,44 @@ class Main extends BaseController
         echo view('admin/senang', $this->pageData);
     }
 
-    public function payment($order_code)
+    public function make_payment(){
+        $where = [
+            'orders.orders_id' => $_POST['orders_id'],
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+
+
+        $shop = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
+        $order_url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $orders[0]['order_code'];
+
+        $message = "MyOrder|我的订单 -> Note " . $order_url;
+        $message = rawurlencode($message);
+        $url =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
+
+
+        if($_POST['payment_method_id'] != 3){
+            $this->update_orders_status($_POST['orders_id'],$_POST['payment_method_id']);
+            die(json_encode([
+                'status' => true,
+                'url' => $url,
+            ]));
+        }else{
+            // $this->premier_pay($_POST['orders_id']);
+            // $this->senang_pay($_POST['orders_id']);
+            $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
+            
+            //payment method link
+            die(json_encode([
+                'status' => true,
+                'url' => $url,
+            ]));
+        }
+    }
+
+    public function payment($slug,$order_code)
     {
 
-        $shop = $this->shop;
+        $shop = $this->get_shop($slug);
         $where = [
             'shop_id' => $shop['shop_id']
         ];
@@ -1060,14 +1000,14 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
        
-        $this->load_view('payment');
+        $this->load_view('payment',$slug);
 
 
     }
     
-    public function cart()
+    public function cart($slug)
     {
-        $shop = $this->shop;
+        $shop = $this->get_shop($slug);
   
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
 
@@ -1075,16 +1015,16 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
         
-        $this->load_view('cart');
+        $this->load_view('cart',$slug);
 
 
     }
     
 
 
-    public function index()
+    public function index($slug)
     {
-        $shop = $this->shop;
+        $shop = $this->get_shop($slug);
         $where = [
             'shop_id' => $shop['shop_id']
         ];
@@ -1127,7 +1067,7 @@ class Main extends BaseController
         $this->pageData['product'] = $product;
 
     
-        $this->load_view('index');
+        $this->load_view('index',$slug);
 
 
     }
@@ -1161,9 +1101,9 @@ class Main extends BaseController
         echo view("templateone/product_list",$this->pageData);
     }
       
-    public function product()
+    public function product($slug)
     {
-        $shop = $this->shop;
+        $shop = $this->get_shop($slug);
 
         $where = [
 
@@ -1181,7 +1121,7 @@ class Main extends BaseController
         // $this->debug($product);
         // $this->debug($product);
     
-        $this->load_view('shop');
+        $this->load_view('shop',$slug);
 
 
     }
@@ -1368,7 +1308,7 @@ class Main extends BaseController
         ]);
         $this->pageData["shop"] = $shop[0];
 
-        $order_url = base_url()  . "/main/payment/" . $order_code;
+        $order_url = base_url()  . "/main/payment/" . $shop['slug'] .  "/" . $order_code;
         $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
         $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop_contact. "&text=" . $message;
@@ -1476,16 +1416,16 @@ class Main extends BaseController
                     'shop_id' => $_POST['shop_id'],
                 ];
                 $shop = $this->ShopModel->getWhere($where)[0];
-                $url = base_url() . "/main/payment/" .  $code;
+                $url = base_url() . "/main/payment/" . $shop['slug'] . '/' . $code;
                 // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
                 // $shop_token = $this->ShopTokenModel->getWhere($where);
                 // foreach($shop_token as $row){
                 //     $this->send_notification($row['token'],$shop['shop_name'],$shop['image']);
                 // }
                 
-                if($_POST['email'] != ""){
-                    $this->EmailModel->send_email($_POST['email'],$order_id);
-                }
+                // if($_POST['email'] != ""){
+                //     $this->EmailModel->send_email($_POST['email'],$order_id);
+                // }
                 if($shop['email'] != ""){
                     $this->EmailModel->send_email($shop['email'],$order_id);
                 }
@@ -1594,13 +1534,14 @@ class Main extends BaseController
         $amount = str_replace('.','',$orders['grand_total']);
         $amount = floatval($amount);
         $shop = $this->get_shop($orders['shop_id'],true);
-        $redirect_url = base_url() . "/main/payment/"  . $orders['order_code'] ;
+        $redirect_url = base_url() . "/main/payment/" . $shop['slug']  . "/" . $orders['order_code'] ;
         
         //staging key
         $client_id = '16225290295158143777';
         $client_secret = 'a29bc326-f8c5-5a83-91b5-b39345add487';
         // //live key
         // $client_id = '16225262392817499070';
+
         // $client_secret = '1e153144-c9da-59e7-909f-bcae8677025d';
 
         //their key
@@ -1655,6 +1596,50 @@ class Main extends BaseController
         $result = curl_exec($ch);
         die();
         // $this->debug($result);
+    }
+
+    function senang_callback(){
+        
+        
+        try {
+
+            if($_REQUEST){
+
+                $response = json_encode($_REQUEST, true);
+
+                $where = [
+                    'response' => $response,
+                    'type' => 'callback'
+                ];
+                
+                $senang = $this->SenangResponseModel->getWhere($where);
+
+                if(empty($senang)){
+
+                    $data = array(
+                        'response' => $response,
+                        'type' => 'callback',
+                    );
+                    $this->SenangResponseModel->insertNew($data);
+    
+                    // return redirect()->to(url('success'));
+    
+                    $this->call_back_to_order_senang($_REQUEST['order_id']);
+                }
+                // $this->debug($_REQUEST);
+                
+            }
+        } catch(Error $e){
+
+            $data = array(
+                'response' => $e->getMessage(),
+                'type' => basename($_SERVER['REQUEST_URI']),
+            );
+            $this->SenangResponseModel->insertNew($data);
+
+        }
+            // if ($_REQUEST['status_id'] == 1){
+            
     }
     function premier_callback(){
         
@@ -1727,9 +1712,20 @@ class Main extends BaseController
         $data = array(
             "is_paid" => 1,
             "payment_method_id" => $payment_method_id,
+
         );
         $orders = $this->OrdersModel->updateWhere($where,$data);
+        $where = array(
+            "orders.orders_id" => $orders_id,
+
+        );
+        $orders = $this->OrdersModel->getWhere($where)[0];
+
         $shop = $this->get_shop($orders['shop_id']);
+
+        if($_POST['email'] != ""){
+            $this->EmailModel->send_email($orders['email'],$order_id);
+        }
         if($this->check_exist_function(1,$this->pageData['shop_function'])){
             $this->give_point($orders_id);
         }
@@ -1737,7 +1733,6 @@ class Main extends BaseController
     }
     function call_back_to_order($order_id){
 
-        
         $where = [
             'orders_log.order_payment_id' => $order_id
         ];
@@ -1749,6 +1744,13 @@ class Main extends BaseController
         ];
         $orders = $this->OrdersModel->getWhere($where);
         $this->update_order($orderlog['orders_id'],3);
+        
+    }
+    function call_back_to_order_senang($order_id){
+
+     
+
+        $this->update_order($order_id,3);
         
     }
     public function minus_qty()

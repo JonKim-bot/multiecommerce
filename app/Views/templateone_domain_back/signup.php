@@ -8,7 +8,7 @@
                     <p>Create your account to get full access</p>
                 </div>
                 <!-- Single Input Fields -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/signup">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/signup/<?= $shop['slug'] ?>">
 
                 <div class="input-box">
                      <?php if (isset($error)) { ?>
@@ -42,7 +42,7 @@
                 </div>
                 <!-- form Footer -->
                 <div class="register-footer">
-                    <p> Already have an account? <a href="<?= base_url()  ?>/main/login"> Login</a> here</p>
+                    <p> Already have an account? <a href="<?= base_url()  ?>/main/login/<?= $shop['slug'] ?>"> Login</a> here</p>
                     <button class="submit-btn3" type="submit">Sign Up</button>
                 </div>
                 </form>

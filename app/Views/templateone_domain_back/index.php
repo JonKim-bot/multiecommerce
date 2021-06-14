@@ -13,7 +13,7 @@
                                     <!-- <span>Fashion Sale</span> -->
                                     <h1 data-animation="bounceIn" data-delay="0.2s"><?= $row['title'] ?></h1>
                                     <p data-animation="fadeInUp" data-delay="0.4s"><?= $row['description'] ?></p>
-                                    <a href="<?= base_url() ?>/main/product" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a>
+                                    <a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>" class="btn_1 hero-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <div class="label">AbouT us</div>
                             <h2><?= $about['title'] ?></h2>
                             <p><?= $about['description'] ?></p>
-                            <a href="<?= base_url() ?>/main/index#contactForm_" class="primary-btn">Contact us</a>
+                            <a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>#contactForm_" class="primary-btn">Contact us</a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -161,15 +161,15 @@
                                 <div class="properties pb-30 ">
                                     <div class="properties-card">
                                         <div class="properties-img">
-                                            <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
+                                            <a href="<?= base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
                                             <div class="socal_icon">
                                                 <!-- <a href="#"><i class="ti-shopping-cart"></i></a> -->
                                                 <!-- <a href="#"><i class="ti-heart"></i></a> -->
-                                                <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
+                                                <a href="<?= base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
                                             </div>
                                         </div>
                                         <div class="properties-caption properties-caption2">
-                                            <h3><a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
+                                            <h3><a href="<?= base_url() ."/main/product_detail/" .  $shop['slug'] . "/" . $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
                                             <div class="properties-footer">
                                                 <div class="price">
                                                 <?php if($row['is_promo'] == 1){ ?>

@@ -116,7 +116,7 @@
 </head>
 <body>
     <!-- ? Preloader Start -->
-    <div id="preloader-active">
+    <!-- <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
@@ -125,7 +125,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Preloader Start -->
     <header>
         <div class="header-area">
@@ -165,31 +165,31 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="<?= base_url() ?>/main/index"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
+                            <a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>                                                
                                 <ul id="navigation">  
-                                    <li><a href="<?= base_url() ?>/main/index">Home</a></li>
-                                    <li><a href="<?= base_url() ?>/main/product">Shop</a></li>
+                                    <li><a href="<?= base_url() ?>/main/index/<?= $shop['slug'] ?>">Home</a></li>
+                                    <li><a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>">Shop</a></li>
 
-                                    <li><a href="<?= base_url() ?>/main/cart">Cart</a></li>
+                                    <li><a href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>">Cart</a></li>
                                     <?php if(empty($customer_data)){ ?>
 
-                                        <li><a href="<?= base_url() ?>/main/search">Search</a></li>
+                                        <li><a href="<?= base_url() ?>/main/search/<?= $shop['slug'] ?>">Search</a></li>
                                     <?php }else{ ?>
-                                        <li><a href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>">Order History</a></li>
+                                        <li><a href="<?= base_url() ?>/main/order_history/<?= $shop['slug'] ?>?keyword=<?= $customer_data['contact'] ?>">Order History</a></li>
 
                                     <?php } ?>
 
                                     <?php if(in_array(1,$shop_function)){ ?>
                                         <?php if(empty($customer_data)){ ?>
-                                            <li><a href="<?= base_url() ?>/main/login">Login</a></li>
-                                            <li><a href="<?= base_url() ?>/main/signup">Signup</a></li>
+                                            <li><a href="<?= base_url() ?>/main/login/<?= $shop['slug'] ?>">Login</a></li>
+                                            <li><a href="<?= base_url() ?>/main/signup/<?= $shop['slug'] ?>">Signup</a></li>
                                         <?php }else{ ?>
-                                            <li><a href="<?= base_url() ?>/main/profile">Profile</a></li>
-                                            <li><a href="<?= base_url() ?>/main/logout">Logout</a></li>
+                                            <li><a href="<?= base_url() ?>/main/profile/<?= $shop['slug'] ?>">Profile</a></li>
+                                            <li><a href="<?= base_url() ?>/main/logout/<?= $shop['slug'] ?>">Logout</a></li>
 
                                         <?php } ?>
                                     <?php }  ?>

@@ -6,38 +6,39 @@
                 <div class="button-group-area mt-40">
                 <?php if(in_array(1,$shop_function)){ ?>
 
-					<a href="<?= base_url() ?>/main/voucher" class="genric-btn primary radius">
+					<a href="<?= base_url() ?>/main/voucher/<?= $shop['slug']  ?>" class="genric-btn primary radius">
                     <i class="fa fa-gift"></i>
                     Voucher
                     
                     </a>
-                <?php } ?>
-                <?php if(in_array(2,$shop_function)){ ?>
+                    <?php } ?>
+                    <?php if(in_array(2,$shop_function)){ ?>
 
-					<a href="<?= base_url() ?>/main/gift" class="genric-btn primary radius">
+					<a href="<?= base_url() ?>/main/gift/<?= $shop['slug']  ?>" class="genric-btn primary radius">
                     <i class="fa fa-gift"></i>
 
                     Gift</a>
-                <?php } ?>
-                <?php if(in_array(6,$shop_function)){ ?>
+                    <?php } ?>
+                    <?php if(in_array(6,$shop_function)){ ?>
 
-                    <a href="<?= base_url() ?>/main/point_history" class="genric-btn primary radius">
+					<a href="<?= base_url() ?>/main/point_history/<?= $shop['slug']  ?>" class="genric-btn primary radius">
                     <i class="fa fa-credit-card"></i>
 
                     Point History</a>
-                <?php } ?>
+                    <?php } ?>
+
 				</div>
                 <div class="register-heading">
 
                     <span>Profile</span>
                     <?php if(in_array(6,$shop_function)){ ?>
                     <p>Referal your friend to enjoy voucher reward</p>
-                    <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" 
+                    <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $shop['slug'] ?>/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" 
                 style="margin: auto; border: 3px solid green; padding: 10px;display: block; margin-left: auto; margin-right: auto;">
                     <?php } ?>
                 </div>
                 <!-- Single Input Fields -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/profile">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/profile/<?= $shop['slug'] ?>">
 
                 <div class="input-box">
                     <div class="single-input-fields">
@@ -82,7 +83,7 @@
                 </div>
                 <!-- form Footer -->
                 <div class="register-footer">
-                <!-- <p>Don’t have an account? <a href="<?= base_url()  ?>/main/signup">Sign Up</a>  here</p> -->
+                <!-- <p>Don’t have an account? <a href="<?= base_url()  ?>/main/signup/<?= $shop['slug'] ?>">Sign Up</a>  here</p> -->
 
                     <button class="submit-btn3">Save</button>
                 </div>

@@ -133,8 +133,8 @@
                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                             </div>
                             <div class="items-details">
-                                <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
-                                <a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
+                                <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
+                                <a href="<?= base_url() . "/main/gift_detail/" . $shop['slug'] . "/" .  $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,6 @@
         </section>
         </div>
         <?php } ?>
-
 
                 <div class="col-lg-9 col-md-6">
                     <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
@@ -179,6 +178,7 @@
                         </div>
                         
                       
+
                         
                             <div class="row">
                             <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
@@ -206,7 +206,7 @@ $("#payment_button").on('click', function(){
         orders_id : <?= $orders['orders_id'] ?>,
         payment_method_id : payment_method_id,
     }
-    //premioer pay
+    // premier pay
     // $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
     //     data = JSON.parse(data);
       
@@ -224,7 +224,7 @@ $("#payment_button").on('click', function(){
     //         }
     //     }
     // });
-    //senang pay
+        //senang pay
     $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
         data = JSON.parse(data);
       
@@ -239,6 +239,7 @@ $("#payment_button").on('click', function(){
             }
         }
     });
+
 });
 function getPaymentMethod(){
     var online_banking = document.getElementById('payment_method_1');

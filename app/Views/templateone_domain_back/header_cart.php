@@ -78,7 +78,7 @@
                 
                     <td class="cart__price text-left" style="text-align:left;font-size:25px">RM <?=number_format($total, 2)?></td>
                     <td class="cart__price">
-                    <a class="btn btn-primary btn-block w-100" href="<?= base_url() ?>/main/cart" style="margin-top:20px">Pay</a>
+                    <a class="btn btn-primary btn-block w-100" href="<?= base_url() ?>/main/cart/<?= $shop['slug'] ?>" style="margin-top:20px">Pay</a>
                     </td>
 
                 </tr>

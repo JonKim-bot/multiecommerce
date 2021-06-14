@@ -8,7 +8,7 @@
                     <p>Login now to get voucher benefit ! </p>
                 </div>
                 <!-- Single Input Fields -->
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/login">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/login/<?= $shop['slug'] ?>">
 
                     <div class="input-box">
                         <?php if (isset($error)) { ?>
@@ -33,7 +33,7 @@
 
                 <!-- form Footer -->
                 <div class="login-footer">
-                    <p>Don’t have an account? <a href="<?= base_url()  ?>/main/signup">Sign Up</a>  here</p>
+                    <p>Don’t have an account? <a href="<?= base_url()  ?>/main/signup/<?= $shop['slug'] ?>">Sign Up</a>  here</p>
                     <button class="submit-btn3"  type="submit">Login</button>
                 </div>
                 </form>

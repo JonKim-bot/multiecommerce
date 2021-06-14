@@ -3,7 +3,7 @@
         <div class="properties pb-30">
             <div class="properties-card">
                 <div class="properties-img">
-                    <a href="<?= base_url() . "/main/voucher_detail/" .   $row['voucher_id'] ?>"><img witdh="200px" src="<?= base_url() . $row['banner']?>" alt=""></a>
+                    <a href="<?= base_url() . "/main/voucher_detail/" . $shop['slug'] . "/" .  $row['voucher_id'] ?>"><img witdh="200px" src="<?= base_url() . $row['banner']?>" alt=""></a>
                     <div class="socal_icon">
                         <!-- <a href="#"><i class="ti-shopping-cart"></i></a> -->
                         <?php if($selected == 1) {  ?>  
@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div class="properties-caption properties-caption2">
-                    <h3><a href="<?= base_url() . "/main/voucher_detail/" .   $row['voucher_id'] ?>""><?= $row['voucher'] ?></a></h3>
+                    <h3><a href="<?= base_url() . "/main/voucher_detail/" . $shop['slug'] . "/" .  $row['voucher_id'] ?>""><?= $row['voucher'] ?></a></h3>
                     <div class="properties-footer">
                         <div class="price">
                             <span>Point Required : <?= $row['redeem_point'] ?></span>

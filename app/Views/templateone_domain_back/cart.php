@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="cart__btn__continue">
-                                    <a href="<?= base_url() ?>/main/product" class="primary-btn">Continute shopping</a>
+                                    <a href="<?= base_url() ?>/main/product/<?= $shop['slug'] ?>" class="primary-btn">Continute shopping</a>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
