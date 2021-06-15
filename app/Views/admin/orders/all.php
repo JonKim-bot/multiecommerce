@@ -66,11 +66,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
-                                <a onclick="changestatus(1)" class="btn btn-danger text-white">Pending</a>
-                                <a onclick="changestatus(2)" class="btn btn-warning text-white">Processing Orders</a>
-                                <a onclick="changestatus(3)" class="btn btn-primary text-white">On Delivery</a>
-                                <a onclick="changestatus(4)" class="btn btn-success text-white">Done Orders</a>
-                                <a onclick="changestatus(5)" class="btn btn-secondary text-white">Rejected</a>
+                                <a onclick="changestatus(1)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 1 ?  "btn btn-dark text-white" : "btn btn-danger text-white"  ?>">Pending</a>
+                                <a onclick="changestatus(2)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 2 ?  "btn btn-dark text-white" : "btn btn-warning text-white"  ?>">Processing Orders</a>
+                                <a onclick="changestatus(3)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 3 ?  "btn btn-dark text-white" : "btn btn-secondary text-dark"  ?>">On Delivery</a>
+                                <a onclick="changestatus(4)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 4 ?  "btn btn-dark text-white" : "btn btn-success text-white"  ?>">Done Orders</a>
+                                <a onclick="changestatus(5)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 5 ?  "btn btn-dark text-white" : "btn btn-primary text-white"  ?>">Rejected</a>
 
                                 <a onclick="preorder()" class="btn btn-danger text-white">Preorder</a>
 
@@ -104,16 +104,18 @@
                                     <thead>
                                         <tr role="row">
                                         <th data-sort="name" data-filter="name">No</th>
-                                        <th data-sort="name" data-filter="name">Payment Method</th>
-                                        <th data-sort="name" data-filter="name">Is Paid</th>
-
+                                            <th data-sort="name" data-filter="name">Order Date</th>
+                                            <th data-sort="name" data-filter="name">Order Code</th>
                                             <th data-sort="name" data-filter="name">Name</th>
-                                            <th data-sort="name" data-filter="name">Address</th>
                                             <th data-sort="name" data-filter="name">Contact</th>
+
+                                            <th data-sort="name" data-filter="name">Address</th>
                                             <th data-sort="name" data-filter="name">SubTotal</th>
                                             <th data-sort="name" data-filter="name">Total</th>
+                                        <th data-sort="name" data-filter="name">Payment Method</th>
+
+                                        <th data-sort="name" data-filter="name">Is Paid</th>
                                             <th data-sort="name" data-filter="name">Order Status</th>
-                                            <th data-sort="name" data-filter="name">Order Date</th>
                                             <th data-sort="name" data-filter="name">Delivery Fee</th>
 
                                             <th></th>
@@ -131,22 +133,18 @@
                                                 
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $i ?></a></td>
                  
-                                                
-                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['payment_method'] ?></a></td>
-                                                <td><a class="btn btn-primary" href="<?= base_url() ?>/orders/set_paid/<?= $row['orders_id']?>"><?= $row['is_paid'] == 1 ? "PAID" : "UNPAID" ?></a></td>
-
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['created_date'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['order_code'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['full_name'] ?></a></td>
-                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['address'] ?></a></td>
-                                          
-
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['contact'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['address'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>">RM <?= $row['subtotal'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>">RM <?= $row['grand_total'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['payment_method'] ?></a></td>
+                                                <td><a class="btn btn-primary" href="<?= base_url() ?>/orders/set_paid/<?= $row['orders_id']?>"><?= $row['is_paid'] == 1 ? "PAID" : "UNPAID" ?></a></td>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['orders_status'] ?></a></td>
-                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['created_date'] ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['delivery_fee'] ?></a></td>
-
                                                 <td>
                                                 <span><a href="<?= base_url() ?>/orders/detail/<?= $row[
     'orders_id'
