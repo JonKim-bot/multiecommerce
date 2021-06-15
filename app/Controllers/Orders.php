@@ -112,6 +112,23 @@ class Orders extends BaseController
     //     }
     // }
 
+    public function change_status_samepage($orders_status_id, $orders_id,$got_filter = false
+    )
+    {
+        $where['orders.orders_id'] = $orders_id;
+        $data = [
+            'orders_status_id' => $orders_status_id,
+        ];
+        // $this->debug($where);
+        $orders = $this->OrdersModel->updateWhere($where, $data);
+        $this->EmailModel->send_email_tracking($orders_id);
+
+        return redirect()->to(
+            base_url('orders', 'refresh')
+        );
+    }
+
+
     public function kitchen_order($orders_id)
     {
         // $this->debug($orders);

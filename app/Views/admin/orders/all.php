@@ -42,6 +42,7 @@
                                 value="<?=  ($_GET and
                             isset($_GET['dateFrom']))
                                 ? $_GET['dateFrom']
+
                                 : date('Y-m-d') ?>"
                                 >
                             </div>
@@ -152,16 +153,16 @@
 ] ?>" class="btn btn-primary">View</a></span>
 
 <?php if($row['orders_status_id'] == 1) : ?>
-                                    <a  href="<?= base_url('/orders/change_status/2/'). "/" . $row['orders_id'] ?>" class="btn btn-warning">Accept Orders</a>
-                                    <a href="<?= base_url('/orders/change_status/5/') . "/" . $row['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
+                                    <a  href="<?= base_url('/orders/change_status_samepage/2/'). "/" . $row['orders_id'] ?>" class="btn btn-warning">Accept Orders</a>
+                                    <a href="<?= base_url('/orders/change_status_samepage/5/') . "/" . $row['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
                                 <?php endif; ?>
                                 <?php if($row['orders_status_id'] == 2) : ?>
-                                <a href="<?= base_url('/orders/change_status/3/') . "/" . $row['orders_id'] ?>" class="btn btn-primary">On Delivery</a>
-                                <a href="<?= base_url('/orders/change_status/5/') . "/" . $row['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
+                                <a href="<?= base_url('/orders/change_status_samepage/3/') . "/" . $row['orders_id'] ?>" class="btn btn-primary">On Delivery</a>
+                                <a href="<?= base_url('/orders/change_status_samepage/5/') . "/" . $row['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
                                 <?php endif; ?>
                                 <?php if($row['orders_status_id'] == 3) : ?>
-                                <a href="<?= base_url('/orders/change_status/4/') . "/" . $row['orders_id'] ?>" class="btn btn-success">Done Orders</a>
-                                <a href="<?= base_url('/orders/change_status/5/') . "/" . $row['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
+                                <a href="<?= base_url('/orders/change_status_samepage/4/') . "/" . $row['orders_id'] ?>" class="btn btn-success">Done Orders</a>
+                                <a href="<?= base_url('/orders/change_status_samepage/5/') . "/" . $row['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
                                 <?php endif; ?></td>
                                             </tr>
                                            

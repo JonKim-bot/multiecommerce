@@ -395,6 +395,7 @@ class Main extends BaseController
             if($this->check_referal_code_exist($referal_code) == false){
                 $this->show_404_if_empty([]);
             }
+
         }
         $this->validate_function(1,$this->pageData['shop_function']);
         $this->check_exist_function(1,$this->pageData['shop_function']);
@@ -984,9 +985,51 @@ class Main extends BaseController
             // if ($_REQUEST['status_id'] == 1){
             
     }
-    function call_back_to_order_senang($order_id){
 
-     
+    function gkash_callback(){
+        
+        
+        try {
+
+            if($_REQUEST){
+
+                $response = json_encode($_REQUEST, true);
+
+                $where = [
+                    'response' => $response,
+                    'type' => 'callback'
+                ];
+                
+                $senang = $this->SenangResponseModel->getWhere($where);
+
+                if(empty($senang)){
+
+                    $data = array(
+                        'response' => $response,
+                        'type' => 'callback',
+                    );
+                    $this->SenangResponseModel->insertNew($data);
+    
+                    // return redirect()->to(url('success'));
+    
+                    $this->call_back_to_order_senang($_REQUEST['order_id']);
+                }
+                // $this->debug($_REQUEST);
+                
+            }
+        } catch(Error $e){
+
+            $data = array(
+                'response' => $e->getMessage(),
+                'type' => basename($_SERVER['REQUEST_URI']),
+            );
+            $this->SenangResponseModel->insertNew($data);
+
+        }
+            // if ($_REQUEST['status_id'] == 1){
+            
+    }
+    function call_back_to_order_senang($order_id){
 
         $this->update_order($order_id,3);
         
@@ -1563,6 +1606,7 @@ class Main extends BaseController
         $transId = $year.$month.$day.$hour.$min.$sec.$mil;
         return $transId;
     }
+
     function update_order_payment_id($orders_id,$order_payment_id){
         $where = [
             'orders.orders_id' => $orders_id
@@ -1576,9 +1620,41 @@ class Main extends BaseController
         $data['is_order'] = 1;    
 
         $this->OrdersLogModel->insertNew($data);    
+    }
+
+
+
+    function gkash_pay($orders_id){
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];    
+        // $this->update_order_payment_id($orders_id,$orderId);
+        $shop = $this->get_shop($orders['shop_id'],true);
+        // $topup['grand_total'] = 2;
+        $detail = 'Pay for order ' . $orders['order_code']; 
+        $CID = 'M161-U-20320';
+        $signatureKey = 'hNyRMiIWlo8ijtd';
+        $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] ;
+        $callbackurl =   base_url() . '/main/gkash_callback';
+
+        $data = array(
+            'merchant_id' => $merchant_id,
+            'detail' => $detail,
+            'return_url' => $returnurl,
+            'callbackurl' => $callbackurl,
+            'amount' => $orders['grand_total'],
+            'name' => $orders['full_name'],
+            'order_id' => $orders_id,
+            'email' => $orders['email'],
+            'phone' => $orders['contact'],
+            'hash' => $hashed_string,
+        );
+        $this->pageData['data'] = $data;
+       
+        echo view('admin/gkash', $this->pageData);
 
     }
-    
     function premier_pay($orders_id){
     
         $timestamp = round(microtime(true) * 1000);
@@ -1607,7 +1683,6 @@ class Main extends BaseController
         //their key
         // $client_id = '1580791973248000000';
         // $client_secret = 'a1b6d087-f977-5c5c-a8d1-793a3e6784b2';
-
         // $amount = 0011;
 
         $payload = [
