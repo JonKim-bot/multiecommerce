@@ -304,7 +304,7 @@
                   date_from : date_from , 
                   date_to : date_to,
               }
-                $.post("<?=base_url('OrderAnalysis/get_total_sales') ?>", postParam, function(html){
+                $.post("<?=base_url('Orderanalysis/get_total_sales') ?>", postParam, function(html){
                     $('.total_sales_chart').html(html);
                 });
             }
@@ -314,7 +314,7 @@
                   date_from : date_from , 
                   date_to : date_to,
               }
-                $.post("<?=base_url('OrderAnalysis/get_total_order') ?>", postParam, function(html){
+                $.post("<?=base_url('Orderanalysis/get_total_order') ?>", postParam, function(html){
                     $('.total_order_chart').html(html);
                 });
             }
@@ -324,7 +324,7 @@
                   date_from : date_from , 
                   date_to : date_to,
               }
-                $.post("<?=base_url('OrderAnalysis/get_total_rate') ?>", postParam, function(html){
+                $.post("<?=base_url('Orderanalysis/get_total_rate') ?>", postParam, function(html){
                     $('.total_rate_chart').html(html);
                 });
             }
@@ -334,7 +334,7 @@
                   date_from : date_from , 
                   date_to : date_to,
               }
-                $.post("<?=base_url('OrderAnalysis/get_top_product_cat') ?>", postParam, function(html){
+                $.post("<?=base_url('Orderanalysis/get_top_product_cat') ?>", postParam, function(html){
                     $('.total_top_product_cat_table').html(html);
                 });
             }
@@ -343,7 +343,7 @@
                   date_from : date_from , 
                   date_to : date_to,
               }
-                $.post("<?=base_url('OrderAnalysis/get_new_register') ?>", postParam, function(html){
+                $.post("<?=base_url('Orderanalysis/get_new_register') ?>", postParam, function(html){
                     $('.total_new_register_chart').html(html);
                 });
 
@@ -354,7 +354,7 @@
                   date_from : date_from , 
                   date_to : date_to,
               }
-                $.post("<?=base_url('OrderAnalysis/get_top_product') ?>", postParam, function(html){
+                $.post("<?=base_url('Orderanalysis/get_top_product') ?>", postParam, function(html){
                     $('.total_top_product_table').html(html);
                 });
             }

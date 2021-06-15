@@ -20,6 +20,7 @@ class Transaction extends BaseController
             'customer.shop_id' => $this->shop_id
         ];
         $record = $this->PointModel->get_transaction_by_customer($where);
+        
         $this->pageData['transaction'] = $record;
 
         echo view('admin/header', $this->pageData);
