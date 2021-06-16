@@ -47,6 +47,9 @@
                      <div class="d-sm-flex justify-content-between text-center">
                         <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Purchase Over > RM <?= $gift['order_amount'] ?></p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
+       
+                        <a class="redeem genric-btn primary radius" amount = "<?= $gift['order_amount'] ?>" chance = "<?= $gift['count'] ?>" style="cursor:pointer" id="<?= $gift['gift_id'] ?>" style="cursor_pointer">Redeem</a>
+
                         </div>
                        <!--  <ul class="social-icons">
                            <li><a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
@@ -77,3 +80,35 @@
       <!-- Blog Area End -->
    </main>
  
+ <script>
+     $(".redeem").on("click", function() {
+        
+        var gift_id = $(this).attr('id');
+        var chance = $(this).attr('chance');
+        var amount = $(this).attr('amount');
+        if(chance <= 0){
+            Swal.fire({
+                title: "Redeem failed",
+                text: "You minimum purchase amount must over " + amount,
+                type: 'error'
+            });
+            return;
+        }
+        redeem(gift_id);
+    });
+
+    function redeem(gift_id){
+            let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                gift_id : gift_id,
+            }
+            $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
+                // $('.gift_col').html(html);
+                Swal.fire({
+                    title: "Redeem done",
+                    text: "Please wait for admin to verify your gift and contact you",
+                    type: 'success'
+                });
+            });
+        }
+ </script>

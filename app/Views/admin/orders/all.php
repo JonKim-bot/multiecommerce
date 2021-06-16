@@ -141,7 +141,12 @@
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>">RM <?= $row['subtotal'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>">RM <?= $row['grand_total'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['payment_method'] ?></a></td>
+                                                <?php if($row['payment_method_id'] != 3){ ?>
                                                 <td><a class="btn btn-primary" href="<?= base_url() ?>/orders/set_paid/<?= $row['orders_id']?>"><?= $row['is_paid'] == 1 ? "PAID" : "UNPAID" ?></a></td>
+                                                <?php }else{ ?>
+                                                    <td><a class=""><?= $row['is_paid'] == 1 ? "PAID" : "UNPAID" ?></td>
+
+                                                <?php } ?>
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['orders_status'] ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['delivery_fee'] ?></a></td>

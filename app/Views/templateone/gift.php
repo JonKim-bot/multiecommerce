@@ -89,13 +89,23 @@
                 slug : "<?= $shop['slug'] ?>",
                 gift_id : gift_id,
             }
-            $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
+            $.post("<?= base_url('main/redeem') ?>", postParam, function(data){
                 // $('.gift_col').html(html);
+                data = JSON.parse(data);
+                if(data.status){
+
                 Swal.fire({
                     title: "Redeem done",
                     text: "Please wait for admin to verify your gift and contact you",
                     type: 'success'
                 });
+                }else{
+                    Swal.fire({
+                    title: "Redeem failed",
+                    text: "Please make your payment on your orders",
+                    type: 'error'
+                });
+                }
                 load_gift();
             });
         }

@@ -7,7 +7,7 @@
                     <div class="socal_icon">
                         <!-- <a href="#"><i class="ti-shopping-cart"></i></a> -->
                         <?php if($selected == 1) {  ?>  
-                        <a class="redeem_voucher" amount = "<?= $row['redeem_point'] ?>" 
+                        <a class="redeem_voucher" class="genric-btn primary radius" amount = "<?= $row['redeem_point'] ?>" 
                             style="cursor:pointer" id="<?= $row['voucher_id'] ?>" style="cursor_pointer"><i class="ti-hand-stop"></i></a>
                         <!-- <a href="#"><i class="ti-zoom-in"></i></a> -->
                         <?php } ?>

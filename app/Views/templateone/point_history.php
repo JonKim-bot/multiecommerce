@@ -9,6 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    <h1>Total Point : <?= $total_point ?></h1>
                     <div class="wishlist__table">
                         <table>
                             <thead>

@@ -53,6 +53,10 @@
                    <div class="d-sm-flex justify-content-between text-center">
                         <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Required Point :  <?= $voucher['redeem_point'] ?></p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
+                        <a  class="redeem_voucher genric-btn primary radius" amount = "<?= $voucher['redeem_point'] ?>" 
+                            style="cursor:pointer" id="<?= $voucher['voucher_id'] ?>" style="cursor_pointer">Redeem</a>
+                        <!-- <a href="#"><i class="ti-zoom-in"></i></a> -->
+
                         </div>
                           <!-- <ul class="social-icons">
                            <li><a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
@@ -67,7 +71,7 @@
                      <div class="media align-items-center">
                         <img src="<?= base_url() . $shop['image'] ?>" width="200px" alt="">
                         <div class="media-body">
-                           <a href="#">
+                           <a href="<?= base_url() ?>/main">
                               <h4><?= $shop['shop_name'] ?></h4>
                            </a>
                            <!-- <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
@@ -83,3 +87,37 @@
       <!-- Blog Area End -->
    </main>
  
+ <script>
+  $(".redeem_voucher").on("click", function() {
+        
+        var voucher_id = $(this).attr('id');
+        var amount = $(this).attr('amount');
+       
+        redeem_voucher(voucher_id);
+    });
+ function redeem_voucher(voucher_id){
+            let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                voucher_id : voucher_id,
+            }
+            $.post("<?= base_url('main/redeem_voucher') ?>", postParam, function(data){
+                // $('.voucher_col').html(html);
+                data = JSON.parse(data);
+                if(data.status){
+
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        type: 'success'
+                    });
+                    load_voucher();
+                }else{
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        type: 'error'
+                    });
+                }
+            });
+        }
+ </script>

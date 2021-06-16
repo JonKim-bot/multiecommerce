@@ -46,6 +46,7 @@
             return;
         }
         redeem(gift_id);
+        load_gift();
     });
 
 

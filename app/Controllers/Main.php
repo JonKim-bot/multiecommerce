@@ -144,22 +144,32 @@ class Main extends BaseController
             $gift = $this->GiftModel->getWhere($where)[0];
             $where = [
                 'orders.customer_id' => $this->session->get('customer_id'),
-                'orders.grand_total >=' => $gift['order_amount']
+                'orders.grand_total >=' => $gift['order_amount'],
+                'orders.is_paid' => 1,
             ];
-            $orders = $this->OrdersModel->getClosed($where)[0];
+            $orders = $this->OrdersModel->getClosed($where);
+            if(!empty($orders)){
+                    $orders = $orders[0];
+                    $data = [
+                        'orders_id' => $orders['orders_id'],
+                        'customer_id' => $this->session->get('customer_id'),
+                        'redeem_date' => date('Y-m-d h:i:s'),
 
-            $data = [
-                'orders_id' => $orders['orders_id'],
-                'customer_id' => $this->session->get('customer_id'),
-                'redeem_date' => date('Y-m-d h:i:s'),
-                'gift_id' => $gift_id,
-            ];
-            $gift = $this->CustomerGiftModel->insertNew($data);
+                        'gift_id' => $gift_id,
+                    ];
+                    $gift = $this->CustomerGiftModel->insertNew($data);
+                    die(json_encode([
+                        'status' => true,
+                        'message' => 'Reddeem successful'
+                    ])) ;           
+            }else{
+                    die(json_encode([
+                        'status' => false,
+                        'message' => 'Reddeem failed'
+                    ])) ;           
 
-            die(json_encode([
-                'status' => true,
-                'message' => 'Reddeem successful'
-            ])) ;           
+            }
+
         }
     }
     public function redeem_voucher(){
@@ -214,6 +224,7 @@ class Main extends BaseController
             foreach($gift as $key=> $row){
                 $where = [
                     'orders.grand_total >=' => $row['order_amount'],
+                    'orders.is_paid' => 1,
                     'orders.customer_id' => $this->session->get('customer_id'),
                 ];
                 $orders = $this->OrdersModel->getWhere($where);
@@ -285,8 +296,8 @@ class Main extends BaseController
 
         $this->load_view('gift');
 
-
     }
+
     public function gift_detail($gift_id){
         $shop = $this->shop;
 
@@ -296,6 +307,31 @@ class Main extends BaseController
    
 
         $gift = $this->GiftModel->getWhere($where)[0];
+        $where = [
+            'orders.grand_total >=' => $gift['order_amount'],
+            'orders.customer_id' => $this->session->get('customer_id'),
+            'orders.is_paid' => 1,
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+        if(!empty($orders)){
+            $customer_gift_count = 0;
+            foreach($orders as $row){
+
+                $where = [
+                    'customer_gift.orders_id' => $row['orders_id']
+                ];
+
+                $customer_gift_count += count($this->CustomerGiftModel->getWhere($where));
+            }
+            
+            //check how many reddeem already on this custonmer gift id
+        }else{
+            $customer_gift_count = 0;
+
+        }
+        $gift['count_gift'] =  $customer_gift_count;
+        $gift['count'] = count($orders) - $customer_gift_count;
+
         $this->pageData['gift'] = $gift;
         $this->load_view('gift_detail');
 
@@ -303,11 +339,15 @@ class Main extends BaseController
     public function voucher_detail($voucher_id){
         $shop = $this->shop;
 
+
+
         $where = [
             'voucher.voucher_id' => $voucher_id,
         ];
    
         $voucher = $this->VoucherModel->getWhere($where)[0];
+        
+
         $this->pageData['voucher'] = $voucher;
         $this->load_view('voucher_detail');
 
@@ -598,7 +638,7 @@ class Main extends BaseController
                 'is_commission' => 1,
                 'customer_id' => $parent['customer_id'],
                 'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                'remarks' => 'Downline Task Point for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
                 'orders_id' => $orders['orders_id'],
             ];
             // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
@@ -623,7 +663,7 @@ class Main extends BaseController
                     'customer_id' => $grand_parent['customer_id'],
 
                     'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                    'remarks' => 'Downline Task Commission for ' . $grand_parent['name'] . ' with downline ' . $customer['name'] ,
+                    'remarks' => 'Downline Task Point for ' . $grand_parent['name'] . ' with downline ' . $customer['name'] ,
                     'orders_id' => $orders['orders_id'],
                 ];
 
@@ -650,7 +690,7 @@ class Main extends BaseController
                         'is_commission' => 1,
                         'customer_id' => $grand_grand_parent['customer_id'],
                         'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                        'remarks' => 'Downline Task Commission for ' . $grand_grand_parent['name'] . ' with downline ' . $customer['name'] ,
+                        'remarks' => 'Downline Task Point for ' . $grand_grand_parent['name'] . ' with downline ' . $customer['name'] ,
                         'orders_id' => $orders['orders_id'],
                     ];
                     // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
@@ -881,7 +921,9 @@ class Main extends BaseController
 
         $this->load_view('order_history',$shop);
 
+
     }
+
 
     
     public function point_history(){
@@ -892,6 +934,8 @@ class Main extends BaseController
             'point.customer_id' => $this->session->get('customer_id'),
         ];
         $point_history = $this->PointModel->get_transaction_by_customer($where);
+        $total_point = $this->PointModel->get_balance($this->session->get('customer_id'));
+        $this->pageData['total_point'] = $total_point;
 
         $this->pageData['point_history'] = $point_history;
 
@@ -1819,6 +1863,7 @@ class Main extends BaseController
             "is_paid" => 1,
             "payment_method_id" => $payment_method_id,
         );
+
         $orders = $this->OrdersModel->updateWhere($where,$data);
 
         $where = array(

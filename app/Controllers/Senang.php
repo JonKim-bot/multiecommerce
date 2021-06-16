@@ -50,7 +50,12 @@ class Senang extends Controller
     function senang_return(){
 
         if($_REQUEST){
-
+            $where = array(
+                "orders.orders_id" => $_REQUEST['order_id'],
+            );
+            $orders = $this->OrdersModel->getWhere($where)[0];
+            $shop = $this->get_shop($orders['shop_id'],true);
+            $this->pageData['shop'] = $shop;
             if ($_REQUEST['status_id'] == 1){
 
                 $response = json_encode($_REQUEST, true);
@@ -60,15 +65,14 @@ class Senang extends Controller
                     'type' => 'return success',
                 );
                 $this->SenangResponseModel->insertNew($data);
-                $where = array(
-                    "orders.orders_id" => $_REQUEST['order_id'],
-                );
-                $orders = $this->OrdersModel->getWhere($where)[0];
-                $shop = $this->get_shop($orders['shop_id'],true);
-                $url = base_url() . "/main/index/" . $shop['slug'];
+        
+                // $url = base_url() . "/main/index/" . $shop['slug'];
                 // return redirect()->to($url , "refresh");
-                $this->debug("success");
+                // $this->debug("success");
                 // $this->debug($_REQUEST);
+                
+                echo view("templateone/success" , $this->pageData);
+
 
             } else {
 
@@ -79,8 +83,10 @@ class Senang extends Controller
                     'type' => 'return failed',
                 );
                 $this->SenangResponseModel->insertNew($data);
-                $url = base_url() . "/main/index/" . $shop['slug'];
-                $this->debug("failed");
+                echo view("templateone/failed" , $this->pageData);
+
+                // $url = base_url() . "/main/index/" . $shop['slug'];
+                // $this->debug("failed");
 
                 // return redirect()->to($url , "refresh");
                 // return redirect()->to(base_url('senang/fail/' , "refresh"));
