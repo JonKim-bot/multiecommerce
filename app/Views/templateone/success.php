@@ -33,12 +33,12 @@
 
 	<div class="main-content">
 		<i class="fa fa-check main-content__checkmark" id="checkmark"></i>
-		<p class="main-content__body" data-lead-id="main-content-body">Thanks for being you.</p>
+		<p class="main-content__body" data-lead-id="main-content-body">Thanks for your payment , please kindly wait for 5-10 minit for your payment to be confirmed.</p>
 	</div>
 
 	<footer class="site-footer" id="footer" style="padding-top:50px">
     <p class="lead">
-    <a class="btn btn-primary btn-sm text-white" href="index.php" role="button">Continue to homepage</a>
+    <a class="btn btn-primary btn-sm text-white" href="https://<?= $shop['slug']?>.webieasy.com/main" role="button">Continue to homepage</a>
   </p>	</footer>
 </body>
 </html>
