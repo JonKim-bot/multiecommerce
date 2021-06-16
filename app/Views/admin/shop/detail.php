@@ -103,9 +103,7 @@
                                                 <tr>
                                                         <td><h3>Website Link</h3></td>
                                                         <td>
-                                                        <a href="<?= base_url() ?>/main/index/<?= $shop[
-    'slug'
-] ?>"><?= base_url() ?>/main/index</a>
+                                                        <a href="<?= base_url() ?>/main/index"><?= base_url() ?>/main/index</a>
                                                         </td>
 
                                                     </tr>

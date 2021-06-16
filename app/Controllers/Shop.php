@@ -69,6 +69,7 @@ class Shop extends BaseController
         echo view('admin/footer');
     }
 
+
     public function search()
     {
         $like = [
@@ -375,7 +376,7 @@ class Shop extends BaseController
                 $session = session();
 
                 $shop = $this->ShopModel->getWhere($where);
-                $session->set('shop_data', $shop[0]);
+                // $session->set('shop_data', $shop[0]);
 
                 return redirect()->to(
                     base_url('shop/detail/' . $shop_id, 'refresh')
