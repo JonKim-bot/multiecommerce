@@ -79,11 +79,9 @@
                                     <p><?= $orders['contact'] ?></p>
                                 </div>
                                 <div class="col-md-6">
-                                <?php if($orders['payment_method_id'] == 3){ ?>
                                 <h4>Payment Status
                                     </h4>
                                     <p><?= $orders['is_paid'] == 1 ? "Paid" : 'Not Paid' ?></p>
-                                    <?php } ?>
                                     <h4>Address
                                     </h4>
                                     <p><?= $orders['address'] ?></p>

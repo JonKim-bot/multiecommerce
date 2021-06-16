@@ -123,6 +123,7 @@ class Orders extends BaseController
         $orders = $this->OrdersModel->updateWhere($where, $data);
         $this->EmailModel->send_email_tracking($orders_id);
 
+
         return redirect()->to(
             base_url('orders', 'refresh')
         );
@@ -173,6 +174,11 @@ class Orders extends BaseController
             "is_paid" => $is_paid,
         );
         $this->OrdersModel->updateWhere($where,$data);
+        if($is_paid == 1){
+            if($orders['email'] != ""){
+                $this->EmailModel->send_email($orders['email'],$orders_id);
+            }
+        }
         if($is_paid == 1 && $this->check_exist_function(1,$this->shop_function)){
             $this->give_point($orders_id);
 

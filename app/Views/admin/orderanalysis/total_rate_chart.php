@@ -9,8 +9,8 @@
         var data = google.visualization.arrayToDataTable([
           ['Hour', 'Total Number Of Orders'],
           <?php foreach($total_rate as $row){ ?>
-        ["<?= $row['hour'] ?>", <?= $row['total'] ?>],
-        <?php } ?>
+             ["<?= $row['hour'] ?>", <?= $row['total'] ?>],
+          <?php } ?>
         ]);
 
         var options = {

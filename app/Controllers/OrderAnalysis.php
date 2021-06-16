@@ -39,6 +39,7 @@ class Orderanalysis extends BaseController
         $this->pageData['new_registered_member'] = $new_registered_member;
 
         echo view('admin/header', $this->pageData);
+
         echo view('admin/orderanalysis/all');
         echo view('admin/footer');
     }
@@ -76,6 +77,8 @@ class Orderanalysis extends BaseController
         $shop_id = $this->shop_id;
         $total_rate = $this->OrdersModel->get_rate($shop_id,$date_from,$date_to);
         $this->pageData['total_rate'] = $total_rate;
+        // $this->debug($total_rate);
+
         echo view('admin/orderanalysis/total_rate_chart',$this->pageData);
     }
     

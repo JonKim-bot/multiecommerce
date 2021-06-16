@@ -106,13 +106,14 @@ class Main extends BaseController
         }
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
         $slug = $subdomain_arr[0];
-        // $slug = 'capital-shop';
+        $slug = 'capital-shop';
         $this->shop= $this->get_shop($slug);
 
         //1 membership
         //2 Gift
         //3 Upsales
         //4 Customer Analysis
+
         //5 SMS Blast
         //6 Member Referal
 
@@ -914,15 +915,19 @@ class Main extends BaseController
         $where = [
             'orders.orders_id' => $_POST['orders_id'],
         ];
-        $orders = $this->OrdersModel->getWhere($where);
+        $orders = $this->OrdersModel->getWhere($where)[0];
+        $where = [
+            'order_customer.order_customer_id' => $orders['order_customer_id']
+        ];
+        $order_customer = $this->OrderCustomerModel->getWhere($where)[0];
+        $shop = $this->ShopModel->getWhereNormal(['shop.shop_id' => $orders['shop_id']])[0];
+        $order_url = base_url() . "/main/payment/" .  $orders['order_code'];
 
+        $message = "Order No : ".$_POST['orders_id']." \nTotal Amount : " . $orders['grand_total'] . "\n\n*Customer Info*\nName : ". $order_customer['full_name'] ."\nAddress : ". $order_customer['address'] ."\nContact : ". $order_customer['contact'] ."\n\nPlease Kindly Check your order detail at : \n". $order_url ."\n\n*Merchant Bank Info*\n\nBank Name : ". $shop['bank'] ."\nBank Account : ". $shop['bank_account'] ."\nBank Holder Name : ". $shop['bank_holder_name'] ." ";
 
-        $shop = $this->ShopModel->getWhere(['shop.shop_id' => $orders[0]['shop_id']])[0];
-        $order_url = base_url() . "/main/payment/" .  $orders[0]['order_code'];
-
-        $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
-        $url =  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
+        
+        $url=  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
 
 
         if($_POST['payment_method_id'] != 3){
@@ -1399,6 +1404,7 @@ class Main extends BaseController
             $orders[$key_main]['order_detail'] = $this->get_order_detail_option($order_detail);
  
         }
+        
 
         // $this->debug($orders);
         $this->show_404_if_empty($orders);
@@ -1630,6 +1636,7 @@ class Main extends BaseController
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];    
         // $this->update_order_payment_id($orders_id,$orderId);
+
         $shop = $this->get_shop($orders['shop_id'],true);
         // $topup['grand_total'] = 2;
         $detail = 'Pay for order ' . $orders['order_code']; 
@@ -1814,7 +1821,7 @@ class Main extends BaseController
 
         $shop = $this->get_shop($orders['shop_id']);
 
-        if($_POST['email'] != ""){
+        if($orders['email'] != ""){
             $this->EmailModel->send_email($orders['email'],$order_id);
         }
 
