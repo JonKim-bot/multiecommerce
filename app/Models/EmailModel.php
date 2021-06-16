@@ -1,11 +1,13 @@
 <?php namespace App\Models;
 
+
 use App\Core\BaseModel;
 use CodeIgniter\Model;
 use App\Models\OrderDetailModel;
 use App\Models\OrdersModel;
 use App\Models\ShopModel;
 use App\Models\OrdersStatusModel;
+use App\Models\OrderCustomerModel;
 
 class EmailModel extends BaseModel
 {
@@ -14,6 +16,8 @@ class EmailModel extends BaseModel
         parent::__construct();
 
         $this->OrderDetailModel = new OrderDetailModel();
+        $this->OrderCustomerModel = new OrderCustomerModel();
+
         $this->OrdersModel = new OrdersModel();
         $this->ShopModel = new ShopModel();
         $this->OrdersStatusModel = new OrdersStatusModel();
@@ -46,20 +50,31 @@ class EmailModel extends BaseModel
             'shop_id' => $orders[0]['shop_id']
         ])[0]['contact'];
         
-        $order_url = base_url() . "/main/payment/" . $this->pageData['shop']['slug'] . '/' . $orders[0]['order_code'];
-        $message = "MyOrder|我的订单 -> Note " . $order_url;
+     
+        $where = [
+            'order_customer.order_customer_id' => $orders[0]['order_customer_id']
+        ];
+        $orders = $orders[0];
+        $order_customer = $this->OrderCustomerModel->getWhere($where)[0];
+        $shop = $this->ShopModel->getWhereNormal(['shop.shop_id' => $orders['shop_id']])[0];
+        $order_url = base_url() . "/main/payment/" .  $orders['order_code'];
+
+        $message = "Order No : ".$orders['order_code']." \nTotal Amount : " . $orders['grand_total'] . "\n\n*Customer Info*\nName : ". $order_customer['full_name'] ."\nAddress : ". $order_customer['address'] ."\nContact : ". $order_customer['contact'] ."\n\nPlease Kindly Check your order detail at : \n". $order_url ."\n\n*Merchant Bank Info*\n\nBank Name : ". $shop['bank'] ."\nBank Account : ". $shop['bank_account'] ."\nBank Holder Name : ". $shop['bank_holder_name'] ." ";
+
         $message = rawurlencode($message);
         
-        $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop_contact. "&text=" . $message;
-        $this->pageData["orders"] = $orders[0];
+        $order_url=  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
+        $orders['url'] =  $order_url;
+
+        $this->pageData["orders"] = $orders;
 
         $view = view('admin/orders/orders_tracking', $this->pageData);
         $email->setFrom('piegensoftware20@gmail.com', $this->pageData['shop']['shop_name'] . " orders");
-        if($orders[0]['email'] != ""){
+        if($orders['email'] != ""){
 
-            $email->setTo($orders[0]['email']);
+            $email->setTo($orders['email']);
     
-            $email->setSubject($orders[0]['shop_name'] . ' Orders ' . $orders[0]['orders_status']);
+            $email->setSubject($orders['shop_name'] . ' Orders ' . $orders['orders_status']);
             $email->setMessage($view);
     
             if ($email->send()) {

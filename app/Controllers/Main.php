@@ -923,7 +923,7 @@ class Main extends BaseController
         $shop = $this->ShopModel->getWhereNormal(['shop.shop_id' => $orders['shop_id']])[0];
         $order_url = base_url() . "/main/payment/" .  $orders['order_code'];
 
-        $message = "Order No : ".$_POST['orders_id']." \nTotal Amount : " . $orders['grand_total'] . "\n\n*Customer Info*\nName : ". $order_customer['full_name'] ."\nAddress : ". $order_customer['address'] ."\nContact : ". $order_customer['contact'] ."\n\nPlease Kindly Check your order detail at : \n". $order_url ."\n\n*Merchant Bank Info*\n\nBank Name : ". $shop['bank'] ."\nBank Account : ". $shop['bank_account'] ."\nBank Holder Name : ". $shop['bank_holder_name'] ." ";
+        $message = "Order No : ".$orders['order_code']." \nTotal Amount : " . $orders['grand_total'] . "\n\n*Customer Info*\nName : ". $order_customer['full_name'] ."\nAddress : ". $order_customer['address'] ."\nContact : ". $order_customer['contact'] ."\n\nPlease Kindly Check your order detail at : \n". $order_url ."\n\n*Merchant Bank Info*\n\nBank Name : ". $shop['bank'] ."\nBank Account : ". $shop['bank_account'] ."\nBank Holder Name : ". $shop['bank_holder_name'] ." ";
 
         $message = rawurlencode($message);
         
@@ -1373,16 +1373,24 @@ class Main extends BaseController
             'shop_id' => $orders[0]['shop_id']
         ])[0]['contact'];
         
+        $where = [
+            'order_customer.order_customer_id' => $orders[0]['order_customer_id']
+        ];
+        $orders = $orders[0];
+        $order_customer = $this->OrderCustomerModel->getWhere($where)[0];
+        $shop = $this->ShopModel->getWhereNormal(['shop.shop_id' => $orders['shop_id']])[0];
+        $order_url = base_url() . "/main/payment/" .  $orders['order_code'];
 
-        // $order_url = base_url()  . "/main/order_detail/" . $orders_id;
-        $order_url = base_url() . "/main/payment/" .  $this->pageData['shop']['slug'] . '/' . $orders[0]['order_code'];
+        $message = "Order No : ".$orders['order_code']." \nTotal Amount : " . $orders['grand_total'] . "\n\n*Customer Info*\nName : ". $order_customer['full_name'] ."\nAddress : ". $order_customer['address'] ."\nContact : ". $order_customer['contact'] ."\n\nPlease Kindly Check your order detail at : \n". $order_url ."\n\n*Merchant Bank Info*\n\nBank Name : ". $shop['bank'] ."\nBank Account : ". $shop['bank_account'] ."\nBank Holder Name : ". $shop['bank_holder_name'] ." ";
 
-        $message = "MyOrder|我的订单 -> Note " . $order_url;
         $message = rawurlencode($message);
         
+        $order_url=  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
+
+        // $order_url = base_url()  . "/main/order_detail/" . $orders_id;
         
-        $orders[0]['url'] =  "https://api.whatsapp.com/send?phone=" .$shop_contact. "&text=" . $message;
-        $this->pageData["orders"] = $orders[0];
+        $orders['url'] =  $order_url;
+        $this->pageData["orders"] = $orders;
 
         // $this->debug($orders);
         echo view("main/orders_tracking", $this->pageData);

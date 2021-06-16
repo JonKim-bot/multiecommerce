@@ -161,7 +161,7 @@ p {
     <article class="card">
         <header class="card-header"> <?= $shop['shop_name'] ?> Orders / Tracking For <b><?= $orders['full_name'] ?></b></header>
         <div class="card-body">
-            <h6>Order ID: <?= $orders['orders_id'] ?></h6>
+            <h6>Order ID: <?= $orders['order_code'] ?></h6>
             <article class="card">
                 <div class="card-body row">
                 <div class="col"> <strong>Prepared BY:</strong> <br> <?= $shop['shop_name'] ?>, | <i class="fa fa-phone"></i> <?= $shop['contact'] ?> </div>
