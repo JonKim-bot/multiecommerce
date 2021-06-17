@@ -323,7 +323,7 @@ class Orders extends BaseController
                 'is_commission' => 1,
                 'customer_id' => $parent['customer_id'],
                 'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                'remarks' => 'Downline Task Commission for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
+                'remarks' => 'Downline Task Point for ' . $parent['name'] . ' with downline ' . $customer['name'] ,
                 'orders_id' => $orders['orders_id'],
             ];
             // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
@@ -348,7 +348,7 @@ class Orders extends BaseController
                     'customer_id' => $grand_parent['customer_id'],
 
                     'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                    'remarks' => 'Downline Task Commission for ' . $grand_parent['name'] . ' with downline ' . $customer['name'] ,
+                    'remarks' => 'Downline Task Point for ' . $grand_parent['name'] . ' with downline ' . $customer['name'] ,
                     'orders_id' => $orders['orders_id'],
                 ];
 
@@ -375,7 +375,7 @@ class Orders extends BaseController
                         'is_commission' => 1,
                         'customer_id' => $grand_grand_parent['customer_id'],
                         'amount' =>  floatval($orders['grand_total']) * ($shop_rate['rate'] / 100),
-                        'remarks' => 'Downline Task Commission for ' . $grand_grand_parent['name'] . ' with downline ' . $customer['name'] ,
+                        'remarks' => 'Downline Task Point for ' . $grand_grand_parent['name'] . ' with downline ' . $customer['name'] ,
                         'orders_id' => $orders['orders_id'],
                     ];
                     // $this->WalletModel->wallet_in($user['user_id'], $_POST['amount'], $remark);
@@ -643,6 +643,7 @@ class Orders extends BaseController
 
     public function change_status($orders_status_id, $orders_id)
     {
+
         $where['orders.orders_id'] = $orders_id;
         $data = [
             'orders_status_id' => $orders_status_id,

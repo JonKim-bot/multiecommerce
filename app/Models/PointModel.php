@@ -2,6 +2,7 @@
 
 
 
+
 use App\Core\BaseModel;
 
 class PointModel extends BaseModel
@@ -160,6 +161,25 @@ class PointModel extends BaseModel
 
         return $result;
     }
+    function get_total_received_point($customer_id)
+    {
+        
+        $this->builder->select('SUM(point_in) as total_point_in');
+        $this->builder->from($this->table_name);
+        $this->builder->where('customer_id', $customer_id);
+        $this->builder->where('is_commission', 1);
+
+        $query = $this->builder->get()->getResultArray();
+
+        if (!empty($query)) {
+            $result = $query[0]['total_point_in'];
+        } else {
+            $result = 0;
+        }
+
+        return $result;
+    }
+    
     
     function get_total_point_out($customer_id)
     {

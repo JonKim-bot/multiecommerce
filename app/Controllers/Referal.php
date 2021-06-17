@@ -2,6 +2,7 @@
 
 use App\Core\BaseController;
 use App\Models\CustomerModel;
+use App\Models\PointModel;
 
 class Referal extends BaseController
 {
@@ -10,8 +11,9 @@ class Referal extends BaseController
     {
 
         $this->pageData = array();
-
         $this->CustomerModel = new CustomerModel();
+
+        $this->PointModel = new PointModel();
         $shop_data = session()->get('shop_data');
         $shop_function = $this->getShopFunction($shop_data['shop_id']);
         $this->shop_function = $shop_function;
@@ -26,6 +28,9 @@ class Referal extends BaseController
         ];
         $users = $this->CustomerModel->getWhere($where);
         for($i = 0; $i < count($users); $i++){
+            $users[$i]['total_received_point'] = $this->PointModel->get_total_received_point($users[$i]['customer_id']);
+            $users[$i]['group_sales'] = $this->CustomerModel->getGroupTotalSales($users[$i]['customer_id']);
+            $users[$i]['self_sales'] = $this->CustomerModel->getSelfSales($users[$i]['customer_id']);
             $users[$i]['family'] = $this->CustomerModel->getTree($users[$i]['customer_id']);
         }
         $this->pageData['users'] = $users;

@@ -1,5 +1,5 @@
 <style>
-    .iconRef {
+    /* .iconRef {
         transform: rotate(90deg);
         display: inline-block
     }
@@ -10,7 +10,10 @@
 
     .refText {
         font-size: 1rem
-    }
+    } */
+    .btn{
+    text-transform: capitalize;
+}
 </style>
 
 <div class="c-subheader justify-content-between px-3">
@@ -18,7 +21,7 @@
         <li class="breadcrumb-item">Home</li>
         <li class="breadcrumb-item active">
             <a href="
-				<?= base_url() ?>/market_place">Referral
+				<?= base_url() ?>/referal">Referral
             </a>
         </li>
     </ol>
@@ -49,7 +52,14 @@
                                 <div class="card-header" id="heading_<?= $parent['customer_id']; ?>">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?= $parent['customer_id']; ?>">
-                                            <?= $parent['email']; ?> <?= $parent['customer_id']; ?> : Referrals (<?= count($parent['family']); ?>)
+                                            <?= $parent['email']; ?>  : Referrals (<?= count($parent['family']); ?>)
+                                        <br>
+                                        Total Received Point : <?= $parent['total_received_point'] ?>
+                                        <br>
+                                        Total Group Sales : RM <?= $parent['group_sales'] ?>
+                                        <br>
+                                        Total Self Sales : RM <?= $parent['self_sales'] ?>
+
                                         </button>
                                     </h5>
                                 </div>
@@ -64,6 +74,13 @@
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_1_<?= $tier_1['customer_id']; ?>">
                                                                 <?= $tier_1['email']; ?> <?= $tier_1['customer_id']; ?> : Referrals (<?= count($tier_1['child']); ?>)
+                                                            <br>
+                                                            Total Received Point : <?= $tier_1['total_received_point'] ?>
+                                                            <br>
+                                        Total Group Sales : RM <?= $tier_1['group_sales'] ?>
+                                        <br>
+                                        Total Self Sales : RM <?= $tier_1['self_sales'] ?>
+
                                                             </button>
                                                         </h5>
                                                     </div>
@@ -77,7 +94,14 @@
                                                                         <div class="card-header" id="heading_2_<?= $tier_2['customer_id']; ?>">
                                                                             <h5 class="mb-0">
                                                                                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_2_<?= $tier_2['customer_id']; ?>">
-                                                                                    <?= $tier_2['email']; ?> <?= $tier_2['customer_id']; ?> : Referrals (<?= count($tier_2['child']); ?>)
+                                                                                    <?= $tier_2['email']; ?>  : Referrals (<?= count($tier_2['child']); ?>)
+                                                                                    <br>
+                                                                                Total Received Point : <?= $tier_2['total_received_point'] ?>
+                                                                                <br>
+                                        Total Group Sales : RM <?= $tier_2['group_sales'] ?>
+                                        <br>
+                                        Total Self Sales : RM <?= $tier_2['self_sales'] ?>
+
                                                                                 </button>
                                                                             </h5>
                                                                         </div>
@@ -91,7 +115,14 @@
                                                                                             <div class="card-header" id="heading_3_<?= $tier_3['customer_id']; ?>">
                                                                                                 <h5 class="mb-0">
                                                                                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_3_<?= $tier_3['customer_id']; ?>">
-                                                                                                        <?= $tier_3['email']; ?> <?= $tier_3['customer_id']; ?>
+                                                                                                        <?= $tier_3['email']; ?> 
+                                                                                                        <br>
+
+                                                                                                    Total Received Point : <?= $tier_3['total_received_point'] ?>
+                                                                                                    <br>
+                                                                                                Total Group Sales : RM <?= $tier_3['group_sales'] ?>
+                                                                                                <br>
+                                                                                                Total Self Sales : RM <?= $tier_3['self_sales'] ?>
                                                                                                     </button>
                                                                                                 </h5>
                                                                                             </div>

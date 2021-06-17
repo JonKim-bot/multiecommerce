@@ -72,7 +72,7 @@
                                 <a onclick="changestatus(4)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 4 ?  "btn btn-dark text-white" : "btn btn-success text-white"  ?>">Done Orders</a>
                                 <a onclick="changestatus(5)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 5 ?  "btn btn-dark text-white" : "btn btn-primary text-white"  ?>">Rejected</a>
 
-                                <a onclick="preorder()" class="btn btn-danger text-white">Preorder</a>
+                                <!-- <a onclick="preorder()" class="btn btn-danger text-white">Preorder</a> -->
 
                             </div>
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
