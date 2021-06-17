@@ -72,8 +72,17 @@
                                                     <td><a id="<?= $row['sms_id'] ?>" class=" btn btn-primary">Send Already</a></td>
 
                                                 <?php } ?>
-                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['is_approved'] == 1 ? "APPROVED" : "NOT YET APPROVED" ?></a></td>
 
+                                    <td>        
+                                        <?php if($row['is_approved'] == 0){ ?>
+                                            Pending
+                                        <?php } else if($row['is_approved'] == 1){ ?>
+                                            Approved
+                                        <?php } else if($row['is_approved'] == 2){ ?>
+                                            Rejected
+                                        <?php } ?>
+                                    </td>
+                            
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['is_sent'] == 1 ? "SENT" : "NOT SENT" ?></a></td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['price'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['discount_offer'] ?></a></td>

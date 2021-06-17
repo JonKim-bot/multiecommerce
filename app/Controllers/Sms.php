@@ -228,7 +228,7 @@ class Sms extends BaseController
         $url= 'https://www.sms123.net/api/send.php?';
         $apikey = '6e6962f9c1a409653c301a977af190cb';
         $sms_template = $this->sms_template($sms_id);
-        // $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
+        $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
         foreach($sms_sent as $row){
 
             $recipients = $row['contact'];
@@ -265,6 +265,12 @@ class Sms extends BaseController
             die(json_encode([
                 'status' => false,
                 'message' => 'The message not yet approved yet'
+            ]));
+        }
+        if($sms['is_approved'] == 2){
+            die(json_encode([
+                'status' => false,
+                'message' => 'The message is rejected'
             ]));
         }
         if($sms['is_sent'] == 1){

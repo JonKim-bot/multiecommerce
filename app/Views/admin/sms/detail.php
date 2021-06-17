@@ -140,9 +140,9 @@
                                                     <tr role="row">
                                                         <th>No.</th>
                                                         <th data-sort="name" data-filter="name">Amount</th>
-                                                        <th data-sort="name" data-filter="name">Receipt</th>
                                                         <th data-sort="name" data-filter="name">Approved ?</th>
-                                                        <th data-sort="name" data-filter="name">Approved Date</th>
+                                                        <th data-sort="name" data-filter="name">Approved \ Rejected Date</th>
+                                                        <th data-sort="name" data-filter="name">Receipt</th>
  
                                                         <th data-sort="name" data-filter="name">Created date</th>
 
@@ -161,11 +161,18 @@
                        
 
                                                 <td><?= $row['amount'] ?></td>
+                                                <td>        
+                                        <?php if($row['is_approved'] == 0){ ?>
+                                            Pending
+                                        <?php } else if($row['is_approved'] == 1){ ?>
+                                            Approved
+                                        <?php } else if($row['is_approved'] == 2){ ?>
+                                            Rejected
+                                        <?php } ?>
+                                    </td>                                                <td><?= $row['approval_date']?></td>
                                                 <td>
                                                 <img width="200px" src="<?= base_url() .  $row['receipt'] ?>" alt="">
                                                 </td>
-                                                <td><?= $row['is_approved'] == 1 ?  "YES" : "NO" ?></td>
-                                                <td><?= $row['approval_date']?></td>
                                                 <td><?= $row['created_date']?></td>
 
                                             </tr>

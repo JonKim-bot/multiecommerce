@@ -42,11 +42,14 @@ class Transaction extends BaseController
 
         $data = array(
             'is_approved' => 1,
+            'approval_date' => date('Y-m-d h:i:s'),
+
         );
         $this->CreditTopUpModel->updateWhere($where, $data);
         $remarks = 'Sms credit top up for ' . $credit_topup['shop_name'] . " with amount " . $credit_topup['amount'];
         $this->CreditModel->credit_in($credit_topup['shop_id'],$credit_topup['amount'],$remarks);
-        redirect('transaction/credittopup', 'refresh');
+        return redirect()->to(base_url($_SERVER['HTTP_REFERER'], 'refresh'));
+
     }
 
     public function reject($credit_topup_id){
@@ -56,10 +59,11 @@ class Transaction extends BaseController
         );
         $data = array(
             'is_approved' => 2,
+            'approval_date' => date('Y-m-d h:i:s'),
         );
         $this->CreditTopUpModel->updateWhere($where, $data);
    
-        redirect('transaction/credittopup', 'refresh');
+        return redirect()->to(base_url($_SERVER['HTTP_REFERER'], 'refresh'));
     }
 
     public function credittopup()
