@@ -773,7 +773,6 @@ class BaseModel extends Model
         $this->sql = $this->builder->getCompiledSelect(false);
         $result = $this->db->query($this->sql)->getResultArray();
 
-        // die($this->builder->getCompiledSelect(false));
         // $result = $temp_builder->get()->getResultArray();
 
         return count($result);
@@ -783,6 +782,7 @@ class BaseModel extends Model
     {
         $showing_from = $page - 2;
         $showing_to = $page + 2;
+
 
         $this->setRunningNo($offset);
         $this->builder->limit($limit, $offset);

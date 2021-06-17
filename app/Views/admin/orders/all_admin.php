@@ -57,20 +57,20 @@
                                 : '' ?>" name="preorder">
 
                             <input type="hidden" value="<?= ($_GET and
-                            isset($_GET['status_id']))
-                                ? $_GET['status_id']
-                                : '' ?>" name="status_id">
+                            isset($_GET['orders_status_id']))
+                                ? $_GET['orders_status_id']
+                                : '' ?>" name="orders_status_id">
                         </div>
                         
                     </form>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
-                                <a onclick="changestatus(1)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 1 ?  "btn btn-dark text-white" : "btn btn-danger text-white"  ?>">Pending</a>
-                                <a onclick="changestatus(2)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 2 ?  "btn btn-dark text-white" : "btn btn-warning text-white"  ?>">Processing Orders</a>
-                                <a onclick="changestatus(3)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 3 ?  "btn btn-dark text-white" : "btn btn-secondary text-dark"  ?>">On Delivery</a>
-                                <a onclick="changestatus(4)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 4 ?  "btn btn-dark text-white" : "btn btn-success text-white"  ?>">Done Orders</a>
-                                <a onclick="changestatus(5)" class="<?= isset($_GET['status_id']) && $_GET['status_id'] == 5 ?  "btn btn-dark text-white" : "btn btn-primary text-white"  ?>">Rejected</a>
+                                <a onclick="changestatus(1)" class="<?= isset($_GET['orders_status_id']) && $_GET['orders_status_id'] == 1 ?  "btn btn-dark text-white" : "btn btn-danger text-white"  ?>">Pending</a>
+                                <a onclick="changestatus(2)" class="<?= isset($_GET['orders_status_id']) && $_GET['orders_status_id'] == 2 ?  "btn btn-dark text-white" : "btn btn-warning text-white"  ?>">Processing Orders</a>
+                                <a onclick="changestatus(3)" class="<?= isset($_GET['orders_status_id']) && $_GET['orders_status_id'] == 3 ?  "btn btn-dark text-white" : "btn btn-secondary text-dark"  ?>">On Delivery</a>
+                                <a onclick="changestatus(4)" class="<?= isset($_GET['orders_status_id']) && $_GET['orders_status_id'] == 4 ?  "btn btn-dark text-white" : "btn btn-success text-white"  ?>">Done Orders</a>
+                                <a onclick="changestatus(5)" class="<?= isset($_GET['orders_status_id']) && $_GET['orders_status_id'] == 5 ?  "btn btn-dark text-white" : "btn btn-primary text-white"  ?>">Rejected</a>
 
                                 <!-- <a onclick="preorder()" class="btn btn-danger text-white">Preorder</a> -->
 
@@ -79,9 +79,7 @@
 
                             <div class="card" style="width: 18rem;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Total Sales: RM <?= $orders_static[
-                                        'total'
-                                    ] ?></h5>
+                                    <h5 class="card-title">Total Sales: RM <?= $total_sales ?></h5>
                                     <h5 class="card-title">Total Number Of Order: <?= $orders_count ?></h5>
 
                                 </div>
@@ -211,11 +209,11 @@ $(document).on("change", ".filter", function (e) {
     $('#filter_form').submit();
 });
 
-function changestatus(status_id){
+function changestatus(orders_status_id){
 
-    var url = "<?= base_url() ?>/orders?status_id=" + status_id ;
+    var url = "<?= base_url() ?>/orders?orders_status_id=" + orders_status_id ;
     <?php if (isset($_GET['dateFrom'])) { ?>
-        var url = "<?= base_url() ?>/orders?status_id=" + status_id + "&dateFrom=" + "<?= $_GET[
+        var url = "<?= base_url() ?>/orders?orders_status_id=" + orders_status_id + "&dateFrom=" + "<?= $_GET[
     'dateFrom'
 ] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>" ;
 

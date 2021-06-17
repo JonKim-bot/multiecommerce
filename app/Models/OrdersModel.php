@@ -55,7 +55,6 @@ class OrdersModel extends BaseModel
         $this->builder->orderBy('orders.orders_id','DESC');
         if ($limit != '') {
             $count = $this->getCount($filter);
-            // die($this->builder->getCompiledSelect(false));
             $offset = ($page - 1) * $limit;
             $pages = $count / $limit;
             $pages = ceil($pages);

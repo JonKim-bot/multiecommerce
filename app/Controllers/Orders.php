@@ -618,7 +618,13 @@ class Orders extends BaseController
             if (!empty($get['delivery_fee'])) {
                 $get['orders.delivery_fee'] = $get['delivery_fee'];
             }
-          
+            if (!empty($get['orders_status_id'])) {
+                $get['orders.orders_status_id'] = $get['orders_status_id'];
+            }
+            
+            
+            unset($get['orders_status_id']);
+
             unset($get['delivery_fee']);
 
             unset($get['email']);
@@ -641,8 +647,8 @@ class Orders extends BaseController
                 ? $_GET['dateTo']
                 : date('Y-m-d');
         $status =
-            ($_GET and isset($_GET['status_id']) && $_GET['status_id'] != '')
-                ? $_GET['status_id']
+            ($_GET and isset($_GET['orders_status_id']) && $_GET['orders_status_id'] != '')
+                ? $_GET['orders_status_id']
                 : '';
         $preorder =
             ($_GET and isset($_GET['preorder'])) ? $_GET['preorder'] : '';
@@ -652,7 +658,7 @@ class Orders extends BaseController
             $where['DATE(orders.created_at) <='] = $dateTo;
         }
         if ($status != '') {
-            $where['orders.orders_status_id'] = $_GET['status_id'];
+            $where['orders.orders_status_id'] = $_GET['orders_status_id'];
         }
         if ($preorder) {
             $where['orders.is_preorder'] = 1;
@@ -662,17 +668,22 @@ class Orders extends BaseController
         $this->pageData['dateTo'] = $dateTo;
 
         $orders = $this->OrdersModel->getWhere($where,10, $page, $filter);
-
+        
         $this->pageData['page'] = $orders['pagination'];
         $this->pageData['start_no'] = $orders['start_no'];
         $orders = $orders['result'];
         $orders_static = $this->OrdersModel->getStatic($where);
-        $this->pageData['orders_count'] = count($orders);
-
-        $this->pageData['orders_static'] = $orders_static[0];
-
+        
         // $this->debug($orders_static);
         $this->pageData['orders'] = $orders;
+
+        $orders = $this->OrdersModel->getWhere($where,2000, $page, $filter);
+        $total_sales = array_sum(array_column($orders['result'],'grand_total'));
+        $this->pageData['total_sales'] = $total_sales;
+
+        $this->pageData['orders_count'] = count($orders['result']);
+
+        $this->pageData['orders_static'] = $orders_static[0];
 
         // $this->debug($orders);
         echo view('admin/header', $this->pageData);
