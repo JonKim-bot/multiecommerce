@@ -66,6 +66,8 @@ class BaseController extends Controller
                 $shop_function = $this->getShopFunction();
                 $this->shop_function = $shop_function;
 
+            }else{
+                $this->isMerchant = false;
             }
         }
        

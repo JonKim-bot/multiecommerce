@@ -36,26 +36,28 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table-responsive">
-                                <table class="table table-striped datatable table-bordered no-footer " id="product_category_list_table" data-method="get" data-url="<?= base_url("product_category") ?>" style="border-collapse: collapse !important">
+                                <table class="table table-striped dataTable table-bordered no-footer " id="product_category_list_table" data-method="get" data-url="<?= base_url("productcategory") ?>" style="border-collapse: collapse !important">
                                     <thead>
                                         <tr role="row">
-                                            <th data-sort="name" data-filter="name">No</th>
-                        
-                                            <th data-sort="name" data-filter="name">Product Category</th>
+                                            <th >No</th>
+                                            <th data-sort="shop" data-filter="shop">Shop</th>
+
+                                            <th data-sort="category" data-filter="category">Product Category</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $i = 1;
+                                            $i = $start_no;
                                             foreach($product_category as $row){
                                          ?>
                                             <tr>
                                                 
                                             <td><?= $i ?></td>
-                                                
-                                                <td><a href="<?= base_url() ?>/ProductCategory/detail/<?= $row['category_id']?>"><?= $row['category'] ?></a></td>
+                                            <td><a href="<?= base_url() ?>/ProductCategory/detail/<?= $row['category_id']?>"><?= $row['shop_name'] ?></a></td>
+                                                  <td><a href="<?= base_url() ?>/ProductCategory/detail/<?= $row['category_id']?>"><?= $row['category'] ?></a></td>
                                                 <td>
+                                              
                                                 <a href="<?= base_url() ?>/ProductCategory/edit/<?= $row['category_id']?>" class="btn btn-warning" ><i class="fa fa-pen"></i> Edit</a>
                                                 <a href="<?= base_url() ?>/ProductCategory/detail/<?= $row['category_id']?>" class="btn btn-primary" ><i class="fa fa-eye"></i> View</a>
 
@@ -69,7 +71,9 @@
                                         ?>
                                     </tbody>
                                 </table>
-                      
+                                    <div class="custom_pagination" id="product_category_list_table" data-table="product_category_list_table" data-method="get" data-url="<?= base_url("productcategory") ?>">
+                                    <?= $page ?>
+                                </div>
                               
                             </div>
                         </div>

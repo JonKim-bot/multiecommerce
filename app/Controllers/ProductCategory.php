@@ -28,13 +28,49 @@ class ProductCategory extends BaseController
 
     public function index()
     {
-        $product_category = $this->CategoryModel->getWhere([
-            'shop_id' => $this->shop_id,
-        ]);
+        if($this->isMerchant){
+            $product_category = $this->CategoryModel->getWhere([
+                'shop_id' => $this->shop_id,
+            ]);
+        }else{
+            $page = 1;
+            $filter = array();
+    
+            if ($_GET) {
+                $get = $this->request->getGet();
+    
+                if (!empty($get['page'])) {
+                    $page = $get['page'];
+                }
+                if (!empty($get['shop'])) {
+                    $get['shop.shop_name'] = $get['shop'];
+
+                }
+                if (!empty($get['category'])) {
+                    $get['category.category'] = $get['category'];
+
+                }
+                unset($get['category']);
+
+                unset($get['shop']);
+                unset($get['page']);
+                $filter = $get;
+            }
+    
+            $product_category = $this->CategoryModel->getAllAdmin(10, $page, $filter);
+            $this->pageData['page'] = $product_category['pagination'];
+            $this->pageData['start_no'] = $product_category['start_no'];
+            $product_category = $product_category['result'];
+        }   
         $this->pageData['product_category'] = $product_category;
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/product_category/all');
+        if($this->isMerchant){
+            echo view('admin/product_category/all');
+
+        }else{
+            echo view('admin/product_category/all_admin');
+        }
         echo view('admin/footer');
     }
 

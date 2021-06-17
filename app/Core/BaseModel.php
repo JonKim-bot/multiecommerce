@@ -91,6 +91,7 @@ class BaseModel extends Model
         // $query = $this->builder->get();
         // return $query->getResultArray();
 
+      
         $fields = $this->db->getFieldNames($this->tableName);
 
         $deleted = false;
@@ -103,11 +104,14 @@ class BaseModel extends Model
         $this->setRunningNo();
 
         $this->builder->select('*');
-
+        $this->builder->orderBy($this->tableName ."_id", "desc");
+        
         if ($deleted) {
             $this->builder->where($this->tableName . ".deleted", 0);
         }
         
+        $this->builder->where($this->tableName . ".deleted", 0);
+
         // die($this->builder->getCompiledSelect(false));
 
         if ($limit != '') {
@@ -115,6 +119,7 @@ class BaseModel extends Model
             $offset = ($page - 1) * $limit;
             $pages = $count / $limit;
             $pages = ceil($pages);
+
             $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter);
 
             return $pagination;
@@ -125,7 +130,6 @@ class BaseModel extends Model
 
         $query = $this->builder->get();
         return $query->getResultArray();
-
     }
 
    
@@ -764,24 +768,25 @@ class BaseModel extends Model
                 }    
             }
         }
+        
+        
+        $this->sql = $this->builder->getCompiledSelect(false);
+        $result = $this->db->query($this->sql)->getResultArray();
 
         // die($this->builder->getCompiledSelect(false));
-
-        $this->sql = $this->builder->getCompiledSelect(false);
-
-        $result = $temp_builder->get()->getResultArray(false);
+        // $result = $temp_builder->get()->getResultArray();
 
         return count($result);
     }
 
     public function getPaging($limit, $offset, $page, $pages, $filter)
     {
-
         $showing_from = $page - 2;
         $showing_to = $page + 2;
-        
+
         $this->setRunningNo($offset);
         $this->builder->limit($limit, $offset);
+
         $result = $this->builder->get()->getResultArray();
         if($pages == 0 OR $pages == 1){
             $pagination = "";

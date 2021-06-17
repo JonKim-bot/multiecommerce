@@ -218,7 +218,7 @@
             })
     })
     IntitalizeFireBaseMessaging();
-    // $('.dataTable').customTable();
+    $('.dataTable').customTable();
 
     var dataTable = $('.datatable').DataTable(
     //     {
