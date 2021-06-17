@@ -1,17 +1,6 @@
 <!-- /.col-->
 <div class="c-wrapper c-fixed-components">
-      <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-      
-        
-        <div class="c-subheader px-3">
-          <!-- Breadcrumb-->
-          <ol class="breadcrumb border-0 m-0">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item"><a href="#">Admin</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-            <!-- Breadcrumb Menu-->
-          </ol>
-        </div>
+  
       </header>
       <div class="c-body">
         <main class="c-main">
@@ -48,6 +37,7 @@
                         </svg> Top Category</a></li>
                   </ul>
                   <div class="tab-content">
+                  <button onclick="window.print()" class="btn btn-primary">Print</button>
                     <div class="tab-pane active" id="total_sales" role="tabpanel">
                         <div class="card">
         
@@ -262,40 +252,56 @@
           
 
           <script>
-          
+          function validate(date_from,date_to){
+              if(date_from == "" || date_to == ""){
+                  alert("Please select a date");
+                  return;
+              }
+          }
           $('#btn_get_total_new_register').on('click', function () {
                 let date_from = $('#date_from_new_register').val();    
                 let date_to = $('#date_to_new_register').val();    
+                validate(date_from,date_to);
                 get_new_registered(date_from,date_to);
         });
 
         $('#btn_top_product').on('click', function () {
                 let date_from = $('#date_from_top_product').val();    
-                let date_to = $('#date_to_top_product').val();    
+                let date_to = $('#date_to_top_product').val();  
+                validate(date_from,date_to);
+  
                 get_top_product(date_from,date_to);
         });
 
         $('#btn_top_product_cat').on('click', function () {
                 let date_from = $('#date_from_top_product_cat').val();    
-                let date_to = $('#date_to_top_product_cat').val();    
+                let date_to = $('#date_to_top_product_cat').val(); 
+                validate(date_from,date_to);
+   
                 get_top_product_cat(date_from,date_to);
         });
 
            $('#btn_get_total_sales').on('click', function () {
                 let date_from = $('#date_from_sales').val();    
-                let date_to = $('#date_to_sales').val();    
+                let date_to = $('#date_to_sales').val();  
+                validate(date_from,date_to);
+  
                 get_total_sales(date_from,date_to);
         });
 
         $('#btn_get_total_order').on('click', function () {
                 let date_from = $('#date_from_order').val();    
-                let date_to = $('#date_to_order').val();    
+                let date_to = $('#date_to_order').val();  
+                validate(date_from,date_to);
+  
                 get_total_order(date_from,date_to);
         });
 
         $('#btn_get_total_rate').on('click', function () {
                 let date_from = $('#date_from_rate').val();    
-                let date_to = $('#date_to_rate').val();    
+                let date_to = $('#date_to_rate').val();  
+                validate(date_from,date_to);
+  
                 get_total_rate(date_from,date_to);
         });
 
