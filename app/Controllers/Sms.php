@@ -131,6 +131,13 @@ class Sms extends BaseController
             $this->check_is_merchant_from_shop($sms[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
+        $where = [
+            'sms_sent.sms_id' => $sms_id,
+        ];
+        $sms_sent = $this->SmsSentModel->getWhere($where);
+        $this->pageData['sms_sent'] = $sms_sent;
+
+        $sms[0]['template'] = $this->get_template($sms[0]['template_id']);
 
         $this->pageData['sms'] = $sms[0];
 
