@@ -6,6 +6,8 @@ use App\Core\BaseController;
 use App\Models\SmsModel;
 use App\Models\OrderCustomerModel;
 use App\Models\SmsSentModel;
+use App\Models\CreditTopUpModel;
+use App\Models\CreditModel;
 
 
 class Sms extends BaseController
@@ -15,7 +17,8 @@ class Sms extends BaseController
         $this->pageData = [];
         $this->SmsModel = new SmsModel();
         $this->SmsSentModel = new SmsSentModel();
-
+        $this->CreditTopUpModel = new CreditTopUpModel();
+        $this->CreditModel = new CreditModel();
         $this->OrderCustomerModel = new OrderCustomerModel();
 
         if (
@@ -121,6 +124,43 @@ class Sms extends BaseController
         echo view('admin/footer');
     }
 
+    public function add_credit($sms_id)
+    {
+      
+        if ($_POST) {
+            $input = $this->request->getPost();
+
+            $error = false;
+
+            if (!$error) {
+                
+                $data = [
+                    'shop_id' => $this->shop_id,
+                    'amount' => $_POST['amount']
+                ];
+                if ($_FILES['receipt'] and !empty($_FILES['receipt']['name'])) {
+                    $file = $this->request->getFile('receipt');
+                    $new_name = $file->getRandomName();
+                    $banner = $file->move(
+                        './public/images/product/',
+                        $new_name
+                    );
+                    if ($banner) {
+                        $banner = '/public/images/product/' . $new_name;
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+                $data['receipt'] = $banner;
+                $top_up_id = $this->CreditModel->record_top_up($this->shop_id,$_POST['amount'],$banner);
+              
+                return redirect()->to(base_url('sms/detail/' . $sms_id, 'refresh'));
+            }
+        }
+
+    }
+
     public function detail($sms_id)
     {
         $where = [
@@ -136,6 +176,10 @@ class Sms extends BaseController
         ];
         $sms_sent = $this->SmsSentModel->getWhere($where);
         $this->pageData['sms_sent'] = $sms_sent;
+        $where = [
+            'credit_top_up.shop_id' => $this->shop_id
+        ];
+        $this->pageData['sms_top_up'] = $this->CreditTopUpModel->getWhere($where);
 
         $sms[0]['template'] = $this->get_template($sms[0]['template_id']);
 

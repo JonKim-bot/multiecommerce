@@ -1,9 +1,8 @@
 <?php namespace App\Models;
 
 
-
-
 use App\Core\BaseModel;
+use App\Models\CreditTopUpModel;
 
 class CreditModel extends BaseModel
 {
@@ -15,6 +14,7 @@ class CreditModel extends BaseModel
         $this->primaryKey = 'credit_id';
 
         
+        $this->CreditTopUpModel = new CreditTopUpModel();
 
         $this->builder = $this->db->table($this->tableName);
     }
@@ -48,11 +48,12 @@ class CreditModel extends BaseModel
         }
         return $balance;
     }
-    function record_top_up($merchant_id, $amount)
+    function record_top_up($shop_id, $amount,$receipt)
     {
         $data = [
-            'merchant_id' => $merchant_id,
+            'shop_id' => $shop_id,
             'amount' => $amount,
+            'receipt' => $receipt,
         ];
 
         $top_up_id = $this->CreditTopUpModel->insertNew($data);

@@ -130,26 +130,40 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th>No.</th>
-                                                        <th data-sort="name" data-filter="name">Contact</th>
+                                                        <th data-sort="name" data-filter="name">Amount</th>
+                                                        <th data-sort="name" data-filter="name">Receipt</th>
+                                                        <th data-sort="name" data-filter="name">Approved ?</th>
+                                                        <th data-sort="name" data-filter="name">Approved Date</th>
+ 
+                                                        <th data-sort="name" data-filter="name">Created date</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php
-                                                        $i = 1;
-                                                        foreach($sms_sent as $row){
-                                                    ?>
-                                                        <tr>
-                                                            
-                                                            <td><a href="<?= base_url() ?>/OrderCustomer/detail/<?= $row['order_customer_id']?>"><?= $i ?></a></td>
-                                
+                                                   
 
-                                                            <td><a href="<?= base_url() ?>/OrderCustomer/detail/<?= $row['order_customer_id']?>"><?= $row['contact'] ?></a></td>
-                                                        </tr>
-                                                    <?php
-                                                    $i++;
-                                                        }
-                                                    ?>
+                                            <?php
+                                            $i = 1;
+                                            foreach($sms_top_up as $row){
+                                         ?>
+                                            <tr>
+                                                
+                                                <td><?= $i ?></td>
+                       
+
+                                                <td><?= $row['amount'] ?></td>
+                                                <td>
+                                                <img width="200px" src="<?= base_url() .  $row['receipt'] ?>" alt="">
+                                                </td>
+                                                <td><?= $row['is_approved'] == 1 ?  "YES" : "NO" ?></td>
+                                                <td><?= $row['approval_date']?></td>
+                                                <td><?= $row['created_date']?></td>
+
+                                            </tr>
+                                        <?php
+                                        $i++;
+                                            }
+                                        ?>
                                                 </tbody>
                                             </table>
                                         
@@ -192,21 +206,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            $i = 1;
-                                            foreach($sms_sent as $row){
-                                         ?>
-                                            <tr>
-                                                
-                                                <td><a href="<?= base_url() ?>/OrderCustomer/detail/<?= $row['order_customer_id']?>"><?= $i ?></a></td>
-                       
+                                    <?php
+                                        $i = 1;
+                                        foreach($sms_sent as $row){
+                                    ?>
+                                        <tr>
+                                            
+                                            <td><a href="<?= base_url() ?>/OrderCustomer/detail/<?= $row['order_customer_id']?>"><?= $i ?></a></td>
+                
 
-                                                <td><a href="<?= base_url() ?>/OrderCustomer/detail/<?= $row['order_customer_id']?>"><?= $row['contact'] ?></a></td>
-                                            </tr>
-                                        <?php
-                                        $i++;
-                                            }
-                                        ?>
+                                            <td><a href="<?= base_url() ?>/OrderCustomer/detail/<?= $row['order_customer_id']?>"><?= $row['contact'] ?></a></td>
+                                        </tr>
+                                    <?php
+                                    $i++;
+                                        }
+                                    ?>
                                     </tbody>
                                 </table>
                               
@@ -228,7 +242,7 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url('/sms/add_credit/') ?>">
+                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url('/sms/add_credit/' . $sms['sms_id']) ?>">
                             <div class="modal-body">
                             <p>Please submit your receipt to the account below and wait for approval</p>
                             <p>Note : remember to write your shopname on remarks for faster approval</p>
@@ -238,7 +252,7 @@
 
                             <div class="form-group">
                                     <label for="">Amount</label>
-                                    <input type="text" class="form-control" name="amount" placeholder="e.g. Minimum RM 50" required>
+                                    <input type="number" class="form-control" name="amount" min="50" placeholder="e.g. Minimum RM 50" required>
                                 </div>
                            
                                 <div class="form-group">
