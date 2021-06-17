@@ -56,6 +56,13 @@
 
                                                     </tr>
                                                     <tr>
+                                                        <td><h3>Price</h3></td>
+                                                        <td><?= $sms[
+                                                            'price'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
                                                         <td><h3>Call Action</h3></td>
                                                         <td><?= $sms[
                                                             'call_to_action'

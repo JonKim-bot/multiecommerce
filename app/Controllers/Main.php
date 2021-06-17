@@ -301,7 +301,7 @@ class Main extends BaseController
     public function gift_detail($gift_id){
         $shop = $this->shop;
 
-        
+
         $where = [
             'gift.gift_id' => $gift_id,
         ];
@@ -1536,6 +1536,8 @@ class Main extends BaseController
                     'created_at' => date('Y-m-d H:i:s'),
                     'delivery_fee' => $_POST['delivery_fee'],
                     'grand_total' => $_POST['grand_total'],
+
+                    
                     'promo_id' => $_POST['promo_id'],
 
                     // 'created_at' => date('d-m-Y H:i:s'),

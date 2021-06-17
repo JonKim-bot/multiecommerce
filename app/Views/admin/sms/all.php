@@ -41,13 +41,16 @@
                                         <tr role="row">
                                             <th>No.</th>
                                             <th data-sort="name" data-filter="name">Template</th>
+                                            <th data-sort="name" data-filter="name">Sent</th>
+                                            <th data-sort="name" data-filter="name">Approval</th>
+
+                                            <th data-sort="name" data-filter="name">Status</th>
+                                            <th data-sort="name" data-filter="name">Price</th>
                                             <th data-sort="name" data-filter="name">Discount Offer</th>
                                             <th data-sort="name" data-filter="name">Call To Action </th>
                                             <th data-sort="name" data-filter="name">Need</th>
                                             <th data-sort="name" data-filter="name">Merchant representative name</th>
-
                                             <th data-sort="name" data-filter="name">Merchant name</th>
-                                            <th data-sort="name" data-filter="name">Status</th>
 
                                             <th></th>
                                         </tr>
@@ -63,13 +66,22 @@
                        
 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['template'] ?></a></td>
+                                                <?php if($row['is_sent'] == 0){ ?>
+                                                <td><a id="<?= $row['sms_id'] ?>" class="btn_sent_sms btn btn-primary">Send</a></td>
+                                                <?php }else{ ?>
+                                                    <td><a id="<?= $row['sms_id'] ?>" class=" btn btn-primary">Send Already</a></td>
+
+                                                <?php } ?>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['is_approved'] == 1 ? "APPROVED" : "NOT YET APPROVED" ?></a></td>
+
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['is_sent'] == 1 ? "SENT" : "NOT SENT" ?></a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['price'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['discount_offer'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['call_to_action'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['need'] ?></a></td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['shop_name'] ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= "Webi" ?></a></td>
-                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['is_sent'] == 1 ? "SENT" : "NOT SENT" ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/sms/delete/<?= $row['sms_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
                                             </tr>
@@ -87,3 +99,22 @@
                 </div>
             </div>
         </div>
+        <script>
+         
+    $('.btn_sent_sms').on('click', function (e) {
+        var postParam = {
+            sms_id: $(this).attr('id'),
+        };
+
+        $.post("<?= base_url('sms/send_sms') ?>", postParam, function(data){
+
+            data= JSON.parse(data);
+            if(data.status){
+                alert("Message sended");
+            }else{
+                alert(data.message);
+
+            }
+        });
+    });
+    </script>

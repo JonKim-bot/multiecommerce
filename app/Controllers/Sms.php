@@ -41,6 +41,8 @@ class Sms extends BaseController
         $sms = $this->SmsModel->getWhere($where);
         foreach($sms as $key => $row){
             $sms[$key]['template'] = $this->get_template($row['template_id']);
+         
+
         }
         $this->pageData['sms'] = $sms;
 
@@ -62,6 +64,19 @@ class Sms extends BaseController
             return "Hi %customer name%. % A need/problem%. %Merchant name% is %discount/offer%. %Call to action (may include shop link)%";
         }
         
+
+    }
+    public function update_sms_price($sms_id){
+        $where = [
+            'sms_sent.sms_id' => $sms_id
+        ];
+        $count = count($this->SmsSentModel->getWhere($where));
+        $total = $count * 0.13;
+        $data['price'] = $total;
+        $where = [
+            'sms.sms_id' => $sms_id
+        ];
+        $this->SmsModel->updateWhere($where, $data);
 
     }
     public function add()
@@ -114,6 +129,8 @@ class Sms extends BaseController
                         }
                     }
                 }
+              
+                $this->update_sms_price($sms_id);
 
                 return redirect()->to(base_url('sms', 'refresh'));
             }
@@ -159,6 +176,101 @@ class Sms extends BaseController
             }
         }
 
+    }
+    public function validate_contact($contact){
+        $input['contact'] = $contact;
+        $input['contact'] = str_replace(" ","",$input['contact']);
+
+        $input['contact'] = str_replace("-","",$input['contact']);
+        $input['contact'] = str_replace("+","",$input['contact']);
+
+        if(!$this->startsWith($input['contact'],"6")){
+            $input['contact'] = "6" . $input['contact'];
+        }
+        return $input['contact'];
+    }
+
+    public function sms_template($sms_id){
+        $where = [
+            'sms.sms_id'=> $sms_id
+        ];
+        $sms = $this->SmsModel->getWhere($where)[0];
+        $template_id = $sms['template_id'];
+
+        if($template_id == 1){
+            return "Hi %customername%,". $sms['shop_name'] . " is ".$sms['discount_offer'].". ".$sms['call_to_action']."\n
+            ".$sms['shop_name']." from Webi";
+        }
+        if($template_id == 2){
+            return "". $sms['need'] . ". ". $sms['discount_offer'] . ". ". $sms['discount_offer'] . "
+            \n
+            ".$sms['shop_name']." from Webi";
+
+        }
+        if($template_id == 3){
+            return "Hi %customername%. ". $sms['need'] . ". ". $sms['shop_name'] . " is ". $sms['discount_offer'] . ". ". $sms['call_to_action'] . "
+            \n
+            ".$sms['shop_name']." from Webi";
+        }
+    }
+    public function send_sms_to_user($sms_id){
+
+
+        $where = [
+            'sms_sent.sms_id'=> $sms_id
+        ];
+        $sms_sent = $this->SmsSentModel->getWhere($where);
+        $url= 'https://www.sms123.net/api/send.php?';
+        $apikey = '6e6962f9c1a409653c301a977af190cb';
+        $sms_template = $this->sms_template($sms_id);
+        $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
+        foreach($sms_sent as $row){
+
+            $recipients = $row['contact'];
+            $sms_msg = str_replace("%customer_name%",$row['contact'],$sms_template);
+            $sms_msg = rawurlencode(stripslashes($sms_msg)) ;
+            $url = $url . "apiKey=" . $apikey . "&recipients=" . $recipients . "&messageContent=" . $sms_msg; 
+            // return redirect()->to(($url));
+            $opts = array('http' =>
+                array(
+                    'method'  => 'GET',
+                    'header'  => 'Content-type: application/json',
+                )
+            );
+            $context  = stream_context_create($opts);
+            $result = file_get_contents($url, false, $context);
+        }
+    }
+    public function send_sms(){
+        $where = [
+            'sms.sms_id'=> $_POST['sms_id']
+        ];
+        $sms = $this->SmsModel->getWhere($where)[0];
+        $balance = $this->CreditModel->get_balance($this->shop_id);
+        if($sms['is_approved'] == 0){
+            die(json_encode([
+                'status' => false,
+                'message' => 'The message not yet approved yet'
+            ]));
+        }
+        if($sms['is_sent'] == 1){
+            die(json_encode([
+                'status' => false,
+                'message' => 'The message already sent'
+            ]));
+        }
+        if($sms['price'] > $balance){
+            die(json_encode([
+                'status' => false,
+                'message' => 'Balance not enought , please top up your sms credit'
+            ]));
+        }else{
+            $this->send_sms_to_user($_POST['sms_id']);
+            die(json_encode([
+                'status' => true,
+                'message' => 'Sended'
+            ]));
+        }
     }
 
     public function detail($sms_id)
@@ -259,6 +371,7 @@ class Sms extends BaseController
                         }
                     }
                 }
+                $this->update_sms_price($sms_id);
 
                 return redirect()->to(
                     base_url('sms/detail/' . $sms_id, 'refresh')
