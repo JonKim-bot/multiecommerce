@@ -101,19 +101,7 @@
                         Customer
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'tag' ? 'c-active' : null) ?>" href="<?= base_url() ?>/tag">
-                        <i class="cil-user c-sidebar-nav-icon"></i>
-                        Tag
-                    </a>
-                </li>
-                
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'bank' ? 'c-active' : null) ?>" href="<?= base_url() ?>/bank">
-                        <i class="cil-user c-sidebar-nav-icon"></i>
-                        Bank
-                    </a>
-                </li>
+              
                 
 
                 <li>
@@ -122,18 +110,158 @@
                         Payment Method
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders_status' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders_status">
                         <i class="cil-user c-sidebar-nav-icon"></i>
                         Orders Status
                     </a>
-                </li>
+                </li> -->
 
                 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop">
                         <i class="cil-user c-sidebar-nav-icon"></i>
                         Shop
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'ProductCategory' ? 'c-active' : null) ?>" href="<?= base_url() ?>/ProductCategory">
+                        <i class="fa fa-server c-sidebar-nav-icon"></i>
+                        Product Category (Step 1)
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'product' ? 'c-active' : null) ?>" href="<?= base_url() ?>/product">
+                        <i class="fa fa-product-hunt c-sidebar-nav-icon"></i>
+                        Product (Step 2)
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'contact' ? 'c-active' : null) ?>" href="<?= base_url() ?>/contact">
+                        <i class="fa fa-phone c-sidebar-nav-icon"></i>
+                        Contact 
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders">
+                        <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
+                        Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'OrderCustomer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/OrderCustomer">
+                        <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
+                        Customer
+                    </a>
+                </li>
+               
+                
+                 <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about">
+                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
+                        About (For home page)
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'banner' ? 'c-active' : null) ?>" href="<?= base_url() ?>/banner">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Banner (For home page)
+                    </a>
+                </li>
+
+              
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
+                        <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
+                        Brand 
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'sms' ? 'c-active' : null) ?>" href="<?= base_url() ?>/sms">
+                        <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
+                        SMS 
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shoprate' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Shoprate">
+                        <i class="fa fa-percent c-sidebar-nav-icon"></i>
+                        Member rate 
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
+                        <i class="fa fa-bookmark-o c-sidebar-nav-icon"></i>
+                        Voucher
+                    </a>
+                </li>
+
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
+                        <i class="fa fa-bookmark c-sidebar-nav-icon"></i>
+                        Gift
+                    </a>
+                </li>
+                <li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'transaction' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction">
+                        <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
+                        Transaction
+                    </a>
+            </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
+                        <i class="fa fa-users c-sidebar-nav-icon"></i>
+                        Member
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
+                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
+                        Referal
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">
+                        <i class="fa fa-building c-sidebar-nav-icon"></i>
+                       Store Perfomance
+                    </a>
+                </li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis/detail">
+                        <i class="fa fa-search c-sidebar-nav-icon"></i>
+                        Order Analysis
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
+                        <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
+                        Announcement
+
+                    </a>
+                </li>
+               
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'promo' ? 'c-active' : null) ?>" href="<?= base_url() ?>/promo">
+                        <i class="fa fa-credit-card c-sidebar-nav-icon"></i>
+                        Promocode
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop_payment_method' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop_payment_method">
+                        <i class="fa fa-qrcode c-sidebar-nav-icon"></i>
+                     Payment Method
                     </a>
                 </li>
                    
