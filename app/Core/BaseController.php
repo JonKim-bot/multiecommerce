@@ -80,6 +80,11 @@ class BaseController extends Controller
         $shop_function = array_column($this->ShopFunctionModel->getWhere($where),'function_id');
         return $shop_function;
     }
+    public function validate_merchant(){
+        if($this->isMerchant == true){
+            $this->show_404_if_empty([]);
+        }
+    }
     public function validate_function($function_id,$shop_function){
         if($this->check_exist_function($function_id,$shop_function) == false){
             $this->show_404_if_empty([]);

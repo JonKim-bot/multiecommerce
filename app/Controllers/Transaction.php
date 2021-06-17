@@ -68,7 +68,8 @@ class Transaction extends BaseController
 
     public function credittopup()
     {
-   
+       
+        $this->validate_merchant();
         $record = $this->CreditTopUpModel->getAll();
         
         $this->pageData['wallet'] = $record;
