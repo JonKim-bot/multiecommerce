@@ -5,6 +5,8 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 use App\Models\PointModel;
+use App\Models\CreditModel;
+use App\Models\CreditTopUpModel;
 
 class Transaction extends BaseController
 {
@@ -12,6 +14,9 @@ class Transaction extends BaseController
     {
         $this->pageData = [];
         $this->PointModel = new PointModel();
+        $this->CreditModel = new CreditModel();
+        $this->CreditTopUpModel = new CreditTopUpModel();
+
     }
 
     public function index()
@@ -27,12 +32,22 @@ class Transaction extends BaseController
         echo view('admin/wallet/all');
         echo view('admin/footer');
     }
+    public function credittopup()
+    {
+   
+        $record = $this->CreditTopUpModel->getAll();
+        
+        $this->pageData['transaction'] = $record;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/wallet/all');
+        echo view('admin/footer');
+    }
     public function record()
     {
         $session = session();
 
         $user_voucher = $this->UserVoucherModel->getWhere(['user_voucher.main_voucher_id' => 0]);
-
 
         if ($session->get("login_type") == "MERCHANT") {
             $this->pageData['merchants'] = $this->MerchantModel->getWhere(array(
