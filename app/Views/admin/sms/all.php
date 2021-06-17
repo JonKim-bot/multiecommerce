@@ -40,9 +40,14 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No.</th>
-                                            <th data-sort="name" data-filter="name">Banner</th>
+                                            <th data-sort="name" data-filter="name">Template</th>
+                                            <th data-sort="name" data-filter="name">Discount Offer</th>
+                                            <th data-sort="name" data-filter="name">Call To Action </th>
+                                            <th data-sort="name" data-filter="name">Need</th>
+                                            <th data-sort="name" data-filter="name">Merchant representative name</th>
 
-                                            <th data-sort="name" data-filter="name">Sms</th>
+                                            <th data-sort="name" data-filter="name">Merchant name</th>
+                                    
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -54,16 +59,16 @@
                                             <tr>
                                                 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $i ?></a></td>
-                                                <!-- <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>">
-                                                <img src="<?= base_url() . $row['banner']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
+                       
 
-                                                </a></td> -->
-                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>">
-                                                <i class="fa <?= $row['icons'] ?> fa-2x"></i>
-                                                </a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['template'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['discount_offer'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['call_to_action'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['need'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['shop_name'] ?></a></td>
 
-                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['title'] ?></a></td>
-                                                
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= "Webi" ?></a></td>
+
                                                 <td><a href="<?= base_url() ?>/sms/delete/<?= $row['sms_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
                                             </tr>
                                         <?php

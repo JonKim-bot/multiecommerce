@@ -15,5 +15,29 @@ class SmsModel extends BaseModel
 
     }
     
+    
+    function getWhere($where, $limit = '', $page = 1, $filter = array())
+    {
+        $builder = $this->db->table($this->tableName);
+        $builder->select('sms.*, shop.shop_name
+        ');
+        $builder->join('shop', 'shop.shop_id = sms.shop_id');
+        
+        $builder->where($where);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
+    
+    function getAll($limit = '', $page = 1, $filter = array())
+    {
+        $builder = $this->db->table($this->tableName);
+        $builder->select('sms.*, shop.shop_name
+        ');
+        $builder->join('shop', 'shop.shop_id = sms.shop_id');
+        
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
   
 }

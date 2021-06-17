@@ -33,16 +33,34 @@ class Sms extends BaseController
     public function index()
     {
         $where = [
-            'shop_id' => $this->shop_id,
+            'sms.shop_id' => $this->shop_id,
         ];
         $sms = $this->SmsModel->getWhere($where);
+        foreach($sms as $key => $row){
+            $sms[$key]['template'] = $this->get_template($row['template_id']);
+        }
         $this->pageData['sms'] = $sms;
 
         echo view('admin/header', $this->pageData);
         echo view('admin/sms/all');
         echo view('admin/footer');
     }
+    public function get_template($template_id){
+        if($template_id == 1){
+            return "Hi %customer name%, %merchant name% is %discount /offer%. %Call to action (may include
+            shop link)%
+            %Merchant representative name% from %merchant name%";
+        }
+        if($template_id == 2){
+            return "%Opening (About a problem/ need)%. %Discount/offer%. %Call to action (may include shop
+            link)%";
+        }
+        if($template_id == 3){
+            return "Hi %customer name%. % A need/problem%. %Merchant name% is %discount/offer%. %Call to action (may include shop link)%";
+        }
+        
 
+    }
     public function add()
     {
         $where = [
