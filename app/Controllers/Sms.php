@@ -180,6 +180,7 @@ class Sms extends BaseController
             'credit_top_up.shop_id' => $this->shop_id
         ];
         $this->pageData['sms_top_up'] = $this->CreditTopUpModel->getWhere($where);
+        $this->pageData['balance'] = $this->CreditModel->get_balance($this->shop_id);
 
         $sms[0]['template'] = $this->get_template($sms[0]['template_id']);
 

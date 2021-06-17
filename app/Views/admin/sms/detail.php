@@ -106,6 +106,8 @@
                     <div class="card">
                         <div class="c-card-header">
                             Sms Top Up
+
+                            <h1>Credit : <?= $balance ?></h1>
                             <div class="card-header-actions">
                                 <a class="card-header-action">
                                     <i class="cil-arrow-circle-top c-icon minimize-card"></i>

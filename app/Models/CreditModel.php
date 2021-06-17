@@ -19,12 +19,12 @@ class CreditModel extends BaseModel
         $this->builder = $this->db->table($this->tableName);
     }
 
-    function get_balance($merchant_id)
+    function get_balance($shop_id)
     {
         $balance = 0;
         $this->builder->select('*');
         $this->builder->from($this->table_name);
-        $this->builder->where('merchant_id', $merchant_id);
+        $this->builder->where('shop_id', $shop_id);
         $this->builder->orderBy('credit_id', 'DESC');
         $query = $this->builder->get()->getResultArray();
 
@@ -33,12 +33,12 @@ class CreditModel extends BaseModel
         }
         return $balance;
     }
-    function get_refferal_credit($merchant_id)
+    function get_refferal_credit($shop_id)
     {
         $balance = 0;
         $this->builder->select('*');
         $this->builder->from($this->table_name);
-        $this->builder->where('merchant_id', $merchant_id);
+        $this->builder->where('shop_id', $shop_id);
         // $this->builder->where('credit.is_commissiontier', 1);
         $this->builder->orderBy('credit_id', 'DESC');
         $query = $this->builder->get()->getResultArray();
@@ -60,12 +60,12 @@ class CreditModel extends BaseModel
         return $top_up_id;
     }
 
-    function credit_in($merchant_id, $amount, $remarks,$orders_id = 0)
+    function credit_in($shop_id, $amount, $remarks,$orders_id = 0)
     {
-        $balance = $this->get_balance($merchant_id);
+        $balance = $this->get_balance($shop_id);
 
         $data = [
-            'merchant_id' => $merchant_id,
+            'shop_id' => $shop_id,
             'credit_in' => $amount,
             'orders_id' => $orders_id,
             'balance' => $balance + $amount,
@@ -78,10 +78,10 @@ class CreditModel extends BaseModel
     }
     function credit_commision_in($data)
     {
-        $balance = $this->get_balance($data['merchant_id']);
+        $balance = $this->get_balance($data['shop_id']);
 
         $data = [
-            'merchant_id' => $data['merchant_id'],
+            'shop_id' => $data['shop_id'],
             'credit_in' => $data['amount'],
             'is_commission' => 1,
             'percent' => $data['percent'],
@@ -93,23 +93,23 @@ class CreditModel extends BaseModel
     }
 
 
-    function credit_out($merchant_id, $amount, $remarks, $voucher_id = '')
+    function credit_out($shop_id, $amount, $remarks, $voucher_id = '')
     {
-        $balance = $this->get_balance($merchant_id);
+        $balance = $this->get_balance($shop_id);
 
         $data = [
-            'merchant_id' => $merchant_id,
+            'shop_id' => $shop_id,
             'credit_out' => $amount,
             'balance' => $balance - $amount,
             'remarks' => $remarks,
             'voucher_id' => $voucher_id,
         ];
         // $customer_bank = $this->customer_model->get_customer_bank([
-        //     'customer.merchant_id' => $merchant_id
+        //     'customer.shop_id' => $shop_id
         // ])[0];
 
         // $data_withdrawal = [
-        //     'merchant_id' => $merchant_id,
+        //     'shop_id' => $shop_id,
         //     'amount' => $amount,
         //     'bank_account' => $customer_bank['bank_account'],
         //     'bank_name' => $customer_bank['bank_name'],
@@ -119,23 +119,23 @@ class CreditModel extends BaseModel
         $this->insertNew($data);
     }
 
-    function finance($merchant_id, $data)
+    function finance($shop_id, $data)
     {
-        $balance = $this->get_balance($merchant_id);
+        $balance = $this->get_balance($shop_id);
 
         $data = [
-            'merchant_id' => $merchant_id,
+            'shop_id' => $shop_id,
             'is_commissiontier' => 1,
             'credit_in' => $data['amount'],
             'balance' => $balance + $data['amount'],
             'remarks' => $data['remarks'],
         ];
         // $customer_bank = $this->customer_model->get_customer_bank([
-        //     'customer.merchant_id' => $merchant_id
+        //     'customer.shop_id' => $shop_id
         // ])[0];
 
         // $data_withdrawal = [
-        //     'merchant_id' => $merchant_id,
+        //     'shop_id' => $shop_id,
 
         //     'amount' => $amount,
         //     'bank_account' => $customer_bank['bank_account'],
@@ -146,11 +146,11 @@ class CreditModel extends BaseModel
         $this->insertNew($data);
     }
 
-    function get_total_credit_in($merchant_id)
+    function get_total_credit_in($shop_id)
     {
         $this->builder->select('SUM(credit_in) as total_credit_in');
         $this->builder->from($this->table_name);
-        $this->builder->where('merchant_id', $merchant_id);
+        $this->builder->where('shop_id', $shop_id);
 
         $query = $this->builder->get()->getResultArray();
 
@@ -162,12 +162,12 @@ class CreditModel extends BaseModel
 
         return $result;
     }
-    function get_total_received_credit($merchant_id)
+    function get_total_received_credit($shop_id)
     {
         
         $this->builder->select('SUM(credit_in) as total_credit_in');
         $this->builder->from($this->table_name);
-        $this->builder->where('merchant_id', $merchant_id);
+        $this->builder->where('shop_id', $shop_id);
         $this->builder->where('is_commission', 1);
 
         $query = $this->builder->get()->getResultArray();
@@ -182,11 +182,11 @@ class CreditModel extends BaseModel
     }
     
     
-    function get_total_credit_out($merchant_id)
+    function get_total_credit_out($shop_id)
     {
         $this->builder->select('SUM(credit_out) as total_credit_out');
         $this->builder->from($this->table_name);
-        $this->builder->where('merchant_id', $merchant_id);
+        $this->builder->where('shop_id', $shop_id);
 
         $query = $this->builder->get()->getResultArray();
 
@@ -207,7 +207,7 @@ class CreditModel extends BaseModel
         $this->builder->from($this->table_name);
         $this->builder->join(
             'customer',
-            'credit.merchant_id = customer.merchant_id AND customer.deleted = 0',
+            'credit.shop_id = customer.shop_id AND customer.deleted = 0',
             'left'
         );
         $this->builder->orderBy('credit.created_date DESC');
@@ -243,14 +243,14 @@ class CreditModel extends BaseModel
         $this->builder->join(
 
             'customer',
-            'credit.merchant_id = customer.merchant_id AND customer.deleted = 0',
+            'credit.shop_id = customer.shop_id AND customer.deleted = 0',
             'left'
         );
         $this->builder->orderBy('credit.created_date DESC');
         if (!empty($where)) {
             $this->builder->where($where);
         }
-        $this->builder->whereIn('credit.merchant_id', $wherein);
+        $this->builder->whereIn('credit.shop_id', $wherein);
         $query = $this->builder->get();
         return $query->getResultArray();
     }
@@ -263,7 +263,7 @@ class CreditModel extends BaseModel
         $this->builder->from($this->table_name);
         $this->builder->join(
             'customer',
-            'credit.merchant_id = customer.merchant_id AND customer.deleted = 0',
+            'credit.shop_id = customer.shop_id AND customer.deleted = 0',
             'left'
         );
 
@@ -321,12 +321,12 @@ class CreditModel extends BaseModel
     {
         $customer = $this->builder
             ->query(
-                'SELECT customer.merchant_id, customer.name as customer, customer.contact FROM credit JOIN customer ON customer.merchant_id = credit.merchant_id GROUP BY credit.merchant_id'
+                'SELECT customer.shop_id, customer.name as customer, customer.contact FROM credit JOIN customer ON customer.shop_id = credit.shop_id GROUP BY credit.shop_id'
             )
             ->getResultArray();
 
         foreach ($customer as $key => $row) {
-            $customer[$key]['balance'] = $this->get_balance($row['merchant_id']);
+            $customer[$key]['balance'] = $this->get_balance($row['shop_id']);
         }
 
         return $customer;
