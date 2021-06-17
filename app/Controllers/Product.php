@@ -470,6 +470,7 @@ class Product extends BaseController
                     $this->ProductUpsalesModel
                         ->where('product_id', $product_id)
                         ->delete();
+                        
 
                     // $this->debug($input['category']);
                     foreach ($input['upsales_product_id'] as $row) {

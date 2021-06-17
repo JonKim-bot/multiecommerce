@@ -35,6 +35,7 @@
             <div class="card">
                 <div class="card-header">
                     Referral Details
+                    <a href="<?= base_url() ?>/referal" class="btn btn-primary">Click me to Show All</a>
 
                     <div class="card-header-actions">
                         <a class="card-header-action">
@@ -42,7 +43,15 @@
                         </a>
                     </div>
                 </div>
+                <div class="container">
+                    <form action="<?= base_url() ?>/referal" method="get">
+                        <label for="">Search Referal</label>
+                        <input type="text" class="form-control" name="email" placeholder="EG : example@hotmail.com"  style="border:1px solid ">
+                        <input value="submit" type="submit" class="btn btn-dark"  style="border:1px solid ">
 
+
+                    </form>
+                </div>
                 <div class="card-body">
 
                     <?php foreach ($users as $parent) { ?>
@@ -128,8 +137,8 @@
                                                                                                 <br>
                                                                                                 Total Self Sales : RM <?= $tier_3['self_sales'] ?>
                                                                                                 <br>
-                                                                                        Parent : 
-                                                                                        <?= $tier_2['email']; ?>
+                                                                                                Parent : 
+                                                                                                <?= $tier_2['email']; ?>
                                                                                                     </button>
                                                                                                 </h5>
                                                                                             </div>

@@ -23,9 +23,16 @@ class Referal extends BaseController
     public function index()
 
     {
+        $email =
+        ($_GET and $_GET['email'])
+            ? $_GET['email']
+            : '';
         $where = [
             'customer.shop_id' => $this->shop_id,
         ];
+        if($email !=''){
+            $where['customer.email'] = $email;
+        }
         $users = $this->CustomerModel->getWhere($where);
         for($i = 0; $i < count($users); $i++){
             $users[$i]['total_received_point'] = $this->PointModel->get_total_received_point($users[$i]['customer_id']);
