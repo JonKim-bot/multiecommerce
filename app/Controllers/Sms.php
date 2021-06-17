@@ -8,7 +8,7 @@ use App\Models\OrderCustomerModel;
 use App\Models\SmsSentModel;
 use App\Models\CreditTopUpModel;
 use App\Models\CreditModel;
-
+use App\Models\SmsresponseModel;
 
 class Sms extends BaseController
 {
@@ -20,6 +20,7 @@ class Sms extends BaseController
         $this->CreditTopUpModel = new CreditTopUpModel();
         $this->CreditModel = new CreditModel();
         $this->OrderCustomerModel = new OrderCustomerModel();
+        $this->SmsresponseModel = new SmsresponseModel();
 
         if (
             session()->get('admin_data') == null &&
@@ -227,7 +228,7 @@ class Sms extends BaseController
         $url= 'https://www.sms123.net/api/send.php?';
         $apikey = '6e6962f9c1a409653c301a977af190cb';
         $sms_template = $this->sms_template($sms_id);
-        $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
+        // $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
         foreach($sms_sent as $row){
 
             $recipients = $row['contact'];
@@ -245,6 +246,13 @@ class Sms extends BaseController
             );
             $context  = stream_context_create($opts);
             $result = file_get_contents($url, false, $context);
+            $result = json_encode($result);
+            $data = [
+                'sms_id' => $sms_id,
+                'response' => $result,
+            ];
+            $this->SmsresponseModel->insertNew($data);
+
         }
     }
     public function send_sms(){
