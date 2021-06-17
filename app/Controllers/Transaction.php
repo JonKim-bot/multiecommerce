@@ -32,15 +32,45 @@ class Transaction extends BaseController
         echo view('admin/wallet/all');
         echo view('admin/footer');
     }
+    
+    public function approve($credit_topup_id){
+
+        $where = array(
+            'credit_top_up.credit_top_up_id' => $credit_topup_id,
+        );
+        $credit_topup = $this->CreditTopUpModel->getWhere($where)[0];
+
+        $data = array(
+            'is_approved' => 1,
+        );
+        $this->CreditTopUpModel->updateWhere($where, $data);
+        $remarks = 'Sms credit top up for ' . $credit_topup['shop_name'] . " with amount " . $credit_topup['amount'];
+        $this->CreditModel->credit_in($credit_topup['shop_id'],$credit_topup['amount'],$remarks);
+        redirect('transaction/credittopup', 'refresh');
+    }
+
+    public function reject($credit_topup_id){
+
+        $where = array(
+            'credit_top_up.credit_top_up_id' => $credit_topup_id,
+        );
+        $data = array(
+            'is_approved' => 2,
+        );
+        $this->CreditTopUpModel->updateWhere($where, $data);
+   
+        redirect('transaction/credittopup', 'refresh');
+    }
+
     public function credittopup()
     {
    
         $record = $this->CreditTopUpModel->getAll();
         
-        $this->pageData['transaction'] = $record;
+        $this->pageData['wallet'] = $record;
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/wallet/all');
+        echo view('admin/wallet/topup');
         echo view('admin/footer');
     }
     public function record()

@@ -364,6 +364,7 @@ class Main extends BaseController
             return true;
         }
     }
+    
     public function validate_contact($contact){
         $input['contact'] = $contact;
         $input['contact'] = str_replace(" ","",$input['contact']);
@@ -1537,7 +1538,7 @@ class Main extends BaseController
                     'delivery_fee' => $_POST['delivery_fee'],
                     'grand_total' => $_POST['grand_total'],
 
-                    
+
                     'promo_id' => $_POST['promo_id'],
 
                     // 'created_at' => date('d-m-Y H:i:s'),

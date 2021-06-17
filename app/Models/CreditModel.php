@@ -67,9 +67,7 @@ class CreditModel extends BaseModel
         $data = [
             'shop_id' => $shop_id,
             'credit_in' => $amount,
-            'orders_id' => $orders_id,
             'balance' => $balance + $amount,
-
             'remarks' => $remarks,
 
         ];
@@ -102,7 +100,6 @@ class CreditModel extends BaseModel
             'credit_out' => $amount,
             'balance' => $balance - $amount,
             'remarks' => $remarks,
-            'voucher_id' => $voucher_id,
         ];
         // $customer_bank = $this->customer_model->get_customer_bank([
         //     'customer.shop_id' => $shop_id

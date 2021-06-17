@@ -196,23 +196,28 @@ class Sms extends BaseController
         ];
         $sms = $this->SmsModel->getWhere($where)[0];
         $template_id = $sms['template_id'];
+        $remark = "Credit use for sms to send " . $sms['shop_name'] . " with amount " . $sms['price'];
+        $credit_out = $this->CreditModel->credit_out($sms['shop_id'],$sms['price'],$remark);
 
         if($template_id == 1){
-            return "Hi %customername%,". $sms['shop_name'] . " is ".$sms['discount_offer'].". ".$sms['call_to_action']."\n
-            ".$sms['shop_name']." from Webi";
+            return "Hi %customer_name%,". $sms['shop_name'] . " is ".$sms['discount_offer'].". ".$sms['call_to_action']."\n".$sms['shop_name']." from Webi";
         }
         if($template_id == 2){
             return "". $sms['need'] . ". ". $sms['discount_offer'] . ". ". $sms['discount_offer'] . "
-            \n
-            ".$sms['shop_name']." from Webi";
+            \n".$sms['shop_name']." from Webi";
 
         }
         if($template_id == 3){
-            return "Hi %customername%. ". $sms['need'] . ". ". $sms['shop_name'] . " is ". $sms['discount_offer'] . ". ". $sms['call_to_action'] . "
-            \n
-            ".$sms['shop_name']." from Webi";
+            return "Hi %customer_name%. ". $sms['need'] . ". ". $sms['shop_name'] . " is ". $sms['discount_offer'] . ". ". $sms['call_to_action'] . "
+            \n".$sms['shop_name']." from Webi";
         }
     }
+    function startsWith ($string, $startString) 
+    { 
+        $len = strlen($startString); 
+
+        return (substr($string, 0, $len) === $startString); 
+    } 
     public function send_sms_to_user($sms_id){
 
 
@@ -223,11 +228,13 @@ class Sms extends BaseController
         $url= 'https://www.sms123.net/api/send.php?';
         $apikey = '6e6962f9c1a409653c301a977af190cb';
         $sms_template = $this->sms_template($sms_id);
-        $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
+        // $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
         foreach($sms_sent as $row){
 
             $recipients = $row['contact'];
-            $sms_msg = str_replace("%customer_name%",$row['contact'],$sms_template);
+            $contact = $this->validate_contact($row['contact']);
+            $sms_msg = str_replace("%customer_name%",$contact,$sms_template);
+            $sms_msg = "RM0.00 Webieasy.com " . $sms_msg;
             $sms_msg = rawurlencode(stripslashes($sms_msg)) ;
             $url = $url . "apiKey=" . $apikey . "&recipients=" . $recipients . "&messageContent=" . $sms_msg; 
             // return redirect()->to(($url));

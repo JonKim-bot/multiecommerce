@@ -1,93 +1,107 @@
+
+<div class="c-subheader justify-content-between px-3">
+	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
+		<li class="breadcrumb-item">Home</li>
+		<li class="breadcrumb-item active"><a href="<?= base_url() ?>/sms">Sms</a></li>
+	</ol>
+	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
+		<a class="c-subheader-nav-link" href="#">
+			<i class="cil-settings c-icon"></i>
+			&nbsp;Settings
+		</a>
+	</div> -->
+</div>
+
+<main class="c-main">
+	
 <div class="container-fluid">
-    <div class="c-card">
-        <div class="c-cardheader">
-            Top Up History
-            <div class="c-cardheader-action">
-                <a class="header-action">
-                    <i class="fas fa-angle-down minimize-card"></i>
-                </a>
-                <a href="<?= base_url() . 'wallet/add' ?>" class="header-action">
-                    <i class="fas fa-plus-circle"></i>
-                </a>
+	
+	<div class="fade-in">
+        <div class="card">
+            <div class="card-header">
+            
+                Sms
+                <div class="card-header-actions">
+                    <a class="card-header-action">
+                        <i class="cil-arrow-circle-top c-icon minimize-card"></i>
+                    </a>
+               
+                </div>
             </div>
-        </div>
-        <div class="c-cardbody">
-            <div class="c-customTable">
-                <br>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered no-footer dataTable" id="admin_list_table" data-method="get" data-url="<?= base_url() ?>transaction" style="border-collapse: collapse !important">
-                        <thead>
+            <div class="card-body">
+                <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                            <table class="table table-striped datatable table-bordered no-footer " id="sms_list_table" data-method="get" data-url="<?= base_url("sms") ?>" style="border-collapse: collapse !important">
+                                    <thead>
                             <tr role="row">
+                            <th data-sort="created_date" data-filter="created_date">No</th>
+
                                 <th data-sort="created_date" data-filter="created_date">Created Date</th>
-                                <th data-sort="name" data-filter="name">Merchant</th>
-                                <th data-sort="contact" data-filter="contact">Contact</th>
-                                <th data-sort="bank_name" data-filter="bank_name">Bank</th>
-                                <th data-sort="account_name" data-filter="account_name">Account</th>
-                                <th data-sort="bank_account" data-filter="bank_account">Account Number</th>
-                                <th data-sort="amount" data-filter="amount">Amount</th>
-
+                                <th data-sort="name" data-filter="name">Shop</th>
+                                <th data-sort="" data-filter="">Amount</th>
                                 <th data-sort="" data-filter="">Status</th>
-                                <th data-sort="" data-filter="">File Upload</th>
-
-                                <th data-sort="" data-filter="">Download File</th>
+                                <th data-sort="" data-filter="">Receipt</th>
                                 <th data-sort="" data-filter="">Action</th>
+
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($wallet as $row){ ?>
-                                <tr> 
+                            <?php 
+                            $i = 1;
+
+                            foreach($wallet as $row){ ?>
+                                <tr role="row">
+                                <td><?= $i ?></td>
+
                                     <td><?= $row['created_date'] ?></td>
-                                    <td><?= $row['merchant'] ?></td>
-                                    <td><?= $row['contact'] ?></td>
-                                    <td><?= $row['bank_name'] ?></td>
-                                    <td><?= $row['account_name'] ?></td>
-                                    <td><?= $row['bank_account'] ?></td>
+                                    <td><?= $row['shop_name'] ?></td>
                                     <td><?= $row['amount'] ?></td>
 
                                     <td>
-                                        <?php if($row['is_completed'] == 0 && $row['rejected'] == 0){ ?>
+                                        <?php if($row['is_approved'] == 0){ ?>
                                             Pending
-                                        <?php } else if($row['is_completed'] == 1){ ?>
+                                        <?php } else if($row['is_approved'] == 1){ ?>
                                             Approved
-                                        <?php } else if($row['rejected'] == 1){ ?>
+                                        <?php } else if($row['is_approved'] == 2){ ?>
                                             Rejected
                                         <?php } ?>
                                     </td>
+                            
                                     <td>
-                                        <button type="button" class="btn btn-primary btn_file" data-id= "<?= $row['credit_topup_id'] ?>">
-                                                Upload
-                                        </button>
-                                    </td>
-
-                                    <td>
-                                    <?php if($row['file'] != ""){ ?>
-                                        <a type="button" class="btn btn-warning" download href="<?= base_url() . $row['file'] ?>">
-                                                Download
+                                    <?php if($row['receipt'] != ""){ ?>
+                                        <a type="button" class="btn btn-warning" download href="<?= base_url() . $row['receipt'] ?>">
+                                                Download Receipt
                                         </a>
                                     <?php } ?>
                                     </td>
 
                                     <td>
-                                        <?php if($row['is_completed'] == 0 && $row['rejected'] == 0){ ?>
-                                            <a href="<?= base_url() . '/transaction/approve/' . $row['credit_topup_id'] ?>" class="btn btn-primary approve_button">Approve</a>
-                                            <a href="<?= base_url() . '/transaction/reject/' . $row['credit_topup_id'] ?>" class="btn btn-danger reject_button">Reject</a>
+                                        <?php if($row['is_approved'] == 0 && $row['is_approved'] != 2){ ?>
+                                            <a href="<?= base_url() . '/transaction/approve/' . $row['credit_top_up_id'] ?>" class="btn btn-primary approve_button">Approve</a>
+                                            <a href="<?= base_url() . '/transaction/reject/' . $row['credit_top_up_id'] ?>" class="btn btn-danger reject_button">Reject</a>
                                         <?php } else { ?>
                                             <button type="button" class="btn btn-primary" disabled>Approve</button>
                                             <button type="button" class="btn btn-danger" disabled>Reject</button>
                                         <?php } ?>
                                     </td>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                    <div class="custom_pagination" id="admin_list_page" data-table="admin_list_table" data-method="get" data-url="<?= base_url() ?>transaction">
-                        <?= $page ?>
+                                <?php
+                                        $i++;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                              
+                            </div>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 
 <script>
@@ -95,7 +109,7 @@
 
     $(document).on("click", ".btn_file", function (e) {
         $('#fileLong').modal('show'); 
-        $('#credit_topup_id').val($(this).attr('data-id')); 
+        $('#credit_top_up_id').val($(this).attr('data-id')); 
 
     });
 
