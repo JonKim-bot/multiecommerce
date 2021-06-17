@@ -230,15 +230,22 @@
                         </div>
                         <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url('/sms/add_credit/') ?>">
                             <div class="modal-body">
-                            <div class="form-group">
-                                    <label for="">Option</label>
-                                    <input type="text" class="form-control" name="product_option" placeholder="e.g. Sambal" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Is Radio Button ? (If radio button mean user must select at least one , for example (ice or no ice)) </label>
-                                    <input type="checkbox" class="form-control" name="minimum_required">
+                            <p>Please submit your receipt to the account below and wait for approval</p>
+                            <p>Note : remember to write your shopname on remarks for faster approval</p>
+                            <p>Bank Name : CIMB</p>
+                            <p>Bank Account : 7065048564</p>
+                            <p>Bank Holder Name : Foon Chin Tian</p>
 
+                            <div class="form-group">
+                                    <label for="">Amount</label>
+                                    <input type="text" class="form-control" name="amount" placeholder="e.g. Minimum RM 50" required>
                                 </div>
+                           
+                                <div class="form-group">
+                                    <label for="">Receipt (Add your shop name into the remarks when submit receipt)</label>
+                                    <input type="file" class="form-control" name="receipt" required>
+                                </div>
+                           
                                 
                                 
                                 <div class="form-group">
