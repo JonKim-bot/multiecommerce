@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="banner">Template To Send</label>
+                                <label for="banner">Template To Send * customer name and merchant name will take from shop name and customer contact</label>
 
                                    <select name="template_id" class="select" id=""  required>
                                             <option value="1">Hi %customer name%, %merchant name% is %discount /offer%. %Call to action (may include
@@ -71,7 +71,7 @@
                                 
                                 <div class="form-group">
                                     <label for="">Discount Offer</label>
-                                    <input type="text" class="form-control" name="product" placeholder="e.g. Product is  10 %  offer" required>
+                                    <input type="text" class="form-control" name="offer" placeholder="e.g. Product is  10 %  offer" required>
                                 </div>
                                 
 
