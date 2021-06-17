@@ -35,24 +35,50 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" value="<?= $sms['title']?>" placeholder="e.g. Best Restaurant In Town" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Decription</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $sms['description']?></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Icons
-                                    <br>
-                                    Referrence
-                                    <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="blank">https://fontawesome.com/v4.7.0/cheatsheet/</a>
+                                <label for="banner">Send to</label>
 
-                                    </label>
-                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" value="<?= $sms['icons'] ?>" required>
+                                <select name="customer_id[]" class="select" id="" multiple required>
+                                    <option value="all">All user</option>
+
+                                    <?php foreach($order_customer as $row){ ?>
+                                            <option value="<?= $row['order_customer_id'] ?>"><?= $row['contact']?></option>
+                                    <?php }?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="banner">Template To Send * customer name and merchant name will take from shop name and customer contact</label>
+
+                                   <select name="template_id" class="select" id=""  required>
+
+                                            <option value="1" <?= 1 == $sms['template_id'] ? 'selected' : '' ?>>Hi %customer name%, %merchant name% is %discount /offer%. %Call to action (may include
+                                            shop link)%
+                                            %Merchant representative name% from %merchant name%
+                                            </option>
+                                            <option value="2" <?= 2 == $sms['template_id'] ? 'selected' : '' ?>>%Opening (About a problem/ need)%. %Discount/offer%. %Call to action (may include shop
+                                                            link)%
+                                            </option>
+                                            <option value="3" <?= 3 == $sms['template_id'] ? 'selected' : '' ?>>.Hi %customer name%. % A need/problem%. %Merchant name% is %discount/offer%. %Call to action (may include shop link)%
+                                            </option>
+
+                                    </select>
                                 </div>
                                 
-                    
+                                <div class="form-group">
+                                    <label for="">Discount Offer</label>
+                                    <input type="text" value="<?= $sms['discount_offer'] ?>" class="form-control" name="discount_offer" placeholder="e.g. Product is  10 %  offer" required>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                    <label for="">Call to action (May Include Shop Link)</label>
+                                    <textarea name="call_to_action" value="" id="" cols="30" rows="10" class="form-control" placeholder=" Come and visit our shop at www.webi.com"><?= $sms['call_to_action'] ?></textarea>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <label for="">A need  / Problem (only for template two and three) </label>
+                                    <textarea name="need" id="" cols="30" rows="10" class="form-control" placeholder=" Looking for a gift for your father?"><?= $sms['need'] ?></textarea>
+                                </div>
                     <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>
                     </div>

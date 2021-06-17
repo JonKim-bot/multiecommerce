@@ -47,7 +47,8 @@
                                             <th data-sort="name" data-filter="name">Merchant representative name</th>
 
                                             <th data-sort="name" data-filter="name">Merchant name</th>
-                                    
+                                            <th data-sort="name" data-filter="name">Status</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -68,6 +69,7 @@
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['shop_name'] ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= "Webi" ?></a></td>
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['is_sent'] == 1 ? "SENT" : "NOT SENT" ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/sms/delete/<?= $row['sms_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
                                             </tr>
