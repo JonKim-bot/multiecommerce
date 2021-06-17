@@ -57,7 +57,7 @@
 
                                    <select name="template_id" class="select" id=""  required>
                                             <option value="1">Hi %customer name%, %merchant name% is %discount /offer%. %Call to action (may include
-                                            shop link)%>
+                                            shop link)%
                                             %Merchant representative name% from %merchant name%
                                             </option>
                                             <option value="2">%Opening (About a problem/ need)%. %Discount/offer%. %Call to action (may include shop
@@ -71,7 +71,7 @@
                                 
                                 <div class="form-group">
                                     <label for="">Discount Offer</label>
-                                    <input type="text" class="form-control" name="offer" placeholder="e.g. Product is  10 %  offer" required>
+                                    <input type="text" class="form-control" name="discount_offer" placeholder="e.g. Product is  10 %  offer" required>
                                 </div>
                                 
 

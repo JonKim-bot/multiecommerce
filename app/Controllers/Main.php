@@ -301,6 +301,7 @@ class Main extends BaseController
     public function gift_detail($gift_id){
         $shop = $this->shop;
 
+        
         $where = [
             'gift.gift_id' => $gift_id,
         ];
@@ -588,7 +589,7 @@ class Main extends BaseController
         $this->pageData['shop'] = $this->shop;
         $this->load_view('failed');
 
-        
+
     }
 
     public function load_view($view_name){
