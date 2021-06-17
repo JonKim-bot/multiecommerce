@@ -52,7 +52,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $i = 1;
+                                            $i = $start_no;
                                             foreach($product as $row){
                                          ?>
                                          

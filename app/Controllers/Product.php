@@ -89,11 +89,7 @@ class Product extends BaseController
                 $get['shop.shop_name'] = $get['shop'];
 
             }
-            if (!empty($get['category'])) {
-                $get['category.category'] = $get['category'];
-
-            }
-            unset($get['category']);
+          
 
             unset($get['shop']);
             unset($get['page']);

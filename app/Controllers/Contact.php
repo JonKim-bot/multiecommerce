@@ -21,9 +21,58 @@ class Contact extends BaseController
                 "/access/login';</script>";
         }
     }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['contact'])) {
+                $get['contact.contact'] = $get['contact'];
+            }
+            if (!empty($get['email'])) {
+                $get['contact.email'] = $get['email'];
+            }
+          
+            unset($get['email']);
+            unset($get['contact']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $contact = $this->ContactModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $contact['pagination'];
+        $this->pageData['start_no'] = $contact['start_no'];
+        $contact = $contact['result'];
+        // $this->debug($where);
+        // $this->debug($contact);
+        // $this->debug($contact);
+
+        $this->pageData['contact'] = $contact;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/contact/all_admin');
+        echo view('admin/footer');
+    }
 
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];

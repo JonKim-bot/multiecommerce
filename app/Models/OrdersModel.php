@@ -35,25 +35,39 @@ class OrdersModel extends BaseModel
         return $query->getResultArray();
     }
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
-        $builder = $this->db->table($this->tableName);
-        $builder->select('orders.*, order_customer.full_name,order_customer.contact,order_customer.address,
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('orders.*, order_customer.full_name,order_customer.contact,order_customer.address,
         order_customer.email,orders_status.orders_status,order_detail.product_name,
         order_detail.product_price,order_detail.product_quantity,order_detail.product_id,order_detail.product_total_price,
         product.*,shop.shop_name,payment_method.payment_method,orders.created_at as created_date ,orders.created_at as created_date_,promo.code,promo.offer_amount
         ');
-        $builder->join('shop', 'orders.shop_id = shop.shop_id');
-        $builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
-        $builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id','left');
-        $builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id','left');
-        $builder->join('order_detail', 'order_detail.orders_id = orders.orders_id','left');
-        $builder->join('product', 'product.product_id = order_detail.product_id','left');
-        $builder->join('promo', 'promo.promo_id = orders.promo_id','left');
+        $this->builder->join('shop', 'orders.shop_id = shop.shop_id');
+        $this->builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
+        $this->builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id','left');
+        $this->builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id','left');
+        $this->builder->join('order_detail', 'order_detail.orders_id = orders.orders_id','left');
+        $this->builder->join('product', 'product.product_id = order_detail.product_id','left');
+        $this->builder->join('promo', 'promo.promo_id = orders.promo_id','left');
 
-        $builder->groupBy('orders.orders_id');
+        $this->builder->groupBy('orders.orders_id');
         
-        $builder->where($where);
-        $builder->orderBy('orders.orders_id','DESC');
-        $query = $builder->get();
+        $this->builder->where($where);
+        $this->builder->orderBy('orders.orders_id','DESC');
+        if ($limit != '') {
+            $count = $this->getCount($filter);
+            // die($this->builder->getCompiledSelect(false));
+            $offset = ($page - 1) * $limit;
+            $pages = $count / $limit;
+            $pages = ceil($pages);
+            
+            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter,$this->builder);
+
+            return $pagination;
+
+            // intval($limit);
+            // $this->db->limit($limit, $offset);
+        }
+        $query = $this->builder->get();
         return $query->getResultArray();
     }
 
@@ -145,7 +159,6 @@ class OrdersModel extends BaseModel
         $builder = $this->db->table($this->tableName);
         $builder->select('sum(orders.grand_total) as total');
      
-        // $this->debug($where);
         $builder->where($where);
         $wherenot = [
             '1' , '5'

@@ -65,9 +65,6 @@ class Orders extends BaseController
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
             $this->isMerchant = true;
-        }
-        if($this->isMerchant){
-
             $shop_data = session()->get('shop_data');
             $this->shop_data = $shop_data;
             $shop_function = $this->getShopFunction();
@@ -88,6 +85,7 @@ class Orders extends BaseController
                 $this->generate_rate($rate);
             }
         }
+
 
 
     }
@@ -589,8 +587,105 @@ class Orders extends BaseController
         $dompdf->stream('dompdf_out.pdf', ['Attachment' => false]);
         exit(0);
     }
+    public function indexadmin()
+    {
+        
+        // $this->generate_operating_hour($this->shop_id);
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['contact'])) {
+                $get['orders_customer.contact'] = $get['contact'];
+            }
+            if (!empty($get['email'])) {
+                $get['orders_customer.email'] = $get['email'];
+            }
+            if (!empty($get['address'])) {
+                $get['orders_customer.address'] = $get['address'];
+            }
+            if (!empty($get['created_at'])) {
+                $get['orders.created_at'] = $get['created_at'];
+            }
+            if (!empty($get['delivery_fee'])) {
+                $get['orders.delivery_fee'] = $get['delivery_fee'];
+            }
+          
+            unset($get['delivery_fee']);
+
+            unset($get['email']);
+            unset($get['contact']);
+            unset($get['created_at']);
+            unset($get['address']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+        $where = array();
+        
+        $dateFrom =
+            ($_GET and isset($_GET['dateFrom']))
+                ? $_GET['dateFrom']
+                : date('Y-m-d');
+        $dateTo =
+            ($_GET and isset($_GET['dateTo']))
+                ? $_GET['dateTo']
+                : date('Y-m-d');
+        $status =
+            ($_GET and isset($_GET['status_id']) && $_GET['status_id'] != '')
+                ? $_GET['status_id']
+                : '';
+        $preorder =
+            ($_GET and isset($_GET['preorder'])) ? $_GET['preorder'] : '';
+
+        if (isset($_GET['dateFrom'])) {
+            $where['DATE(orders.created_at) >='] = $dateFrom;
+            $where['DATE(orders.created_at) <='] = $dateTo;
+        }
+        if ($status != '') {
+            $where['orders.orders_status_id'] = $_GET['status_id'];
+        }
+        if ($preorder) {
+            $where['orders.is_preorder'] = 1;
+        }
+        // $this->debug($where);
+        $this->pageData['dateFrom'] = $dateFrom;
+        $this->pageData['dateTo'] = $dateTo;
+
+        $orders = $this->OrdersModel->getWhere($where,10, $page, $filter);
+
+        $this->pageData['page'] = $orders['pagination'];
+        $this->pageData['start_no'] = $orders['start_no'];
+        $orders = $orders['result'];
+        $orders_static = $this->OrdersModel->getStatic($where);
+        $this->pageData['orders_count'] = count($orders);
+
+        $this->pageData['orders_static'] = $orders_static[0];
+
+        // $this->debug($orders_static);
+        $this->pageData['orders'] = $orders;
+
+        // $this->debug($orders);
+        echo view('admin/header', $this->pageData);
+        echo view('admin/orders/all_admin');
+        echo view('admin/footer');
+    }
+
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
 
             'orders.shop_id' => $this->shop_id,
