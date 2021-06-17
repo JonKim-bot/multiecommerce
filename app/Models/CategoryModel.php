@@ -37,7 +37,6 @@ class CategoryModel extends BaseModel
         // die($this->builder->getCompiledSelect(false));
 
         $query = $this->builder->get();
-        $this->debug('asd');
         return $query->getResultArray();
 
     }

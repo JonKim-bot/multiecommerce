@@ -40,11 +40,13 @@
                                 <table class="table table-striped dataTable table-bordered no-footer " id="product_list_table" data-method="get" data-url="<?= base_url("product") ?>" style="border-collapse: collapse !important">
                                     <thead>
                                         <tr role="row">
-                                        <th data-sort="name" data-filter="name">No</th>
-                                        <th data-sort="name" data-filter="name">Image</th>
+                                        <th >No</th>
+                                        <th data-sort="shop_name" data-filter="shop_name">Shop Name</th>
+
+                                        <th data-sort="">Image</th>
                                         
-                                        <th data-sort="name" data-filter="name">Product</th>
-                                        <th data-sort="name" data-filter="name">Show Home</th>
+                                        <th data-sort="product_name" data-filter="product_name">Product</th>
+                                        <th data-sort="is_home" data-filter="is_home">Show Home</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -58,14 +60,13 @@
                                             <tr>
                                                 
                                                 <td><a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>"><?= $i ?></a></td>
+                                                <td><a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>"><?= $row['shop_name'] ?></a></td>
+
                                                 <td><a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>">
                                                 <img src="<?= base_url() . $row['image']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
 
                                                 </a></td>
                                                 <td><a href="<?= base_url() ?>/product/detail/<?= $row['product_id']?>"><?= $row['product_name'] ?></a></td>
-
-
-            
                                                 <td>
                                                 <?php if($row['is_home'] == 0) { ?>
                                                           <a class="btn btn-danger" href="<?= base_url("product/change_status_home/") . "/" . $row['product_id'] ?>">No</a>
@@ -87,7 +88,9 @@
                                         ?>
                                     </tbody>
                                 </table>
-                              
+                                <div class="custom_pagination" id="product_list_table" data-table="product_list_table" data-method="get" data-url="<?= base_url("product") ?>">
+                                    <?= $page ?>
+                                </div>
                             </div>
                         </div>
                     </div>
