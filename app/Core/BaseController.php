@@ -61,6 +61,10 @@ class BaseController extends Controller
                 // $this->debug("asd");
                 $this->shop_id = session()->get('admin_data')['shop_id'];
                 $this->isMerchant = true;
+                $shop_data = session()->get('shop_data');
+                $this->shop_data = $shop_data;
+                $shop_function = $this->getShopFunction();
+                $this->shop_function = $shop_function;
 
             }
         }
@@ -69,11 +73,13 @@ class BaseController extends Controller
         $this->ShopFunctionModel = new ShopFunctionModel();
 
     }
-    public function getShopFunction($shop_id){
+    public function getShopFunction($shop_id = ""){
         $shop_data = session()->get('shop_data');
 
         $this->ShopFunctionModel = new ShopFunctionModel();
-
+        if($shop_id == ""){
+            $shop_id = $shop_data['shop_id'];
+        }
         $where = [
             'shop_id' => $shop_id, 
         ];

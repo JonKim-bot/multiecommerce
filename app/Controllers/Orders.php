@@ -66,26 +66,27 @@ class Orders extends BaseController
             //  redirect()->to(base_url('access/login/'));
             $this->isMerchant = true;
         }
+        if($this->isMerchant){
 
-        $shop_data = session()->get('shop_data');
-        $shop_function = $this->getShopFunction($shop_data['shop_id']);
-        $this->shop_function = $shop_function;
-        $this->shop_data = $shop_data;
-
-        if($this->check_exist_function(6,$shop_function)){
-            $rate = [
-                'first_rate'  => 5 ,
-            ];
-
-            $this->generate_rate($rate);
-        }
-        if($this->check_exist_function(8,$shop_function)){
-            $rate = [
-                'first_rate'  => 5 ,
-                'second_rate' => 3,
-                'thrid_rate' => 2,
-            ];
-            $this->generate_rate($rate);
+            $shop_data = session()->get('shop_data');
+            $this->shop_data = $shop_data;
+            $shop_function = $this->getShopFunction();
+    
+            if($this->check_exist_function(6,$shop_function)){
+                $rate = [
+                    'first_rate'  => 5 ,
+                ];
+    
+                $this->generate_rate($rate);
+            }
+            if($this->check_exist_function(8,$shop_function)){
+                $rate = [
+                    'first_rate'  => 5 ,
+                    'second_rate' => 3,
+                    'thrid_rate' => 2,
+                ];
+                $this->generate_rate($rate);
+            }
         }
 
 
