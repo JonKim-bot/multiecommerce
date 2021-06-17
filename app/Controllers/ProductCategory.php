@@ -30,7 +30,7 @@ class ProductCategory extends BaseController
     {
         if($this->isMerchant){
             $product_category = $this->CategoryModel->getWhere([
-                'shop_id' => $this->shop_id,
+                'category.shop_id' => $this->shop_id,
             ]);
         }else{
             $page = 1;
@@ -74,6 +74,7 @@ class ProductCategory extends BaseController
         echo view('admin/footer');
     }
 
+    
     public function add()
     {
         if ($_POST) {

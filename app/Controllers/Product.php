@@ -49,12 +49,12 @@ class Product extends BaseController
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
             $this->isMerchant = true;
+            $where = [
+                'product.shop_id' => session()->get('shop_data')['shop_id']
+            ];
+            $all_product = $this->ProductModel->getWhereRaw($where);
+            $this->pageData['all_product'] = $all_product;
         }
-        $where = [
-            'product.shop_id' => session()->get('shop_data')['shop_id']
-        ];
-        $all_product = $this->ProductModel->getWhereRaw($where);
-        $this->pageData['all_product'] = $all_product;
     }
     public function change_status_home($product_id){
         $where = [
@@ -73,14 +73,61 @@ class Product extends BaseController
         return redirect()->to(base_url('product', "refresh"));
 
     }
+    public function indexadmin()
+    {
 
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+
+            }
+            if (!empty($get['category'])) {
+                $get['category.category'] = $get['category'];
+
+            }
+            unset($get['category']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $product = $this->ProductModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $product['pagination'];
+        $this->pageData['start_no'] = $product['start_no'];
+        $product = $product['result'];
+        // $this->debug($where);
+        // $this->debug($product);
+        // $this->debug($product);
+
+        $this->pageData['product'] = $product;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/product/all_admin');
+        echo view('admin/footer');
+    }
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
+        
         $product_category =
             ($_GET and $_GET['product_category'])
                 ? $_GET['product_category']
                 : '';
 
+        
         $where = [
             'shop_id' => $this->shop_id,
         ];
@@ -470,7 +517,7 @@ class Product extends BaseController
                     $this->ProductUpsalesModel
                         ->where('product_id', $product_id)
                         ->delete();
-                        
+
 
                     // $this->debug($input['category']);
                     foreach ($input['upsales_product_id'] as $row) {
