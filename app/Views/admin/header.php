@@ -207,12 +207,15 @@
                         Brand 
                     </a>
                 </li>
+                <?php if(in_array(5,session()->get('shop_data')['shop_function'])){ ?>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'sms' ? 'c-active' : null) ?>" href="<?= base_url() ?>/sms">
                         <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
                         SMS 
                     </a>
                 </li>
+                <?php } ?>
                 <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
 
                 <li>
