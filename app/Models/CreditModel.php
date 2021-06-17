@@ -101,18 +101,7 @@ class CreditModel extends BaseModel
             'balance' => $balance - $amount,
             'remarks' => $remarks,
         ];
-        // $customer_bank = $this->customer_model->get_customer_bank([
-        //     'customer.shop_id' => $shop_id
-        // ])[0];
-
-        // $data_withdrawal = [
-        //     'shop_id' => $shop_id,
-        //     'amount' => $amount,
-        //     'bank_account' => $customer_bank['bank_account'],
-        //     'bank_name' => $customer_bank['bank_name'],
-        //     'account_name' => $customer_bank['account_name'],
-        // ];
-        // $this->Credit_withdrawal_model->insert($data_withdrawal);
+   
         $this->insertNew($data);
     }
 

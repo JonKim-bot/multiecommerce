@@ -220,7 +220,6 @@ class Sms extends BaseController
     } 
     public function send_sms_to_user($sms_id){
 
-
         $where = [
             'sms_sent.sms_id'=> $sms_id
         ];
@@ -228,7 +227,7 @@ class Sms extends BaseController
         $url= 'https://www.sms123.net/api/send.php?';
         $apikey = '6e6962f9c1a409653c301a977af190cb';
         $sms_template = $this->sms_template($sms_id);
-        // $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
+        $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
         foreach($sms_sent as $row){
 
             $recipients = $row['contact'];
