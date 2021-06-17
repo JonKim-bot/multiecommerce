@@ -1,8 +1,8 @@
 <div class="c-subheader justify-content-between px-3">
 	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
 		<li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item"><a href="<?= base_url() ?>/Brand">Brand</a></li>
-        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/brand/edit/<?= $brand['brand_id']?>">Edit Brand Details</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url() ?>/Sms">Sms</a></li>
+        <li class="breadcrumb-item active"><a href="<?= base_url() ?>/sms/edit/<?= $sms['sms_id']?>">Edit Sms Details</a></li>
 	</ol>
 	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
 		<a class="c-subheader-nav-link" href="#">
@@ -18,7 +18,7 @@
 	<div class="fade-in">
         <div class="card">
             <div class="card-header">
-                Edit Brand Details
+                Edit Sms Details
                 <div class="card-header-actions">
                     <a class="card-header-action">
                         <i class="cil-arrow-circle-top c-icon minimize-card"></i>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/brand/edit/<?=$brand["brand_id"]?>">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/sms/edit/<?=$sms["sms_id"]?>">
                     <!-- <div class="form-group">
                         <label for="">Profile Picture</label>
                         <div class="custom-file">
@@ -36,11 +36,11 @@
                     </div> -->
                     <div class="form-group">
                                     <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" value="<?= $brand['title']?>" placeholder="e.g. Best Restaurant In Town" required>
+                                    <input type="text" class="form-control" name="title" value="<?= $sms['title']?>" placeholder="e.g. Best Restaurant In Town" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Decription</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $brand['description']?></textarea>
+                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $sms['description']?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Icons
@@ -49,7 +49,7 @@
                                     <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="blank">https://fontawesome.com/v4.7.0/cheatsheet/</a>
 
                                     </label>
-                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" value="<?= $brand['icons'] ?>" required>
+                                    <input type="text" class="form-control" name="icons" placeholder="e.g. fa fa-phone" value="<?= $sms['icons'] ?>" required>
                                 </div>
                                 
                     

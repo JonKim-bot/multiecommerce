@@ -3,14 +3,14 @@
 namespace App\Controllers;
 
 use App\Core\BaseController;
-use App\Models\BrandModel;
+use App\Models\SmsModel;
 
-class Brand extends BaseController
+class Sms extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
-        $this->BrandModel = new BrandModel();
+        $this->SmsModel = new SmsModel();
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -27,11 +27,11 @@ class Brand extends BaseController
         $where = [
             'shop_id' => $this->shop_id,
         ];
-        $brand = $this->BrandModel->getWhere($where);
-        $this->pageData['brand'] = $brand;
+        $sms = $this->SmsModel->getWhere($where);
+        $this->pageData['sms'] = $sms;
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/brand/all');
+        echo view('admin/sms/all');
         echo view('admin/footer');
     }
 
@@ -62,45 +62,45 @@ class Brand extends BaseController
                 // $this->debug($data);
                 // dd($data);
 
-                $this->BrandModel->insertNew($data);
+                $this->SmsModel->insertNew($data);
 
-                return redirect()->to(base_url('brand', 'refresh'));
+                return redirect()->to(base_url('sms', 'refresh'));
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/brand/add');
+        echo view('admin/sms/add');
         echo view('admin/footer');
     }
 
-    public function detail($brand_id)
+    public function detail($sms_id)
     {
         $where = [
-            'brand_id' => $brand_id,
+            'sms_id' => $sms_id,
         ];
-        $brand = $this->BrandModel->getWhere($where);
+        $sms = $this->SmsModel->getWhere($where);
         if ($this->isMerchant == true) {
-            $this->check_is_merchant_from_shop($brand[0]['shop_id']);
+            $this->check_is_merchant_from_shop($sms[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
 
-        $this->pageData['brand'] = $brand[0];
+        $this->pageData['sms'] = $sms[0];
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/brand/detail');
+        echo view('admin/sms/detail');
         echo view('admin/footer');
     }
 
-    public function edit($brand_id)
+    public function edit($sms_id)
     {
         $where = [
-            'brand_id' => $brand_id,
+            'sms_id' => $sms_id,
         ];
 
-        $this->pageData['brand'] = $this->BrandModel->getWhere($where)[0];
+        $this->pageData['sms'] = $this->SmsModel->getWhere($where)[0];
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop(
-                $this->pageData['brand']['shop_id']
+                $this->pageData['sms']['shop_id']
             );
         }
         if ($_POST) {
@@ -123,23 +123,23 @@ class Brand extends BaseController
                 //     $data['banner'] = $image;
                 // }
 
-                $this->BrandModel->updateWhere($where, $data);
+                $this->SmsModel->updateWhere($where, $data);
 
                 return redirect()->to(
-                    base_url('brand/detail/' . $brand_id, 'refresh')
+                    base_url('sms/detail/' . $sms_id, 'refresh')
                 );
             }
         }
 
         echo view('admin/header', $this->pageData);
-        echo view('admin/brand/edit');
+        echo view('admin/sms/edit');
         echo view('admin/footer');
     }
 
-    public function delete($brand_id)
+    public function delete($sms_id)
     {
-        $this->BrandModel->softDelete($brand_id);
+        $this->SmsModel->softDelete($sms_id);
 
-        return redirect()->to(base_url('brand', 'refresh'));
+        return redirect()->to(base_url('sms', 'refresh'));
     }
 }
