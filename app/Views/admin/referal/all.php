@@ -73,14 +73,16 @@
                                                     <div class="card-header" id="heading_1_<?= $tier_1['customer_id']; ?>">
                                                         <h5 class="mb-0">
                                                             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse_1_<?= $tier_1['customer_id']; ?>">
-                                                                <?= $tier_1['email']; ?> <?= $tier_1['customer_id']; ?> : Referrals (<?= count($tier_1['child']); ?>)
+                                                                <?= $tier_1['email']; ?>  : Referrals (<?= count($tier_1['child']); ?>)
                                                             <br>
                                                             Total Received Point : <?= $tier_1['total_received_point'] ?>
                                                             <br>
-                                        Total Group Sales : RM <?= $tier_1['group_sales'] ?>
-                                        <br>
-                                        Total Self Sales : RM <?= $tier_1['self_sales'] ?>
-
+                                                                Total Group Sales : RM <?= $tier_1['group_sales'] ?>
+                                                                <br>
+                                                                Total Self Sales : RM <?= $tier_1['self_sales'] ?>
+                                                                <br>
+                                                                Parent : 
+                                                                <?= $parent['email']; ?>
                                                             </button>
                                                         </h5>
                                                     </div>
@@ -98,10 +100,12 @@
                                                                                     <br>
                                                                                 Total Received Point : <?= $tier_2['total_received_point'] ?>
                                                                                 <br>
-                                        Total Group Sales : RM <?= $tier_2['group_sales'] ?>
-                                        <br>
-                                        Total Self Sales : RM <?= $tier_2['self_sales'] ?>
-
+                                                                                    Total Group Sales : RM <?= $tier_2['group_sales'] ?>
+                                                                                    <br>
+                                                                                    Total Self Sales : RM <?= $tier_2['self_sales'] ?>
+                                                                                    <br>
+                                                                                        Parent : 
+                                                                                        <?= $tier_1['email']; ?>
                                                                                 </button>
                                                                             </h5>
                                                                         </div>
@@ -123,6 +127,9 @@
                                                                                                 Total Group Sales : RM <?= $tier_3['group_sales'] ?>
                                                                                                 <br>
                                                                                                 Total Self Sales : RM <?= $tier_3['self_sales'] ?>
+                                                                                                <br>
+                                                                                        Parent : 
+                                                                                        <?= $tier_2['email']; ?>
                                                                                                     </button>
                                                                                                 </h5>
                                                                                             </div>
