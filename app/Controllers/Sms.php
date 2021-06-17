@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\BaseController;
 use App\Models\SmsModel;
+use App\Models\OrderCustomerModel;
+
 
 class Sms extends BaseController
 {
@@ -11,6 +13,8 @@ class Sms extends BaseController
     {
         $this->pageData = [];
         $this->SmsModel = new SmsModel();
+        $this->OrderCustomerModel = new OrderCustomerModel();
+
         if (
             session()->get('admin_data') == null &&
             uri_string() != 'access/login'
@@ -20,6 +24,7 @@ class Sms extends BaseController
                 base_url() .
                 "/access/login';</script>";
         }
+       
     }
 
     public function index()
@@ -37,6 +42,11 @@ class Sms extends BaseController
 
     public function add()
     {
+        $where = [
+            'order_customer.shop_id' => $this->shop_id,
+        ];
+        $this->pageData['order_customer'] = $this->OrderCustomerModel->getWhereContact($where);
+
         if ($_POST) {
             $input = $this->request->getPost();
 

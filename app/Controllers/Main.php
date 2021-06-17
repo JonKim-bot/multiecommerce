@@ -586,11 +586,9 @@ class Main extends BaseController
     public function failed()
     {
         $this->pageData['shop'] = $this->shop;
-
-
         $this->load_view('failed');
 
-
+        
     }
 
     public function load_view($view_name){

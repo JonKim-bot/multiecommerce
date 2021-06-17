@@ -33,6 +33,16 @@ class OrderCustomerModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }   
+    function getWhereContact($where,$limit = "", $page = 1, $filter = array()){
+        $builder = $this->db->table($this->tableName);
+        $builder->select('order_customer.*, orders.delivery_date
+        ');
+        $builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
+        $builder->where($where);
+        $builder->groupBy('order_customer.contact');
+        $query = $builder->get();
+        return $query->getResultArray();
+    }   
     function getWhereOrders($where,$limit = "", $page = 1, $filter = array()){
         $builder = $this->db->table($this->tableName);
         $builder->select('order_customer.*, orders.*
