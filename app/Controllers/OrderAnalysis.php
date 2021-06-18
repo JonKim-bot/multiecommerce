@@ -108,9 +108,16 @@ class Orderanalysis extends BaseController
         ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
             : $this->shop_id;
+        $is_pdf = $_POST['is_pdf'];
         $total_sales = $this->OrdersModel->get_total_sales($shop_id,$date_from,$date_to);
+        // $this->debug($total_sales);
         $this->pageData['total_sales'] = $total_sales;
-        echo view('admin/orderanalysis/total_sales_chart',$this->pageData);
+        if(!$is_pdf){
+            echo view('admin/orderanalysis/total_sales_chart',$this->pageData);
+        }else{
+            echo view('admin/orderanalysis/total_sales_pdf',$this->pageData);
+
+        }
     }
 
     public function get_total_order()
@@ -123,9 +130,16 @@ class Orderanalysis extends BaseController
         ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
             : $this->shop_id;
+        $is_pdf = $_POST['is_pdf'];
+
         $total_order = $this->OrdersModel->get_total_order($shop_id,$date_from,$date_to);
         $this->pageData['total_order'] = $total_order;
-        echo view('admin/orderanalysis/total_order_chart',$this->pageData);
+        if(!$is_pdf){
+            echo view('admin/orderanalysis/total_order_chart',$this->pageData);
+        }else{
+            echo view('admin/orderanalysis/total_order_pdf',$this->pageData);
+
+        }
     }
 
     public function get_total_rate()
@@ -150,12 +164,20 @@ class Orderanalysis extends BaseController
         $date_from = $_POST['date_from'];
         $date_to = $_POST['date_to'];
 
+        $is_pdf = $_POST['is_pdf'];
         $shop_id =
         ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
             : $this->shop_id;       $total_new_register = $this->OrdersModel->get_new_register($shop_id,$date_from,$date_to);
+       
         $this->pageData['total_new_register'] = $total_new_register;
-        echo view('admin/orderanalysis/total_new_register_chart',$this->pageData);
+        if(!$is_pdf){
+
+            echo view('admin/orderanalysis/total_new_register_chart',$this->pageData);
+        }else{
+            echo view('admin/orderanalysis/total_new_register_pdf',$this->pageData);
+
+        }
     }
     
     public function get_top_product_cat()

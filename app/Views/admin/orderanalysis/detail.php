@@ -62,6 +62,12 @@
                                     <br>
                                     <button id="btn_get_total_sales" class="form-control filter btn-primary btn" name="dateTo" >Submit</button>
                                 </div>
+
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="" class="c-label">Print Pdf</label>
+                                    <br>
+                                    <button id="btn_get_total_sales_pdf" class="form-control filter btn-primary btn" name="dateTo" >Print Pdf</button>
+                                </div>
                             </div>
                             
                             <div class="card-body">
@@ -95,6 +101,11 @@
                                     <label for="" class="c-label">Submit</label>
                                     <br>
                                     <button id="btn_get_total_order" class="form-control filter btn-primary btn" name="dateTo" >Submit</button>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="" class="c-label">Print Pdf</label>
+                                    <br>
+                                    <button id="btn_get_total_order_pdf" class="form-control filter btn-primary btn" name="dateTo" >Print Pdf</button>
                                 </div>
                             </div>
                             
@@ -163,6 +174,11 @@
                                     <label for="" class="c-label">Submit</label>
                                     <br>
                                     <button id="btn_get_total_new_register" class="form-control filter btn-primary btn" name="dateTo" >Submit</button>
+                                </div>
+                                <div class="form-group col-sm-12 col-md-3">
+                                    <label for="" class="c-label">Print Pdf</label>
+                                    <br>
+                                    <button id="btn_get_total_new_register_pdf" class="form-control filter btn-primary btn" name="dateTo" >Print Pdf</button>
                                 </div>
                             </div>
                             
@@ -264,7 +280,12 @@
                 validate(date_from,date_to);
                 get_new_registered(date_from,date_to);
         });
-
+        $('#btn_get_total_new_register_pdf').on('click', function () {
+                let date_from = $('#date_from_new_register').val();    
+                let date_to = $('#date_to_new_register').val();    
+                validate(date_from,date_to);
+                get_new_registered(date_from,date_to,1);
+        });
         $('#btn_top_product').on('click', function () {
                 let date_from = $('#date_from_top_product').val();    
                 let date_to = $('#date_to_top_product').val();  
@@ -288,13 +309,34 @@
   
                 get_total_sales(date_from,date_to);
         });
+        
 
+        $('#btn_get_total_sales_pdf').on('click', function () {
+                let date_from = $('#date_from_sales').val();    
+                let date_to = $('#date_to_sales').val();  
+                validate(date_from,date_to);
+  
+                get_total_sales(date_from,date_to,1);
+        });
+
+        
+
+        
         $('#btn_get_total_order').on('click', function () {
                 let date_from = $('#date_from_order').val();    
                 let date_to = $('#date_to_order').val();  
                 validate(date_from,date_to);
   
                 get_total_order(date_from,date_to);
+        });
+
+              
+        $('#btn_get_total_order_pdf').on('click', function () {
+                let date_from = $('#date_from_order').val();    
+                let date_to = $('#date_to_order').val();  
+                validate(date_from,date_to);
+  
+                get_total_order(date_from,date_to,1);
         });
 
         $('#btn_get_total_rate').on('click', function () {
@@ -305,20 +347,23 @@
                 get_total_rate(date_from,date_to);
         });
 
-          function get_total_sales(date_from,date_to){
+          function get_total_sales(date_from,date_to,is_pdf = 0){
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  is_pdf : is_pdf,
               }
                 $.post("<?=base_url('Orderanalysis/get_total_sales') ?>", postParam, function(html){
                     $('.total_sales_chart').html(html);
                 });
             }
 
-            function get_total_order(date_from,date_to){
+            function get_total_order(date_from,date_to,is_pdf = 0){
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  is_pdf : is_pdf,
+
               }
                 $.post("<?=base_url('Orderanalysis/get_total_order') ?>", postParam, function(html){
                     $('.total_order_chart').html(html);
@@ -344,10 +389,12 @@
                     $('.total_top_product_cat_table').html(html);
                 });
             }
-            function get_new_registered(date_from,date_to){
+            function get_new_registered(date_from,date_to,is_pdf = 0){
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  is_pdf : is_pdf,
+
               }
                 $.post("<?=base_url('Orderanalysis/get_new_register') ?>", postParam, function(html){
                     $('.total_new_register_chart').html(html);
