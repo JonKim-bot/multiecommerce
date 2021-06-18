@@ -82,6 +82,18 @@
             <?php
             if (session()->get('admin_data')['type'] == "ADMIN") {
             ?>
+            <style>
+            .delete-button{
+                display:none;
+            }
+            .card-header-action > .btn-warning{
+                display:none;
+            }
+            .btn-warning{
+                display:none;
+
+            }
+            </style>
                 <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'admin' ? 'c-active' : null) ?>" href="<?= base_url() ?>/admin">
                         <i class="cil-user c-sidebar-nav-icon"></i>

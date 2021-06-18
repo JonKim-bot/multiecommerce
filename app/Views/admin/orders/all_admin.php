@@ -63,6 +63,12 @@
                         </div>
                         
                     </form>
+                    <style>
+                        .btn-warning{
+                display:block;
+
+            }
+                    </style>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="status_btn d-flex mb-2" style="overflow: scroll;">
