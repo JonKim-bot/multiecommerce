@@ -87,7 +87,7 @@ class Orderanalysis extends BaseController
         $date_to = $_POST['date_to'];
 
         $shop_id =
-        ($_POST and $_POST['shop_id'])
+        ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
             : $this->shop_id;
         $total_sales = $this->OrdersModel->get_total_sales($shop_id,$date_from,$date_to);
@@ -102,7 +102,7 @@ class Orderanalysis extends BaseController
         $date_to = $_POST['date_to'];
 
         $shop_id =
-        ($_POST and $_POST['shop_id'])
+        ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
             : $this->shop_id;
         $total_order = $this->OrdersModel->get_total_order($shop_id,$date_from,$date_to);
@@ -117,9 +117,9 @@ class Orderanalysis extends BaseController
         $date_to = $_POST['date_to'];
 
         $shop_id =
-        ($_POST and $_POST['shop_id'])
+        ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
-            : $this->shop_id;        $total_rate = $this->OrdersModel->get_rate($shop_id,$date_from,$date_to);
+            : $this->shop_id;      $total_rate = $this->OrdersModel->get_rate($shop_id,$date_from,$date_to);
         $this->pageData['total_rate'] = $total_rate;
         // $this->debug($total_rate);
 
@@ -133,9 +133,9 @@ class Orderanalysis extends BaseController
         $date_to = $_POST['date_to'];
 
         $shop_id =
-        ($_POST and $_POST['shop_id'])
+        ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
-            : $this->shop_id;        $total_new_register = $this->OrdersModel->get_new_register($shop_id,$date_from,$date_to);
+            : $this->shop_id;       $total_new_register = $this->OrdersModel->get_new_register($shop_id,$date_from,$date_to);
         $this->pageData['total_new_register'] = $total_new_register;
         echo view('admin/orderanalysis/total_new_register_chart',$this->pageData);
     }
@@ -147,9 +147,10 @@ class Orderanalysis extends BaseController
         $date_to = $_POST['date_to'];
 
         $shop_id =
-        ($_POST and $_POST['shop_id'])
+        $shop_id =
+        ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
-            : $this->shop_id;        $top_product_cat = $this->OrdersModel->get_top_product_cat($shop_id,$date_from,$date_to);
+            : $this->shop_id;      $top_product_cat = $this->OrdersModel->get_top_product_cat($shop_id,$date_from,$date_to);
         $top_category_array = [];
         $data_category_sales = [];
         foreach($top_product_cat as $key=> $row){
@@ -196,11 +197,9 @@ class Orderanalysis extends BaseController
      
         $date_from = $_POST['date_from'];
         $date_to = $_POST['date_to'];
-
         $shop_id =
-        ($_POST and $_POST['shop_id'])
+        ($_POST and isset($_POST['shop_id']))
             ? $_POST['shop_id']
-
             : $this->shop_id;
         $top_product = $this->OrdersModel->get_top_product($shop_id,$date_from,$date_to);
         $this->pageData['top_product'] = $top_product;
