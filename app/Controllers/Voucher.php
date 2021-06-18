@@ -35,6 +35,22 @@ class Voucher extends BaseController
 
 
     }
+    public function approve($customer_voucher_id){
+        $where = [
+            'customer_voucher.customer_voucher_id' => $customer_voucher_id
+
+        ];
+        $voucher = $this->CustomerVoucherModel->getWhere($where)[0];
+        if($voucher['is_used'] == 1){
+            $status = 0;
+        }else{
+            $status = 1;
+        }
+        $this->CustomerVoucherModel->updateWhere($where,['is_used' => $status,'used_date' => date('Y-m-d H:i:s')]);
+
+        return redirect()->to(base_url('voucher/detail/' . $voucher['voucher_id'], "refresh"));
+
+    }
 
     public function indexadmin()
     {

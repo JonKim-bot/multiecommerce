@@ -123,6 +123,8 @@
 
                                             <th data-sort="name" data-filter="name">Redeem Date</th>
                                             <th data-sort="name" data-filter="name">Point Used</th>
+                                            <th data-sort="name" data-filter="name"> Used</th>
+                                            <th data-sort="name" data-filter="name"> Used Date</th>
 
                                         </tr>
                                     </thead>
@@ -142,6 +144,16 @@
                                                 <td><?= $row['redeem_date'] ?></td>
                                                 <td><?= $row['point_used'] ?></td>
 
+                                                <td>
+                                                
+                                                <?php if($row['is_used'] == 0) { ?>
+                                            <a class="btn btn-danger" href="<?= base_url("voucher/approve/") . "/" . $row['customer_voucher_id'] ?>">Havent Used</a>
+                                        <?php }else{ ?>
+                                       
+                                        <a class="btn btn-primary" href="<?= base_url("voucher/approve/") . "/" . $row['customer_voucher_id'] ?>">Used</a>
+                                        <?php } ?>
+                                                </td>
+                                                <td><?= $row['used_date'] ?></td>
                                             </tr>
                                         <?php
                                         $i++;
