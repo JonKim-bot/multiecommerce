@@ -33,9 +33,67 @@ class Sms extends BaseController
         }
        
     }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['full_name'])) {
+                $get['sms.full_name'] = $get['full_name'];
+            }
+            if (!empty($get['email'])) {
+                $get['sms.email'] = $get['email'];
+            }
+          
+            if (!empty($get['contact'])) {
+                $get['sms.contact'] = $get['contact'];
+            }
+            unset($get['contact']);
+
+            unset($get['email']);
+            unset($get['full_name']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $sms = $this->SmsModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $sms['pagination'];
+        $this->pageData['start_no'] = $sms['start_no'];
+        $sms = $sms['result'];
+        // $this->debug($where);
+        // $this->debug($sms);
+        // $this->debug($sms);
+        foreach($sms as $key => $row){
+            $sms[$key]['template'] = $this->get_template($row['template_id']);
+         
+
+        }
+        $this->pageData['sms'] = $sms;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/sms/all_admin');
+        echo view('admin/footer');
+    }
 
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'sms.shop_id' => $this->shop_id,
         ];
@@ -58,7 +116,7 @@ class Sms extends BaseController
             %Merchant representative name% from %merchant name%";
         }
         if($template_id == 2){
-            return "%Opening (About a problem/ need)%. %Discount/offer%. %Call to action (may include shop
+            return "%Opening (Sms a problem/ need)%. %Discount/offer%. %Call to action (may include shop
             link)%";
         }
         if($template_id == 3){

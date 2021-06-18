@@ -22,8 +22,62 @@ class Brand extends BaseController
         }
     }
 
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['full_name'])) {
+                $get['brand.full_name'] = $get['full_name'];
+            }
+            if (!empty($get['email'])) {
+                $get['brand.email'] = $get['email'];
+            }
+          
+            if (!empty($get['contact'])) {
+                $get['brand.contact'] = $get['contact'];
+            }
+            unset($get['contact']);
+
+            unset($get['email']);
+            unset($get['full_name']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $brand = $this->BrandModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $brand['pagination'];
+        $this->pageData['start_no'] = $brand['start_no'];
+        $brand = $brand['result'];
+        // $this->debug($where);
+        // $this->debug($brand);
+        // $this->debug($brand);
+
+        $this->pageData['brand'] = $brand;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/brand/all_admin');
+        echo view('admin/footer');
+    }
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];
@@ -53,10 +107,10 @@ class Brand extends BaseController
                     'created_by' => session()->get('login_id'),
                 ];
                 
-                // $image = $this->upload_image_base('banner');
+                // $image = $this->upload_image_base('brand');
 
                 // if($image != ""){
-                //     $data['banner'] = $image;
+                //     $data['brand'] = $image;
                 // }
           
                 // $this->debug($data);
@@ -117,10 +171,10 @@ class Brand extends BaseController
                     'modified_by' => session()->get('login_id'),
                 ];
 
-                // $image = $this->upload_image_base('banner');
+                // $image = $this->upload_image_base('brand');
 
                 // if($image != ""){
-                //     $data['banner'] = $image;
+                //     $data['brand'] = $image;
                 // }
           
           

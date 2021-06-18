@@ -21,9 +21,63 @@ class Banner extends BaseController
                 "/access/login';</script>";
         }
     }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['full_name'])) {
+                $get['banner.full_name'] = $get['full_name'];
+            }
+            if (!empty($get['email'])) {
+                $get['banner.email'] = $get['email'];
+            }
+          
+            if (!empty($get['contact'])) {
+                $get['banner.contact'] = $get['contact'];
+            }
+            unset($get['contact']);
+
+            unset($get['email']);
+            unset($get['full_name']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $banner = $this->BannerModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $banner['pagination'];
+        $this->pageData['start_no'] = $banner['start_no'];
+        $banner = $banner['result'];
+        // $this->debug($where);
+        // $this->debug($banner);
+        // $this->debug($banner);
+
+        $this->pageData['banner'] = $banner;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/banner/all_admin');
+        echo view('admin/footer');
+    }
 
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];

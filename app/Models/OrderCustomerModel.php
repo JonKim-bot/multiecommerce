@@ -15,47 +15,63 @@ class OrderCustomerModel extends BaseModel
 
     }
     function getAll($limit = "", $page = 1, $filter = array()){
-        $builder = $this->db->table($this->tableName);
-        $builder->select('order_customer.*, orders.delivery_date
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('order_customer.*, orders.delivery_date,shop.shop_name
         ');
-        $builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
-        $builder->groupBy('order_customer.full_name');
-        $query = $builder->get();
+        $this->builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
+        $this->builder->join('shop', 'shop.shop_id = '.$this->tableName.'.shop_id','left');
+  
+        $this->builder->groupBy('order_customer.full_name');
+        if ($limit != '') {
+            $count = $this->getCount($filter);
+            // die($this->builder->getCompiledSelect(false));
+            $offset = ($page - 1) * $limit;
+            $pages = $count / $limit;
+            $pages = ceil($pages);
+            
+            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter,$this->builder);
+
+            return $pagination;
+
+            // intval($limit);
+            // $this->db->limit($limit, $offset);
+        }
+        $query = $this->builder->get();
         return $query->getResultArray();
     }   
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
-        $builder = $this->db->table($this->tableName);
-        $builder->select('order_customer.*, orders.delivery_date
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('order_customer.*, orders.delivery_date
         ');
-        $builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
-        $builder->where($where);
-        $builder->groupBy('order_customer.full_name');
-        $query = $builder->get();
+        $this->builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
+        $this->builder->where($where);
+        $this->builder->groupBy('order_customer.full_name');
+        $query = $this->builder->get();
         return $query->getResultArray();
     }   
     function getWhereContact($where,$limit = "", $page = 1, $filter = array()){
-        $builder = $this->db->table($this->tableName);
-        $builder->select('order_customer.*, orders.delivery_date
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('order_customer.*, orders.delivery_date
         ');
-        $builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
-        $builder->where($where);
-        $builder->groupBy('order_customer.contact');
-        $query = $builder->get();
+        $this->builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id');
+        $this->builder->where($where);
+        $this->builder->groupBy('order_customer.contact');
+        $query = $this->builder->get();
         return $query->getResultArray();
     }   
     function getWhereOrders($where,$limit = "", $page = 1, $filter = array()){
-        $builder = $this->db->table($this->tableName);
-        $builder->select('order_customer.*, orders.*
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('order_customer.*, orders.*
         ');
-        $builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id','left');
-        $builder->where($where);
+        $this->builder->join('orders', 'order_customer.order_customer_id = orders.order_customer_id','left');
+        $this->builder->where($where);
         $wherenot = [
             '1' , '5'
         ];
-        $builder->whereNotIn('orders.orders_status_id',$wherenot);
-        $builder->orderBy('orders.orders_id','DESC');
+        $this->builder->whereNotIn('orders.orders_status_id',$wherenot);
+        $this->builder->orderBy('orders.orders_id','DESC');
 
-        $query = $builder->get();
+        $query = $this->builder->get();
         return $query->getResultArray();
     }   
 }

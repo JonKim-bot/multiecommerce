@@ -92,6 +92,57 @@ class OrderCustomer extends BaseController
         return base_url() . $path_return;
         exit();
     }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['full_name'])) {
+                $get['order_customer.full_name'] = $get['full_name'];
+            }
+            if (!empty($get['email'])) {
+                $get['order_customer.email'] = $get['email'];
+            }
+          
+            if (!empty($get['contact'])) {
+                $get['order_customer.contact'] = $get['contact'];
+            }
+            unset($get['contact']);
+
+            unset($get['email']);
+            unset($get['full_name']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $order_customer = $this->OrderCustomerModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $order_customer['pagination'];
+        $this->pageData['start_no'] = $order_customer['start_no'];
+        $order_customer = $order_customer['result'];
+        // $this->debug($where);
+        // $this->debug($order_customer);
+        // $this->debug($order_customer);
+
+        $this->pageData['order_customer'] = $order_customer;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/order_customer/all_admin');
+        echo view('admin/footer');
+    }
+
     public function index()
     {
         if ($this->isMerchant) {
@@ -99,7 +150,8 @@ class OrderCustomer extends BaseController
                 'orders.shop_id' => $this->shop_id,
             ]);
         } else {
-            $order_customer = $this->OrderCustomerModel->getAll();
+            $this->indexadmin();
+            return;
         }
         $this->pageData['order_customer'] = $order_customer;
 

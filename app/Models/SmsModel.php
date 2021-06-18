@@ -18,25 +18,38 @@ class SmsModel extends BaseModel
     
     function getWhere($where, $limit = '', $page = 1, $filter = array())
     {
-        $builder = $this->db->table($this->tableName);
-        $builder->select('sms.*, shop.shop_name
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('sms.*, shop.shop_name
         ');
-        $builder->join('shop', 'shop.shop_id = sms.shop_id');
+        $this->builder->join('shop', 'shop.shop_id = sms.shop_id');
         
-        $builder->where($where);
-        $query = $builder->get();
+        $this->builder->where($where);
+        $query = $this->builder->get();
         return $query->getResultArray();
     }
 
     
     function getAll($limit = '', $page = 1, $filter = array())
     {
-        $builder = $this->db->table($this->tableName);
-        $builder->select('sms.*, shop.shop_name
+        $this->builder = $this->db->table($this->tableName);
+        $this->builder->select('sms.*, shop.shop_name
         ');
-        $builder->join('shop', 'shop.shop_id = sms.shop_id');
-        
-        $query = $builder->get();
+        $this->builder->join('shop', 'shop.shop_id = sms.shop_id');
+        if ($limit != '') {
+            $count = $this->getCount($filter);
+            // die($this->builder->getCompiledSelect(false));
+            $offset = ($page - 1) * $limit;
+            $pages = $count / $limit;
+            $pages = ceil($pages);
+            
+            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter,$this->builder);
+
+            return $pagination;
+
+            // intval($limit);
+            // $this->db->limit($limit, $offset);
+        }
+        $query = $this->builder->get();
         return $query->getResultArray();
     }
   
