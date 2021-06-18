@@ -170,10 +170,82 @@ class OrdersModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }
+    function get_total_today_orders_filter($shop_id,$date_from,$date_to,$payment_method_id = ""){
+        $where = [
+            'orders.is_paid' => 1,
+            'orders.payment_method_id != ' => 0,
+            'orders.shop_id' => $shop_id,
+            'DATE(orders.created_at) >=' => $date_from,
+            'DATE(orders.created_at) <=' => $date_to
+        ];
+        $builder = $this->db->table($this->tableName);
+        $builder->select('sum(orders.grand_total) as total');
+        
+        // $this->debug('orders.payment_method_id',$payment_method_id);
+        $builder->where($where);
+        if($payment_method_id != ""){
+
+            $builder->where('orders.payment_method_id',$payment_method_id);
+        }
+       
+        // $builder->whereNotIn('orders_status_id',$wherenot);
+        $builder->orderBy('orders.orders_id','DESC');
+        $total = 0;
+        $query = $builder->get()->getResultArray();
+        if(!empty($query)){
+            if($query[0]['total'] != null){
+
+                return $query[0]['total'];
+            }else{
+                return $total;
+            }
+        }else{
+            return $total;
+        }
+    }
+
+
+    function get_total_number_orders_filter($shop_id,$date_from,$date_to){
+        $where = [
+            'orders.shop_id' => $shop_id,
+            'DATE(orders.created_at) >=' => $date_from,
+            'DATE(orders.created_at) <=' => $date_to
+        ];
+        $builder = $this->db->table($this->tableName);
+        $builder->select('*');
+     
+        // $this->debug($where);
+        $builder->where($where);
+        $wherenot = [
+            '1' , '5'
+        ];
+        // $builder->whereNotIn('orders_status_id',$wherenot);
+        $builder->orderBy('orders.orders_id','DESC');
+
+        $query = $builder->get();
+        return count($query->getResultArray());
+    }
+    function get_new_registered_member_filter($shop_id,$date_from,$date_to){
+        $where = [
+            'customer.shop_id' => $shop_id,
+
+            'DATE(customer.created_date) >=' => $date_from,
+            'DATE(customer.created_date) <=' => $date_to
+        ];
+        $builder = $this->db->table('customer');
+        $builder->select('*');
+     
+        // $this->debug($where);
+        $builder->where($where);
+       
+        $query = $builder->get();
+        return count($query->getResultArray());
+    }
 
     function get_total_today_orders($shop_id){
         $where = [
             'orders.shop_id' => $shop_id,
+            'orders.is_paid' => 1,
             'DATE(orders.created_at)' => date('Y-m-d')
         ];
         $builder = $this->db->table($this->tableName);

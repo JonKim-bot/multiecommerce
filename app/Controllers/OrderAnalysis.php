@@ -43,13 +43,31 @@ class Orderanalysis extends BaseController
         ($_GET and $_GET['shop_id'])
             ? $_GET['shop_id']
             : '1';
+        $date_from =
+        ($_GET and isset($_GET['dateFrom']))
+            ? $_GET['dateFrom']
+            : date('Y-m-d');
+        $date_to =
+            ($_GET and isset($_GET['dateTo']))
+                ? $_GET['dateTo']
+                : date('Y-m-d');
      
-        $total_today_orders = $this->OrdersModel->get_total_today_orders($shop_id);
-        $total_number_orders = $this->OrdersModel->get_total_number_orders($shop_id);
-        $new_registered_member = $this->OrdersModel->get_new_registered_member($shop_id);
+        $total_today_orders = $this->OrdersModel->get_total_today_orders_filter($shop_id,$date_from,$date_to);
+        $total_number_orders = $this->OrdersModel->get_total_number_orders_filter($shop_id,$date_from,$date_to);
+        $new_registered_member = $this->OrdersModel->get_new_registered_member_filter($shop_id,$date_from,$date_to);
         $this->pageData['total_today_orders'] = $total_today_orders;
         $this->pageData['total_number_orders'] = $total_number_orders;
         $this->pageData['new_registered_member'] = $new_registered_member;
+
+        $payment_gateway = $this->OrdersModel->get_total_today_orders_filter($shop_id,$date_from,$date_to,3);
+        $cod = $this->OrdersModel->get_total_today_orders_filter($shop_id,$date_from,$date_to,2);
+        $online_banking = $this->OrdersModel->get_total_today_orders_filter($shop_id,$date_from,$date_to,1);
+
+        $this->pageData['payment_gateway'] = $payment_gateway;
+        $this->pageData['cod'] = $cod;
+        $this->pageData['online_banking'] = $online_banking;
+
+
         $shop = $this->ShopModel->getAll();
         $this->pageData['shop'] = $shop;
 
