@@ -90,7 +90,8 @@ class ProductModel extends BaseModel
     {
         $this->builder->select("product.*,shop.shop_name");
         $this->builder->join('shop', 'shop.shop_id = product.shop_id','left');
-        
+        $this->builder->where($this->tableName . ".deleted", 0);
+
         if ($limit != '') {
             $count = $this->getCount($filter);
             // die($this->builder->getCompiledSelect(false));

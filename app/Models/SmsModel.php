@@ -24,6 +24,8 @@ class SmsModel extends BaseModel
         $this->builder->join('shop', 'shop.shop_id = sms.shop_id');
         
         $this->builder->where($where);
+        $this->builder->where($this->tableName . ".deleted", 0);
+
         $query = $this->builder->get();
         return $query->getResultArray();
     }
@@ -35,6 +37,8 @@ class SmsModel extends BaseModel
         $this->builder->select('sms.*, shop.shop_name
         ');
         $this->builder->join('shop', 'shop.shop_id = sms.shop_id');
+        $this->builder->where($this->tableName . ".deleted", 0);
+
         if ($limit != '') {
             $count = $this->getCount($filter);
             // die($this->builder->getCompiledSelect(false));

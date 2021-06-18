@@ -18,7 +18,8 @@ class ContactModel extends BaseModel
     {
         $this->builder->select($this->tableName . ".*,shop.shop_name");
         $this->builder->join('shop', 'shop.shop_id = '.$this->tableName.'.shop_id','left');
-        
+        $this->builder->where($this->tableName . ".deleted", 0);
+
         if ($limit != '') {
             $count = $this->getCount($filter);
             // die($this->builder->getCompiledSelect(false));

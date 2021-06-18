@@ -22,6 +22,7 @@ class OrderCustomerModel extends BaseModel
         $this->builder->join('shop', 'shop.shop_id = '.$this->tableName.'.shop_id','left');
   
         $this->builder->groupBy('order_customer.full_name');
+        
         if ($limit != '') {
             $count = $this->getCount($filter);
             // die($this->builder->getCompiledSelect(false));
