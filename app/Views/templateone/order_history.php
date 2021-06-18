@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="wishlist__table">
+                <div class="wishlist__table" style="height:500px;overflow:scroll">
                         <table>
                             <thead>
                                 <tr>

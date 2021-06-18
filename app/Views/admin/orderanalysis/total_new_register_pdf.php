@@ -10,7 +10,7 @@
         }
     </style>
         <p>
-        <input type="button" value="Create PDF" 
+        <input type="button" value="Download PDF" 
             id="btPrint" onclick="createPDF()" />
     </p>
     <div id="tab_reg">
