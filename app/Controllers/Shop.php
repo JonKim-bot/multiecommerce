@@ -307,18 +307,20 @@ class Shop extends BaseController
                 ];
 
                 // $this->debug($input['shop_function']);
-                $this->ShopFunctionModel->hardDeleteWhere([ 'shop_function.shop_id' => $shop_id]);
-                if(!empty($input['shop_function'])){
-                    foreach($input['shop_function'] as $row_function){
-                        
-                        $data_ = [
-                            'function_id' => $row_function,
-                            'shop_id' => $shop_id,
-                        ];
-                        $this->ShopFunctionModel->insertNew($data_);
+                if(session()->get('admin_data')['type'] != "MERCHANT"){
+
+                    $this->ShopFunctionModel->hardDeleteWhere([ 'shop_function.shop_id' => $shop_id]);
+                    if(!empty($input['shop_function'])){
+                        foreach($input['shop_function'] as $row_function){
+                            
+                            $data_ = [
+                                'function_id' => $row_function,
+                                'shop_id' => $shop_id,
+                            ];
+                            $this->ShopFunctionModel->insertNew($data_);
+                        }
                     }
                 }
-
                 if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
                     $file = $this->request->getFile('banner');
                     $new_name = $file->getRandomName();
