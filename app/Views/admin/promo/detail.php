@@ -76,7 +76,7 @@
                                                     <?php } ?>
                                                     </tr>
                                                     <tr>
-                                                        <td><h3>New member only</h3></td>
+                                                    <label for="">New Member Only * For those member who havent make purchase</label>
                                                         <td><?= $promo['is_newmemberonly'] == 1 ? "YES" : "NO" ?></td>
                                                     </tr>
                                                     <tr>

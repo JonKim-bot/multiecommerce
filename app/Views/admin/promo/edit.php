@@ -113,7 +113,7 @@
 
                                 
                                 <div class="form-group">
-                                <label for="">New Member Only</label>
+                                <label for="">New Member Only * For those member who havent make purchase</label>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" name="new_member">
                                     <label class="form-check-label" for="new_member">For New Member Only</label>

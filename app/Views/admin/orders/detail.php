@@ -47,6 +47,8 @@
                                 <a href="<?= base_url('/orders/change_status/4/') . "/" . $orders['orders_id'] ?>" class="btn btn-success">Done Orders</a>
                                 <a href="<?= base_url('/orders/change_status/5/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
                                 <?php endif; ?>
+                                <a href="<?= base_url('/orders/change_status/1/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Reset Orders</a>
+
                             </div>
                         </div>
                         <div class="c-card-body">
@@ -93,7 +95,7 @@
             <tr>
               <td>Notify Customer Via Email (Email will be auto send to customer on every status change)</td>
               <td>
-              <a href="<?= base_url(). "/main/view_order_status/". $orders['orders_id'] ?>" target="_blank">Click me to view customer status on order (Email)</a>
+              <a href="<?= base_url(). "/main/view_order_status/". $orders['order_code'] ?>" target="_blank">Click me to view customer status on order (Email)</a>
               </td>
             </tr>
                                             <tr>

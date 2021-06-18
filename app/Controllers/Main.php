@@ -893,6 +893,7 @@ class Main extends BaseController
     }
     function startsWith ($string, $startString) 
     { 
+
         $len = strlen($startString); 
 
         return (substr($string, 0, $len) === $startString); 
@@ -1190,6 +1191,7 @@ class Main extends BaseController
        
         $brand = $this->BrandModel->getWhere($where);
 
+
      
         $category = $this->CategoryModel->getWhere($where);
   
@@ -1400,7 +1402,7 @@ class Main extends BaseController
     public function view_order_status($orders_id = "")
     {
         $where = array(
-            "orders.orders_id" => $orders_id,
+            "orders.order_code" => $orders_id,
         );
         
         $orders = $this->OrdersModel->getWhere($where);
@@ -1439,7 +1441,6 @@ class Main extends BaseController
         $order_url=  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
 
         // $order_url = base_url()  . "/main/order_detail/" . $orders_id;
-        
         $orders['url'] =  $order_url;
         $this->pageData["orders"] = $orders;
 

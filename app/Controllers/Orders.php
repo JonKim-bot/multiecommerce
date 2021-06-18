@@ -757,7 +757,10 @@ class Orders extends BaseController
         ];
 
         $orders = $this->OrdersModel->updateWhere($where, $data);
-        $this->EmailModel->send_email_tracking($orders_id);
+        if($orders_status_id != 1){
+
+            $this->EmailModel->send_email_tracking($orders_id);
+        }
         return redirect()->to(
             base_url('orders/detail/' . $orders_id, 'refresh')
         );
@@ -766,7 +769,7 @@ class Orders extends BaseController
     public function view_order_status($orders_id = '')
     {
         $where = [
-            'orders.orders_id' => $orders_id,
+            'orders.order_code' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where);
         if ($this->isMerchant == true) {

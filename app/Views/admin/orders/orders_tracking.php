@@ -166,7 +166,7 @@ p {
                 <div class="card-body row">
                 <div class="col"> <strong>Prepared BY:</strong> <br> <?= $shop['shop_name'] ?>, | <i class="fa fa-phone"></i> <?= $shop['contact'] ?> </div>
                     <div class="col"> <strong>Status:</strong> <br> <?= $orders['orders_status'] ?> </div>
-                    <div class="col"> <strong>Tracking #:</strong> <br> <a href="<?= base_url() . "/main/view_order_status/" . $orders['orders_id'] ?>"><?= base_url() . "/main/view_order_status/" . $orders['orders_id'] ?></a> </div>
+                    <div class="col"> <strong>Tracking #:</strong> <br> <a href="<?= base_url() . "/main/view_order_status/" . $orders['order_code'] ?>"><?= base_url() . "/main/view_order_status/" . $orders['order_code'] ?></a> </div>
                 </div>
             </article>
             <!-- <div class="track">
