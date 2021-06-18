@@ -35,8 +35,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table-responsive">
-                                <table class="table table-striped table-bordered  dataTable no-footer" style="border-collapse: collapse !important">
+                            <table class="table table-striped dataTable table-bordered no-footer " id="promo_list_table" data-method="get" data-url="<?= base_url("promo") ?>" style="border-collapse: collapse !important">
                                     <thead>
+
                                         <tr role="row">
                                             <th class="" >No.</th>
                                             <th data-sort="shop_name" data-filter="shop_name">Shop Name</th>

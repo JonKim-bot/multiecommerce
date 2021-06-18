@@ -1184,14 +1184,27 @@ class Main extends BaseController
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
 
         $product = $this->ProductModel->getWhere([
-            'shop_id' => $shop['shop_id'],
+            'product.shop_id' => $shop['shop_id'],
             'is_home' => 1,
         ]);
+        $where = [
+
+            'brand.shop_id' => $shop['shop_id']
+        ];
         $brand = $this->BrandModel->getWhere($where);
 
+        $where = [
+            'category.shop_id' => $shop['shop_id'],
 
+        ];
         $category = $this->CategoryModel->getWhere($where);
+        $where = [
+            'banner.shop_id' => $shop['shop_id']
+        ];
         $banner = $this->BannerModel->getWhere($where);
+        $where = [
+            'about.shop_id' => $shop['shop_id']
+        ];
         $about = $this->AboutModel->getWhere($where);
         // $payment_method = $this->PaymentMethod->getAll();
         // $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);
@@ -1200,7 +1213,9 @@ class Main extends BaseController
         // $this->pageData['shop_payment_method'] = $shop_payment_method;
         // $this->pageData['payment_method'] = $payment_method;
         $this->pageData['brand'] = $brand;
-
+        $where = [
+            'merchant.shop_id' => $shop['shop_id']
+        ];
         $shop[0]['merchant_name'] = $this->MerchantModel->getWhere($where)[0]['name'];
             
         $where = [
@@ -1259,12 +1274,14 @@ class Main extends BaseController
         $shop = $this->shop;
 
         $where = [
-
-            'shop_id' => $shop['shop_id']
+            'product.shop_id' => $shop['shop_id']
         ];
 
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
         $product = $this->ProductModel->getWhere($where);
+        $where = [
+            'category.shop_id' => $shop['shop_id']
+        ];
         $category = $this->CategoryModel->getWhere($where);
         $this->pageData['category'] = $category;
         $this->pageData['product'] = $product;

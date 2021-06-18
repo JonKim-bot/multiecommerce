@@ -20,19 +20,18 @@ class PromoModel extends BaseModel
     {
         // $this->builder = $this->db->table($this->tableName);
         $this->builder->select('promo.*, promo_type.promo_type,shop.shop_name');
-        $this->builder->join('shop', 'shop.shop_id = '.$this->tableName.'.shop_id','left');
-
+        
         $this->builder->join('promo_type', 'promo_type.promo_type_id = promo.promo_type_id');
+        $this->builder->join('shop', 'shop.shop_id = promo.shop_id','left');
         $this->builder->where('promo.deleted',0);
 
         if ($limit != '') {
             $count = $this->getCount($filter);
-            // die($this->this->builder->getCompiledSelect(false));
             $offset = ($page - 1) * $limit;
             $pages = $count / $limit;
             $pages = ceil($pages);
             
-            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter,$this->this->builder);
+            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter,$this->builder);
 
             return $pagination;
 

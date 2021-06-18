@@ -7,7 +7,7 @@
           <div class="container-fluid">
             <div class="fade-in">
             <div class="col-sm-6">
-                       <select name="category" id="" class="form-control selection">
+                       <select name="shop_id" id="" class="form-control selection">
                             <?php foreach($shop as $row){ ?>
 
                                 <?php if( isset($_GET['shop_id']) && $row['shop_id'] == $_GET['shop_id']){ ?>
@@ -20,6 +20,7 @@
                             <?php } ?>
                        </select>
                     </div>
+                    <input type="hidden" value="<?= $_GET['shop_id'] ?>" id='shop_id'>
               <div class="row">
 
               
@@ -272,6 +273,14 @@
                   return;
               }
           }
+          $('.selection').on('change', function(e) {
+        e.preventDefault();
+        var value = $(this).val();
+        // alert(value);
+        window.location.href = ("<?= base_url() ?>/orderanalysis/detail?shop_id=" + value);
+    })
+    let shop_id = $('#shop_id').val();  
+
           $('#btn_get_total_new_register').on('click', function () {
                 let date_from = $('#date_from_new_register').val();    
                 let date_to = $('#date_to_new_register').val();    
@@ -323,6 +332,8 @@
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  shop_id : shop_id,
+
               }
                 $.post("<?=base_url('Orderanalysis/get_total_sales') ?>", postParam, function(html){
                     $('.total_sales_chart').html(html);
@@ -333,6 +344,8 @@
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  shop_id : shop_id,
+
               }
                 $.post("<?=base_url('Orderanalysis/get_total_order') ?>", postParam, function(html){
                     $('.total_order_chart').html(html);
@@ -343,6 +356,8 @@
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  shop_id : shop_id,
+
               }
                 $.post("<?=base_url('Orderanalysis/get_total_rate') ?>", postParam, function(html){
                     $('.total_rate_chart').html(html);
@@ -352,6 +367,8 @@
             function get_top_product_cat(date_from,date_to){
               let postParam = {
                   date_from : date_from , 
+                  shop_id : shop_id,
+
                   date_to : date_to,
               }
                 $.post("<?=base_url('Orderanalysis/get_top_product_cat') ?>", postParam, function(html){
@@ -362,6 +379,8 @@
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
+                  shop_id : shop_id,
+
               }
                 $.post("<?=base_url('Orderanalysis/get_new_register') ?>", postParam, function(html){
                     $('.total_new_register_chart').html(html);
@@ -373,7 +392,8 @@
               let postParam = {
                   date_from : date_from , 
                   date_to : date_to,
-              }
+                  shop_id : shop_id,
+            }
                 $.post("<?=base_url('Orderanalysis/get_top_product') ?>", postParam, function(html){
                     $('.total_top_product_table').html(html);
                 });
