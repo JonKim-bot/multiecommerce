@@ -40,6 +40,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No.</th>
+                                            <th data-sort="is_approved" data-filter="is_approved">Approve </th>
+
                                             <th data-sort="shop" data-filter="shop">Shop Name</th>
 
                                             <th data-sort="template_id" data-filter="template_id">Template</th>
@@ -65,6 +67,15 @@
                                             <tr>
                                                 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $i ?></a></td>
+                                                <td>
+                                                <?php if($row['is_approved'] == 0 && $row['is_approved'] != 2){ ?>
+                                            <a href="<?= base_url() . '/sms/approve/' . $row['sms_id'] ?>" class="btn btn-primary approve_button">Approve</a>
+                                            <a href="<?= base_url() . '/sms/reject/' . $row['sms_id'] ?>" class="btn btn-danger reject_button">Reject</a>
+                                        <?php } else { ?>
+                                            <button type="button" class="btn btn-primary" disabled>Approve</button>
+                                            <button type="button" class="btn btn-danger" disabled>Reject</button>
+                                        <?php } ?>
+                                        </td>
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['shop_name'] ?></a></td>
 
 
@@ -131,4 +142,28 @@
             }
         });
     });
+
+    $(document).on("click", ".approve_button", function (e) {
+
+            e.preventDefault();
+
+            var delete_record = confirm("Are you sure you want to approve this record?");
+            var path = $(this).attr("href");
+
+            if (delete_record === true) {
+                window.location.replace(path);
+            }
+            });
+
+            $(document).on("click", ".reject_button", function (e) {
+
+            e.preventDefault();
+
+            var delete_record = confirm("Are you sure you want to reject this record?");
+            var path = $(this).attr("href");
+
+            if (delete_record === true) {
+                window.location.replace(path);
+            }
+            });
     </script>

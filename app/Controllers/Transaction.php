@@ -135,6 +135,7 @@ class Transaction extends BaseController
     {
         $session = session();
 
+        
         $user_voucher = $this->UserVoucherModel->getWhere(['user_voucher.main_voucher_id' => 0]);
 
         if ($session->get("login_type") == "MERCHANT") {

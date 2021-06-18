@@ -76,6 +76,7 @@ class Sms extends BaseController
         $sms = $sms['result'];
         // $this->debug($where);
         // $this->debug($sms);
+
         // $this->debug($sms);
         foreach($sms as $key => $row){
             $sms[$key]['template'] = $this->get_template($row['template_id']);
@@ -87,6 +88,40 @@ class Sms extends BaseController
         echo view('admin/header', $this->pageData);
         echo view('admin/sms/all_admin');
         echo view('admin/footer');
+    }
+     public function reject($credit_topup_id){
+
+        $where = array(
+            'sms.sms_id' => $sms_id,
+        );
+        $sms = $this->SmsModel->getWhere($where)[0];
+
+        $data = array(
+            'is_approved' => 2,
+            'approval_date' => date('Y-m-d h:i:s'),
+
+        );
+        $this->SmsModel->updateWhere($where, $data);
+        return redirect()->to(base_url($_SERVER['HTTP_REFERER'], 'refresh'));
+
+    }
+
+        
+    public function approve($sms_id){
+
+        $where = array(
+            'sms.sms_id' => $sms_id,
+        );
+        $sms = $this->SmsModel->getWhere($where)[0];
+
+        $data = array(
+            'is_approved' => 1,
+            'approval_date' => date('Y-m-d h:i:s'),
+
+        );
+        $this->SmsModel->updateWhere($where, $data);
+        return redirect()->to(base_url($_SERVER['HTTP_REFERER'], 'refresh'));
+
     }
 
     public function index()
