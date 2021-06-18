@@ -280,6 +280,7 @@ class Main extends BaseController
         }else{
             $where = [
                 'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
+                // 'customer_voucher.is_used' => 0,
                 'customer_voucher.customer_id' => $this->session->get('customer_id'),
             ];
 
@@ -1446,6 +1447,7 @@ class Main extends BaseController
 
         // $this->debug($orders);
         echo view("main/orders_tracking", $this->pageData);
+
 
     }
     public function order_detail($orders_id)

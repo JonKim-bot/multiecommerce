@@ -21,6 +21,8 @@
                             <br>
                             <?php if($selected == 2){ ?>
                                 <span>Redeem Date : <?= $row['redeem_date'] ?></span>
+                               <br>
+                                <span>Used Date : <?= $row['used_date'] ?></span>
 
                             <?php } ?>
                         </div>
