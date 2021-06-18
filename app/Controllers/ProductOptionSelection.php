@@ -33,7 +33,7 @@ class ProductOptionSelection extends BaseController
         }
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
-            $this->isMerchant == true;
+            $this->isMerchant = true;
         }
     }
 
