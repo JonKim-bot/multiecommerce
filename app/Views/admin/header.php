@@ -101,6 +101,14 @@
                     </a>
                 </li>
               
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'Transaction' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Transaction/credittopup">
+                        <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
+                        Sms Top Up
+                    </a>
+                </li>
+              
+                
                 
 
                 <li>
