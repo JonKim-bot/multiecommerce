@@ -287,7 +287,7 @@ class Sms extends BaseController
         $url= 'https://www.sms123.net/api/send.php?';
         $apikey = '6e6962f9c1a409653c301a977af190cb';
         $sms_template = $this->sms_template($sms_id);
-        $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
+        // $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
         foreach($sms_sent as $row){
 
             $recipients = $row['contact'];
@@ -296,7 +296,28 @@ class Sms extends BaseController
             $sms_msg = "RM0.00 Webieasy.com " . $sms_msg;
             $sms_msg = rawurlencode(stripslashes($sms_msg)) ;
             $url = $url . "apiKey=" . $apikey . "&recipients=" . $recipients . "&messageContent=" . $sms_msg; 
+            // $this->
             // return redirect()->to(($url));
+            // $ch = curl_init();
+            // $headers = array(
+            // 'Accept: application/json',
+            // 'Content-Type: application/json',
+        
+            // );
+            // curl_setopt($ch, CURLOPT_URL, $url);
+            // curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            // curl_setopt($ch, CURLOPT_HEADER, 0);
+            // // $body = '{}';
+            // // curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); 
+            // // curl_setopt($ch, CURLOPT_POSTFIELDS,$body);
+            // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // // curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+            // $result = curl_exec($ch);
+            // // die(json_encode([
+            //     'result' => $result,
+            // ]));
+            // Timeout in seconds
             $opts = array('http' =>
                 array(
                     'method'  => 'GET',
@@ -425,6 +446,7 @@ class Sms extends BaseController
                 $this->SmsSentModel->hardDeleteWhere($where);
 
                 if(!empty($_POST['customer_id'])){
+
 
                     if($_POST['customer_id'][0] != "all"){
                         foreach($_POST['customer_id'] as $row){
