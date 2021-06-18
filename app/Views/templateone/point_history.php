@@ -6,11 +6,11 @@
 
     <!-- Wishlist Section Begin -->
     <section class="wishlist spad">
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Total Point : <?= $total_point ?></h1>
-                    <div class="wishlist__table">
+                    <div class="wishlist__table" style="height:500px;overflow:scroll">
                         <table>
                             <thead>
                                 <tr>
