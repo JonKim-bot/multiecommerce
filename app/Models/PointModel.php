@@ -145,6 +145,7 @@ class PointModel extends BaseModel
         $this->insertNew($data);
     }
 
+    
     function get_total_point_in($customer_id)
     {
         $this->builder->select('SUM(point_in) as total_point_in');
@@ -201,7 +202,9 @@ class PointModel extends BaseModel
     function get_transaction($limit = '', $page = 1, $filter = [], $where = [])
     {
         $this->builder->select(
-            'point.*, customer.name AS customer, customer.customername as name, customer.contact, (point_in - point_out) AS transaction'
+            'point.*, customer.name AS customer, customer.name, customer.contact, (point_in - point_out) AS transaction
+            ,shop.shop_name
+            '
         );
         $this->builder->from($this->table_name);
         $this->builder->join(
@@ -209,6 +212,8 @@ class PointModel extends BaseModel
             'point.customer_id = customer.customer_id AND customer.deleted = 0',
             'left'
         );
+        $this->builder->join('shop', 'shop.shop_id = customer.shop_id','left');
+
         $this->builder->orderBy('point.created_date DESC');
         if (!empty($where)) {
             $this->builder->where($where);

@@ -18,9 +18,62 @@ class Transaction extends BaseController
         $this->CreditTopUpModel = new CreditTopUpModel();
 
     }
+    public function indexadmin()
+    {
 
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['full_name'])) {
+                $get['customer.full_name'] = $get['full_name'];
+            }
+            if (!empty($get['email'])) {
+                $get['customer.email'] = $get['email'];
+            }
+          
+            if (!empty($get['contact'])) {
+                $get['customer.contact'] = $get['contact'];
+            }
+            unset($get['contact']);
+
+            unset($get['email']);
+            unset($get['full_name']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $customer = $this->PointModel->get_transaction(10, $page, $filter);
+        $this->pageData['page'] = $customer['pagination'];
+        $this->pageData['start_no'] = $customer['start_no'];
+        $customer = $customer['result'];
+        // $this->debug($where);
+        // $this->debug($customer);
+        // $this->debug($customer);
+
+        $this->pageData['transaction'] = $customer;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/wallet/all_admin');
+        echo view('admin/footer');
+    }
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'customer.shop_id' => $this->shop_id
         ];

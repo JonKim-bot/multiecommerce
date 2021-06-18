@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\BaseController;
 use App\Models\OrdersModel;
 use App\Models\ProductCategoryModel;
+use App\Models\ShopModel;
 
 class Orderanalysis extends BaseController
 {
@@ -13,9 +14,8 @@ class Orderanalysis extends BaseController
         $this->pageData = [];
         $this->OrdersModel = new OrdersModel();
         $this->ProductCategoryModel = new ProductCategoryModel();
-        $shop_data = session()->get('shop_data');
-        $shop_function = $this->getShopFunction($shop_data['shop_id']);
-        $this->shop_function = $shop_function;
+        $this->ShopModel = new ShopModel();
+
 
 
         if (
@@ -25,11 +25,50 @@ class Orderanalysis extends BaseController
             //  redirect()->to(base_url('access/login/'));
             // echo "<script>location.href='".base_url()."/access/login';</script>";
         }
+
+        if (session()->get('admin_data')['type'] == 'MERCHANT') {
+            $shop_data = session()->get('shop_data');
+            $shop_function = $this->getShopFunction($shop_data['shop_id']);
+            $this->shop_function = $shop_function;
+            //  redirect()->to(base_url('access/login/'));
+        }
+
+        $this->shop_id =
+        ($_GET and $_GET['shop_id'])
+            ? $_GET['shop_id']
+            : $this->shop_id;
+     
     }
 
+    public function indexadmin()
+    {
+        $shop_id =
+        ($_GET and $_GET['shop_id'])
+            ? $_GET['shop_id']
+            : '1';
+     
+        $total_today_orders = $this->OrdersModel->get_total_today_orders($shop_id);
+        $total_number_orders = $this->OrdersModel->get_total_number_orders($shop_id);
+        $new_registered_member = $this->OrdersModel->get_new_registered_member($shop_id);
+        $this->pageData['total_today_orders'] = $total_today_orders;
+        $this->pageData['total_number_orders'] = $total_number_orders;
+        $this->pageData['new_registered_member'] = $new_registered_member;
+        $shop = $this->ShopModel->getAll();
+        $this->pageData['shop'] = $shop;
+
+
+        echo view('admin/header', $this->pageData);
+
+        echo view('admin/orderanalysis/all_admin');
+        echo view('admin/footer');
+    }
     public function index()
     {
-     
+
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $shop_id = $this->shop_id;
         $total_today_orders = $this->OrdersModel->get_total_today_orders($shop_id);
         $total_number_orders = $this->OrdersModel->get_total_number_orders($shop_id);
@@ -156,11 +195,25 @@ class Orderanalysis extends BaseController
     }
     public function detail()
     {
+        if($this->isMerchant == false){
+            $this->detail_admin();
+            return;
+        }
         $this->validate_function(7,$this->shop_function);
         echo view('admin/header', $this->pageData);
         echo view('admin/orderanalysis/detail');
         echo view('admin/footer');
     }
 
+    public function detail_admin()
+    {
+    
+        $shop = $this->ShopModel->getAll();
+        $this->pageData['shop'] = $shop;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/orderanalysis/detail_admin');
+        echo view('admin/footer');
+    }
   
 }

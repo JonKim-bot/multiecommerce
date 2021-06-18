@@ -26,15 +26,75 @@ class Shoprate extends BaseController
             'thrid_rate',
 
         ];
-        $this->pageData['array_rate'] = $array_rate;
-        $shop_data = session()->get('shop_data');
-        $shop_function = $this->getShopFunction($shop_data['shop_id']);
-        $this->shop_function = $shop_function;
-        $this->validate_function(1,$shop_function);
+     
+        if (session()->get('admin_data')['type'] == 'MERCHANT') {
+            //  redirect()->to(base_url('access/login/'));
+            $this->pageData['array_rate'] = $array_rate;
+            $shop_data = session()->get('shop_data');
+            $shop_function = $this->getShopFunction($shop_data['shop_id']);
+            $this->shop_function = $shop_function;
+            $this->validate_function(1,$shop_function);
+        }
+
+    }
+
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['full_name'])) {
+                $get['shop_rate.full_name'] = $get['full_name'];
+            }
+            if (!empty($get['email'])) {
+                $get['shop_rate.email'] = $get['email'];
+            }
+          
+            if (!empty($get['contact'])) {
+                $get['shop_rate.contact'] = $get['contact'];
+            }
+            unset($get['contact']);
+
+            unset($get['email']);
+            unset($get['full_name']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $shop_rate = $this->ShopRateModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $shop_rate['pagination'];
+        $this->pageData['start_no'] = $shop_rate['start_no'];
+        $shop_rate = $shop_rate['result'];
+        // $this->debug($where);
+        // $this->debug($shop_rate);
+        // $this->debug($shop_rate);
+
+        $this->pageData['shoprate'] = $shop_rate;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/shoprate/all_admin');
+        echo view('admin/footer');
     }
 
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];

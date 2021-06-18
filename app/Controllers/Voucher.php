@@ -23,15 +23,72 @@ class Voucher extends BaseController
                 base_url() .
                 "/access/login';</script>";
         }
-        $shop_data = session()->get('shop_data');
-        $shop_function = $this->getShopFunction($shop_data['shop_id']);
-        $this->shop_function = $shop_function;
-        $this->validate_function(1,$shop_function);
+        
+        if (session()->get('admin_data')['type'] == 'MERCHANT') {
+            //  redirect()->to(base_url('access/login/'));
+           
+            $shop_data = session()->get('shop_data');
+            $shop_function = $this->getShopFunction($shop_data['shop_id']);
+            $this->shop_function = $shop_function;
+            $this->validate_function(1,$shop_function);
+        }
+
 
     }
 
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['voucher'])) {
+                $get['voucher.voucher'] = $get['voucher'];
+            }
+            if (!empty($get['email'])) {
+                $get['voucher.email'] = $get['email'];
+            }
+          
+            unset($get['email']);
+            unset($get['voucher']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $voucher = $this->VoucherModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $voucher['pagination'];
+        $this->pageData['start_no'] = $voucher['start_no'];
+        $voucher = $voucher['result'];
+        // $this->debug($where);
+        // $this->debug($voucher);
+        // $this->debug($voucher);
+
+        $this->pageData['voucher'] = $voucher;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/voucher/all_admin');
+        echo view('admin/footer');
+    }
+
+
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];

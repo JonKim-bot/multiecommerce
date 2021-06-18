@@ -40,6 +40,8 @@
                                     <thead>
                                         <tr role="row">
                                             <th>No.</th>
+                                            <th data-sort="shop" data-filter="shop">Shop Name</th>
+
                                             <th data-sort="template_id" data-filter="template_id">Template</th>
                                             <th data-sort="is_sent" data-filter="is_sent">Sent</th>
                                             <th data-sort="is_approved" data-filter="is_approved">Approval</th>
@@ -63,7 +65,8 @@
                                             <tr>
                                                 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $i ?></a></td>
-                       
+                                                <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['shop_name'] ?></a></td>
+
 
                                                 <td><a href="<?= base_url() ?>/sms/detail/<?= $row['sms_id']?>"><?= $row['template'] ?></a></td>
                                                 <?php if($row['is_sent'] == 0){ ?>

@@ -258,13 +258,7 @@
                         Promocode
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop_payment_method' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop_payment_method">
-                        <i class="fa fa-qrcode c-sidebar-nav-icon"></i>
-                     Payment Method
-                    </a>
-                </li>
-                   
+          
                 
                 
                 

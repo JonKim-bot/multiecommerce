@@ -16,18 +16,72 @@ class Customer extends BaseController
         $this->CustomerModel = new CustomerModel();
         $this->OrdersModel = new OrdersModel();
         $this->PointModel  = new PointModel ();
-        $shop_data = session()->get('shop_data');
-        $shop_function = $this->getShopFunction($shop_data['shop_id']);
-        $this->shop_function = $shop_function;
-        $this->validate_function(1,$shop_function);
+      
+        if (session()->get('admin_data')['type'] == 'MERCHANT') {
+            //  redirect()->to(base_url('access/login/'));
+            $shop_data = session()->get('shop_data');
+            $shop_function = $this->getShopFunction($shop_data['shop_id']);
+            $this->shop_function = $shop_function;
+            $this->validate_function(1,$shop_function);
+        }
 
 
+
+
+    }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['customer'])) {
+                $get['customer.customer'] = $get['customer'];
+            }
+            if (!empty($get['email'])) {
+                $get['customer.email'] = $get['email'];
+            }
+          
+            unset($get['email']);
+            unset($get['customer']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $customer = $this->CustomerModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $customer['pagination'];
+        $this->pageData['start_no'] = $customer['start_no'];
+        $customer = $customer['result'];
+        // $this->debug($where);
+        // $this->debug($customer);
+        // $this->debug($customer);
+
+        $this->pageData['customer'] = $customer;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/customer/all_admin');
+        echo view('admin/footer');
     }
 
     public function index()
     {
 
- 
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'customer.shop_id' => $this->shop_id,
         ];
@@ -91,7 +145,7 @@ class Customer extends BaseController
                     'role_id' => 1,
                     'name' => $input['name'],
                     'username' => $input['username'],
-                    'contact' => $input['contact'],
+                    'customer' => $input['customer'],
                     'email' => $input['email'],
                     'password' => $hash['password'],
                     'salt' => $hash['salt'],
@@ -244,7 +298,7 @@ class Customer extends BaseController
                 $data = array(
                     'username' => $input['username'],
                     'name' => $input['name'],
-                    'contact' => $input['contact'],
+                    'customer' => $input['customer'],
                     'email' => $input['email'],
                     "modified_date" => date("Y-m-d H:i:s"),
                     'modified_by' => session()->get('login_id'),

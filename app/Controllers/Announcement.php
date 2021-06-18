@@ -19,9 +19,58 @@ class Announcement extends BaseController
             // echo "<script>location.href='".base_url()."/access/login';</script>";
         }
     }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['announcement'])) {
+                $get['announcement.announcement'] = $get['announcement'];
+            }
+            if (!empty($get['email'])) {
+                $get['announcement.email'] = $get['email'];
+            }
+          
+            unset($get['email']);
+            unset($get['announcement']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $announcement = $this->AnnouncementModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $announcement['pagination'];
+        $this->pageData['start_no'] = $announcement['start_no'];
+        $announcement = $announcement['result'];
+        // $this->debug($where);
+        // $this->debug($announcement);
+        // $this->debug($announcement);
+
+        $this->pageData['announcement'] = $announcement;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/announcement/all_admin');
+        echo view('admin/footer');
+    }
 
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];

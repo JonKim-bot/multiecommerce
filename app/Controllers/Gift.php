@@ -25,14 +25,70 @@ class Gift extends BaseController
                 base_url() .
                 "/access/login';</script>";
         }
-        $shop_data = session()->get('shop_data');
-        $shop_function = $this->getShopFunction($shop_data['shop_id']);
-        $this->shop_function = $shop_function;
-        $this->validate_function(2,$shop_function);
+   
+        if (session()->get('admin_data')['type'] == 'MERCHANT') {
+            //  redirect()->to(base_url('access/login/'));
+           
+            $shop_data = session()->get('shop_data');
+            $shop_function = $this->getShopFunction($shop_data['shop_id']);
+            $this->shop_function = $shop_function;
+            $this->validate_function(2,$shop_function);
+        }
+
     }
+    public function indexadmin()
+    {
+
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['gift'])) {
+                $get['gift.gift'] = $get['gift'];
+            }
+            if (!empty($get['email'])) {
+                $get['gift.email'] = $get['email'];
+            }
+          
+            unset($get['email']);
+            unset($get['gift']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $gift = $this->GiftModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $gift['pagination'];
+        $this->pageData['start_no'] = $gift['start_no'];
+        $gift = $gift['result'];
+        // $this->debug($where);
+        // $this->debug($gift);
+        // $this->debug($gift);
+
+        $this->pageData['gift'] = $gift;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/gift/all_admin');
+        echo view('admin/footer');
+    }
+
 
     public function index()
     {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
         $where = [
             'shop_id' => $this->shop_id,
         ];

@@ -38,6 +38,7 @@ class Promo extends BaseController
 
     }
 
+    
     public function change_status($promo_id){
         $where = [
             'promo_id' => $promo_id
@@ -54,9 +55,57 @@ class Promo extends BaseController
         return redirect()->to(base_url('promo/detail/' . $promo_id, "refresh"));
 
     }
-    public function index()
+    public function indexadmin()
     {
 
+        $page = 1;
+        $filter = array();
+
+        if ($_GET) {
+            $get = $this->request->getGet();
+
+            if (!empty($get['page'])) {
+                $page = $get['page'];
+            }
+            if (!empty($get['shop'])) {
+                $get['shop.shop_name'] = $get['shop'];
+            }
+            if (!empty($get['promo'])) {
+                $get['promo.promo'] = $get['promo'];
+            }
+            if (!empty($get['email'])) {
+                $get['promo.email'] = $get['email'];
+            }
+          
+            unset($get['email']);
+            unset($get['promo']);
+
+            unset($get['shop']);
+            unset($get['page']);
+            $filter = $get;
+        }
+
+   
+        $promo = $this->PromoModel->getAll(10, $page, $filter);
+        $this->pageData['page'] = $promo['pagination'];
+        $this->pageData['start_no'] = $promo['start_no'];
+        $promo = $promo['result'];
+        // $this->debug($where);
+        // $this->debug($promo);
+        // $this->debug($promo);
+
+        $this->pageData['promo'] = $promo;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/promo/all_admin');
+        echo view('admin/footer');
+    }
+    public function index()
+    {
+        if($this->isMerchant == false){
+            $this->indexadmin();
+            return;
+        }
       
         $promo = $this->PromoModel->getWhere(['promo.shop_id' => $this->shop_id]);
         $this->pageData['promo'] = $promo;
