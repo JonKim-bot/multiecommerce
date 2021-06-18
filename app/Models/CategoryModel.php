@@ -40,20 +40,33 @@ class CategoryModel extends BaseModel
         return $query->getResultArray();
 
     }
-    public function getWhere($where, $limit = '', $page = 1, $filter = array())
+
+    public function getAll($limit = '', $page = 1, $filter = array())
     {
-        $this->builder = $this->db->table($this->tableName);
-        $this->builder->select("category.*,shop.shop_name");
-        $this->builder->join('shop', 'shop.shop_id = category.shop_id');
+        $this->builder->select("category.*,shop.*");
+        $this->builder->join('shop', 'shop.shop_id = category.shop_id','left');
+        
+        if ($limit != '') {
+            $count = $this->getCount($filter);
+            // die($this->builder->getCompiledSelect(false));
+            $offset = ($page - 1) * $limit;
+            $pages = $count / $limit;
+            $pages = ceil($pages);
+            
+            $pagination = $this->getPaging($limit, $offset, $page, $pages, $filter,$this->builder);
 
-        $this->builder->where($where);
+            return $pagination;
 
+            // intval($limit);
+            // $this->db->limit($limit, $offset);
+        }
         // die($this->builder->getCompiledSelect(false));
 
         $query = $this->builder->get();
         return $query->getResultArray();
 
     }
+
     public function getWhereIn($whereIn, $limit = '', $page = 1, $filter = array())
     {
         $this->builder->select('*');

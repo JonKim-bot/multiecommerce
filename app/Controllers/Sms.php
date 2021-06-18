@@ -46,6 +46,7 @@ class Sms extends BaseController
                 $page = $get['page'];
             }
             if (!empty($get['shop'])) {
+                
                 $get['shop.shop_name'] = $get['shop'];
             }
             if (!empty($get['full_name'])) {

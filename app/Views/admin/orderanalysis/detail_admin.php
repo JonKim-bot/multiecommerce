@@ -20,7 +20,7 @@
                             <?php } ?>
                        </select>
                     </div>
-                    <input type="hidden" value="<?= $_GET['shop_id'] ?>" id='shop_id'>
+                    <input type="hidden" value="<?= isset($_GET['shop_id']) ? $_GET['shop_id'] : 0 ?>" id='shop_id'>
               <div class="row">
 
               

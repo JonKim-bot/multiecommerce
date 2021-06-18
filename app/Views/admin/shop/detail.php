@@ -103,7 +103,7 @@
                                                 <tr>
                                                         <td><h3>Website Link</h3></td>
                                                         <td>
-                                                        <a href="<?= base_url() ?>/main/index"><?= base_url() ?>/main/index</a>
+                                                        <a href="https://<?= $shop['slug'] ?>.webieasy.com/main">https://<?= $shop['slug'] ?>.webieasy.com/main</a>
                                                         </td>
 
                                                     </tr>
@@ -181,6 +181,20 @@
                                                         <td><h3>Bank</h3></td>
                                                         <td><?= $shop[
                                                             'bank'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Bank Account</h3></td>
+                                                        <td><?= $shop[
+                                                            'bank_account'
+                                                        ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Bank Holder</h3></td>
+                                                        <td><?= $shop[
+                                                            'bank_holder_name'
                                                         ] ?></td>
 
                                                     </tr>

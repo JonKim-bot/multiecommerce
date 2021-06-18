@@ -1184,27 +1184,17 @@ class Main extends BaseController
         // $shop_operating_hour = $this->ShopOperatingHourModel->getWhere($where);
 
         $product = $this->ProductModel->getWhere([
-            'product.shop_id' => $shop['shop_id'],
+            'shop_id' => $shop['shop_id'],
             'is_home' => 1,
         ]);
-        $where = [
-
-            'brand.shop_id' => $shop['shop_id']
-        ];
+       
         $brand = $this->BrandModel->getWhere($where);
 
-        $where = [
-            'category.shop_id' => $shop['shop_id'],
-
-        ];
+     
         $category = $this->CategoryModel->getWhere($where);
-        $where = [
-            'banner.shop_id' => $shop['shop_id']
-        ];
+  
         $banner = $this->BannerModel->getWhere($where);
-        $where = [
-            'about.shop_id' => $shop['shop_id']
-        ];
+    
         $about = $this->AboutModel->getWhere($where);
         // $payment_method = $this->PaymentMethod->getAll();
         // $shop_payment_method = $this->ShopPaymentMethodModel->getWhere($where);

@@ -48,6 +48,29 @@
                           <input type="text" class="form-control" name="shop_name" placeholder="e.g. Capital 中文" value="<?= $shop['shop_chinese_name'] ?>">
                       </div>
 
+                      <div class="form-group">
+                    <label for="banner">Bank</label>
+
+                    <select name="bank_id" class="select" id="" required>
+                        <?php foreach($bank as $row){ ?>
+                            <?php if($row['bank_id'] == $shop['bank_id']){ ?>
+                                <option selected value="<?= $row['bank_id'] ?>"><?= $row['bank']?></option>
+                            <?php }else{ ?>
+                                <option value="<?= $row['bank_id'] ?>"><?= $row['bank']?></option>
+
+                            <?php }?>
+
+                        <?php }?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Bank Holder Name</label>
+                        <input type="text" class="form-control" value="<?= $shop['bank_holder_name'] ?>" name="bank_holder_name" placeholder="e.g. Lim Jin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Bank Account</label>
+                        <input type="text" class="form-control" value="<?= $shop['bank_account'] ?>" name="bank_account" placeholder="e.g. 123213123123" required>
+                    </div>
                     <div class="form-group">
                         <label for="">Description</label>
                         <input type="text" class="form-control" name="description" value="<?= $shop['description'] ?>" placeholder="e.g. Capital Shop open since" required>
