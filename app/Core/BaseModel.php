@@ -92,23 +92,23 @@ class BaseModel extends Model
         // return $query->getResultArray();
 
       
-        $fields = $this->db->getFieldNames($this->tableName);
+        // $fields = $this->db->getFieldNames($this->tableName);
 
         $deleted = false;
-        foreach ($fields as $row) {
-            if ($row == "deleted") {
-                $deleted = true;
-            }
-        }
+        // foreach ($fields as $row) {
+        //     if ($row == "deleted") {
+        //         $deleted = true;
+        //     }
+        // }
 
         $this->setRunningNo();
 
         $this->builder->select('*');
         $this->builder->orderBy($this->tableName ."_id", "desc");
         
-        if ($deleted) {
+        // if ($deleted) {
             $this->builder->where($this->tableName . ".deleted", 0);
-        }
+        // }
         
         $this->builder->where($this->tableName . ".deleted", 0);
 
@@ -795,13 +795,13 @@ class BaseModel extends Model
             $pagination .= '<ul class="pagination">';
             if ($page > 1) {
                 $pagination .= '<li class="page-item">';
-                $pagination .= '<a class="page-link previo" data-page="' . ($page - 1) . '">Previous</a>';
+                $pagination .= '<a class="page-link previos" href='.strtok($_SERVER["REQUEST_URI"], '?') . "?page=" .($page - 1).'  data-page="' . ($page - 1) . '">Previous</a>';
                 $pagination .= '</li>';    
             }
             if ($page == 1) {
                 $pagination .= '<li class="page-item active"><a class="page-link" data-page="#">1</a></li>';
             } else {
-                $pagination .= '<li class="page-item"><a class="page-link" data-page="1">1</a></li>';
+                $pagination .= '<li class="page-item"><a class="page-link" href='.strtok($_SERVER["REQUEST_URI"], '?') . "?page=1".' data-page="1">1</a></li>';
             }
             if ($showing_from > 1) {
                 $pagination .= '<li class="page-item" disabled><span class="page-link">...</span></li>';
@@ -810,7 +810,7 @@ class BaseModel extends Model
                 if ($i == $page) {
                     $pagination .= '<li class="page-item active"><a class="page-link" data-page="#">' . $i . '</a></li>';
                 } else if($i < $showing_to AND $i > $showing_from) {
-                    $pagination .= '<li class="page-item"><a class="page-link" data-page="' . $i . '">' . $i . '</a></li>';
+                    $pagination .= '<li class="page-item"><a class="page-link" href='.strtok($_SERVER["REQUEST_URI"], '?'). "?page=" .($i).' data-page="' . $i . '">' . $i . '</a></li>';
                 }
             }
             if ($showing_to < $pages) {
@@ -819,11 +819,11 @@ class BaseModel extends Model
             if ($page == $pages) {
                 $pagination .= '<li class="page-item active"><a class="page-link" data-page="#">' . $pages . '</a></li>';
             } else {
-                $pagination .= '<li class="page-item"><a class="page-link" data-page="' . $pages . '">' . $pages . '</a></li>';
+                $pagination .= '<li class="page-item"><a class="page-link" href='.strtok($_SERVER["REQUEST_URI"], '?'). "?page=" .($pages).'  data-page="' . $pages . '">' . $pages . '</a></li>';
             }
             if ($page < $pages) {
             $pagination .= '<li class="page-item">';
-            $pagination .= '<a class="page-link" data-page="' . ($page + 1) . '">Next</a>';
+            $pagination .= '<a class="page-link" href='.strtok($_SERVER["REQUEST_URI"], '?'). "?page=" .($page + 1).'  data-page="' . ($page + 1) . '">Next</a>';
             $pagination .= '</li>';
             }
             $pagination .= '</ul>';

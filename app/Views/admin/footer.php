@@ -11,6 +11,7 @@
        
 <!-- include summernote css/js -->
 
+
         <script src="<?=base_url()?>/assets/js/core/bundle.js"></script>
        
         <script src="<?=base_url()?>/assets/js/core/icons.js"></script>
@@ -172,16 +173,11 @@
     }
   
 
-    // var audio = document.createElement("AUDIO")
-    // document.body.appendChild(audio);
-    // audio.src = "4.mp3";
+
     messaging.onMessage(function (payload) {
 
         document.getElementById('notification').muted = false;
         document.getElementById('notification').play();
-        // new Audio("<?= base_url() ?>assets/emenu/4.mp3").play();
-        // var song =new Sound("https://piegensoftware.com/restaurant/FirebaseWebPushNotification/4.mp3",100,true);
-        // console.log(payload);
         const notificationOption={
             body:payload.notification.body,
             icon:payload.notification.icon

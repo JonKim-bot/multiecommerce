@@ -108,12 +108,12 @@ class ProductCategory extends BaseController
         $where = [
             'category_id' => $product_category_id,
         ];
+
         $product_category = $this->CategoryModel->getWhere($where);
         if ($this->isMerchant == true) {
             $this->check_is_merchant_from_shop($product_category[0]['shop_id']);
         }
         // $this->show_404_if_empty($admin);
-
         $this->pageData['product_category'] = $product_category[0];
 
         echo view('admin/header', $this->pageData);

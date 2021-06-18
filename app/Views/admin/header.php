@@ -70,7 +70,6 @@
 				</svg> -->
             <span class="c-sidebar-brand-full" style="font-size:20px;">Ecommerce </span>
             <span class="c-sidebar-brand-minimized" style="font-size:20px;">JlnJln</span>
-            <audio id="notification" src="<?= base_url() ?>assets/emenu/4.mp3" style="visibility:hidden" muted></audio>
 
         </div>
         <?php
@@ -105,7 +104,7 @@
                 
 
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'paymentmethod' ? 'c-active' : null) ?>" href="<?= base_url() ?>/paymentmethod">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'paymentmethod' ? 'c-active' : null) ?>" href="<?= base_url() ?>/PaymentMethod">
                         <i class="cil-user c-sidebar-nav-icon"></i>
                         Payment Method
                     </a>
@@ -152,7 +151,7 @@
                 </li>
 
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'OrderCustomer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/OrderCustomer">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'Customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Customer">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
                         Customer
                     </a>

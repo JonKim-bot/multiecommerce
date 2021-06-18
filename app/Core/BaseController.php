@@ -68,6 +68,7 @@ class BaseController extends Controller
 
             }else{
                 $this->isMerchant = false;
+
             }
         }
        
@@ -108,8 +109,10 @@ class BaseController extends Controller
         }
     }
     public function check_is_merchant_from_shop($shop_id_item){
-        if($shop_id_item != $this->shop_id){
-            $this->show404();
+        if(session()->get('admin_data')['type'] == "MERCHANT"){
+            if($shop_id_item != $this->shop_id){
+                $this->show404();
+            }
         }
     }
     public function upload_image($name){

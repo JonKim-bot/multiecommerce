@@ -1,9 +1,13 @@
-full_name,city,post_code,url,contact,address,email
-123,,,,123,123,123@gmail.com
-"222 222",22,22,,+60169787592,22,yongrou24@hotmail.com
-Andy,,,,1232131,"10,jalan jaya putra",
-ben,,,,01838$030,"                                       ",jiasianglow@gmail.com
-boitanPowww,22,22,,+60169787592,22,yongrou24@hotmail.com
+full_name,city,post_code,url,contact,address,email,shop_name
+123,,,,123,123,123@gmail.com,"Capital Shop"
+1ahsbsv,,,,4665433,12344,,"Sample Restaurant"
+"222 222",22,22,,+60169787592,22,yongrou24@hotmail.com,"Capital Shop"
+adasd,,,,0121231234,"                                          <p>Taman Daya""</p>                                       ",,"Sample Restautant 4"
+Andy,,,,1232131,"10,jalan jaya putra",,"Capital Shop"
+asd,22,22,,6123,test,newmember@asd,"Capital Shop"
+ben,,,,01838$030,"                                       ",jiasianglow@gmail.com,"Capital Shop"
+boitanPowww,22,22,,+60169787592,22,yongrou24@hotmail.com,"Capital Shop"
+"Chan ren jian",,,,0129056351,"Jalan SS 1/13, Kampung Tunku, Petaling Jaya, Selangor, Malaysia",renjian.chan@hotmail.com,"Feed2u healthy meals"
 Everlyn,,,,010-5667225,"                                          <p>Jalan Ampang / Main Street""</p>
 <p>""</p>
 <p>""</p>
@@ -13,32 +17,34 @@ Everlyn,,,,010-5667225,"                                          <p>Jalan Ampan
 <p>""</p>
 <p>""</p>
 <p>""</p>
-<p>""</p>""                                       ",
-ff,,,,04668885,wtf,yongrou74@hotmail.com
-fokn,,,,016978756,wtf,yongrou74@hotmail.com
-foon,,,,016878421,"Petaling Street, George Street, 禧市 新南威尔士州澳大利亚",Onewj
-"FOON CHIN TIAN",,,,0169787592,"Jalan Nibong 14 , Taman Daya",18086264@imail.sunway.edu.my
-"FOON TIAN","Johor Bahru",81100,,+60169787592,"Jalan Nibong 14 , Taman Daya",yongrou74@hotmail.com
+<p>""</p>""                                       ",,"Capital Shop"
+ff,,,,04668885,wtf,yongrou74@hotmail.com,"Capital Shop"
+fokn,,,,016978756,wtf,yongrou74@hotmail.com,"Capital Shop"
+foon,,,,016878421,"Petaling Street, George Street, 禧市 新南威尔士州澳大利亚",Onewj,"Capital Shop"
+"FOON CHIN TIAN",,,,0169787592,"Jalan Nibong 14 , Taman Daya",18086264@imail.sunway.edu.my,"Capital Shop"
+"FOON TIAN","Johor Bahru",81100,,+60169787592,"Jalan Nibong 14 , Taman Daya",yongrou74@hotmail.com,"Capital Shop"
 Gsusus,,,,0234504040,"                                          <p>Jalan Ampang / Main Street""</p>
-<p>""</p>                                       ",
+<p>""</p>                                       ",,"Capital Shop"
 "jack person",,,,0169787592,"wtf
-gae",yongrou74@hotmail.com
+gae",yongrou74@hotmail.com,"Capital Shop"
 "Jon Kim",,,,0166797546,"                                          <p>Jalan Ampang / Main Street""</p>
 <p>""</p>
 <p>""</p>
 <p>""</p>
 <p>""</p>
-<p>""</p>                                       ",yongrou74@hotmail.com
-"Jon Kimmm",,,https://maps.google.com/?cid=3661050110496386939,0169787592,"Taman Daya, Jalan Sagu 15, Taman Daya, 新山柔佛马来西亚",chinli2001123@gmail.com
-kelvin,,,,019238039182,eerwerw,
-keo,,,,0234504040,hshej,jwkzezjexjrj
-"keo kai wen",,,,0167488222,10.SDDSADSDADA,
-Klkk,,,,0123434343,"J S L S Inter Collage, Mohammadpur Nawabali, Uttar Pradesh, India",
-qjsbsnzla,,,,017263830,"                                       ",Keokw123@gmail.com
-test,,,,17373,755,
-"Test 1",,,,012356789,"Jalan Klang Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
-testing,,,,1232131,srdfcgvhbjm,yongrou74@hotmail.com
-Tgh,,,,01456777554,"Jalan Klang Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
-Trst,,,,0125656565,"Jalan Klang Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",
-Wong,,,,0167192297,"                                          Jalan Ampang / Main Street                                       ",
-可ok,,,,0234504040,uwuwhw,
+<p>""</p>                                       ",yongrou74@hotmail.com,"Capital Shop"
+"Jon Kimmm",,,https://maps.google.com/?cid=3661050110496386939,0169787592,"Taman Daya, Jalan Sagu 15, Taman Daya, 新山柔佛马来西亚",chinli2001123@gmail.com,"Capital Shop"
+kelvin,,,,019238039182,eerwerw,,"Capital Shop"
+keo,,,,0234504040,hshej,jwkzezjexjrj,"Capital Shop"
+"keo kai wen",,,,0167488222,10.SDDSADSDADA,,"Capital Shop"
+Klkk,,,,0123434343,"J S L S Inter Collage, Mohammadpur Nawabali, Uttar Pradesh, India",,"Capital Shop"
+qjsbsnzla,,,,017263830,"                                       ",Keokw123@gmail.com,"Capital Shop"
+sohai,,,,4665433,"                                          <p>ao""</p>
+<p>""</p>""                                       ",,asdasdasd
+test,,,,17373,755,,"Capital Shop"
+"Test 1",,,,012356789,"Jalan Klang Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",,"Capital Shop"
+testing,,,,1232131,srdfcgvhbjm,yongrou74@hotmail.com,"Capital Shop"
+Tgh,,,,01456777554,"Jalan Klang Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",,"Capital Shop"
+Trst,,,,0125656565,"Jalan Klang Lama, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia",,"Capital Shop"
+Wong,,,,0167192297,"                                          Jalan Ampang / Main Street                                       ",,"Capital Shop"
+可ok,,,,0234504040,uwuwhw,,"Capital Shop"

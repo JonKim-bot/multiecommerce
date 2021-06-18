@@ -6,7 +6,7 @@ use App\Core\BaseController;
 use App\Models\OrderCustomerModel;
 use App\Models\OrdersModel;
 
-class OrderCustomer extends BaseController
+class Ordercustomer extends BaseController
 {
     public function __construct()
     {
@@ -30,7 +30,30 @@ class OrderCustomer extends BaseController
             $this->isMerchant = false;
         }
     }
+    public function export_customer_all()
+    {
+        
+        $order_customer = $this->OrderCustomerModel->getAll();
+        $filter = [
+            'order_customer_id',
+            'modified_date',
+            'modified_by',
+            'created_by',
+            'created_at',
+            'delivery_date',
 
+            'deleted',
+            'is_active',
+            'image',
+            'receipt_url',
+            'shop_id',
+            'product_id',
+        ];
+        $orders_csv = $this->unset_array($filter, $order_customer);
+
+        $url = $this->exports_to_csv($orders_csv, 'order_customer');
+
+    }
     public function export_customer()
     {
         
@@ -97,6 +120,7 @@ class OrderCustomer extends BaseController
 
         $page = 1;
         $filter = array();
+
 
         if ($_GET) {
             $get = $this->request->getGet();

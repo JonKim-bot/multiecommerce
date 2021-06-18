@@ -24,9 +24,9 @@
                     <a class="card-header-action">
                         <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                     </a>
-                    <a class="card-header-action" href="<?= base_url() ?>/order_customer/add">
+                    <!-- <a class="card-header-action" href="<?= base_url() ?>/order_customer/add">
                         <i class="cil-plus c-icon"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="card-body">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped dataTable table-bordered no-footer " id="order_customer_list_table" data-method="get" data-url="<?= base_url("ordercustomer") ?>" style="border-collapse: collapse !important">
+                                <table class="table table-striped dataTable table-bordered no-footer " id="order_customer_list_table" data-method="get" data-url="<?= base_url("OrderCustomer") ?>" style="border-collapse: collapse !important">
                                     <thead>
                                         <tr role="row">
                                         <th data-sort="shop" data-filter="shop">Shop</th>
@@ -71,12 +71,13 @@
                                         ?>
                                     </tbody>
                                 </table>
-                                <div class="custom_pagination" id="order_customer_list_table" data-table="order_customer_list_table" data-method="get" data-url="<?= base_url("ordercustomer") ?>">
+                                <div class="custom_pagination" id="order_customer_list_table" data-table="order_customer_list_table" data-method="get" data-url="<?= base_url("OrderCustomer") ?>">
                                     <?= $page ?>
                                 </div>
                               
                               
                             </div>
+
                         </div>
                     </div>
                     
@@ -87,7 +88,7 @@
         <script>
         function export_to_csv(){
 
-            var url = "<?= base_url() ?>/OrderCustomer/export_customer" ;
+            var url = "<?= base_url() ?>/OrderCustomer/export_customer_all" ;
             window.location.href = url;
         }
 

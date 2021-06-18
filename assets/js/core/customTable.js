@@ -127,7 +127,7 @@ function pagingInit(id) {
                 page: page
             }
             getParam = $.param(getParam);
-            $(this).attr("data-param", url + "?" + getParam);
+            // $(this).attr("data-param", url + "?" + getParam);
             
         }
     });

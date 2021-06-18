@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Core\BaseController;
 use App\Models\PaymentMethodModel;
 
-class PaymentMethod extends BaseController
+class Paymentmethod extends BaseController
 {
     public function __construct()
     {

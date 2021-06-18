@@ -24,9 +24,9 @@
                     <a class="card-header-action">
                         <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                     </a>
-                    <a class="card-header-action" href="<?= base_url() ?>/order_customer/add">
+                    <!-- <a class="card-header-action" href="<?= base_url() ?>/order_customer/add">
                         <i class="cil-plus c-icon"></i>
-                    </a>
+                    </a> -->
                 </div>
             </div>
             <div class="card-body">
