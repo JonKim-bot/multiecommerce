@@ -24,7 +24,7 @@
             <div class="col-md-6">
                 <div class="card">
                 <div class="c-card-header">
-                            OrderCustomer Info
+                Member Order Info
                             <div class="card-header-actions">
                                 <a class="card-header-action">
                                     <i class="cil-arrow-circle-top c-icon minimize-card"></i>
@@ -52,7 +52,7 @@
                                             <?php foreach ($orders as $row) { ?>
                                  
                                                 <td><?= $row[
-                                                    'created_at'
+                                                    'created_date'
                                                 ] ?> </td>
                                                 <td> RM<?= $row[
                                                     'grand_total'

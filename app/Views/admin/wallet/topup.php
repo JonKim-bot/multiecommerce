@@ -72,7 +72,7 @@
                             
                                     <td>
                                     <?php if($row['receipt'] != ""){ ?>
-                                        <a type="button" class="btn btn-warning" download href="<?= base_url() . $row['receipt'] ?>">
+                                        <a type="button" class="btn btn-warning" style="display:block" download href="<?= base_url() . $row['receipt'] ?>">
                                                 Download Receipt
                                         </a>
                                     <?php } ?>

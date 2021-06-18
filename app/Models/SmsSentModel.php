@@ -22,6 +22,8 @@ class SmsSentModel extends BaseModel
         $builder->join('order_customer', 'order_customer.order_customer_id = sms_sent.customer_id');
         
         $builder->where($where);
+        $builder->orderBy($this->tableName . "." . $this->primaryKey, 'DESC');
+
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -33,7 +35,8 @@ class SmsSentModel extends BaseModel
         $builder->select('sms_sent.*, order_customer.contact , order_customer.order_customer_id
         ');
         $builder->join('order_customer', 'order_customer.order_customer_id = sms_sent.customer_id');
-        
+        $builder->orderBy($this->tableName . "." . $this->primaryKey, 'DESC');
+
         
         $query = $builder->get();
         return $query->getResultArray();

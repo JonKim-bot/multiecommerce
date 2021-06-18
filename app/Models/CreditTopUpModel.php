@@ -23,6 +23,8 @@ class CreditTopUpModel extends BaseModel
         $builder->join('shop', 'shop.shop_id = credit_top_up.shop_id');
         
         $builder->where($where);
+        $builder->orderBy($this->tableName . "." . $this->primaryKey, 'DESC');
+
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -34,7 +36,8 @@ class CreditTopUpModel extends BaseModel
         $builder->select('credit_top_up.*, shop.shop_name
         ');
         $builder->join('shop', 'shop.shop_id = credit_top_up.shop_id');
-        
+        $builder->orderBy($this->tableName . "." . $this->primaryKey, 'DESC');
+
         $query = $builder->get();
         return $query->getResultArray();
     }

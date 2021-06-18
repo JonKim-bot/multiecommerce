@@ -218,7 +218,6 @@ class Customer extends BaseController
             $this->check_is_merchant_from_shop($customer[0]['shop_id']);
         }
         $orders = $this->OrdersModel->getWhere($where);
-        
         // $this->show_404_if_empty($admin);
         $total_order = array_column($orders, 'grand_total');
 

@@ -181,6 +181,7 @@ class Sms extends BaseController
         ];
         $order_customer = $this->OrderCustomerModel->getWhereContact($where);
         $this->pageData['order_customer'] = $order_customer;
+
         if ($_POST) {
             $input = $this->request->getPost();
 
@@ -212,11 +213,12 @@ class Sms extends BaseController
                             $this->SmsSentModel->insertNew($data_customer);
                         }
                     }else{
+
                         foreach($order_customer as $row){
                             $data_customer = [
                                 'sms_id' => $sms_id,
                                 'is_sent' => 0,
-                                'customer_id' => $row['contact'], 
+                                'customer_id' => $row['order_customer_id'], 
                                 'created_by' => session()->get('login_id'),
                                 'created_date' => date('Y-m-d H:i:s'),
                             ];
@@ -322,6 +324,7 @@ class Sms extends BaseController
         $url= 'https://www.sms123.net/api/send.php?';
         $apikey = '6e6962f9c1a409653c301a977af190cb';
         $sms_template = $this->sms_template($sms_id);
+        // $this->debug($sms_template);
         // $this->SmsModel->updateWhere(['sms.sms_id' => $sms_id] , ['is_sent' => 1]);
         foreach($sms_sent as $row){
 
