@@ -13,7 +13,7 @@
         <input type="button" value="Create PDF" 
             id="btPrint" onclick="createPDF()" />
     </p>
-    <div id="tab">
+    <div id="tab_reg">
         <table> 
 
             <tr>
@@ -35,7 +35,7 @@
 
 <script>
     function createPDF() {
-        var sTable = document.getElementById('tab').innerHTML;
+        var sTable = document.getElementById('tab_reg').innerHTML;
 
         var style = "<style>";
         style = style + "table {width: 100%;font: 17px Calibri;}";

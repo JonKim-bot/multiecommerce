@@ -2,7 +2,7 @@
         <input type="button" value="Create PDF" 
             id="btPrint" onclick="createPDF()" />
     </p>
-<div class="table-responsive" id="tab">
+<div class="table-responsive" id="tab_product">
                             <table class="table table-striped datatable table-bordered no-footer " id="product_list_table" data-method="get" data-url="<?= base_url("product") ?>" style="border-collapse: collapse !important">
                                     <thead>
                                         <tr role="row">
@@ -39,7 +39,7 @@
                         
 <script>
     function createPDF() {
-        var sTable = document.getElementById('tab').innerHTML;
+        var sTable = document.getElementById('tab_product').innerHTML;
 
         var style = "<style>";
         style = style + "table {width: 100%;font: 17px Calibri;}";
