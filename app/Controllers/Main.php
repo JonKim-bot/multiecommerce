@@ -985,7 +985,8 @@ class Main extends BaseController
             ]));
         }else{
             // $this->premier_pay($_POST['orders_id']);
-            $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
+            // $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
+            $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];
 
             //payment method link
             die(json_encode([
