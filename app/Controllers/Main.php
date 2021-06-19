@@ -1702,18 +1702,20 @@ class Main extends BaseController
             'orders.orders_id' => $orders_id
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];    
-
+        $orderId = $this->generateId();
+        $this->update_order_payment_id($orders_id,$orderId);
         $shop = $this->get_shop($orders['shop_id'],true);
         $detail = 'Pay for order ' . $orders['order_code']; 
         $CID = 'M161-U-20320';
         $signatureKey = 'hNyRMiIWlo8ijtd';
         $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] ;
         $callbackurl =   base_url() . '/main/gkash_callback';
-
+        // $returnurl ='http://capital-shop.piegendevelop.com/main';
+        // $callbackurl ='http://capital-shop.piegendevelop.com/main/call_back_to_order';
         $signature_arr = array(
             $signatureKey,
             $CID,
-            $orders['order_code'],
+            $orderId,
             number_format($orders['grand_total'], 2, '', ''),
             'MYR'
         );
@@ -1723,19 +1725,24 @@ class Main extends BaseController
         $data = array(
             'cid' => $CID,
             'currency' => "MYR",
-            'cart_id' => $orders['order_code'],
+            'cart_id' => $orderId,
             'detail' => $detail,
             'return_url' => $returnurl,
             'client_ip' => $_SERVER['REMOTE_ADDR'],
             'address' => $orders['address'],
-            'callbackurl' => $callbackurl,
+            'callback_url' => $callbackurl,
             'amount' => $orders['grand_total'],
             'signature' => $signature,
             'name' => $orders['full_name'],
-            'order_id' => $orders_id,
-            'email' => $orders['email'],
-            'phone' => $orders['contact'],
+            'order_id' => $orderId,
+            'post_url' => 'https://api-staging.pay.asia/api/paymentform.aspx',
+            // 'email' => $orders['email'],
+            'email' => 'yongrou74@hotmail.com',
+
+            'contact' => $orders['contact'],
         );
+
+        // $this->debug($data);
         $this->pageData['data'] = $data;
        
         echo view('admin/gkash', $this->pageData);

@@ -1,5 +1,5 @@
 <body onload="document.order.submit()">
-<form class="form-horizontal" name="form" method="post" action="<?php echo $post_url ?>">
+<form class="form-horizontal" name="form" method="post" action="<?php echo $data['post_url'] ?>">
 	<div class="form-group">
 	
         <div class="form-group">
@@ -12,28 +12,28 @@
 		<div class="form-group">
             <label class="col-sm-2 control-label">Company RemID *</label>
             <div class="col-sm-4">
-                <input name="CID" type="text" class="form-control" value="<?php echo 'M161-U-XXX'; ?>" />
+                <input name="CID" type="text" class="form-control" value="<?php echo $data['cid']; ?>" />
             </div>
         </div>
 		
 		<div class="form-group">
             <label class="col-sm-2 control-label">Currency *</label>
             <div class="col-sm-4">
-                <input name="v_currency" type="text" class="form-control" value="<?php echo'MYR'; ?>" />
+                <input name="v_currency" type="text" class="form-control" value="<?php echo $data['currency']; ?>" />
             </div>
         </div>
 		
 		<div class="form-group">
             <label class="col-sm-2 control-label">Amount *</label>
             <div class="col-sm-4">
-                <input name="v_amount" type="text" class="form-control" value="<?php echo  '1.00'; ?>" />
+                <input name="v_amount" type="text" class="form-control" value="<?php echo $data['amount']; ?>" />
             </div>
         </div>
 		
 		<div class="form-group">
             <label class="col-sm-2 control-label">Cart ID *</label>
             <div class="col-sm-4">
-                <input name="v_cartid" type="text" class="form-control" value="<?php echo  da ?>" />
+                <input name="v_cartid" type="text" class="form-control" value="<?php echo  $data['cart_id'] ?>" />
             </div>
         </div>
 		
@@ -61,21 +61,21 @@
 		<div class="form-group">
             <label class="col-sm-2 control-label">Return URL</label>
             <div class="col-sm-4">
-                <input name="returnurl" type="text" class="form-control" value="<?php echo $data['returnurl']; ?>" />
+                <input name="returnurl" type="text" class="form-control" value="<?php echo $data['return_url']; ?>" />
             </div>
         </div>
 		
 		<div class="form-group">
             <label class="col-sm-2 control-label">Callback URL</label>
             <div class="col-sm-4">
-                <input name="callbackurl" type="text" class="form-control" value="<?php echo $data['callbackurl']; ?>" />
+                <input name="callbackurl" type="text" class="form-control" value="<?php echo $data['callback_url']; ?>" />
             </div>
         </div>
 		
 		<div class="form-group">
             <label class="col-sm-2 control-label">Client IP</label>
             <div class="col-sm-4">
-                <input name="clientip" type="text" class="form-control" value="<?php echo  '127.0.0.1'; ?>" />
+                <input name="clientip" type="text" class="form-control" value="<?php echo  $data['client_ip']; ?>" />
             </div>
         </div>
 		
@@ -94,6 +94,15 @@
 			</label>
 		</div>
 		
-		<input name="signature" type="hidden" value="<?php echo  ''; ?>" />
+		<input name="signature" type="hidden" value="<?php echo  $data['signature']; ?>" />
     </form>
 </body>
+
+<?php 
+
+if ( strpos($data['post_url'], "https://api-staging.pay.asia") !== false) {
+	echo '<script type="text/javascript">
+		document.form.submit();
+	</script>';
+}
+?>
