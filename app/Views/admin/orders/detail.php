@@ -61,7 +61,7 @@
                                             <div class="table-responsive">
                                                 <table class="table">
                                                 <tr>
-                                                <td>Orders Tracking Link </td>
+                                                <td>Orders Tracking Link * Customer Can view the link on their payment page , if leave black , default tracking link will provided by system</td>
                                                 <td>
                                                 
                                                 <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url('/orders/add_tracking/' . $orders['orders_id']); ?>">
