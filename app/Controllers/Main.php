@@ -999,7 +999,39 @@ class Main extends BaseController
 
     }
 
-    
+    public function send_notification($registration_ids,$shop_name,$image){
+        
+        $url ="https://fcm.googleapis.com/fcm/send";
+
+        $fields=array(
+            // "to"=> $token,
+            'registration_ids' => ($registration_ids),
+
+            "notification"=>array(
+                "body"=>"Your have a new order",
+                "title"=> $shop_name . " orders",
+                "icon"=> base_url() . $image,
+                "click_action"=>"piegen"
+            )
+        );
+
+        $headers=array(
+            'Authorization: key=AAAAlnuq00s:APA91bE39qpxD2UojvFVjS2DTU0rvTO72y8D1LniB8IwYSnPtSR9lPd0f2yXV9EjO3K43oyyQb2jPQrTEwQem_x-NjGEX6yfAHVbXHoFfL2mMO37KpArnV8cD0vizICkH4FaC2QljSyb',
+            'Content-Type:application/json'
+        );
+
+        $ch=curl_init();
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_POST,true);
+        curl_setopt($ch,CURLOPT_HTTPHEADER,$headers);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($fields));
+        $result=curl_exec($ch);
+        // print_r($result);
+        curl_close($ch);
+    }
+
+
 
     public function make_payment(){
         $where = [
@@ -1639,7 +1671,7 @@ class Main extends BaseController
                 $shop = $this->ShopModel->getWhere($where)[0];
                 $url = base_url() . "/main/payment/" .  $code;
                 // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
-                // $shop_token = $this->ShopTokenModel->getWhere($where);
+
                 // foreach($shop_token as $row){
                 //     $this->send_notification($row['token'],$shop['shop_name'],$shop['image']);
                 // }
@@ -1673,6 +1705,16 @@ class Main extends BaseController
         }
     }
    
+    public function send_notification_to_shop($shop_id){
+        $where = [
+            'shop_id' => $shop_id,
+        ];
+        $shop_token = $this->ShopTokenModel->getWhere($where);
+        if(!empty($shop_token)){
+
+        }
+
+    }
 
     public function get_total(){
         $cart = $this->session->get('cart');

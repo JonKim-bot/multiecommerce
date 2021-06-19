@@ -15,5 +15,16 @@ class ShopTokenModel extends BaseModel
 
     }
 
+    function getWhere($where, $limit = '', $page = 1, $filter = array())
+    {
+        $builder = $this->db->table($this->tableName);
+        $builder->select('shop_token.*, shop.*,
+        ');
+        $builder->join('shop', 'shop.shop_id = shop_token.shop_id');
+        
+        $builder->where($where);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
     
 }
