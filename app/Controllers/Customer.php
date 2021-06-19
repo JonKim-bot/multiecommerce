@@ -13,6 +13,7 @@ class Customer extends BaseController
     {
 
         $this->pageData = array();
+        
         $this->CustomerModel = new CustomerModel();
         $this->OrdersModel = new OrdersModel();
         $this->PointModel  = new PointModel ();

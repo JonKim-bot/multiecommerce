@@ -37,6 +37,15 @@
                     <?php } ?>
                 </div>
                 <!-- Single Input Fields -->
+                <p>Downline : </p>
+                <ul>
+
+                    <?php
+                    foreach($downline as $row){ ?>
+                        <li><a href="<?= base_url() ?>/customer/detail/<?= $row['customer_id'] ?>" target="_blank" class="text-dark"> - <?= $row['contact'] ?></a></li>
+
+                    <?php } ?>
+                </ul>
                 <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/profile">
 
                 <div class="input-box">

@@ -548,14 +548,56 @@ class Main extends BaseController
             $this->set_customer_session($where['customer_id']);                
             return redirect()->to(base_url('/main/profile/' , "refresh"));
 
-        
-
 		}
-     
+        $where = [
+            'customer_id' => $this->session->get('customer_id'),
+        ];
+        $customer = $this->CustomerModel->getWhere($where);
+
+        $downline = $this->get_recursive_downline($customer);
+
+        $this->pageData['downline'] = $downline;
+        // $this->debug($downline);
+        
         $this->load_view('profile');
 
 	}
 
+    function get_recursive_downline($downline, $child = [])
+    {
+        // $this->debug($downline);
+        $got_child = false;
+
+        $parent = $child;
+
+        if (empty($parent)) {
+            $parent = $downline;
+        }
+
+        $child = [];
+
+        foreach ($parent as $row) {
+            $where = [
+                'customer.referal_id' => $row['customer_id'],
+            ];
+            $customers = $this->CustomerModel->getWhere($where);
+            // $this->debug($customers);
+            if (!empty($customers)) {
+                $got_child = true;
+
+                foreach ($customers as $customer) {
+                    array_push($downline, $customer);
+                    array_push($child, $customer);
+                }
+            }
+        }
+        // $this->debug($downline);
+        if ($got_child) {
+            return $this->get_recursive_downline($downline, $child);
+        } else {
+            return $downline;
+        }
+    }
     public function get_shop($slug,$is_id = false){
         if(!$is_id){
             
@@ -1042,6 +1084,7 @@ class Main extends BaseController
     function gkash_callback(){
         
         
+      
         try {
 
             if($_REQUEST){
@@ -1050,22 +1093,21 @@ class Main extends BaseController
 
                 $where = [
                     'response' => $response,
-                    'type' => 'callback'
+                    'type' => 'callback',
                 ];
                 
-                $senang = $this->SenangResponseModel->getWhere($where);
-
+                $senang = $this->PremierResponseModel->getWhere($where);
                 if(empty($senang)){
 
                     $data = array(
                         'response' => $response,
                         'type' => 'callback',
                     );
-                    $this->SenangResponseModel->insertNew($data);
+                    $this->PremierResponseModel->insertNew($data);
     
                     // return redirect()->to(url('success'));
     
-                    $this->call_back_to_order_senang($_REQUEST['order_id']);
+                    $this->call_back_to_order($_REQUEST['transId']);
                 }
                 // $this->debug($_REQUEST);
                 
@@ -1076,7 +1118,7 @@ class Main extends BaseController
                 'response' => $e->getMessage(),
                 'type' => basename($_SERVER['REQUEST_URI']),
             );
-            $this->SenangResponseModel->insertNew($data);
+            $this->PremierResponseModel->insertNew($data);
 
         }
             // if ($_REQUEST['status_id'] == 1){
@@ -1707,8 +1749,13 @@ class Main extends BaseController
         $this->update_order_payment_id($orders_id,$orderId);
         $shop = $this->get_shop($orders['shop_id'],true);
         $detail = 'Pay for order ' . $orders['order_code']; 
+        
         $CID = 'M161-U-20320';
         $signatureKey = 'hNyRMiIWlo8ijtd';
+        
+        // $CID = 'M161-U-33';
+        // $signatureKey = 'oAhVwtUxfrop4cI';
+        
         $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] ;
         $callbackurl =   base_url() . '/main/gkash_callback';
         // $returnurl ='http://capital-shop.piegendevelop.com/main';
