@@ -92,6 +92,7 @@ class Main extends BaseController
         $this->session = session();
         if (!empty($this->session->get("cart"))) {
             $this->pageData['cart'] = $this->session->get("cart");
+            
             $this->pageData['cart_count'] = count($this->pageData['cart']);
         } else {
             $this->pageData['cart'] = array();
