@@ -886,6 +886,7 @@ class Main extends BaseController
                 'promo.shop_id' => $_POST['shop_id'],
                 'promo.is_active' => 1,
             ];
+
             $promo = $this->PromoModel->getWhere($where);
             $whereshop = [
                 'shop.shop_id' => $_POST['shop_id']

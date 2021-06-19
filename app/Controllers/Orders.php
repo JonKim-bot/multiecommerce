@@ -239,6 +239,30 @@ class Orders extends BaseController
 
         return $orgininal;
     }
+    public function add_tracking($orders_id)
+    {
+
+        if ($_POST) {
+            $input = $this->request->getPost();
+
+            $error = false;
+
+            if (!$error) {
+                $where = [
+                    'orders.orders_id' => $orders_id
+                ];
+
+                $data = [
+                    'tracking_link' => $_POST['tracking_link'],
+                ];
+                $this->OrdersModel->updateWhere($where,$data);
+                return redirect()->to(base_url('orders/detail/' . $orders_id, 'refresh'));
+
+            }
+        }
+
+       
+    }
     public function export_orders()
     {
         $where = [

@@ -60,6 +60,19 @@
                                             
                                             <div class="table-responsive">
                                                 <table class="table">
+                                                <tr>
+                                                <td>Orders Tracking Link </td>
+                                                <td>
+                                                
+                                                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url('/orders/add_tracking/' . $orders['orders_id']); ?>">
+                                                    <input type="text" class="form-control" name="tracking_link" style="border:1px solid black" value="<?= $orders['tracking_link'] ?>"  required>
+                                                    <button class="btn btn-primary float-right" type="submit"> Save</button>
+                                                
+                                                </td>
+
+                                                </form>
+    
+                                            </tr>
                                             <tr>
                                                 <td>Order Status :</td>
                                                 <td class="badge badge-primary" style="font-size: 20px;"> <?= $orders['orders_status'] ?></td>    
@@ -103,6 +116,7 @@
                                                 <td><?= $orders['order_code'] ?></td>
     
                                             </tr>
+                                          
                                             <tr>
                                                 <td>Payment Status :</td>
                                                 <td><?= $orders['is_paid'] == 1 ?  "PAID" : "UNPAID" ?></td>    

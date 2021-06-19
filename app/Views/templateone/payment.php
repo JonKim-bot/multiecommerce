@@ -69,7 +69,17 @@
                     <div class="cart__right" style="padding-left:0px">
                         <div class="billing-address">
                             <div class="row">
+                                <div class="col-md-12">
+                             
+                                    <h4>Tracking Link * Merchant Will put tracking link here if got any</h4>
+                                   <p>
+                                   <a style="color:blue" target="_blank" href="<?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>">
+                                   <?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>
+                                   </a>
+                                   </p>
+                                </div>
                                 <div class="col-md-6">
+                                
                                 <h4>Status</h4>
                                 <p><?= $orders['orders_status'] ?></p>
                                 <h4>Receiver</h4>
