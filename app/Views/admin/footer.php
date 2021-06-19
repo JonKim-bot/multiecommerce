@@ -92,6 +92,7 @@
                     token : token,
                     device : device,
                 };
+                alert("asdsad");
                 $.ajax({
                     url: "<?= base_url() ?>/Ajax/register_token",
                     method:"POST",
@@ -172,9 +173,13 @@
         }
     }
   
-
+    function playSound(url) {
+        var a = new Audio(url);
+        a.play();
+    }
 
     messaging.onMessage(function (payload) {
+        playSound("<?=base_url()?>/assets/order_alert.mp3");
 
         document.getElementById('notification').muted = false;
         document.getElementById('notification').play();
