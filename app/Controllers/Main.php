@@ -113,7 +113,8 @@ class Main extends BaseController
         }
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
         $slug = $subdomain_arr[0];
-        $slug = 'capital-shop';
+
+        // $slug = 'capital-shop';
         $this->shop= $this->get_shop($slug);
 
         //1 membership
@@ -1016,7 +1017,7 @@ class Main extends BaseController
             "notification"=>array(
                 "body"=>"Your have a new order",
                 "title"=> $shop['shop_name'] . " orders",
-                "icon"=> base_url() . $shop['image'],
+                "icon"=> base_url() . $shop['header_icon'],
                 "click_action"=>"https://". $shop['slug'].".webieasy.com/main"
             )
         );
@@ -1988,7 +1989,10 @@ class Main extends BaseController
             if($orders['customer_id'] > 0){
                 $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
                 $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
-                $this->purchase_orders_percent($orders);
+                if($this->check_exist_function(6,$this->pageData['shop_function']) || $this->check_exist_function(8,$this->pageData['shop_function'])){
+
+                    $this->purchase_orders_percent($orders);
+                }
             }
         }
 

@@ -92,7 +92,7 @@
                     token : token,
                     device : device,
                 };
-                alert("asdsad");
+                // alert("asdsad");
                 $.ajax({
                     url: "<?= base_url() ?>/Ajax/register_token",
                     method:"POST",
@@ -209,6 +209,7 @@
         }
 
     });
+
     messaging.onTokenRefresh(function () {
         messaging.getToken()
             .then(function (newtoken) {

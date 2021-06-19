@@ -68,7 +68,7 @@ class Orders extends BaseController
             $shop_data = session()->get('shop_data');
             $this->shop_data = $shop_data;
             $shop_function = $this->getShopFunction();
-    
+            $this->shop_function = $shop_function;
             if($this->check_exist_function(6,$shop_function)){
                 $rate = [
                     'first_rate'  => 5 ,
@@ -158,7 +158,7 @@ class Orders extends BaseController
         echo view('admin/orders/kitchen_order');
     }
     public function set_paid($orders_id){
-       
+
         $where = array(
             "orders.orders_id" => $orders_id,
         );
@@ -188,7 +188,7 @@ class Orders extends BaseController
 
     }
     public function give_point($orders_id){
-
+        $shop_function = $this->shop_function;
         $where = [
             'orders.orders_id' => $orders_id,
         ];
@@ -202,7 +202,10 @@ class Orders extends BaseController
             if($orders['customer_id'] > 0){
                 $remarks = 'Point for ' . $orders['contact'] . " on orders " . $orders['order_code'];
                 $this->PointModel->point_in($orders['customer_id'],$orders['grand_total'],$remarks,$orders_id);
-                $this->purchase_orders_percent($orders);
+                if($this->check_exist_function(6,$shop_function) || $this->check_exist_function(8,$shop_function)){
+                    $this->purchase_orders_percent($orders);
+                }
+                // $this->purchase_orders_percent($orders);
             }
         }
 
@@ -259,6 +262,7 @@ class Orders extends BaseController
                 return redirect()->to(base_url('orders/detail/' . $orders_id, 'refresh'));
 
             }
+
         }
 
        

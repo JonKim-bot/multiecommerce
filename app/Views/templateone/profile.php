@@ -30,22 +30,26 @@
                 <div class="register-heading">
 
                     <span>Profile</span>
-                    <?php if(in_array(6,$shop_function)){ ?>
+                    <?php if(in_array(6,$shop_function) || in_array(8,$shop_function)){ ?>
                     <p>Referal your friend to enjoy voucher reward</p>
                     <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" 
                 style="margin: auto; border: 3px solid green; padding: 10px;display: block; margin-left: auto; margin-right: auto;">
                     <?php } ?>
                 </div>
                 <!-- Single Input Fields -->
+                <?php if(in_array(6,$shop_function) || in_array(8,$shop_function)){ ?>
+
                 <p>Downline : </p>
                 <ul>
 
                     <?php
                     foreach($downline as $row){ ?>
-                        <li><a href="<?= base_url() ?>/customer/detail/<?= $row['customer_id'] ?>" target="_blank" class="text-dark"> - <?= $row['contact'] ?></a></li>
+                        <li><a  target="_blank" class="text-dark"> - <?= $row['contact'] ?></a></li>
 
                     <?php } ?>
                 </ul>
+                <?php } ?>
+
                 <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/profile">
 
                 <div class="input-box">
