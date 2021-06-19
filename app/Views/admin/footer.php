@@ -179,10 +179,10 @@
     }
 
     messaging.onMessage(function (payload) {
-        playSound("<?=base_url()?>/assets/order_alert.mp3");
+        // playSound("<?=base_url()?>/assets/order_alert.mp3");
 
-        document.getElementById('notification').muted = false;
-        document.getElementById('notification').play();
+        // document.getElementById('notification').muted = false;
+        // document.getElementById('notification').play();
         const notificationOption={
             body:payload.notification.body,
             icon:payload.notification.icon

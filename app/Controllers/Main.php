@@ -18,11 +18,14 @@ use App\Models\BrandModel;
 use App\Models\OrderCustomerModel;
 use App\Models\PointModel;
 use App\Models\SenangResponseModel;
+use App\Models\ShopTokenModel;
 
 use App\Models\ShopPaymentMethodModel;
 use App\Models\ProductOptionSelectionModel;
 use App\Models\ProductOptionModel;
 use App\Models\OrderDetailModel;
+use App\Models\NotificationResponseModel;
+
 use App\Models\PaymentMethodModel;
 use App\Models\EmailModel;
 use App\Models\OrdersStatusModel;
@@ -49,6 +52,9 @@ class Main extends BaseController
 
     public function __construct()
     {
+        $this->NotificationResponseModel = new NotificationResponseModel();
+        $this->ShopTokenModel = new ShopTokenModel();
+
         $this->GiftModel = new GiftModel();
         $this->CustomerVoucherModel = new CustomerVoucherModel();
         $this->VoucherModel = new VoucherModel();
@@ -999,19 +1005,18 @@ class Main extends BaseController
 
     }
 
-    public function send_notification($registration_ids,$shop_name,$image){
+    public function send_notification($registration_ids,$shop,$orders_id){
         
         $url ="https://fcm.googleapis.com/fcm/send";
-
         $fields=array(
             // "to"=> $token,
             'registration_ids' => ($registration_ids),
 
             "notification"=>array(
                 "body"=>"Your have a new order",
-                "title"=> $shop_name . " orders",
-                "icon"=> base_url() . $image,
-                "click_action"=>"piegen"
+                "title"=> $shop['shop_name'] . " orders",
+                "icon"=> base_url() . $shop['image'],
+                "click_action"=>"https://". $shop['slug'].".webieasy.com/main"
             )
         );
 
@@ -1028,6 +1033,12 @@ class Main extends BaseController
         curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($fields));
         $result=curl_exec($ch);
         // print_r($result);
+        $data = [
+            'result' => json_encode($result),
+            'orders_id' => $orders_id,
+        ];
+        $this->NotificationResponseModel->insertNew($data);
+
         curl_close($ch);
     }
 
@@ -1671,7 +1682,7 @@ class Main extends BaseController
                 $shop = $this->ShopModel->getWhere($where)[0];
                 $url = base_url() . "/main/payment/" .  $code;
                 // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
-
+                $this->send_notification_to_shop($_POST['shop_id'],$order_id);
                 // foreach($shop_token as $row){
                 //     $this->send_notification($row['token'],$shop['shop_name'],$shop['image']);
                 // }
@@ -1705,13 +1716,16 @@ class Main extends BaseController
         }
     }
    
-    public function send_notification_to_shop($shop_id){
+    public function send_notification_to_shop($shop_id,$orders_id){
         $where = [
-            'shop_id' => $shop_id,
+            'shop_token.shop_id' => $shop_id,
         ];
         $shop_token = $this->ShopTokenModel->getWhere($where);
-        if(!empty($shop_token)){
 
+        if(!empty($shop_token)){
+            $registration_ids = array_column($shop_token,'token');
+            $shop_token = $shop_token[0];
+            $this->send_notification($registration_ids,$shop_token,$orders_id);
         }
 
     }
