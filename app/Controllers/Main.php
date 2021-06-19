@@ -558,7 +558,7 @@ class Main extends BaseController
 
         $this->pageData['downline'] = $downline;
         // $this->debug($downline);
-        
+
         $this->load_view('profile');
 
 	}
@@ -791,6 +791,7 @@ class Main extends BaseController
         ]);
         $required_option = array_column($product_option_required,'product_option_id');
         sort($required_option);
+        
         $required_option = join("_",$required_option);
         $where = [
 

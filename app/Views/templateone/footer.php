@@ -1,4 +1,5 @@
 <footer>
+
         <div class="footer-wrapper gray-bg">
             <div class="footer-area footer-padding">
                <!--? Subscribe Area Start -->
@@ -347,7 +348,7 @@
         if(promo_type_id == 1){
             $('#delivery_fee').text("RM " + "<?= $shop['delivery_fee'] ?>");
         }
-
+        get_total();
     }
     function clearCart(){
         
@@ -362,6 +363,11 @@
     function get_total(){
         $.post("<?= base_url('main/get_total') ?>", {}, function(data){
             data = JSON.parse(data);
+            var grand_total = (data.data).toFixed(2);
+            var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
+            
+            $('#grand_total').text("RM " + grand_total);
+            $('#subtotal').text("RM " + subtotal.toFixed(2));
             if(data.data == 0){
                 reset();
                 return;
@@ -369,11 +375,6 @@
 
                 check_promo();
             }
-            var grand_total = (data.data).toFixed(2);
-            var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
-            
-            $('#grand_total').text("RM " + grand_total);
-            $('#subtotal').text("RM " + subtotal.toFixed(2));
             $('.cart_count').text(data.count);
 
         });
@@ -388,6 +389,7 @@
         $.post("<?= base_url('main/delete_item') ?>", postParam, function(data){
             get_ajax_cart();
             get_header_cart();
+            get_total();
             check_promo();
             get_total();
             
