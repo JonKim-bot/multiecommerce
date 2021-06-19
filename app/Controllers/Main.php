@@ -92,7 +92,7 @@ class Main extends BaseController
         $this->session = session();
         if (!empty($this->session->get("cart"))) {
             $this->pageData['cart'] = $this->session->get("cart");
-            
+
             $this->pageData['cart_count'] = count($this->pageData['cart']);
         } else {
             $this->pageData['cart'] = array();
@@ -1401,6 +1401,8 @@ class Main extends BaseController
         }
     }
 
+
+    
     public function view_order_status($orders_id = "")
     {
         $where = array(
@@ -1700,27 +1702,39 @@ class Main extends BaseController
             'orders.orders_id' => $orders_id
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];    
-        // $this->update_order_payment_id($orders_id,$orderId);
 
         $shop = $this->get_shop($orders['shop_id'],true);
-        // $topup['grand_total'] = 2;
         $detail = 'Pay for order ' . $orders['order_code']; 
         $CID = 'M161-U-20320';
         $signatureKey = 'hNyRMiIWlo8ijtd';
         $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] ;
         $callbackurl =   base_url() . '/main/gkash_callback';
 
+        $signature_arr = array(
+            $signatureKey,
+            $CID,
+            $orders['order_code'],
+            number_format($orders['grand_total'], 2, '', ''),
+            'MYR'
+        );
+    
+        $signature = hash('sha512', strtoupper(implode(";", $signature_arr)));
+
         $data = array(
-            'merchant_id' => $merchant_id,
+            'cid' => $CID,
+            'currency' => "MYR",
+            'cart_id' => $orders['order_code'],
             'detail' => $detail,
             'return_url' => $returnurl,
+            'client_ip' => $_SERVER['REMOTE_ADDR'],
+            'address' => $orders['address'],
             'callbackurl' => $callbackurl,
             'amount' => $orders['grand_total'],
+            'signature' => $signature,
             'name' => $orders['full_name'],
             'order_id' => $orders_id,
             'email' => $orders['email'],
             'phone' => $orders['contact'],
-            'hash' => $hashed_string,
         );
         $this->pageData['data'] = $data;
        
