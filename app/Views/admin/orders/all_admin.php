@@ -52,7 +52,7 @@
                                 <input type="date" class="form-control filter" name="dateTo" value="<?= $dateTo ?>">
                             </div>
                             <div class="form-group col-sm-12 col-md-3">
-                                <label for="" class="c-label">Shop Select payment method = 3</label>
+                                <label for="" class="c-label">Select Shop payment method = 3</label>
                                 <br>
                             <select name="selected_shop_id" id="" class="form-control filter">
                                 <option  value="all">All</option>
