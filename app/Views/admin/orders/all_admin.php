@@ -94,13 +94,13 @@
 
 
                             
-                            <!-- <div class="card" style="width: 18rem;">
+                            <div class="card" style="width: 18rem;">
                                 <div class="card-body">
                                     <h5 class="card-title"><a class="btn btn-primary text-white" onclick ="export_to_csv()">Export Orders To Csv</a></h5>
 
                                 </div>
                             </div>
-                             -->
+                            
                             <div class="table-responsive">
                                 
                          
@@ -108,6 +108,7 @@
                                     <thead>
                                         <tr role="row">
                                         <th >No</th>
+                                        <th data-sort="order_payment_id" data-filter="order_payment_id">Order Payment Id</th>
                                         <th data-sort="shop_name" data-filter="shop_name">Shop Name</th>
 
                                             <th data-sort="created_at" data-filter="created_at">Order Date</th>
@@ -138,6 +139,8 @@
                                             <tr>
                                                 
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $i ?></a></td>
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['order_payment_id'] ?></a></td>
+
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['shop_name'] ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>"><?= $row['created_date'] ?></a></td>
@@ -229,24 +232,11 @@ function changestatus(orders_status_id){
 }
 
 
-function preorder(){
-
-var url = "<?= base_url() ?>/orders?preorder=1"  ;
-<?php if (isset($_GET['dateFrom'])) { ?>
-    var url = "<?= base_url() ?>/orders?preorder=1&dateFrom=" + "<?= $_GET[
-    'dateFrom'
-] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>" ;
-<?php } ?>
-window.location.href = url;
-
-}
-
-
 function export_to_csv(){
 
-    var url = "<?= base_url() ?>/orders/export_orders" ;
+    var url = "<?= base_url() ?>/orders/export_orders_payment" ;
 <?php if (isset($_GET['dateFrom'])) { ?>
-    var url = "<?= base_url() ?>/orders/export_orders?dateFrom=" + "<?= $_GET[
+    var url = "<?= base_url() ?>/orders/export_orders_payment?dateFrom=" + "<?= $_GET[
     'dateFrom'
 ] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>" ;
 <?php } ?>

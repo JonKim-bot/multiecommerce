@@ -1,5 +1,5 @@
 <body onload="document.order.submit()">
-<form class="form-horizontal" name="form" method="post" action="<?php echo $data['post_url'] ?>">
+<form class="form-horizontal" style="visibility:hidden" name="form" method="post" action="<?php echo $data['post_url'] ?>">
 	<div class="form-group">
 	
         <div class="form-group">

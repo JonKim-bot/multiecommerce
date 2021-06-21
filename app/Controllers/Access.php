@@ -290,6 +290,7 @@ class Access extends BaseController
             );
 
             $admin = $this->AdminModel->getWhere($where);
+            // $this->debug($admin);
             // $user = $this->UserModel->getWhere($where);
 
             if (!empty($admin)) {

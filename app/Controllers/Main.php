@@ -1012,7 +1012,7 @@ class Main extends BaseController
         
         $url ="https://fcm.googleapis.com/fcm/send";
         $where = [
-            'orders.order_id' => $orders_id,
+            'orders.orders_id' => $orders_id,
         ];
         $orders = $this->OrdersModel->getWhere($where)[0];
         $order_url = base_url() . "/main/payment/" .  $orders['order_code'];

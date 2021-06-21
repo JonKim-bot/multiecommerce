@@ -290,6 +290,7 @@ class Orders extends BaseController
         if (isset($_GET['dateFrom'])) {
             $where['DATE(orders.created_at) >='] = $dateFrom;
             $where['DATE(orders.created_at) <='] = $dateTo;
+
         }
         if ($status != '') {
             $where['orders.orders_status_id'] = $_GET['status_id'];
@@ -319,6 +320,64 @@ class Orders extends BaseController
         $orders_csv = $this->unset_array($filter, $orders_csv);
 
         $url = $this->exports_to_csv($orders_csv, 'orders');
+
+        // return redirect()->to($url);
+    }
+
+    public function export_orders_payment()
+    {
+        // $where = [
+        //     'orders.shop_id' => $this->shop_id,
+        // ];
+        $dateFrom =
+            ($_GET and isset($_GET['dateFrom']))
+                ? $_GET['dateFrom']
+                : date('Y-m-d');
+        $dateTo =
+            ($_GET and isset($_GET['dateTo']))
+                ? $_GET['dateTo']
+                : date('Y-m-d');
+        $status =
+            ($_GET and isset($_GET['status_id']) && $_GET['status_id'] != '')
+                ? $_GET['status_id']
+                : '';
+        $preorder =
+            ($_GET and isset($_GET['preorder'])) ? $_GET['preorder'] : '';
+
+        if (isset($_GET['dateFrom'])) {
+            $where['DATE(orders.created_at) >='] = $dateFrom;
+            $where['DATE(orders.created_at) <='] = $dateTo;
+            $where['orders.payment_method_id'] = 3;
+
+        }
+        if ($status != '') {
+            $where['orders.orders_status_id'] = $_GET['status_id'];
+        }
+        if ($preorder) {
+            $where['orders.is_preorder'] = 1;
+        }
+
+        $orders_csv = $this->OrdersModel->getWhere($where);
+        if ($this->isMerchant == true) {
+            $this->check_is_merchant_from_shop($orders_csv[0]['shop_id']);
+        }
+        $filter = [
+            'order_customer_id',
+            'payment_method_id',
+            'orders_status_id',
+            'modified_date',
+            'modified_by',
+            'created_by',
+            'deleted',
+            'is_active',
+            'image',
+            'receipt_url',
+            'shop_id',
+            'product_id',
+        ];
+        $orders_csv = $this->unset_array($filter, $orders_csv);
+
+        $url = $this->exports_to_csv_payment($orders_csv, 'orders');
 
         // return redirect()->to($url);
     }
@@ -424,7 +483,7 @@ class Orders extends BaseController
     public function exports_to_csv($data, $file_name)
     {
         $filter = [
-            'order_detail_id    ',
+            'order_detail_id',
             'modified_date',
             'modified_by',
             'created_by',
@@ -472,6 +531,41 @@ class Orders extends BaseController
                 }
                 fputcsv($handle, []);
             }
+        }
+        fclose($handle);
+        header('Content-type: text/csv');
+        header('Content-Disposition: attachment; filename="orders.csv"');
+        ob_clean();
+        readfile(base_url() . $path_return);
+        return base_url() . $path_return;
+        exit();
+    }
+
+    public function exports_to_csv_payment($data, $file_name)
+    {
+        $filter = [
+            'order_detail_id',
+            'modified_date',
+            'modified_by',
+            'created_by',
+            'deleted',
+            'image',
+            'order_detail_id',
+            'orders_id',
+            'created_at',
+            'product_id',
+        ];
+        $path = './public/csv/' . $file_name . '.csv';
+        $path_return = '/public/csv/' . $file_name . '.csv';
+
+        $handle = fopen($path, 'w');
+        $header = array_keys($data[0]);
+        //get all key from array and make it become header
+        fputcsv($handle, $header);
+
+        foreach ($data as $data_array) {
+            fputcsv($handle, $data_array);
+           
         }
         fclose($handle);
         header('Content-type: text/csv');
@@ -649,9 +743,12 @@ class Orders extends BaseController
             if (!empty($get['orders_status_id'])) {
                 $get['orders.orders_status_id'] = $get['orders_status_id'];
             }
-            
+            if (!empty($get['order_payment_id'])) {
+                $get['orders.order_payment_id'] = $get['order_payment_id'];
+            }
             
             unset($get['orders_status_id']);
+            unset($get['order_payment_id']);
 
             unset($get['delivery_fee']);
 
@@ -659,8 +756,11 @@ class Orders extends BaseController
             unset($get['contact']);
             unset($get['created_at']);
             unset($get['address']);
-
             unset($get['shop']);
+            unset($get['dateFrom']);
+            unset($get['orders_status_id']);
+            unset($get['preorder']);
+            unset($get['dateTo']);
             unset($get['page']);
             $filter = $get;
         }
@@ -684,13 +784,10 @@ class Orders extends BaseController
         if (isset($_GET['dateFrom'])) {
             $where['DATE(orders.created_at) >='] = $dateFrom;
             $where['DATE(orders.created_at) <='] = $dateTo;
+            $where['orders.payment_method_id'] = 3;
+
         }
-        if ($status != '') {
-            $where['orders.orders_status_id'] = $_GET['orders_status_id'];
-        }
-        if ($preorder) {
-            $where['orders.is_preorder'] = 1;
-        }
+      
         // $this->debug($where);
         $this->pageData['dateFrom'] = $dateFrom;
         $this->pageData['dateTo'] = $dateTo;
