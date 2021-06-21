@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="cart__right">
                         <div class="cart__coupon">
                             <h4>Promo Codes</h4>
@@ -82,34 +82,34 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <h3>Billing Details</h3>
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-12 form-group p_star">
                                     <input type="text" class="form-control" id="first" value="<?= isset($_SESSION['customer_data'])
                                               ? $_SESSION['customer_data']['name']
                                               : '' ?>" placeholder="First name" name="name" required/>
                                 </div>
                                
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-12 form-group p_star">
                                     <input type="tel" class="form-control" id="number" value="<?= isset($_SESSION['customer_data'])
                                               ? $_SESSION['customer_data']['contact']
                                               : '' ?>" placeholder="Phone number" name="contact" required/>
                                 </div>
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-12 form-group p_star">
                                     <input type="email" class="form-control" id="email" value="<?= isset($_SESSION['customer_data'])
                                                 ? $_SESSION['customer_data']['email']
                                                 : '' ?>"  placeholder="Email Address" name="email" required/>
                                 </div>
                                
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-12 form-group p_star">
                                     <input type="text" class="form-control" id="add1" value="<?= isset($_SESSION['customer_data'])
                                               ? $_SESSION['customer_data']['address']
                                               : '' ?>" placeholder="Address " name="address" required/>
                                 </div>
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-12 form-group p_star">
                                     <input type="text" class="form-control" id="add2" value="<?= isset($_SESSION['customer_data'])
                                               ? $_SESSION['customer_data']['post_code']
                                               : '' ?>" placeholder="Post code" name="post_code" required/>
                                 </div>
-                                <div class="col-md-12 form-group p_star">
+                                <div class="col-12 form-group p_star">
                                     <input type="text" class="form-control" id="city" value="<?= isset($_SESSION['customer_data'])
                                               ? $_SESSION['customer_data']['city']
                                               : '' ?>" placeholder="Town/City" name="city" required/>

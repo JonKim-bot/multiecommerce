@@ -114,7 +114,8 @@ class Main extends BaseController
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
         $slug = $subdomain_arr[0];
 
-        // $slug = 'capital-shop';
+
+        $slug = 'capital-shop';
         $this->shop= $this->get_shop($slug);
 
         //1 membership
@@ -1010,6 +1011,12 @@ class Main extends BaseController
     public function send_notification($registration_ids,$shop,$orders_id){
         
         $url ="https://fcm.googleapis.com/fcm/send";
+        $where = [
+            'orders.order_id' => $orders_id,
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];
+        $order_url = base_url() . "/main/payment/" .  $orders['order_code'];
+
         $fields=array(
             // "to"=> $token,
             'registration_ids' => ($registration_ids),
@@ -1018,7 +1025,7 @@ class Main extends BaseController
                 "body"=>"Your have a new order",
                 "title"=> $shop['shop_name'] . " orders",
                 "icon"=> base_url() . $shop['header_icon'],
-                "click_action"=>"https://". $shop['slug'].".webieasy.com/main"
+                "click_action"=> $order_url,
             )
         );
 
@@ -1137,24 +1144,45 @@ class Main extends BaseController
 
                 $response = json_encode($_REQUEST, true);
 
-                $where = [
-                    'response' => $response,
-                    'type' => 'callback',
-                ];
-                
-                $senang = $this->PremierResponseModel->getWhere($where);
-                if(empty($senang)){
+                if($_REQUEST['status'] == "88 - Transferred"){
 
-                    $data = array(
+                    $where = [
                         'response' => $response,
-                        'type' => 'callback',
-                    );
-                    $this->PremierResponseModel->insertNew($data);
+                        'type' => 'callback sucess',
+                    ];
+                    
+                    $senang = $this->PremierResponseModel->getWhere($where);
+                    if(empty($senang)){
     
-                    // return redirect()->to(url('success'));
+                        $data = array(
+                            'response' => $response,
+                            'type' => 'callback sucess',
+                        );
+                        $this->PremierResponseModel->insertNew($data);
+        
+                        // return redirect()->to(url('success'));
+        
+                        $this->call_back_to_order_gkash($_REQUEST['cartid']);
+                    }
+                }else{
+                    $where = [
+                        'response' => $response,
+                        'type' => 'callback failed',
+                    ];
+                    
+                    $senang = $this->PremierResponseModel->getWhere($where);
+                    if(empty($senang)){
     
-                    $this->call_back_to_order($_REQUEST['transId']);
+                        $data = array(
+                            'response' => $response,
+                            'type' => 'callback failed',
+                        );
+                        $this->PremierResponseModel->insertNew($data);
+        
+                    }
                 }
+
+
                 // $this->debug($_REQUEST);
                 
             }
@@ -1490,6 +1518,7 @@ class Main extends BaseController
         }
     }
 
+    
 
     
     public function view_order_status($orders_id = "")
@@ -1819,6 +1848,10 @@ class Main extends BaseController
         $callbackurl =   base_url() . '/main/gkash_callback';
         // $returnurl ='http://capital-shop.piegendevelop.com/main';
         // $callbackurl ='http://capital-shop.piegendevelop.com/main/call_back_to_order';
+        $signatureKey = strtoupper($signatureKey);
+        $CID = strtoupper($CID);
+        $orderId = strtoupper($orderId);
+
         $signature_arr = array(
             $signatureKey,
             $CID,
@@ -1828,7 +1861,6 @@ class Main extends BaseController
         );
     
         $signature = hash('sha512', strtoupper(implode(";", $signature_arr)));
-
         $data = array(
             'cid' => $CID,
             'currency' => "MYR",
@@ -1843,13 +1875,11 @@ class Main extends BaseController
             'name' => $orders['full_name'],
             'order_id' => $orderId,
             'post_url' => 'https://api-staging.pay.asia/api/paymentform.aspx',
-            // 'email' => $orders['email'],
-            'email' => 'yongrou74@hotmail.com',
-
+            'email' => $orders['email'],
+            // 'email' => 'yongrou74@hotmail.com',
             'contact' => $orders['contact'],
         );
 
-        // $this->debug($data);
         $this->pageData['data'] = $data;
        
         echo view('admin/gkash', $this->pageData);
@@ -2029,6 +2059,22 @@ class Main extends BaseController
 
     }
     function call_back_to_order($order_id){
+
+        
+        $where = [
+            'orders_log.order_payment_id' => $order_id
+        ];
+
+        $orderlog = $this->OrdersLogModel->getWhere($where)[0];
+
+        $where = [
+            'orders.orders_id' =>  $orderlog['orders_id']
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+        $this->update_order($orderlog['orders_id'],3);
+        
+    }
+    function call_back_to_order_gkash($order_id){
 
         
         $where = [
