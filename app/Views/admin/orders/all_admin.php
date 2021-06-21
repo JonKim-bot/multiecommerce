@@ -51,15 +51,23 @@
                                 <br>
                                 <input type="date" class="form-control filter" name="dateTo" value="<?= $dateTo ?>">
                             </div>
-                            <input type="hidden" value="<?= ($_GET and
-                            isset($_GET['preorder']))
-                                ? $_GET['preorder']
-                                : '' ?>" name="preorder">
+                            <div class="form-group col-sm-12 col-md-3">
+                                <label for="" class="c-label">Shop Select payment method = 3</label>
+                                <br>
+                            <select name="selected_shop_id" id="" class="form-control filter">
+                                <option  value="all">All</option>
+                            <?php foreach($shop as $row){ ?>
+                                <?php if( isset($_GET['selected_shop_id']) && $row['shop_id'] == $_GET['selected_shop_id']){ ?>
+                                    <option selected value="<?= $row['shop_id'] ?>"><?= $row['shop_name'] ?></option>
 
-                            <input type="hidden" value="<?= ($_GET and
-                            isset($_GET['orders_status_id']))
-                                ? $_GET['orders_status_id']
-                                : '' ?>" name="orders_status_id">
+                                <?php  }else{ ?>
+
+                                <option value="<?= $row['shop_id'] ?>"><?= $row['shop_name'] ?></option>
+                                <?php } ?>
+                            <?php } ?>
+                            </div>
+                       </select>
+                          
                         </div>
                         
                     </form>
@@ -238,7 +246,7 @@ function export_to_csv(){
 <?php if (isset($_GET['dateFrom'])) { ?>
     var url = "<?= base_url() ?>/orders/export_orders_payment?dateFrom=" + "<?= $_GET[
     'dateFrom'
-] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>" ;
+] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>&selected_shop_idjgi=" + "<?= $_GET['selected_shop_id'] ?>" ;
 <?php } ?>
 window.location.href = url;
 

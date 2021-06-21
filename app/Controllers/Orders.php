@@ -326,9 +326,12 @@ class Orders extends BaseController
 
     public function export_orders_payment()
     {
-        // $where = [
-        //     'orders.shop_id' => $this->shop_id,
-        // ];
+        if($_GET['selected_shop_id'] != "all"){
+
+            $where = [
+                'orders.shop_id' => $_GET['selected_shop_id'],
+            ];
+        }
         $dateFrom =
             ($_GET and isset($_GET['dateFrom']))
                 ? $_GET['dateFrom']
@@ -746,7 +749,12 @@ class Orders extends BaseController
             if (!empty($get['order_payment_id'])) {
                 $get['orders.order_payment_id'] = $get['order_payment_id'];
             }
+            if (!empty($get['selected_shop_id']) && $get['selected_shop_id'] != "all") {
+                $get['orders.shop_id'] = $get['selected_shop_id'];
+            }
             
+            unset($get['selected_shop_id']);
+
             unset($get['orders_status_id']);
             unset($get['order_payment_id']);
 
@@ -793,7 +801,8 @@ class Orders extends BaseController
         $this->pageData['dateTo'] = $dateTo;
 
         $orders = $this->OrdersModel->getWhere($where,10, $page, $filter);
-        
+        $shop = $this->ShopModel->getAll();
+        $this->pageData['shop'] = $shop;
         $this->pageData['page'] = $orders['pagination'];
         $this->pageData['start_no'] = $orders['start_no'];
         $orders = $orders['result'];
