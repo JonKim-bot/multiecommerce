@@ -45,17 +45,17 @@
                             </div>
                           
                             <select name="shop_id" id="" class="form-control selection">
-                            <?php foreach($shop as $row){ ?>
+                              <?php foreach($shop as $row){ ?>
 
-                                <?php if( isset($_GET['shop_id']) && $row['shop_id'] == $_GET['shop_id']){ ?>
-                                    <option selected value="<?= $row['shop_id'] ?>"><?= $row['shop_name'] ?></option>
+                                  <?php if( isset($_GET['shop_id']) && $row['shop_id'] == $_GET['shop_id']){ ?>
+                                      <option selected value="<?= $row['shop_id'] ?>"><?= $row['shop_name'] ?></option>
 
-                                <?php  }else{ ?>
+                                  <?php  }else{ ?>
 
-                                <option value="<?= $row['shop_id'] ?>"><?= $row['shop_name'] ?></option>
-                                <?php } ?>
-                            <?php } ?>
-                       </select>
+                                  <option value="<?= $row['shop_id'] ?>"><?= $row['shop_name'] ?></option>
+                                  <?php } ?>
+                              <?php } ?>
+                           </select>
                           
                         </div>
                         

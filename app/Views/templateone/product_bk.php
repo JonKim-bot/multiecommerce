@@ -1,258 +1,6 @@
 
 
-    <style>
-    .settings {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        /* padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 60px;
-  padding-right: 60px; */
-        border-radius: 15px;
-    }
-
-    .settings h1 {
-        margin: 0px;
-        font-size: 24px;
-        margin-bottom: 25px;
-        font-weight: bold;
-        color: white;
-    }
-
-    .settings form {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        overflow-y: scroll;
-        height: 400px;
-        flex-direction: column;
-    }
-
-    .settings form>label {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        padding-left: 10px;
-
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .settings form>label input {
-        width: 25px;
-        height: 25px;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-
-    .settings form>label input:checked {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: #716af3;
-        position: relative;
-    }
-
-    .settings form>label input:checked::after {
-        content: "\2713";
-        position: absolute;
-        color: white;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        left: 5px;
-    }
-
-    .settings form>label span {
-        margin-top: 5px;
-        margin-bottom: 5px;
-        color: black;
-        font-size: 16px;
-    }
-
-    .settings form>label+label {
-        border: 0;
-        border-top: 1px solid #eeeeee;
-        /* margin-top: 15px; */
-        /* border-top: 0.5px solid black; */
-    }
-
-    .set-content {
-        text-align: right;
-        padding: 10px;
-    }
-
-    .settings form .settings__content {
-        margin-left: -30px;
-        background-color: #1e1d2e;
-        margin-right: -30px;
-
-        margin-top: 35px;
-        margin-bottom: 35px;
-    }
-
-    .settings form .settings__content p {
-        padding: 30px;
-        color: #b3b2c5;
-    }
-
-    .settings form .settings__content p a {
-        color: #716af3;
-    }
-
-    .settings form .settings__footer {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-        flex-direction: column;
-    }
-
-    .settings form .settings__footer h1 {
-        margin-top: 0px;
-        margin-bottom: 35px;
-    }
-
-    .settings form .settings__footer label {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .settings form .settings__footer label+label {
-        margin-top: 15px;
-    }
-
-    .settings form .settings__footer label span {
-        margin-top: 5px;
-        margin-bottom: 5px;
-        color: black;
-    }
-
-    .settings form .settings__footer label input {
-        width: 30px;
-        border-radius: 50%;
-        margin-right: 10px;
-        height: 30px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-color: white;
-        cursor: pointer;
-    }
-
-    .settings form .settings__footer label input:checked {
-        position: relative;
-        background-color: #716af3;
-    }
-
-    .settings form .settings__footer label input:checked::after {
-        background-color: white;
-        content: "";
-        border-radius: 50%;
-        display: block;
-        width: 15px;
-        height: 15px;
-        position: absolute;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        left: 7px;
-    }
-
-    .settings form .settings__footer .send {
-        margin-top: 50px;
-    }
-
-    .settings form .settings__footer .send input {
-        line-height: 65px;
-        border-radius: 5px;
-        font-weight: bold;
-        color: white;
-        background-color: #716af3;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-    }
-
-    #modal-price {
-        text-align: left;
-        font-size: 24px;
-        color: #404044;
-    }
-
-    .item-cart-count-container-menu {
-        position: absolute;
-        right: 24px;
-        bottom: 44px;
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 50px;
-        z-index: 9999;
-        text-align: center;
-        width: 20px;
-        height: 20px;
-    }
-
-    .item-cart {
-        position: absolute;
-        top: -3px;
-        left: 3px;
-    }
-
-    .read_mor_btn2 {
-        background: transparent;
-        text-align: center;
-        width: 120px;
-        font-family: "Cantata One", serif;
-        color: #333333;
-        line-height: 40px;
-        display: inline-block;
-        font-size: 12px;
-        z-index: 2;
-        position: relative;
-        letter-spacing: 0.42px;
-        text-transform: uppercase;
-    }
-
-    .modal-title {
-        font-size: 23px;
-        margin: 0;
-        align-items: center;
-        text-align: center;
-    }
-
-    .modal-footer {
-        display: flex;
-        justify-content: flex-end;
-        height: 88px;
-        margin: 0px;
-    }
-
-    .modal-title>button {
-        position: relative;
-        top: -29px;
-    }
-</style>
-    
     <main>
-    
         <!-- Hero area Start-->
         <div class="hero-area section-bg2">
             <div class="container">
@@ -330,51 +78,44 @@
                                                 <?php } ?>
                                             </div>
                                             <div class="select-Categories pb-30">
-                                            <?php foreach ($product_option as $row) { ?>
-                                                    <p class="menu_title"><?= $row['name']  ?> <span style="color:red"><?= $row['minimum_required'] == 1 ? "*Required" : "" ?></span></p>
-
-
-                                                    <?php if ($row['minimum_required'] != 1) { ?>
-                                                        <div class="row no-gutters c-option">
-                                                            <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                <div class="col-6 c-selection">
-                                                                    <div class="form-check c-selection-box">
-                                                                        <label class="form-check-label c-sb-box">
-                                                                            <div class="c-sbb-left">
-                                                                                <input type="checkbox" class="form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
-                                                                                <p><?= $rowselect['product_option_name'] ?></p>
-                                                                            </div>
-                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
-
-                                                                            <!-- <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">Option 1 -->
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            <?php } ?>
-                                                        
-                                                        </div>
-                                                    <?php } else { ?>
-                                                        <div class="row no-gutters c-option">
-                                                            <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                <div class="col-6 c-selection">
-                                                                    <div class="form-check c-selection-box">
-                                                                        <label class="form-check-label c-sb-box">
-                                                                            <div class="c-sbb-left">
-                                                                                <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
-                                                                                <p><?= $rowselect['product_option_name'] ?></p>
-                                                                            </div>
-                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
-
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            <?php } ?>
-
-                                                        </div>
-
-
+                                                <?php foreach($product_option as $row){ ?>
+                                                <div class="select-job-items2 mb-30">
+                                                    <div class="col-xl-12">
+                                                    <?php if($row['minimum_required'] != 1){ ?>
+                                                        <select name="select2[]" class="product_option_select">
+                                                    <?php }else{ ?>
+                                                        <select name="select2[]" class="product_option_select" require>
                                                     <?php } ?>
+                                                           <?php foreach($row['selection'] as $key => $rowselect){ ?>
+                                                                <?php if($key == 0){ ?>
+                                                                    <option value="0" selection_price="0"
+                                                                    product_option_name="0"
+                                                                    min_required = "<?= $row['minimum_required'] ?>"
+                                                                    selection_name="0"
+                                                                    product_option_id="0"><?= $row['name'] ?> <?= $row['minimum_required'] == 1 ? "*Required" : '' ?></option>
+                                                                    <option value="<?= $rowselect['product_option_selection_id'] ?>"
+                                                                    product_option_name="<?= $row['name'] ?>"
+                                                                    min_required = "<?= $row['minimum_required'] ?>"
+                                                                     selection_price="<?= $rowselect['selection_price'] ?>" 
+                                                                     selection_name="<?= $rowselect['product_option_name'] ?>"
+                                                                     product_option_id="<?= $row['product_option_id'] ?>">
+                                                                     <?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></option>
+                                                                <?php }else{ ?>
+                                                                    <option value="<?= $rowselect['product_option_selection_id'] ?>"
+                                                                    product_option_name="<?= $row['name'] ?>"
+                                                                    min_required = "<?= $row['minimum_required'] ?>"
+                                                                     selection_price="<?= $rowselect['selection_price'] ?>" 
+                                                                     selection_name="<?= $rowselect['product_option_name'] ?>"
+                                                                     product_option_id="<?= $row['product_option_id'] ?>">
+                                                                     <?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></option>
 
+                                                                <?php } ?>
+
+                                                            <?php } ?>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <?php } ?>
                                                
                                             </div>
@@ -510,7 +251,7 @@
     var selected_value = [];
     var selected_count = 0;
 
-    $(".form-check-input").on('change click', function(){
+    $(".product_option_select").on('change', function(){
         var selected_value = get_selected_value().selected_value;
         <?php if($product['is_promo'] != 1){ ?>
             var product_price = <?= $product['product_price'] ?>;
@@ -523,8 +264,6 @@
         $('#product_price').text("RM " + (item_price));
 
     });
-
- 
     function calculate_total(selected_value,item_price){
         var product_quantity = $('#product_quantity').val();
 
@@ -565,53 +304,33 @@
     }
 
     
-    
-    function get_selected_value() {
+    function get_selected_value(){
         selected_count = 0;
         selected_total_price = 0;
         selected_value = [];
-        $("input:checkbox[name=type]:checked").each(function() {
+        $(".product_option_select option:selected").each(function(){
             var option_selected = {
-                selection_name: $(this).attr("selection_name"),
-                selection_price: $(this).attr("selection_price"),
-                product_option_name: $(this).attr("product_option_name"),
-                product_option_id: $(this).attr("product_option_id"),
-                min_required: $(this).attr("min_required"),
+                selection_name : $(this).attr("selection_name"),
+                selection_price : $(this).attr("selection_price"),
+                product_option_name : $(this).attr("product_option_name"),
+                product_option_id : $(this).attr("product_option_id"),
+                min_required : $(this).attr("min_required"),
 
-                product_option_selection_id: $(this).val(),
+                product_option_selection_id : $(this).val(),
             }
             selected_value.push(option_selected);
-            if (option_selected.product_option_id > 0) {
+            if(option_selected.product_option_id > 0){
                 selected_total_price = parseFloat(option_selected.selection_price) + parseFloat(selected_total_price);
                 selected_count = selected_count + 1;
                 //count total selected value
             }
         });
-        $(".form-radio:checked").each(function() {
-            var option_selected = {
-                product_option_id: $(this).attr("product_option_id"),
-                product_option_name: $(this).attr("product_option_name"),
-                selection_price: $(this).attr("selection_price"),
-                selection_name: $(this).attr("selection_name"),
-                product_option_selection_id: $(this).val(),
-            }
-            selected_value.push(option_selected);
-            if (option_selected.product_option_id > 0) {
-                selected_total_price = parseFloat(option_selected.selection_price) + parseFloat(selected_total_price);
-                selected_count = selected_count + 1;
-                //count total selected value
-            }
-            console.log(selected_value);
-        });
+        return {
+            selected_value : selected_value,
+            selected_total_price : selected_total_price,
+            selected_count : selected_count,
+        };
 
-        let return_json = {
-            selected_value: selected_value,
-            selected_total_price: selected_total_price,
-            selected_count: selected_count,
-        }
-
-        // alert(JSON.stringify(return_json));
-        return return_json;
     }
 
     $(".add-to-cart-button").on('click', function(){

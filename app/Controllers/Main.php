@@ -2,6 +2,7 @@
 
 
 
+
 namespace App\Controllers;
 
 use App\Core\BaseController;
@@ -49,6 +50,13 @@ class Main extends BaseController
 
 
 
+ // product filter select
+
+// home page change
+ 
+// product detail change
+
+// home page contact horizontal
 
     public function __construct()
     {
@@ -1276,6 +1284,7 @@ class Main extends BaseController
         $this->load_view('payment');
 
 
+        
     }
     
     public function cart()
@@ -1455,9 +1464,7 @@ class Main extends BaseController
 
                 $cart[$cart_index] = $data;
             }
-            
             $this->session->set("cart", $cart);
-
             $this->load_shopping_cart();
 
             // die(json_encode(array(
@@ -1485,6 +1492,7 @@ class Main extends BaseController
         echo view("templateone/ajax_cart",$this->pageData);
     }
 
+
     public function get_order_detail_option($order_detail){
  
         foreach($order_detail as $key=> $row_detail){
@@ -1508,6 +1516,7 @@ class Main extends BaseController
     }
 
     public function submit_contact(){
+        
         if($_POST){
             $data = $_POST;
             $this->ContactModel->insertNew($data);
@@ -1885,6 +1894,89 @@ class Main extends BaseController
         echo view('admin/gkash', $this->pageData);
 
     }
+
+
+    function gkash_pay_test($orders_id){
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];    
+        $orderId = $this->generateId();
+        $this->update_order_payment_id($orders_id,$orderId);
+        $shop = $this->get_shop($orders['shop_id'],true);
+        $detail = 'Pay for order ' . $orders['order_code']; 
+        
+        $CID = 'M161-U-20320';
+        $signatureKey = 'hNyRMiIWlo8ijtd';
+        
+        // $CID = 'M161-U-33';
+        // $signatureKey = 'oAhVwtUxfrop4cI';
+        
+        $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] ;
+        $callbackurl =   base_url() . '/main/gkash_callback';
+        // $returnurl ='http://capital-shop.piegendevelop.com/main';
+        // $callbackurl ='http://capital-shop.piegendevelop.com/main/call_back_to_order';
+        $signatureKey = strtoupper($signatureKey);
+        $CID = strtoupper($CID);
+        $orderId = strtoupper($orderId);
+
+        $signature_arr = array(
+            $signatureKey,
+            $CID,
+            $orderId,
+            number_format($orders['grand_total'], 2, '', ''),
+            'MYR'
+        );
+    
+        $signature = hash('sha512', strtoupper(implode(";", $signature_arr)));
+        $data = array(
+            'cid' => $CID,
+            'version' => '1.5.4',
+            'v_currency' => "MYR",
+            'v_cartid' => $orderId,
+            'v_productdesc' => $detail,
+            'returnurl' => $returnurl,
+            'clientip' => $_SERVER['REMOTE_ADDR'],
+            'address' => $orders['address'],
+            'callbackurl' => $callbackurl,
+            'v_amount' => $orders['grand_total'],
+            'signature' => $signature,
+            
+            'v_firstname' => $orders['full_name'],
+            'order_id' => $orderId,
+            'post_url' => 'https://api-staging.pay.asia/api/payment/submit',
+            'v_billemail' => $orders['email'],
+            // 'email' => 'yongrou74@hotmail.com',
+            'v_billphone' => $orders['contact'],
+        );
+
+        ksort($data);
+
+        $json_encoded_payload = json_encode($data, JSON_UNESCAPED_SLASHES);
+        print(">>> Request - <br>".print_r($json_encoded_payload,true)."<br><br>");
+
+
+        $url = 'https://api-staging.pay.asia/api/payment/submit';
+        // $url = 'https://api.premierpay.com.my/premierpay/api/merchant/order/store/'.$client_id.'/online';
+
+        // echo "<<< Response<br>";
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_encoded_payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: x-www-form-urlencoded'));
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        //     'Content-Type: x-www-form-urlencoded; charset=UTF-8',
+        // )); 
+
+        $result = curl_exec($ch);
+        die($result);
+        
+
+    }
+
+    
     function premier_pay($orders_id){
     
         $timestamp = round(microtime(true) * 1000);

@@ -232,6 +232,7 @@ class Customer extends BaseController
         $this->pageData['orders'] = $orders;
         // $this->show_404_if_empty($customer);
 
+        
      
         $downline = $this->get_recursive_downline($customer);
         $this->pageData['downline'] = $downline;

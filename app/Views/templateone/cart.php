@@ -40,6 +40,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
+                            
                             <tbody id="ajax_cart">
                                 
                                 

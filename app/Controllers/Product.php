@@ -270,6 +270,7 @@ class Product extends BaseController
                     }
                 }
 
+                
                 return redirect()->to(base_url('product', 'refresh'));
             }
         }

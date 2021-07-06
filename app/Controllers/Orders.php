@@ -347,6 +347,7 @@ class Orders extends BaseController
         $preorder =
             ($_GET and isset($_GET['preorder'])) ? $_GET['preorder'] : '';
 
+            
         if (isset($_GET['dateFrom'])) {
             $where['DATE(orders.created_at) >='] = $dateFrom;
             $where['DATE(orders.created_at) <='] = $dateTo;
@@ -553,6 +554,7 @@ class Orders extends BaseController
             'created_by',
             'deleted',
             'image',
+            
             'order_detail_id',
             'orders_id',
             'created_at',

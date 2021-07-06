@@ -68,9 +68,9 @@
                                                     <input type="text" class="form-control" name="tracking_link" style="border:1px solid black" value="<?= $orders['tracking_link'] ?>"  required>
                                                     <button class="btn btn-primary float-right" type="submit"> Save</button>
                                                 
+                                                </form>
                                                 </td>
 
-                                                </form>
     
                                             </tr>
                                             <tr>

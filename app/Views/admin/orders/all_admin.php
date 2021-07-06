@@ -246,7 +246,7 @@ function export_to_csv(){
 <?php if (isset($_GET['dateFrom'])) { ?>
     var url = "<?= base_url() ?>/orders/export_orders_payment?dateFrom=" + "<?= $_GET[
     'dateFrom'
-] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>&selected_shop_idjgi=" + "<?= $_GET['selected_shop_id'] ?>" ;
+] ?>"+ "&dateTo=" + "<?= $_GET['dateTo'] ?>&selected_shop_id=" + "<?= $_GET['selected_shop_id'] ?>" ;
 <?php } ?>
 window.location.href = url;
 
