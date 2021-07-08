@@ -1,6 +1,4 @@
-
-
-    <style>
+<style>
     .settings {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -250,145 +248,138 @@
         top: -29px;
     }
 </style>
-    
-    <main>
-    
+
+<main>
+    <div class="c-product">
         <!-- Hero area Start-->
-        <div class="hero-area section-bg2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="slider-area">
-                            <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
-                                <div class="hero-caption hero-caption2">
-                                    <h2>Product Details</h2>
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb justify-content-center">
-                                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Product Details</a></li> 
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
+        <div class="hero-area">
+            <div class="pcslider" id="pcslider" style="align-self:center">
+                <div class="h1-testimonial-active" style="width:100%">
+                    <?php foreach ($product_image as $row) { ?>
+                        <div class="single-testimonial text-center">
+                            <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
+                                <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
+                                <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i>
+                            </a>
                         </div>
+                    <?php } ?>
+                </div>
+
+                <!-- <div class="h1-testimonial-active mobileslider">
+                <?php foreach ($product_image as $row) { ?>
+                    <div class="single-testimonial text-center">
+                        <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images_">
+
+                            <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
+                            <i class="fa fa-eye text-dark fa-2x icon_view hvr-glow"></i>
+                        </a>
                     </div>
-                </div> 
+                <?php } ?>
+            </div> -->
             </div>
         </div>
         <!--  Hero area End -->
         <!--  services-area start-->
-        <div class="services-area2 pt-50">
+        <div class="services-area2">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="row">
                             <div class="col-xl-12">
                                 <!-- Single -->
-                                <div class="h1-testimonial-active mobileslider">
-                                    <?php foreach($product_image as $row){ ?>
-                                    <div class="single-testimonial text-center">
-                                    <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images_">
-   
-                                            <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
-                                            <i class="fa fa-eye text-dark fa-2x icon_view hvr-glow"></i>
-                                            </a>
-                                    </div>
-                                    <!-- Single Testimonial -->
-                 
-                                    <?php } ?>
-                                </div>
-                                <div class="single-services mb-0">
 
-                                    <div class="col-md-6 pcslider" id="pcslider" style="align-self:center">
-                                    <div class="h1-testimonial-active" style="width:90%">
-                                    <?php foreach($product_image as $row){ ?>
+                                <div class="single-services c-detail mb-0">
 
 
-                                        <div class="single-testimonial text-center">
-                                        <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
-   
-                                            <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
-                                        <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i>
-                                            </a>
-
-                                        </div>
-                                        <?php } ?>
-
-                                    </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
+                                    <div class="col-md-12 col-sm-12">
 
                                         <div class="features-caption">
-                                            <h3><?= $product['product_name'] ?></h3>
+                                            <h1><?= $product['product_name'] ?></h1>
+                                            <p><?= $product['product_description'] ?></p>
                                             <!-- <p>By Evan Winter</p> -->
                                             <div class="price">
-                                            <?php if($product['is_promo'] == 1){ ?>
-                                                    <span id="product_price">RM <?= $product['promo_price'] ?></span>
-                                                    <span style="text-decoration: line-through;">RM <?= $product['product_price'] ?></span>
-                                                <?php }else{ ?>
-                                                    <span id="product_price">RM <?= $product['product_price'] ?></span>
+                                                <?php if ($product['is_promo'] == 1) { ?>
+                                                    <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                    <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
+                                                <?php } else { ?>
+                                                    <h2 id="product_price">RM <?= $product['product_price'] ?></h2>
                                                 <?php } ?>
                                             </div>
-                                            <div class="select-Categories pb-30">
-                                            <?php foreach ($product_option as $row) { ?>
-                                                    <p class="menu_title"><?= $row['name']  ?> <span style="color:red"><?= $row['minimum_required'] == 1 ? "*Required" : "" ?></span></p>
+                                            <div class="c-discount">
+                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                            </div>
+                                            <div class="c-btn">
+                                                <div class="r-btn">
+                                                    加入会员
+                                                </div>
+                                            </div>
 
 
-                                                    <?php if ($row['minimum_required'] != 1) { ?>
-                                                        <div class="row no-gutters c-option">
-                                                            <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                <div class="col-6 c-selection">
-                                                                    <div class="form-check c-selection-box">
-                                                                        <label class="form-check-label c-sb-box">
-                                                                            <div class="c-sbb-left">
-                                                                                <input type="checkbox" class="form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
-                                                                                <p><?= $rowselect['product_option_name'] ?></p>
-                                                                            </div>
-                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
 
-                                                                            <!-- <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">Option 1 -->
-                                                                        </label>
+                                            <div class="product__details__widget" style="overflow: visible">
+                                                <div class="quantity">
+                                                    <div class="pro-qty">
+                                                        <span class="fa fa-minus dec qtybtn minus_qty"></span>
+                                                        <input type="text" readonly class="" value="1" id="product_quantity">
+                                                        <span class="fa fa-plus inc qtybtn add_qty"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="c-option">
+
+                                                <div class="select-Categories pb-30">
+                                                    <?php foreach ($product_option as $row) { ?>
+                                                        <p class="menu_title"><?= $row['name']  ?> <span style="color:red"><?= $row['minimum_required'] == 1 ? "*Required" : "" ?></span></p>
+
+
+                                                        <?php if ($row['minimum_required'] != 1) { ?>
+                                                            <div class="row no-gutters c-option">
+                                                                <?php foreach ($row['selection'] as $rowselect) { ?>
+                                                                    <div class="col-4 c-selection">
+                                                                        <div class="form-check c-selection-box">
+                                                                            <label class="form-check-label c-sb-box">
+                                                                                <div class="c-sbb-left">
+                                                                                    <input type="checkbox" class="form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
+                                                                                    <p><?= $rowselect['product_option_name'] ?></p>
+                                                                                </div>
+                                                                                <p>+ RM <?= $rowselect['selection_price'] ?></p>
+
+                                                                                <!-- <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">Option 1 -->
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            <?php } ?>
-                                                        
-                                                        </div>
-                                                    <?php } else { ?>
-                                                        <div class="row no-gutters c-option">
-                                                            <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                <div class="col-6 c-selection">
-                                                                    <div class="form-check c-selection-box">
-                                                                        <label class="form-check-label c-sb-box">
-                                                                            <div class="c-sbb-left">
-                                                                                <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
-                                                                                <p><?= $rowselect['product_option_name'] ?></p>
-                                                                            </div>
-                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                <?php } ?>
 
-                                                                        </label>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="row c-option">
+                                                                <?php foreach ($row['selection'] as $rowselect) { ?>
+                                                                    <div class="col-4 c-selection">
+                                                                        <div class="form-check c-selection-box">
+                                                                            <label class="form-check-label c-sb-box">
+                                                                                <div class="c-sbb-left">
+                                                                                    <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
+                                                                                    <p><?= $rowselect['product_option_name'] ?></p>
+                                                                                </div>
+                                                                                <p>+ RM <?= $rowselect['selection_price'] ?></p>
+
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            <?php } ?>
+                                                                <?php } ?>
 
-                                                        </div>
+                                                            </div>
 
+
+                                                        <?php } ?>
 
                                                     <?php } ?>
 
-                                                <?php } ?>
-                                               
-                                            </div>
-                                            
-                                            
-                                            <div class="product__details__widget" style="overflow: visible">
-                                                <div class="quantity" style="float:left">
-                                                <div class="pro-qty">
-                                                  <span class="fa fa-minus dec qtybtn minus_qty"></span>
-                                                       <input type="text" readonly class="text-white" value="1" id="product_quantity">
-                                                  <span class="fa fa-plus inc qtybtn add_qty"></span></div>
                                                 </div>
-                                                <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
-                                                <!-- <a href="#" class="border-btn share-btn"><i class="fas fa-share-alt"></i></a> -->
                                             </div>
                                         </div>
                                     </div>
@@ -399,7 +390,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <!-- services-area End-->
         <!--Books review Start -->
@@ -423,7 +414,7 @@
                 <!-- Nav Card -->
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
-                        <!-- Tab 1 -->  
+                        <!-- Tab 1 -->
                         <div class="row">
                             <div class="offset-xl-1 col-lg-9">
                                 <p><?= $product['product_description'] ?></p>
@@ -431,78 +422,77 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </section>
-        <?php if(in_array(3,$shop_function)){ ?>
-        <section class="latest-items section-padding fix">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section-tittle text-center mb-40">
-                        <h2>You May Like</h2>
+        <?php if (in_array(3, $shop_function)) { ?>
+            <section class="latest-items section-padding fix">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section-tittle text-center mb-40">
+                            <h2>You May Like</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="container">
-                <div class="latest-items-active">
-                    <!-- Single -->
-                    <?php foreach($upsales_product as $row){ ?>
-                    <div class="properties pb-30">
-                        <div class="properties-card">
-                            <div class="properties-img">
-                            <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
-                                <div class="socal_icon">
-                           
-                                    <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="properties-caption properties-caption2">
-                            <h3><a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
-                                <div class="properties-footer">
-                                    <div class="price">
-                                    <?php if($row['is_promo'] == 1){ ?>
-                                        <span>RM <?= $row['promo_price'] ?>
-                                            <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
-                                        </span>
-                                        <?php }else{ ?>
-                                            <span>RM <?= $row['product_price'] ?>
-                                        </span>
-                                        <?php } ?>
+                <div class="container">
+                    <div class="latest-items-active">
+                        <!-- Single -->
+                        <?php foreach ($upsales_product as $row) { ?>
+                            <div class="properties pb-30">
+                                <div class="properties-card">
+                                    <div class="properties-img">
+                                        <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
+                                        <div class="socal_icon">
+
+                                            <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="properties-caption properties-caption2">
+                                        <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
+                                        <div class="properties-footer">
+                                            <div class="price">
+                                                <?php if ($row['is_promo'] == 1) { ?>
+                                                    <span>RM <?= $row['promo_price'] ?>
+                                                        <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
+                                                    </span>
+                                                <?php } else { ?>
+                                                    <span>RM <?= $row['product_price'] ?>
+                                                    </span>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
+                        <!-- Single -->
                     </div>
-                    <?php } ?>
-                    <!-- Single -->
                 </div>
-            </div>
-        </section>
+            </section>
         <?php } ?>
         <!-- Books review End -->
-    </main>
+    </div>
+</main>
 
-    <script>
-    
-   function validate(total_selected){
-    var selected_value = get_selected_value().selected_value;
-    console.log(selected_value)
+<script>
+    function validate(total_selected) {
+        var selected_value = get_selected_value().selected_value;
+        console.log(selected_value)
 
         var selected_value = get_selected_value().selected_value
-        .filter(value =>  value.product_option_id  != '0' && value.min_required != '0')
-        .map(value => parseFloat(value.product_option_id))
-        .sort(function(a, b) {
-            return a - b;
-        }).join('_');
-        
+            .filter(value => value.product_option_id != '0' && value.min_required != '0')
+            .map(value => parseFloat(value.product_option_id))
+            .sort(function(a, b) {
+                return a - b;
+            }).join('_');
+
         console.log(selected_value);
-        if (selected_value !=  "<?= $required_option_id?>")
-        {
+        if (selected_value != "<?= $required_option_id ?>") {
             Swal.fire({
-                    title: "Option",
-                    text: "Please select all the required option",
-                    type: 'error'
+                title: "Option",
+                text: "Please select all the required option",
+                type: 'error'
             })
             return false;
         }
@@ -510,37 +500,37 @@
     var selected_value = [];
     var selected_count = 0;
 
-    $(".form-check-input").on('change click', function(){
+    $(".form-check-input").on('change click', function() {
         var selected_value = get_selected_value().selected_value;
-        <?php if($product['is_promo'] != 1){ ?>
+        <?php if ($product['is_promo'] != 1) { ?>
             var product_price = <?= $product['product_price'] ?>;
-        <?php }else{ ?>
+        <?php } else { ?>
             var product_price = <?= $product['promo_price'] ?>;
         <?php } ?>
         var product_quantity = $('#product_quantity').val();
-        var total_price =  ( product_price * product_quantity );
-        item_price =  calculate_total(selected_value,total_price);
+        var total_price = (product_price * product_quantity);
+        item_price = calculate_total(selected_value, total_price);
         $('#product_price').text("RM " + (item_price));
 
     });
 
- 
-    function calculate_total(selected_value,item_price){
+
+    function calculate_total(selected_value, item_price) {
         var product_quantity = $('#product_quantity').val();
 
-        selected_value.map(option => 
-           item_price = parseFloat(item_price) + (parseFloat(option.selection_price) * parseFloat(product_quantity)) 
+        selected_value.map(option =>
+            item_price = parseFloat(item_price) + (parseFloat(option.selection_price) * parseFloat(product_quantity))
         )
         return item_price.toFixed(2)
     }
-    $(".add_qty").on('click', function(){
+    $(".add_qty").on('click', function() {
         var product_quantity = parseFloat($('#product_quantity').val()) + 1;
         $('#product_quantity').val(product_quantity);
         calculate_product_price();
     });
-    $(".minus_qty").on('click', function(){
-        var product_qty =  $('#product_quantity').val();
-        if(product_qty > 1){
+    $(".minus_qty").on('click', function() {
+        var product_qty = $('#product_quantity').val();
+        if (product_qty > 1) {
             var product_quantity = parseFloat($('#product_quantity').val()) - 1;
             $('#product_quantity').val(product_quantity);
             calculate_product_price();
@@ -549,23 +539,23 @@
     });
 
 
-    function calculate_product_price(){
-       var total_selection_price = get_selected_value().selected_total_price;
-       <?php if($product['is_promo'] != 1){ ?>
+    function calculate_product_price() {
+        var total_selection_price = get_selected_value().selected_total_price;
+        <?php if ($product['is_promo'] != 1) { ?>
             var product_price = <?= $product['product_price'] ?>;
-            var product_price =  product_price + parseFloat(total_selection_price);
-        <?php }else{ ?>
+            var product_price = product_price + parseFloat(total_selection_price);
+        <?php } else { ?>
             var product_price = <?= $product['promo_price'] ?>;
-            var product_price =  product_price + parseFloat(total_selection_price);
+            var product_price = product_price + parseFloat(total_selection_price);
         <?php } ?>
 
-       var product_quantity = $('#product_quantity').val();
-       var total_price =  ( product_price * product_quantity );
-       $('#product_price').text("RM " + total_price.toFixed(2));
+        var product_quantity = $('#product_quantity').val();
+        var total_price = (product_price * product_quantity);
+        $('#product_price').text("RM " + total_price.toFixed(2));
     }
 
-    
-    
+
+
     function get_selected_value() {
         selected_count = 0;
         selected_total_price = 0;
@@ -614,37 +604,37 @@
         return return_json;
     }
 
-    $(".add-to-cart-button").on('click', function(){
+    $(".add-to-cart-button").on('click', function() {
         var selected_count = get_selected_value().selected_count;
         var selected_value = get_selected_value().selected_value;
         var total_selection_price = get_selected_value().selected_total_price;
-        <?php if($product['is_promo'] != 1){ ?>
+        <?php if ($product['is_promo'] != 1) { ?>
             var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
-        <?php }else{ ?>
+        <?php } else { ?>
             var product_price = <?= $product['promo_price'] ?> + parseFloat(total_selection_price);
         <?php } ?>
 
-        if(validate(selected_count) == false){
+        if (validate(selected_count) == false) {
             return;
         }
         var postParam = {
-            product_id : "<?= $product['product_id'] ?>",
-            product_single_price : product_price,
-            product_name : "<?=  $product['product_name'] ?>",
-            quantity : $('#product_quantity').val(),
-            product_price :  $('#product_price').text(),
-            product_selection : selected_value
+            product_id: "<?= $product['product_id'] ?>",
+            product_single_price: product_price,
+            product_name: "<?= $product['product_name'] ?>",
+            quantity: $('#product_quantity').val(),
+            product_price: $('#product_price').text(),
+            product_selection: selected_value
         }
-        $.post("<?= base_url('main/add_to_cart') ?>", postParam, function(data){
+        $.post("<?= base_url('main/add_to_cart') ?>", postParam, function(data) {
             Swal.fire({
-                    title: "Item added",
-                    text: "Item added to cart",
-                    type: 'success'
+                title: "Item added",
+                text: "Item added to cart",
+                type: 'success'
             })
-                get_header_cart();
-                get_total();
+            get_header_cart();
+            get_total();
         });
         // console.log(product)
 
     });
-    </script>
+</script>

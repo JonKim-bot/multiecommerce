@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/themify-icons.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/slick.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/nice-select.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css">
 
     <script src="https://kit.fontawesome.com/3d15aa1b08.js" crossorigin="anonymous"></script>
 
@@ -34,7 +35,7 @@
 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 300px) {
+/* @media only screen and (min-width: 300px) {
     #pcslider{
       display:none !important;
   }
@@ -42,10 +43,10 @@
       display:block !important;
   }
   
-}
+} */
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
     #pcslider{
       display:block !important;
   }
@@ -53,7 +54,7 @@
       display:none !important;
   }
 
-}
+} */
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {

@@ -237,7 +237,7 @@ if(product.length){
               slidesToShow: 1,
               slidesToScroll: 1,
               infinite: true,
-              dots: true,
+              dots: false,
               arrows:true
             }
           },
@@ -246,7 +246,7 @@ if(product.length){
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
               arrows:true
             }
           },
@@ -255,7 +255,7 @@ if(product.length){
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              dots: true,
+              dots: false,
               arrows:true
             }
           }
