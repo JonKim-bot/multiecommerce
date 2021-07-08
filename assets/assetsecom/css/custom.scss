@@ -4,15 +4,15 @@
 }
 @font-face {
     font-family: msyh;
-    src: url("../fonts/msyh-2.ttf");
+    src: url("../fonts/msyh-2.ttc");
 }
 @font-face {
     font-family: msyhbold;
-    src: url("../fonts/msyhbold.ttf");
+    src: url("../fonts/msyhbold.ttc");
 }
 @font-face {
     font-family: msyhlight;
-    src: url("../fonts/msyhlight.ttf");
+    src: url("../fonts/msyhlight.ttc");
 }
 
 .c-product {
@@ -73,21 +73,74 @@
                 box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
                 -webkit-box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
                 -moz-box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
-                .c-selection{
+                .c-selection {
                     margin: auto;
                     box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
                     -webkit-box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
                     -moz-box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
-                    .c-selection-box{
+                    .c-selection-box {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        .c-sb-box{
+                        .c-sb-box {
                             display: flex;
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+.c-login-back {
+    background-color: #f7f7f7;
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .c-header {
+        h1 {
+            font-family: "HanYiChaoCuHeiJian-1";
+        }
+    }
+}
+
+.c-login-form {
+    margin-top: -15rem;
+    min-height: 80vh !important;
+    @media screen and (min-width: 992px) {
+        margin-top: -14rem;
+    }
+    @media screen and (min-width: 1440px) {
+        margin-top: -15rem;
+    }
+    .login-form {
+        min-width: 80% !important;
+        border-radius: 10px;
+        padding: 1rem 2rem !important;
+        @media screen and (min-width: 768px) {
+            min-width: 60% !important;
+        }
+        @media screen and (min-width: 1440px) {
+            min-width: 40% !important;
+        }
+    }
+    .c-input {
+        border-radius: 10px;
+    }
+    .c-label {
+        font-family: "msyhbold" !important;
+    }
+    .login-footer {
+        a {
+            font-family: "msyh";
+            color: #ed1c24 !important;
+        }
+        .c-btn {
+            background-color: #ed1c24 !important;
+            padding: 0.5rem 3rem;
+            height: unset;
+            border-radius: 10px;
         }
     }
 }

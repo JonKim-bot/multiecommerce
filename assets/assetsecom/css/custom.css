@@ -4,15 +4,15 @@
 }
 @font-face {
   font-family: msyh;
-  src: url("../fonts/msyh-2.ttf");
+  src: url("../fonts/msyh-2.ttc");
 }
 @font-face {
   font-family: msyhbold;
-  src: url("../fonts/msyhbold.ttf");
+  src: url("../fonts/msyhbold.ttc");
 }
 @font-face {
   font-family: msyhlight;
-  src: url("../fonts/msyhlight.ttf");
+  src: url("../fonts/msyhlight.ttc");
 }
 .c-product .c-detail {
   background-color: transparent !important;
@@ -83,6 +83,63 @@
 }
 .c-product .c-detail .features-caption .select-Categories .c-selection .c-selection-box .c-sb-box {
   display: flex;
+}
+
+.c-login-back {
+  background-color: #f7f7f7;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.c-login-back .c-header h1 {
+  font-family: "HanYiChaoCuHeiJian-1";
+}
+
+.c-login-form {
+  margin-top: -15rem;
+  min-height: 80vh !important;
+}
+@media screen and (min-width: 992px) {
+  .c-login-form {
+    margin-top: -14rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .c-login-form {
+    margin-top: -15rem;
+  }
+}
+.c-login-form .login-form {
+  min-width: 80% !important;
+  border-radius: 10px;
+  padding: 1rem 2rem !important;
+}
+@media screen and (min-width: 768px) {
+  .c-login-form .login-form {
+    min-width: 60% !important;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .c-login-form .login-form {
+    min-width: 40% !important;
+  }
+}
+.c-login-form .c-input {
+  border-radius: 10px;
+}
+.c-login-form .c-label {
+  font-family: "msyhbold" !important;
+}
+.c-login-form .login-footer a {
+  font-family: "msyh";
+  color: #ed1c24 !important;
+}
+.c-login-form .login-footer .c-btn {
+  background-color: #ed1c24 !important;
+  padding: 0.5rem 3rem;
+  height: unset;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=custom.css.map */
