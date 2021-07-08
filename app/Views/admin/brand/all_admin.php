@@ -1,0 +1,84 @@
+
+<div class="c-subheader justify-content-between px-3">
+	<ol class="breadcrumb border-0 m-0 px-0 px-md-3">
+		<li class="breadcrumb-item">Home</li>
+		<li class="breadcrumb-item active"><a href="<?= base_url() ?>/brand">Brand</a></li>
+	</ol>
+	<!-- <div class="c-subheader-nav d-md-down-none mfe-2">
+		<a class="c-subheader-nav-link" href="#">
+			<i class="cil-settings c-icon"></i>
+			&nbsp;Settings
+		</a>
+	</div> -->
+</div>
+
+<main class="c-main">
+	
+<div class="container-fluid">
+	
+	<div class="fade-in">
+        <div class="card">
+            <div class="card-header">
+                Brands
+                <div class="card-header-actions">
+                    <a class="card-header-action">
+                        <i class="cil-arrow-circle-top c-icon minimize-card"></i>
+                    </a>
+                    <!-- <a class="card-header-action" href="<?= base_url() ?>/brand/add">
+                        <i class="cil-plus c-icon"></i>
+                    </a> -->
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                            <table class="table table-striped dataTable table-bordered no-footer " id="brand_list_table" data-method="get" data-url="<?= base_url("brand") ?>" style="border-collapse: collapse !important">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>No.</th>
+                                            <th data-sort="shop_name" data-filter="shop_name">Shop Name</th>
+
+                                            <th>Banner</th>
+
+                                            <th data-sort="title" data-filter="title">Brand</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $i = $start_no;
+                                            foreach($brand as $row){
+                                         ?>
+                                            <tr>
+                                                
+                                                <td><a href="<?= base_url() ?>/brand/detail/<?= $row['brand_id']?>"><?= $i ?></a></td>
+                                                <td><a href="<?= base_url() ?>/brand/detail/<?= $row['brand_id']?>"><?= $row['shop_name'] ?></a></td>
+
+                                                <td><a href="<?= base_url() ?>/brand/detail/<?= $row['brand_id']?>">
+                                                <i class="fa <?= $row['icons'] ?> fa-2x"></i>
+                                                </a></td>
+
+                                                <td><a href="<?= base_url() ?>/brand/detail/<?= $row['brand_id']?>"><?= $row['title'] ?></a></td>
+                                                
+                                                <td><a href="<?= base_url() ?>/brand/delete/<?= $row['brand_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
+                                            </tr>
+                                        <?php
+                                        $i++;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                                <div class="custom_pagination" id="brand_list_table" data-table="brand_list_table" data-method="get" data-url="<?= base_url("brand") ?>">
+                                    <?= $page ?>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
