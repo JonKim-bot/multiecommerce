@@ -202,4 +202,66 @@
   border-radius: 10px;
 }
 
+
+
+.c-profile-back {
+  background-color: #f7f7f7;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.c-profile-back .c-header h1 {
+  font-family: "HanYiChaoCuHeiJian-1";
+}
+
+.c-profile-form {
+  margin-top: -7rem;
+  min-height: 80vh !important;
+}
+@media screen and (min-width: 992px) {
+  .c-profile-form {
+    margin-top: -5rem;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .c-profile-form {
+    margin-top: -7rem;
+  }
+}
+.c-profile-form .profile-form {
+  max-width: 80% !important;
+  min-width: 80% !important;
+  border-radius: 10px;
+  padding: 1rem 2rem !important;
+}
+@media screen and (min-width: 768px) {
+  .c-profile-form .profile-form {
+    max-width: 60% !important;
+    
+    min-width: 60% !important;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .c-profile-form .profile-form {
+    max-width: 40% !important;
+    min-width: 40% !important;
+  }
+}
+.c-profile-form .c-input {
+  border-radius: 10px;
+}
+.c-profile-form .c-label {
+  font-family: "msyhbold" !important;
+}
+.c-profile-form .profile-footer a {
+  font-family: "msyh";
+  color: #ed1c24 !important;
+}
+.c-profile-form .profile-footer .c-btn {
+  background-color: #ed1c24 !important;
+  padding: 0.5rem 2rem;
+  height: unset;
+  border-radius: 10px;
+}
 /*# sourceMappingURL=custom.css.map */

@@ -1,17 +1,12 @@
 <!-- login Area Start -->
-<div class="c-login-back">
+<div class="c-profile-back">
     <div class="c-header">
         <h1>登入</h1>
     </div>
 </div>
-<div class="login-form-area c-login-form">
-    <div class="login-form">
-        <!-- Login Heading -->
-        <!-- <div class="login-heading">
-            <span>Login</span>
-            <p>Login now to get voucher benefit ! </p>
-        </div> -->
-        <!-- Single Input Fields -->
+<div class="profile-form-area c-profile-form">
+    <div class="profile-form">
+   
         <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/login">
 
             <div class="input-box">
@@ -20,6 +15,7 @@
                         <h2 class="text-danger">* <?= $error; ?></h2>
                     </div>
                 <?php } ?>
+                
                 <div class="single-input-fields">
                     <label class="c-label">电子邮件</label>
                     <input class="c-input" type="email" name="email" readonly value="<?= isset($_SESSION['customer_data'])
@@ -66,7 +62,7 @@
             </div>
 
             <!-- form Footer -->
-            <div class="login-footer">
+            <div class="profile-footer">
                 <button class="submit-btn3 c-btn" type="submit">Save</button>
             </div>
         </form>
