@@ -1,15 +1,15 @@
 <!-- login Area Start -->
-<div class="c-login-back">
+<div class="c-register-back">
+    <div class="c-header">
+        <h1>注册</h1>
     </div>
-    <div class="login-form-area c-login-form">
-        <div class="login-form">
-        <div class="c-header text-center">
-            <h1>Sign Up</h1>
-        </div>
-        <!-- Login Heading -->
-        <!-- <div class="login-heading">
-            <span>Login</span>
-            <p>Login now to get voucher benefit ! </p>
+</div>
+<div class="register-form-area c-register-form">
+    <div class="register-form">
+        <!-- register Heading -->
+        <!-- <div class="register-heading">
+            <span>register</span>
+            <p>register now to get voucher benefit ! </p>
         </div> -->
         <!-- Single Input Fields -->
         <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/signup">
@@ -26,23 +26,23 @@
                 </div>
                 <div class="single-input-fields">
                     <label class="c-label">Email Address</label>
-                    <input  class="c-input" type="email" name="email" placeholder="Enter email address" required>
+                    <input class="c-input" type="email" name="email" placeholder="Enter email address" required>
                 </div>
                 <div class="single-input-fields">
                     <label class="c-label">Contact</label>
-                    <input  class="c-input" type="tel" name="contact" placeholder="Enter contact" required>
+                    <input class="c-input" type="tel" name="contact" placeholder="Enter contact" required>
                 </div>
-                <?php if(in_array(6,$shop_function)){ ?>
+                <?php if (in_array(6, $shop_function)) { ?>
                     <div class="single-input-fields">
                         <label class="c-label">Referal Code</label>
-                        <input  class="c-input" type="text" name="referal_code" value="<?= $referal_code ?>" placeholder="Optional">
+                        <input class="c-input" type="text" name="referal_code" value="<?= $referal_code ?>" placeholder="Optional">
                     </div>
                 <?php } ?>
                 <div class="single-input-fields">
                     <label class="c-label">Password</label>
-                    <input  class="c-input" type="password" name="password" placeholder="Enter Password" required>
+                    <input class="c-input" type="password" name="password" placeholder="Enter Password" required>
                 </div>
-                <!-- <div class="single-input-fields login-check">
+                <!-- <div class="single-input-fields register-check">
                             <input type="checkbox" id="fruit1" name="keep-log">
                             <label for="fruit1">Keep me logged in</label>
                         <a href="#" class="f-right">Forgot Password?</a>
@@ -50,8 +50,8 @@
             </div>
 
             <!-- form Footer -->
-            <div class="login-footer">
-            <p> Already have an account? <a href="<?= base_url()  ?>/main/login"> Login</a> here</p>
+            <div class="register-footer">
+                <p> Already have an account? <a href="<?= base_url()  ?>/main/login"> Login</a> here</p>
                 <button class="submit-btn3 c-btn" type="submit">Sign Up</button>
             </div>
         </form>
