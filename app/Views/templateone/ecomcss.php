@@ -6425,6 +6425,135 @@ hr{
         margin-bottom:10px
     }
 }
+
+.profile-form-area{
+    display:-webkit-box;
+    display:-moz-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    -webkit-box-pack:center;
+    -moz-box-pack:center;
+    -ms-flex-pack:center;
+    -webkit-justify-content:center;
+    justify-content:center;
+    -webkit-box-align:center;
+    -moz-box-align:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+    align-items:center;
+    min-height:100vh;
+    padding:15px 0
+}
+.profile-form-area .profile-form{
+    background:#fff;
+    padding:55px 60px 50px 50px;
+    box-shadow:0px 10px 30px 0px rgba(13,12,13,0.2);
+    min-width:700px
+}
+@media only screen and (min-width: 576px) and (max-width: 767px){
+    .profile-form-area .profile-form{
+        padding:40px 20px 20px 26px;
+        min-width:95%
+    }
+}
+@media (max-width: 575px){
+    .profile-form-area .profile-form{
+        padding:40px 20px 20px 26px;
+        min-width:95%
+    }
+}
+.profile-form-area .profile-form .profile-heading{
+    text-align:center
+}
+.profile-form-area .profile-form .profile-heading span{
+    color:#140C40;
+    font-size:30px;
+    font-weight:600;
+    margin-bottom:16px;
+    display:block;
+    text-transform:capitalize
+}
+.profile-form-area .profile-form .input-box{
+    padding-top:35px;
+    padding-bottom:60px
+}
+@media (max-width: 575px){
+    .profile-form-area .profile-form .input-box{
+        padding-top:28px;
+        padding-bottom:20px
+    }
+}
+.profile-form-area .profile-form .input-box .single-input-fields label{
+    display:block;
+    font-size:17px;
+    margin-bottom:6px;
+    color:#140C40;
+    text-transform:capitalize;
+    font-weight:500;
+    text-align:left
+}
+.profile-form-area .profile-form .input-box .single-input-fields input{
+    border:1px solid #C9C9C9;
+    width:100%;
+    height:50px;
+    margin-bottom:20px;
+    padding:0 25px;
+    color:#000
+}
+.profile-form-area .profile-form .input-box .single-input-fields input::placeholder{
+    color:#777777;
+    font-weight:300;
+    font-size:13px
+}
+.profile-form-area .profile-form .profile-footer{
+    display:-webkit-box;
+    display:-moz-box;
+    display:-ms-flexbox;
+    display:-webkit-flex;
+    display:flex;
+    -webkit-box-pack:justify;
+    -moz-box-pack:justify;
+    -ms-flex-pack:justify;
+    -webkit-justify-content:space-between;
+    justify-content:space-between;
+    -webkit-box-align:center;
+    -moz-box-align:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+    align-items:center
+}
+@media only screen and (min-width: 576px) and (max-width: 767px){
+    .profile-form-area .profile-form .profile-footer{
+        display:block;
+        text-align:start
+    }
+}
+@media (max-width: 575px){
+    .profile-form-area .profile-form .profile-footer{
+        display:block;
+        text-align:start
+    }
+}
+.profile-form-area .profile-form .profile-footer p{
+    margin:0
+}
+@media only screen and (min-width: 576px) and (max-width: 767px){
+    .profile-form-area .profile-form .profile-footer p{
+        margin-bottom:28px;
+        display:block
+    }
+}
+@media (max-width: 575px){
+    .profile-form-area .profile-form .profile-footer p{
+        margin-bottom:28px;
+        display:block
+    }
+}
+.profile-form-area .profile-form .profile-footer p a{
+    color:var(--themecolor)
+}
+
 .register-form-area{
     display:-webkit-box;
     display:-moz-box;
@@ -6552,6 +6681,8 @@ hr{
 .register-form-area .register-form .register-footer p a{
     color:var(--themecolor)
 }
+
+
 .submit-btn3{
     background:var(--themecolor);
     height:60px;

@@ -1,7 +1,7 @@
 <!-- login Area Start -->
 <div class="c-profile-back">
     <div class="c-header">
-        <h1>登入</h1>
+        <h1>Profile</h1>
     </div>
 </div>
 <div class="profile-form-area c-profile-form">
