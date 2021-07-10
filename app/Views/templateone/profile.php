@@ -8,7 +8,7 @@
     <div class="profile-form">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
-                <img src="<?= base_url() ?>/assets/locksmith/img/callto-right.jpg" class="profile_picture" alt="">
+                <img src="<?= base_url() ?>/assets/locksmith/img/team/team-1.jpg" class="profile_picture" alt="">
 
             </div>
             <div class="col-md-12 text-center mt-2">
