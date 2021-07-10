@@ -1,11 +1,13 @@
 <!-- login Area Start -->
-<div class="c-login-back">
+<div class="c-register-back">
+    <div class="c-header">
+        <h1>注册</h1>
     </div>
-    <div class="login-form-area c-login-form">
-        <div class="login-form">
-        <div class="c-header text-center">
-            <h1>Sign Up</h1>
-        </div>
+</div>
+<div class="c-register-back">
+    </div>
+    <div class="register-form-area c-register-form">
+        
         <!-- Login Heading -->
         <!-- <div class="login-heading">
             <span>Login</span>
