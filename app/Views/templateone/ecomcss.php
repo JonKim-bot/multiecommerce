@@ -9099,4 +9099,15 @@ b,sup,sub,u,del{
 }
  
 
+.c-btn_ {
+    background:var(--themecolor);
+    padding: 0.5rem 2rem;
+    height: unset;
+    border-radius: 10px;
+}
+
+.profile_picture{
+    border-radius:5px;
+    width:300px;
+}
 </style>

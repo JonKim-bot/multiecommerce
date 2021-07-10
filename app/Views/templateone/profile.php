@@ -6,10 +6,20 @@
 </div>
 <div class="profile-form-area c-profile-form">
     <div class="profile-form">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <img src="<?= base_url() ?>/assets/locksmith/img/callto-right.jpg" class="profile_picture" alt="">
+
+            </div>
+            <div class="col-md-12 text-center mt-2">
+                 <button class="submit-btn3 c-btn_" >更改照片</button>
+            </div>
+
+        </div>
    
         <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/login">
 
-            <div class="input-box">
+                <div class="input-box">
                 <?php if (isset($error)) { ?>
                     <div class="alert-message text-danger" role="alert">
                         <h2 class="text-danger">* <?= $error; ?></h2>
