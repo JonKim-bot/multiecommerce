@@ -27,10 +27,7 @@
         <section class="cart spad">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-9" id="cart_product_padding" style="
-               
-                
-                ">
+                <div class="col-lg-9" id="cart_product_padding">
                     <div class="cart__table">
                         <table>
                             <thead style="border-bottom:1px solid black">
