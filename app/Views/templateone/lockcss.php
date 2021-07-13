@@ -1705,6 +1705,11 @@
 .items-img{
 	border-radius:10px;
 }
+.radio{
+    padding: 3px 10px 5px 5px;
+    border-radius: 8px;
+	margin:10px 10px;
+}
 
 .cart__table thead tr th {
     font-family:"Jost",sans-serif;
