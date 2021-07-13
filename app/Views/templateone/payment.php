@@ -27,10 +27,16 @@
         <section class="cart spad">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-9">
+                <div class="col-lg-9" style="
+                background: #fff;
+    padding: 55px 60px 50px 50px;
+    box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+    border-radius:30px
+                
+                ">
                     <div class="cart__table">
                         <table>
-                            <thead>
+                            <thead style="border-bottom:1px solid black">
                                 <tr>
                                     <th>Product</th>
                                     <th style="text-align:right">Total</th>
@@ -41,18 +47,18 @@
                                 <tr>
                                     <td class="cart__item">
                                         <div class="cart__item__pic">
-                                            <img src="<?= base_url() . $row['image'] ?>" alt="">
+                                            <img src="<?= base_url() . $row['image'] ?>" alt="" style="border-radius:10px">
                                         </div>
                                         <div class="cart__item__text ">
                                             <h6><?= $row['product_name'] ?></h6>
                                             <h6>Quantity : <?= $row['product_quantity'] ?></h6>
-
-                                            <span>RM <?= $row['product_price'] ?></span>
-                                            <?php if(!empty($row['order_detail_option'])){ ?>
-                                            <?php foreach($row['order_detail_option'] as $row_option){ ?>
-                                                <li><?= $row_option['option_name'] ?> - <?= $row_option['product_option_name'] ?><br> RM <?= $row_option['selection_price'] ?></li>
-                                            <?php  } ?>
-                                            <?php  } ?>
+                                            <ul>
+                                                <?php if(!empty($row['order_detail_option'])){ ?>
+                                                    <?php foreach($row['order_detail_option'] as $row_option){ ?>
+                                                        <li><?= $row_option['option_name'] ?> - <?= $row_option['product_option_name'] ?><br> RM <?= $row_option['selection_price'] ?></li>
+                                                    <?php  } ?>
+                                                <?php  } ?>
+                                            </ul>
                                         </div>
                                     </td>
                                    
