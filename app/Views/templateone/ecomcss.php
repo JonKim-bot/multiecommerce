@@ -1867,7 +1867,7 @@ hr{
     display:inline-block;
     font-size:16px !important;
     font-weight:500 !important;
-    border-radius:35px;
+    border-radius:15px;
     line-height:1;
     line-height:0;
     cursor:pointer;
