@@ -9110,18 +9110,8 @@ b,sup,sub,u,del{
     border-radius:10px;
     width:100%;
 }
-@media screen and (min-width: 992px) {
-    .profile_picture{
-        border-radius:10px;
-        width:100%;
-    }
-}
-@media screen and (min-width: 1440px) {
-    .profile_picture{
-        border-radius:10px;
-        width:100%;
-    }
-}
+
+
 
 @media screen and (min-width: 768px) {
     .profile_picture{

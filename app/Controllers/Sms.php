@@ -274,6 +274,7 @@ class Sms extends BaseController
         }
 
     }
+    
     public function validate_contact($contact){
         $input['contact'] = $contact;
         $input['contact'] = str_replace(" ","",$input['contact']);

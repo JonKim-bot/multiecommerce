@@ -1829,6 +1829,7 @@
 	font-weight: 600;
 	border: 1px solid var(--themecolor);
 	background: transparent;
+	
 }
 
 .cart__right {
@@ -1897,11 +1898,16 @@
 	padding: 0 30px;
 }
 .primary-btn{
+	border-radius:25px;
+
 	cursor: pointer;
 }
 .cart__coupon form a {
     color: #ffffff;
     font-size: 16px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1956,11 +1962,14 @@
 	padding: 14px 20px 12px;
 	text-align: center;
 }
-
+.billing_details input {
+	border-radius: 4.25rem !important;
+}
 .cart__total button {
 
     color: #ffffff;
     display: block;
+	border-radius:25px;
     background: #292621;
     font-size: 16px;
     font-family: "Rajdhani", sans-serif;
