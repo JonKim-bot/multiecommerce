@@ -9109,6 +9109,7 @@ b,sup,sub,u,del{
 .profile_picture{
     border-radius:10px;
     width:100%;
+    
 }
 
 #cart_product_padding{
@@ -9117,7 +9118,13 @@ b,sup,sub,u,del{
     box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
     border-radius:30px
 }
-
+.cart__table > th{
+    font-family: "HanYiChaoCuHeiJian-1";
+    color: #292621;
+    margin-top: 0px;
+    font-style: normal;
+    font-weight: 500;
+}
 @media screen and (max-width: 768px) {
     #cart_product_padding{
         padding: 10px 10px 10px 10px;

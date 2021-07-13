@@ -1704,9 +1704,7 @@
 }
 
 .cart__table thead tr th {
-	font-size: 22px;
-	font-family: "Rajdhani", sans-serif;
-	font-weight: 600;
+    font-family: "HanYiChaoCuHeiJian-1";
 	color: #1b2839;
 	text-transform: uppercase;
 	padding-bottom: 25px;
