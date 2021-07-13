@@ -1,7 +1,7 @@
 
     <main>
         <!-- Hero area Start-->
-        <div class="hero-area section-bg2">
+        <!-- <div class="hero-area section-bg2">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -21,13 +21,13 @@
                     </div>
                 </div> 
             </div>
-        </div>
+        </div> -->
         <!--  Hero area End -->
         <!--================Cart Area =================-->
         <section class="cart spad">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-12" id="cart_product_padding">
+                <div class="col-lg-9" id="cart_product_padding">
                     <div class="cart__table">
                         <table>
                             <thead style="border-bottom:1px solid black">
@@ -65,7 +65,7 @@
                     </div>
                     
                 </div>
-                <div class="col-lg-12 col-md-6" style="padding-top:35px">
+                <div class="col-lg-9 col-md-6" style="padding-top:35px">
                     <div class="cart__right" style="padding-left:0px">
                         <div class="billing-address">
                             <div class="row">
@@ -126,86 +126,96 @@
                     </div>
                     
                 </div> -->
+                <div class="col-md-9">
+
+
+                <div class="row">
                 <?php if(in_array(2,$shop_function)){ ?>
+    
+    <div class="col-lg-6">
 
-                <div class="col-lg-6">
-
-                <section class="items-product1 pt-30">
-                    <div>
-                    <h3 class="text-left">Purchase to get gift</h3>
-                        <div class="row">
-                <?php foreach($shop_gift as $row){ ?>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-                        <div class="single-items mb-20">
-                            <div class="items-img">
-                                <img src="<?= base_url() . $row['banner']?>" alt="">
-                            </div>
-                            <!-- <div class="items-details">
-                                <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
-                                <a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
-                            </div> -->
-                        </div>
-                        <a class="btn btn-primary w-50 p-t-20 m-b-20" style="margin-bottom:20px">Paid</a>
-
-
-                    </div>
-                    <?php } ?>
-                   
+    <section class="items-product1 pt-30">
+        <div>
+        <h3 class="text-left">Purchase to get gift</h3>
+            <div class="row">
+    <?php foreach($shop_gift as $row){ ?>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <div class="single-items mb-20">
+                <div class="items-img">
+                    <img src="<?= base_url() . $row['banner']?>" alt="">
                 </div>
+                <!-- <div class="items-details">
+                    <h5 class="text-white"><a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>">Purchase > RM <?= $row['order_amount'] ?></a></h5>
+                    <a href="<?= base_url() . "/main/gift_detail/" .   $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
+                </div> -->
             </div>
-        </section>
+            <a class="btn btn-primary w-50 p-t-20 m-b-20" style="margin-bottom:20px">Paid</a>
+
+
         </div>
         <?php } ?>
+       
+    </div>
+</div>
+</section>
+</div>
 
+<?php } ?>
+   
+    <div class="col-lg-6 col-md-6">
+        <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
+        <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
 
-                <div class="col-lg-6 col-md-6">
-                    <div class="cart__right text-center mb-5 bg-dark text-white mt-3 p-5" style="border-radius:5px;">
-                    <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
+            <?php }else{ ?>
 
-                        <?php }else{ ?>
-
-                        <div class="billing-address">
-                        <h4>Payment Method
-                                    </h4>
-                        <?php foreach ($payment_method as $row) { ?>
-                                <div class="radio">
-                                <?php if (
-                                    in_array(
-                                        $row['payment_method_id'],
-                                        $shop_payment_method
-                                    )
-                                ) { ?>
-                                <label><input type="radio" class="paymentmethod mt-2" name="optradio" id="payment_method_<?= $row[
-                                    'payment_method_id'
-                                ] ?>" > 
-                                <?= $row['payment_method'] ?>
-                                </label>
-                                <?php } ?>
-                                </div>
-
-
-
-                        <?php } ?>
-                        <?php } ?>
-                        </div>
-                        
-                      
-                        
-                            <div class="row">
-                            <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
-
-                               <a class="btn btn-primary m-auto w-50 p-t-20" id="" style="margin-top:20px">Paid</a>
-                            <?php }else{ ?>
-                                <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px">Pay</a>
-
-                            <?php } ?>
-                            </div>
-                        </div>
+            <div class="billing-address">
+            <h4>Payment Method
+                        </h4>
+            <?php foreach ($payment_method as $row) { ?>
+                    <div class="radio">
+                    <?php if (
+                        in_array(
+                            $row['payment_method_id'],
+                            $shop_payment_method
+                        )
+                    ) { ?>
+                    <label><input type="radio" class="paymentmethod mt-2" name="optradio" id="payment_method_<?= $row[
+                        'payment_method_id'
+                    ] ?>" > 
+                    <?= $row['payment_method'] ?>
+                    </label>
+                    <?php } ?>
                     </div>
+
+
+
+            <?php } ?>
+            <?php } ?>
+            </div>
+            
+          
+            
+                <div class="row">
+                <?php if($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1"){ ?>
+
+                   <a class="btn btn-primary m-auto w-50 p-t-20" id="" style="margin-top:20px">Paid</a>
+                <?php }else{ ?>
+                    <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px">Pay</a>
+
+                <?php } ?>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
+</div>
+                
+            
+                </div>
+
+                    
+        </section>
+                </div>
         <!--================End Cart Area =================-->
     </main>
 

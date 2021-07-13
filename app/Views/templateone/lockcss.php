@@ -1703,7 +1703,7 @@
 	border-bottom: 1px solid #f2f2f2;
 }
 .items-img{
-	border-radius:20px;
+	border-radius:15px;
 }
 
 .cart__table thead tr th {
