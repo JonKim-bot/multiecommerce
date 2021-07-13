@@ -132,7 +132,7 @@
 
                 <section class="items-product1 pt-30">
                     <div>
-                    <h3 class="text-center">Purchase to get gift</h3    >
+                    <h3 class="text-left">Purchase to get gift</h3>
                         <div class="row">
                 <?php foreach($shop_gift as $row){ ?>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">

@@ -1707,7 +1707,7 @@
 }
 
 .cart__table thead tr th {
-    font-family: "HanYiChaoCuHeiJian-1";
+    font-family:"Jost",sans-serif;
 	color: #1b2839;
 	text-transform: uppercase;
 	padding-bottom: 25px;
