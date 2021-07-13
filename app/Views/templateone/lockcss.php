@@ -1738,12 +1738,15 @@
 .cart__table tbody tr td.cart__item .cart__item__text {
 	overflow: hidden;
 	padding-top: 20px;
+	color:black;
+
 }
 
 .cart__table tbody tr td.cart__item .cart__item__text h6 {
 	font-size: 15px;
+	font-weight:bold;
+	color:black;
 	font-family: "Open Sans", sans-serif;
-	color: #888888;
 	margin-bottom: 6px;
 }
 
