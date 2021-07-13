@@ -9111,7 +9111,19 @@ b,sup,sub,u,del{
     width:100%;
 }
 
+#cart_product_padding{
+    background: #fff;
+    padding: 50px 10px 50px 10px;
+    box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+    border-radius:30px
+}
 
+@media screen and (max-width: 768px) {
+    #cart_product_padding{
+        padding: 10px 10px 10px 10px;
+
+    }
+}
 
 @media screen and (min-width: 768px) {
     .profile_picture{

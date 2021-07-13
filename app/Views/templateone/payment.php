@@ -27,11 +27,8 @@
         <section class="cart spad">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-9" style="
-                background: #fff;
-    padding: 55px 60px 50px 50px;
-    box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
-    border-radius:30px
+                <div class="col-lg-9" id="cart_product_padding" style="
+               
                 
                 ">
                     <div class="cart__table">
@@ -80,7 +77,7 @@
                                     <h4>Tracking Link * Merchant Will put tracking link here if got any</h4>
                                    <p>
                                    <a style="color:blue" target="_blank" href="<?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>">
-                                   <?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>
+                                   <!-- <?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?> -->
                                    </a>
                                    </p>
                                 </div>
