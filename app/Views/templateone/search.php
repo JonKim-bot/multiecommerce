@@ -30,7 +30,7 @@
                     <div class="contact__form">
                         <form novalidate action="<?= base_url() ?>/main/order_history" method="GET">
                             <input type="email" name="keyword" placeholder="Email or phone number">
-                            <button type="submit" class="site-btn">Search</button>
+                            <button type="submit" class="site-btn button_b">Search</button>
                         </form>
                     </div>
                 </div>

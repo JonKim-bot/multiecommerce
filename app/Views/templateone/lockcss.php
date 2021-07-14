@@ -3013,9 +3013,13 @@
 }
 
 .contact__form form button {
-	/* width: 100%; */
+	width: 100%; 
 }
 
+
+.contact__form form .button_b {
+	width: auto !important; 
+}
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
