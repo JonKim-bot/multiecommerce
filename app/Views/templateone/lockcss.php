@@ -124,6 +124,8 @@
 .site-btn {
 	font-size: 15px;
 	color: #ffffff;
+	border-radius:15px;
+
 	font-family: "Rajdhani", sans-serif;
 	font-weight: 600;
 	letter-spacing: 2px;
@@ -2930,6 +2932,7 @@
 
 .contact__widget__item__text {
 	overflow: hidden;
+	padding-left:10px;
 }
 
 .contact__widget__item__text h4 {
@@ -2949,6 +2952,7 @@
 .contact__form form input {
 	width: 100%;
 	height: 46px;
+	border-radius:15px;
 	border: 1px solid #e1e1e1;
 	font-size: 14px;
 	color: #888888;
@@ -3009,7 +3013,7 @@
 }
 
 .contact__form form button {
-	width: 100%;
+	/* width: 100%; */
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

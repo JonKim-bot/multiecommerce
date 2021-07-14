@@ -5,20 +5,17 @@
     <!-- Breadcrumb End -->
 
     <!-- Contact Section Begin -->
-    <div class="c-login-back" style="height:15vh">
-    <div class="c-header">
-        <h1>登入</h1>
-    </div>
-</div>
-    <div class="contact spad" style='padding-top:0px' >
+    <div class="contact spad">
         <div class="container">
             
-            <div class="row" id="cart_product_padding">
+            <div class="row">
                 <div class="col-lg-12 col-md-6">
                     <div class="contact__widget">
                        
                         <div class="contact__widget__item">
-                            
+                            <div class="contact__widget__item__icon">
+                                <span class="icon_mail_alt"></span>
+                            </div>
                             <div class="contact__widget__item__text">
                                 <h4>Search</h4>
                                 <p>Enter your email or tel number to find your order history</p>
