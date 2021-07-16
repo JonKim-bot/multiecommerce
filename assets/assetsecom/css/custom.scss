@@ -385,3 +385,53 @@ body {
         }
     }
 }
+
+footer {
+    .c-footer {
+        background-color: #f4f4f4;
+        .footer-tittle {
+            li {
+                padding-bottom: 1rem;
+            }
+        }
+        .c-footer-bold-title {
+            color: #000 !important;
+            font-family: "msyhbold";
+            font-size: 18px !important;
+            font-weight: bold !important;
+            margin-bottom: 0.5rem !important;
+        }
+        .c-footer-bold {
+            color: #000 !important;
+            font-family: "msyhbold";
+            font-size: 18px !important;
+            font-weight: bold !important;
+        }
+        .c-footer-bold_ {
+            color: #000 !important;
+            font-family: "msyhbold";
+            font-size: 18px !important;
+            font-weight: bold !important;
+            margin-bottom: 0 !important;
+        }
+        .c-footer-light_ {
+            color: #000 !important;
+            font-family: "msyh-2";
+            font-size: 18px !important;
+            // font-weight: bold!important;
+            margin-bottom: 0 !important;
+        }
+        .c-social {
+            display: flex;
+            align-items: center;
+            li {
+                padding-right: 1rem;
+                .c-social-bold {
+                    color: #000 !important;
+                    font-weight: bold !important;
+                    margin-bottom: 0 !important;
+                }
+            }
+        }
+    }
+}
