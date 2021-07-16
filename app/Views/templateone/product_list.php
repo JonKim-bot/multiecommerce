@@ -1,49 +1,50 @@
-<div class="row">
-    <input type="hidden" id="max_product_price" value="<?= $product_max_price ?>">
-    <?php foreach($product as $row){ ?>
-    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-        <div class="properties pb-30">
-            <div class="properties-card">
-                <div class="properties-img">
-                <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
-                    <div class="socal_icon">
-                        <!-- <a href="#"><i class="ti-shopping-cart"></i></a> -->
-                        <!-- <a href="#"><i class="ti-heart"></i></a> -->
-                        <a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
-                    </div>
-                </div>
-                <div class="properties-caption properties-caption2">
-                
-                    <h3><a href="<?= base_url() ."/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
-                    <div class="properties-footer">
-                        <div class="price">
-                            <?php if($row['is_promo'] == 1){ ?>
-                            <span>RM <?= $row['promo_price'] ?>
-                                <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
-                            </span>
-                            <?php }else{ ?>
-                                <span>RM <?= $row['product_price'] ?>
-                            </span>
-                            <?php } ?>
+<div class="c-productList">
+    <div class="row">
+        <input type="hidden" id="max_product_price" value="<?= $product_max_price ?>">
+        <?php foreach ($product as $row) { ?>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 d-flex">
+                <div class="c-Cardflex">
+                    <div class="c-listingCard">
+                        <div class="c-top">
+                            <div class="c-tag">最新!</div>
+                            <div class="c-productImg">
+                                <img src="<?= base_url() .  $row['image'] ?>" alt="">
+                            </div>
+                            <div class="c-name">
+                                <h3><?= $row['product_name'] ?></h3>
+                            </div>
+                            <div class="c-desc">
+                                <p><?= $row['product_description'] ?></p>
+                            </div>
+                        </div>
+                        <div class="c-btm">
+                            <div class="c-btn">了解更多</div>
+                            <div class="c-price">
+                                <?php if ($row['is_promo'] == 1) { ?>
+                                    <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
+                                    <p class="t-price">RM <?= $row['promo_price'] ?></p>
+                                <?php } else { ?>
+                                    <p class="t-price">RM <?= $row['product_price'] ?></p>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php } ?>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-md-6">
-        <div class="product__pag">
-        <?php for($i = 1;$i <= $pages;$i++) { ?>
-            <a id="page<?= $i?>" onclick="get_product_list('<?= $i ?>')"><?= $i ?></a>
         <?php } ?>
-        </div>
     </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 d-flex">
+            <div class="product__pag">
+                <?php for ($i = 1; $i <= $pages; $i++) { ?>
+                    <a id="page<?= $i ?>" onclick="get_product_list('<?= $i ?>')"><?= $i ?></a>
+                <?php } ?>
+            </div>
+        </div>
+        <!-- <div class="col-lg-6 col-md-6">
         <div class="product__show">
             <p>Showing <?= $active_page ?>–<?= $pages ?> of <?= $product_total ?> results</p>
         </div>
+    </div> -->
     </div>
 </div>
