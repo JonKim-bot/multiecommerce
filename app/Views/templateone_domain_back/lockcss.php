@@ -128,6 +128,7 @@
 	font-weight: 600;
 	letter-spacing: 2px;
 	text-transform: uppercase;
+	border-radius:15px;
 	border: none;
 	background: #292621;
 	padding: 14px 30px 12px;

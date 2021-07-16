@@ -124,6 +124,8 @@
 .site-btn {
 	font-size: 15px;
 	color: #ffffff;
+	border-radius:15px;
+
 	font-family: "Rajdhani", sans-serif;
 	font-weight: 600;
 	letter-spacing: 2px;
@@ -1702,11 +1704,22 @@
 .cart__table thead {
 	border-bottom: 1px solid #f2f2f2;
 }
+.items-img{
+	border-radius:10px;
+}
+.radio{
+    padding: 3px 10px 5px 5px;
+    border-radius: 8px;
+	margin:10px 10px;
+	cursor:pointer;
+}
+.payment_label{
+	cursor:pointer;
+
+}
 
 .cart__table thead tr th {
-	font-size: 22px;
-	font-family: "Rajdhani", sans-serif;
-	font-weight: 600;
+    font-family:"Jost",sans-serif;
 	color: #1b2839;
 	text-transform: uppercase;
 	padding-bottom: 25px;
@@ -1737,12 +1750,15 @@
 .cart__table tbody tr td.cart__item .cart__item__text {
 	overflow: hidden;
 	padding-top: 20px;
+	color:black;
+
 }
 
 .cart__table tbody tr td.cart__item .cart__item__text h6 {
 	font-size: 15px;
+	font-weight:bold;
+	color:black;
 	font-family: "Open Sans", sans-serif;
-	color: #888888;
 	margin-bottom: 6px;
 }
 
@@ -1829,6 +1845,7 @@
 	font-weight: 600;
 	border: 1px solid var(--themecolor);
 	background: transparent;
+	
 }
 
 .cart__right {
@@ -1897,11 +1914,16 @@
 	padding: 0 30px;
 }
 .primary-btn{
+	border-radius:25px;
+
 	cursor: pointer;
 }
 .cart__coupon form a {
     color: #ffffff;
     font-size: 16px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1956,11 +1978,14 @@
 	padding: 14px 20px 12px;
 	text-align: center;
 }
-
+.billing_details input {
+	border-radius: 4.25rem !important;
+}
 .cart__total button {
 
     color: #ffffff;
     display: block;
+	border-radius:25px;
     background: #292621;
     font-size: 16px;
     font-family: "Rajdhani", sans-serif;
@@ -2907,6 +2932,7 @@
 
 .contact__widget__item__text {
 	overflow: hidden;
+	padding-left:10px;
 }
 
 .contact__widget__item__text h4 {
@@ -2926,6 +2952,7 @@
 .contact__form form input {
 	width: 100%;
 	height: 46px;
+	border-radius:15px;
 	border: 1px solid #e1e1e1;
 	font-size: 14px;
 	color: #888888;
@@ -2986,9 +3013,13 @@
 }
 
 .contact__form form button {
-	width: 100%;
+	width: 100%; 
 }
 
+
+.contact__form form .button_b {
+	width: auto !important; 
+}
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {

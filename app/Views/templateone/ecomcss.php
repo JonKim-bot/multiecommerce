@@ -1867,7 +1867,7 @@ hr{
     display:inline-block;
     font-size:16px !important;
     font-weight:500 !important;
-    border-radius:35px;
+    border-radius:15px;
     line-height:1;
     line-height:0;
     cursor:pointer;
@@ -9109,17 +9109,20 @@ b,sup,sub,u,del{
 .profile_picture{
     border-radius:10px;
     width:100%;
+
 }
-@media screen and (min-width: 992px) {
-    .profile_picture{
-        border-radius:10px;
-        width:100%;
-    }
+
+#cart_product_padding{
+    background: #fff;
+    padding: 50px 10px 50px 10px;
+    box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+    border-radius:30px
 }
-@media screen and (min-width: 1440px) {
-    .profile_picture{
-        border-radius:10px;
-        width:100%;
+
+@media screen and (max-width: 768px) {
+    #cart_product_padding{
+        padding: 10px 10px 10px 10px;
+
     }
 }
 
