@@ -173,7 +173,7 @@
                             <nav>                                                
                                 <ul id="navigation">  
                                     <li><a href="<?= base_url() ?>/main/index">Home</a></li>
-                                    <li><a href="<?= base_url() ?>/main/product">Shop</a></li>
+                                    <!-- <li><a href="<?= base_url() ?>/main/product">Shop</a></li> -->
 
                                     <li><a href="<?= base_url() ?>/main/cart">Cart</a></li>
                                     <?php if(empty($customer_data)){ ?>
