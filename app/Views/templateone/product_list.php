@@ -21,12 +21,18 @@
                             <div class="c-btm">
                                 <div class="c-btn">了解更多</div>
                                 <div class="c-price">
-                                    <?php if ($row['is_promo'] == 1) { ?>
+                                <?php if($row['is_member'] == 1 && $row['is_promo'] == 1 && !empty($customer_data)){ ?>
                                         <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
                                         <p class="t-price">RM <?= $row['promo_price'] ?></p>
+                                    <?php }else if($row['is_promo'] == 1 && $row['is_member'] == 0){ ?>
+                                        <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
+                                        <p class="t-price">RM <?= $row['promo_price'] ?></p>
+                                    
                                     <?php } else { ?>
-                                        <p class="t-price">RM <?= $row['product_price'] ?></p>
+                                            
+                                            <p class="t-price">RM <?= $row['product_price'] ?></p>
                                     <?php } ?>
+
                                 </div>
                             </div>
                         </div>
