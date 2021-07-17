@@ -251,230 +251,202 @@
 
 <main>
     <div class="c-product">
-        <!-- Hero area Start-->
-        <div class="hero-area">
-            <div class="pcslider" id="pcslider" style="align-self:center">
-                <div class="h1-testimonial-active" style="width:100%">
-                    <?php foreach ($product_image as $row) { ?>
-                        <div class="single-testimonial text-center">
-                            <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
-                                <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
-                                <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i>
-                            </a>
-                        </div>
-                    <?php } ?>
-                </div>
-
-                <!-- <div class="h1-testimonial-active mobileslider">
-                <?php foreach ($product_image as $row) { ?>
-                    <div class="single-testimonial text-center">
-                        <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images_">
-
-                            <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
-                            <i class="fa fa-eye text-dark fa-2x icon_view hvr-glow"></i>
-                        </a>
-                    </div>
-                <?php } ?>
-            </div> -->
-            </div>
+        <div class="c-product-back">
         </div>
-        <!--  Hero area End -->
-        <!--  services-area start-->
-        <div class="services-area2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <!-- Single -->
+        <div class="c-product-card">
+            <!--  services-area start-->
+            <div class="services-area2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <!-- Single -->
 
-                                <div class="single-services c-detail mb-0">
+                                    <div class="single-services c-top mb-0">
+
+                                        <div class="col-md-6 pcslider c-slider" id="pcslider" style="align-self:center">
+                                            <div class="h1-testimonial-active" style="">
+                                                <?php foreach ($product_image as $row) { ?>
 
 
-                                    <div class="col-md-12 col-sm-12">
+                                                    <div class="single-testimonial c-slider-img text-center">
+                                                        <a class="c-siBox" href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
 
-                                        <div class="features-caption">
-                                            <h1><?= $product['product_name'] ?></h1>
-                                            <p><?= $product['product_description'] ?></p>
-                                            <!-- <p>By Evan Winter</p> -->
-                                            <div class="price">
-                                                <?php if ($product['is_promo'] == 1) { ?>
-                                                    <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
-                                                    <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
-                                                <?php } else { ?>
-                                                    <h2 id="product_price">RM <?= $product['product_price'] ?></h2>
+                                                            <img src="<?= base_url() . $row['product_image'] ?>" width="100%,border-radius:15px;" alt="">
+                                                            <!-- <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i> -->
+                                                        </a>
+
+                                                    </div>
                                                 <?php } ?>
+
                                             </div>
-                                            <div class="c-discount">
-                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                            </div>
-                                            <div class="c-btn">
-                                                <div class="r-btn">
-                                                    加入会员
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 c-Columnflex">
+
+                                            <div class="features-caption">
+                                                <div class="c-name">
+                                                    <h4><?= $product['product_name'] ?></h4>
+                                                </div>
+
+                                                <div class="c-desc">
+                                                    <p><?= $product['product_description'] ?></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="services-area2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <!-- Single -->
+
+                                    <div class="single-services c-detail mb-0">
 
 
+                                        <div class="col-md-12 col-sm-12">
 
-                                            <div class="product__details__widget" style="overflow: visible">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <span class="fa fa-minus dec qtybtn minus_qty"></span>
-                                                        <input type="text" readonly class="" value="1" id="product_quantity">
-                                                        <span class="fa fa-plus inc qtybtn add_qty"></span>
+                                            <div class="features-caption">
+                                                <!-- <h1><?= $product['product_name'] ?></h1>
+                                                <p><?= $product['product_description'] ?></p> -->
+                                                <!-- <p>By Evan Winter</p> -->
+                                                <div class="price">
+                                                    <?php if ($product['is_promo'] == 1) { ?>
+                                                        <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                        <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
+                                                    <?php } else { ?>
+                                                        <h2 id="product_price">RM <?= $product['product_price'] ?></h2>
+                                                    <?php } ?>
+                                                </div>
+                                                <div class="c-discount">
+                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                </div>
+                                                <div class="c-btn">
+                                                    <div class="r-btn">
+                                                        加入会员
+                                                    </div>
+                                                </div>
+
+                                                <div class="c-option">
+
+                                                    <div class="select-Categories pb-30">
+                                                        <?php foreach ($product_option as $row) { ?>
+                                                            <div class="c-optionBOX">
+                                                                <div class="c-title">
+                                                                    <p class="menu_title"><?= $row['name']  ?>
+                                                                        <span style="color:red">
+                                                                            <?= $row['minimum_required'] == 1 ? "*Required" : "" ?>
+                                                                        </span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="c-selectionBOX">
+                                                                    <div class="c-selection">
+                                                                        <div class="form-check c-selection-box">
+                                                                            <label class="form-check-label c-sb-box">
+                                                                                <div class="c-sbb-left">
+                                                                                    <input type="checkbox" class="form-check-input" name="type" value="">
+                                                                                    <p>asd</p>
+                                                                                </div>
+                                                                                <p>+ RM 10</p>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>
+                                                <div class="c-priceBOX">
+                                                    <h2>数量</h2>
+                                                    <div class="product__details__widget" style="overflow: visible">
+
+                                                        <div class="quantity">
+                                                            <div class="pro-qty">
+                                                                <span class="fa fa-minus dec qtybtn minus_qty"></span>
+                                                                <input type="text" readonly class="" value="1" id="product_quantity">
+                                                                <span class="fa fa-plus inc qtybtn add_qty"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="c-btn">
+                                                    <div class="r-btn add-to-cart-button">
+                                                        加入购物车
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="c-option">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                                <div class="select-Categories pb-30">
-                                                    <?php foreach ($product_option as $row) { ?>
-                                                        <p class="menu_title"><?= $row['name']  ?> <span style="color:red"><?= $row['minimum_required'] == 1 ? "*Required" : "" ?></span></p>
 
+                <!-- services-area End-->
+                <!--Books review Start -->
+                <?php if (in_array(3, $shop_function)) { ?>
+                    <section class="latest-items section-padding fix">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="section-tittle text-center mb-40">
+                                    <h2>You May Like</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="latest-items-active">
+                                <!-- Single -->
+                                <?php foreach ($upsales_product as $row) { ?>
+                                    <div class="properties pb-30">
+                                        <div class="properties-card">
+                                            <div class="properties-img">
+                                                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
+                                                <div class="socal_icon">
 
-                                                        <?php if ($row['minimum_required'] != 1) { ?>
-                                                            <div class="row no-gutters c-option">
-                                                                <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                    <div class="col-4 c-selection">
-                                                                        <div class="form-check c-selection-box">
-                                                                            <label class="form-check-label c-sb-box">
-                                                                                <div class="c-sbb-left">
-                                                                                    <input type="checkbox" class="form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
-                                                                                    <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                </div>
-                                                                                <p>+ RM <?= $rowselect['selection_price'] ?></p>
-
-                                                                                <!-- <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">Option 1 -->
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php } ?>
-
-                                                            </div>
+                                                    <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="properties-caption properties-caption2">
+                                                <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
+                                                <div class="properties-footer">
+                                                    <div class="price">
+                                                        <?php if ($row['is_promo'] == 1) { ?>
+                                                            <span>RM <?= $row['promo_price'] ?>
+                                                                <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
+                                                            </span>
                                                         <?php } else { ?>
-                                                            <div class="row c-option">
-                                                                <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                    <div class="col-4 c-selection">
-                                                                        <div class="form-check c-selection-box">
-                                                                            <label class="form-check-label c-sb-box">
-                                                                                <div class="c-sbb-left">
-                                                                                    <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
-                                                                                    <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                </div>
-                                                                                <p>+ RM <?= $rowselect['selection_price'] ?></p>
-
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php } ?>
-
-                                                            </div>
-
-
+                                                            <span>RM <?= $row['product_price'] ?>
+                                                            </span>
                                                         <?php } ?>
-
-                                                    <?php } ?>
-
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                <?php } ?>
+                                <!-- Single -->
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </section>
+                <?php } ?>
+                <!-- Books review End -->
+
             </div>
         </div>
-
-
-        <!-- services-area End-->
-        <!--Books review Start -->
-        <section class="our-client section-padding best-selling">
-            <div class="container">
-                <div class="row">
-                    <div class="offset-xl-1 col-xl-10">
-                        <div class="nav-button f-left">
-                            <!--Nav Button  -->
-                            <nav>
-                                <div class="nav nav-tabs " id="nav-tab" role="tablist">
-                                    <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">Description</a>
-                                </div>
-                            </nav>
-                            <!--End Nav Button  -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <!-- Nav Card -->
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
-                        <!-- Tab 1 -->
-                        <div class="row">
-                            <div class="offset-xl-1 col-lg-9">
-                                <p><?= $product['product_description'] ?></p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <?php if (in_array(3, $shop_function)) { ?>
-            <section class="latest-items section-padding fix">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section-tittle text-center mb-40">
-                            <h2>You May Like</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="latest-items-active">
-                        <!-- Single -->
-                        <?php foreach ($upsales_product as $row) { ?>
-                            <div class="properties pb-30">
-                                <div class="properties-card">
-                                    <div class="properties-img">
-                                        <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
-                                        <div class="socal_icon">
-
-                                            <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="properties-caption properties-caption2">
-                                        <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
-                                        <div class="properties-footer">
-                                            <div class="price">
-                                                <?php if ($row['is_promo'] == 1) { ?>
-                                                    <span>RM <?= $row['promo_price'] ?>
-                                                        <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
-                                                    </span>
-                                                <?php } else { ?>
-                                                    <span>RM <?= $row['product_price'] ?>
-                                                    </span>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <!-- Single -->
-                    </div>
-                    <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
-
-                </div>
-            </section>
-        <?php } ?>
-        <!-- Books review End -->
-    </div>
 </main>
 
 <script>
