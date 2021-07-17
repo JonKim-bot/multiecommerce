@@ -3,8 +3,8 @@
         <input type="hidden" id="max_product_price" value="<?= $product_max_price ?>">
         <?php foreach ($product as $row) { ?>
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 d-flex">
-                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
-                    <div class="c-Cardflex">
+                <!-- <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"> -->
+                    <a class="c-Cardflex" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
                         <div class="c-listingCard">
                             <div class="c-top">
                                 <div class="c-tag">最新!</div>
@@ -30,8 +30,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                <!-- </a> -->
             </div>
         <?php } ?>
     </div>
