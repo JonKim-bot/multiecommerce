@@ -1705,7 +1705,7 @@
         width: 100%;
         -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
         box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1);
-        z-index: 9999;
+        z-index: 20;
         -webkit-animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
         animation: 300ms ease-in-out 0s normal none 1 running fadeInDown;
         -webkit-box-shadow: 0 10px 15px rgba(25, 25, 25, 0.1)

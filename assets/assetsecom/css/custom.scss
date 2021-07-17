@@ -315,7 +315,7 @@ body {
                         -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
                         border-radius: 15px !important;
                         margin: 1rem 0;
-                        .c-Pimg{
+                        .c-Pimg {
                             border-radius: 15px;
                             height: 200px;
                             object-fit: cover;
@@ -747,6 +747,7 @@ body {
 footer {
     .c-footer {
         background-color: #f4f4f4;
+        border-top: 10px solid #efb000;
         .footer-tittle {
             li {
                 padding-bottom: 1rem;
@@ -898,6 +899,517 @@ header {
                     font-weight: bold;
                 }
             }
+        }
+    }
+}
+
+.c-member {
+    .c-member-back {
+        background-color: #f7f7f7;
+        height: 30vh;
+    }
+    .c-memberCON {
+        margin-top: -10rem;
+        padding-bottom: 3rem;
+        .c-mc-top {
+            background-color: #fff;
+            padding: 1rem;
+            box-shadow: 2px 1px 5px 1px rgb(0 0 0 / 49%);
+            -webkit-box-shadow: 2px 1px 5px 1px rgb(0 0 0 / 49%);
+            -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+            border-radius: 15px;
+            .col-img {
+                .c-profile-img {
+                    width: 50%;
+                    margin: auto;
+                    // @media screen and (min-width: 768px) {
+                    //     width: 50%;
+                    // }
+                    @media screen and (min-width: 992px) {
+                        width: 100%;
+                    }
+                    img {
+                        width: 100%;
+                        border-radius: 15px;
+                    }
+                }
+            }
+            .col-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                @media screen and (min-width: 992px) {
+                    width: 100%;
+                    align-items: unset;
+                }
+                .c-name {
+                    text-align: center;
+                    margin: 1rem 0;
+                    @media screen and (min-width: 992px) {
+                        text-align: unset;
+                        margin: unset;
+                    }
+                    h4 {
+                        margin-bottom: 0;
+                        font-family: "msyhbold";
+                    }
+                }
+                .c-contact {
+                    text-align: center;
+                    @media screen and (min-width: 992px) {
+                        text-align: unset;
+                    }
+                    p {
+                        margin-bottom: 0;
+                        font-family: "msyh";
+                    }
+                }
+                .c-address {
+                    text-align: center;
+                    margin: 1rem 0;
+                    width: 100%;
+                    @media screen and (min-width: 768px) {
+                        width: 50%;
+                    }
+                    @media screen and (min-width: 992px) {
+                        text-align: unset;
+                        margin: unset;
+                        width: 100%;
+                    }
+                    p {
+                        margin-bottom: 0;
+                        font-family: "msyh";
+                    }
+                }
+                .c-btn {
+                    background-color: #efb000;
+                    color: #fff;
+                    border-radius: 10px;
+                    font-family: "msyhbold";
+                    text-align: center;
+                    padding: 0.5rem 1rem;
+                    width: 40%;
+                    text-align: center;
+                    @media screen and (min-width: 992px) {
+                        width: fit-content;
+                    }
+                }
+            }
+            .col-qr {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                .c-qr-img {
+                    width: 50%;
+                    margin: auto;
+                    // @media screen and (min-width: 768px) {
+                    //     width: 50%;
+                    // }
+                    @media screen and (min-width: 992px) {
+                        width: 100%;
+                    }
+                    img {
+                        width: 100%;
+                        border-radius: 15px;
+                    }
+                }
+                .c-btn {
+                    background-color: #efb000;
+                    color: #fff;
+                    border-radius: 10px;
+                    font-family: "msyhbold";
+                    text-align: center;
+                    padding: 0.5rem 1rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 40%;
+                    @media screen and (min-width: 992px) {
+                        width: 80%;
+                    }
+                }
+            }
+        }
+        .c-mc-bottom {
+            margin-top: 3rem;
+            background-color: #fff;
+            padding: 1rem;
+            box-shadow: 2px 1px 5px 1px rgb(0 0 0 / 49%);
+            -webkit-box-shadow: 2px 1px 5px 1px rgb(0 0 0 / 49%);
+            -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+            border-radius: 15px;
+            .c-nav-pill {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 1rem;
+                // align-items: center;
+
+                .nav-item {
+                    padding: 0.5rem;
+                }
+                .nav-pills {
+                    .nav-link.active {
+                        color: #fff;
+                        width: 100%;
+                        background-color: #efb000;
+                        border-radius: 10px;
+                    }
+                    .show {
+                        > .nav-link {
+                            color: #fff;
+                            width: 100%;
+                            background-color: #efb000;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+
+                .nav-pills {
+                    .nav-link {
+                        color: #000;
+                        width: 100%;
+                        font-family: "msyhbold";
+                        // border: 2px solid #be1622;
+                        border-radius: 10px;
+                        padding: 0.5rem 2rem;
+                        box-shadow: 1px 1px 10px -2px rgb(0 0 0 / 20%);
+                        -webkit-box-shadow: 1px 1px 10px -2px rgb(0 0 0 / 20%);
+                        -moz-box-shadow: 1px 1px 10px -2px rgba(0, 0, 0, 0.2);
+
+                        @media screen and (min-width: 768px) {
+                            padding: 0.5rem 3rem;
+                        }
+                    }
+                }
+                .c-left {
+                    width: 60%;
+                }
+                .c-right {
+                    width: 30%;
+                    display: flex;
+                    justify-content: flex-end;
+                    .c-point {
+                        background-color: #f7f7f7;
+                        border-radius: 10px;
+                        width: 100%;
+                        height: 50px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 2rem 0;
+
+                        @media screen and (min-width: 768px) {
+                            width: 50%;
+                        }
+                        p {
+                            margin-bottom: 0;
+                            font-family: "msyhbold";
+                        }
+                    }
+                }
+            }
+            .c-pillCT {
+                .c-voucher {
+                    h4 {
+                        width: 100%;
+                        text-align: left;
+                        border-bottom: 1px solid #000;
+                        line-height: 0.1em;
+                        margin: 1rem 0;
+                        font-family: "msyhbold";
+                        span {
+                            background: #fff;
+                            padding: 0 1rem 0 0;
+                        }
+                    }
+
+                    .c-voucherLIST {
+                        padding: 1rem 0;
+                        .c-card {
+                            padding-bottom: 1rem;
+                            .c-productImg {
+                                width: 100%;
+                                padding-bottom: 1rem;
+                                img {
+                                    width: 100%;
+                                    // height: 200px;
+                                    // object-fit: cover;
+                                    border-radius: 15px;
+                                }
+                            }
+                            .c-btnBOX {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                .c-btn {
+                                    width: 48%;
+                                    border-radius: 10px;
+                                    background-color: #efb000;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-family: "msyhbold";
+                                    padding: 0.5rem 1rem;
+                                    color: #fff;
+                                }
+                                .c-red {
+                                    background-color: #ed1c24;
+                                }
+                            }
+                        }
+                    }
+                }
+                .c-voucher-other {
+                    h4 {
+                        width: 100%;
+                        text-align: left;
+                        border-bottom: 1px solid #000;
+                        line-height: 0.1em;
+                        margin: 1rem 0;
+                        font-family: "msyhbold";
+                        span {
+                            background: #fff;
+                            padding: 0 1rem 0 0;
+                        }
+                    }
+
+                    .c-voucherLIST {
+                        padding: 1rem 0;
+                        .c-card {
+                            padding-bottom: 1rem;
+                            .c-productImg {
+                                width: 100%;
+                                padding-bottom: 1rem;
+                                img {
+                                    width: 100%;
+                                    // height: 200px;
+                                    // object-fit: cover;
+                                    border-radius: 15px;
+                                }
+                            }
+                            .c-btnBOX {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                .c-btn {
+                                    width: 48%;
+                                    border-radius: 10px;
+                                    background-color: #efb000;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-family: "msyhbold";
+                                    padding: 0.5rem 1rem;
+                                    color: #fff;
+                                }
+                                .c-red {
+                                    background-color: #ed1c24;
+                                }
+                            }
+                        }
+                    }
+                }
+                .c-gift {
+                    h4 {
+                        width: 100%;
+                        text-align: left;
+                        border-bottom: 1px solid #000;
+                        line-height: 0.1em;
+                        margin: 1rem 0;
+                        font-family: "msyhbold";
+                        span {
+                            background: #fff;
+                            padding: 0 1rem 0 0;
+                        }
+                    }
+
+                    .c-giftLIST {
+                        padding: 1rem 0;
+                        .c-card {
+                            padding-bottom: 1rem;
+                            .c-productImg {
+                                width: 100%;
+                                padding-bottom: 1rem;
+                                img {
+                                    width: 100%;
+                                    // height: 200px;
+                                    // object-fit: cover;
+                                    border-radius: 15px;
+                                }
+                            }
+                            .c-btnBOX {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                .c-btn {
+                                    width: 48%;
+                                    border-radius: 10px;
+                                    background-color: #efb000;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-family: "msyhbold";
+                                    padding: 0.5rem 1rem;
+                                    color: #fff;
+                                }
+                                .c-red {
+                                    background-color: #ed1c24;
+                                }
+                            }
+                        }
+                    }
+                }
+                .c-gift-other {
+                    h4 {
+                        width: 100%;
+                        text-align: left;
+                        border-bottom: 1px solid #000;
+                        line-height: 0.1em;
+                        margin: 1rem 0;
+                        font-family: "msyhbold";
+                        span {
+                            background: #fff;
+                            padding: 0 1rem 0 0;
+                        }
+                    }
+
+                    .c-giftLIST {
+                        padding: 1rem 0;
+                        .c-card {
+                            padding-bottom: 1rem;
+                            .c-productImg {
+                                width: 100%;
+                                padding-bottom: 1rem;
+                                img {
+                                    width: 100%;
+                                    // height: 200px;
+                                    // object-fit: cover;
+                                    border-radius: 15px;
+                                }
+                            }
+                            .c-btnBOX {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                .c-btn {
+                                    width: 48%;
+                                    border-radius: 10px;
+                                    background-color: #efb000;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    font-family: "msyhbold";
+                                    padding: 0.5rem 1rem;
+                                    color: #fff;
+                                }
+                                .c-red {
+                                    background-color: #ed1c24;
+                                }
+                            }
+                        }
+                    }
+                }
+                .c-points {
+                    .table thead th {
+                        font-family: "msyhbold";
+                        border-top: 0px solid #dee2e6;
+                        border-color: transparent;
+                    }
+                    .table th {
+                        border-color: transparent;
+                    }
+                    .table td {
+                        border-color: transparent;
+                        padding: 0 .75rem;
+                        font-family: "msyh";
+                    }
+                }
+            }
+        }
+    }
+    .c-modal-content {
+        .c-modal-header {
+            border: 0;
+            .c-close {
+                font-weight: unset;
+                font-family: "msyh";
+            }
+        }
+        .c-modal-body {
+            .c-qr-title {
+                text-align: center;
+                h4 {
+                    margin-bottom: 0;
+                    font-family: "msyhbold";
+                    margin-bottom: 0;
+                }
+            }
+            .c-qr-img {
+                width: 80%;
+                margin: auto;
+                @media screen and (min-width: 768px) {
+                    width: 60%;
+                }
+                // @media screen and (min-width: 992px) {
+                //     width: 60%;
+                // }
+                img {
+                    width: 100%;
+                    border-radius: 15px;
+                }
+            }
+            .c-voucher-img {
+                width: 100%;
+                margin: auto;
+                // @media screen and (min-width: 768px) {
+                //     width: 60%;
+                // }
+                // @media screen and (min-width: 992px) {
+                //     width: 60%;
+                // }
+                img {
+                    width: 100%;
+                    border-radius: 15px;
+                }
+            }
+            .c-voucher-title {
+                // text-align: center;
+                padding-top: 1rem;
+                h4 {
+                    font-family: "msyhbold";
+                    margin-bottom: 0.5rem;
+                }
+                p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .c-modal-footer {
+            justify-content: center;
+            border: 0;
+        }
+        .c-btn {
+            background-color: #ed1c24;
+            padding: 1rem 2rem;
+            color: #fff;
+            border-radius: 5px;
+            font-family: "msyhbold";
+            text-align: center;
+            width: fit-content;
+            font-size: 20px !important;
+        }
+        .c-btnUSED {
+            background-color: #959595;
+            padding: 1rem 2rem;
+            color: #fff;
+            border-radius: 5px;
+            font-family: "msyhbold";
+            text-align: center;
+            width: fit-content;
+            font-size: 20px !important;
         }
     }
 }

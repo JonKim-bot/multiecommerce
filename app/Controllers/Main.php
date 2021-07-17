@@ -1415,6 +1415,13 @@ class Main extends BaseController
 
 
     }
+
+    public function member()
+    {
+    
+        $this->load_view('member');
+
+    }
     
     
     public function add_to_cart()
