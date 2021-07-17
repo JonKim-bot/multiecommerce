@@ -1136,6 +1136,7 @@
 }
 
 .product__pag a {
+	border-radius:20px;
 	display: inline-block;
 	color: #1b2839;
 	font-size: 18px;

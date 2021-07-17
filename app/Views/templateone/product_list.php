@@ -15,7 +15,7 @@
                                     <h3><?= $row['product_name'] ?></h3>
                                 </div>
                                 <div class="c-desc">
-                                    <p><?= $row['product_description'] ?></p>
+                                    <p style="color:black"><?= $row['product_description'] ?></p>
                                 </div>
                             </div>
                             <div class="c-btm">
