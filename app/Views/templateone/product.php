@@ -321,11 +321,16 @@
                                                 <div class="price">
                                                     <?php if($product['is_member'] == 1 && $product['is_promo'] == 1 && !empty($customer_data)){ ?>
                                                             <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                            <p id="initial_price" style='display:none'><?= $product['promo_price'] ?></p>
+
                                                             <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
                                                     <?php }else if($product['is_promo'] == 1 && $product['is_member'] == 0){ ?>
+                                                            <p id="initial_price" style='display:none'><?= $product['promo_price'] ?></p>
                                                             <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
                                                             <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
                                                     <?php } else { ?>
+                                                        <p id="initial_price" style='display:none'><?= $product['product_price'] ?></p>
+
                                                         <h2 id="product_price">RM <?= $product['product_price'] ?></h2>
                                                     <?php } ?>
 
@@ -507,11 +512,8 @@
     $(".form-check-input").on('change click', function() {
         highlight_bg();
         var selected_value = get_selected_value().selected_value;
-        <?php if ($product['is_promo'] != 1) { ?>
-            var product_price = <?= $product['product_price'] ?>;
-        <?php } else { ?>
-            var product_price = <?= $product['promo_price'] ?>;
-        <?php } ?>
+        var product_price = $('#initial_price').text().replace("RM", '');
+
         var product_quantity = $('#product_quantity').val();
         var total_price = (product_price * product_quantity);
         item_price = calculate_total(selected_value, total_price);
@@ -541,18 +543,15 @@
             calculate_product_price();
         }
 
+
     });
 
 
     function calculate_product_price() {
         var total_selection_price = get_selected_value().selected_total_price;
-        <?php if ($product['is_promo'] != 1) { ?>
-            var product_price = <?= $product['product_price'] ?>;
-            var product_price = product_price + parseFloat(total_selection_price);
-        <?php } else { ?>
-            var product_price = <?= $product['promo_price'] ?>;
-            var product_price = product_price + parseFloat(total_selection_price);
-        <?php } ?>
+     
+        var product_price = $('#initial_price').text().replace("RM", '');
+        var product_price = parseFloat(product_price) + parseFloat(total_selection_price);
 
         var product_quantity = $('#product_quantity').val();
         var total_price = (product_price * product_quantity);
@@ -623,11 +622,8 @@
         var selected_count = get_selected_value().selected_count;
         var selected_value = get_selected_value().selected_value;
         var total_selection_price = get_selected_value().selected_total_price;
-        <?php if ($product['is_promo'] != 1) { ?>
-            var product_price = <?= $product['product_price'] ?> + parseFloat(total_selection_price);
-        <?php } else { ?>
-            var product_price = <?= $product['promo_price'] ?> + parseFloat(total_selection_price);
-        <?php } ?>
+        var product_price = $('#initial_price').text().replace("RM", '');
+        var product_price = parseFloat(product_price) + parseFloat(total_selection_price);
 
         if (validate(selected_count) == false) {
             return;
