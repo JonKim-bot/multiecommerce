@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: msyh;
-  src: url("../fonts/msyh-2.ttc");
+  src: url("../fonts/msyh.ttc");
 }
 @font-face {
   font-family: msyhbold;
@@ -429,6 +429,109 @@ footer .c-footer .c-social li .c-social-bold {
   color: #000 !important;
   font-weight: bold !important;
   margin-bottom: 0 !important;
+}
+
+header .c-logo img {
+  width: 100%;
+}
+@media screen and (min-width: 425px) {
+  header .c-logo img {
+    width: 100%;
+  }
+}
+header .c-li {
+  padding: 0 0.5rem !important;
+  margin-bottom: 0;
+  color: #000;
+  font-family: "msyhbold";
+  font-weight: bold;
+}
+header .slicknav_nav {
+  margin-top: 0 !important;
+}
+header .c-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .c-logo-mob {
+  display: flex;
+  align-items: center;
+  margin-right: 4rem;
+}
+@media screen and (min-width: 992px) {
+  header .c-logo-mob {
+    margin-right: 0;
+  }
+}
+header .c-logo-mob .c-lm-img {
+  position: relative;
+  margin: 0 0.5rem;
+  padding: 0.2rem;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .c-logo-mob .c-lm-img .c-cart-logo {
+  position: relative;
+  cursor: pointer;
+  color: #000;
+}
+header .c-logo-mob .c-lm-img .c-cart-logo .c-fa {
+  font-size: 1.5rem;
+}
+header .c-logo-mob .c-lm-img .numberCircle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  /* padding: 6px; */
+  background-color: #be1622;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  top: -0.5rem;
+  left: 1.2rem;
+  font-size: smaller;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .c-logo-mob .c-lm-img .c-burger .slicknav_nav {
+  margin-top: 0 !important;
+}
+header .c-logo-mob .c-lm-img_ {
+  position: relative;
+  margin: 0 0.5rem;
+  padding: 0.2rem;
+  background-color: #efb000;
+  border-radius: 10px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .c-logo-mob .c-lm-img_ .c-cart-logo {
+  position: relative;
+  cursor: pointer;
+}
+header .c-logo-mob .c-lm-img_ .c-cart-logo .c-fa {
+  font-size: 1.5rem;
+  color: #fff;
+}
+header .c-logo-mob .c-lm-img_ .c-dropdown-a {
+  width: 100%;
+  text-align: center;
+}
+header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
+  margin-bottom: 0;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 0.5rem 0;
+  color: #000;
+  font-family: "msyhbold";
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=custom.css.map */

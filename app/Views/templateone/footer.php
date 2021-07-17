@@ -25,11 +25,18 @@
                                 <!-- <h4>Quick Links</h4> -->
                                 <ul>
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index">首页</a></li>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/product">产品</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/product">我的产品</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/search">搜寻产品</a></li>
+                                    <?php if (in_array(1, $shop_function)) { ?>
+                                        <?php if (empty($customer_data)) { ?>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/login">会员登入</a></li>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/signup">成为会员</a></li>
+                                        <?php } else { ?>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/member">会员资料</a></li>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/logout">会员登出</a></li>
 
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/login">会员登入</a></li>
-
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/signup">成为会员</a></li>
+                                        <?php } ?>
+                                    <?php }  ?>
                                 </ul>
                             </div>
                         </div>
@@ -67,7 +74,7 @@
                             <div class="footer-tittle">
                                 <h4 class="c-footer-bold-title">Follow Us</h4>
                                 <ul class="c-social">
-                                    <li >
+                                    <li>
                                         <a href="<?= $shop['facebook'] ?>">
                                             <i class="fa fa-facebook-square fa-2x c-social-bold"></i>
                                         </a>
@@ -525,9 +532,23 @@
                 'transition-delay': delay
             });
         });
+
+        $('.user_drop').each(function() {
+            var delay = $(this).index() * 50 + 'ms';
+            $(this).css({
+                '-webkit-transition-delay': delay,
+                '-moz-transition-delay': delay,
+                '-o-transition-delay': delay,
+                'transition-delay': delay
+            });
+        });
         $('#cart').click(function(e) {
             e.stopPropagation();
             $(".shopping-cart").toggleClass("active");
+        });
+        $('#user').click(function(e) {
+            e.stopPropagation();
+            $(".user_drop").toggleClass("active");
         });
 
         $('#addtocart').click(function(e) {

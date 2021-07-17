@@ -468,6 +468,8 @@
                         <?php } ?>
                         <!-- Single -->
                     </div>
+                    <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
+
                 </div>
             </section>
         <?php } ?>

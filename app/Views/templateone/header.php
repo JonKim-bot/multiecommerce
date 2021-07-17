@@ -1,5 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/slick.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/nice-select.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/3d15aa1b08.js" crossorigin="anonymous"></script>
 
@@ -30,12 +32,9 @@
     <script src="<?= base_url() ?>/assets/assetsecom/js/vendor/jquery-1.12.4.min.js"></script>
 
 
-<style>
-
-
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 300px) {
+    <style>
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        /* @media only screen and (min-width: 300px) {
     #pcslider{
       display:none !important;
   }
@@ -45,8 +44,8 @@
   
 } */
 
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
+        /* Medium devices (landscape tablets, 768px and up) */
+        /* @media only screen and (min-width: 768px) {
     #pcslider{
       display:block !important;
   }
@@ -56,65 +55,99 @@
 
 } */
 
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+        /* Large devices (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 992px) {}
 
-}
+        /* Extra large devices (large laptops and desktops, 1200px and up) */
+        @media only screen and (min-width: 1200px) {}
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+        .shopping-cart {
+            background: white;
+            width: 250px;
+            z-index: 1;
+            position: absolute;
+            top: 40px;
+            right: unset;
+            border-radius: 3px;
+            padding: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+            opacity: 0;
+            -webkit-transform-origin: right top 0;
+            -webkit-transform: scale(0);
+            transform-origin: right top 0;
+            transform: scale(0);
+        }
 
-}
+        @media (min-width: 768px) {
+            .shopping-cart {
+                width: 320px;
+                right: -10px;
+            }
+        }
 
-.shopping-cart {
-  background: white;
-  width: 320px;
-  z-index: 1;
-  position: absolute;
-  top: 30px;
-  right: -10px;
-  border-radius: 3px;
-  padding: 20px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  opacity: 0;
-  -webkit-transform-origin: right top 0;
-  -webkit-transform: scale(0);
-  transform-origin: right top 0;
-  transform: scale(0);
-}
-.shopping-cart.active {
-  opacity: 1;
-  -webkit-transform-origin: right top 0;
-  -webkit-transform: scale(1);
-  transform-origin: right top 0;
-  transform: scale(1);
-}
-.cart__table tbody tr td.cart__item .cart__item__pic img {
-    border: 1px solid #e8eff4;
-    width: 84px;
-}
+        .shopping-cart.active {
+            opacity: 1;
+            -webkit-transform-origin: right top 0;
+            -webkit-transform: scale(1);
+            transform-origin: right top 0;
+            transform: scale(1);
+        }
 
-.cart__table tbody tr .p0 {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-.cart_count{
-    color: black;
-    background: red;
-    border-radius: 50%;
-    padding: 0px 10px;
-    font-weight: bold;
-    /* bottom: 20px; */
-    position: relative;
-    right: -24px;
-    top: 18px;
-}
+        .user_drop {
+            background: white;
+            width: 150px;
+            z-index: 1;
+            position: absolute;
+            top: 40px;
+            right: -10px;
+            border-radius: 3px;
+            /* padding: 20px; */
+            overflow: hidden;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+            opacity: 0;
+            -webkit-transform-origin: right top 0;
+            -webkit-transform: scale(0);
+            transform-origin: right top 0;
+            transform: scale(0);
+        }
 
+        .user_drop.active {
+            opacity: 1;
+            -webkit-transform-origin: right top 0;
+            -webkit-transform: scale(1);
+            transform-origin: right top 0;
+            transform: scale(1);
+        }
+
+        .cart__table tbody tr td.cart__item .cart__item__pic img {
+            border: 1px solid #e8eff4;
+            width: 84px;
+        }
+
+        .cart__table tbody tr .p0 {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        .cart_count {
+            color: black;
+            background: red;
+            border-radius: 50%;
+            padding: 0px 10px;
+            font-weight: bold;
+            /* bottom: 20px; */
+            position: relative;
+            right: -24px;
+            top: 18px;
+        }
     </style>
 </head>
+
 <body>
     <!-- ? Preloader Start -->
     <!-- <div id="preloader-active">
@@ -130,115 +163,89 @@
     <!-- Preloader Start -->
     <header>
         <div class="header-area">
-            <!-- <div class="header-top d-none d-sm-block">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="d-flex justify-content-between flex-wrap align-items-center">
-                                <div class="header-info-left">
-                                    <ul>                             
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Privacy</a></li>
-                                        <li><a href="#">FAQ</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                    </ul>
-                                </div>
-                                <div class="header-info-right d-flex">
-                                    <ul class="order-list">
-                                        <li><a href="#">My Wishlist</a></li>
-                                        <li><a href="#">Track Your Order</a></li>
-                                    </ul>
-                                    <ul class="header-social">  
-                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                        <li> <a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li> <a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <div class="header-mid header-sticky">
                 <div class="container">
                     <div class="menu-wrapper">
                         <!-- Logo -->
-                        <div class="logo">
-                            <a href="<?= base_url() ?>/main/index"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
+                        <div class="logo ">
+                            <a class="c-logo" href="<?= base_url() ?>/main/index">
+                                <img src="<?= base_url() . $shop['icon'] ?>" alt="">
+                            </a>
                         </div>
                         <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>                                                
-                                <ul id="navigation">  
-                                    <li><a href="<?= base_url() ?>/main/index">Home</a></li>
-                                    <!-- <li><a href="<?= base_url() ?>/main/product">Shop</a></li> -->
+                        <div class=" c-flex">
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="c-li" href="<?= base_url() ?>/main/index">首页</a></li>
+                                        <!-- <li><a href="<?= base_url() ?>/main/product">我的产品</a></li> -->
 
-                                    <li><a href="<?= base_url() ?>/main/cart">Cart</a></li>
-                                    <?php if(empty($customer_data)){ ?>
+                                        <!-- <li><a href="<?= base_url() ?>/main/cart">Cart</a></li> -->
+                                        <?php if (empty($customer_data)) { ?>
 
-                                        <li><a href="<?= base_url() ?>/main/search">Search</a></li>
-                                    <?php }else{ ?>
-                                        <li><a href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>">Order History</a></li>
-
-                                    <?php } ?>
-
-                                    <?php if(in_array(1,$shop_function)){ ?>
-                                        <?php if(empty($customer_data)){ ?>
-                                            <li><a href="<?= base_url() ?>/main/login">Login</a></li>
-                                            <li><a href="<?= base_url() ?>/main/signup">Signup</a></li>
-                                        <?php }else{ ?>
-                                            <li><a href="<?= base_url() ?>/main/profile">Profile</a></li>
-                                            <li><a href="<?= base_url() ?>/main/logout">Logout</a></li>
+                                            <li><a class="c-li" href="<?= base_url() ?>/main/search">搜寻产品</a></li>
+                                        <?php } else { ?>
+                                            <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>">Order History</a></li>
 
                                         <?php } ?>
-                                    <?php }  ?>
-                                    <!-- <li><a href="#">Pages  <i class="fas fa-angle-down"></i></a>
-                                        <ul class="submenu">
-                                            <li><a href="login.html">Login</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                            <li><a href="product.php">Product Details</a></li>
-                                            <li><a href="checkout.html">Product Checkout</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Blog</a>
-                                        <ul class="submenu">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="elements.html">Element</a></li>
-                                            <li><a href="blog-details.html">Blog Details</a></li>
-                                        </ul>
-                                    </li> -->
-                                </ul>
-                            </nav>
-                        </div>
-                        <!-- Header Right -->
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Right -->
 
-                        <div class="header-right">
-                            <a class="cart_count">0</a>
+                            <div class="c-logo-mob">
+                                <div class="c-lm-img">
+                                    <a class="c-cart-logo" id="cart">
+                                        <i class="fas fa-shopping-cart c-fa"></i>
+                                    </a>
+                                    <div class="numberCircle">0</div>
 
-                            <ul>
-                                <!-- <li>
-                                    <div class="nav-search search-switch hearer_icon">
-                                        <a id="search_1" href="javascript:void(0)"> 
-                                            <span class="flaticon-search"></span>
-                                        </a>
+                                    <div class="shopping-cart">
                                     </div>
-                                </li> -->
-                                <!-- <li> <a href="login.html"><span class="flaticon-user"></span></a></li> -->
-                                <li class="cart"><a id="cart"><span class="flaticon-shopping-cart"></span></a> 
+                                </div>
+                                <div class="c-lm-img_">
+                                    <a class="c-cart-logo" id="user">
+                                        <i class="fas fa-user c-fa"></i><i class=""></i>
+                                    </a>
+                                    <div class="user_drop">
+                                        <?php if (in_array(1, $shop_function)) { ?>
+                                            <?php if (empty($customer_data)) { ?>
+                                                <a class="c-dropdown-a" href="<?= base_url() ?>/main/login">
+                                                    <p class="">会员登入</p>
+                                                </a>
+                                                <a class="c-dropdown-a" href="<?= base_url() ?>/main/signup">
+                                                    <p class="">成为会员</p>
+                                                </a>
+                                            <?php } else { ?>
+                                                <a class="c-dropdown-a" href="<?= base_url() ?>/main/member">
+                                                    <p class="">会员资料</p>
+                                                </a>
+                                                <a class="c-dropdown-a" href="<?= base_url() ?>/main/logout">
+                                                    <p class="">会员登出</p>
+                                                </a>
 
-                        <div class="shopping-cart">
-                           
+                                            <?php } ?>
+                                        <?php }  ?>
+                                    </div>
 
+                                </div>
+                                <!-- <div class="c-lm-img d-lg-none">
 
-                          </div> <!--end shopping-cart -->
-<!--                                     
-                                    <a href="cart.html">
-                                        <span class="flaticon-shopping-cart"></span>
-                                    </a> -->
-                                 </li>
-                            </ul>
+                                    <div class="mobile_menu c-burger d-block"></div>
+                                </div> -->
+
+                                <!-- <ul class="c-icon">
+                                    <li> <a href="login.html"><span class="flaticon-user"></span></a></li>
+                                    <li class="cart">
+
+                                        <a id="cart"><span class="flaticon-shopping-cart"></span></a>
+                                        <a class="cart_count">0</a>
+                                        <div class="shopping-cart">
+                                        </div>
+                                    </li>
+                                </ul> -->
+                            </div>
+
                         </div>
 
                     </div>
@@ -256,15 +263,15 @@
                     </div>
                 </div>
             </div>
-            <?php if(!empty($announcement) && $announcement['is_active'] == 1){ ?>
-            <div class="header-bottom text-center">
-                <p><?= $announcement['title'] ?><a target="_blank" href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
-                &nbsp;
-                    <i class="fa fa-times" style="cursor:pointer" id="close_promo_btn"></i>
-                </a>
-                </p>
-                
-            </div>
-            <?php  }?>
+            <?php if (!empty($announcement) && $announcement['is_active'] == 1) { ?>
+                <div class="header-bottom text-center">
+                    <p><?= $announcement['title'] ?><a target="_blank" href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
+                        &nbsp;
+                        <i class="fa fa-times" style="cursor:pointer" id="close_promo_btn"></i>
+                        </a>
+                    </p>
+
+                </div>
+            <?php  } ?>
         </div>
     </header>
