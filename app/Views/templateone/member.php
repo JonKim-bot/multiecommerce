@@ -287,6 +287,8 @@
                     <div class="c-qr-img">
                         <img src="<?= base_url() ?>/assets/assets/img/qr.png" alt="">
                     </div>
+                    <input type="email" class="form-control" id="exampleInputEmail1" value="https://www.multiecom.com/Main/212" disabled>
+
                 </div>
                 <div class="modal-footer c-modal-footer">
                     <button type="button" class="btn btn-secondary c-btn" data-dismiss="modal">复制链接</button>

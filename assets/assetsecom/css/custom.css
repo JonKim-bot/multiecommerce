@@ -1004,6 +1004,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   border-radius: 15px;
 }
 .c-member .c-memberCON .c-mc-top .col-qr .c-btn {
+  cursor: pointer;
   background-color: #efb000;
   color: #fff;
   border-radius: 10px;
@@ -1124,6 +1125,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   align-items: center;
 }
 .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher .c-voucherLIST .c-card .c-btnBOX .c-btn {
+  cursor: pointer;
   width: 48%;
   border-radius: 10px;
   background-color: #efb000;
@@ -1169,6 +1171,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   align-items: center;
 }
 .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher-other .c-voucherLIST .c-card .c-btnBOX .c-btn {
+  cursor: pointer;
   width: 48%;
   border-radius: 10px;
   background-color: #efb000;
@@ -1214,6 +1217,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   align-items: center;
 }
 .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-gift .c-giftLIST .c-card .c-btnBOX .c-btn {
+  cursor: pointer;
   width: 48%;
   border-radius: 10px;
   background-color: #efb000;
@@ -1259,6 +1263,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   align-items: center;
 }
 .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-gift-other .c-giftLIST .c-card .c-btnBOX .c-btn {
+  cursor: pointer;
   width: 48%;
   border-radius: 10px;
   background-color: #efb000;
@@ -1336,6 +1341,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   border: 0;
 }
 .c-member .c-modal-content .c-btn {
+  cursor: pointer;
   background-color: #ed1c24;
   padding: 1rem 2rem;
   color: #fff;
@@ -1346,6 +1352,7 @@ header .c-logo-mob .c-lm-img_ .c-dropdown-a p {
   font-size: 20px !important;
 }
 .c-member .c-modal-content .c-btnUSED {
+  cursor: pointer;
   background-color: #959595;
   padding: 1rem 2rem;
   color: #fff;
