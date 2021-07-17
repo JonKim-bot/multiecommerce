@@ -88,6 +88,7 @@ class Product extends BaseController
             if (!empty($get['shop'])) {
                 $get['shop.shop_name'] = $get['shop'];
 
+                
             }
           
 

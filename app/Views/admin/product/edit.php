@@ -106,6 +106,20 @@
                     </div>
 
                     <div class="form-group">
+
+                    <div class="form-check">
+                    <?php if($product['is_member'] == 1){ ?>
+                        <input type="checkbox" checked class="form-check-input" name="is_member">
+
+                    <?php }else{ ?>
+                        <input type="checkbox" class="form-check-input" name="is_member">
+
+                    <?php } ?>
+                        <label class="form-check-label">Tick if promo price for member only</label>
+                    </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="">Product Description</label>
                         <textarea class="form-control" name="product_description" placeholder="Eg : Special Cake "><?= $product['product_description'] ?></textarea>
                     </div>

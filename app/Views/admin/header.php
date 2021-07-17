@@ -165,7 +165,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
                         Orders
                     </a>
@@ -315,7 +315,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
                         Orders
                     </a>
