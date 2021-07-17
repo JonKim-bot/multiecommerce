@@ -335,6 +335,8 @@
                                                     <?php } ?>
 
                                                 </div>
+
+                                                <?php if(empty($customer_data)){ ?>
                                                 <div class="c-discount">
                                                     <p class="c-discount-text">加入会员可享受30%折扣</p>
                                                     <p class="c-discount-text">加入会员可享受30%折扣</p>
@@ -343,10 +345,11 @@
                                                     <p class="c-discount-text">加入会员可享受30%折扣</p>
                                                 </div>
                                                 <div class="c-btn">
-                                                    <div class="r-btn">
+                                                    <a class="r-btn"  href="<?= base_url() ?>/main/signup">
                                                         加入会员
-                                                    </div>
+                                                    </a>
                                                 </div>
+                                                <?php } ?>
 
                                                 <div class="c-option">
 
