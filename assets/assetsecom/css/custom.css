@@ -183,9 +183,14 @@
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-title {
   background-color: #efb000;
   border-radius: 10px;
-  width: 40%;
+  width: 100%;
   padding: 0.5rem 1rem;
   margin: auto;
+}
+@media screen and (min-width: 768px) {
+  .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-title {
+    width: 40%;
+  }
 }
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-title .menu_title {
   word-break: break-all;
@@ -206,8 +211,8 @@
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection {
   padding: 0.2rem 0.5rem;
   position: relative;
-  max-width: 25%;
-  margin: 0 12px;
+  max-width: 100%;
+  margin: 0.5rem 1rem;
   flex-grow: 0;
   flex-basis: 100%;
   text-decoration: none;
@@ -223,6 +228,11 @@
 }
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box {
   display: flex;
+  align-items: center;
+}
+.c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box .c-sbb-left {
+  display: flex;
+  align-items: center;
 }
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box p {
   margin-bottom: 0;

@@ -199,9 +199,13 @@ body {
                             .c-title {
                                 background-color: #efb000;
                                 border-radius: 10px;
-                                width: 40%;
+                                width: 100%;
                                 padding: 0.5rem 1rem;
                                 margin: auto;
+
+                                @media screen and (min-width: 768px) {
+                                    width: 40%;
+                                }
                                 .menu_title {
                                     word-break: break-all;
                                     color: #fff !important;
@@ -221,8 +225,8 @@ body {
                                 .c-selection {
                                     padding: 0.2rem 0.5rem;
                                     position: relative;
-                                    max-width: 25%;
-                                    margin: 0 12px;
+                                    max-width: 100%;
+                                    margin: 0.5rem 1rem;
                                     flex-grow: 0;
                                     flex-basis: 100%;
                                     text-decoration: none;
@@ -236,6 +240,14 @@ body {
                                         align-items: center;
                                         .c-sb-box {
                                             display: flex;
+                                            align-items: center;
+                                            .c-sbb-left{
+                                                display: flex;
+                                                align-items: center;
+                                                .c-single {
+
+                                                }
+                                            }
                                             p {
                                                 margin-bottom: 0;
                                             }

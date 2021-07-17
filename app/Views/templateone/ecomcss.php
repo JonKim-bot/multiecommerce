@@ -4771,6 +4771,8 @@
         -o-transition: all .4s ease-out 0s;
         transition: all .4s ease-out 0s;
         width: 100%;
+        height: 250px;
+        object-fit: cover;
         transform: scale(1)
     }
 

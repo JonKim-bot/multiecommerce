@@ -360,10 +360,12 @@
                                                                                 <div class="form-check c-selection-box">
                                                                                     <label class="form-check-label c-sb-box">
                                                                                         <div class="c-sbb-left">
-                                                                                            <input type="checkbox" class="form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
+                                                                                            <input type="checkbox" class="c-single form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
                                                                                         </div>
-                                                                                        <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                        <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                        <div>
+                                                                                            <p><?= $rowselect['product_option_name'] ?></p>
+                                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                        </div>
                                                                                     </label>
                                                                                 </div>
                                                                             </div>
@@ -376,10 +378,12 @@
                                                                                 <div class="form-check c-selection-box">
                                                                                     <label class="form-check-label c-sb-box">
                                                                                         <div class="c-sbb-left">
-                                                                                            <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
+                                                                                            <input type="radio" class="c-single form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
                                                                                         </div>
-                                                                                        <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                        <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                        <div>
+                                                                                            <p><?= $rowselect['product_option_name'] ?></p>
+                                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                        </div>
                                                                                     </label>
                                                                                 </div>
                                                                             </div>
