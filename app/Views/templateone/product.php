@@ -352,18 +352,42 @@
                                                                     </p>
                                                                 </div>
                                                                 <div class="c-selectionBOX">
-                                                                    <div class="c-selection">
-                                                                        <div class="form-check c-selection-box">
-                                                                            <label class="form-check-label c-sb-box">
-                                                                                <div class="c-sbb-left">
-                                                                                    <input type="checkbox" class="form-check-input" name="type" value="">
-                                                                                    <p>asd</p>
+                                                                    <?php if ($row['minimum_required'] != 1) { ?>
+
+                                                                        <?php foreach ($row['selection'] as $rowselect) { ?>
+                                                                            <!-- <div class="c-selectionBOX"> -->
+                                                                            <div class="c-selection">
+                                                                                <div class="form-check c-selection-box">
+                                                                                    <label class="form-check-label c-sb-box">
+                                                                                        <div class="c-sbb-left">
+                                                                                            <input type="checkbox" class="form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
+                                                                                        </div>
+                                                                                        <p><?= $rowselect['product_option_name'] ?></p>
+                                                                                        <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                    </label>
                                                                                 </div>
-                                                                                <p>+ RM 10</p>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
+                                                                            </div>
+                                                                            <!-- </div> -->
+                                                                        <?php } ?>
+                                                                    <?php } else { ?>
+                                                                        <?php foreach ($row['selection'] as $rowselect) { ?>
+                                                                            <!-- <div class="c-selectionBOX"> -->
+                                                                            <div class="c-selection">
+                                                                                <div class="form-check c-selection-box">
+                                                                                    <label class="form-check-label c-sb-box">
+                                                                                        <div class="c-sbb-left">
+                                                                                            <input type="radio" class="form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
+                                                                                        </div>
+                                                                                        <p><?= $rowselect['product_option_name'] ?></p>
+                                                                                        <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- </div> -->
+                                                                        <?php } ?>
+                                                                    <?php } ?>
                                                                 </div>
+
                                                             </div>
                                                         <?php } ?>
                                                     </div>
