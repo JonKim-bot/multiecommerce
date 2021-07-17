@@ -319,12 +319,16 @@
                                                 <p><?= $product['product_description'] ?></p> -->
                                                 <!-- <p>By Evan Winter</p> -->
                                                 <div class="price">
-                                                    <?php if ($product['is_promo'] == 1) { ?>
-                                                        <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
-                                                        <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
+                                                    <?php if($product['is_member'] == 1 && $product['is_promo'] == 1 && !empty($customer_data)){ ?>
+                                                            <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                            <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
+                                                    <?php }else if($product['is_promo'] == 1 && $product['is_member'] == 0){ ?>
+                                                            <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                            <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
                                                     <?php } else { ?>
                                                         <h2 id="product_price">RM <?= $product['product_price'] ?></h2>
                                                     <?php } ?>
+
                                                 </div>
                                                 <div class="c-discount">
                                                     <p class="c-discount-text">加入会员可享受30%折扣</p>
