@@ -88,7 +88,7 @@ class Product extends BaseController
             if (!empty($get['shop'])) {
                 $get['shop.shop_name'] = $get['shop'];
 
-                
+
             }
           
 
@@ -475,6 +475,12 @@ class Product extends BaseController
                 }else{
                     $data['is_promo'] = 0;
 
+                }
+                if(!empty($_POST['is_member'])){
+                    $data['is_member'] = 1;
+                    $data['is_promo'] = 1;
+                }else{
+                    $data['is_member'] = 0;
                 }
 
                 if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {

@@ -252,7 +252,7 @@
 <main>
     <div class="c-product">
         <!-- Hero area Start-->
-        <!-- <div class="hero-area">
+        <div class="hero-area">
             <div class="pcslider" id="pcslider" style="align-self:center">
                 <div class="h1-testimonial-active" style="width:100%">
                     <?php foreach ($product_image as $row) { ?>
@@ -269,7 +269,6 @@
                 <?php foreach ($product_image as $row) { ?>
                     <div class="single-testimonial text-center">
                         <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images_">
-
                             <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
                             <i class="fa fa-eye text-dark fa-2x icon_view hvr-glow"></i>
                         </a>
@@ -277,109 +276,9 @@
                 <?php } ?>
             </div> -->
             </div>
-        </div> -->
+        </div>
         <!--  Hero area End -->
         <!--  services-area start-->
-        <div class="services-area2 pt-50">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <!-- Single -->
-                                
-                                <div class="single-services mb-0">
-
-                                    <div class="col-md-6 pcslider" id="pcslider" style="align-self:center">
-                                    <div class="h1-testimonial-active" style="width:90%">
-                                    <?php foreach($product_image as $row){ ?>
-
-
-                                        <div class="single-testimonial text-center">
-                                        <a href="<?= base_url() . $row['product_image'] ?>" class="fancybox" data-fancybox="images">
-   
-                                            <img src="<?= base_url() . $row['product_image'] ?>" width="100%" alt="">
-                                        <i class="fa fa-eye text-white fa-2x icon_view hvr-glow"></i>
-                                            </a>
-
-                                        </div>
-                                        <?php } ?>
-
-                                    </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12">
-
-                                        <div class="features-caption">
-                                            <h3><?= $product['product_name'] ?></h3>
-                                            <!-- <p>By Evan Winter</p> -->
-                                            <div class="price">
-                                            <?php if($product['is_promo'] == 1){ ?>
-                                                    <span id="product_price">RM <?= $product['promo_price'] ?></span>
-                                                    <span style="text-decoration: line-through;">RM <?= $product['product_price'] ?></span>
-                                                <?php }else{ ?>
-                                                    <span id="product_price">RM <?= $product['product_price'] ?></span>
-                                                <?php } ?>
-                                            </div>
-                                            <div class="select-Categories pb-30">
-                                                <?php foreach($product_option as $row){ ?>
-                                                <div class="select-job-items2 mb-30">
-                                                    <div class="col-xl-12">
-                                            
-                                                        <select name="select2[]" class="product_option_select" >
-                                                           <?php foreach($row['selection'] as $key => $rowselect){ ?>
-                                                                <?php if($key == 0){ ?>
-                                                                    <option value="0" selection_price="0"
-                                                                    product_option_name="0"
-                                                                    min_required = "<?= $row['minimum_required'] ?>"
-                                                                    selection_name="0"
-                                                                    product_option_id="0"><?= $row['name'] ?> <?= $row['minimum_required'] == 1 ? "*Required" : '' ?></option>
-                                                                    <option value="<?= $rowselect['product_option_selection_id'] ?>"
-                                                                    product_option_name="<?= $row['name'] ?>"
-                                                                    min_required = "<?= $row['minimum_required'] ?>"
-                                                                     selection_price="<?= $rowselect['selection_price'] ?>" 
-                                                                     selection_name="<?= $rowselect['product_option_name'] ?>"
-                                                                     product_option_id="<?= $row['product_option_id'] ?>">
-                                                                     <?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></option>
-                                                                <?php }else{ ?>
-                                                                    <option value="<?= $rowselect['product_option_selection_id'] ?>"
-                                                                    product_option_name="<?= $row['name'] ?>"
-                                                                    min_required = "<?= $row['minimum_required'] ?>"
-                                                                     selection_price="<?= $rowselect['selection_price'] ?>" 
-                                                                     selection_name="<?= $rowselect['product_option_name'] ?>"
-                                                                     product_option_id="<?= $row['product_option_id'] ?>">
-                                                                     <?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></option>
-
-                                                                <?php } ?>
-
-                                                            <?php } ?>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <?php } ?>
-                                               
-                                            </div>
-                                            
-                                            
-                                            <div class="product__details__widget" style="overflow: visible">
-                                                <div class="quantity" style="float:left">
-                                                <div class="pro-qty">
-                                                  <span class="fa fa-minus dec qtybtn minus_qty"></span>
-                                                       <input type="text" readonly class="text-white" value="1" id="product_quantity">
-                                                  <span class="fa fa-plus inc qtybtn add_qty"></span></div>
-                                                </div>
-                                                <a  class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
-                                                <!-- <a href="#" class="border-btn share-btn"><i class="fas fa-share-alt"></i></a> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="services-area2">
             <div class="container">
                 <div class="row">
@@ -568,8 +467,6 @@
                         <?php } ?>
                         <!-- Single -->
                     </div>
-                    <a class="white-btn mr-10 add-to-cart-button">Add to Cart</a>
-
                 </div>
             </section>
         <?php } ?>
