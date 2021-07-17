@@ -364,7 +364,6 @@
                                                                                         </div>
                                                                                         <div>
                                                                                             <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
-                                                                                            <!-- <p>+ RM <?= $rowselect['selection_price'] ?></p> -->
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -382,7 +381,6 @@
                                                                                         </div>
                                                                                         <div>
                                                                                             <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
-                                                                                            <!-- <p>+ RM <?= $rowselect['selection_price'] ?></p> -->
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -430,15 +428,36 @@
                                                                 <!-- Single -->
                                                                 <?php foreach ($upsales_product as $row) { ?>
                                                                     <div class="properties pb-30">
-                                                                        <div class="properties-card">
+                                                                        <div class="properties-card c-Cardflex">
                                                                             <div class="properties-img">
-                                                                                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
-                                                                                <div class="socal_icon">
+                                                                                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                    <img class="c-Pimg" src="<?= base_url() .  $row['image'] ?>" alt="">
+                                                                                </a>
+                                                                                <!-- <div class="socal_icon">
 
                                                                                     <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
-                                                                                </div>
+                                                                                </div> -->
                                                                             </div>
-                                                                            <div class="properties-caption properties-caption2">
+
+                                                                            <a class="c-name" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                <h4><?= $row['product_name'] ?></h4>
+                                                                            </a>
+                                                                            <a class="c-desc" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                <p style="color:black"><?= $row['product_description'] ?></p>
+                                                                            </a>
+                                                                            <a class="c-btm" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                <div class="c-btn">了解更多</div>
+                                                                                <div class="c-price">
+                                                                                    <?php if ($row['is_promo'] == 1) { ?>
+                                                                                        <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
+                                                                                        <p class="t-price">RM <?= $row['promo_price'] ?></p>
+                                                                                    <?php } else { ?>
+                                                                                        <p class="t-price">RM <?= $row['product_price'] ?></p>
+                                                                                    <?php } ?>
+                                                                                </div>
+                                                                            </a>
+                                                                            <!-- <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3> -->
+                                                                            <!-- <div class="properties-caption properties-caption2">
                                                                                 <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
                                                                                 <div class="properties-footer">
                                                                                     <div class="price">
@@ -452,7 +471,7 @@
                                                                                         <?php } ?>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> -->
                                                                         </div>
                                                                     </div>
                                                                 <?php } ?>
@@ -504,6 +523,7 @@
     var selected_count = 0;
 
     $(".form-check-input").on('change click', function() {
+        highlight_bg();
         var selected_value = get_selected_value().selected_value;
         <?php if ($product['is_promo'] != 1) { ?>
             var product_price = <?= $product['product_price'] ?>;
@@ -557,6 +577,16 @@
         $('#product_price').text("RM " + total_price.toFixed(2));
     }
 
+    function highlight_bg() {
+        $("input:checkbox[name=type]:not(:checked)").parent().parent().parent().parent().css("background-color", "white");
+        $(".form-radio:not(:checked)").parent().parent().parent().parent().css("background-color", "white");
+        $("input:checkbox[name=type]:checked").each(function() {
+            $(this).parent().parent().parent().parent().css("background-color", "#efb000");
+        });
+        $(".form-radio:checked").each(function() {
+            $(this).parent().parent().parent().parent().css("background-color", "#efb000");
+        });
+    }
 
 
     function get_selected_value() {

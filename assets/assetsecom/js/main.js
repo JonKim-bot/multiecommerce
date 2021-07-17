@@ -286,7 +286,7 @@ if(product.length){
         {
           breakpoint: 1200,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             infinite: true,
             dots: false,
@@ -295,7 +295,7 @@ if(product.length){
         {
           breakpoint: 992,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 2,
             slidesToScroll: 1,
             infinite: true,
             dots: false,
@@ -306,7 +306,7 @@ if(product.length){
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
-            arrows: false
+            arrows: true
           }
         },
         {
@@ -314,7 +314,7 @@ if(product.length){
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: false
+            arrows: true
           }
         },
       ]

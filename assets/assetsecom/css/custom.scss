@@ -242,6 +242,7 @@ body {
                                         display: flex;
                                         justify-content: center;
                                         align-items: center;
+                                        padding-left: 0;
                                         .c-sb-box {
                                             display: flex;
                                             align-items: center;
@@ -249,6 +250,8 @@ body {
                                                 display: flex;
                                                 align-items: center;
                                                 .c-single {
+                                                    display: none;
+                                                    margin-left: 0;
                                                 }
                                             }
                                             p {
@@ -274,14 +277,174 @@ body {
                         }
                     }
                 }
-                .c-likes{
+                .c-likes {
                     background-color: unset;
+                    overflow: unset;
+                    .slick-next {
+                        right: -35px;
+                    }
+                    .ti-angle-left {
+                        font-weight: bold;
+                    }
+                    .ti-angle-right {
+                        font-weight: bold;
+                    }
+                    .slick-prev {
+                        left: -35px;
+                    }
                     .c-title {
                         color: #000 !important;
                         text-align: center;
                         margin-bottom: 0;
                         font-weight: bold;
                         font-family: "msyhbold";
+                    }
+                    .c-Cardflex {
+                        // cursor: pointer;
+                        padding-bottom: 1rem;
+                        width: 100%;
+                        background-color: #fff;
+                        border-radius: 15px;
+                        padding: 1rem;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 450px;
+                        box-shadow: 2px 1px 5px 1px rgb(0 0 0 / 49%);
+                        -webkit-box-shadow: 2px 1px 5px 1px rgb(0 0 0 / 49%);
+                        -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+                        border-radius: 15px !important;
+                        margin: 1rem 0;
+                        .c-Pimg{
+                            border-radius: 15px;
+                            height: 200px;
+                            object-fit: cover;
+                        }
+                        .c-name {
+                            padding-top: 0.5rem;
+                            text-align: left;
+                            h4 {
+                                font-family: "msyhbold";
+                                // font-size: 1.75rem;
+                                color: #000;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                            }
+                        }
+                        .c-desc {
+                            padding-top: 0.5rem;
+                            p {
+                                text-align: left;
+                                font-family: "msyhlight";
+                                color: #000;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                -webkit-box-orient: vertical;
+                            }
+                        }
+                        .c-btm {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            .c-btn {
+                                background-color: #efb000;
+                                color: #fff;
+                                border-radius: 15px;
+                                font-family: "msyhbold";
+                                padding: 0.5rem 1rem;
+                            }
+                            .t-price {
+                                font-family: "msyhbold";
+                                margin-bottom: 0;
+                            }
+                            .t-promo-price {
+                                font-family: "msyhbold";
+                                margin-bottom: 0;
+                                text-decoration: line-through;
+                                color: #aaaaaa;
+                            }
+                        }
+                        .c-listingCard {
+                            background-color: #fff;
+                            border-radius: 15px;
+                            padding: 1rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            height: 100%;
+                            &:hover {
+                                background-color: #eaeaea;
+                            }
+                            .c-top {
+                                .c-tag {
+                                    background-color: #ed1c24;
+                                    font-family: "msyhbold";
+                                    color: #fff;
+                                    width: 30%;
+                                    padding: 0 0.5rem;
+                                    text-align: center;
+                                    border-radius: 15px;
+                                }
+                                .c-productImg {
+                                    width: 100%;
+                                    padding-top: 0.5rem;
+                                    img {
+                                        width: 100%;
+                                        height: 200px;
+                                        object-fit: cover;
+                                        border-radius: 15px;
+                                    }
+                                }
+                                .c-name {
+                                    padding-top: 0.5rem;
+                                    text-align: left;
+                                    h3 {
+                                        font-family: "msyhbold";
+                                    }
+                                }
+                                .c-desc {
+                                    padding-top: 0.5rem;
+                                    text-align: left;
+                                    p {
+                                        font-family: "msyhlight";
+                                        color: #000;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 3;
+                                        line-height: 1.3;
+                                        -webkit-box-orient: vertical;
+                                    }
+                                }
+                            }
+                            .c-btm {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                .c-btn {
+                                    background-color: #efb000;
+                                    color: #fff;
+                                    border-radius: 15px;
+                                    font-family: "msyhbold";
+                                    padding: 0.5rem 1rem;
+                                }
+                                .t-price {
+                                    font-family: "msyhbold";
+                                    margin-bottom: 0;
+                                }
+                                .t-promo-price {
+                                    font-family: "msyhbold";
+                                    margin-bottom: 0;
+                                    text-decoration: line-through;
+                                    color: #aaaaaa;
+                                }
+                            }
+                        }
                     }
                 }
             }
