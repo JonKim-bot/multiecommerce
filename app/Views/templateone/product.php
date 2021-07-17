@@ -363,8 +363,8 @@
                                                                                             <input type="checkbox" class="c-single form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
                                                                                         </div>
                                                                                         <div>
-                                                                                            <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <!-- <p>+ RM <?= $rowselect['selection_price'] ?></p> -->
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -381,8 +381,8 @@
                                                                                             <input type="radio" class="c-single form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
                                                                                         </div>
                                                                                         <div>
-                                                                                            <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <!-- <p>+ RM <?= $rowselect['selection_price'] ?></p> -->
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -414,6 +414,54 @@
                                                         加入购物车
                                                     </div>
                                                 </div>
+
+                                                <!--Books review Start -->
+                                                <?php if (in_array(3, $shop_function)) { ?>
+                                                    <section class="latest-items section-padding fix c-likes">
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <div class="section-tittle text-center mb-40">
+                                                                    <h2 class="c-title">相关产品</h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="">
+                                                            <div class="latest-items-active">
+                                                                <!-- Single -->
+                                                                <?php foreach ($upsales_product as $row) { ?>
+                                                                    <div class="properties pb-30">
+                                                                        <div class="properties-card">
+                                                                            <div class="properties-img">
+                                                                                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
+                                                                                <div class="socal_icon">
+
+                                                                                    <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="properties-caption properties-caption2">
+                                                                                <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
+                                                                                <div class="properties-footer">
+                                                                                    <div class="price">
+                                                                                        <?php if ($row['is_promo'] == 1) { ?>
+                                                                                            <span>RM <?= $row['promo_price'] ?>
+                                                                                                <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
+                                                                                            </span>
+                                                                                        <?php } else { ?>
+                                                                                            <span>RM <?= $row['product_price'] ?>
+                                                                                            </span>
+                                                                                        <?php } ?>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <!-- Single -->
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                <?php } ?>
+                                                <!-- Books review End -->
                                             </div>
                                         </div>
                                     </div>
@@ -425,53 +473,6 @@
 
 
                 <!-- services-area End-->
-                <!--Books review Start -->
-                <?php if (in_array(3, $shop_function)) { ?>
-                    <section class="latest-items section-padding fix">
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="section-tittle text-center mb-40">
-                                    <h2>You May Like</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="container">
-                            <div class="latest-items-active">
-                                <!-- Single -->
-                                <?php foreach ($upsales_product as $row) { ?>
-                                    <div class="properties pb-30">
-                                        <div class="properties-card">
-                                            <div class="properties-img">
-                                                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><img src="<?= base_url() .  $row['image'] ?>" alt=""></a>
-                                                <div class="socal_icon">
-
-                                                    <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="properties-caption properties-caption2">
-                                                <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
-                                                <div class="properties-footer">
-                                                    <div class="price">
-                                                        <?php if ($row['is_promo'] == 1) { ?>
-                                                            <span>RM <?= $row['promo_price'] ?>
-                                                                <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
-                                                            </span>
-                                                        <?php } else { ?>
-                                                            <span>RM <?= $row['product_price'] ?>
-                                                            </span>
-                                                        <?php } ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                                <!-- Single -->
-                            </div>
-                        </div>
-                    </section>
-                <?php } ?>
-                <!-- Books review End -->
 
             </div>
         </div>
