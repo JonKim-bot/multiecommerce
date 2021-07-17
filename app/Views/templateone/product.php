@@ -363,8 +363,7 @@
                                                                                             <input type="checkbox" class="c-single form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
                                                                                         </div>
                                                                                         <div>
-                                                                                            <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -381,8 +380,7 @@
                                                                                             <input type="radio" class="c-single form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
                                                                                         </div>
                                                                                         <div>
-                                                                                            <p><?= $rowselect['product_option_name'] ?></p>
-                                                                                            <p>+ RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -503,6 +501,7 @@
     var selected_count = 0;
 
     $(".form-check-input").on('change click', function() {
+        highlight_bg();
         var selected_value = get_selected_value().selected_value;
         <?php if ($product['is_promo'] != 1) { ?>
             var product_price = <?= $product['product_price'] ?>;
@@ -556,6 +555,16 @@
         $('#product_price').text("RM " + total_price.toFixed(2));
     }
 
+    function highlight_bg(){
+        $("input:checkbox[name=type]:not(:checked)").parent().parent().parent().parent().css("background-color", "white");
+        $(".form-radio:not(:checked)").parent().parent().parent().parent().css("background-color", "white");
+        $("input:checkbox[name=type]:checked").each(function() {
+              $(this).parent().parent().parent().parent().css("background-color", "#efb000");
+        });
+        $(".form-radio:checked").each(function() {
+            $(this).parent().parent().parent().parent().css("background-color", "#efb000");
+        });
+    }
 
 
     function get_selected_value() {
