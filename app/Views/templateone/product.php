@@ -292,8 +292,17 @@
                                                 <div class="c-desc">
                                                     <p><?= $product['product_description'] ?></p>
                                                 </div>
+                                                <div class="c-name" style="margin-top:20px">
+                                                    <h4><?= $product['label_text'] ?></h4>
+                                                </div>
+
+                                                <div class="c-desc">
+                                                    <p><?= $product['product_description_two'] ?></p>
+                                                </div>
                                             </div>
+                                           
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -338,11 +347,8 @@
 
                                                 <?php if(empty($customer_data)){ ?>
                                                 <div class="c-discount">
-                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
-                                                    <p class="c-discount-text">加入会员可享受30%折扣</p>
+                                                    <p class="c-discount-text"><?= $product['member_text'] ?></p>
+                                                 
                                                 </div>
                                                 <div class="c-btn">
                                                     <a class="r-btn"  href="<?= base_url() ?>/main/signup">
@@ -350,9 +356,9 @@
                                                     </a>
                                                 </div>
                                                 <?php } ?>
-
+                                                
+                                                <?php if(!empty($product_option)){ ?>
                                                 <div class="c-option">
-
                                                     <div class="select-Categories pb-30">
                                                         <?php foreach ($product_option as $row) { ?>
                                                             <div class="c-optionBOX">
@@ -406,6 +412,7 @@
                                                         <?php } ?>
                                                     </div>
                                                 </div>
+                                                <?php } ?>
                                                 <div class="c-priceBOX">
                                                     <h2>数量</h2>
                                                     <div class="product__details__widget" style="overflow: visible">
@@ -419,8 +426,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="c-btn">
-                                                    <div class="r-btn add-to-cart-button">
+                                                <div class="c-btn" >
+                                                    <div class="r-btn add-to-cart-button" style="cursor:pointer">
                                                         加入购物车
                                                     </div>
                                                 </div>

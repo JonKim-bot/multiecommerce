@@ -100,6 +100,10 @@
                                     <label for="">Product Description</label>
                                     <textarea class="form-control" name="product_description" placeholder="Eg : Special Cake "></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Product Description Two</label>
+                                    <textarea class="form-control" name="product_description_two" placeholder="Eg : Special Cake "></textarea>
+                                </div>
 
                                 <div class="form-group">
                                     <button class="btn btn-primary float-right" type="submit"> Submit</button>
