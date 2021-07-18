@@ -117,6 +117,7 @@ class Main extends BaseController
         if (!empty($this->session->get("customer_data"))) {
             $this->pageData['customer_data'] = $this->session->get("customer_data");
         } else {
+            
             $this->pageData['customer_data'] = array();
         }
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
@@ -501,6 +502,7 @@ class Main extends BaseController
                 $customer_id = $this->CustomerModel->insertNew($data);
                 $data['referal_code'] = $this->generate_refferal_code($customer_id);             
 
+
                 $this->set_customer_session($customer_id);
                 return redirect()->to(base_url('/main/index/' , "refresh"));
 			}else{
@@ -512,6 +514,30 @@ class Main extends BaseController
         $this->pageData['about'] = $this->get_about(3);
         $this->load_view('signup');
 	}
+    public function edit_profile_image(){
+        if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+            $file = $this->request->getFile('banner');
+            $new_name = $file->getRandomName();
+            $banner = $file->move(
+                './public/images/product/',
+                $new_name
+            );
+            if ($banner) {
+                $banner = '/public/images/product/' . $new_name;
+                $data['banner'] = $banner;
+            } else {
+                $error = true;
+                $error_message = 'Upload failed.';
+            }
+        }
+        $where = [
+            'customer_id' => $this->pageData['customer_data']['customer_id']
+        ];
+
+        $this->CustomerModel->updateWhere($where, $data);
+        return redirect()->to(base_url('/main/profile' , "refresh"));
+
+    }
     public function login()
     {
      
@@ -583,9 +609,9 @@ class Main extends BaseController
             'customer_id' => $this->session->get('customer_id'),
         ];
         $customer = $this->CustomerModel->getWhere($where);
-
         $downline = $this->get_recursive_downline($customer);
-
+        
+        $this->pageData['customer'] = $customer[0];
         $this->pageData['downline'] = $downline;
         // $this->debug($downline);
 

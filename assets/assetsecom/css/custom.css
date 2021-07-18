@@ -494,6 +494,7 @@
   border-radius: 10px;
 }
 
+
 .c-register-back {
   background-color: #f7f7f7;
   height: 30vh;
@@ -502,6 +503,18 @@
   align-items: center;
 }
 .c-register-back .c-header h1 {
+  font-family: "HanYiChaoCuHeiJian-1";
+}
+
+
+.c-profile-back {
+  background-color: #f7f7f7;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.c-profile-back .c-header h1 {
   font-family: "HanYiChaoCuHeiJian-1";
 }
 

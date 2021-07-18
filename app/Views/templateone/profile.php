@@ -8,11 +8,11 @@
     <div class="profile-form">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
-                <img src="<?= base_url() ?>/assets/locksmith/img/team/team-1.jpg" class="profile_picture" alt="">
+                <img src="<?= base_url() . $customer['banner']?>" class="profile_picture" alt="">
 
             </div>
             <div class="col-md-12 text-center mt-2">
-                 <button class="submit-btn3 c-btn_" >更改照片</button>
+                 <button class="submit-btn3 c-btn_" data-toggle="modal" data-target="#imageModal">更改照片</button>
             </div>
 
         </div>
@@ -78,5 +78,31 @@
         </form>
 
     </div>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Change Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form enctype="multipart/form-data"  method="POST" action="<?=base_url('/main/edit_profile_image/');?>">
+        <div class="modal-body">
+        <div class="form-group">
+                <input type="file" class="form-control"  name="banner" >
+        </div>
+    
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+    </div>
+</div>
 </div>
 <!-- login Area End -->
