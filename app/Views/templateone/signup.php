@@ -4,24 +4,29 @@
         <h1>注册</h1>
     </div>
 </div>
-<div class="row container login_image">
-        <div class="col-md-4">
 
-            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
-        </div>
-        <div class="col-md-4">
-
-            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
-        </div>
-        <div class="col-md-4">
-
-            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
-        </div>
-    </div>
 <div class="register-form-area c-register-form">
-
+   
 
 <div class="register-form">
+<div class="row  login_image">
+
+<?php if(!empty($about)){ ?>
+        <div class="col-md-4">
+
+            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+        </div>
+        <div class="col-md-4">
+
+            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+        </div>
+        <div class="col-md-4">
+
+            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+        </div>
+    <?php } ?>
+</div>
+
         <!-- register Heading -->
         <!-- <div class="register-heading">
             <span>register</span>

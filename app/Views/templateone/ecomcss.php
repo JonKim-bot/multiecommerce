@@ -5,7 +5,7 @@
         --themecolor: <?= $color ?>;
     }
     .login_image{
-        margin:auto;min-width: 60% !important;max-width: 60% !important;border-radius:15px;
+        /* margin:auto;min-width: 60% !important;max-width: 60% !important;border-radius:15px; */
     }
     .login_image img{
       border-radius:15px;
@@ -9404,6 +9404,7 @@
         outline: 0;
         box-shadow: none
     }
+
 
     .comment-form .form-control::placeholder {
         font-weight: 300;

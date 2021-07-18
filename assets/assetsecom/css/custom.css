@@ -243,6 +243,7 @@
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box .c-sbb-left .c-single {
   display: none;
   margin-left: 0;
+
 }
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box p {
   margin-bottom: 0;
@@ -254,6 +255,7 @@
   }
 }
 @media screen and (min-width: 992px) {
+
   .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection {
     max-width: 17.5%;
     margin: 12px;
@@ -262,6 +264,10 @@
 @media screen and (min-width: 1440px) {
   .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection {
     max-width: 18%;
+  }
+  .login_image img{
+    border-radius:15px;
+    margin-bottom:50px;
   }
 }
 .c-product .c-product-card .c-detail .features-caption .c-likes {
@@ -490,7 +496,7 @@
 
 .c-register-back {
   background-color: #f7f7f7;
-  height: 15vh;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
