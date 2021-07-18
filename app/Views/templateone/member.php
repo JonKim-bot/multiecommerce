@@ -69,7 +69,7 @@
                 </div>
                 <div class="tab-content c-pillCT" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-voucher" role="tabpanel" aria-labelledby="pills-voucher-tab">
-                        <div id="voucher_col">
+                        <div class="voucher_col">
 
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                 <div class="modal-header c-modal-header">
                     <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
                     <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
-                        X
+                    <i class="fa fa-times"></i>
                     </button>
                 </div>
                 <div class="modal-body c-modal-body">
@@ -230,34 +230,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="vouchermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content c-modal-content">
-                <div class="modal-header c-modal-header">
-                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-                    <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
-                        Close
-                    </button>
-                </div>
-                <div class="modal-body c-modal-body">
-
-
-                    <div class="c-voucher-img">
-                        <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                    </div>
-                    <div class="c-voucher-title">
-                        <h4>优惠卷的名字</h4>
-                        <p>所需点数: 22</p>
-                        <p>兑换日期: 2021/7/10</p>
-                        <p>使用日期: 2021/7/12</p>
-                    </div>
-                </div>
-                <div class="modal-footer c-modal-footer">
-                    <button type="button" class="btn btn-secondary c-btn" data-dismiss="modal">兑换</button>
-                </div>
-            </div>
-        </div>
-    </div>
+   
     <div class="modal fade" id="giftmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content c-modal-content">
@@ -276,8 +249,10 @@
                     <div class="c-voucher-title">
                         <h4>礼品的名字</h4>
                         <p>所需点数: 22</p>
-                        <p>兑换日期: 2021/7/10</p>
-                        <p>使用日期: 2021/7/12</p>
+                        <p>有效日期: 2021/7/10</p>
+                        <p>有效日期: 2021/7/10</p>
+
+                        <!-- <p>使用日期: 2021/7/12</p> -->
                     </div>
                 </div>
                 <div class="modal-footer c-modal-footer">
@@ -286,9 +261,66 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="vouchermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content c-modal-content">
+                <div class="modal-header c-modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                    <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body c-modal-body">
+
+
+                    <div class="c-voucher-img">
+                        <img class="voucher_img" alt="">
+                    </div>
+                    <div class="c-voucher-title">
+    <h4 class='voucher_name'></h4>
+    <p class="voucher_description"></p>
+    <p><b>所需点数:</b> <span class="voucher_point"></span></p>
+    <p><b>有效日期到: </b ><span class="voucher_valid"></span></p>
+    <p><b>你会得到什么:</b ><span class="what_you_get"></span> </p>             
 </div>
+                </div>
+                <div class="modal-footer c-modal-footer">
+                    <button type="button" class="btn btn-secondary c-btn redeem_voucher redeem_voucher_btn" data-dismiss="modal">兑换</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <script>
+   
+            
+    function get_voucher_detail(voucher_id,is_self){
+    let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                voucher_id : voucher_id,
+                is_self : is_self,
+            }
+            $.post("<?= base_url('main/get_voucher_detail') ?>", postParam, function(data){
+                // $('#voucher_detail').html(html);
+                data = JSON.parse(data);
+                var voucher_data = data.data;
+                $(".redeem_voucher_btn").attr("id",voucher_id);
+                $('.voucher_point').text(voucher_data.redeem_point);
+                $('.what_you_get').text(voucher_data.what_you_get);
+                $('.voucher_valid').text(voucher_data.voucher_valid);
+                $('.voucher_name').text(voucher_data.voucher);
+                $('.voucher_description').text(voucher_data.description);
+                $(".voucher_img").attr("src","<?= base_url() ?>" + voucher_data.banner);
+                if(is_self == 0){
+                       $('.redeem_voucher_btn').show();
+                }else{
+                    $('.redeem_voucher_btn').hide();
+
+                }
+                
+            });
+}
 function copy() {
   var copyText = document.getElementById("link");
   copyText.select();
@@ -299,6 +331,7 @@ function copy() {
     type: 'success'
 })
 }
+
 function redeem_voucher(voucher_id){
             let postParam = {
                 slug : "<?= $shop['slug'] ?>",
@@ -352,7 +385,7 @@ $(".redeem_voucher").on("click", function() {
                  slug : "<?= $shop['slug'] ?>",
              }
              $.post("<?= base_url('main/get_voucher') ?>", postParam, function(html){
-                 $('#voucher_col').html(html);
+                 $('.voucher_col').html(html);
                  
              });
          }

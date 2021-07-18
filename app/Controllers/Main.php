@@ -1435,6 +1435,7 @@ class Main extends BaseController
             $where['category_ids'] = $_POST['category_ids'];
 
         }
+
         if(!empty($_POST['keyword'])){
             $where['product_name'] = $_POST['keyword'];
         }
@@ -1499,6 +1500,23 @@ class Main extends BaseController
         $this->load_view('member');
 
     }
+    public function get_voucher_detail(){
+
+        
+            $where = [
+                'voucher.voucher_id' => $_POST['voucher_id']
+            ];
+            $voucher = $this->VoucherModel->getWhere($where);
+        //    $this->pageData['voucher'] = $voucher[0];
+        //    $this->pageData['is_self'] = $_POST['is_self'];
+
+          die(json_encode([
+              'data' => $voucher[0],
+              'status' => true,
+          ]));
+        // echo view("templateone/voucher_detail_modal",$this->pageData);
+
+        }
     
     
     public function add_to_cart()
