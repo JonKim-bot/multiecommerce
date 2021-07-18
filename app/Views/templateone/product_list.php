@@ -7,7 +7,7 @@
                     <a class="c-Cardflex" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
                         <div class="c-listingCard">
                             <div class="c-top">
-                                <div class="c-tag">最新!</div>
+                                <div class="c-tag"><?= $row['label_text'] ?></div>
                                 <div class="c-productImg">
                                     <img src="<?= base_url() .  $row['image'] ?>" alt="">
                                 </div>
