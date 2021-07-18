@@ -281,7 +281,20 @@ class Main extends BaseController
 
         echo view("templateone/gift_col" ,$this->pageData);
     }
+    public function get_about($type_id){
+        $shop = $this->shop;
 
+        $where = [
+            'about.type_id' => $type_id,
+            'about.shop_id' => $shop['shop_id'],
+        ];
+        $about = $this->AboutModel->getWhere($where);
+        if(!empty($about)){
+            return $about[0];
+        }else{
+            return [];
+        }
+    }
     public function load_voucher(){
         $slug = $_POST['slug'];
         $shop = $this->shop;
@@ -496,6 +509,7 @@ class Main extends BaseController
 
 		}
      
+        $this->pageData['about'] = $this->get_about(3);
         $this->load_view('signup');
 	}
     public function login()

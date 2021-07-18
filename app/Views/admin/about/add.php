@@ -47,13 +47,31 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="about">Image 750x375</label>
-                                    <input type="file" class="form-control" name="banner" placeholder="About" required>
+                                    <label for="about">Image 750x375  (For signup and home section two page)</label>
+                                    <input type="file" class="form-control" name="banner" placeholder="About" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="about">Image Two (For signup page)</label>
+                                    <input type="file" class="form-control" name="banner2" placeholder="About" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="about">Image Three  (For signup page)</label>
+                                    <input type="file" class="form-control" name="banner3" placeholder="About" >
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="">Description</label>
                                     <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="banner">About Us Location</label>
+
+                                    <select name="type_id" class="select" id=""  required>
+                                        <option value="1">Home Page Section One</option>
+                                        <option value="2">Home Page Section Two</option>
+                                        <option  value="3">Sign Up Page Member</option>
+
+                                    </select>
                                 </div>
 
                             

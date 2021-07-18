@@ -27,6 +27,7 @@ class About extends BaseController
         $page = 1;
         $filter = array();
 
+
         if ($_GET) {
             $get = $this->request->getGet();
 
@@ -110,14 +111,46 @@ class About extends BaseController
                     }
                 }
 
+                if ($_FILES['banner2'] and !empty($_FILES['banner2']['name'])) {
+                    $file = $this->request->getFile('banner2');
+                    $new_name = $file->getRandomName();
+                    $about2 = $file->move('./public/images/about/', $new_name);
+                    if ($about) {
+                        $about2 = '/public/images/about/' . $new_name;
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+
+                if ($_FILES['banner3'] and !empty($_FILES['banner3']['name'])) {
+                    $file = $this->request->getFile('banner3');
+                    $new_name = $file->getRandomName();
+                    $about3 = $file->move('./public/images/about/', $new_name);
+                    if ($about3) {
+                        $about3 = '/public/images/about/' . $new_name;
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+
                 $data = [
-                    'banner' => $about,
+                    'type_id' => $_POST['type_id'],
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
                     'shop_id' => $this->shop_id,
                     'created_by' => session()->get('login_id'),
                 ];
-
+                if(!empty($about)){
+                    $data['banner'] = $about;
+                }
+                if(!empty($about2)){
+                    $data['banner2'] = $about;
+                }
+                if(!empty($about3)){
+                    $data['banner3'] = $about;
+                }
                 // $this->debug($data);
                 // dd($data);
 
@@ -173,6 +206,7 @@ class About extends BaseController
                     'description' => $this->request->getPost('description'),
                     'created_by' => session()->get('login_id'),
                     'modified_date' => date('Y-m-d H:i:s'),
+                    'type_id' => $_POST['type_id'],
                     'modified_by' => session()->get('login_id'),
                 ];
 
@@ -183,6 +217,34 @@ class About extends BaseController
                     if ($about) {
                         $about = '/public/images/about/' . $new_name;
                         $data['banner'] = $about;
+                    }
+                }
+
+                if ($_FILES['banner2'] and !empty($_FILES['banner2']['name'])) {
+                    $file = $this->request->getFile('banner2');
+                    $new_name = $file->getRandomName();
+                    $about2 = $file->move('./public/images/about/', $new_name);
+                    if ($about) {
+                        $about2 = '/public/images/about/' . $new_name;
+                        $data['banner2'] = $about2;
+
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+
+                if ($_FILES['banner3'] and !empty($_FILES['banner3']['name'])) {
+                    $file = $this->request->getFile('banner3');
+                    $new_name = $file->getRandomName();
+                    $about3 = $file->move('./public/images/about/', $new_name);
+                    if ($about3) {
+                        $about3 = '/public/images/about/' . $new_name;
+                        $data['banner3'] = $about3;
+
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
                     }
                 }
 

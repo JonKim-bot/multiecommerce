@@ -231,10 +231,8 @@ class Product extends BaseController
                     'product_description' => $input['product_description'],
                     'product_name' => $input['product'],
                     'product_price' => $input['product_price'],
-
+                    'label_text' => $_POST['label_text'],
                     'promo_price' => $input['promo_price'],
-
-                    
                     'created_by' => session()->get('login_id'),
                     'shop_id' => $this->shop_id,
                 ];
@@ -244,6 +242,9 @@ class Product extends BaseController
                 }else{
                     $data['is_promo'] = 0;
                     
+                }
+                if(!empty($_POST['member_text'])){
+                    $data['member_text'] = ($_POST['member_text']);
                 }
                 // dd($data);
                 
@@ -465,6 +466,7 @@ class Product extends BaseController
                     'product_price' => $input['product_price'],
                     'product_description' => $input['product_description'],
                     'product_name' => $input['product'],
+                    'label_text' => $_POST['label_text'],
                     'product_price' => $input['product_price'],
                     'promo_price' => $input['promo_price'],
                     'modified_date' => date('Y-m-d H:i:s'),
@@ -481,6 +483,10 @@ class Product extends BaseController
                     $data['is_promo'] = 1;
                 }else{
                     $data['is_member'] = 0;
+                }
+
+                if(!empty($_POST['member_text'])){
+                    $data['member_text'] = ($_POST['member_text']);
                 }
 
                 if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {

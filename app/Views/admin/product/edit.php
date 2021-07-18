@@ -38,7 +38,24 @@
                         <label for="">Product</label>
                         <input type="text" class="form-control" name="product" value="<?= $product['product_name'] ?>" placeholder="e.g. Cake " required>
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="">Product Label Text</label>
+                        <select name="label_text" class="select" id=""  required>
+                            <option value="Latest">Latest</option>
+                            <option value="Hotest">Hotest</option>
+                            <option  value="Trending">Trending</option>
+                            <option  value="最新">最新</option>
+                            <option  value="畅销">畅销</option>
+                        </select>
+                    </div>
+                    <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
+                    <div class="form-group">
+                        <label for="">Product Member Text</label>
+                        <textarea class="form-control" name="member_text" placeholder="Eg : Special Discount For Joining Member "><?= $product['member_text'] ?></textarea>
+                    </div>
+
+                    <?php } ?>
                     <div class="form-group">
                         <label for="banner">Image</label>
                         <input type="file" class="form-control" name="banner" placeholder="Banner">

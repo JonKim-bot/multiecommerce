@@ -4,6 +4,21 @@
     :root {
         --themecolor: <?= $color ?>;
     }
+    .login_image{
+        margin:auto;min-width: 60% !important;max-width: 60% !important;border-radius:15px;
+    }
+    .login_image img{
+      border-radius:15px;
+      margin-bottom:15px;
+    }
+    .login_page_about{
+        width: 80%;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    }
+    .login_page_about h1{
+    margin-bottom: 20px;
+    }
 
     .section-bg {
         background-color: #FEF4F4
@@ -7981,7 +7996,8 @@
     @media (max-width: 575px) {
         .register-form-area .register-form {
             padding: 40px 20px 20px 26px;
-            min-width: 95%
+            min-width: 95%;
+            margin-top:65px;
         }
     }
 

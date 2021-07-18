@@ -4,8 +4,24 @@
         <h1>注册</h1>
     </div>
 </div>
+<div class="row container login_image">
+        <div class="col-md-4">
+
+            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+        </div>
+        <div class="col-md-4">
+
+            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+        </div>
+        <div class="col-md-4">
+
+            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+        </div>
+    </div>
 <div class="register-form-area c-register-form">
-    <div class="register-form">
+
+
+<div class="register-form">
         <!-- register Heading -->
         <!-- <div class="register-heading">
             <span>register</span>
@@ -55,7 +71,16 @@
                 <button class="submit-btn3 c-btn" type="submit">Sign Up</button>
             </div>
         </form>
+       
 
     </div>
+  
 </div>
+<div class="c-about container login_page_about">
+            <h1 class="c-subtitle text-center" >关于我们</h1>
+            <p>
+                《关于我们》由音乐人梁翘柏作曲，作词人李焯雄联袂为周笔畅量身打造。
+                《关于我们》除了诉说周笔畅十年的情愫，同时也用这首歌曲反思青春，另一种方式解读现在的青春热潮。你可能听过《匆匆那年》听过《致青春》，如果这些歌曲是对青春的一种解读，周笔畅的《关于我们》则是对青春的反思。解读是用片刻回忆的重温，而反思则是深层次对友情、亲情、爱情之间关于信任的总结。《关于我们》是青春三部曲最完美的谢幕。
+            </p>
+        </div>
 <!-- login Area End -->

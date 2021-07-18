@@ -52,6 +52,18 @@
                                                             'banner'
                                                         ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
                                                 </div>
+                                                <div class="col-lg-12 col-xl-12">
+                                                    <img src="<?= base_url() .
+                                                        $about[
+                                                            'banner2'
+                                                        ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
+                                                </div>
+                                                <div class="col-lg-12 col-xl-12">
+                                                    <img src="<?= base_url() .
+                                                        $about[
+                                                            'banner3'
+                                                        ] ?>" width="200" class="img-fluid d-block m-auto" alt="">
+                                                </div>
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table">
@@ -67,6 +79,23 @@
                                                         <td><?= $about[
                                                             'description'
                                                         ] ?></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h3>Location</h3></td>
+                                                        <td><?php
+                                                        if($about['type_id']== 1) {
+                                                            echo "Home Page Section one";
+
+                                                        }
+                                                        if($about['type_id']== 2) {
+                                                            echo "Home Page Section Two";
+                                                            
+                                                        }
+                                                        if($about['type_id']== 3) {
+                                                            echo "Sign Up Page";
+                                                        }
+                                                         ?></td>
 
                                                     </tr>
                                                     

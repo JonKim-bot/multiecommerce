@@ -41,48 +41,66 @@
                                     <thead>
                                         <tr role="row">
                                             <th data-sort="name" data-filter="name">About</th>
+                                            <th data-sort="name" data-filter="name">Banner 1</th>
+                                            <th data-sort="name" data-filter="name">Banner 2</th>
+                                            <th data-sort="name" data-filter="name">Banner 3</th>
+                                            <th data-sort="name" data-filter="name">Title</th>
+                                            <th data-sort="name" data-filter="name">Description</th>
+                                            <th data-sort="name" data-filter="name">Type</th>
+                                            <th data-sort="name" data-filter="name"></th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $i = 1;
-                                        foreach ($about as $row) { ?>
-                                            <tr>
-                                            <td>
-					<div class="col-md-12 animate-box">
-                        <div class="dish-wrap">
-                            <!-- <p class="price"><span>$25</span></p> -->
-                            <!-- <p class="price"><span>$25</span></p> -->
-                            
-							<div class="addtocart">
-                                <div class="dis-tc">
-                                    <span><a href="<?= base_url() ?>/about/edit/<?= $row[
-    'about_id'
-] ?>"><i class="fa fa-pen fa-2x">Edit</i></a></span>
-									<span><a href="<?= base_url() ?>/about/detail/<?= $row[
-    'about_id'
-] ?>"><i class="fa fa-eye fa-2x">View</i></a></span>
-                                        <span><a href="<?= base_url() ?>/about/delete/<?= $row[
-    'about_id'
-] ?>"><i class="fa fa-trash fa-2x">Delete</i></a></span>
-                                </div>
-							</div>
-							<div class="wrap">
-								<div class="dish-img" style="background-image: url(<?= base_url() .
-            $row['banner'] ?>);"></div>
-								<div class="desc" >
-                                    <h2><a href="#"><?= $row[
-                                        'title'
-                                    ] ?></a></h2>
+                                            $i = 1;
+                                            foreach($about as $row){
+                                         ?>
+                                         
 
-								</div>
-							</div>
-						</div>
-					
-                    </div></td>
+                                            <tr>
+                                                
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>"><?= $i ?></a></td>
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>">
+                                                <img src="<?= base_url() . $row['banner']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
+
+                                                </a></td>
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>">
+                                                <img src="<?= base_url() . $row['banner2']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
+
+                                                </a></td>
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>">
+                                                <img src="<?= base_url() . $row['banner3']; ?>" width="200" class="img-fluid d-block m-auto" alt="">
+
+                                                </a></td>
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>"><?= $row['title'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>"><?= $row['description'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>"><?php
+                                                        if($row['type_id']== 1) {
+                                                            echo "Home Page Section one";
+
+                                                        }
+                                                        if($row['type_id']== 2) {
+                                                            echo "Home Page Section Two";
+                                                            
+                                                        }
+                                                        if($row['type_id']== 3) {
+                                                            echo "Sign Up Page";
+                                                        }
+                                                         ?></a></td>
+
+                                                <td>
+
+                                                    <a href="<?= base_url() ?>/about/edit/<?= $row['about_id']?>" class="btn btn-warning" ><i class="fa fa-pen"></i> Edit</a>
+                                                    <a href="<?= base_url() ?>/about/detail/<?= $row['about_id']?>" class="btn btn-primary" ><i class="fa fa-eye"></i> View</a>
+    
+    
+                                                    <a href="<?= base_url() ?>/about/delete/<?= $row['about_id']?>" class="btn btn-danger delete-button" ><i class="fa fa-trash"></i> Delete</a></td>
+                                                </td>
                                             </tr>
-                                        <?php $i++;}
+                                        <?php
+                                        $i++;
+                                            }
                                         ?>
                                     </tbody>
                                 </table>
