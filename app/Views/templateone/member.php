@@ -8,19 +8,19 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 col-img">
                         <div class="c-profile-img">
-                            <img src="<?= base_url() ?>/assets/assets/img/girl.jpg" alt="">
+                            <img src="<?= base_url() . $customer['banner']?>" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 col-sm-12 col-info">
                         <div class="c-name">
-                            <h4>Natalie</h4>
+                            <h4><?= $customer['name'] ?></h4>
                         </div>
                         <div class="c-contact">
-                            <p>Natalie@gmail.com</p>
-                            <p>0123456789</p>
+                            <p><?= $customer['email'] ?></p>
+                            <p><?= $customer['contact'] ?></p>
                         </div>
                         <div class="c-address">
-                            <p>5457a, Jalan Kenari 20, Bandar Putra, 81000 Kulai, Johor, Bandar Putra, 81000 Kulai, Johor</p>
+                            <p><?= $customer['address'] ?></p>
                         </div>
                         <a class="c-btn" href="<?= base_url() ?>/main/profile">
                             编辑
@@ -29,8 +29,7 @@
                     <div class="col-lg-3 col-md-12 col-sm-12 col-qr">
 
                         <div class="c-qr-img">
-                            <img src="<?= base_url() ?>/assets/assets/img/qr.png" alt="">
-                        </div>
+                        <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" >                        </div>
                         <div class="c-btn" data-toggle="modal" data-target="#qrmodal">
                             分享链接
                         </div>
@@ -64,80 +63,14 @@
                     <div class="c-right">
                         <div class="c-point">
                             <p>分数总分</p>
-                            <p>9999</p>
+                            <h3><?= $point ?></h3>
                         </div>
                     </div>
                 </div>
                 <div class="tab-content c-pillCT" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-voucher" role="tabpanel" aria-labelledby="pills-voucher-tab">
-                        <div class="c-voucher">
-                            <h4><span>我的优惠卷</span></h4>
-                            <div class="c-voucherLIST">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#vouchermodal">查看详情</div>
-                                                <div class="c-btn c-red">兑换</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#vouchermodal">查看详情</div>
-                                                <div class="c-btn c-red">兑换</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#vouchermodal">查看详情</div>
-                                                <div class="c-btn c-red">兑换</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="c-voucher-other">
-                            <h4><span>其他优惠卷</span></h4>
-                            <div class="c-voucherLIST">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#vouchermodal">查看详情</div>
-                                                <!-- <div class="c-btn c-red">兑换</div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#vouchermodal">查看详情</div>
-                                                <!-- <div class="c-btn c-red">兑换</div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div id="voucher_col">
+
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-gift" role="tabpanel" aria-labelledby="pills-gift-tab">
@@ -275,7 +208,7 @@
                 <div class="modal-header c-modal-header">
                     <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
                     <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
-                        Close
+                        X
                     </button>
                 </div>
                 <div class="modal-body c-modal-body">
@@ -285,13 +218,14 @@
                         <h4>享受优惠卷奖励</h4>
                     </div>
                     <div class="c-qr-img">
-                        <img src="<?= base_url() ?>/assets/assets/img/qr.png" alt="">
+                    <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" >
+                
                     </div>
-                    <input type="email" class="form-control" id="exampleInputEmail1" value="https://www.multiecom.com/Main/212" disabled>
+                    <input type="text" class="form-control" id="link" value="<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>" readonly>
 
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="button" class="btn btn-secondary c-btn" data-dismiss="modal">复制链接</button>
+                    <button type="button" onclick="copy()" class="btn btn-secondary c-btn" >复制链接</button>
                 </div>
             </div>
         </div>
@@ -353,3 +287,75 @@
         </div>
     </div>
 </div>
+
+<script>
+function copy() {
+  var copyText = document.getElementById("link");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  Swal.fire({
+    text: "Copied the text: " + copyText.value,
+    type: 'success'
+})
+}
+function redeem_voucher(voucher_id){
+            let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                voucher_id : voucher_id,
+            }
+            $.post("<?= base_url('main/redeem_voucher') ?>", postParam, function(data){
+                // $('.voucher_col').html(html);
+                data = JSON.parse(data);
+                if(data.status){
+
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        type: 'success'
+                    });
+                }else{
+                    Swal.fire({
+                        title: data.title,
+                        text: data.message,
+                        type: 'error'
+                    });
+                }
+                load_voucher();
+            });
+        }
+        function redeem(gift_id){
+            let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                gift_id : gift_id,
+            }
+            $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
+                // $('.gift_col').html(html);
+                Swal.fire({
+                    title: "Redeem done",
+                    text: "Please wait for admin to verify your gift and contact you",
+                    type: 'success'
+                });
+            });
+        }
+       
+    
+$(".redeem_voucher").on("click", function() {
+        
+        var voucher_id = $(this).attr('id');
+        var amount = $(this).attr('amount');
+       
+        redeem_voucher(voucher_id);
+    });
+    function load_voucher(selected = 1){
+             let postParam = {
+                 slug : "<?= $shop['slug'] ?>",
+             }
+             $.post("<?= base_url('main/get_voucher') ?>", postParam, function(html){
+                 $('#voucher_col').html(html);
+                 
+             });
+         }
+         
+         load_voucher();
+</script>

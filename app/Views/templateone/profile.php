@@ -17,7 +17,7 @@
 
         </div>
    
-        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/login">
+        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url() ?>/main/profile">
 
                 <div class="input-box">
                 <?php if (isset($error)) { ?>
@@ -73,7 +73,7 @@
 
             <!-- form Footer -->
             <div class="profile-footer">
-                <button class="submit-btn3 c-btn" type="submit">Save</button>
+                <button class="c-btn btn" type="submit">Save</button>
             </div>
         </form>
 

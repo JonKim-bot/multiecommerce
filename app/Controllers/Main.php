@@ -296,6 +296,29 @@ class Main extends BaseController
             return [];
         }
     }
+
+    public function get_voucher(){
+        $shop = $this->shop;
+
+        $where = [
+            'voucher.shop_id' => $shop['shop_id'],
+            'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
+        ];
+        $voucher_shop = $this->VoucherModel->getWhere($where);
+        $where = [
+            'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
+            'customer_voucher.is_used' => 0,
+            'customer_voucher.customer_id' => $this->session->get('customer_id'),
+        ];
+
+        $voucher_self = $this->CustomerVoucherModel->getWhere($where);
+        $this->pageData['voucher_self'] = $voucher_self;
+
+        $this->pageData['voucher_shop'] = $voucher_shop;
+        echo view("templateone/voucher_loop" ,$this->pageData);
+
+    }
+
     public function load_voucher(){
         $slug = $_POST['slug'];
         $shop = $this->shop;
@@ -599,6 +622,7 @@ class Main extends BaseController
 
                 $data['salt'] = $hash['salt'];
             }
+
 
             $this->CustomerModel->updateWhere($where,$data);
             $this->set_customer_session($where['customer_id']);                
@@ -1458,7 +1482,20 @@ class Main extends BaseController
 
     public function member()
     {
-    
+        $shop = $this->shop;
+        $this->validate_function(1,$this->pageData['shop_function']);
+
+        $this->pageData['point'] = $this->PointModel->get_balance($this->session->get('customer_id'));
+	
+        $where = [
+            'customer_id' => $this->session->get('customer_id'),
+        ];
+        $customer = $this->CustomerModel->getWhere($where);
+        $downline = $this->get_recursive_downline($customer);
+        
+        $this->pageData['customer'] = $customer[0];
+        $this->pageData['downline'] = $downline;
+  
         $this->load_view('member');
 
     }
