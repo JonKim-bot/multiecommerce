@@ -2,11 +2,7 @@
     
 
 
-tbody {
-  display: block;
-  height: 80px;
-  overflow: auto;
-}
+
 </style>
 <div class="c-member">
     <div class="c-member-back">
@@ -90,7 +86,7 @@ tbody {
                     </div>
                     <div class="tab-pane fade" id="pills-point" role="tabpanel" aria-labelledby="pills-point-tab">
                         <div class="c-points">
-                            <div class="table-responsive" id="wrapper">
+                            <div class="table-responsive" style="height:300px">
 
                                 <table class="table table-borderless">
                                     <thead>
@@ -115,20 +111,20 @@ tbody {
                     </div>
                     <div class="tab-pane fade" id="pills-donwline" role="tabpanel" aria-labelledby="pills-donwline-tab">
                         <div class="c-points">
-                            <div class="table-responsive">
+                          <div class="table-responsive" style="height:300px">
                                 <table class="table table-borderless">
                                     <thead>
                                         <tr>
-                                            <th scope="col">交易</th>
-                                            <th scope="col">备注</th>
-                                            <th scope="col">创建日期</th>
+                                            <th scope="col">名字</th>
+                                            <th scope="col">电话</th>
+                                            <th scope="col">注册日期</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($point_history as $row){ ?>
+                                        <?php foreach($downline as $row){ ?>
                                         <tr>
-                                            <td><?= $row['transaction'] ?></td>
-                                            <td><?= $row['remarks'] ?></td>
+                                            <td><?= $row['name'] ?></td>
+                                            <td><?= $row['contact'] ?></td>
                                             <td><?= $row['created_date'] ?></td>
                                         </tr>
                                         <?php } ?>

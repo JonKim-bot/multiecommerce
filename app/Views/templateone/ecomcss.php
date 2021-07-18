@@ -7895,6 +7895,8 @@
         width: 100%;
         height: 50px;
         margin-bottom: 20px;
+        border-radius:20px;
+
         padding: 0 25px;
         color: #000
     }
@@ -7902,7 +7904,7 @@
     .profile-form-area .profile-form .input-box .single-input-fields input::placeholder {
         color: #777777;
         font-weight: 300;
-        font-size: 13px
+        font-size: 13px;
     }
 
     .profile-form-area .profile-form .profile-footer {
