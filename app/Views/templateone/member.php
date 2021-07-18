@@ -1,3 +1,13 @@
+<style>
+    
+
+
+tbody {
+  display: block;
+  height: 80px;
+  overflow: auto;
+}
+</style>
 <div class="c-member">
     <div class="c-member-back">
     </div>
@@ -74,68 +84,14 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="pills-gift" role="tabpanel" aria-labelledby="pills-gift-tab">
-                        <div class="c-gift">
-                            <h4><span>我的礼品</span></h4>
-                            <div class="c-giftLIST">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#giftmodal">查看详情</div>
-                                                <div class="c-btn c-red">兑换</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#giftmodal">查看详情</div>
-                                                <div class="c-btn c-red">兑换</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#giftmodal">查看详情</div>
-                                                <div class="c-btn c-red">兑换</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="c-gift-other">
-                            <h4><span>其他礼品</span></h4>
-                            <div class="c-giftLIST">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="c-card">
-                                            <div class="c-productImg">
-                                                <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
-                                            </div>
-                                            <div class="c-btnBOX">
-                                                <div class="c-btn" data-toggle="modal" data-target="#giftmodal">查看详情</div>
-                                                <!-- <div class="c-btn c-red">兑换</div> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="gift_col">
+
+                    </div>
                     </div>
                     <div class="tab-pane fade" id="pills-point" role="tabpanel" aria-labelledby="pills-point-tab">
                         <div class="c-points">
-                            <div class="table-responsive">
+                            <div class="table-responsive" id="wrapper">
+
                                 <table class="table table-borderless">
                                     <thead>
                                         <tr>
@@ -145,21 +101,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php foreach($point_history as $row){ ?>
                                         <tr>
-                                            <td>10.53</td>
-                                            <td>Points for 0123456789 on orders 30001656</td>
-                                            <td>2021-06-19- 07:40:19</td>
+                                            <td><?= $row['transaction'] ?></td>
+                                            <td><?= $row['remarks'] ?></td>
+                                            <td><?= $row['created_date'] ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>10.53</td>
-                                            <td>Points for 0123456789 on orders 30001656</td>
-                                            <td>2021-06-19- 07:40:19</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10.53</td>
-                                            <td>Points for 0123456789 on orders 30001656</td>
-                                            <td>2021-06-19- 07:40:19</td>
-                                        </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -177,21 +125,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($point_history as $row){ ?>
                                         <tr>
-                                            <td>10.53</td>
-                                            <td>Points for 0123456789 on orders 30001656</td>
-                                            <td>2021-06-19- 07:40:19</td>
+                                            <td><?= $row['transaction'] ?></td>
+                                            <td><?= $row['remarks'] ?></td>
+                                            <td><?= $row['created_date'] ?></td>
                                         </tr>
-                                        <tr>
-                                            <td>10.53</td>
-                                            <td>Points for 0123456789 on orders 30001656</td>
-                                            <td>2021-06-19- 07:40:19</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10.53</td>
-                                            <td>Points for 0123456789 on orders 30001656</td>
-                                            <td>2021-06-19- 07:40:19</td>
-                                        </tr>
+                                        <?php } ?>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -237,26 +178,25 @@
                 <div class="modal-header c-modal-header">
                     <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
                     <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
-                        Close
+                        <i class="fa fa-times"></i>
                     </button>
                 </div>
                 <div class="modal-body c-modal-body">
 
 
-                    <div class="c-voucher-img">
-                        <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" alt="">
+                <div class="c-voucher-img">
+                        <img class="gift_img" alt="">
                     </div>
                     <div class="c-voucher-title">
-                        <h4>礼品的名字</h4>
-                        <p>所需点数: 22</p>
-                        <p>有效日期: 2021/7/10</p>
-                        <p>有效日期: 2021/7/10</p>
-
-                        <!-- <p>使用日期: 2021/7/12</p> -->
-                    </div>
+    <h4 class='gift_name'></h4>
+    <p class="gift_description"></p>
+    <p><b>所需点数:</b> <span class="gift_point"></span></p>
+    <p><b>有效日期到: </b ><span class="gift_valid"></span></p>
+    <p><b>你会得到什么:</b ><span class="what_you_get"></span> </p>             
+</div>
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="button" class="btn btn-secondary c-btn" data-dismiss="modal">兑换</button>
+                    <button type="button" class="btn btn-secondary c-btn redeem_gift redeem_gift_btn" data-dismiss="modal">兑换</button>
                 </div>
             </div>
         </div>
@@ -267,7 +207,7 @@
             <div class="modal-content c-modal-content">
                 <div class="modal-header c-modal-header">
                     <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-                    <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close" >
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
@@ -293,7 +233,32 @@
     </div>
 
 <script>
-   
+   function get_gift_detail(gift_id,is_self){
+    let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                gift_id : gift_id,
+                is_self : is_self,
+            }
+            $.post("<?= base_url('main/get_gift_detail') ?>", postParam, function(data){
+                // $('#gift_detail').html(html);
+                data = JSON.parse(data);
+                var gift_data = data.data;
+                $(".redeem_gift_btn").attr("id",gift_id);
+                $('.gift_point').text(gift_data.order_amount);
+                $('.what_you_get').text(gift_data.what_you_get);
+                $('.gift_valid').text(gift_data.valid_until);
+                $('.gift_name').text(gift_data.gift);
+                $('.gift_description').text(gift_data.description);
+                $(".gift_img").attr("src","<?= base_url() ?>" + gift_data.banner);
+                if(is_self == 0){
+                       $('.redeem_gift_btn').show();
+                }else{
+                    $('.redeem_gift_btn').hide();
+
+                }
+                
+            });
+}
             
     function get_voucher_detail(voucher_id,is_self){
     let postParam = {
@@ -308,7 +273,7 @@
                 $(".redeem_voucher_btn").attr("id",voucher_id);
                 $('.voucher_point').text(voucher_data.redeem_point);
                 $('.what_you_get').text(voucher_data.what_you_get);
-                $('.voucher_valid').text(voucher_data.voucher_valid);
+                $('.voucher_valid').text(voucher_data.valid_until);
                 $('.voucher_name').text(voucher_data.voucher);
                 $('.voucher_description').text(voucher_data.description);
                 $(".voucher_img").attr("src","<?= base_url() ?>" + voucher_data.banner);
@@ -372,7 +337,25 @@ function redeem_voucher(voucher_id){
             });
         }
        
-    
+        function redeem(gift_id){
+            let postParam = {
+                slug : "<?= $shop['slug'] ?>",
+                gift_id : gift_id,
+            }
+            $.post("<?= base_url('main/redeem') ?>", postParam, function(html){
+                // $('.gift_col').html(html);
+                Swal.fire({
+                    title: "Redeem done",
+                    text: "Please wait for admin to verify your gift and contact you",
+                    type: 'success'
+                });
+            });
+        }
+       
+        $(".c-close").on("click", function() {
+            $('#giftmodal').modal('hide');
+            $('#voucherModal').modal('hide');
+    });
 $(".redeem_voucher").on("click", function() {
         
         var voucher_id = $(this).attr('id');
@@ -389,6 +372,16 @@ $(".redeem_voucher").on("click", function() {
                  
              });
          }
-         
+
+         function load_gift(selected = 1){
+             let postParam = {
+                 slug : "<?= $shop['slug'] ?>",
+             }
+             $.post("<?= base_url('main/get_gift') ?>", postParam, function(html){
+                 $('.gift_col').html(html);
+                 
+             });
+         }
+         load_gift();
          load_voucher();
 </script>
