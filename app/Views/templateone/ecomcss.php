@@ -12075,8 +12075,8 @@
     }
 
     .shopping-cart {
-        max-height: 260px;
-        overflow-y: scroll;
+        /* max-height: 260px;
+        overflow-y: scroll; */
     }
 
     .shopping-cart .c-cart-item {
@@ -12282,7 +12282,7 @@
     }
 
     .c-dc-scroll {
-        max-height: 360px;
+        max-height: 330px;
         overflow-y: scroll;
     }
 
