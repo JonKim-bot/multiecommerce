@@ -124,7 +124,8 @@ class Main extends BaseController
         $slug = $subdomain_arr[0];
 
 
-        $slug = 'capital-shop';
+        $slug = 'limshop';
+
         $this->shop= $this->get_shop($slug);
         $this->load_lang();
         //1 membership
@@ -270,7 +271,7 @@ class Main extends BaseController
         $shop = $this->shop;
         $where = [
             'gift.shop_id' => $shop['shop_id'],
-            'DATE(gift.valid_until) <=' => date('Y-m-d'), 
+            'DATE(gift.valid_until) >=' => date('Y-m-d'), 
 
         ];
         $gift_shop = $this->GiftModel->getWhere($where);
@@ -308,7 +309,7 @@ class Main extends BaseController
 
         $where = [
             'customer_gift.is_approve' => 1,
-            'DATE(gift.valid_until) <=' => date('Y-m-d'), 
+            'DATE(gift.valid_until) >=' => date('Y-m-d'), 
             'customer_gift.customer_id' => $this->session->get('customer_id'),
         ];
 
@@ -400,11 +401,12 @@ class Main extends BaseController
 
         $where = [
             'voucher.shop_id' => $shop['shop_id'],
-            'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
+            'DATE(voucher.valid_until) >=' => date('Y-m-d'), 
         ];
         $voucher_shop = $this->VoucherModel->getWhere($where);
+
         $where = [
-            'DATE(voucher.valid_until) <=' => date('Y-m-d'), 
+            'DATE(voucher.valid_until) >=' => date('Y-m-d'), 
             'customer_voucher.is_used' => 0,
             'customer_voucher.customer_id' => $this->session->get('customer_id'),
         ];

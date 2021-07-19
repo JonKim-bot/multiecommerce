@@ -129,8 +129,6 @@
                         </div>
                      </section>
                   </div>
-                  <?php
-                     } ?>
                   <div class="col-lg-6 col-md-6">
                      <div class="cart__right text-center mb-5 text-dark mt-3 p-5" style="border-radius:5px;">
                         <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1")
@@ -172,6 +170,51 @@
                         </div>
                      </div>
                   </div>
+                  <?php
+                     }else{ ?>
+ <div class="col-lg-12 col-md-12">
+                     <div class="cart__right text-center mb-5 text-dark mt-3 p-5" style="border-radius:5px;">
+                        <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1")
+                           { ?>
+                        <?php
+                           }
+                           else
+                           { ?>
+                        <div class="billing-address">
+                           <h4><?= $lang['payment_method'] ?>
+                           </h4>
+                           <?php foreach ($payment_method as $row)
+                              { ?>
+                           <div class="radio">
+                              <?php if (in_array($row['payment_method_id'], $shop_payment_method))
+                                 { ?>
+                              <label class="payment_label"><input type="radio" class="paymentmethod mt-2" name="optradio" id="payment_method_<?=$row['payment_method_id'] ?>" > 
+                              <?=$row['payment_method'] ?>
+                              </label>
+                              <?php
+                                 } ?>
+                           </div>
+                           <?php
+                              } ?>
+                           <?php
+                              } ?>
+                        </div>
+                        <div class="row">
+                           <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1")
+                              { ?>
+                           <a class="btn btn-primary m-auto w-50 p-t-20" id="" style="margin-top:20px"><?= $lang['paid'] ?></a>
+                           <?php
+                              }
+                              else
+                              { ?>
+                           <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px"><?= $lang['checkout'] ?></a>
+                           <?php
+                              } ?>
+                        </div>
+                     </div>
+                  </div>
+                  <?php } ?>
+                 
                </div>
             </div>
          </div>

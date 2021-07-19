@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Redeem instruction</label>
-                        <textarea class="form-control textarea" name="redeem_instruction" placeholder="Eg : 1) Claim at shop 2 ) Shop Merchant"><?= $voucher['redeem_instruction'] ?></textarea>
+                        <textarea class="form-control " name="redeem_instruction" placeholder="Eg : 1) Claim at shop 2 ) Shop Merchant"><?= $voucher['redeem_instruction'] ?></textarea>
                     </div>
                     
                     <div class="form-group">

@@ -193,12 +193,12 @@
                 </li>
 
               
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
                         <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
                         Brand 
                     </a>
-                </li>
+                </li> -->
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'sms' ? 'c-active' : null) ?>" href="<?= base_url() ?>/sms">
@@ -342,13 +342,13 @@
                     </a>
                 </li>
 
-              
+<!--               
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
                         <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
                         Brand 
                     </a>
-                </li>
+                </li> -->
                 <?php if(in_array(5,session()->get('shop_data')['shop_function'])){ ?>
 
                 <li>

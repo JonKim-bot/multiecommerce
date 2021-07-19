@@ -208,6 +208,7 @@ class OrdersModel extends BaseModel
     function get_total_number_orders_filter($shop_id,$date_from,$date_to){
         $where = [
             'orders.shop_id' => $shop_id,
+            'orders.is_paid' => 1,
             'DATE(orders.created_at) >=' => $date_from,
             'DATE(orders.created_at) <=' => $date_to
         ];
@@ -275,6 +276,7 @@ class OrdersModel extends BaseModel
     function get_total_number_orders($shop_id){
         $where = [
             'orders.shop_id' => $shop_id,
+            'orders.is_paid' => 1,
             'DATE(orders.created_at)' => date('Y-m-d')
         ];
         $builder = $this->db->table($this->tableName);

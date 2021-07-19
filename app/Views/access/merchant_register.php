@@ -12,7 +12,7 @@ label{
             <div class="card-body">
                 
                 <div class="" style="display:flex;">
-                    <h5 class="text-muted">Emenu Merchant Portal</h5>
+                    <h5 class="text-muted"> Merchant Portal</h5>
                     <ul class="c-header-nav mfs-auto rm-flex">
                         <li class="c-header-nav-item c-d-legacy-none">
                             <button class="c-class-toggler c-header-nav-btn" type="button" id="header-tooltip" data-target="body" data-class="c-dark-theme" data-toggle="c-tooltip" data-placement="bottom" title="" data-original-title="Toggle Light/Dark Mode" aria-describedby="tooltip615585">
@@ -59,20 +59,7 @@ label{
                                     <label for="">Email</label>
                                     <input type="text" class="form-control" name="email"  placeholder="e.g. xxx.com" required>
                                 </div>
-                                <div class="form-group">
-                    <label for="banner">Shop Category</label>
-
-                    <select name="tag_id[]" class="select" id="" required multiple>
-                        <?php foreach($tag as $row){ ?>
-                    
-
-                                <option value="<?= $row['tag_id'] ?>"><?= $row['tag']?></option>
-
-
-                           
-                        <?php }?>
-                        </select>
-                    </div>
+                             
                                 <div class="form-group">
                                     <label for="">Insta</label>
                                     <input type="text" class="form-control"  name="insta" placeholder="e.g. https://www.facebook.com/PieGen-Software-111184540529485/?ref=bookmarks" >
