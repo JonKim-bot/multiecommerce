@@ -12072,7 +12072,7 @@
         font-family: "Bahnschrift";
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll {
+    .shopping-cart {
         max-height: 260px;
         overflow-y: scroll;
     }
