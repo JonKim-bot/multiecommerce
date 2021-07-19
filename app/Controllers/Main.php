@@ -230,49 +230,50 @@ class Main extends BaseController
     public function get_gift(){
         $slug = $_POST['slug'];
         $shop = $this->shop;
-            $where = [
-                'gift.shop_id' => $shop['shop_id'],
-                'DATE(gift.valid_until) <=' => date('Y-m-d'), 
+        $where = [
+            'gift.shop_id' => $shop['shop_id'],
+            'DATE(gift.valid_until) <=' => date('Y-m-d'), 
 
+        ];
+        $gift_shop = $this->GiftModel->getWhere($where);
+        foreach($gift_shop as $key=> $row){
+            $where = [
+                'orders.grand_total >=' => $row['order_amount'],
+                'orders.is_paid' => 1,
+                'orders.customer_id' => $this->session->get('customer_id'),
             ];
-            $gift_shop = $this->GiftModel->getWhere($where);
-            foreach($gift_shop as $key=> $row){
-                $where = [
-                    'orders.grand_total >=' => $row['order_amount'],
-                    'orders.is_paid' => 1,
-                    'orders.customer_id' => $this->session->get('customer_id'),
-                ];
-                $orders = $this->OrdersModel->getWhere($where);
-          
-                if(!empty($orders)){
-                    $customer_gift_count = 0;
-                    foreach($orders as $row){
-    
-                        $where = [
-                            'customer_gift.orders_id' => $row['orders_id']
-                        ];
-    
-                        $customer_gift_count += count($this->CustomerGiftModel->getWhere($where));
-                    }
-                    
-                    //check how many reddeem already on this custonmer gift id
-                }else{
-                    $customer_gift_count = 0;
-    
+            $orders = $this->OrdersModel->getWhere($where);
+        
+            if(!empty($orders)){
+                $customer_gift_count = 0;
+                foreach($orders as $row){
+
+                    $where = [
+                        'customer_gift.orders_id' => $row['orders_id'],
+                    ];
+
+                    $customer_gift_count += count($this->CustomerGiftModel->getWhere($where));
                 }
-                $gift_shop[$key]['count_gift'] =  $customer_gift_count;
-                $gift_shop[$key]['count'] = count($orders) - $customer_gift_count;
-    
+                
+                //check how many reddeem already on this custonmer gift id
+            }else{
+                $customer_gift_count = 0;
+
             }
 
+            $gift_shop[$key]['count_gift'] =  $customer_gift_count;
+            
+            $gift_shop[$key]['count'] = count($orders) - $customer_gift_count;
 
-            $where = [
-                'customer_gift.is_approve' => 1,
-                'DATE(gift.valid_until) <=' => date('Y-m-d'), 
-                'customer_gift.customer_id' => $this->session->get('customer_id'),
-            ];
+        }
 
-            $gift_self = $this->CustomerGiftModel->getWhere($where);
+        $where = [
+            'customer_gift.is_approve' => 1,
+            'DATE(gift.valid_until) <=' => date('Y-m-d'), 
+            'customer_gift.customer_id' => $this->session->get('customer_id'),
+        ];
+
+        $gift_self = $this->CustomerGiftModel->getWhere($where);
         $this->pageData['gift_self'] = $gift_self;
         $this->pageData['gift_shop'] = $gift_shop;
 
@@ -343,7 +344,13 @@ class Main extends BaseController
         ];
         $about = $this->AboutModel->getWhere($where);
         if(!empty($about)){
-            return $about[0];
+            if($type_id != 1){
+
+                return $about[0];
+            }else{
+                return $about;
+
+            }
         }else{
             return [];
         }
@@ -1449,6 +1456,8 @@ class Main extends BaseController
         // $this->pageData['shop_payment_method'] = $shop_payment_method;
         // $this->pageData['payment_method'] = $payment_method;
         $this->pageData['brand'] = $brand;
+
+
         $where = [
             'merchant.shop_id' => $shop['shop_id']
         ];
@@ -1469,9 +1478,11 @@ class Main extends BaseController
         }
         
         $this->pageData['product'] = $product;
+        $this->pageData['about'] = $this->get_about(1);
+        $this->pageData['about_bottom'] = $this->get_about(2);
 
-    
         $this->load_view('index');
+
 
 
     }
@@ -1536,6 +1547,7 @@ class Main extends BaseController
     public function member()
     {
         $shop = $this->shop;
+
         $this->validate_function(1,$this->pageData['shop_function']);
 
         $this->pageData['point'] = $this->PointModel->get_balance($this->session->get('customer_id'));

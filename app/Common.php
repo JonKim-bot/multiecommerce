@@ -13,3 +13,13 @@
  *
  * @link: https://codeigniter4.github.io/CodeIgniter4/
  */
+
+ function dd($data)
+{
+
+    echo "<pre>";
+    var_dump($data);
+    echo "</pre>";
+    die();
+
+}

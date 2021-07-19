@@ -124,6 +124,7 @@
                                         <?php foreach($downline as $row){ ?>
                                         <tr>
                                             <td><?= $row['name'] ?></td>
+
                                             <td><?= $row['contact'] ?></td>
                                             <td><?= $row['created_date'] ?></td>
                                         </tr>
@@ -331,6 +332,7 @@ function redeem_voucher(voucher_id){
                     type: 'success'
                 });
             });
+            load_gift();
         }
        
         function redeem(gift_id){
