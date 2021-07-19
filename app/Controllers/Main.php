@@ -124,7 +124,7 @@ class Main extends BaseController
         $slug = $subdomain_arr[0];
 
 
-        $slug = 'limshop';
+        $slug = 'capital-shop';
 
 
         $this->shop= $this->get_shop($slug);
