@@ -59,5 +59,5 @@
 </div>
 <div class="c-dc-total">
     <h5>Total</h5>
-    <h5 class="cart_total">RM 0</h5>
+    <h5 class="cart_total">RM <?=number_format($total, 2)?></h5>
 </div>
