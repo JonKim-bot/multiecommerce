@@ -13,10 +13,10 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Order Code</th>
-                                    <th>Order Date</th>
-                                    <th>Total</th>
-                                    <th>Is Paid </th>
+                                    <th><?= $lang['order_no'] ?></th>
+                                    <th><?= $lang['order_date'] ?></th>
+                                    <th><?= $lang['total'] ?></th>
+                                    <th><?= $lang['payment_status'] ?></th>
                                 </tr>
                             </thead>
                             <tbody>

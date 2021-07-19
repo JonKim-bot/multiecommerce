@@ -41,9 +41,10 @@
 
         <!-- Product Start-->
         <div class="listing-area c-home-listing" id="product">
-            <h1 class="c-subtitle">我的产品</h1>
+            <h1 class="c-subtitle"><?= $lang['my_product'] ?></h1>
             <div class="container">
                 <div class="row">
+                    
                     <!--? Left content -->
                     <div class="col-xl-3 col-lg-4 col-md-4 c-home-listing-left">
                         <!-- Job Category Listing start -->
@@ -58,7 +59,7 @@
                                 </div>
                                 <div class="select-Categories pb-20">
                                     <div class="small-tittle mb-20">
-                                        <h4>Filter</h4>
+                                        <h4><?= $lang['filter'] ?></h4>
                                     </div>
                                     <?php foreach ($category as $row) { ?>
                                         <label class="container"><?= $row['category'] ?>

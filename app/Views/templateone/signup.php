@@ -1,7 +1,7 @@
 <!-- login Area Start -->
 <div class="c-register-back">
     <div class="c-header">
-        <h1>注册</h1>
+        <h1><?= $lang['register'] ?></h1>
     </div>
 </div>
 
@@ -45,26 +45,26 @@
                     </div>
                 <?php } ?>
                 <div class="single-input-fields">
-                    <label class="c-label">Full name</label>
-                    <input type="text" class="c-input" name="name" placeholder="Enter full name" required>
+                    <label class="c-label"><?= $lang['name'] ?></label>
+                    <input type="text" class="c-input" name="name" placeholder="<?= $lang['name'] ?>" required>
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Email Address</label>
-                    <input class="c-input" type="email" name="email" placeholder="Enter email address" required>
+                    <label class="c-label"><?= $lang['email'] ?></label>
+                    <input class="c-input" type="email" name="email" placeholder="<?= $lang['email'] ?>" required>
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Contact</label>
-                    <input class="c-input" type="tel" name="contact" placeholder="Enter contact" required>
+                    <label class="c-label"><?= $lang['contact_number'] ?></label>
+                    <input class="c-input" type="tel" name="contact" placeholder="<?= $lang['contact_number'] ?>" required>
                 </div>
                 <?php if (in_array(6, $shop_function)) { ?>
                     <div class="single-input-fields">
-                        <label class="c-label">Referal Code</label>
-                        <input class="c-input" type="text" name="referal_code" value="<?= $referal_code ?>" placeholder="Optional">
+                        <label class="c-label"><?= $lang['referal_code'] ?></label>
+                        <input class="c-input" type="text" name="referal_code" value="<?= $referal_code ?>" placeholder="<?= $lang['referal_code'] ?>">
                     </div>
                 <?php } ?>
                 <div class="single-input-fields">
-                    <label class="c-label">Password</label>
-                    <input class="c-input" type="password" name="password" placeholder="Enter Password" required>
+                    <label class="c-label"><?= $lang['password'] ?></label>
+                    <input class="c-input" type="password" name="password" placeholder="<?= $lang['password'] ?>" required>
                 </div>
                 <!-- <div class="single-input-fields register-check">
                             <input type="checkbox" id="fruit1" name="keep-log">
@@ -75,8 +75,8 @@
 
             <!-- form Footer -->
             <div class="register-footer">
-                <p> Already have an account? <a href="<?= base_url()  ?>/main/login"> Login</a> here</p>
-                <button class="submit-btn3 c-btn" type="submit">Sign Up</button>
+                <p><?= $lang['already_have_account'] ?> <a href="<?= base_url()  ?>/main/login"> <?= $lang['login'] ?></a></p>
+                <button class="submit-btn3 c-btn" type="submit"><?= $lang['submit'] ?></button>
             </div>
         </form>
        

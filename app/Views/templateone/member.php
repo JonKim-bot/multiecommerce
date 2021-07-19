@@ -24,7 +24,8 @@
                             <p><?= $customer['address'] ?></p>
                         </div>
                         <a class="c-btn" href="<?= base_url() ?>/main/profile">
-                            编辑
+                            
+                            <?= $lang['edit'] ?>
                         </a>
                     </div>
                     <?php if(in_array(6,$shop_function) || in_array(8,$shop_function)){ ?>
@@ -34,7 +35,8 @@
                         <div class="c-qr-img">
                         <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" >                        </div>
                         <div class="c-btn" data-toggle="modal" data-target="#qrmodal">
-                            分享链接
+                        <?= $lang['share_link'] ?>
+
                         </div>
                     </div>
                     <?php } ?>
@@ -47,7 +49,8 @@
 
                         <li class="nav-item">
                             <a class="nav-link active" id="pills-voucher-tab" data-toggle="pill" href="#pills-voucher" role="tab" aria-controls="pills-voucher" aria-selected="true">
-                                优惠卷
+                            <?= $lang['voucher'] ?>
+
                             </a>
                         </li>
                         <?php } ?>
@@ -55,7 +58,8 @@
 
                         <li class="nav-item">
                             <a class="nav-link" id="pills-gift-tab" data-toggle="pill" href="#pills-gift" role="tab" aria-controls="pills-gift" aria-selected="false">
-                                礼品
+                            <?= $lang['gift'] ?>
+
                             </a>
                         </li>
                         <?php } ?>
@@ -63,7 +67,8 @@
 
                         <li class="nav-item">
                             <a class="nav-link" id="pills-point-tab" data-toggle="pill" href="#pills-point" role="tab" aria-controls="pills-point" aria-selected="false">
-                                分数
+                            <?= $lang['point'] ?>
+
                             </a>
                         </li>
                         <?php } ?>
@@ -71,7 +76,8 @@
 
                         <li class="nav-item">
                             <a class="nav-link" id="pills-donwline-tab" data-toggle="pill" href="#pills-donwline" role="tab" aria-controls="pills-donwline" aria-selected="false">
-                                下线
+                            <?= $lang['downline'] ?>
+
                             </a>
                         </li>
                         <?php } ?>
@@ -81,7 +87,7 @@
 
                     <div class="c-right">
                         <div class="c-point">
-                            <p>分数总分</p>
+                            <p><?= $lang['total_point'] ?></p>
                             <h3><?= $point ?></h3>
                         </div>
                     </div>
@@ -105,9 +111,9 @@
                                 <table class="table table-borderless">
                                     <thead>
                                         <tr>
-                                            <th scope="col">交易</th>
-                                            <th scope="col">备注</th>
-                                            <th scope="col">创建日期</th>
+                                            <th scope="col"><?= $lang['transaction'] ?></th>
+                                            <th scope="col"><?= $lang['remarks'] ?></th>
+                                            <th scope="col"><?= $lang['created_date'] ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -129,9 +135,9 @@
                                 <table class="table table-borderless">
                                     <thead>
                                         <tr>
-                                            <th scope="col">名字</th>
-                                            <th scope="col">电话</th>
-                                            <th scope="col">注册日期</th>
+                                            <th scope="col"><?= $lang['name'] ?></th>
+                                            <th scope="col"><?= $lang['contact'] ?></th>
+                                            <th scope="col"><?= $lang['register_date'] ?></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -166,8 +172,8 @@
                 <div class="modal-body c-modal-body">
 
                     <div class="c-qr-title">
-                        <h4>推荐你的好友</h4>
-                        <h4>享受优惠卷奖励</h4>
+                        <h4><?= $lang['refer_friend'] ?></h4>
+                        <h4><?= $lang['enjoy_voucher'] ?></h4>
                     </div>
                     <div class="c-qr-img">
                     <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" >
@@ -177,7 +183,7 @@
 
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="button" onclick="copy()" class="btn btn-secondary c-btn" >复制链接</button>
+                    <button type="button" onclick="copy()" class="btn btn-secondary c-btn" ><?= $lang['copy_link'] ?></button>
                 </div>
             </div>
         </div>
@@ -201,13 +207,13 @@
                     <div class="c-voucher-title">
     <h4 class='gift_name'></h4>
     <p class="gift_description"></p>
-    <p><b>所需点数:</b> <span class="gift_point"></span></p>
-    <p><b>有效日期到: </b ><span class="gift_valid"></span></p>
-    <p><b>你会得到什么:</b ><span class="what_you_get"></span> </p>             
+    <p><b><?= $lang['point_needed'] ?>:</b> <span class="gift_point"></span></p>
+    <p><b><?= $lang['valid_until'] ?>: </b ><span class="gift_valid"></span></p>
+    <p><b><?= $lang['what_you_get'] ?>:</b ><span class="what_you_get"></span> </p>             
 </div>
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="button" class="btn btn-secondary c-btn redeem_gift redeem_gift_btn" data-dismiss="modal">兑换</button>
+                    <button type="button" class="btn btn-secondary c-btn redeem_gift redeem_gift_btn" data-dismiss="modal"><?= $lang['exchange'] ?></button>
                 </div>
             </div>
         </div>
@@ -231,13 +237,13 @@
                     <div class="c-voucher-title">
     <h4 class='voucher_name'></h4>
     <p class="voucher_description"></p>
-    <p><b>所需点数:</b> <span class="voucher_point"></span></p>
-    <p><b>有效日期到: </b ><span class="voucher_valid"></span></p>
-    <p><b>你会得到什么:</b ><span class="what_you_get"></span> </p>             
+    <p><b><?= $lang['point_needed'] ?>:</b> <span class="voucher_point"></span></p>
+    <p><b><?= $lang['valid_until'] ?>: </b ><span class="voucher_valid"></span></p>
+    <p><b><?= $lang['what_you_get'] ?>:</b ><span class="what_you_get"></span> </p>             
 </div>
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="button" class="btn btn-secondary c-btn redeem_voucher redeem_voucher_btn" data-dismiss="modal">兑换</button>
+                    <button type="button" class="btn btn-secondary c-btn redeem_voucher redeem_voucher_btn" data-dismiss="modal"><?= $lang['exchange'] ?></button>
                 </div>
             </div>
         </div>

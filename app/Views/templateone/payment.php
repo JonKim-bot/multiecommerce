@@ -31,8 +31,8 @@
                   <table>
                      <thead style="border-bottom:1px solid black">
                         <tr>
-                           <th>Product</th>
-                           <th style="text-align:right">Total</th>
+                           <th><?= $lang['product'] ?></th>
+                           <th style="text-align:right"><?= $lang['total'] ?></th>
                         </tr>
                      </thead>
                      <tbody>
@@ -45,7 +45,7 @@
                               </div>
                               <div class="cart__item__text ">
                                  <h6><?=$row['product_name'] ?></h6>
-                                 <h6>Quantity : <?=$row['product_quantity'] ?></h6>
+                                 <h6><?= $lang['quantity'] ?> : <?=$row['product_quantity'] ?></h6>
                                  <ul>
                                     <?php if (!empty($row['order_detail_option']))
                                        { ?>
@@ -72,7 +72,7 @@
                   <div class="billing-address">
                      <div class="row">
                         <div class="col-md-12">
-                           <h4>Tracking Link * Merchant Will put tracking link here if got any</h4>
+                           <h4><?= $lang['tracking_link'] ?></h4>
                            <p>
                               <a style="color:blue" target="_blank" href="<?=$orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>">
                                  <!-- <?=$orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?> -->
@@ -80,50 +80,28 @@
                            </p>
                         </div>
                         <div class="col-md-6">
-                           <h4>Status</h4>
+                           <h4><?= $lang['order_status'] ?></h4>
                            <p><?=$orders['orders_status'] ?></p>
-                           <h4>Receiver</h4>
+                           <h4><?= $lang['name'] ?></h4>
                            <p><?=$orders['full_name'] ?></p>
-                           <h4>Contact Number</h4>
+                           <h4><?= $lang['contact_number'] ?></h4>
                            <p><?=$orders['contact'] ?></p>
                         </div>
                         <div class="col-md-6">
-                           <h4>Payment Status
+                           <h4><?= $lang['payment_status'] ?>
                            </h4>
-                           <p><?=$orders['is_paid'] == 1 ? "Paid" : 'Not Paid' ?></p>
-                           <h4>Address
+                           <p><?=$orders['is_paid'] == 1 ? $lang['paid'] : $lang['not_paid'] ?></p>
+                           <h4><?= $lang['address'] ?>
                            </h4>
                            <p><?=$orders['address'] ?></p>
-                           <h4>Date & Time:</h4>
+                           <h4><?= $lang['order_date'] ?></h4>
                            <p><?=$orders['created_date_'] ?></p>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <!-- <div class="col-lg-9 col-md-6">
-               <div class="section-top-border">
-                   <div class="row">
-                       <div class="col-md-4">
-                       <h3 class="mb-30">Gift Aligned</h3>
-               
-                           <img src="assets/img/elements/d.jpg" alt="" class="img-fluid">
-                       </div>
-                       <div class="col-md-4">
-                       <h3 class="mb-30">Gift Aligned</h3>
-               
-                           <img src="assets/img/elements/d.jpg" alt="" class="img-fluid">
-                       </div>
-                       <div class="col-md-4">
-                       <h3 class="mb-30">Gift Aligned</h3>
-               
-                           <img src="assets/img/elements/d.jpg" alt="" class="img-fluid">
-                       </div>
-                       
-                   </div>
-               </div>
-               
-               </div> -->
+            
             <div class="col-md-9">
                <div class="row">
                   <?php if (in_array(2, $shop_function))
@@ -131,7 +109,7 @@
                   <div class="col-lg-6">
                      <section class="items-product1 pt-30">
                         <div>
-                           <h3 class="text-left">Purchase to get gift</h3>
+                           <h3 class="text-left"><?= $lang['purchase_to_get_gift'] ?></h3>
                            <div class="row">
                               <?php foreach ($shop_gift as $row)
                                  { ?>
@@ -140,12 +118,9 @@
                                     <div class="items-img">
                                        <img src="<?=base_url() . $row['banner'] ?>" alt="">
                                     </div>
-                                    <!-- <div class="items-details">
-                                       <h5 class="text-white"><a href="<?=base_url() . "/main/gift_detail/" . $row['gift_id'] ?>">Purchase > RM <?=$row['order_amount'] ?></a></h5>
-                                       <a href="<?=base_url() . "/main/gift_detail/" . $row['gift_id'] ?>" class="browse-btn" target="_blank">View More</a>
-                                       </div> -->
+                               
                                  </div>
-                                 <a class="btn btn-primary w-50 p-t-20 m-b-20" style="margin-bottom:20px">Paid</a>
+                                 <a class="btn btn-primary p-t-20 m-b-20" style="margin-bottom:20px" ><?= $lang['total'] ?> > <?= $row['order_amount'] ?></a>
                               </div>
                               <?php
                                  } ?>
@@ -164,7 +139,7 @@
                            else
                            { ?>
                         <div class="billing-address">
-                           <h4>Payment Method
+                           <h4><?= $lang['payment_method'] ?>
                            </h4>
                            <?php foreach ($payment_method as $row)
                               { ?>
@@ -185,12 +160,12 @@
                         <div class="row">
                            <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1")
                               { ?>
-                           <a class="btn btn-primary m-auto w-50 p-t-20" id="" style="margin-top:20px">Paid</a>
+                           <a class="btn btn-primary m-auto w-50 p-t-20" id="" style="margin-top:20px"><?= $lang['paid'] ?></a>
                            <?php
                               }
                               else
                               { ?>
-                           <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px">Pay</a>
+                           <a class="btn btn-primary m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px"><?= $lang['checkout'] ?></a>
                            <?php
                               } ?>
                         </div>
@@ -208,7 +183,7 @@
     $(".radio").on('change', function(e){
         $(".radio").css('background', 'white');
 
-        $(this).css('background', '<?= $shop['color_2'] ?>');
+        $(this).css('background', '<?= $shop['colour'] ?>');
 
     });
 

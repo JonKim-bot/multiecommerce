@@ -24,16 +24,16 @@
                             <div class="footer-tittle">
                                 <!-- <h4>Quick Links</h4> -->
                                 <ul>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index">首页</a></li>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/product">我的产品</a></li>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/search">搜寻产品</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/product"><?= $lang['my_product'] ?></a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index#product"><?= $lang['filter'] ?></a></li>
                                     <?php if (in_array(1, $shop_function)) { ?>
                                         <?php if (empty($customer_data)) { ?>
-                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/login">会员登入</a></li>
-                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/signup">成为会员</a></li>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/login"><?= $lang['login'] ?></a></li>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/signup"><?= $lang['register'] ?></a></li>
                                         <?php } else { ?>
-                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/member">会员资料</a></li>
-                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/logout">会员登出</a></li>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/member"><?= $lang['my_profile'] ?></a></li>
+                                            <li><a class="c-footer-bold" href="<?= base_url() ?>/main/logout"><?= $lang['logout'] ?></a></li>
 
                                         <?php } ?>
                                     <?php }  ?>
@@ -44,22 +44,22 @@
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4 class="c-footer-bold-title">联系我们</h4>
+                                <h4 class="c-footer-bold-title"><?= $lang['contact_us'] ?></h4>
                                 <ul>
                                     <li>
-                                        <p class="c-footer-bold_">地址 :</p>
+                                        <p class="c-footer-bold_"><?= $lang['address'] ?> :</p>
                                         <a class="c-footer-light_" href="mailto:<?= $shop['email'] ?>?subject=Product Enquiry">
                                             5457a, Jalan Kenari 20, Bandar Putra, 81000 Kulai, Johor
                                         </a>
                                     </li>
                                     <li>
-                                        <p class="c-footer-bold_">联络号码 :</p>
+                                        <p class="c-footer-bold_"><?= $lang['contact_number'] ?> :</p>
                                         <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
                                             <?= $shop['contact'] ?>
                                         </a>
                                     </li>
                                     <li>
-                                        <p class="c-footer-bold_">电子邮件 :</p>
+                                        <p class="c-footer-bold_"><?= $lang['email'] ?> :</p>
                                         <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
                                             <?= $shop['email'] ?>
                                         </a>
@@ -72,7 +72,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4 class="c-footer-bold-title">Follow Us</h4>
+                                <h4 class="c-footer-bold-title"><?= $lang['getintouch'] ?></h4>
                                 <ul class="c-social">
                                     <li>
                                         <a href="<?= $shop['facebook'] ?>">

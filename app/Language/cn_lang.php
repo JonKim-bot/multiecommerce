@@ -17,7 +17,49 @@
     $lang['promocode'] = '优惠券';
     $lang['country'] = '国家';
     $lang['you_may_also_like'] = '猜你喜欢';
+    $lang['change_photo'] = '更改照片';
+
+    $lang['edit'] = '编辑';
+    $lang['share_link'] = '分享链接';
+    $lang['voucher'] = '优惠卷';
+    $lang['gift'] = '礼品';
+    $lang['point'] = '分数';
+    $lang['downline'] = '下线';
+    $lang['total_point'] = '分数总分';
+    $lang['transaction'] = '交易';
+    $lang['remarks'] = '备注';
+    $lang['created_date'] = '创建日期';
+    $lang['register_date'] = '注册日期';
+    $lang['refer_friend'] = '推荐你的好友';
+    $lang['enjoy_voucher'] = '享受优惠卷奖励';
+    $lang['copy_link'] = '复制链接';
+    $lang['point_needed'] = '所需点数';
+    $lang['valid_until'] = '有效日期到';
+    $lang['what_you_get'] = '你会得到什么';
+    $lang['exchange'] = ' 兑换';
+    $lang['others_voucher'] = ' 其他优惠卷';
+    $lang['my_voucher'] = ' 我的优惠卷';
+    $lang['my_gift'] = ' 我的礼品';
+    $lang['others_gift'] = ' 其他礼品';
+
+
     $lang['product'] = '产品';
+    $lang['join_as_member'] = '加入会员';
+    $lang['addto_cart'] = '加入购物车';
+    $lang['learn_more'] = '了解更多';
+    $lang['clear_cart'] = '清空购物车';
+    $lang['tracking_link'] = '追踪货物';
+
+    $lang['upsales'] = '相关产品';
+    $lang['continue_shopping'] = '继续购物';
+    $lang['payment_status'] = '付款状态';
+    $lang['payment_method'] = '付款方法';
+
+    $lang['my_product'] = '我的产品';
+    $lang['filter'] = '搜索产品';
+    $lang['contact_us'] = '联系我们';
+    $lang['etel'] = '输入您的电子邮件或电话号码以查找您的订单历史记录';
+    $lang['referal_code'] = '推荐代码';
 
     $lang['your_cart'] = '你的购物车';
     $lang['checkout'] = '付款';
@@ -38,6 +80,8 @@
     $lang['shirtdress_buy'] = '在线购买衬衫/连衣裙';
     $lang['newcollection_discount'] = '新系列拥有20%折扣';
     $lang['freedelivery_within'] = '马来西亚半岛内免邮费';
+    $lang['delivery_fee'] = '邮费';
+
     $lang['days_returnpolicy'] = '14天退货政策';
     $lang['customerservice_support'] = '客户服务支持';
     $lang['shop_by_category'] = '按类别购物';
@@ -45,7 +89,6 @@
     $lang['shop_now_small'] = '立即购物';
     $lang['best_seller'] = '畅销物品';
     $lang['addto_wishlist'] = '加入清单';
-    $lang['addto_cart'] = '加入购物车';
     $lang['about1_title_1'] = '一个';
     $lang['about1_title_2'] = '时尚目的地';
     $lang['about1_desc'] = '发现您的地道风格，成为天生的迷人女士';
@@ -58,6 +101,12 @@
     $lang['connect'] = '连接';
     $lang['getintouch'] = '保持联系';
     $lang['contact_form'] = '联系表格';
+    $lang['billing_detail'] = '账单表格';
+    $lang['purchase_to_get_gift'] = '礼品';
+    $lang['paid'] = '已付款';
+    $lang['not_paid'] = '未付款';
+
+
     $lang['name'] = '姓名';
     $lang['subject'] = '标题';
     $lang['email'] = '电邮';
@@ -66,7 +115,7 @@
     $lang['promocodeapply'] = '如果您有促销代码，请单击“应用”。';
     $lang['promocodecancel'] = '如果您要取消促销代码，请单击“取消”。';
     $lang['promotitle'] = '输入您的促销代码';
-    $lang['apply'] = '应用';
+    $lang['apply'] = '使用';
     $lang['cancel'] = '取消';
     $lang['close'] = '关闭';
     $lang['our_story'] = '我们的故事';
@@ -81,6 +130,7 @@
     $lang['single'] = '单价';
     $lang['total'] = '总价';
     $lang['total_price'] = '总数额';
+    $lang['discounted'] = '折扣';
     $lang['discounted_price'] = '折扣价';
     $lang['shipping_details'] = '邮寄信息';
     $lang['receiver'] = '收件人';

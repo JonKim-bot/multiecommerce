@@ -7,7 +7,7 @@
     <!-- Contact Section Begin -->
     <div class="c-login-back" style="height:15vh">
     <div class="c-header">
-        <h1>登入</h1>
+        <h1><?= $lang['order_history'] ?></h1>
     </div>
 </div>
     <div class="contact spad" style='padding-top:0px' >
@@ -20,8 +20,8 @@
                         <div class="contact__widget__item">
                             
                             <div class="contact__widget__item__text">
-                                <h4>Search</h4>
-                                <p>Enter your email or tel number to find your order history</p>
+                                <h4><?= $lang['order_history'] ?></h4>
+                                <p><?= $lang['etel'] ?></p>
                             </div>
                         </div>
                     </div>
@@ -29,8 +29,8 @@
                 <div class="col-lg-12 col-md-6">
                     <div class="contact__form">
                         <form novalidate action="<?= base_url() ?>/main/order_history" method="GET">
-                            <input type="email" name="keyword" placeholder="Email or phone number">
-                            <button type="submit" class="site-btn button_b">Search</button>
+                            <input type="email" name="keyword" placeholder="<?= $lang['etel'] ?>">
+                            <button type="submit" class="site-btn button_b"><?= $lang['submit'] ?></button>
                         </form>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <!-- login Area Start -->
 <div class="c-login-back">
     <div class="c-header">
-        <h1>登入</h1>
+        <h1><?= $lang['login'] ?></h1>
     </div>
 </div>
 <div class="login-form-area c-login-form">
@@ -21,12 +21,12 @@
                     </div>
                 <?php } ?>
                 <div class="single-input-fields">
-                    <label class="c-label">电子邮件</label>
-                    <input class="c-input" type="email" name="email" placeholder="电子邮件">
+                    <label class="c-label"><?= $lang['email'] ?></label>
+                    <input class="c-input" type="email" name="email" placeholder="<?= $lang['email'] ?>">
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">密码</label>
-                    <input class="c-input" type="password" name="password" placeholder="密码">
+                    <label class="c-label"><?= $lang['password'] ?></label>
+                    <input class="c-input" type="password" name="password" placeholder="<?= $lang['password'] ?>">
                 </div>
                 <!-- <div class="single-input-fields login-check">
                             <input type="checkbox" id="fruit1" name="keep-log">
@@ -37,8 +37,8 @@
 
             <!-- form Footer -->
             <div class="login-footer">
-                <p>还未拥有户口？ <a href="<?= base_url()  ?>/main/signup">立即申请</a></p>
-                <button class="submit-btn3 c-btn" type="submit">Login</button>
+                <p><?= $lang['dont_have_account'] ?> <a href="<?= base_url()  ?>/main/signup"><?= $lang['register'] ?></a></p>
+                <button class="submit-btn3 c-btn" type="submit"><?= $lang['submit'] ?></button>
             </div>
         </form>
 

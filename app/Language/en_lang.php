@@ -17,6 +17,7 @@
     $lang['you_may_also_like'] = 'You May Also Like';
     $lang['country'] = 'Country';
     $lang['product'] = 'Products';
+    $lang['my_product'] = 'My Products';
 
     $lang['your_cart'] = 'Your Cart';
     $lang['checkout'] = 'CHECKOUT';

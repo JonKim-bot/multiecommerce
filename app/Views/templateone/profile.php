@@ -1,7 +1,7 @@
 <!-- login Area Start -->
 <div class="c-profile-back">
     <div class="c-header">
-        <h1>Profile</h1>
+        <h1><?= $lang['my_profile'] ?></h1>
     </div>
 </div>
 <div class="profile-form-area c-profile-form">
@@ -12,7 +12,7 @@
 
             </div>
             <div class="col-md-12 text-center mt-2">
-                 <button class="submit-btn3 c-btn_" data-toggle="modal" data-target="#imageModal">更改照片</button>
+                 <button class="submit-btn3 c-btn_" data-toggle="modal" data-target="#imageModal"><?= $lang['change_photo'] ?></button>
             </div>
 
         </div>
@@ -27,42 +27,42 @@
                 <?php } ?>
                 
                 <div class="single-input-fields">
-                    <label class="c-label">电子邮件</label>
+                    <label class="c-label"><?= $lang['email'] ?></label>
                     <input class="c-input" type="email" name="email" readonly value="<?= isset($_SESSION['customer_data'])
                                                 ? $_SESSION['customer_data']['email']
-                                                : '' ?>" placeholder="电子邮件">
+                                                : '' ?>" placeholder="<?= $lang['email'] ?>">
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Full name</label>
+                    <label class="c-label"><?= $lang['name'] ?></label>
                     <input  class="c-input" type="text" name="name" value="<?= isset($_SESSION['customer_data'])
                                             ? $_SESSION['customer_data']['name']
-                                            : '' ?>" placeholder="Enter full name">
+                                            : '' ?>" placeholder="<?= $lang['name'] ?>">
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Contact</label>
+                    <label class="c-label"><?= $lang['email'] ?></label>
                     <input  class="c-input" type="tel" name="contact" value="<?= isset($_SESSION['customer_data'])
                                             ? $_SESSION['customer_data']['contact']
-                                            : '' ?>" placeholder="Enter contact" required>
+                                            : '' ?>" placeholder="<?= $lang['email'] ?>" required>
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Post code</label>
+                    <label class="c-label"><?= $lang['postcode'] ?></label>
                     <input  class="c-input" type="text" name="post_code" value="<?= isset($_SESSION['customer_data'])
                                             ? $_SESSION['customer_data']['post_code']
-                                            : '' ?>" placeholder="Enter post code">
+                                            : '' ?>" placeholder="<?= $lang['postcode'] ?>">
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">City</label>
+                    <label class="c-label"><?= $lang['city'] ?></label>
                     <input  class="c-input" type="text" name="city" value="<?= isset($_SESSION['customer_data'])
                                             ? $_SESSION['customer_data']['city']
-                                            : '' ?>" placeholder="Enter city">
+                                            : '' ?>" placeholder="<?= $lang['city'] ?>">
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Address</label>
-                    <input  class="c-input" type="text" name="address" value="<?= isset($_SESSION['customer_data'])? $_SESSION['customer_data']['address']: '' ?>" placeholder="Enter address">
+                    <label class="c-label"><?= $lang['address'] ?></label>
+                    <input  class="c-input" type="text" name="address" value="<?= isset($_SESSION['customer_data'])? $_SESSION['customer_data']['address']: '' ?>" placeholder="<?= $lang['address'] ?>">
                 </div>
                 <div class="single-input-fields">
-                    <label class="c-label">Password * Leave blank if not change password</label>
-                    <input class="c-input" type="password" name="password" placeholder="Enter Password">
+                    <label class="c-label"><?= $lang['password'] ?></label>
+                    <input class="c-input" type="password" name="password" placeholder="<?= $lang['password'] ?>">
                 </div>
                 <!-- <div class="single-input-fields login-check">
                             <input type="checkbox" id="fruit1" name="keep-log">

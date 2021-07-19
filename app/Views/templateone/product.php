@@ -353,7 +353,7 @@
                                                 </div>
                                                 <div class="c-btn">
                                                     <a class="r-btn"  href="<?= base_url() ?>/main/signup">
-                                                        加入会员
+                                                        <?= $lang['join_as_member'] ?>
                                                     </a>
                                                 </div>
                                                 <?php } ?>
@@ -416,7 +416,7 @@
                                                 </div>
                                                 <?php } ?>
                                                 <div class="c-priceBOX">
-                                                    <h2>数量</h2>
+                                                    <h2><?= $lang['quantity'] ?></h2>
                                                     <div class="product__details__widget" style="overflow: visible">
 
                                                         <div class="quantity">
@@ -430,7 +430,7 @@
                                                 </div>
                                                 <div class="c-btn" >
                                                     <div class="r-btn add-to-cart-button" style="cursor:pointer">
-                                                        加入购物车
+                                                        <?= $lang['addto_cart'] ?>
                                                     </div>
                                                 </div>
 
@@ -440,7 +440,7 @@
                                                         <div class="row">
                                                             <div class="col-xl-12">
                                                                 <div class="section-tittle text-center mb-40">
-                                                                    <h2 class="c-title">相关产品</h2>
+                                                                    <h2 class="c-title"><?= $lang['upsales'] ?></h2>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -467,7 +467,7 @@
                                                                                 <p style="color:black"><?= $row['product_description'] ?></p>
                                                                             </a>
                                                                             <a class="c-btm" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
-                                                                                <div class="c-btn">了解更多</div>
+                                                                                <div class="c-btn"><?= $lang['learn_more'] ?></div>
                                                                                 <div class="c-price">
                                                                                     <?php if ($row['is_promo'] == 1) { ?>
                                                                                         <p class="t-promo-price">RM <?= $row['product_price'] ?></p>

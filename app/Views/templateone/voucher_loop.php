@@ -1,5 +1,5 @@
 <div class="c-voucher">
-                            <h4><span>我的优惠卷</span></h4>
+                            <h4><span><?= $lang['my_voucher'] ?></span></h4>
                             <div class="c-voucherLIST">
                                 <div class="row">
                                     <?php foreach($voucher_self as $row){ ?>
@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="c-voucher-other">
-                            <h4><span>其他优惠卷</span></h4>
+                            <h4><span><?= $lang['others_voucher'] ?></span></h4>
                             <div class="c-voucherLIST">
                                 <div class="row">
                                 <?php foreach($voucher_shop as $row){ ?>
