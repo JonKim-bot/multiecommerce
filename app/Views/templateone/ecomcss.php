@@ -12077,13 +12077,13 @@
         overflow-y: scroll;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item {
+    .shopping-cart .c-cart-item {
         display: flex;
         padding: 1rem 0.5rem;
         position: relative;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-dc-delete {
+    .shopping-cart .c-cart-item .c-dc-delete {
         position: absolute;
         color: #fff;
         background-color: #bc001d;
@@ -12098,24 +12098,24 @@
         z-index: 10;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-img {
+    .shopping-cart .c-cart-item .c-cart-img {
         position: relative;
         padding-right: 0.5rem;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-img img {
+    .shopping-cart .c-cart-item .c-cart-img img {
         width: 90px;
         height: 90px;
         object-fit: cover;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-title {
+    .shopping-cart .c-cart-item .c-cart-desc .c-title {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-title .c-dc-name p {
+    .shopping-cart .c-cart-item .c-cart-desc .c-title .c-dc-name p {
         color: #fff;
         margin: 0;
         font-family: "Bahnschrift";
@@ -12125,19 +12125,19 @@
         width: 100px;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-title .c-price {
+    .shopping-cart .c-cart-item .c-cart-desc .c-title .c-price {
         color: #fff;
         margin: 0;
         font-family: "Bahnschrift";
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box {
         display: block;
         align-items: center;
         justify-content: center;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box .c-quan {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quan {
         margin: 0;
         padding-right: 0;
         font-weight: 600;
@@ -12146,13 +12146,13 @@
     }
 
     @media screen and (min-width: 768px) {
-        header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box .c-quan {
+        .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quan {
             padding-right: 1rem;
             text-align: left;
         }
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box h4 {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box h4 {
         margin: 0;
         font-family: "YSHaoShenTi-2";
         padding-right: 1rem;
@@ -12161,27 +12161,27 @@
     }
 
     @media screen and (min-width: 1440px) {
-        header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box h4 {
+        .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box h4 {
             padding-right: 2rem;
         }
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box .c-quantity {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity {
         width: 60%;
         border: 1px solid #fff;
         border-radius: 10px;
         margin: auto;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-btn-left {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-btn-left {
         border: 0;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-btn-right {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-btn-right {
         border: 0;
     }
 
-    header .c-logo-mob .c-lm-img .c-dropdown-cart .c-dc-scroll .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-input {
+    .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-input {
         background-color: #333333;
         color: #fff;
         border: 0;
