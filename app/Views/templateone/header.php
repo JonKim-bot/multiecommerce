@@ -63,13 +63,14 @@
 
         .shopping-cart {
             background: white;
-            width: 250px;
+            min-width: 23rem;
+            padding: 1rem;
             z-index: 1;
             position: absolute;
             top: 40px;
             right: unset;
             border-radius: 3px;
-            padding: 20px;
+            /* padding: 20px; */
             overflow: hidden;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
             -webkit-transition: all 0.2s ease;
@@ -162,9 +163,9 @@
     </div>
     <!-- Preloader Start -->
     <header>
-        
+
         <div class="header-area">
-        <?php if (!empty($announcement) && $announcement['is_active'] == 1) { ?>
+            <?php if (!empty($announcement) && $announcement['is_active'] == 1) { ?>
                 <div class="header-bottom text-center">
                     <p><?= $announcement['title'] ?><a target="_blank" href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
                         &nbsp;
@@ -189,17 +190,17 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="c-li" href="<?= base_url() ?>/main/index"><?= $lang['home']?></a></li>
+                                        <li><a class="c-li" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>
                                         <!-- <li><a href="<?= base_url() ?>/main/product">我的产品</a></li> -->
 
                                         <!-- <li><a href="<?= base_url() ?>/main/cart">Cart</a></li> -->
-                                        <li><a class="c-li" href="<?= base_url() ?>/main/index#product"><?= $lang['product']?></a></li>
+                                        <li><a class="c-li" href="<?= base_url() ?>/main/index#product"><?= $lang['product'] ?></a></li>
 
                                         <?php if (empty($customer_data)) { ?>
 
-                                            <li><a class="c-li" href="<?= base_url() ?>/main/search"><?= $lang['order_history']?></a></li>
+                                            <li><a class="c-li" href="<?= base_url() ?>/main/search"><?= $lang['order_history'] ?></a></li>
                                         <?php } else { ?>
-                                            <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>"><?= $lang['order_history']?></a></li>
+                                            <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>"><?= $lang['order_history'] ?></a></li>
 
                                         <?php } ?>
                                     </ul>
@@ -218,11 +219,11 @@
                                     </div>
                                 </div>
                                 <?php if (in_array(1, $shop_function)) { ?>
-                                <div class="c-lm-img_">
-                                    <a class="c-cart-logo" id="user">
-                                        <i class="fas fa-user c-fa"></i><i class=""></i>
-                                    </a>
-                                    <div class="user_drop">
+                                    <div class="c-lm-img_">
+                                        <a class="c-cart-logo" id="user">
+                                            <i class="fas fa-user c-fa"></i><i class=""></i>
+                                        </a>
+                                        <div class="user_drop">
                                             <?php if (empty($customer_data)) { ?>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/login">
                                                     <p class=""><?= $lang['login'] ?></p>
@@ -240,9 +241,9 @@
 
                                             <?php } ?>
                                         </div>
-                                        
+
                                     </div>
-                                    <?php }  ?>
+                                <?php }  ?>
                                 <!-- <div class="c-lm-img d-lg-none">
 
                                     <div class="mobile_menu c-burger d-block"></div>
@@ -277,6 +278,6 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
     </header>
