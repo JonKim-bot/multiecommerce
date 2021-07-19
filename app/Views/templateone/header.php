@@ -63,7 +63,7 @@
 
         .shopping-cart {
             background: white;
-            min-width: 23rem;
+            width: 18rem;
             padding: 1rem;
             z-index: 1;
             position: absolute;
@@ -84,7 +84,7 @@
 
         @media (min-width: 768px) {
             .shopping-cart {
-                width: 320px;
+                width: 23rem;
                 right: -10px;
             }
         }
@@ -216,6 +216,7 @@
                                     <div class="numberCircle">0</div>
 
                                     <div class="shopping-cart">
+                                        
                                     </div>
                                 </div>
                                 <?php if (in_array(1, $shop_function)) { ?>
