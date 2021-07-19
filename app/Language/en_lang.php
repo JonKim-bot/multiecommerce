@@ -25,7 +25,7 @@
 
     $lang['edit'] ='Edit';
     $lang['share_link'] ='Share Link';
-    $lang['voucher'] ='Coupon';
+    $lang['voucher'] ='Voucher';
     $lang['gift'] ='Gift';
     $lang['point'] ='Point';
     $lang['downline'] ='Downline';
@@ -35,13 +35,13 @@
     $lang['created_date'] ='Created Date';
     $lang['register_date'] ='Registration date';
     $lang['refer_friend'] ='Refer your friend';
-    $lang['enjoy_voucher'] ='Enjoy coupon rewards';
+    $lang['enjoy_voucher'] ='Enjoy voucher rewards';
     $lang['copy_link'] ='Copy link';
     $lang['point_needed'] ='Needed points';
     $lang['valid_until'] ='Valid date is up';
     $lang['what_you_get'] ='What will you get';
     $lang['exchange'] ='Exchange';
-    $lang['others_voucher'] ='Other coupons';
+    $lang['others_voucher'] ='Other voucher';
     $lang['my_voucher'] ='My Voucher';
     $lang['my_gift'] ='My Gift';
     $lang['others_gift'] ='Other gifts';
