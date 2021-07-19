@@ -860,6 +860,344 @@ header {
                 justify-content: center;
                 align-items: center;
             }
+
+            .c-dropdown-cart {
+                background-color: #333333;
+                min-width: 23rem;
+                padding: 1rem;
+                display: none;
+                @media screen and (min-width: 768px) {
+                    display: block;
+                }
+                .c-dc-header {
+                    border-bottom: 1px solid #fff;
+                    p {
+                        color: #fff;
+                        margin: 0;
+                        font-family: "Bahnschrift";
+                    }
+                }
+                .c-dc-scroll {
+                    max-height: 260px;
+                    overflow-y: scroll;
+
+                    .c-cart-item {
+                        display: flex;
+                        padding: 1rem 0.5rem;
+                        position: relative;
+                        .c-dc-delete {
+                            position: absolute;
+                            color: #fff;
+                            background-color: #bc001d;
+                            width: 25px;
+                            height: 25px;
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                            top: 6px;
+                            left: 0px;
+                            border-radius: 50%;
+                            z-index: 10;
+                        }
+                        .c-cart-img {
+                            position: relative;
+                            padding-right: 0.5rem;
+                            img {
+                                width: 90px;
+                                height: 90px;
+                                object-fit: cover;
+                            }
+                        }
+                        .c-cart-desc {
+                            .c-title {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                .c-dc-name {
+                                    p {
+                                        color: #fff;
+                                        margin: 0;
+                                        font-family: "Bahnschrift";
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        width: 100px;
+                                    }
+                                }
+                                .c-price {
+                                    color: #fff;
+                                    margin: 0;
+                                    font-family: "Bahnschrift";
+                                }
+                            }
+
+                            .c-quantity-box {
+                                display: block;
+                                align-items: center;
+                                justify-content: center;
+                                // padding: 0.5rem 0 0 0;
+                                // @media screen and (min-width: 768px) {
+                                //     display: flex;
+                                //     padding: 2rem 0 0 0;
+                                // }
+                                // @media screen and (min-width: 1440px) {
+                                //     padding: 4rem 0 0 0;
+                                // }
+                                .c-quan {
+                                    margin: 0;
+                                    padding-right: 0;
+                                    font-weight: 600;
+                                    color: #000;
+                                    text-align: center;
+                                    @media screen and (min-width: 768px) {
+                                        padding-right: 1rem;
+                                        text-align: left;
+                                    }
+                                }
+
+                                h4 {
+                                    margin: 0;
+                                    font-family: "YSHaoShenTi-2";
+                                    padding-right: 1rem;
+                                    color: #be1622;
+                                    font-weight: bold;
+                                    @media screen and (min-width: 1440px) {
+                                        padding-right: 2rem;
+                                    }
+                                }
+                                .c-quantity {
+                                    width: 60%;
+                                    border: 1px solid #fff;
+                                    border-radius: 10px;
+                                    margin: auto;
+                                    // @media screen and (min-width: 768px) {
+                                    //     width: 40%;
+                                    //     margin: 0;
+                                    // }
+                                    // @media screen and (min-width: 768px) {
+                                    //     width: 50%;
+                                    //     margin: 0;
+                                    // }
+                                    .c-btn-left {
+                                        border: 0;
+                                    }
+                                    .c-btn-right {
+                                        border: 0;
+                                    }
+                                    .c-input {
+                                        background-color: #333333;
+                                        color: #fff;
+                                        border: 0;
+                                        border: 0;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .c-pay-button-box {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1rem 0;
+                    .c-button {
+                        margin: auto;
+                        background-color: #be1622;
+                        border-radius: 10px;
+                        font-family: "Bahnschrift";
+                        width: 80%;
+                        a {
+                            color: #fff;
+                            text-decoration: none;
+                            width: 100%;
+                        }
+                    }
+                }
+                .c-dc-total {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 1px solid #fff;
+                    padding-top: 0.5rem;
+                    h5 {
+                        color: #fff;
+                        margin: 0;
+                        font-family: "Bahnschrift";
+                    }
+                }
+            }
+
+            
+            .c-dropdown-cart-mobile {
+                display: block;
+                @media screen and (min-width: 768px) {
+                    display: none;
+                }
+                background-color: #333333;
+                min-width: 19rem;
+                padding: 1rem;
+                top: 75%;
+                left: -2.5rem;
+                .c-dc-header {
+                    border-bottom: 1px solid #fff;
+                    p {
+                        color: #fff;
+                        margin: 0;
+                        font-family: "Bahnschrift";
+                    }
+                }
+                .c-dc-scroll {
+                    max-height: 260px;
+                    overflow-y: scroll;
+
+                    .c-cart-item {
+                        display: flex;
+                        padding: 1rem 0.5rem;
+                        position: relative;
+                        .c-dc-delete {
+                            position: absolute;
+                            color: #fff;
+                            background-color: #bc001d;
+                            width: 25px;
+                            height: 25px;
+                            justify-content: center;
+                            align-items: center;
+                            display: flex;
+                            top: 6px;
+                            left: 0px;
+                            border-radius: 50%;
+                            z-index: 10;
+                        }
+                        .c-cart-img {
+                            position: relative;
+                            padding-right: 0.5rem;
+                            img {
+                                width: 90px;
+                                height: 90px;
+                                object-fit: cover;
+                            }
+                        }
+                        .c-cart-desc {
+                            .c-title {
+                                display: block;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding-bottom: 0.5rem;
+                                .c-dc-name {
+                                    p {
+                                        color: #fff;
+                                        margin: 0;
+                                        font-family: "Bahnschrift";
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        width: 100px;
+                                    }
+                                }
+                                .c-price {
+                                    color: #fff;
+                                    margin: 0;
+                                    font-family: "Bahnschrift";
+                                }
+                            }
+
+                            .c-quantity-box {
+                                display: block;
+                                align-items: center;
+                                justify-content: center;
+                                // padding: 0.5rem 0 0 0;
+                                // @media screen and (min-width: 768px) {
+                                //     display: flex;
+                                //     padding: 2rem 0 0 0;
+                                // }
+                                // @media screen and (min-width: 1440px) {
+                                //     padding: 4rem 0 0 0;
+                                // }
+                                .c-quan {
+                                    margin: 0;
+                                    padding-right: 0;
+                                    font-weight: 600;
+                                    color: #000;
+                                    text-align: center;
+                                    @media screen and (min-width: 768px) {
+                                        padding-right: 1rem;
+                                        text-align: left;
+                                    }
+                                }
+
+                                h4 {
+                                    margin: 0;
+                                    font-family: "YSHaoShenTi-2";
+                                    padding-right: 1rem;
+                                    color: #be1622;
+                                    font-weight: bold;
+                                    @media screen and (min-width: 1440px) {
+                                        padding-right: 2rem;
+                                    }
+                                }
+                                .c-quantity {
+                                    width: 100%;
+                                    border: 1px solid #fff;
+                                    border-radius: 10px;
+                                    margin: auto;
+                                    // @media screen and (min-width: 768px) {
+                                    //     width: 40%;
+                                    //     margin: 0;
+                                    // }
+                                    // @media screen and (min-width: 768px) {
+                                    //     width: 50%;
+                                    //     margin: 0;
+                                    // }
+                                    .c-btn-left {
+                                        border: 0;
+                                    }
+                                    .c-btn-right {
+                                        border: 0;
+                                    }
+                                    .c-input {
+                                        background-color: #333333;
+                                        color: #fff;
+                                        border: 0;
+                                        border: 0;
+                                        text-align: center;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .c-pay-button-box {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 1rem 0;
+                    .c-button {
+                        margin: auto;
+                        background-color: #be1622;
+                        border-radius: 10px;
+                        font-family: "Bahnschrift";
+                        width: 80%;
+                        a {
+                            color: #fff;
+                            text-decoration: none;
+                            width: 100%;
+                        }
+                    }
+                }
+                .c-dc-total {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-top: 1px solid #fff;
+                    padding-top: 0.5rem;
+                    h5 {
+                        color: #fff;
+                        margin: 0;
+                        font-family: "Bahnschrift";
+                    }
+                }
+            }
             .c-burger {
                 // position: relative !important;
                 .slicknav_nav {
@@ -1328,7 +1666,7 @@ header {
                     }
                     .table td {
                         border-color: transparent;
-                        padding: 0 .75rem;
+                        padding: 0 0.75rem;
                         font-family: "msyh";
                     }
                 }
