@@ -208,11 +208,16 @@
   width: 100%;
   align-items: center;
 }
+.c-selection{
+  cursor: pointer !important;
+
+}
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection {
   padding: 0.2rem 0.5rem;
   position: relative;
   max-width: 100%;
   margin: 0.2rem 1rem;
+  cursor: pointer;
   flex-grow: 0;
   flex-basis: 100%;
   text-decoration: none;
@@ -231,6 +236,7 @@
   justify-content: center;
   align-items: center;
   padding-left: 0;
+  cursor: pointer;
 }
 .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box {
   display: flex;

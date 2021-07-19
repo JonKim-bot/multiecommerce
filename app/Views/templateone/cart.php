@@ -13,8 +13,6 @@
                                     <h2>Cart</h2>
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb justify-content-center">
-                                            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Cart</a></li> 
                                         </ol>
                                     </nav>
                                 </div>
@@ -68,6 +66,7 @@
                             <h4>Promo Codes</h4>
                             <form>
                                 <input type="text" id="promo_code" placeholder="Promo code">
+
                                 <a id="apply_promo" class="text-white" style="padding-top:12px">APPLY</a>
                                 <input type="hidden" id="promo_id" value="0">
                                 <input type="hidden" id="promo_type_id" value="0">
@@ -137,7 +136,7 @@
                                 <li>Subtotal <span id="subtotal"></span></li>
                                 <li>Total <span id="grand_total"></span></li>
                             </ul>
-                            <button type="submit" class="text-white">PROCEED TO CHECKOUT</button>
+                            <button type="submit" class="text-white" id="check_out_btn">PROCEED TO CHECKOUT</button>
                         </div>
                     </div>
                 </div>

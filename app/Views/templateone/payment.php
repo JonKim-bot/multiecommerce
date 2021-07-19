@@ -208,7 +208,7 @@
     $(".radio").on('change', function(e){
         $(".radio").css('background', 'white');
 
-        $(this).css('background', 'orange');
+        $(this).css('background', '<?= $shop['color_2'] ?>');
 
     });
 

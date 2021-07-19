@@ -122,6 +122,11 @@
 
                             <input type="text" class="form-control color" name="colour" value="<?=$shop['colour']?>" placeholder="Colour" required>
                     </div>
+                    <div class="form-group">
+                            <label for="">Secondary Colour</label>
+
+                            <input type="text" class="form-control color" name="color_2" value="<?=$shop['color_2']?>" placeholder="color_2" required>
+                    </div>
 
 
                     <div class="form-group">

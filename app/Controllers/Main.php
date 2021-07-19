@@ -126,7 +126,7 @@ class Main extends BaseController
 
         $slug = 'capital-shop';
         $this->shop= $this->get_shop($slug);
-
+        $this->load_lang();
         //1 membership
         //2 Gift
         //3 Upsales
@@ -137,6 +137,40 @@ class Main extends BaseController
 
     }
     
+    public function load_lang()
+    {
+
+        $this->session = session();
+        // set system language EN for default
+        if ($this->session->get('language_id') == null) {
+            $this->session->set("language_id", 1);
+            $language_id = 1;
+        } else {
+            $language_id = $this->session->get('language_id');
+        }
+
+        // Get Language data based on language ID
+        if ($language_id == 1) {
+            require_once APPPATH . "/Language/en_lang.php";
+        } else {
+            require_once APPPATH . "/Language/cn_lang.php";
+        }
+
+        $this->pageData['lang'] = $lang;
+    }
+
+    public function set_lang()
+    {
+
+        if ($_POST) {
+
+            session()->set("language_id", $_POST['language_id']);
+
+            die(json_encode(array(
+                "status" => true,
+            )));
+        }
+    }
     public function logout()
     {
         $session = session();
@@ -247,6 +281,7 @@ class Main extends BaseController
             if(!empty($orders)){
                 $customer_gift_count = 0;
                 foreach($orders as $row){
+
 
                     $where = [
                         'customer_gift.orders_id' => $row['orders_id'],
@@ -951,6 +986,7 @@ class Main extends BaseController
 
     public function load_css($shop){
         $this->pageData['color'] = $shop['colour'];
+        $this->pageData['color_2'] = $shop['color_2'];
         echo view("templateone/ecomcss",$this->pageData);
         echo view("templateone/lockcss",$this->pageData);
     }

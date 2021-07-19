@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/themify-icons.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/slick.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/nice-select.css">
-    <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css">
+    <!-- <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <script src="https://kit.fontawesome.com/3d15aa1b08.js" crossorigin="anonymous"></script>
@@ -162,7 +162,18 @@
     </div> -->
     <!-- Preloader Start -->
     <header>
+        
         <div class="header-area">
+        <?php if (!empty($announcement) && $announcement['is_active'] == 1) { ?>
+                <div class="header-bottom text-center">
+                    <p><?= $announcement['title'] ?><a target="_blank" href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
+                        &nbsp;
+                        <i class="fa fa-times" style="cursor:pointer" id="close_promo_btn"></i>
+                        </a>
+                    </p>
+
+                </div>
+            <?php  } ?>
             <div class="header-mid header-sticky">
                 <div class="container">
                     <div class="menu-wrapper">
@@ -177,15 +188,17 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="c-li" href="<?= base_url() ?>/main/index">首页</a></li>
+                                        <li><a class="c-li" href="<?= base_url() ?>/main/index"><?= $lang['home']?></a></li>
                                         <!-- <li><a href="<?= base_url() ?>/main/product">我的产品</a></li> -->
 
                                         <!-- <li><a href="<?= base_url() ?>/main/cart">Cart</a></li> -->
+                                        <li><a class="c-li" href="<?= base_url() ?>/main/index#product"><?= $lang['product']?></a></li>
+
                                         <?php if (empty($customer_data)) { ?>
 
-                                            <li><a class="c-li" href="<?= base_url() ?>/main/search">搜寻产品</a></li>
+                                            <li><a class="c-li" href="<?= base_url() ?>/main/search"><?= $lang['order_history']?></a></li>
                                         <?php } else { ?>
-                                            <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>">Order History</a></li>
+                                            <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>"><?= $lang['order_history']?></a></li>
 
                                         <?php } ?>
                                     </ul>
@@ -203,32 +216,32 @@
                                     <div class="shopping-cart">
                                     </div>
                                 </div>
+                                <?php if (in_array(1, $shop_function)) { ?>
                                 <div class="c-lm-img_">
                                     <a class="c-cart-logo" id="user">
                                         <i class="fas fa-user c-fa"></i><i class=""></i>
                                     </a>
                                     <div class="user_drop">
-                                        <?php if (in_array(1, $shop_function)) { ?>
                                             <?php if (empty($customer_data)) { ?>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/login">
-                                                    <p class="">会员登入</p>
+                                                    <p class=""><?= $lang['login'] ?></p>
                                                 </a>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/signup">
-                                                    <p class="">成为会员</p>
+                                                    <p class=""><?= $lang['register'] ?></p>
                                                 </a>
                                             <?php } else { ?>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/member">
-                                                    <p class="">会员资料</p>
+                                                    <p class=""><?= $lang['my_profile'] ?></p>
                                                 </a>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/logout">
-                                                    <p class="">会员登出</p>
+                                                    <p class=""><?= $lang['logout'] ?></p>
                                                 </a>
 
                                             <?php } ?>
-                                        <?php }  ?>
+                                        </div>
+                                        
                                     </div>
-
-                                </div>
+                                    <?php }  ?>
                                 <!-- <div class="c-lm-img d-lg-none">
 
                                     <div class="mobile_menu c-burger d-block"></div>
@@ -263,15 +276,6 @@
                     </div>
                 </div>
             </div>
-            <?php if (!empty($announcement) && $announcement['is_active'] == 1) { ?>
-                <div class="header-bottom text-center">
-                    <p><?= $announcement['title'] ?><a target="_blank" href="<?= $announcement['link'] ?>" class="browse-btn"><?= $announcement['description'] ?></a>
-                        &nbsp;
-                        <i class="fa fa-times" style="cursor:pointer" id="close_promo_btn"></i>
-                        </a>
-                    </p>
-
-                </div>
-            <?php  } ?>
+           
         </div>
     </header>

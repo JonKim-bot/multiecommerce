@@ -290,6 +290,8 @@ class Shop extends BaseController
                     'bank_account' => $input['bank_account'],
                     'facebook' => $input['facebook'],
                     'colour' => $input['colour'],
+                    'color_2' => $input['color_2'],
+
                     'state' => $input['state'],
                     'taman' => $input['taman'],
                     'address' => $input['address'],

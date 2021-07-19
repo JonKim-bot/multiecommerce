@@ -115,11 +115,21 @@
 
                                                     </tr>
                                                     <tr>
-                                                        <td><h3>Color </h3></td>
+                                                        <td><h3>Theme Color </h3></td>
                                                         <td style="background-color:<?= $shop[
                                                             'colour'
                                                         ] ?>"><?= $shop[
                                                             'colour'
+                                                        ] ?></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><h3>Secondary Color </h3></td>
+                                                        <td style="background-color:<?= $shop[
+                                                            'color_2'
+                                                        ] ?>"><?= $shop[
+                                                            'color_2'
                                                         ] ?></td>
 
                                                     </tr>

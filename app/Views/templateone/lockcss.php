@@ -38,6 +38,7 @@
 -----------------------*/
 :root{
 	--themecolor: <?= $color ?>;
+	--secondary-color :<?= $color_2 ?>;
 }
 .section-title {
 	margin-bottom: 65px;
@@ -131,7 +132,7 @@
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	border: none;
-	background: #292621;
+	background: var(--secondary_color);
 	padding: 14px 30px 12px;
 }
 
@@ -1929,7 +1930,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     font-family: "Rajdhani", sans-serif;
-    background: #111111;
+    background: var(--secondary-color);;
     border: none;
     position: absolute;
 	padding-top: 12px;
@@ -1987,7 +1988,8 @@
     color: #ffffff;
     display: block;
 	border-radius:25px;
-    background: #292621;
+    background: var(--secondary-color);;
+
     font-size: 16px;
     font-family: "Rajdhani", sans-serif;
     font-weight: 600;

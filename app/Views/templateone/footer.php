@@ -268,6 +268,7 @@
         Swal.fire({
             title: "Dear Customer",
             text: "We would like to inform you that <?= $shop['shop_name'] ?> are temporarily closed",
+            
             type: 'info'
         })
 
@@ -333,12 +334,14 @@
         var postParam = {
             index: index
         };
-
+        $('#check_out_btn').hide();
         $.post("<?= base_url('main/add_qty') ?>", postParam, function(html) {
             get_ajax_cart();
             get_header_cart();
 
             get_total();
+            $('#check_out_btn').show();
+
         });
     }
 
@@ -382,11 +385,13 @@
     }
 
     function get_total() {
+        $('#check_out_btn').hide();
+
         $.post("<?= base_url('main/get_total') ?>", {}, function(data) {
             data = JSON.parse(data);
             var grand_total = (data.data).toFixed(2);
             var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
-
+            $('.numberCircle').text(data.count);
             $('#grand_total').text("RM " + grand_total);
             $('#subtotal').text("RM " + subtotal.toFixed(2));
             if (data.data == 0) {
@@ -397,6 +402,8 @@
                 check_promo();
             }
             $('.cart_count').text(data.count);
+            $('#check_out_btn').show();
+
 
         });
     }
@@ -429,6 +436,8 @@
     });
 
     function minusQuantity(index) {
+        $('#check_out_btn').hide();
+
         var postParam = {
             index: index
         };
@@ -438,6 +447,7 @@
 
             get_total();
             get_header_cart();
+            $('#check_out_btn').show();
 
 
         });

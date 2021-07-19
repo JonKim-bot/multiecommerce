@@ -1,9 +1,4 @@
-<style>
-    
 
-
-
-</style>
 <div class="c-member">
     <div class="c-member-back">
     </div>
@@ -32,6 +27,8 @@
                             编辑
                         </a>
                     </div>
+                    <?php if(in_array(6,$shop_function) || in_array(8,$shop_function)){ ?>
+
                     <div class="col-lg-3 col-md-12 col-sm-12 col-qr">
 
                         <div class="c-qr-img">
@@ -40,38 +37,55 @@
                             分享链接
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
             <div class="c-mc-bottom">
                 <div class="c-nav-pill">
                     <ul class="nav nav-pills mb-3 c-left" id="pills-tab" role="tablist">
+                    <?php if(in_array(1,$shop_function)){ ?>
+
                         <li class="nav-item">
                             <a class="nav-link active" id="pills-voucher-tab" data-toggle="pill" href="#pills-voucher" role="tab" aria-controls="pills-voucher" aria-selected="true">
                                 优惠卷
                             </a>
                         </li>
+                        <?php } ?>
+                        <?php if(in_array(2,$shop_function)){ ?>
+
                         <li class="nav-item">
                             <a class="nav-link" id="pills-gift-tab" data-toggle="pill" href="#pills-gift" role="tab" aria-controls="pills-gift" aria-selected="false">
                                 礼品
                             </a>
                         </li>
+                        <?php } ?>
+                        <?php if(in_array(6,$shop_function)){ ?>
+
                         <li class="nav-item">
                             <a class="nav-link" id="pills-point-tab" data-toggle="pill" href="#pills-point" role="tab" aria-controls="pills-point" aria-selected="false">
                                 分数
                             </a>
                         </li>
+                        <?php } ?>
+                        <?php if(in_array(6,$shop_function) || in_array(8,$shop_function)){ ?>
+
                         <li class="nav-item">
                             <a class="nav-link" id="pills-donwline-tab" data-toggle="pill" href="#pills-donwline" role="tab" aria-controls="pills-donwline" aria-selected="false">
                                 下线
                             </a>
                         </li>
+                        <?php } ?>
+
                     </ul>
+                    <?php if(in_array(6,$shop_function)){ ?>
+
                     <div class="c-right">
                         <div class="c-point">
                             <p>分数总分</p>
                             <h3><?= $point ?></h3>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="tab-content c-pillCT" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-voucher" role="tabpanel" aria-labelledby="pills-voucher-tab">

@@ -344,6 +344,7 @@
                                                     <?php } ?>
 
                                                 </div>
+                                                <?php if (in_array(1, $shop_function)) { ?>
 
                                                 <?php if(empty($customer_data)){ ?>
                                                 <div class="c-discount">
@@ -355,6 +356,7 @@
                                                         加入会员
                                                     </a>
                                                 </div>
+                                                <?php } ?>
                                                 <?php } ?>
                                                 
                                                 <?php if(!empty($product_option)){ ?>
