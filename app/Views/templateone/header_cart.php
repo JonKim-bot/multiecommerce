@@ -1,102 +1,54 @@
-<style>
+<?php foreach ($product as $row) { ?>
+    <div class="c-cart-item">
+        <a class="c-dc-delete" onclick="deleteItem('<?= $key ?>')">
+            <i class="fas fa-times"></i>
+        </a>
+        <div class="c-cart-img">
+            <img src="<?= base_url() .  $row['image'] ?>" alt="">
+        </div>
+        <div class="c-cart-desc">
+            <div class="c-title">
+                <div class="c-dc-name">
+                    <h3><?= $row['product_name'] ?></h3>
+                </div>
+                <?php if ($row['is_member'] == 1 && $row['is_promo'] == 1 && !empty($customer_data)) { ?>
+                    <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
+                    <p class="c-price">RM <?= $row['promo_price'] ?></p>
+                <?php } else if ($row['is_promo'] == 1 && $row['is_member'] == 0) { ?>
+                    <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
+                    <p class="c-price">RM <?= $row['promo_price'] ?></p>
 
-/* .header-area .header-mid .menu-wrapper .header-right .cart::after{
-    -webkit-transition:all .4s ease-out 0s;
-    -moz-transition:all .4s ease-out 0s;
-    -ms-transition:all .4s ease-out 0s;
-    -o-transition:all .4s ease-out 0s;
-    transition:all .4s ease-out 0s;
-    position:absolute;
-    content: "<?= $cart_count ?>";
-    z-index: 9999;
-    color:#fff;
-    text-align:center;
-    border-radius:50%;
-    font-size:12px;
-    top:-50px;
-    right:0px;
-    padding:1px 7px
-} */
-.c-quantity .button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    color: #a3a4ff;
-    background: #EFEFEF;
-    align-self: center;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    line-height: 1.5;
-    cursor: pointer;
-}
- .custom-control {
-    width: 15%;
-    border-radius: 20px;
-    text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-    font-weight: bold;
-    border: unset;
-}
-</style>
-<div class="col-lg-12">
-    <div class="c-cartnoti show" style="display: flex;
-    justify-content: space-between;">
-        <span class="title-cart"><?= $lang['your_cart'] ?></span>
-        <span class="c-close closeit" aria-expanded="true">
-          <i class="fas fa-times"></i>
-        </span>
+                <?php } else { ?>
+
+                    <p class="c-price">RM <?= $row['product_price'] ?></p>
+                <?php } ?>
+            </div>
+
+            <div class="c-quantity-box">
+                <!-- <h4 class="c-quan">Quantity</h4> -->
+                <div class="c-quantity">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <button type="button" onclick="minusQuantity('<?= $key ?>')" class="btn btn-outline-secondary btn-number c-btn-left" data-type="minus" data-field="quant[1]">
+                                <span class="fa fa-minus"></span>
+                            </button>
+                        </span>
+                        <input type="text" name="quant[1]" readonly value="{{$row['quantity']}}" class="form-control input-number c-input" value="<?= $row['quantity'] ?>" min="1" max="10">
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary btn-number c-btn-right" data-type="plus" onclick="addQuantity('<?= $key ?>','<?= $row['product_id'] ?>')" data-field="quant[1]">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="c-button-box">
+                            <button type="button" onclick="deleteItem('94_')" class="btn btn-danger c-button">
+                                Remove
+                            </button>
+                        </div> -->
+        </div>
     </div>
-    <div class="cart__table">
-        <table>
-            <tbody>
-            <?php foreach($cart as $key=> $row){ ?>
-                <tr>
-                    <td class="cart__item p0">
-                        <div class="cart__item__pic">
-                            <img src="<?= base_url().  $row['thumbnail'] ?>" alt="">
-                        </div>
-                        <div class="cart__item__text ">
-                            <h6><?= $row['product_name'] ?></h6>
-                        </div>
-                    </td>
-                    <td class="cart__price text-right p0" style="text-align:right">RM <?=number_format($row['total'], 2)?></td>
-                </tr>
-                <tr colspan="2">
-                    <td class="cart__quantity"  colspan="2">
-                     
-                        <div class="c-quantity" style="display:flex;justify-content: flex-end;">
-                            <div class="dec button mr-2 qtybtn" onclick="minusQuantity('<?= $key ?>')">-</div>
-                            <input type="text" readonly class="custom-control" value="<?= $row['quantity'] ?>">
-                            <div class="inc button ml-2 qtybtn" onclick="addQuantity('<?= $key ?>')">+</div>
-                        </div>
-                    </td>
-                </tr>
-            <?php } ?>
-                <tr>
-                
-                    <td class="cart__price text-left" style="text-align:left;font-size:25px">RM <?=number_format($total, 2)?></td>
-                    <td class="cart__price">
-                    <a class="btn btn-primary btn-block w-100" href="<?= base_url() ?>/main/cart" style="margin-top:20px"><?= $lang['checkout'] ?></a>
-                    </td>
 
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<script>
- $(document).ready(function() {
-
-$('.closeit').click(function(e) {
-
-var $item = $(".shopping-cart");
-if ($item.hasClass("active")) {
-  $item.removeClass("active");
-}
-});
-});
-
-</script>
+<?php } ?>
