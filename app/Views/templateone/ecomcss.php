@@ -11022,8 +11022,7 @@
 
     @media screen and (max-width: 768px) {
         #cart_product_padding {
-            padding: 10px 10px 10px 10px;
-
+            padding: 10px 25px 10px 25px;
         }
     }
 

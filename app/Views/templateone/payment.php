@@ -71,7 +71,7 @@
                <div class="cart__right" style="padding-left:0px">
                   <div class="billing-address">
                      <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="word-break: break-word;">
                            <h4><?= $lang['tracking_link'] ?></h4>
                            <p>
                               <a style="color:blue" target="_blank" href="<?=$orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>">
@@ -260,6 +260,7 @@
        //senang pay
        $('#payment_button').text("Processing...");
         $('#payment_button').prop('disabled', true);
+
 
 
        $.post("<?=base_url('main/make_payment') ?>", postParam, function(data){
