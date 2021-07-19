@@ -25,7 +25,7 @@
                         </div>
                         <a class="c-btn" href="<?= base_url() ?>/main/profile">
                             
-                            <?= $lang['edit'] ?>
+                            <?= $lang['edit_profile_detail'] ?>
                         </a>
                     </div>
                     <?php if(in_array(6,$shop_function) || in_array(8,$shop_function)){ ?>

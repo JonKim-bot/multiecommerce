@@ -18,6 +18,57 @@
     $lang['country'] = 'Country';
     $lang['product'] = 'Products';
     $lang['my_product'] = 'My Products';
+    $lang['promocode'] ='Coupon';
+    $lang['country'] ='Country';
+    $lang['you_may_also_like'] ='Guess you like';
+    $lang['change_photo'] ='Change photo';
+
+    $lang['edit'] ='Edit';
+    $lang['share_link'] ='Share Link';
+    $lang['voucher'] ='Coupon';
+    $lang['gift'] ='Gift';
+    $lang['point'] ='Point';
+    $lang['downline'] ='Downline';
+    $lang['total_point'] ='Total points';
+    $lang['transaction'] ='Transaction';
+    $lang['remarks'] ='Remarks';
+    $lang['created_date'] ='Created Date';
+    $lang['register_date'] ='Registration date';
+    $lang['refer_friend'] ='Refer your friend';
+    $lang['enjoy_voucher'] ='Enjoy coupon rewards';
+    $lang['copy_link'] ='Copy link';
+    $lang['point_needed'] ='Needed points';
+    $lang['valid_until'] ='Valid date is up';
+    $lang['what_you_get'] ='What will you get';
+    $lang['exchange'] ='Exchange';
+    $lang['others_voucher'] ='Other coupons';
+    $lang['my_voucher'] ='My Voucher';
+    $lang['my_gift'] ='My Gift';
+    $lang['others_gift'] ='Other gifts';
+    $lang['delivery_fee'] = 'Delivery Fee';
+    $lang['discounted'] = 'Discount';
+    $lang['billing_detail'] = 'Billing detail';
+    $lang['paid'] ='Paid';
+    $lang['not_paid'] ='Not paid';
+    $lang['purchase_to_get_gift'] = 'Purchase to get gift';
+
+    $lang['product'] ='Product';
+    $lang['join_as_member'] ='Join Member';
+    $lang['addto_cart'] ='Add to cart';
+    $lang['learn_more'] ='Learn more';
+    $lang['clear_cart'] ='Empty shopping cart';
+    $lang['tracking_link'] ='Tracking goods';
+
+    $lang['upsales'] ='Related Products';
+    $lang['continue_shopping'] ='Continue shopping';
+    $lang['payment_status'] ='Payment status';
+    $lang['payment_method'] ='Payment Method';
+
+    $lang['my_product'] ='My product';
+    $lang['filter'] ='Search products';
+    $lang['contact_us'] ='Contact us';
+    $lang['etel'] ='Enter your email or phone number to find your order history';
+    $lang['referal_code'] ='Referral Code';
 
     $lang['your_cart'] = 'Your Cart';
     $lang['checkout'] = 'CHECKOUT';

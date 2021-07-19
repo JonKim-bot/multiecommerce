@@ -142,7 +142,7 @@ class Main extends BaseController
 
         $this->session = session();
         // set system language EN for default
-        $this->session->set("language_id", 2);
+        $this->session->set("language_id", 1);
 
         if ($this->session->get('language_id') == null) {
             $this->session->set("language_id", 2);

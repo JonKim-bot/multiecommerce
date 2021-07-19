@@ -43,7 +43,7 @@
 <div class="col-lg-12">
     <div class="c-cartnoti show" style="display: flex;
     justify-content: space-between;">
-        <span class="title-cart">Your Cart</span>
+        <span class="title-cart"><?= $lang['your_cart'] ?></span>
         <span class="c-close closeit" aria-expanded="true">
           <i class="fas fa-times"></i>
         </span>
@@ -78,7 +78,7 @@
                 
                     <td class="cart__price text-left" style="text-align:left;font-size:25px">RM <?=number_format($total, 2)?></td>
                     <td class="cart__price">
-                    <a class="btn btn-primary btn-block w-100" href="<?= base_url() ?>/main/cart" style="margin-top:20px">Pay</a>
+                    <a class="btn btn-primary btn-block w-100" href="<?= base_url() ?>/main/cart" style="margin-top:20px"><?= $lang['checkout'] ?></a>
                     </td>
 
                 </tr>
