@@ -75,7 +75,7 @@
                            <h4><?= $lang['tracking_link'] ?></h4>
                            <p>
                               <a style="color:blue" target="_blank" href="<?=$orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>">
-                                 <!-- <?=$orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?> -->
+                                 <?=$orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>
                               </a>
                            </p>
                         </div>
@@ -190,6 +190,7 @@
 
    $("#payment_button").on('click', function(){
        var payment_method_id = getPaymentMethod();
+
        var postParam = {
            orders_id : <?=$orders['orders_id'] ?>,
            payment_method_id : payment_method_id,

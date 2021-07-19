@@ -2,7 +2,7 @@
     @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Jost:wght@200;300;400;500;600;700;800;900&display=swap");
     @font-face {
   font-family: HanYiChaoCuHeiJian-1;
-  src: url("<?= base_url() ?>/assets/assetsecom/fonts/HanYiChaoCuHeiJian-1.ttc");
+  src: url("<?= base_url() ?>/assets/assetsecom/fonts/HanYiChaoCuHeiJian-1.ttf");
 }
 @font-face {
   font-family: msyh;
