@@ -25,7 +25,7 @@
                                 <!-- <h4>Quick Links</h4> -->
                                 <ul>
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/product"><?= $lang['my_product'] ?></a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index#product"><?= $lang['my_product'] ?></a></li>
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index#product"><?= $lang['filter'] ?></a></li>
                                     <?php if (in_array(1, $shop_function)) { ?>
                                         <?php if (empty($customer_data)) { ?>

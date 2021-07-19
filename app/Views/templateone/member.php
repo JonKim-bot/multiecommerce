@@ -135,7 +135,7 @@
                                 <table class="table table-borderless">
                                     <thead>
                                         <tr>
-                                            <th scope="col"><?= $lang['name'] ?></th>
+                                            <th scope="col"><?= $lang['email'] ?></th>
                                             <th scope="col"><?= $lang['contact'] ?></th>
                                             <th scope="col"><?= $lang['register_date'] ?></th>
                                         </tr>
@@ -143,7 +143,7 @@
                                     <tbody>
                                         <?php foreach($downline as $row){ ?>
                                         <tr>
-                                            <td><?= $row['name'] ?></td>
+                                            <td><?= $row['email'] ?></td>
 
                                             <td><?= $row['contact'] ?></td>
                                             <td><?= $row['created_date'] ?></td>
@@ -174,6 +174,7 @@
                     <div class="c-qr-title">
                         <h4><?= $lang['refer_friend'] ?></h4>
                         <h4><?= $lang['enjoy_voucher'] ?></h4>
+                        <h4>---<?= $customer['referal_code'] ?>---</h4>
                     </div>
                     <div class="c-qr-img">
                     <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8" >

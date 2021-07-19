@@ -566,7 +566,7 @@ class Main extends BaseController
 
         ];
         $customer = $this->CustomerModel->getWhere($where)[0];
-        $customer_name = str_replace(' ','',$customer['username']);
+        $customer_name = str_replace(' ','',$customer['email']);
         $customer_code = substr($customer_name,0,4) . date('is');
         if($this->check_if_referral_code_exist($customer_code) == true){
             //if merchant_code existed 
@@ -761,7 +761,6 @@ class Main extends BaseController
                 'customer.referal_id' => $row['customer_id'],
             ];
             $customers = $this->CustomerModel->getWhere($where);
-            // $this->debug($customers);
             if (!empty($customers)) {
                 $got_child = true;
 
@@ -773,6 +772,7 @@ class Main extends BaseController
         }
         // $this->debug($downline);
         if ($got_child) {
+
             return $this->get_recursive_downline($downline, $child);
         } else {
             return $downline;
@@ -1599,6 +1599,7 @@ class Main extends BaseController
         ];
         $customer = $this->CustomerModel->getWhere($where);
         $downline = $this->get_recursive_downline($customer);
+
         $where = [
             'point.customer_id' => $this->session->get('customer_id'),
         ];

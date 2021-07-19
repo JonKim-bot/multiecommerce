@@ -1,6 +1,7 @@
 <?php namespace App\Models;
 
 
+
 use App\Core\BaseModel;
 
 class OrdersModel extends BaseModel
