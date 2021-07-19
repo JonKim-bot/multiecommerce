@@ -455,7 +455,7 @@
 }
 
 .c-login-form {
-  margin-top: -15rem;
+  margin-top: -8rem;
   min-height: 80vh !important;
 }
 @media screen and (min-width: 992px) {
@@ -477,6 +477,7 @@
   .c-login-form .login-form {
     min-width: 60% !important;
   }
+  
 }
 @media screen and (min-width: 1440px) {
   .c-login-form .login-form {
