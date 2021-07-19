@@ -15,6 +15,7 @@ $callbackurl ='http://example.com/callback';
 
 if(isset($_POST['send'])) {
     
+    
 	if (isset($_POST['HostToHost'])) {
 		$post_url = "https://api-staging.pay.asia/api/payment/submit";
 	}else{

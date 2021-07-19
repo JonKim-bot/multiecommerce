@@ -87,6 +87,7 @@
                            <h4><?= $lang['contact_number'] ?></h4>
                            <p><?=$orders['contact'] ?></p>
                         </div>
+
                         <div class="col-md-6">
                            <h4><?= $lang['payment_status'] ?>
                            </h4>
@@ -212,21 +213,47 @@
        //     }
        // });
        //senang pay
+       $('#payment_button').text("Processing...");
+        $('#payment_button').prop('disabled', true);
+
        $.post("<?=base_url('main/make_payment') ?>", postParam, function(data){
            data = JSON.parse(data);
-         
+           $('#payment_button').text("Pay");
+            $('#payment_button').prop('disabled', false);
            if(payment_method_id == 3){
                    // pay by online banking
-                   window.open (data.url);
+                   windowLocation (data.url);
    
            }else{
                // pay by others
                if(data.status){
-                   window.open (data.url);
+                  windowLocation(data.url);
                }
            }
        });
    });
+   function windowLocation(url){
+        var X = setTimeout(function(){
+            window.location.replace(url);
+            return true;
+        },300);
+
+        if( window.location = url ){
+            clearTimeout(X);
+            return true;
+        } else {
+            if( window.location.href = url ){
+                clearTimeout(X);
+                return true;
+            }else{
+                clearTimeout(X);
+                window.location.replace(url);
+                return true;
+            }
+        }
+        return false;
+    };
+
    function getPaymentMethod(){
        var online_banking = document.getElementById('payment_method_1');
        var cod = document.getElementById('payment_method_2');

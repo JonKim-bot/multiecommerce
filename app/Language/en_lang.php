@@ -38,7 +38,7 @@
     $lang['enjoy_voucher'] ='Enjoy voucher rewards';
     $lang['copy_link'] ='Copy link';
     $lang['point_needed'] ='Needed points';
-    $lang['valid_until'] ='Valid date is up';
+    $lang['valid_until'] ='Valid date';
     $lang['what_you_get'] ='What will you get';
     $lang['exchange'] ='Exchange';
     $lang['others_voucher'] ='Other voucher';
@@ -57,7 +57,7 @@
     $lang['addto_cart'] ='Add to cart';
     $lang['learn_more'] ='Learn more';
     $lang['clear_cart'] ='Empty shopping cart';
-    $lang['tracking_link'] ='Tracking goods';
+    $lang['tracking_link'] ='Tracking link';
 
     $lang['upsales'] ='Related Products';
     $lang['continue_shopping'] ='Continue shopping';
