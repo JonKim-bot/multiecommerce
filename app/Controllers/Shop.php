@@ -248,6 +248,7 @@ class Shop extends BaseController
     {
         if ($this->isMerchant == true) {
             $shop_id = $this->shop_id;
+
             $where = [
                 'shop.shop_id' => $shop_id,
             ];
@@ -291,6 +292,7 @@ class Shop extends BaseController
                     'facebook' => $input['facebook'],
                     'colour' => $input['colour'],
                     'color_2' => $input['color_2'],
+                    'language_id' => $input['language_id'],
 
                     'state' => $input['state'],
                     'taman' => $input['taman'],

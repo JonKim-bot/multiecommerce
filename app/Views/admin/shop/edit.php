@@ -64,6 +64,13 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="banner">Language</label>
+                        <select name="language_id" class="select" id="" required>
+                            <option  value="1" <?= $shop['language_id'] == 1 ? 'selected' :''?>>English</option>
+                            <option  value="2" <?= $shop['language_id'] == 2 ? 'selected' :''?>>Chinese</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="">Bank Holder Name</label>
                         <input type="text" class="form-control" value="<?= $shop['bank_holder_name'] ?>" name="bank_holder_name" placeholder="e.g. Lim Jin" required>
                     </div>
@@ -71,6 +78,7 @@
                         <label for="">Bank Account</label>
                         <input type="text" class="form-control" value="<?= $shop['bank_account'] ?>" name="bank_account" placeholder="e.g. 123213123123" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="">Description</label>
                         <input type="text" class="form-control" name="description" value="<?= $shop['description'] ?>" placeholder="e.g. Capital Shop open since" required>

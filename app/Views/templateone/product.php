@@ -435,7 +435,9 @@
                                                 </div>
 
                                                 <!--Books review Start -->
+
                                                 <?php if (in_array(3, $shop_function)) { ?>
+                                                    <?php if(!empty($upsales_product)){ ?>
                                                     <section class="latest-items section-padding fix c-likes">
                                                         <div class="row">
                                                             <div class="col-xl-12">
@@ -500,6 +502,8 @@
                                                             </div>
                                                         </div>
                                                     </section>
+                                                    <?php } ?>
+
                                                 <?php } ?>
                                                 <!-- Books review End -->
                                             </div>

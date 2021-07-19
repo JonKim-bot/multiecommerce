@@ -140,13 +140,15 @@ class Main extends BaseController
     public function load_lang()
     {
 
+        $shop = $this->shop;
+
         $this->session = session();
         // set system language EN for default
-        $this->session->set("language_id", 1);
+        $this->session->set("language_id", $shop['language_id']);
 
         if ($this->session->get('language_id') == null) {
-            $this->session->set("language_id", 2);
-            $language_id = 2;
+            $language_id = $shop['language_id'];
+            $this->session->set("language_id", $shop['language_id']);
         } else {
             $language_id = $this->session->get('language_id');
         }
@@ -1699,6 +1701,7 @@ class Main extends BaseController
             // )));
         }
     }
+
 
     public function load_shopping_cart(){
         $cart = $this->session->get("cart");
