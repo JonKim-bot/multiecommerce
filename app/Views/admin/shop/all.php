@@ -42,8 +42,9 @@
                         <h2>Shops</h2>
                         
                         <!-- <input type="text" name="" id="token"> -->
-                        <?php if (!$isMerchant) { ?>
-                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url(
+                        <?php
+            if (session()->get('admin_data')['type'] != "MERCHANT") {
+            ?>                        <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url(
                             '/Shop/search'
                         ) ?>">
                             <input type="text" class="form-control" name="shop_name" placeholder="Search By Shop Name">

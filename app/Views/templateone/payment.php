@@ -179,6 +179,7 @@
                         <?php
                            }
                            else
+
                            { ?>
                         <div class="billing-address">
                            <h4><?= $lang['payment_method'] ?>
@@ -260,13 +261,14 @@
        $('#payment_button').text("Processing...");
         $('#payment_button').prop('disabled', true);
 
+
        $.post("<?=base_url('main/make_payment') ?>", postParam, function(data){
            data = JSON.parse(data);
            $('#payment_button').text("Pay");
             $('#payment_button').prop('disabled', false);
            if(payment_method_id == 3){
                    // pay by online banking
-                   windowLocation (data.url);
+                   windowLocation(data.url);
    
            }else{
                // pay by others

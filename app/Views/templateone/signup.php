@@ -16,15 +16,15 @@
 
         <div class="col-md-4">
 
-            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+            <img src="<?= base_url()  . $about['banner'] ?>" width="100%" alt="">
         </div>
         <div class="col-md-4">
 
-            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+            <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
         </div>
         <div class="col-md-4">
 
-            <img src="<?= base_url() ?>/assets/assets/img/unnamed.png" width="100%" alt="">
+            <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
         </div>
     <?php } ?>
 </div>

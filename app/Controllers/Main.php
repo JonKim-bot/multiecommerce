@@ -126,6 +126,7 @@ class Main extends BaseController
 
         $slug = 'limshop';
 
+
         $this->shop= $this->get_shop($slug);
         $this->load_lang();
         //1 membership
@@ -1405,9 +1406,63 @@ class Main extends BaseController
         echo view('admin/senang', $this->pageData);
     }
 
+    public function getUrlCurrently($filter = array()) {
+        $pageURL = isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on" ? "https://" : "http://";
+    
+        $pageURL .= $_SERVER["SERVER_NAME"];
+    
+        if ($_SERVER["SERVER_PORT"] != "80") {
+            $pageURL .= ":".$_SERVER["SERVER_PORT"];
+        }
+    
+        $pageURL .= $_SERVER["REQUEST_URI"];
+    
+    
+        if (strlen($_SERVER["QUERY_STRING"]) > 0) {
+            $pageURL = rtrim(substr($pageURL, 0, -strlen($_SERVER["QUERY_STRING"])), '?');
+        }
+    
+        $query = $_GET;
+        foreach ($filter as $key) {
+            unset($query[$key]);
+        }
+    
+        if (sizeof($query) > 0) {
+            $pageURL .= '?' . http_build_query($query);
+        }
+    
+        return $pageURL;
+    }
     public function payment($order_code)
     {
+        $where = [
+            'orders.order_code' => $order_code,
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+    
+        if(!empty($_GET['code'])){
+            $where_code = [
+                'orders.order_payment_id' => $_GET['code'],
+            ];
+            $orders_code_ = $this->OrdersModel->getWhere($where_code);
+            if(!empty($orders_code_)){
+                $orders_code_ = $orders_code_[0];
+                if($orders_code_['customer_id'] > 0){
+                    if (empty($this->session->get("customer_data"))) {
+                        $this->set_customer_session($orders_code_['customer_id']);
+                        // $this->payment($order_code);
+                        return redirect()->to(base_url($_SERVER["REQUEST_URI"], 'refresh'));
+                    }else{
+                        return redirect()->to(base_url('/main/payment/' . $order_code, 'refresh'));
 
+                    }
+                }else{
+                    return redirect()->to(base_url('/main/payment/' . $order_code, 'refresh'));
+    
+                }
+            }
+        }
+        
         $shop = $this->shop;
         $where = [
             'shop_id' => $shop['shop_id']
@@ -1420,10 +1475,7 @@ class Main extends BaseController
         $this->pageData['payment_method'] = $payment_method;
         $this->pageData['shop_gift'] = $shop_gift;
 
-        $where = [
-            'orders.order_code' => $order_code,
-        ];
-        $orders = $this->OrdersModel->getWhere($where);
+       
         // $this->debug($orders);
         foreach($orders as $key_main=> $row){
             $order_detail = $this->OrderDetailModel->getWhere([
@@ -1483,8 +1535,6 @@ class Main extends BaseController
         ]);
        
         $brand = $this->BrandModel->getWhere($where);
-
-
      
         $category = $this->CategoryModel->getWhere($where);
   
@@ -1599,6 +1649,7 @@ class Main extends BaseController
         ];
         $customer = $this->CustomerModel->getWhere($where);
         $downline = $this->get_recursive_downline($customer);
+
 
         $where = [
             'point.customer_id' => $this->session->get('customer_id'),
@@ -2085,7 +2136,7 @@ class Main extends BaseController
         // $CID = 'M161-U-33';
         // $signatureKey = 'oAhVwtUxfrop4cI';
         
-        $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] ;
+        $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] . "/?code=" . $orderId  ;
         $callbackurl =   base_url() . '/main/gkash_callback';
         // $returnurl ='http://capital-shop.piegendevelop.com/main';
         // $callbackurl ='http://capital-shop.piegendevelop.com/main/call_back_to_order';
@@ -2376,6 +2427,7 @@ class Main extends BaseController
             $this->EmailModel->send_email($orders['email'],$order_id);
         }
 
+        
 
         if($this->check_exist_function(1,$this->pageData['shop_function'])){
             $this->give_point($orders_id);
@@ -2399,7 +2451,6 @@ class Main extends BaseController
         
     }
     function call_back_to_order_gkash($order_id){
-
         
         $where = [
             'orders_log.order_payment_id' => $order_id
@@ -2411,6 +2462,9 @@ class Main extends BaseController
             'orders.orders_id' =>  $orderlog['orders_id']
         ];
         $orders = $this->OrdersModel->getWhere($where);
+
+       
+
         $this->update_order($orderlog['orders_id'],3);
         
     }
