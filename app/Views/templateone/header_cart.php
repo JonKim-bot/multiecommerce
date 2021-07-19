@@ -1,5 +1,5 @@
 <div class="c-dc-header">
-    <p>Your Cart 您的订单</p>
+    <p><?= $lang['your_cart'] ?></p>
 </div>
 <div class="c-dc-scroll">
     <?php foreach ($cart as $key => $row) { ?>
@@ -53,11 +53,11 @@
 <div class="c-pay-button-box">
     <button type="button" class="btn btn-danger c-button">
         <a href="<?= base_url() ?>/main/cart">
-            Checkout
+        <?= $lang['checkout'] ?>
         </a>
     </button>
 </div>
 <div class="c-dc-total">
-    <h5>Total</h5>
+    <h5><?= $lang['order_total'] ?></h5>
     <h5 class="cart_total">RM <?=number_format($total, 2)?></h5>
 </div>
