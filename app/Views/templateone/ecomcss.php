@@ -11029,6 +11029,20 @@
         border-radius: 30px
     }
 
+    .c-ordersearch {
+        margin: auto;
+        margin-top: -2rem;
+        width: 90%;
+    }
+
+    @media screen and (min-width: 992px) {
+        .c-ordersearch {
+            margin: auto;
+            margin-top: -4rem;
+            width: 70%;
+        }
+    }
+
     @media screen and (max-width: 768px) {
         #cart_product_padding {
             padding: 10px 25px 10px 25px;

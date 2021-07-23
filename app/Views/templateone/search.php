@@ -5,16 +5,16 @@
     <!-- Breadcrumb End -->
 
     <!-- Contact Section Begin -->
-    <div class="c-login-back" style="height:15vh">
+    <div class="c-login-back" style="">
     <div class="c-header">
         <h1><?= $lang['order_history'] ?></h1>
     </div>
 </div>
-    <div class="contact spad" style='padding-top:0px' >
+    <div class="contact spad  c-ordersearch" style='padding-top:0px' >
         <div class="container">
             
             <div class="row" id="cart_product_padding">
-                <div class="col-lg-12 col-md-6">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="contact__widget">
                        
                         <div class="contact__widget__item">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 col-md-6">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="contact__form">
                         <form novalidate action="<?= base_url() ?>/main/order_history" method="GET">
                             <input type="email" name="keyword" placeholder="<?= $lang['etel'] ?>">
