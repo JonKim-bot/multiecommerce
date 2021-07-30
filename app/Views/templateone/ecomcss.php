@@ -11073,9 +11073,9 @@
     .c-product .c-product-card .c-top {
         background-color: #fff !important;
         padding: 0;
-        box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -webkit-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+        box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -webkit-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -moz-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
         border-radius: 15px !important;
     }
 
@@ -11244,10 +11244,10 @@
     }
 
     .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories {
-        box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
-        -webkit-box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
-        -moz-box-shadow: 1px 1px 23px -2px rgba(0, 0, 0, 0.77);
-        border-radius: 15px;
+
+        box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -webkit-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -moz-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
         padding: 1.5rem;
     }
 
@@ -11406,9 +11406,9 @@
         flex-direction: column;
         justify-content: space-between;
         height: 450px;
-        box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -webkit-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+        box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -webkit-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -moz-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
         border-radius: 15px !important;
         margin: 1rem 0;
     }
@@ -11771,9 +11771,10 @@
     }
 
     .c-home .c-home-listing .c-home-listing-left .c-category-listing .c-hll-search {
-        box-shadow: -1px 1px 43px -12px rgba(0, 0, 0, 0.75);
-        -webkit-box-shadow: -1px 1px 43px -12px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: -1px 1px 43px -12px rgba(0, 0, 0, 0.75);
+       
+        box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -webkit-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -moz-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
         border-radius: 15px;
     }
 
@@ -12519,9 +12520,9 @@
     .c-member .c-memberCON .c-mc-top {
         background-color: #fff;
         padding: 1rem;
-        box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -webkit-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+        box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -webkit-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -moz-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
         border-radius: 15px;
     }
 
@@ -12676,9 +12677,9 @@
         margin-top: 3rem;
         background-color: #fff;
         padding: 1rem;
-        box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -webkit-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
-        -moz-box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.49);
+        box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -webkit-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
+        -moz-box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
         border-radius: 15px;
     }
 

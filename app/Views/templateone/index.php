@@ -38,7 +38,6 @@
          
         </div>
         <!-- About Us End -->
-
         <!-- Product Start-->
         <div class="listing-area c-home-listing" id="product">
             <h1 class="c-subtitle"><?= $lang['my_product'] ?></h1>
