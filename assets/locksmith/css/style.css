@@ -1124,11 +1124,9 @@
 	color: #e5b84d;
 	font-size: 12px;
 	margin-right: -5px;
+
 }
 
-.product__pag {
-	margin-bottom: 20px;
-}
 
 .product__pag a {
 	display: inline-block;

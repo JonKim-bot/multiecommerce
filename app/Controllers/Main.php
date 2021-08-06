@@ -1256,8 +1256,8 @@ class Main extends BaseController
             // $this->premier_pay($_POST['orders_id']);
             // $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
             $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];
-
-            //payment method link
+            // $this->hit_pay($_POST['orders_id']);
+                //payment method link
             die(json_encode([
                 'status' => true,
                 'url' => $url,
@@ -1372,6 +1372,81 @@ class Main extends BaseController
             // if ($_REQUEST['status_id'] == 1){
             
     }
+
+    public function hit_pay_callback(){
+
+        try {
+
+            if($_REQUEST){
+
+                $response = json_encode($_REQUEST, true);
+
+                if($_REQUEST['status'] == "completed"){
+
+                    $where = [
+
+                        'response' => $response,
+                        'type' => 'callback sucess hitpay',
+                    ];
+                    
+                    $hitpay = $this->PremierResponseModel->getWhere($where);
+                    if(empty($hitpay)){
+    
+                        $data = array(
+                            'response' => $response,
+                            'type' => 'callback sucess hitpay',
+                        );
+                        $this->PremierResponseModel->insertNew($data);
+        
+                        // return redirect()->to(url('success'));
+
+                        $this->call_back_to_order_hit_pay($_REQUEST['reference']);
+                        $where = array(
+                            "orders.order_payment_id" => $_REQUEST['reference'],
+                        );
+                        $orders = $this->OrdersModel->getWhere($where)[0];
+                        $shop = $this->get_shop($orders['shop_id'],true);
+
+                        $this->pageData['shop'] = $shop;
+                        echo view("templateone/success" , $this->pageData);
+
+                    }
+                }else{
+                    $where = [
+                        'response' => $response,
+                        'type' => 'callback failed',
+                    ];
+                    
+                    $senang = $this->PremierResponseModel->getWhere($where);
+                    if(empty($senang)){
+    
+                        $data = array(
+                            'response' => $response,
+                            'type' => 'callback failed',
+                        );
+                        $this->PremierResponseModel->insertNew($data);
+        
+                    }
+
+                    echo view("templateone/failed" , $this->pageData);
+
+                }
+                // $this->debug($_REQUEST);
+                
+            }
+        } catch(Error $e){
+
+            $data = array(
+                'response' => $e->getMessage(),
+                'type' => basename($_SERVER['REQUEST_URI']),
+            );
+            $this->PremierResponseModel->insertNew($data);
+
+        }
+            // if ($_REQUEST['status_id'] == 1){
+            
+    }
+
     function call_back_to_order_senang($order_id){
 
         $this->update_order($order_id,3);
@@ -2055,6 +2130,7 @@ class Main extends BaseController
 
     public function get_total(){
         $cart = $this->session->get('cart');
+
         $total = 0;
         $cart_count = 0;
         if(!empty($cart)){
@@ -2282,6 +2358,7 @@ class Main extends BaseController
         $client_id = '16225290295158143777';
         $client_secret = 'a29bc326-f8c5-5a83-91b5-b39345add487';
         // //live key
+
         // $client_id = '16225262392817499070';
         // $client_secret = '1e153144-c9da-59e7-909f-bcae8677025d';
 
@@ -2336,6 +2413,51 @@ class Main extends BaseController
         $result = curl_exec($ch);
         die();
         // $this->debug($result);
+    }
+
+    function hit_pay($orders_id){
+    
+        $curl = curl_init();
+        $where = [
+            'orders.orders_id' => $orders_id
+        ];
+        $orders = $this->OrdersModel->getWhere($where)[0];    
+        $callbackurl = base_url() . '/main/hit_pay_callback';
+
+        $post_data = [
+            'email' =>  $orders['email'],
+            'amount' => $orders['grand_total'],
+            'send_email' => 'true',
+            'currency' => 'SGD',
+            'webhook' => $callbackurl,
+            'redirect_url' => $callbackurl,
+            'business_id' => 'test'
+        ];
+        $post_data = http_build_query($post_data);
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.sandbox.hit-pay.com/v1/payment-requests',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS => $post_data,
+          CURLOPT_HTTPHEADER => array(
+            'X-BUSINESS-API-KEY: a07bcde674bce8500e5e6ebe7a4b3141e432873d460b31b0aab42c06a615539e',
+            'Content-Type: application/x-www-form-urlencoded'
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $response = json_decode($response,true);
+        $this->update_order_payment_id($orders_id,$response['id']);
+        die(json_encode([
+            'url' => $response['url']
+        ]));
+        // echo $response;
     }
     function premier_callback(){
         
@@ -2420,14 +2542,12 @@ class Main extends BaseController
 
         );
         $orders = $this->OrdersModel->getWhere($where)[0];
-
-        $shop = $this->get_shop($orders['shop_id']);
+        
+        $shop = $this->get_shop($orders['shop_id'],true);
 
         if($orders['email'] != ""){
-            $this->EmailModel->send_email($orders['email'],$order_id);
+            $this->EmailModel->send_email($orders['email'],$orders['orders_id']);
         }
-
-        
 
         if($this->check_exist_function(1,$this->pageData['shop_function'])){
             $this->give_point($orders_id);
@@ -2464,6 +2584,25 @@ class Main extends BaseController
         $orders = $this->OrdersModel->getWhere($where);
 
        
+
+        $this->update_order($orderlog['orders_id'],3);
+        
+    }
+
+    function call_back_to_order_hit_pay($order_id){
+        
+        $where = [
+            'orders_log.order_payment_id' => $order_id
+        ];
+
+        $orderlog = $this->OrdersLogModel->getWhere($where)[0];
+
+        $where = [
+            'orders.orders_id' =>  $orderlog['orders_id']
+        ];
+        $orders = $this->OrdersModel->getWhere($where);
+
+
 
         $this->update_order($orderlog['orders_id'],3);
         

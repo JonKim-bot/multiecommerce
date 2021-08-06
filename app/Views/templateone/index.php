@@ -24,7 +24,7 @@
         </section>
         <!-- slider Area End-->
         <!-- About Us Start -->
-        <div class="c-about">
+        <div class="c-about" >
             <?php if(!empty($about)){ ?>
                 <?php foreach ($about as $row){ ?>
 
@@ -37,10 +37,10 @@
             <?php } ?>
          
         </div>
+        <div id="product"></div>
         <!-- About Us End -->
-
         <!-- Product Start-->
-        <div class="listing-area c-home-listing" id="product">
+        <div class="listing-area c-home-listing" >
             <h1 class="c-subtitle"><?= $lang['my_product'] ?></h1>
             <div class="container">
                 <div class="row">

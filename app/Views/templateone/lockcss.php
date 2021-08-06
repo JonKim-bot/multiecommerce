@@ -1131,6 +1131,38 @@
 	font-size: 12px;
 	margin-right: -5px;
 }
+.product__pag {
+	margin-bottom: 20px;
+}
+.product__pag button {
+	display: inline-block;
+	color: #1b2839;
+	border-radius:20px;
+	font-size: 18px;
+	font-family: "Rajdhani", sans-serif;
+	font-weight: 600;
+	height: 45px;
+	width: 45px;
+	border: 1px solid #e1e1e1;
+	line-height: 45px;
+	text-align: center;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.product__pag button:last-child {
+	margin-right: 0;
+}
+
+.product__pag button:hover {
+	background: #1b2839;
+	border-color: #1b2839;
+	color: #ffffff;
+}
+
 
 .product__pag {
 	margin-bottom: 20px;

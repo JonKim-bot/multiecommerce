@@ -45,7 +45,7 @@
         <div class="col-lg-12 col-md-12 d-flex">
             <div class="product__pag">
                 <?php for ($i = 1; $i <= $pages; $i++) { ?>
-                    <a id="page<?= $i ?>" onclick="get_product_list('<?= $i ?>')"><?= $i ?></a>
+                    <button id="page<?= $i ?>" onclick="get_product_list('<?= $i ?>')"><?= $i ?></button>
                 <?php } ?>
             </div>
         </div>

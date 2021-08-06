@@ -112,6 +112,7 @@
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
+
 <script src="<?= base_url() ?>/assets/assetsecom/js/vendor/modernizr-3.5.0.min.js"></script>
 <script src="<?= base_url() ?>/assets/assetsecom/js/popper.min.js"></script>
 <script src="<?= base_url() ?>/assets/assetsecom/js/bootstrap.min.js"></script>
@@ -194,6 +195,7 @@
 
                     if (promo_code == '') {
                         Swal.fire({
+                            
                             title: "Discount added",
                             text: "Discount added",
                             type: 'success'
@@ -241,6 +243,7 @@
 
             // alert("success");
             // window.open(
+                
             //     'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
             //     '_blank' // <- This is what makes it open in a new window.
             //   );
@@ -279,6 +282,7 @@
         var postParam = $(this).serializeArray();
         $.post("<?= base_url('main/submit_contact') ?>", postParam, function(data) {
             data = jQuery.parseJSON(data);
+
             if (data.status) {
                 Swal.fire({
                     title: "Thank you !",
@@ -489,7 +493,9 @@
                 $('#page' + page).css("background-color", "#1b2839");
                 $('#page' + page).css("border-color", "#1b2839");
                 $('#page' + page).css("color", "white");
+                window.location.hash = "";
 
+                window.location.hash = "product";
             }
         });
     }
