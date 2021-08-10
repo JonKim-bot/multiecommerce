@@ -1253,6 +1253,7 @@ class Main extends BaseController
                 'url' => $url,
             ]));
         }else{
+            
             // $this->premier_pay($_POST['orders_id']);
             // $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
             $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];

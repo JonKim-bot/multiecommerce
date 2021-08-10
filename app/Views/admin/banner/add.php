@@ -41,20 +41,28 @@
                                         <?= $error; ?>
                                     </div>
                                 <?php } ?>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="e.g. Best Restaurant In Town" required>
+                                    <input type="hidden" class="form-control" name="title" placeholder="e.g. Best Restaurant In Town" required>
+                                </div>
+                             -->
+                                <div class="form-group">
+                                <label for="">Type (enter 1 for desktop , 2 for mobile banner)</label>
+                                    <select name="type_id" class="select" id=""  required>
+                                        <option value="1">Desktop</option>
+                                        <option value="2">Banner</option>
+                                    </select>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="banner">Banner *1920x700</label>
+                                    <label for="banner">Banner *1920x700 </label>
                                     <input type="file" class="form-control" name="banner" placeholder="Banner" required>
                                 </div>
-                                
+<!--                                 
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "></textarea>
-                                </div>
+                                    <textarea class="form-control " type="hidden"  name="description" placeholder="Eg : Open since 1997 "></textarea>
+                                </div> -->
 
                             
                                 <div class="form-group">

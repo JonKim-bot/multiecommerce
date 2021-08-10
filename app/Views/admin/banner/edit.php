@@ -34,18 +34,26 @@
                             <label class="custom-file-label" for="" aria-describedby="">Choose file</label>
                         </div>
                     </div> -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                                     <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" value="<?= $banner['title']?>" placeholder="e.g. Best Restaurant In Town" required>
-                                </div>
+                                    <input type="hidden" class="form-control" name="title" value="<?= $banner['title']?>" placeholder="e.g. Best Restaurant In Town" required>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="">Decription</label>
                                     <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $banner['description']?></textarea>
                                 </div>
+                                
+                                <div class="form-group">
+                                <label for="">Type (enter 1 for desktop , 2 for mobile banner)</label>
+                                    <select name="type_id" class="select" id=""  required>
+                                        <option <?= $banner['type_id'] == 1 ? 'selected' : ''?> value="1">Desktop</option>
+                                        <option value="2" <?= $banner['type_id'] == 2 ? 'selected' : ''?>>Banner</option>
+                                    </select>
+                                </div>
                     <div class="form-group">
                                     <label for="banner">Image</label>
                                     <input type="file" class="form-control" name="banner" placeholder="Banner" >
-                                    <label for="" class="small text-danger">*Leave blank if not change image *1920x700</label>
+                                    <label for="" class="small text-danger">*Leave blank if not change image </label>
 
                                 </div>
                     

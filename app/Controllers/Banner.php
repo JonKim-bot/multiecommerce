@@ -111,8 +111,10 @@ class Banner extends BaseController
 
                 $data = [
                     'banner' => $banner,
-                    'title' => $this->request->getPost('title'),
-                    'description' => $this->request->getPost('description'),
+                    'type_id' => $this->request->getPost('type_id'),
+
+                    // 'title' => $this->request->getPost('title'),
+                    // 'description' => $this->request->getPost('description'),
                     'shop_id' => $this->shop_id,
                     'created_by' => session()->get('login_id'),
                 ];
@@ -169,8 +171,10 @@ class Banner extends BaseController
 
             if (!$error) {
                 $data = [
-                    'title' => $this->request->getPost('title'),
-                    'description' => $this->request->getPost('description'),
+                    // 'title' => $this->request->getPost('title'),
+                    // 'description' => $this->request->getPost('description'),
+                    'type_id' => $this->request->getPost('type_id'),
+     
                     'created_by' => session()->get('login_id'),
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
