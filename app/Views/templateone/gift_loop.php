@@ -9,7 +9,7 @@
                                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                                             </div>
                                             <div class="c-btnBOX">
-                                                <div class="c-btn view_gift_detail" id="<?= $row['gift_id'] ?>" is_self="1" >查看详情</div>
+                                                <div class="c-btn view_gift_detail" id="<?= $row['gift_id'] ?>" is_self="1" ><?= $lang['view'] ?></div>
                                                 
                                             </div>
                                         </div>
@@ -30,8 +30,8 @@
                                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                                             </div>
                                             <div class="c-btnBOX">
-                                                <div class="c-btn view_gift_detail" id="<?= $row['gift_id'] ?>" is_self="0">查看详情</div>
-                                                <div class="c-btn c-red redeem_gift_" amount = "<?= $row['order_amount'] ?>" chance = "<?= $row['count'] ?>" style="cursor:pointer" id="<?= $row['gift_id'] ?>" >兑换</div>
+                                                <div class="c-btn view_gift_detail" id="<?= $row['gift_id'] ?>" is_self="0"><?= $lang['view'] ?></div>
+                                                <div class="c-btn c-red redeem_gift_" amount = "<?= $row['order_amount'] ?>" chance = "<?= $row['count'] ?>" style="cursor:pointer" id="<?= $row['gift_id'] ?>" ><?= $lang['exchange'] ?></div>
                                             </div>
                                         </div>
                                     </div>
