@@ -29,6 +29,7 @@
     $lang['transaction'] = '交易';
     $lang['remarks'] = '备注';
     $lang['created_date'] = '创建日期';
+    
     $lang['register_date'] = '注册日期';
     $lang['refer_friend'] = '推荐你的好友';
     $lang['enjoy_voucher'] = '享受优惠卷奖励';

@@ -1643,6 +1643,7 @@ class Main extends BaseController
         $this->pageData['category'] = $category;
         $this->pageData['banner'] = $banner;
         $this->pageData['banner_mobile'] = $banner_mobile;
+        
 
         if(!empty($about)){
             $about = $about[0];

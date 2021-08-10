@@ -9,7 +9,7 @@
                                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                                             </div>
                                             <div class="c-btnBOX">
-                                                <div class="c-btn view_voucher_detail" id="<?= $row['voucher_id'] ?>" is_self="1" >查看详情</div>
+                                                <div class="c-btn view_voucher_detail" id="<?= $row['voucher_id'] ?>" is_self="1" ><?=  $lang['view'] ?></div>
                                                 
                                             </div>
                                         </div>
@@ -30,9 +30,9 @@
                                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                                             </div>
                                             <div class="c-btnBOX">
-                                                <div class="c-btn view_voucher_detail" id="<?= $row['voucher_id'] ?>" is_self="0">查看详情</div>
+                                                <div class="c-btn view_voucher_detail" id="<?= $row['voucher_id'] ?>" is_self="0"><?=  $lang['view'] ?></div>
                                                 <div class="c-btn c-red redeem_voucher_" amount = "<?= $row['redeem_point'] ?>" 
-                            style="cursor:pointer" id="<?= $row['voucher_id'] ?>">兑换</div>
+                            style="cursor:pointer" id="<?= $row['voucher_id'] ?>"><?= $lang['exchange'] ?></div>
                                             </div>
                                         </div>
                                     </div>

@@ -4,6 +4,7 @@
     $lang['about'] = 'About';
     $lang['collection'] = 'Collection';
     $lang['lookbook'] = 'Lookbook';
+    
     $lang['contact'] = 'Contact';
     $lang['change_language_CN'] = '/ CN';
     $lang['change_language_EN'] = 'EN';
