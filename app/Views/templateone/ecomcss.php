@@ -12983,7 +12983,7 @@
     }
 
     .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher .c-voucherLIST .c-card {
-        padding-bottom: 1rem;
+        padding-bottom: 1.5rem;
     }
 
     .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher .c-voucherLIST .c-card .c-productImg {
