@@ -12803,6 +12803,10 @@
         text-align: center;
     }
 
+    .c-member .c-memberCON .c-mc-top .col-info .c-btn:hover {
+        background-color: var(--secondary_color);
+    }
+
     @media screen and (min-width: 768px) {
         .c-member .c-memberCON .c-mc-top .col-info .c-btn {
             width: 40%;
@@ -12850,6 +12854,10 @@
         justify-content: center;
         align-items: center;
         width: 100%;
+    }
+
+    .c-member .c-memberCON .c-mc-top .col-qr .c-btn:hover {
+        background-color: var(--secondary_color);
     }
 
     @media screen and (min-width: 768px) {
@@ -13015,6 +13023,10 @@
         color: #fff;
     }
 
+    .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher .c-voucherLIST .c-card .c-btnBOX .c-btn:hover {
+        background-color: var(--secondary_color);
+    }
+
     .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher .c-voucherLIST .c-card .c-btnBOX .c-red {
         background-color: var(--secondary_color);
     }
@@ -13070,8 +13082,16 @@
         color: #fff;
     }
 
+    .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher-other .c-voucherLIST .c-card .c-btnBOX .c-btn:hover {
+        background-color: var(--secondary_color);
+    }
+
     .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher-other .c-voucherLIST .c-card .c-btnBOX .c-red {
         background-color: var(--secondary_color);
+    }
+
+    .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-voucher-other .c-voucherLIST .c-card .c-btnBOX .c-red:hover {
+        background-color: var(--themecolor);
     }
 
     .c-member .c-memberCON .c-mc-bottom .c-pillCT .c-gift h4 {
