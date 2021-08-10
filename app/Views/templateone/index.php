@@ -24,21 +24,15 @@
         </section>
         <div class="c-section-banner-mob">
             <div class="slick-home-mob m-0">
+            <?php foreach ($banner_mobile as $row) { ?>
+
                 <div class="c-carousel ">
                     <div class="c-carouselimg">
-                        <img src="<?= base_url() ?>/public/images/1627190105.jpg" class="" alt="">
+                        <img src="<?= base_url() . $row['banner'] ?>" class="" alt="">
                     </div>
                 </div>
-                <div class="c-carousel ">
-                    <div class="c-carouselimg">
-                        <img src="<?= base_url() ?>/public/images/1627190105.jpg" class="" alt="">
-                    </div>
-                </div>
-                <div class="c-carousel ">
-                    <div class="c-carouselimg">
-                        <img src="<?= base_url() ?>/public/images/1627190105.jpg" class="" alt="">
-                    </div>
-                </div>
+            <?php } ?>
+
             </div>
         </div>
         <!-- slider Area End-->

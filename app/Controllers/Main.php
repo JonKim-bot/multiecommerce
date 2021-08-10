@@ -1247,6 +1247,7 @@ class Main extends BaseController
 
 
         if($_POST['payment_method_id'] != 3){
+
             $this->update_orders_status($_POST['orders_id'],$_POST['payment_method_id']);
             die(json_encode([
                 'status' => true,
@@ -1614,7 +1615,8 @@ class Main extends BaseController
      
         $category = $this->CategoryModel->getWhere($where);
   
-        $banner = $this->BannerModel->getWhere($where);
+        $banner = $this->BannerModel->getWhere(array_merge($where,['type_id' => 1]));
+        $banner_mobile = $this->BannerModel->getWhere(array_merge($where,['type_id' => 2]));
     
         $about = $this->AboutModel->getWhere($where);
         // $payment_method = $this->PaymentMethod->getAll();
@@ -1640,6 +1642,8 @@ class Main extends BaseController
 
         $this->pageData['category'] = $category;
         $this->pageData['banner'] = $banner;
+        $this->pageData['banner_mobile'] = $banner_mobile;
+
         if(!empty($about)){
             $about = $about[0];
             $this->pageData['about'] = $about;
