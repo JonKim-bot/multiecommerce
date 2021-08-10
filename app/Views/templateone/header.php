@@ -24,6 +24,10 @@
     <!-- <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- Slick-Silder-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+
+
     <script src="https://kit.fontawesome.com/3d15aa1b08.js" crossorigin="anonymous"></script>
 
     <!-- <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/style.css"> -->
@@ -216,7 +220,7 @@
                                     <div class="numberCircle">0</div>
 
                                     <div class="shopping-cart">
-                                        
+
                                     </div>
                                 </div>
                                 <?php if (in_array(1, $shop_function)) { ?>

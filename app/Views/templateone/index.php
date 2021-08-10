@@ -1,7 +1,7 @@
 <main>
     <div class="c-home">
         <!-- slider Area Start-->
-        <section class="slider-area ">
+        <section class="slider-area c-slider">
             <div class="slider-active">
                 <!-- Single Slider -->
                 <?php foreach ($banner as $row) { ?>
@@ -22,29 +22,48 @@
                 <?php } ?>
             </div>
         </section>
+        <div class="c-section-banner-mob">
+            <div class="slick-home-mob m-0">
+                <div class="c-carousel ">
+                    <div class="c-carouselimg">
+                        <img src="<?= base_url() ?>/public/images/1627190105.jpg" class="" alt="">
+                    </div>
+                </div>
+                <div class="c-carousel ">
+                    <div class="c-carouselimg">
+                        <img src="<?= base_url() ?>/public/images/1627190105.jpg" class="" alt="">
+                    </div>
+                </div>
+                <div class="c-carousel ">
+                    <div class="c-carouselimg">
+                        <img src="<?= base_url() ?>/public/images/1627190105.jpg" class="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- slider Area End-->
         <!-- About Us Start -->
-        <div class="c-about" >
-            <?php if(!empty($about)){ ?>
-                <?php foreach ($about as $row){ ?>
+        <div class="c-about">
+            <?php if (!empty($about)) { ?>
+                <?php foreach ($about as $row) { ?>
 
-                <h1 class="c-subtitle"><?= $row['title'] ?></h1>
+                    <h1 class="c-subtitle"><?= $row['title'] ?></h1>
                     <p>
-                    <?= $row['description'] ?>
+                        <?= $row['description'] ?>
                     </p>
-                 <?php } ?>
+                <?php } ?>
 
             <?php } ?>
-         
+
         </div>
-        <div id="product"></div>
+        <div></div>
         <!-- About Us End -->
         <!-- Product Start-->
-        <div class="listing-area c-home-listing" >
+        <div id="product" class="listing-area c-home-listing">
             <h1 class="c-subtitle"><?= $lang['my_product'] ?></h1>
             <div class="container">
                 <div class="row">
-                    
+
                     <!--? Left content -->
                     <div class="col-xl-3 col-lg-4 col-md-4 c-home-listing-left">
                         <!-- Job Category Listing start -->
@@ -85,14 +104,14 @@
         <!-- Product End-->
 
         <!-- Home Bottom Start -->
-        <?php if(!empty($about_bottom)){ ?>
+        <?php if (!empty($about_bottom)) { ?>
 
-        <div class="c-subAbout" style="background-image: url('<?= base_url() . $about_bottom['banner'] ?>');">
-            <div class="c-text">
-                <p>
-                    <?= $about_bottom['description'] ?></p>
+            <div class="c-subAbout" style="background-image: url('<?= base_url() . $about_bottom['banner'] ?>');">
+                <div class="c-text">
+                    <p>
+                        <?= $about_bottom['description'] ?></p>
+                </div>
             </div>
-        </div>
         <?php } ?>
         <!-- Home Bottom End -->
     </div>

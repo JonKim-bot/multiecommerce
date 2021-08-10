@@ -111,6 +111,7 @@
 </div>
 
 <!-- JS here -->
+
 <!-- Jquery, Popper, Bootstrap -->
 
 <script src="<?= base_url() ?>/assets/assetsecom/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -153,6 +154,17 @@
 
 
 <script>
+    $(document).ready(function(){
+      $('.slick-home-mob').slick({
+            autoplay: true,
+            autoplaySpeed: 5000,
+            dots: false,
+            arrows: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+      });
+    });
+
     function applyPromo(promo_code = '') {
 
         var base_url = "<?= base_url() ?>";

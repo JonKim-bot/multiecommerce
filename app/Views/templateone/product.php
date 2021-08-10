@@ -265,7 +265,7 @@
 
                                     <div class="single-services c-top mb-0">
 
-                                        <div class="col-md-6 pcslider c-slider" id="pcslider" style="align-self:center">
+                                        <div class="col-lg-6 col-md-12 col-sm-12 pcslider c-slider" id="pcslider" style="align-self:center">
                                             <div class="h1-testimonial-active" style="">
                                                 <?php foreach ($product_image as $row) { ?>
 
@@ -282,7 +282,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-12 c-Columnflex">
+                                        <div class="col-lg-6 col-md-12 col-sm-12 c-Columnflex">
 
                                             <div class="features-caption">
                                                 <div class="c-name">
@@ -321,7 +321,7 @@
                                     <div class="single-services c-detail mb-0">
 
 
-                                        <div class="col-md-12 col-sm-12">
+                                        <div class="col-md-12 col-sm-12 pl-0 pr-0">
 
                                             <div class="features-caption">
                                                 <!-- <h1><?= $product['product_name'] ?></h1>
