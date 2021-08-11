@@ -9,10 +9,10 @@
    
 
 <div class="register-form">
-<div class="row  login_image">
-<?php if (in_array(1, $shop_function)) { ?>
-
-<?php if(!empty($about)){ ?>
+    <?php if (in_array(1, $shop_function)) { ?>
+        
+        <?php if(!empty($about)){ ?>
+    <div class="row  login_image">
 
         <div class="col-md-4">
 
@@ -26,8 +26,8 @@
 
             <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
         </div>
+    </div>
     <?php } ?>
-</div>
 <?php } ?>
 
         <!-- register Heading -->
