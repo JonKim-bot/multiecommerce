@@ -327,6 +327,7 @@
         });
     }
 
+
     function check_promo() {
 
         var promo_id = $('#promo_id').val();
@@ -510,9 +511,11 @@
                 $('#page' + page).css("background-color", "#1b2839");
                 $('#page' + page).css("border-color", "#1b2839");
                 $('#page' + page).css("color", "white");
-                window.location.hash = "";
+                if(page!= 1){
 
+                window.location.hash = "";
                 window.location.hash = "product";
+                }
             }
         });
     }
