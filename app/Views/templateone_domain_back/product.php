@@ -170,9 +170,9 @@
         </section>
         <?php if(in_array(3,$shop_function)){ ?>
         <section class="latest-items section-padding fix">
-            <div class="row">
+            <div class="row no-gutters">
                 <div class="col-xl-12">
-                    <div class="section-tittle text-center mb-40">
+                    <div class="section-tittle text-center">
                         <h2>You May Like</h2>
                     </div>
                 </div>

@@ -6,29 +6,29 @@
 </div>
 
 <div class="register-form-area c-register-form">
-   
 
-<div class="register-form">
-    <?php if (in_array(1, $shop_function)) { ?>
-        
-        <?php if(!empty($about)){ ?>
-    <div class="row  login_image">
 
-        <div class="col-md-4">
+    <div class="register-form">
+        <?php if (in_array(1, $shop_function)) { ?>
 
-            <img src="<?= base_url()  . $about['banner'] ?>" width="100%" alt="">
-        </div>
-        <div class="col-md-4">
+            <?php if (!empty($about)) { ?>
+                <div class="row  login_image">
 
-            <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
-        </div>
-        <div class="col-md-4">
+                    <div class="col-md-4">
 
-            <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
-        </div>
-    </div>
-    <?php } ?>
-<?php } ?>
+                        <img src="<?= base_url()  . $about['banner'] ?>" width="100%" alt="">
+                    </div>
+                    <div class="col-md-4">
+
+                        <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
+                    </div>
+                    <div class="col-md-4">
+
+                        <img src="<?= base_url() . $about['banner'] ?>" width="100%" alt="">
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } ?>
 
         <!-- register Heading -->
         <!-- <div class="register-heading">
@@ -76,24 +76,27 @@
             <!-- form Footer -->
             <div class="register-footer">
                 <p><?= $lang['already_have_account'] ?> <a href="<?= base_url()  ?>/main/login"> <?= $lang['login'] ?></a></p>
-                <button class="submit-btn3 c-btn" type="submit"><?= $lang['submit'] ?></button>
+
+                <div class="d-flex justify-content-end">
+                    <button class="submit-btn3 c-btn" type="submit"><?= $lang['submit'] ?></button>
+                </div>
             </div>
         </form>
-       
+
 
     </div>
-  
+
 </div>
 <?php if (in_array(1, $shop_function)) { ?>
-    <?php if(!empty($about)){ ?>
+    <?php if (!empty($about)) { ?>
 
         <div class="c-about container login_page_about">
-            <h1 class="c-subtitle text-center" ><?= $about['title'] ?></h1>
+            <h1 class="c-subtitle text-center"><?= $about['title'] ?></h1>
             <p>
                 <?= $about['description'] ?>
             </p>
         </div>
     <?php } ?>
 
-    <?php } ?>
+<?php } ?>
 <!-- login Area End -->

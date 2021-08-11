@@ -24,10 +24,10 @@
                             <div class="footer-tittle">
                                 <!-- <h4>Quick Links</h4> -->
                                 <ul>
-                                <li><a class="c-footer-bold" href="https://webieasy.com/privacy_policy.php">Private policy</a></li>
-                                <li><a class="c-footer-bold" href="https://webieasy.com/return_refund_policy.php">RETURN & REFUND POLICY</a></li>
-                                <li><a class="c-footer-bold" href="https://webieasy.com/shipping_policy.php">Shipping policy</a></li>
-                                <li><a class="c-footer-bold" href="https://webieasy.com/tnc.php">TERM AND CONDITIONS</a></li>
+                                    <li><a class="c-footer-bold" href="https://webieasy.com/privacy_policy.php">Private policy</a></li>
+                                    <li><a class="c-footer-bold" href="https://webieasy.com/return_refund_policy.php">RETURN & REFUND POLICY</a></li>
+                                    <li><a class="c-footer-bold" href="https://webieasy.com/shipping_policy.php">Shipping policy</a></li>
+                                    <li><a class="c-footer-bold" href="https://webieasy.com/tnc.php">TERM AND CONDITIONS</a></li>
 
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index#product"><?= $lang['my_product'] ?></a></li>
@@ -159,15 +159,35 @@
 
 
 <script>
-    $(document).ready(function(){
-      $('.slick-home-mob').slick({
+    $(document).ready(function() {
+        $('.slick-home-mob').slick({
             autoplay: true,
             autoplaySpeed: 5000,
             dots: false,
             arrows: false,
             slidesToShow: 1,
             slidesToScroll: 1,
-      });
+        });
+    });
+
+
+    $(".mobile_menu").click(function(e) {
+        $(".slicknav_nav").css("display", "block");
+        $(".shopping-cart").removeClass("active");
+        $(".user_drop").removeClass("active");
+
+    });
+
+
+    $(".c-userDROP").click(function(e) {
+        $(".slicknav_nav").css("display", "none");
+        $(".shopping-cart").removeClass("active");
+
+    });
+
+    $(".c-cartDROP").click(function(e) {
+        $(".slicknav_nav").css("display", "none");
+        $(".user_drop").removeClass("active");
     });
 
     function applyPromo(promo_code = '') {
@@ -212,7 +232,7 @@
 
                     if (promo_code == '') {
                         Swal.fire({
-                            
+
                             title: "Discount added",
                             text: "Discount added",
                             type: 'success'
@@ -260,7 +280,7 @@
 
             // alert("success");
             // window.open(
-                
+
             //     'https://support.wwf.org.uk/earth_hour/index.php?type=individual',
             //     '_blank' // <- This is what makes it open in a new window.
             //   );
@@ -288,7 +308,7 @@
         Swal.fire({
             title: "Dear Customer",
             text: "We would like to inform you that <?= $shop['shop_name'] ?> are temporarily closed",
-            
+
             type: 'info'
         })
 
@@ -511,10 +531,10 @@
                 $('#page' + page).css("background-color", "#1b2839");
                 $('#page' + page).css("border-color", "#1b2839");
                 $('#page' + page).css("color", "white");
-                if(page!= 1){
+                if (page != 1) {
 
-                window.location.hash = "";
-                window.location.hash = "product";
+                    window.location.hash = "";
+                    window.location.hash = "product";
                 }
             }
         });

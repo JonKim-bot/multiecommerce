@@ -74,7 +74,7 @@
                   <div class="billing-address">
                      <div class="row">
                         <div class="col-md-12" style="word-break: break-word;">
-                           <h4><?= $lang['tracking_link'] ?></h4>
+                           <h4 style="font-weight: bold;"><?= $lang['tracking_link'] ?></h4>
                            <p>
                               <a style="color:blue" target="_blank" href="<?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>">
                                  <?= $orders['tracking_link'] == "" ? base_url() . "/main/view_order_status/" . $orders['order_code'] : $orders['tracking_link'] ?>
@@ -82,22 +82,22 @@
                            </p>
                         </div>
                         <div class="col-md-6">
-                           <h4><?= $lang['order_status'] ?></h4>
+                           <h4 style="font-weight: bold;"><?= $lang['order_status'] ?></h4>
                            <p><?= $orders['orders_status'] ?></p>
-                           <h4><?= $lang['name'] ?></h4>
+                           <h4 style="font-weight: bold;"><?= $lang['name'] ?></h4>
                            <p><?= $orders['full_name'] ?></p>
-                           <h4><?= $lang['contact_number'] ?></h4>
+                           <h4 style="font-weight: bold;"><?= $lang['contact_number'] ?></h4>
                            <p><?= $orders['contact'] ?></p>
                         </div>
 
                         <div class="col-md-6">
-                           <h4><?= $lang['payment_status'] ?>
+                           <h4 style="font-weight: bold;"><?= $lang['payment_status'] ?>
                            </h4>
                            <p><?= $orders['is_paid'] == 1 ? $lang['paid'] : $lang['not_paid'] ?></p>
-                           <h4><?= $lang['address'] ?>
+                           <h4 style="font-weight: bold;"><?= $lang['address'] ?>
                            </h4>
                            <p><?= $orders['address'] ?></p>
-                           <h4><?= $lang['order_date'] ?></h4>
+                           <h4 style="font-weight: bold;"><?= $lang['order_date'] ?></h4>
                            <p><?= $orders['created_date_'] ?></p>
                         </div>
                      </div>
@@ -130,7 +130,7 @@
                         </section>
                      </div>
                      <div class="col-lg-4 col-md-12">
-                        <div class="cart__right c-cart-right text-dark" style="border-radius:5px;">
+                        <div class="cart__right c-cart-right text-dark">
                            <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
                            <?php
                            } else { ?>
@@ -149,6 +149,7 @@
                                     </div>
                                  <?php
                                  } ?>
+                                 <div class="d-flex justify-content-end">
                                  <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
                                     <a class="btn btn-payment" id="" style=""><?= $lang['paid'] ?></a>
                                  <?php
@@ -156,6 +157,7 @@
                                     <a class="btn btn-payment" id="payment_button" style=""><?= $lang['checkout'] ?></a>
                                  <?php
                                  } ?>
+                                 </div>
                               <?php
                            } ?>
                               </div>
@@ -173,11 +175,11 @@
                   <?php
                   } else { ?>
                      <div class="col-lg-12 col-md-12">
-                        <div class="cart__right text-center mb-5 text-dark mt-3 p-5" style="border-radius:5px;">
+                        <div class="c-cart-center text-center text-dark">
                            <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
                            <?php
                            } else { ?>
-                              <div class="billing-address">
+                              <div class="">
                                  <h4><?= $lang['payment_method'] ?>
                                  </h4>
                                  <?php foreach ($payment_method as $row) { ?>
@@ -195,12 +197,12 @@
                               <?php
                            } ?>
                               </div>
-                              <div class="row">
+                              <div class="c-paymentBTNBOX">
                                  <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
-                                    <a class="btn m-auto w-50 p-t-20" id="" style="margin-top:20px"><?= $lang['paid'] ?></a>
+                                    <a class="btn c-paymentBTN" id="" style=""><?= $lang['paid'] ?></a>
                                  <?php
                                  } else { ?>
-                                    <a class="btn m-auto w-50 p-t-20" id="payment_button" style="margin-top:20px"><?= $lang['checkout'] ?></a>
+                                    <a class="btn c-paymentBTN" id="payment_button" style=""><?= $lang['checkout'] ?></a>
                                  <?php
                                  } ?>
                               </div>

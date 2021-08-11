@@ -62,7 +62,7 @@
     $lang['etel'] = '输入您的电子邮件或电话号码以查找您的订单历史记录';
     $lang['referal_code'] = '推荐代码';
 
-    $lang['your_cart'] = '你的购物车';
+    $lang['your_cart'] = '我的产品';
     $lang['checkout'] = '付款';
     $lang['order_total'] = '总数额';
     $lang['menu'] = '菜单';

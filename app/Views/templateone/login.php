@@ -38,7 +38,10 @@
             <!-- form Footer -->
             <div class="login-footer">
                 <p><?= $lang['dont_have_account'] ?> <a href="<?= base_url()  ?>/main/signup"><?= $lang['register'] ?></a></p>
-                <button class="submit-btn3 c-btn" type="submit"><?= $lang['submit'] ?></button>
+
+                <div class="d-flex justify-content-end">
+                    <button class="submit-btn3 c-btn" type="submit"><?= $lang['submit'] ?></button>
+                </div>
             </div>
         </form>
 

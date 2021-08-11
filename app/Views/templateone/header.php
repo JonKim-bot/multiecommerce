@@ -72,7 +72,7 @@
             z-index: 1;
             position: absolute;
             top: 40px;
-            right: unset;
+            right: -110px;
             border-radius: 3px;
             /* padding: 20px; */
             overflow: hidden;
@@ -214,7 +214,7 @@
 
                             <div class="c-logo-mob">
                                 <div class="c-lm-img">
-                                    <a class="c-cart-logo" id="cart">
+                                    <a class="c-cart-logo c-cartDROP" id="cart">
                                         <i class="fas fa-shopping-cart c-fa"></i>
                                     </a>
                                     <div class="numberCircle">0</div>
@@ -225,7 +225,7 @@
                                 </div>
                                 <?php if (in_array(1, $shop_function)) { ?>
                                     <div class="c-lm-img_">
-                                        <a class="c-cart-logo" id="user">
+                                        <a class="c-cart-logo c-userDROP" id="user">
                                             <i class="fas fa-user c-fa"></i><i class=""></i>
                                         </a>
                                         <div class="user_drop">
@@ -279,7 +279,7 @@
                     </div> -->
                     <!-- Mobile Menu -->
                     <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
+                        <div class="mobile_menu d-lg-none"></div>
                     </div>
                 </div>
             </div>

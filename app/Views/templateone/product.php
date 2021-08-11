@@ -441,7 +441,7 @@
                                                     <section class="latest-items section-padding fix c-likes">
                                                         <div class="row">
                                                             <div class="col-xl-12">
-                                                                <div class="section-tittle text-center mb-40">
+                                                                <div class="section-tittle text-center c-upsales-title">
                                                                     <h2 class="c-title"><?= $lang['upsales'] ?></h2>
                                                                 </div>
                                                             </div>
