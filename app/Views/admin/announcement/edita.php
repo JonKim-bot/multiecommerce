@@ -43,6 +43,10 @@
                                     <input type="text" class="form-control" name="link" value="<?= $announcement['link']?>" placeholder="e.g. www.yourproductlink.com" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Active ? (enter 1 to show , 0 to hide) </label>
+                                    <input type="number" class="form-control" name="is_active" value="<?= $announcement['is_active']?>" placeholder="1" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="">Link Text</label>
                                     <textarea class="form-control " name="description" placeholder="Eg : Shop Now ! "><?= $announcement['description']?></textarea>
                                 </div>

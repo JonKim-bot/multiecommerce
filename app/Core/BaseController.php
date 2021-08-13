@@ -5,6 +5,7 @@
 
 
 
+
 namespace App\Core;
 
 /**
@@ -186,6 +187,42 @@ class BaseController extends Controller
         var_dump($data);
         echo "</pre>";
         die();
+
+    }
+    
+    public function checkExistsMerchant($username, $exclude_id = "")
+    {
+
+        $where = array(
+            "username" => $username,
+        );
+
+        if ($exclude_id == "") {
+
+            $admin = $this->MerchantModel->getWhere($where);
+
+            if (empty($admin) and empty($user)) {
+
+                return false;
+
+            } else {
+                return true;
+            }
+
+        } else if ($exclude_id != "") {
+            $admin = $this->MerchantModel->getWhereAndPrimaryIsNot($where, $exclude_id);
+
+            // $this->debug($user);
+
+            if (empty($admin) and empty($user)) {
+
+                return false;
+
+            } else {
+
+                return true;
+            }
+        }
 
     }
 

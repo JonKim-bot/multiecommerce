@@ -713,6 +713,7 @@ class BaseModel extends Model
         $this->builder->select('*');
         $this->builder->join("role", $this->tableName . '.role_id = role.role_id', 'left');
         $this->builder->where("username = ", $username);
+        
         $this->builder->where("password = SHA2(CONCAT(salt,'" . $password . "'),512)");
 
 

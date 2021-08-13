@@ -240,6 +240,7 @@ class Announcement extends BaseController
 
             if (!$error) {
                 $data = [
+                    'is_active' => $_POST['is_active'],
                     'link' => $this->request->getPost('link'),
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),

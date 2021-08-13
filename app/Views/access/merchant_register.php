@@ -39,18 +39,18 @@ label{
                                     <label for="">Shop English Name</label>
                                     <input type="text" class="form-control" name="shop" placeholder="e.g. Restaurant Lim" required>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Shop Chinese Name (If shop name got chinese character enter here)</label>
                                     <input type="text" class="form-control" name="shop_name" placeholder="e.g. Restaurant 中文">
-                                </div>
-                                <div class="form-group">
+                                </div> -->
+                                <!-- <div class="form-group">
                                     <label for="">Operating Time</label>
                                     <input type="text" class="form-control" name="operating_hour"  placeholder="e.g. Monday-Sunday - 8AM - 10PM" required>
-                                </div>
-                                <div class="form-group">
+                                </div> -->
+                                <!-- <div class="form-group">
                                 <label for="">Delivery Fee (PER KM)</label>
                                     <input type="number" class="form-control" name="delivery_fee" placeholder="e.g. RM 3" required>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="">Contact</label>
                                     <input type="number" class="form-control" name="contact"  placeholder="e.g. 60121231232" required>
@@ -60,7 +60,7 @@ label{
                                     <input type="text" class="form-control" name="email"  placeholder="e.g. xxx.com" required>
                                 </div>
                              
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Insta</label>
                                     <input type="text" class="form-control"  name="insta" placeholder="e.g. https://www.facebook.com/PieGen-Software-111184540529485/?ref=bookmarks" >
                                 </div>
@@ -68,9 +68,9 @@ label{
                                 <div class="form-group">
                                     <label for="">Facebook</label>
                                     <input type="text" class="form-control"  name="facebook" placeholder="e.g. https://www.instagram.com/piegen_software/" >
-                                </div>
+                                </div> -->
 
-                                
+<!--                                 
                                 <div class="form-group">
                                     <label for="banner">Shop Image</label>
                                     <input type="file" class="form-control" name="banner" placeholder="Banner" required>
@@ -78,10 +78,10 @@ label{
                                 <div class="form-group">
                                     <label for="icon">Shop Logo</label>
                                     <input type="file" class="form-control" name="icon" placeholder="Banner" required>
-                                </div>
+                                </div> -->
                                 
                                 
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                 <h4>Bank detail are for customer to bank in to you , then you can receive payment</h4>
                                 <label for="banner">Select Your Bank</label>
 
@@ -99,7 +99,7 @@ label{
                                 <div class="form-group">
                                     <label for="">Bank Account</label>
                                     <input type="text" class="form-control" name="bank_account" placeholder="e.g. 123213123123" required>
-                                </div>
+                                </div> -->
 
                                 <div class="form-group">
                                     <label for="">Address</label>

@@ -64,29 +64,29 @@ class Access extends BaseController
                
 
             if (!$error) {
-            if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
-                $file = $this->request->getFile('banner');
-                $new_name = $file->getRandomName();
+            // if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+            //     $file = $this->request->getFile('banner');
+            //     $new_name = $file->getRandomName();
 
-                $banner = $file->move('./public/images/shop/', $new_name);
-                if ($banner) {
-                    $banner = '/public/images/shop/' . $new_name;
-                } else {
-                    $error = true;
-                    $error_message = "Upload failed.";
-                }
-            } 
-            if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
-                $file = $this->request->getFile('icon');
-                $new_name = $file->getRandomName();
-                $icon = $file->move('./public/images/shop/', $new_name);
-                if ($icon) {
-                    $icon = '/public/images/shop/' . $new_name;
-                } else {
-                    $error = true;
-                    $error_message = "Upload failed.";
-                }
-            } 
+            //     $banner = $file->move('./public/images/shop/', $new_name);
+            //     if ($banner) {
+            //         $banner = '/public/images/shop/' . $new_name;
+            //     } else {
+            //         $error = true;
+            //         $error_message = "Upload failed.";
+            //     }
+            // } 
+            // if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
+            //     $file = $this->request->getFile('icon');
+            //     $new_name = $file->getRandomName();
+            //     $icon = $file->move('./public/images/shop/', $new_name);
+            //     if ($icon) {
+            //         $icon = '/public/images/shop/' . $new_name;
+            //     } else {
+            //         $error = true;
+            //         $error_message = "Upload failed.";
+            //     }
+            // } 
 
 
             $input['contact'] = str_replace("-","",$input['contact']);
@@ -100,14 +100,14 @@ class Access extends BaseController
 
             $data = array(
                 "shop_name" => $input['shop'],
-                "shop_chinese_name" => $input['shop_name'],
+                // "shop_chinese_name" => $input['shop_name'],
                 "slug" => $this->slugify($input['shop']),
                 "email" => $input['email'],
-                "operating_hour" => $input['operating_hour'],
+                // "operating_hour" => $input['operating_hour'],
                 "contact" => $input['contact'],
-                "delivery_fee" => $input['delivery_fee'],
-                'insta' => $input['insta'],
-                'facebook' => $input['facebook'],
+                // "delivery_fee" => $input['delivery_fee'],
+                // 'insta' => $input['insta'],
+                // 'facebook' => $input['facebook'],
 
                 "address" => $input['address'],
                 
@@ -141,8 +141,9 @@ class Access extends BaseController
             //         'shop_id' => $shop_id
             //     ];
             //     $this->ShopTagModel->insertNew($data);
+
             // } 
-            $exists = $this->checkExists($input["username"]);
+            $exists = $this->checkExistsMerchant($input["username"]);
             // $this->debug($exists);
 
             if ($exists) {
@@ -365,6 +366,7 @@ class Access extends BaseController
                 if (!empty($login)) {
                     $admin_data = $login[0];
                     $login_id = $login[0]["merchant_id"];
+
                     
                 } else {
                     $error = true;

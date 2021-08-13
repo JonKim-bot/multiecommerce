@@ -423,7 +423,8 @@ class Shop extends BaseController
                     'insta' => $input['insta'],
                     'facebook' => $input['facebook'],
                     'language_id' => $input['language_id'],
-           
+                    'is_active' => $input['is_active'],
+
                     'address' => $input['address'],
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
@@ -478,6 +479,7 @@ class Shop extends BaseController
                 );
             }
         }
+
 
         echo view('admin/header', $this->pageData);
         echo view('admin/shop/edit');

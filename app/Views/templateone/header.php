@@ -204,7 +204,7 @@
 
                                             <li><a class="c-li" href="<?= base_url() ?>/main/search"><?= $lang['order_history'] ?></a></li>
                                         <?php } else { ?>
-                                            
+
                                             <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>"><?= $lang['order_history'] ?></a></li>
 
                                         <?php } ?>
@@ -232,6 +232,7 @@
                                         <div class="user_drop">
                                             <?php if (empty($customer_data)) { ?>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/login">
+                                                
                                                     <p class=""><?= $lang['login'] ?></p>
                                                 </a>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/signup">

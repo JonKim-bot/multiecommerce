@@ -124,8 +124,8 @@ class Main extends BaseController
         $slug = $subdomain_arr[0];
 
 
-        $slug = 'capital-shop';
-
+        // $slug = 'capital-shop';
+        $slug = 'testingname';
 
         $this->shop= $this->get_shop($slug);
         $this->load_lang();
@@ -667,17 +667,24 @@ class Main extends BaseController
      
         $shop = $this->shop;
         $this->validate_function(1,$this->pageData['shop_function']);
+        $shop = $this->shop;
 
 		if($_POST){
 
 			$input = $this->request->getPost();
 			$customer_data = $this->CustomerModel->login_customer($input['email'],$input['password']);
-			if (!empty($customer_data)) {
-
+            if (!empty($customer_data)) {
+                
                 $customer_data = $customer_data[0];
-                $this->set_customer_session($customer_data['customer_id']);
-		
-                return redirect()->to(base_url('/main/index/' , "refresh"));
+                if($customer_data['shop_id'] != $shop['shop_id']){
+                    $this->pageData['error'] = "Not registered in this shop";
+
+                }else{
+
+                    $this->set_customer_session($customer_data['customer_id']);
+            
+                    return redirect()->to(base_url('/main/index/' , "refresh"));
+                }
 			}else{
 				$this->pageData['error'] = "Email or password incorrect";
 
@@ -2544,6 +2551,7 @@ class Main extends BaseController
         $orders = $this->OrdersModel->updateWhere($where,$data);
 
         $where = array(
+
             "orders.orders_id" => $orders_id,
 
         );

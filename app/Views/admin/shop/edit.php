@@ -48,12 +48,20 @@
                           <input type="text" class="form-control" name="shop_name" placeholder="e.g. Capital 中文" value="<?= $shop['shop_chinese_name'] ?>">
                       </div>
 
-                     
+                 
                     <div class="form-group">
                         <label for="banner">Language</label>
                         <select name="language_id" class="select" id="" required>
                             <option  value="1" <?= $shop['language_id'] == 1 ? 'selected' :''?>>English</option>
                             <option  value="2" <?= $shop['language_id'] == 2 ? 'selected' :''?>>Chinese</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="banner">Open</label>
+                        <select name="is_active" class="select" id="" required>
+                            <option  value="1" <?= $shop['is_active'] == 1 ? 'selected' :''?>>Open</option>
+                            <option  value="0" <?= $shop['is_active'] == 0 ? 'selected' :''?>>Closed</option>
                         </select>
                     </div>
                  
