@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/about/edithome2/<?=$about["about_id"]?>">
+                <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/about/editlogin/<?=$about["about_id"]?>">
                     <!-- <div class="form-group">
                         <label for="">Profile Picture</label>
                         <div class="custom-file">
@@ -34,7 +34,10 @@
                             <label class="custom-file-label" for="" aria-describedby="">Choose file</label>
                         </div>
                     </div> -->
-
+                    <div class="form-group">
+                                    <label for="">Title</label>
+                                    <input type="text" class="form-control" name="title" value="<?= $about['title']?>" placeholder="e.g. Best Restaurant In Town">
+                                </div>
                                 <div class="form-group">
                                     <label for="">Decription</label>
                                     <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $about['description']?></textarea>
@@ -42,12 +45,28 @@
                                 <img src= "<?= base_url()  . $about['banner']?>" width="150px" />
 
                                 <div class="form-group">
-                                    <label for="about">Image (For home section two page)</label>
+                                    <label for="about">Image 750x375  (For signup and home section two page)</label>
                                     <input type="file" class="form-control" name="banner" placeholder="About" >
                                     <label for="" class="small text-danger">*Leave blank if not change image</label>
 
                                 </div>
-                              
+                                <img src= "<?= base_url()  . $about['banner2']?>" width="150px" />
+
+                                <div class="form-group">
+                                    <label for="about">Image Two (For signup page)</label>
+                                    <input type="file" class="form-control" name="banner2" placeholder="About" >
+                                    <label for="" class="small text-danger">*Leave blank if not change image</label>
+
+                                </div>
+                                <img src= "<?= base_url()  . $about['banner3']?>" width="150px" />
+
+                                <div class="form-group">
+                                    <label for="about">Image Three  (For signup page)</label>
+                                    <input type="file" class="form-control" name="banner3" placeholder="About" >
+                                    <label for="" class="small text-danger">*Leave blank if not change image</label>
+
+                                </div>
+                            
                     
                     <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>

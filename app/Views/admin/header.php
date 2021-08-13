@@ -328,7 +328,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/editlogin">
                         <i class="fa fa-cog c-sidebar-nav-icon"></i>
                         About (For login page)
                     </a>
