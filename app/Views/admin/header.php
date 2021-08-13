@@ -139,7 +139,7 @@
 
                 
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop/edit/1">
                         <i class="cil-user c-sidebar-nav-icon"></i>
                         Shop
                     </a>
@@ -290,7 +290,7 @@
             ?>
             
             <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop/edit/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
                         Shop
                     </a>

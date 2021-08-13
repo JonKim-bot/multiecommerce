@@ -284,6 +284,7 @@ class Shop extends BaseController
                     'slug' => $this->slugify($input['shop']),
                     'shop_chinese_name' => $input['shop_name'],
                     // 'url' => $input['url'],
+                    
                     // 'lat' => $input['lat'],
                     'insta' => $input['insta'],
                     'bank_id' => $input['bank_id'],
