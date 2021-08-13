@@ -296,7 +296,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/banks/1">
+                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/bank/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
                         Bank Detail
                     </a>

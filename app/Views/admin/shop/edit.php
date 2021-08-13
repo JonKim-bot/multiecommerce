@@ -48,21 +48,7 @@
                           <input type="text" class="form-control" name="shop_name" placeholder="e.g. Capital 中文" value="<?= $shop['shop_chinese_name'] ?>">
                       </div>
 
-                      <div class="form-group">
-                    <label for="banner">Bank</label>
-
-                    <select name="bank_id" class="select" id="" required>
-                        <?php foreach($bank as $row){ ?>
-                            <?php if($row['bank_id'] == $shop['bank_id']){ ?>
-                                <option selected value="<?= $row['bank_id'] ?>"><?= $row['bank']?></option>
-                            <?php }else{ ?>
-                                <option value="<?= $row['bank_id'] ?>"><?= $row['bank']?></option>
-
-                            <?php }?>
-
-                        <?php }?>
-                        </select>
-                    </div>
+                     
                     <div class="form-group">
                         <label for="banner">Language</label>
                         <select name="language_id" class="select" id="" required>
@@ -70,15 +56,7 @@
                             <option  value="2" <?= $shop['language_id'] == 2 ? 'selected' :''?>>Chinese</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="">Bank Holder Name</label>
-                        <input type="text" class="form-control" value="<?= $shop['bank_holder_name'] ?>" name="bank_holder_name" placeholder="e.g. Lim Jin" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Bank Account</label>
-                        <input type="text" class="form-control" value="<?= $shop['bank_account'] ?>" name="bank_account" placeholder="e.g. 123213123123" required>
-                    </div>
-                    
+                 
                     <div class="form-group">
                         <label for="">Description</label>
                         <input type="text" class="form-control" name="description" value="<?= $shop['description'] ?>" placeholder="e.g. Capital Shop open since" required>
@@ -100,11 +78,7 @@
                         <label for="">Email</label>
                         <input type="text" class="form-control" name="email" value="<?= $shop['email'] ?>" placeholder="e.g. xxx.com" required>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="banner">Banner</label>
-                        <input type="file" class="form-control" name="banner" placeholder="Banner">
-                    </div>
+       
                     <?php if($isMerchant == false){ ?>
                     <div class="form-group">
                         <label for="">Shop Function
@@ -125,75 +99,9 @@
                     </div>
                     <?php } ?>
                     
-                    <div class="form-group">
-                            <label for="">Theme Colour</label>
-
-                            <input type="text" class="form-control color" name="colour" value="<?=$shop['colour']?>" placeholder="Colour" required>
-                    </div>
-                    <div class="form-group">
-                            <label for="">Secondary Colour</label>
-
-                            <input type="text" class="form-control color" name="color_2" value="<?=$shop['color_2']?>" placeholder="color_2" required>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label for="icon">Icon Shop</label>
-                        <input type="file" class="form-control" name="icon" placeholder="Banner">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="icon">Header Icon</label>
-                        <input type="file" class="form-control" name="header_icon" placeholder="Banner">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="icon">Icon Footer</label>
-                        <input type="file" class="form-control" name="icon_footer" placeholder="Banner">
-                    </div>
+                 
 
          
-                    <!-- <div class="form-group">
-                    <label for="banner">Bank</label>
-
-                    <select name="bank_id" class="select" id="" required>
-                        <?php foreach($bank as $row){ ?>
-                            <?php if($row['bank_id'] == $shop['bank_id']){ ?>
-                                <option selected value="<?= $row['bank_id'] ?>"><?= $row['bank']?></option>
-                            <?php }else{ ?>
-                                <option value="<?= $row['bank_id'] ?>"><?= $row['bank']?></option>
-
-                            <?php }?>
-
-                        <?php }?>
-                        </select>
-                    </div> -->
-                    <!-- <div class="form-group">
-                    <label for="banner">Shop Category</label>
-
-                    <select name="tag_id[]" class="select" id="" required multiple>
-                        <?php foreach($tag as $row){ ?>
-                            <?php if (in_array($row['tag_id'], explode(",",$shop['categories_tag']))) { ?>
-                                <option selected value="<?= $row['tag_id'] ?>"><?= $row['tag']?></option>
-
-                              <?php }else{?>
-
-                                <option value="<?= $row['tag_id'] ?>"><?= $row['tag']?></option>
-
-                              <?php }?>
-
-                           
-                        <?php }?>
-                        </select>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label for="">Bank Holder Name</label>
-                        <input type="text" class="form-control" value="<?= $shop['bank_holder_name'] ?>" name="bank_holder_name" placeholder="e.g. Lim Jin" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Bank Account</label>
-                        <input type="text" class="form-control" value="<?= $shop['bank_account'] ?>" name="bank_account" placeholder="e.g. 123213123123" required>
-                    </div> -->
                     <div class="form-group">
                         <label for="">Insta</label>
                         <input type="text" class="form-control" value="<?= $shop['insta'] ?>" name="insta" placeholder="e.g. https://www.facebook.com/PieGen-Software-111184540529485/?ref=bookmarks" >
@@ -208,41 +116,7 @@
                         <label for="">Address</label>
                         <textarea class="form-control" name="address" id="address" placeholder="Address"><?= $shop['address'] ?>"</textarea>
                     </div>
-                    <!-- <div class="form-group">
-                        <div class="row">
-                        <div class="col-md-6 form-group">
-                                <label for="">Latitute</label>
-                                <input type="text" class="form-control" value="<?= $shop['lat'] ?>" readonly value="" id="lat" name="lat">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                
-                                <label for="">Longtitute</label>
-                                <input type="text" class="form-control" value="<?= $shop['lng'] ?>" readonly value="" id="lng" name="lng">
-                            </div>
-
-                        </div>
-                    </div> -->
-                    <div class="form-group">
-                        <div class="row">
-                        <div class="col-md-6 form-group">
-                                <label for="">State</label>
-                                <input type="text" class="form-control" value="<?= $shop['state'] ?>"  value="" id="state" name="state">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                
-                                <label for="">Taman</label>
-                                <input type="text" class="form-control" value="<?= $shop['taman'] ?>"  value="" id="taman" name="taman">
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Google Map url</label>
-                        <p style="overflow: auto;"><a target="_blank" id="url" href="<?= $shop['url'] ?>"><?= $shop['url'] ?></a></p>
-                        <input type="text" name="url" value="<?= $shop['url'] ?>" class="form-control"  id="urlinput">
-                    </div>
-                    <div id="map">
-                    </div>
+            
                     <div class="form-group mt-2">
                         <button class="btn btn-primary float-right" type="submit"> Save</button>
                     </div>
