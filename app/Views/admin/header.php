@@ -292,7 +292,25 @@
             <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop/edit/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
-                        Shop
+                        Shop Detail
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/banks/1">
+                        <i class="fa fa-store c-sidebar-nav-icon"></i>
+                        Bank Detail
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/color/1">
+                        <i class="fa fa-store c-sidebar-nav-icon"></i>
+                        Theme Color
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/icons/1">
+                        <i class="fa fa-store c-sidebar-nav-icon"></i>
+                        Shop Icons 
                     </a>
                 </li>
                 <li>

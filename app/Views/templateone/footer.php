@@ -14,7 +14,7 @@
                             <div class="single-footer-caption mb-20">
                                 <!-- logo -->
                                 <div class="footer-logo mb-35">
-                                    <a href="<?= base_url() ?>/main/index"><img src="<?= base_url() . $shop['icon'] ?>" alt=""></a>
+                                    <a href="<?= base_url() ?>/main/index"><img src="<?= base_url() . $shop['footer_logo'] ?>" alt=""></a>
                                 </div>
                             </div>
                         </div>

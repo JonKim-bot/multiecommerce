@@ -244,8 +244,7 @@ class Shop extends BaseController
         $this->ShopModel->updateWhere($where, ['is_active' => $is_active]);
         return redirect()->to(base_url('shop/detail/' . $shop_id, 'refresh'));
     }
-    public function edit($shop_id)
-    {
+    public function banks(){
         if ($this->isMerchant == true) {
             $shop_id = $this->shop_id;
 
@@ -284,7 +283,7 @@ class Shop extends BaseController
                     'slug' => $this->slugify($input['shop']),
                     'shop_chinese_name' => $input['shop_name'],
                     // 'url' => $input['url'],
-                    
+
                     // 'lat' => $input['lat'],
                     'insta' => $input['insta'],
                     'bank_id' => $input['bank_id'],
@@ -397,6 +396,398 @@ class Shop extends BaseController
 
         echo view('admin/header', $this->pageData);
         echo view('admin/shop/edit');
+        echo view('admin/footer');
+    }
+    public function color(){
+        if ($this->isMerchant == true) {
+            $shop_id = $this->shop_id;
+
+            $where = [
+                'shop.shop_id' => $shop_id,
+            ];
+        } else {
+            $where = [
+                'shop.shop_id' => $shop_id,
+            ];
+            $this->pageData['shop_function'] = array_column($this->ShopFunctionModel->getWhere([ 'shop_function.shop_id' => $shop_id]),'function_id');
+
+        }
+        $this->pageData['isMerchant'] = $this->isMerchant;
+
+        $bank = $this->BankModel->getAll();
+        $this->pageData['bank'] = $bank;
+
+        $this->pageData['shop'] = $this->ShopModel->getWhereNormal($where)[0];
+
+        if ($_POST) {
+            $error = false;
+
+            $input = $this->request->getPost();
+
+            //    $this->debug($input);
+
+            if (!$error) {
+                $input['contact'] = str_replace('-', '', $input['contact']);
+                if (!$this->startsWith($input['contact'], '6')) {
+                    $input['contact'] = '6' . $input['contact'];
+                }
+
+                $data = [
+                    'shop_name' => $input['shop'],
+                    'slug' => $this->slugify($input['shop']),
+                    'shop_chinese_name' => $input['shop_name'],
+                    // 'url' => $input['url'],
+
+                    // 'lat' => $input['lat'],
+                    'insta' => $input['insta'],
+                    'bank_id' => $input['bank_id'],
+                    'bank_holder_name' => $input['bank_holder_name'],
+                    'bank_account' => $input['bank_account'],
+                    'facebook' => $input['facebook'],
+                    'colour' => $input['colour'],
+                    'color_2' => $input['color_2'],
+                    'language_id' => $input['language_id'],
+
+                    'state' => $input['state'],
+                    'taman' => $input['taman'],
+                    'address' => $input['address'],
+                    'email' => $input['email'],
+                    'operating_hour' => $input['operating_hour'],
+                    'contact' => $input['contact'],
+                    'delivery_fee' => $input['delivery_fee'],
+                    'description' => $input['description'],
+
+                    // 'bank_holder_name' => $input['bank_holder_name'],
+                    // 'bank_account' => $input['bank_account'],
+
+                    'modified_date' => date('Y-m-d H:i:s'),
+                    'modified_by' => session()->get('login_id'),
+                ];
+
+                // $this->debug($input['shop_function']);
+                if(session()->get('admin_data')['type'] != "MERCHANT"){
+
+                    $this->ShopFunctionModel->hardDeleteWhere([ 'shop_function.shop_id' => $shop_id]);
+                    if(!empty($input['shop_function'])){
+                        foreach($input['shop_function'] as $row_function){
+                            
+                            $data_ = [
+                                'function_id' => $row_function,
+                                'shop_id' => $shop_id,
+                            ];
+                            $this->ShopFunctionModel->insertNew($data_);
+                        }
+                    }
+                }
+                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+                    $file = $this->request->getFile('banner');
+                    $new_name = $file->getRandomName();
+                    $banner = $file->move('./public/images/shop/', $new_name);
+                    if ($banner) {
+                        $banner = '/public/images/shop/' . $new_name;
+                        $data['image'] = $banner;
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+
+                if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
+                    $file = $this->request->getFile('icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['icon'] = $icon;
+                    }
+                }
+
+                if ($_FILES['icon_footer'] and !empty($_FILES['icon_footer']['name'])) {
+                    $file = $this->request->getFile('icon_footer');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['footer_logo'] = $icon;
+                    }
+                }
+
+                
+                if ($_FILES['header_icon'] and !empty($_FILES['header_icon']['name'])) {
+                    $file = $this->request->getFile('header_icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['header_icon'] = $icon;
+                    }
+                }
+
+                 
+              
+                $this->ShopModel->updateWhere($where, $data);
+                $where = [
+                    'shop_id' => $shop_id,
+                ];
+                // $this->ShopTagModel->hardDeleteWhere($where);
+                // foreach ($_POST['tag_id'] as $tag) {
+                //     $data = [
+                //         'tag_id' => $tag,
+                //         'shop_id' => $shop_id,
+                //     ];
+                //     $this->ShopTagModel->insertNew($data);
+                // }
+                $session = session();
+
+                $shop = $this->ShopModel->getWhere($where);
+                // $session->set('shop_data', $shop[0]);
+
+                return redirect()->to(
+                    base_url('shop/detail/' . $shop_id, 'refresh')
+                );
+            }
+        }
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/shop/edit');
+        echo view('admin/footer');
+    }
+    public function edit($shop_id){
+        if ($this->isMerchant == true) {
+            $shop_id = $this->shop_id;
+
+            $where = [
+                'shop.shop_id' => $shop_id,
+            ];
+        } else {
+            $where = [
+                'shop.shop_id' => $shop_id,
+            ];
+            $this->pageData['shop_function'] = array_column($this->ShopFunctionModel->getWhere([ 'shop_function.shop_id' => $shop_id]),'function_id');
+
+        }
+        $this->pageData['isMerchant'] = $this->isMerchant;
+
+        $bank = $this->BankModel->getAll();
+        $this->pageData['bank'] = $bank;
+
+        $this->pageData['shop'] = $this->ShopModel->getWhereNormal($where)[0];
+
+        if ($_POST) {
+            $error = false;
+
+            $input = $this->request->getPost();
+
+            //    $this->debug($input);
+
+            if (!$error) {
+                $input['contact'] = str_replace('-', '', $input['contact']);
+                if (!$this->startsWith($input['contact'], '6')) {
+                    $input['contact'] = '6' . $input['contact'];
+                }
+
+                $data = [
+                    'shop_name' => $input['shop'],
+                    'slug' => $this->slugify($input['shop']),
+                    'shop_chinese_name' => $input['shop_name'],
+                    // 'url' => $input['url'],
+
+                    // 'lat' => $input['lat'],
+                    'insta' => $input['insta'],
+                    'bank_id' => $input['bank_id'],
+                    'bank_holder_name' => $input['bank_holder_name'],
+                    'bank_account' => $input['bank_account'],
+                    'facebook' => $input['facebook'],
+                    'colour' => $input['colour'],
+                    'color_2' => $input['color_2'],
+                    'language_id' => $input['language_id'],
+
+                    'state' => $input['state'],
+                    'taman' => $input['taman'],
+                    'address' => $input['address'],
+                    'email' => $input['email'],
+                    'operating_hour' => $input['operating_hour'],
+                    'contact' => $input['contact'],
+                    'delivery_fee' => $input['delivery_fee'],
+                    'description' => $input['description'],
+
+                    // 'bank_holder_name' => $input['bank_holder_name'],
+                    // 'bank_account' => $input['bank_account'],
+
+                    'modified_date' => date('Y-m-d H:i:s'),
+                    'modified_by' => session()->get('login_id'),
+                ];
+
+            
+                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+                    $file = $this->request->getFile('banner');
+                    $new_name = $file->getRandomName();
+                    $banner = $file->move('./public/images/shop/', $new_name);
+                    if ($banner) {
+                        $banner = '/public/images/shop/' . $new_name;
+                        $data['image'] = $banner;
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+
+                if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
+                    $file = $this->request->getFile('icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['icon'] = $icon;
+                    }
+                }
+
+                if ($_FILES['icon_footer'] and !empty($_FILES['icon_footer']['name'])) {
+                    $file = $this->request->getFile('icon_footer');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['footer_logo'] = $icon;
+                    }
+                }
+
+                
+                if ($_FILES['header_icon'] and !empty($_FILES['header_icon']['name'])) {
+                    $file = $this->request->getFile('header_icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['header_icon'] = $icon;
+                    }
+                }
+
+                 
+              
+                $this->ShopModel->updateWhere($where, $data);
+                $where = [
+                    'shop_id' => $shop_id,
+                ];
+                // $this->ShopTagModel->hardDeleteWhere($where);
+                // foreach ($_POST['tag_id'] as $tag) {
+                //     $data = [
+                //         'tag_id' => $tag,
+                //         'shop_id' => $shop_id,
+                //     ];
+                //     $this->ShopTagModel->insertNew($data);
+                // }
+                $session = session();
+
+                $shop = $this->ShopModel->getWhere($where);
+                // $session->set('shop_data', $shop[0]);
+
+                return redirect()->to(
+                    base_url('shop/detail/' . $shop_id, 'refresh')
+                );
+            }
+        }
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/shop/icons');
+        echo view('admin/footer');
+    }
+    public function icons($shop_id)
+    {
+        if ($this->isMerchant == true) {
+            $shop_id = $this->shop_id;
+
+            $where = [
+                'shop.shop_id' => $shop_id,
+            ];
+        } else {
+            $where = [
+                'shop.shop_id' => $shop_id,
+            ];
+            $this->pageData['shop_function'] = array_column($this->ShopFunctionModel->getWhere([ 'shop_function.shop_id' => $shop_id]),'function_id');
+
+        }
+
+        $this->pageData['shop'] = $this->ShopModel->getWhereNormal($where)[0];
+
+        if ($_POST) {
+            $error = false;
+
+            $input = $this->request->getPost();
+
+
+            if (!$error) {
+             
+
+                $data = [
+
+                    'modified_date' => date('Y-m-d H:i:s'),
+                    'modified_by' => session()->get('login_id'),
+                ];
+
+            
+                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+                    $file = $this->request->getFile('banner');
+                    $new_name = $file->getRandomName();
+                    $banner = $file->move('./public/images/shop/', $new_name);
+                    if ($banner) {
+                        $banner = '/public/images/shop/' . $new_name;
+                        $data['image'] = $banner;
+                    } else {
+                        $error = true;
+                        $error_message = 'Upload failed.';
+                    }
+                }
+
+                if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
+                    $file = $this->request->getFile('icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['icon'] = $icon;
+                    }
+                }
+
+                if ($_FILES['icon_footer'] and !empty($_FILES['icon_footer']['name'])) {
+                    $file = $this->request->getFile('icon_footer');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['footer_logo'] = $icon;
+                    }
+                }
+
+                
+                if ($_FILES['header_icon'] and !empty($_FILES['header_icon']['name'])) {
+                    $file = $this->request->getFile('header_icon');
+                    $new_name = $file->getRandomName();
+                    $icon = $file->move('./public/images/shop/', $new_name);
+                    if ($icon) {
+                        $icon = '/public/images/shop/' . $new_name;
+                        $data['header_icon'] = $icon;
+                    }
+                }
+
+                $this->ShopModel->updateWhere($where, $data);
+                $where = [
+                    'shop_id' => $shop_id,
+                ];
+            
+                $session = session();
+
+                $shop = $this->ShopModel->getWhere($where);
+                // $session->set('shop_data', $shop[0]);
+
+                return redirect()->to(
+                    base_url('shop/icons/' . $shop_id, 'refresh')
+                );
+            }
+        }
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/shop/icons');
         echo view('admin/footer');
     }
 
