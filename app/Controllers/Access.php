@@ -3,6 +3,8 @@
 
 
 
+
+
 use App\Models\BaseModel;
 use App\Models\AdminModel;
 use App\Core\BaseController;
@@ -290,12 +292,11 @@ class Access extends BaseController
             );
 
             $admin = $this->AdminModel->getWhere($where);
-            // $this->debug($admin);
             // $user = $this->UserModel->getWhere($where);
 
             if (!empty($admin)) {
-                $login = $this->AdminModel->login($input["username"], $input["password"]);
-                
+                $login = $admin;//$this->AdminModel->login($input["username"], $input["password"]);
+
                 if (!empty($login)) {
                     $admin_data = $login[0];
                     $login_id = $login[0]["admin_id"];

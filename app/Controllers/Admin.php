@@ -9,7 +9,7 @@ class Admin extends BaseController
 
     public function __construct()
     {
-
+      
         $this->pageData = array();
         $this->AdminModel = new AdminModel();
         if(session()->get('admin_data') == null && uri_string() != "access/login"){
@@ -21,6 +21,7 @@ class Admin extends BaseController
 
     public function index()
     {
+
 
         $page = 1;
         $filter = array();
