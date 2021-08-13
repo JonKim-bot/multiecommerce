@@ -114,6 +114,7 @@
         </div>
     </a>
 </div>
+<div id="myButton"></div>
 
 <!-- JS here -->
 
@@ -155,6 +156,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js"></script>
 
+<script src="<?= base_url() ?>/assets/floatwpp/floating-wpp.js"></script>
 
 
 
@@ -169,7 +171,15 @@
             slidesToScroll: 1,
         });
     });
-
+    $(function () {
+            $('#myButton').floatingWhatsApp({
+                phone: '<?= $shop['contact'] ?>',
+                position : 'right',
+                popupMessage: 'Hello, how can we help you?',
+                message: "Hello",
+                showPopup: true,
+            });
+        });
 
     $(".mobile_menu").click(function(e) {
         $(".slicknav_nav").css("display", "block");

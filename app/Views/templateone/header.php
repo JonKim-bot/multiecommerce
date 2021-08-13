@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/nice-select.css">
     <!-- <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/floatwpp/floating-wpp.css">
 
     <!-- Slick-Silder-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
@@ -232,7 +233,7 @@
                                         <div class="user_drop">
                                             <?php if (empty($customer_data)) { ?>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/login">
-                                                
+
                                                     <p class=""><?= $lang['login'] ?></p>
                                                 </a>
                                                 <a class="c-dropdown-a" href="<?= base_url() ?>/main/signup">
