@@ -146,6 +146,7 @@
                 </li>
 
                 <li>
+                    
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'ProductCategory' ? 'c-active' : null) ?>" href="<?= base_url() ?>/ProductCategory">
                         <i class="fa fa-server c-sidebar-nav-icon"></i>
                         Product Category (Step 1)
@@ -288,7 +289,8 @@
              <?php
             if (session()->get('admin_data')['type'] == "MERCHANT") {
             ?>
-            
+                        <li class="c-sidebar-nav-title">Shop Content</li>
+
             <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop/edit/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
@@ -313,6 +315,32 @@
                         Shop Icons 
                     </a>
                 </li>
+                <li>
+                <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/edithome">
+                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
+                        About (For home page)
+                    </a>
+                </li>
+                <li>
+                <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/edithome2">
+                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
+                        About (For home page section 2)
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/">
+                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
+                        About (For login page)
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'banner' ? 'c-active' : null) ?>" href="<?= base_url() ?>/banner">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Banner (For home page)
+                    </a>
+                </li>
+                <li class="c-sidebar-nav-title">Product</li>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'ProductCategory' ? 'c-active' : null) ?>" href="<?= base_url() ?>/ProductCategory">
                         <i class="fa fa-server c-sidebar-nav-icon"></i>
@@ -347,18 +375,7 @@
                 </li>
                
                 
-                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about">
-                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
-                        About (For home page)
-                    </a>
-                </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'banner' ? 'c-active' : null) ?>" href="<?= base_url() ?>/banner">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
-                        Banner (For home page)
-                    </a>
-                </li>
+                 
 
 <!--               
                 <li>

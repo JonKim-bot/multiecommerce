@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Username</label>
-                        <input type="text" class="form-control" name="admin" placeholder="Username" value="<?= $admin["username"]?>" required readonly>
+                        <input type="text" class="form-control" name="username" placeholder="Username" value="<?= $admin["username"]?>" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="">Name</label>

@@ -10,6 +10,7 @@ class About extends BaseController
     public function __construct()
     {
         $this->pageData = [];
+
         $this->AboutModel = new AboutModel();
         if (
             session()->get('admin_data') == null &&
@@ -258,6 +259,127 @@ class About extends BaseController
 
         echo view('admin/header', $this->pageData);
         echo view('admin/about/edit');
+        echo view('admin/footer');
+    }
+
+    public function edithome($about_id = null)
+    {
+        if($about_id == null){
+
+            $where = [
+                'type_id' => 1,
+                'shop_id' => $this->shop_id,
+            ];
+        }else{
+            
+            $where = [
+                'about_id' => $about_id,
+                'type_id' => 1,
+                'shop_id' => $this->shop_id,
+            ];
+        }
+        $this->pageData['about'] = $this->AboutModel->getWhere($where);
+
+        if(empty($this->pageData['about'])){
+            $about_id = $this->AboutModel->insertNew($where);
+            $this->edithome($about_id);
+        }else{
+            $this->pageData['about'] = $this->AboutModel->getWhere($where)[0];
+
+        }
+        if ($this->isMerchant == true) {
+            $this->check_is_merchant_from_shop(
+                $this->pageData['about']['shop_id']
+            );
+        }
+        if ($_POST) {
+            $error = false;
+
+            $input = $this->request->getPost();
+
+            if (!$error) {
+                $data = [
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'modified_date' => date('Y-m-d H:i:s'),
+                    'modified_by' => session()->get('login_id'),
+                ];
+
+
+                $this->AboutModel->updateWhere($where, $data);
+
+                return redirect()->to(
+                    base_url('about/edithome/' . $about_id, 'refresh')
+                );
+            }
+        }
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/about/edithome');
+        echo view('admin/footer');
+    }
+
+    public function edithome2($about_id = null)
+    {
+        if($about_id == null){
+
+            $where = [
+                'type_id' => 2,
+                'shop_id' => $this->shop_id,
+            ];
+        }else{
+            
+            $where = [
+                'about_id' => $about_id,
+                'type_id' => 2,
+                'shop_id' => $this->shop_id,
+            ];
+        }
+        $this->pageData['about'] = $this->AboutModel->getWhere($where);
+
+        if(empty($this->pageData['about'])){
+            $about_id = $this->AboutModel->insertNew($where);
+            $this->edithome2($about_id);
+        }else{
+            $this->pageData['about'] = $this->AboutModel->getWhere($where)[0];
+
+        }
+        if ($this->isMerchant == true) {
+            $this->check_is_merchant_from_shop(
+                $this->pageData['about']['shop_id']
+            );
+        }
+        if ($_POST) {
+            $error = false;
+
+            $input = $this->request->getPost();
+
+            if (!$error) {
+                $data = [
+                    'description' => $this->request->getPost('description'),
+                    'modified_date' => date('Y-m-d H:i:s'),
+                    'modified_by' => session()->get('login_id'),
+                ];
+                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+                    $file = $this->request->getFile('banner');
+                    $new_name = $file->getRandomName();
+                    $about = $file->move('./public/images/about/', $new_name);
+                    if ($about) {
+                        $about = '/public/images/about/' . $new_name;
+                        $data['banner'] = $about;
+                    }
+                }
+
+                $this->AboutModel->updateWhere($where, $data);
+
+                return redirect()->to(
+                    base_url('about/edithome2/' . $about_id, 'refresh')
+                );
+            }
+        }
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/about/edithome2');
         echo view('admin/footer');
     }
 

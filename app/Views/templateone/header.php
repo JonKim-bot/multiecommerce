@@ -204,6 +204,7 @@
 
                                             <li><a class="c-li" href="<?= base_url() ?>/main/search"><?= $lang['order_history'] ?></a></li>
                                         <?php } else { ?>
+                                            
                                             <li><a class="c-li" href="<?= base_url() ?>/main/order_history?keyword=<?= $customer_data['contact'] ?>"><?= $lang['order_history'] ?></a></li>
 
                                         <?php } ?>

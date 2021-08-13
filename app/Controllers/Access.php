@@ -298,6 +298,7 @@ class Access extends BaseController
                 $login = $admin;//$this->AdminModel->login($input["username"], $input["password"]);
 
                 if (!empty($login)) {
+                    
                     $admin_data = $login[0];
                     $login_id = $login[0]["admin_id"];
                     
@@ -397,7 +398,7 @@ class Access extends BaseController
                 if($admin_data['type'] == "ADMIN"){
                     return redirect()->to( base_url('admin', "refresh") );
                 } else if($admin_data['type'] == "MERCHANT"){
-                    return redirect()->to( base_url('orders', "refresh") );
+                    return redirect()->to( base_url('orders?dateFrom='.date('Y-m-d').'&'.'dateTo='.date('Y-m-d'), "refresh") );
                 }
             }
 
