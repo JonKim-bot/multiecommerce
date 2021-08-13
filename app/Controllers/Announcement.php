@@ -171,7 +171,6 @@ class Announcement extends BaseController
             if (!$error) {
                 $data = [
                     'link' => $this->request->getPost('link'),
-
                     'title' => $this->request->getPost('title'),
                     'description' => $this->request->getPost('description'),
                     'modified_date' => date('Y-m-d H:i:s'),
@@ -194,6 +193,75 @@ class Announcement extends BaseController
         echo view('admin/footer');
     }
 
+    public function edita($announcement_id = null)
+    {
+        
+        if($announcement_id == null){
+
+            $where = [
+                'shop_id' => $this->shop_id,
+            ];
+        }else{
+            
+            $where = [
+                'announcement_id' => $announcement_id,
+                'shop_id' => $this->shop_id,
+            ];
+        }
+
+        $this->pageData['announcement'] = $this->AnnouncementModel->getWhere(
+            $where
+        );
+
+        if(empty($this->pageData['announcement'])){
+            $announcement_id = $this->AnnouncementModel->insertNew($where);
+            // $this->edita($announcement_id);
+            return redirect()->to(
+                base_url(
+                    'announcement/edita/' . $announcement_id,
+                    'refresh'
+                )
+            );
+        }else{
+            $this->pageData['announcement'] = $this->AnnouncementModel->getWhere(
+                $where
+            )[0];
+    
+        }
+        if ($this->isMerchant == true) {
+            $this->check_is_merchant_from_shop(
+                $this->pageData['announcement']['shop_id']
+            );
+        }
+        if ($_POST) {
+            $error = false;
+
+            $input = $this->request->getPost();
+
+            if (!$error) {
+                $data = [
+                    'link' => $this->request->getPost('link'),
+                    'title' => $this->request->getPost('title'),
+                    'description' => $this->request->getPost('description'),
+                    'modified_date' => date('Y-m-d H:i:s'),
+                    'modified_by' => session()->get('login_id'),
+                ];
+
+                $this->AnnouncementModel->updateWhere($where, $data);
+
+                return redirect()->to(
+                    base_url(
+                        'announcement/edita/' . $announcement_id,
+                        'refresh'
+                    )
+                );
+            }
+        }
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/announcement/edita');
+        echo view('admin/footer');
+    }
     public function delete($announcement_id)
     {
         $this->AnnouncementModel->softDelete($announcement_id);

@@ -283,7 +283,10 @@ class About extends BaseController
 
         if(empty($this->pageData['about'])){
             $about_id = $this->AboutModel->insertNew($where);
-            $this->edithome($about_id);
+            // $this->edithome($about_id);
+            return redirect()->to(
+                base_url('about/edithome/' . $about_id, 'refresh')
+            );
         }else{
             $this->pageData['about'] = $this->AboutModel->getWhere($where)[0];
 
@@ -340,7 +343,10 @@ class About extends BaseController
 
         if(empty($this->pageData['about'])){
             $about_id = $this->AboutModel->insertNew($where);
-            $this->editlogin($about_id);
+            // $this->editlogin($about_id);
+            return redirect()->to(
+                base_url('about/editlogin/' . $about_id, 'refresh')
+            );
         }else{
             $this->pageData['about'] = $this->AboutModel->getWhere($where)[0];
 
@@ -437,7 +443,10 @@ class About extends BaseController
 
         if(empty($this->pageData['about'])){
             $about_id = $this->AboutModel->insertNew($where);
-            $this->edithome2($about_id);
+            // $this->edithome2($about_id);
+            return redirect()->to(
+                base_url('about/edithome2/' . $about_id, 'refresh')
+            );
         }else{
             $this->pageData['about'] = $this->AboutModel->getWhere($where)[0];
 

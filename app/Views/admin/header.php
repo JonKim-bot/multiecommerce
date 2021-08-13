@@ -78,7 +78,7 @@
         // $session = \Config\Services::session();
         ?>
         <ul class="c-sidebar-nav ps ps--active-y">
-            <li class="c-sidebar-nav-title">Components</li>
+            <!-- <li class="c-sidebar-nav-title">Components</li> -->
             <?php
             if (session()->get('admin_data')['type'] == "ADMIN") {
             ?>
@@ -159,6 +159,7 @@
                     </a>
                 </li>
 
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'contact' ? 'c-active' : null) ?>" href="<?= base_url() ?>/contact">
                         <i class="fa fa-phone c-sidebar-nav-icon"></i>
@@ -166,7 +167,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?selected_shop_id=1&dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
                         Orders
                     </a>
@@ -316,6 +317,13 @@
                     </a>
                 </li>
                 <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement/edita">
+                        <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
+                        Announcement
+
+                    </a>
+                </li>
+                <li>
                 <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/edithome">
                         <i class="fa fa-cog c-sidebar-nav-icon"></i>
                         About (For home page)
@@ -354,18 +362,13 @@
                     </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'contact' ? 'c-active' : null) ?>" href="<?= base_url() ?>/contact">
                         <i class="fa fa-phone c-sidebar-nav-icon"></i>
                         Contact 
                     </a>
-                </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
-                        <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
-                        Orders
-                    </a>
-                </li>
+                </li> -->
+                <li class="c-sidebar-nav-title">Customer</li>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'OrderCustomer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/OrderCustomer">
@@ -373,10 +376,29 @@
                         Customer
                     </a>
                 </li>
+
                
-                
+                <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
+                    <li>
+                        <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
+                            <i class="fa fa-users c-sidebar-nav-icon"></i>
+                            Member
+                        </a>
+                    </li>
+                <?php } ?>
                  
 
+                <li class="c-sidebar-nav-title">Orders</li>
+
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
+                        <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
+                        Orders
+                    </a>
+                </li>
+
+              
 <!--               
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
@@ -431,15 +453,7 @@
                     </a>
             </li>
             <?php } ?>
-            <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
-
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
-                        <i class="fa fa-users c-sidebar-nav-icon"></i>
-                        Member
-                    </a>
-                </li>
-                <?php } ?>
+       
                 <?php if(in_array(8,session()->get('shop_data')['shop_function'])){ ?>
 
                 <li>
@@ -465,13 +479,7 @@
                     </a>
                 </li>
                 <?php } ?>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'annoucement' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Announcement">
-                        <i class="fa fa-bullhorn c-sidebar-nav-icon"></i>
-                        Announcement
-
-                    </a>
-                </li>
+              
                
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'promo' ? 'c-active' : null) ?>" href="<?= base_url() ?>/promo">
