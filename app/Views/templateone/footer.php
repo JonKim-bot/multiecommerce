@@ -54,7 +54,7 @@
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['address'] ?> :</p>
                                         <a class="c-footer-light_" href="mailto:<?= $shop['email'] ?>?subject=Product Enquiry">
-                                            5457a, Jalan Kenari 20, Bandar Putra, 81000 Kulai, Johor
+                                        <?= $shop['address'] ?>
                                         </a>
                                     </li>
                                     <li>
