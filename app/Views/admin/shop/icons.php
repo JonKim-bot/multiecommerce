@@ -39,15 +39,20 @@
                         </div>
                     </div> -->
                     <input type="hidden" value="1" name="null">
-                    <img src= "<?= base_url()  . $shop['image']?>" width="150px" />
+                    <!-- <img src= "<?= base_url()  . $shop['image']?>" width="150px" />
 
                     <div class="form-group">
                         <label for="banner">Shop Image</label>
                         <input type="file" class="form-control" name="banner" placeholder="Banner">
                    
-                    </div>
+                    </div> -->
 
+                    <img src= "<?= base_url()  . $shop['header_icon']?>" width="150px" />
 
+<div class="form-group">
+    <label for="icon">Header Icon / Loading icon</label>
+    <input type="file" class="form-control" name="header_icon" placeholder="Banner">
+</div>
                     <img src= "<?= base_url()  . $shop['icon']?>" width="150px" />
 
                     <div class="form-group">
@@ -55,12 +60,7 @@
 
                         <input type="file" class="form-control" name="icon" placeholder="Banner">
                     </div>
-                    <img src= "<?= base_url()  . $shop['header_icon']?>" width="150px" />
-
-                    <div class="form-group">
-                        <label for="icon">Header Icon</label>
-                        <input type="file" class="form-control" name="header_icon" placeholder="Banner">
-                    </div>
+              
                     <img src= "<?= base_url()  . $shop['footer_logo']?>" width="150px" />
 
                     <div class="form-group">

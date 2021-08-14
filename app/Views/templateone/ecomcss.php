@@ -11238,6 +11238,7 @@
         display: flex;
         padding-left: 0rem;
         padding-top: 1rem;
+
     }
 
     @media screen and (min-width: 992px) {

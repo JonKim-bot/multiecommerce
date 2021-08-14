@@ -69,6 +69,13 @@
                         <label for="">Description</label>
                         <input type="text" class="form-control" name="description" value="<?= $shop['description'] ?>" placeholder="e.g. Capital Shop open since" required>
                     </div>
+
+
+                                     
+                    <div class="form-group">
+                        <label for="">Closed Message</label>
+                        <input type="text" class="form-control" name="closed_msg" value="<?= $shop['closed_msg'] ?>" placeholder="e.g. closed reason" required>
+                    </div>
                     <div class="form-group">
                         <label for="">Operating Time</label>
                         <input type="text" class="form-control" name="operating_hour" value="<?= $shop['operating_hour'] ?>" placeholder="e.g. Monday-Sunday - 8AM - 10PM" required>

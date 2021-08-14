@@ -32,6 +32,7 @@ class Banner extends BaseController
 
             if (!empty($get['page'])) {
                 $page = $get['page'];
+                
             }
             if (!empty($get['shop'])) {
                 $get['shop.shop_name'] = $get['shop'];

@@ -22,7 +22,7 @@
 	<div class="fade-in">
         <div class="card">
             <div class="card-header">
-                Edit Color Details
+                Edit Color Details * recommend to use darker color
                 <div class="card-header-actions">
                     <a class="card-header-action">
                         <i class="cil-arrow-circle-top c-icon minimize-card"></i>

@@ -417,6 +417,7 @@ class Shop extends BaseController
                 $data = [
                     'shop_name' => $input['shop'],
                     'slug' => $this->slugify($input['shop']),
+
                     'shop_chinese_name' => $input['shop_name'],
                     // 'url' => $input['url'],
                     // 'lat' => $input['lat'],
@@ -424,7 +425,7 @@ class Shop extends BaseController
                     'facebook' => $input['facebook'],
                     'language_id' => $input['language_id'],
                     'is_active' => $input['is_active'],
-
+                    'closed_msg' => $input['closed_msg'],
                     'address' => $input['address'],
                     'email' => $input['email'],
                     'operating_hour' => $input['operating_hour'],
@@ -436,6 +437,7 @@ class Shop extends BaseController
                     // 'bank_account' => $input['bank_account'],
 
                     'modified_date' => date('Y-m-d H:i:s'),
+
                     'modified_by' => session()->get('login_id'),
                 ];
 
@@ -519,18 +521,18 @@ class Shop extends BaseController
                 ];
 
             
-                if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
-                    $file = $this->request->getFile('banner');
-                    $new_name = $file->getRandomName();
-                    $banner = $file->move('./public/images/shop/', $new_name);
-                    if ($banner) {
-                        $banner = '/public/images/shop/' . $new_name;
-                        $data['image'] = $banner;
-                    } else {
-                        $error = true;
-                        $error_message = 'Upload failed.';
-                    }
-                }
+                // if ($_FILES['banner'] and !empty($_FILES['banner']['name'])) {
+                //     $file = $this->request->getFile('banner');
+                //     $new_name = $file->getRandomName();
+                //     $banner = $file->move('./public/images/shop/', $new_name);
+                //     if ($banner) {
+                //         $banner = '/public/images/shop/' . $new_name;
+                //         $data['image'] = $banner;
+                //     } else {
+                //         $error = true;
+                //         $error_message = 'Upload failed.';
+                //     }
+                // }
 
                 if ($_FILES['icon'] and !empty($_FILES['icon']['name'])) {
                     $file = $this->request->getFile('icon');

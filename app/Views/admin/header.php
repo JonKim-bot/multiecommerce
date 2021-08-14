@@ -291,29 +291,23 @@
             if (session()->get('admin_data')['type'] == "MERCHANT") {
             ?>
                         <li class="c-sidebar-nav-title">Shop Content</li>
-
+                        <li>
+                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/icons/1">
+                        <i class="fa fa-store c-sidebar-nav-icon"></i>
+                        Shop Icons 
+                    </a>
+                </li>
             <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop/edit/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
                         Shop Detail
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/bank/1">
-                        <i class="fa fa-store c-sidebar-nav-icon"></i>
-                        Bank Detail
-                    </a>
-                </li>
+
                 <li>
                     <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/color/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
                         Theme Color
-                    </a>
-                </li>
-                <li>
-                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/icons/1">
-                        <i class="fa fa-store c-sidebar-nav-icon"></i>
-                        Shop Icons 
                     </a>
                 </li>
                 <li>
@@ -324,6 +318,27 @@
                     </a>
                 </li>
                 <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop_payment_method' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop_payment_method">
+                        <i class="fa fa-qrcode c-sidebar-nav-icon"></i>
+                     Payment Method
+                    </a>
+                </li>
+                <li>
+                    <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/bank/1">
+                        <i class="fa fa-store c-sidebar-nav-icon"></i>
+                        Bank Detail
+                    </a>
+                </li>
+             
+                <li>
+                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'banner' ? 'c-active' : null) ?>" href="<?= base_url() ?>/banner">
+                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
+                        Banner (For home page)
+                    </a>
+                </li>
+             
+                <li>
+
                 <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'about' ? 'c-active' : null) ?>" href="<?= base_url() ?>/about/edithome">
                         <i class="fa fa-cog c-sidebar-nav-icon"></i>
                         About (For home page)
@@ -341,12 +356,7 @@
                         About (For login page)
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'banner' ? 'c-active' : null) ?>" href="<?= base_url() ?>/banner">
-                        <i class="fa fa-picture-o c-sidebar-nav-icon"></i>
-                        Banner (For home page)
-                    </a>
-                </li>
+              
                 <li class="c-sidebar-nav-title">Product</li>
 
                 <li>
@@ -415,34 +425,7 @@
                     </a>
                 </li>
                 <?php } ?>
-                <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
-
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shoprate' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Shoprate">
-                        <i class="fa fa-percent c-sidebar-nav-icon"></i>
-                        Member rate 
-                    </a>
-                </li>
-                <?php } ?>
-                <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
-
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
-                        <i class="fa fa-bookmark-o c-sidebar-nav-icon"></i>
-                        Voucher
-                    </a>
-                </li>
-                <?php } ?>
-
-                <?php if(in_array(2,session()->get('shop_data')['shop_function'])){ ?>
-
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
-                        <i class="fa fa-bookmark c-sidebar-nav-icon"></i>
-                        Gift
-                    </a>
-                </li>
-                <?php } ?>
+           
                 <li>
                 <?php if(in_array(6,session()->get('shop_data')['shop_function'])){ ?>
 
@@ -454,15 +437,7 @@
             </li>
             <?php } ?>
        
-                <?php if(in_array(8,session()->get('shop_data')['shop_function'])){ ?>
-
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
-                        <i class="fa fa-cog c-sidebar-nav-icon"></i>
-                        Referal
-                    </a>
-                </li>
-                <?php } ?>
+             
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">
@@ -480,20 +455,52 @@
                 </li>
                 <?php } ?>
               
-               
+                <li class="c-sidebar-nav-title">Promotion</li>
+
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'promo' ? 'c-active' : null) ?>" href="<?= base_url() ?>/promo">
                         <i class="fa fa-credit-card c-sidebar-nav-icon"></i>
                         Promocode
                     </a>
                 </li>
-                <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop_payment_method' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop_payment_method">
-                        <i class="fa fa-qrcode c-sidebar-nav-icon"></i>
-                     Payment Method
-                    </a>
-                </li>
+            
+                <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
 
+                        <li>
+                            <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shoprate' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Shoprate">
+                                <i class="fa fa-percent c-sidebar-nav-icon"></i>
+                                Member rate 
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
+                        <li>
+                            <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
+                                <i class="fa fa-bookmark-o c-sidebar-nav-icon"></i>
+                                Voucher
+                            </a>
+                        </li>
+                        <?php } ?>
+
+                        <?php if(in_array(2,session()->get('shop_data')['shop_function'])){ ?>
+
+                        <li>
+                            <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
+                                <i class="fa fa-bookmark c-sidebar-nav-icon"></i>
+                                Gift
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php if(in_array(8,session()->get('shop_data')['shop_function'])){ ?>
+
+                        <li>
+                            <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
+                                <i class="fa fa-cog c-sidebar-nav-icon"></i>
+                                Referral
+                            </a>
+                        </li>
+                        <?php } ?>
             <?php
             } 
             ?>

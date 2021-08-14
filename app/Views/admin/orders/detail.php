@@ -34,19 +34,14 @@
                                 </a>
                                
                             </div>
-                            <div class="status_btn mb-2 mt-2" style="overflow: scroll;">
-                                <?php if($orders['orders_status_id'] == 1) : ?>
-                                    <a href="<?= base_url('/orders/change_status/2/'). "/" . $orders['orders_id'] ?>" class="btn btn-warning">Accept Orders</a>
-                                    <a href="<?= base_url('/orders/change_status/5/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
-                                <?php endif; ?>
-                                <?php if($orders['orders_status_id'] == 2) : ?>
+                            <div class="status_btn mb-2 mt-2" >
+                                <a href="<?= base_url('/orders/change_status/2/'). "/" . $orders['orders_id'] ?>" class="btn btn-warning">Accept Orders</a>
                                 <a href="<?= base_url('/orders/change_status/3/') . "/" . $orders['orders_id'] ?>" class="btn btn-primary">On Delivery</a>
-                                <a href="<?= base_url('/orders/change_status/5/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
-                                <?php endif; ?>
-                                <?php if($orders['orders_status_id'] == 3) : ?>
                                 <a href="<?= base_url('/orders/change_status/4/') . "/" . $orders['orders_id'] ?>" class="btn btn-success">Done Orders</a>
-                                <a href="<?= base_url('/orders/change_status/5/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Rejected</a>
-                                <?php endif; ?>
+                                <br>
+                                <br>
+
+                                <a href="<?= base_url('/orders/change_status/5/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Reject order</a>
                                 <a href="<?= base_url('/orders/change_status/1/') . "/" . $orders['orders_id'] ?>" class="btn btn-secondary">Reset Orders</a>
 
                             </div>

@@ -63,20 +63,13 @@
 
                                                     </tr>
                                                     <tr>
-                                                        <td><h3>Type (1 = desktop 2 = mobile)</h3></td>
-                                                        <td><?= $banner[
+                                                        <td><h3>Type </h3></td>
+                                                        <td style="font-size:25px"><?= $banner[
                                                             'type_id'
-                                                        ] ?></td>
+                                                        ] == 1 ?  "Desktop" : 'Mobile' ?></td>
 
                                                     </tr>
-                                                    <tr>
-                                                        <td><h3>Description</h3></td>
-                                                        <td><?= $banner[
-                                                            'description'
-                                                        ] ?></td>
-
-                                                    </tr>
-                                                    
+                                                 
                                                 </table>
                                             </div>
                                         </div>

@@ -38,16 +38,16 @@
                                     <label for="">Title</label>
                                     <input type="hidden" class="form-control" name="title" value="<?= $banner['title']?>" placeholder="e.g. Best Restaurant In Town" required>
                                 </div> -->
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="">Decription</label>
                                     <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $banner['description']?></textarea>
-                                </div>
+                                </div> -->
                                 
                                 <div class="form-group">
                                 <label for="">Type (enter 1 for desktop , 2 for mobile banner)</label>
                                     <select name="type_id" class="select" id=""  required>
                                         <option <?= $banner['type_id'] == 1 ? 'selected' : ''?> value="1">Desktop</option>
-                                        <option value="2" <?= $banner['type_id'] == 2 ? 'selected' : ''?>>Banner</option>
+                                        <option value="2" <?= $banner['type_id'] == 2 ? 'selected' : ''?>>Mobile</option>
                                     </select>
                                 </div>
                     <div class="form-group">

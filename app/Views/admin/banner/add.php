@@ -50,12 +50,12 @@
                                 <label for="">Type (enter 1 for desktop , 2 for mobile banner)</label>
                                     <select name="type_id" class="select" id=""  required>
                                         <option value="1">Desktop</option>
-                                        <option value="2">Banner</option>
+                                        <option value="2">Mobile</option>
                                     </select>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="banner">Banner *1920x700 </label>
+                                    <label for="banner">Banner </label>
                                     <input type="file" class="form-control" name="banner" placeholder="Banner" required>
                                 </div>
 <!--                                 

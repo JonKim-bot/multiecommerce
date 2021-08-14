@@ -45,7 +45,7 @@
     $lang['others_voucher'] ='Other voucher';
     $lang['my_voucher'] ='My Voucher';
     $lang['my_gift'] ='My Gift';
-    
+
     $lang['others_gift'] ='Other gifts';
     $lang['delivery_fee'] = 'Delivery Fee';
     $lang['discounted'] = 'Discount';
@@ -65,8 +65,10 @@
     $lang['continue_shopping'] ='Continue shopping';
     $lang['payment_status'] ='Payment status';
     $lang['payment_method'] ='Payment Method';
+    $lang['my_cart'] = 'My Cart';
 
     $lang['my_product'] ='My product';
+    
     $lang['filter'] ='Search products';
     $lang['contact_us'] ='Contact us';
     $lang['etel'] ='Enter your email or phone number to find your order history';

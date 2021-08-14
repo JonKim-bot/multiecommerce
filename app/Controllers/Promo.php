@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 namespace App\Controllers;
 
 
@@ -160,6 +162,8 @@ class Promo extends BaseController
                     'is_affliate' => $affliate,
                     'minimum' =>  $this->request->getPost("minimum"),
                     'shop_id' => $this->shop_id,
+                    'is_active' => 1,
+                    'limit_usage' => $_POST['limit_usage'],
 
                     'created_by' => session()->get('login_id'),
                 );
@@ -225,6 +229,8 @@ class Promo extends BaseController
                 
                 $promo_type_id = $this->request->getPost("promo_type_id");
                 $affliate = isset($_POST['for_affliate']) ? 1 : 0 ;
+                $is_member_only = isset($_POST['is_member_only']) ? 1 : 0 ;
+
                 $new_member = isset($_POST['new_member']) ? 1 : 0 ;
                 if($affliate == 1){
                     
@@ -238,6 +244,9 @@ class Promo extends BaseController
                     'shop_id' => $this->shop_id,
                     'is_newmemberonly' => $new_member,
                     'is_affliate' => $affliate,
+                    'limit_usage' => $_POST['limit_usage'],
+
+                    'is_member_only' => $is_member_only,
 
                     'created_by' => session()->get('login_id'),
                 );

@@ -134,8 +134,8 @@
                                                 
                                             <td><?= $i ?></td>
                                                 
-                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>" target="_blank"><?= $row['r_contact'] ?></a></td>
-                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>" target="_blank">RM <?= $row['total'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>" target="_blank"><?= $row['contact'] ?></a></td>
+                                                <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>" target="_blank">RM <?= $row['grand_total'] ?></a></td>
 
                                                 <td><a href="<?= base_url() ?>/orders/detail/<?= $row['orders_id']?>" target="_blank" class="btn btn-primary">View</a></td>
 

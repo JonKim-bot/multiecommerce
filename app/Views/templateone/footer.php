@@ -179,6 +179,7 @@
                 message: "Hello",
                 showPopup: true,
             });
+
         });
 
     $(".mobile_menu").click(function(e) {
@@ -317,7 +318,7 @@
     <?php if ($shop['is_active'] == 0) { ?>
         Swal.fire({
             title: "Dear Customer",
-            text: "We would like to inform you that <?= $shop['shop_name'] ?> are temporarily closed",
+            text: "<?= $shop['closed_msg'] ?>",
 
             type: 'info'
         })

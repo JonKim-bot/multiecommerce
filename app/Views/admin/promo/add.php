@@ -56,6 +56,10 @@
                                     <input type="text" class="form-control" name="code" placeholder="e.g. OFFER20" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Limit usage</label>
+                                    <input type="number" class="form-control"  name="limit_usage" placeholder="e.g. Limit number of time to use" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="">Minimum spend</label>
                                     <input type="number" class="form-control" name="minimum" placeholder="e.g. RM5" required>
                                 </div>

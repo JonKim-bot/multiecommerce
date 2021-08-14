@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Decription</label>
-                                    <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $about['description']?></textarea>
+                                    <textarea class="form-control textarea" name="description" placeholder="Eg : Open since 1997 "><?= $about['description']?></textarea>
                                 </div>
                                 <img src= "<?= base_url()  . $about['banner']?>" width="150px" />
 

@@ -42,7 +42,10 @@
                                     <label for="">Minimum spend</label>
                                     <input type="number" class="form-control" value="<?= $promo['minimum'] ?>" name="minimum" placeholder="e.g. RM5" required>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="">Limit usage</label>
+                                    <input type="number" class="form-control" value="<?= $promo['limit_usage'] ?>" name="limit_usage" placeholder="e.g. Limit number of time to use" required>
+                                </div>
                                 <div class="form-group">
                                 <label for="">Promo Type</label>
                                 <select class="form-control" readonly required name="promo_type_id" id="promo_type_id">
@@ -115,13 +118,19 @@
                                 <div class="form-group">
                                 <label for="">New Member Only * For those member who havent make purchase</label>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="new_member">
+                                    <input type="checkbox"  <?= $promo['is_newmemberonly'] == 1 ? "checked" : '' ?> class="form-check-input" name="new_member">
                                     <label class="form-check-label" for="new_member">For New Member Only</label>
                                 </div>
                                 <div class="form-group">
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="for_affliate">
+                                    <input type="checkbox"  <?= $promo['is_affliate'] == 1 ? "checked" : '' ?> class="form-check-input" name="for_affliate">
                                     <label class="form-check-label" for="new_member">For Refered member only (person who been referal in)</label>
+                                </div>
+
+                                <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox"  <?= $promo['is_member_only'] == 1 ? "checked" : '' ?> class="form-check-input" name="is_member_only">
+                                    <label class="form-check-label" for="new_member">For  member only (person who been registered in)</label>
                                 </div>
                             </div>
                     <div class="form-group">

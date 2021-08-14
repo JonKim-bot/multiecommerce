@@ -55,6 +55,7 @@
     $lang['continue_shopping'] = '继续购物';
     $lang['payment_status'] = '付款状态';
     $lang['payment_method'] = '付款方法';
+    $lang['my_cart'] = '我的购物车';
 
     $lang['my_product'] = '我的产品';
     $lang['filter'] = '搜索产品';
@@ -62,7 +63,7 @@
     $lang['etel'] = '输入您的电子邮件或电话号码以查找您的订单历史记录';
     $lang['referal_code'] = '推荐代码';
 
-    $lang['your_cart'] = '我的产品';
+    $lang['your_cart'] = '我的购物车';
     $lang['checkout'] = '付款';
     $lang['order_total'] = '总数额';
     $lang['menu'] = '菜单';
@@ -99,6 +100,7 @@
     $lang['see_more'] = '查看更多';
     $lang['view'] = '查看';
     $lang['view_collection'] = '购买系列';
+    
     $lang['connect'] = '连接';
     $lang['getintouch'] = '保持联系';
     $lang['contact_form'] = '联系表格';

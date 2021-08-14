@@ -35,33 +35,26 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                        <label for="">Product</label>
-                        <input type="text" class="form-control" name="product" value="<?= $product['product_name'] ?>" placeholder="e.g. Cake " required>
-                    </div>
-                    <div class="form-group">
                         <label for="">Product Label Text</label>
-                        <select name="label_text" class="select" id=""  required>
-                            <option value="Latest">Latest</option>
+                        <select name="label_text" class="select" id=""  >
+                        <option value="">None</option>
+
+                        <option value="Latest">Latest</option>
                             <option value="Hotest">Hotest</option>
                             <option  value="Trending">Trending</option>
                             <option  value="最新">最新</option>
                             <option  value="畅销">畅销</option>
                         </select>
                     </div>
-                    <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
-
-                    <div class="form-group">
-                        <label for="">Product Member Text</label>
-                        <textarea class="form-control" name="member_text" placeholder="Eg : Special Discount For Joining Member "><?= $product['member_text'] ?></textarea>
-                    </div>
-
-                    <?php } ?>
+                    
                     <div class="form-group">
                         <label for="banner">Image</label>
                         <input type="file" class="form-control" name="banner" placeholder="Banner">
                     </div>
-                    
-                  
+                    <div class="form-group">
+                        <label for="">Product Name</label>
+                        <input type="text" class="form-control" name="product" value="<?= $product['product_name'] ?>" placeholder="e.g. Cake " required>
+                    </div>
                     <div class="form-group">
                         <label for="">Category
                             <?php $product_category ?>
@@ -81,6 +74,29 @@
                         </select>
 
                     </div>
+
+                    <div class="form-group">
+                        <label for="">Product Description</label>
+                        <textarea class="form-control " rows="10" name="product_description" placeholder="Eg : Special Cake "><?= $product['product_description'] ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Product Description Two</label>
+                        <textarea class="form-control " rows="10" name="product_description_two" placeholder="Eg : Special Cake "><?= $product['product_description_two'] ?></textarea>
+                    </div>
+               
+       
+                    <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
+
+                    <div class="form-group">
+                        <label for="">Product Member Text</label>
+                        <textarea class="form-control" name="member_text" placeholder="Eg : Special Discount For Joining Member "><?= $product['member_text'] ?></textarea>
+                    </div>
+
+                    <?php } ?>
+              
+                    
+                  
+              
                     <?php if(in_array(3,session()->get('shop_data')['shop_function'])){ ?>
                     <div class="form-group">
                         <label for="">Upsales
@@ -137,18 +153,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="">Product Description</label>
-                        <textarea class="form-control" name="product_description" placeholder="Eg : Special Cake "><?= $product['product_description'] ?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Product Description Two</label>
-                        <textarea class="form-control" name="product_description_two" placeholder="Eg : Special Cake "><?= $product['product_description_two'] ?></textarea>
-                    </div>
-                    <div class="form-group">
                         <button class="btn btn-primary float-right" type="submit"> Submit</button>
                     </div>
                     
-                   
                 </form>
             </div>
             

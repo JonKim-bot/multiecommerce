@@ -92,6 +92,7 @@
                     token : token,
                     device : device,
                 };
+
                 // alert("asdsad");
                 $.ajax({
                     url: "<?= base_url() ?>/Ajax/register_token",
@@ -264,6 +265,7 @@
     var date_config = {
         altInput: true,
         altFormat: "d/m/Y",
+      
         allowInput: false,
     };
     $(".datepicker").flatpickr(date_config);
@@ -271,8 +273,8 @@
         tinymce.init({
         selector: '.textarea',
         toolbar_mode: 'floating',
-        plugins: 'link',
-         link_assume_external_targets: true
+         link_assume_external_targets: true,
+
         });
     });
 

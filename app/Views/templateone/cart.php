@@ -1,13 +1,13 @@
 <main>
     <!-- Hero area Start-->
-    <div class="hero-area section-bg2">
+    <div class="hero-area section-bg2" style="    background-color: #f7f7f7;">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="slider-area">
-                        <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center">
+                        <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center" >
                             <div class="hero-caption hero-caption2">
-                                <h2><?= $lang['your_cart'] ?></h2>
+                                <h2 style='font-family: "HanYiChaoCuHeiJian-1";'><?= $lang['your_cart'] ?></h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb justify-content-center">
                                     </ol>
@@ -66,6 +66,7 @@
                             <h4><?= $lang['promocodeapply'] ?></h4>
                             <form>
                                 <input type="text" id="promo_code" placeholder="Promo code">
+                                
 
                                 <a id="apply_promo" class="text-white" style="padding-top:12px"><?= $lang['apply'] ?></a>
                                 <input type="hidden" id="promo_id" value="0">

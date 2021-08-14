@@ -1068,6 +1068,7 @@ class Main extends BaseController
     }
     
     public function apply_promo(){
+
         if(isset($_POST)){
             $_POST['promocode'] = trim($_POST['promocode']);
             $where = [
@@ -1085,6 +1086,32 @@ class Main extends BaseController
                 $promo = $promo[0];
                 if($promo['is_newmemberonly'] == 1 || $promo['is_affliate'] == 1){
                     $this->check_if_member_new($promo);
+                }
+                if($promo['is_member_only'] == 1 ){
+                    if (empty($this->session->get("customer_data"))) {
+                        die(json_encode(array(
+                            'status' => false,
+                            'message' => 'This promo code is for login only',
+                            'error' => "Invalid",
+                        )));
+                    } 
+                }
+
+                if($promo['limit_usage'] > 0){
+
+                    $where_ORDER = [
+                        'orders.promo_id' => $promo['promo_id'],
+                        'orders.is_paid' => 1,
+                    ];
+                    $orders_count =  count($this->OrdersModel->getWhere($where_ORDER));
+                    if($orders_count >= $promo['limit_usage']){
+                        die(json_encode(array(
+
+                            'status' => false,
+                            'message' => 'This promo code has reach the limit of usage',
+                            'error' => "Invalid",
+                        )));
+                    }
                 }
                 $grand_total = str_replace("RM","",$_POST['grand_total']);
                 if($promo['promo_type_id'] != 1){
@@ -2071,6 +2098,7 @@ class Main extends BaseController
                 }
                 $shop = $this->shop;
                 $customer_data = [
+
                     'full_name' => $customer['name'],
                     'contact' => $customer['contact'],
                     'address' => $customer['address'],
