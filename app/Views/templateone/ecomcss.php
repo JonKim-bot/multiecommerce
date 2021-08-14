@@ -3917,8 +3917,9 @@
     .slider-area2 .hero-caption.hero-caption2 h2 {
         color: #292621;
         font-size: 35px;
-        font-weight: bold;
-        margin-bottom: 12px
+        /* font-weight: bold; */
+        margin-bottom: 12px;
+        font-family: "HanYiChaoCuHeiJian-1";
     }
 
     @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -11236,9 +11237,15 @@
 
     .c-product .c-product-card .c-top .c-Columnflex {
         display: flex;
-        padding-left: 0rem;
+        padding-left: 15px;
         padding-top: 1rem;
+    }
 
+    @media screen and (min-width: 768px) {
+        .c-product .c-product-card .c-top .c-Columnflex {
+            padding-left: 0rem;
+            padding-right: 0rem;
+        }
     }
 
     @media screen and (min-width: 992px) {

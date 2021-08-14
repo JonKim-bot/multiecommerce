@@ -7,7 +7,7 @@
                     <div class="slider-area">
                         <div class="slider-height2 slider-bg4 d-flex align-items-center justify-content-center" >
                             <div class="hero-caption hero-caption2">
-                                <h2 style='font-family: "HanYiChaoCuHeiJian-1";'><?= $lang['your_cart'] ?></h2>
+                                <h2 style=''><?= $lang['your_cart'] ?></h2>
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb justify-content-center">
                                     </ol>
