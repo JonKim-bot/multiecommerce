@@ -179,6 +179,7 @@
                     <div class="c-qr-img">
                         <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>&choe=UTF-8">
 
+
                     </div>
                     <input type="text" class="form-control" id="link" value="<?= base_url() ?>/main/signup/<?= $_SESSION['customer_data']['referal_code'] ?>" readonly>
 
@@ -214,7 +215,9 @@
                     </div>
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="button" class="btn btn-secondary c-btn redeem_gift redeem_gift_btn" data-dismiss="modal"><?= $lang['exchange'] ?></button>
+                    <!-- <button type="button" class="btn btn-secondary c-btn redeem_gift redeem_gift_ redeem_gift_btn" data-dismiss="modal"><?= $lang['exchange'] ?></button> -->
+                    <button type="button" class="btn btn-secondary c-btn  order_btn_gift" data-dismiss="modal"><?= $lang['order'] ?></button>
+
                 </div>
             </div>
         </div>
@@ -245,10 +248,15 @@
                 </div>
                 <div class="modal-footer c-modal-footer">
                     <button type="button" class="btn btn-secondary c-btn redeem_voucher redeem_voucher_btn" data-dismiss="modal"><?= $lang['exchange'] ?></button>
+                    <button type="button" class="btn btn-secondary c-btn  order_btn" data-dismiss="modal"><?= $lang['order'] ?></button>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <input type="hidden" id="customer_voucher_id_">
+    <input type="hidden" id="customer_gift_id_">
 
     <script>
         function get_gift_detail(gift_id, is_self) {
@@ -270,9 +278,50 @@
                 $(".gift_img").attr("src", "<?= base_url() ?>" + gift_data.banner);
                 if (is_self == 0) {
                     $('.redeem_gift_btn').show();
+                    $('.order_btn_gift').hide();
                 } else {
                     $('.redeem_gift_btn').hide();
+                    $('.order_btn_gift').show();
 
+                }
+
+
+            });
+        }
+        function order_voucher(){
+            let postParam = {
+                slug: "<?= $shop['slug'] ?>",
+                customer_voucher_id: $('#customer_voucher_id_').val(),
+            }
+            $.post("<?= base_url('main/submit_order_voucher') ?>", postParam, function(data) {
+                // $('#voucher_detail').html(html);
+                data = JSON.parse(data);
+                if(data.status){
+                    Swal.fire({
+                        text: "Voucher order being processed",
+                        type: 'success'
+                    })
+                    window.location.reload();
+                }
+
+
+            });
+        }
+
+        function order_gift(){
+            let postParam = {
+                slug: "<?= $shop['slug'] ?>",
+                customer_gift_id: $('#customer_gift_id_').val(),
+            }
+            $.post("<?= base_url('main/submit_order_gift') ?>", postParam, function(data) {
+                // $('#voucher_detail').html(html);
+                data = JSON.parse(data);
+                if(data.status){
+                    Swal.fire({
+                        text: "Gift order being processed",
+                        type: 'success'
+                    })
+                    window.location.reload();
                 }
 
             });
@@ -297,14 +346,17 @@
                 $(".voucher_img").attr("src", "<?= base_url() ?>" + voucher_data.banner);
                 if (is_self == 0) {
                     $('.redeem_voucher_btn').show();
+                    $('.order_btn').hide();
+
                 } else {
                     $('.redeem_voucher_btn').hide();
+                    $('.order_btn').show();
 
                 }
 
             });
         }
-
+        
         function copy() {
             var copyText = document.getElementById("link");
             copyText.select();
@@ -372,6 +424,13 @@
                 });
             });
         }
+        $(".order_btn").on("click", function() {
+            order_voucher();
+        });
+
+        $(".order_btn_gift").on("click", function() {
+            order_gift();
+        });
 
         $(".c-close").on("click", function() {
             $('#giftmodal').modal('hide');

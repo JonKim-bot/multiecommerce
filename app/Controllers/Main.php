@@ -124,11 +124,12 @@ class Main extends BaseController
         $slug = $subdomain_arr[0];
 
 
-        // $slug = 'capital-shop';
-        $slug = 'testingname';
+        $slug = 'capital-shop';
+        // $slug = 'testingname';
 
         $this->shop= $this->get_shop($slug);
         $this->load_lang();
+
         //1 membership
         //2 Gift
         //3 Upsales
@@ -212,7 +213,7 @@ class Main extends BaseController
                         'orders_id' => $orders['orders_id'],
                         'customer_id' => $this->session->get('customer_id'),
                         'redeem_date' => date('Y-m-d h:i:s'),
-
+                        'is_approve' => 1,
                         'gift_id' => $gift_id,
                     ];
                     $gift = $this->CustomerGiftModel->insertNew($data);
@@ -310,11 +311,13 @@ class Main extends BaseController
 
         $where = [
             'customer_gift.is_approve' => 1,
+            'customer_gift.deleted' => 0,
             'DATE(gift.valid_until) >=' => date('Y-m-d'), 
             'customer_gift.customer_id' => $this->session->get('customer_id'),
         ];
 
         $gift_self = $this->CustomerGiftModel->getWhere($where);
+
         $this->pageData['gift_self'] = $gift_self;
         $this->pageData['gift_shop'] = $gift_shop;
 
@@ -417,6 +420,7 @@ class Main extends BaseController
 
         $this->pageData['voucher_shop'] = $voucher_shop;
         echo view("templateone/voucher_loop" ,$this->pageData);
+
 
     }
 
@@ -678,6 +682,7 @@ class Main extends BaseController
                 $customer_data = $customer_data[0];
                 if($customer_data['shop_id'] != $shop['shop_id']){
                     $this->pageData['error'] = "Not registered in this shop";
+
 
                 }else{
 
@@ -1770,6 +1775,7 @@ class Main extends BaseController
         }
         public function get_gift_detail(){
 
+
         
             $where = [
                 'gift.gift_id' => $_POST['gift_id']
@@ -2015,6 +2021,205 @@ class Main extends BaseController
 
         return $code;
     }
+
+    public function set_used_voucher($customer_voucher_id){
+        $where = [
+            'customer_voucher.customer_voucher_id' => $customer_voucher_id
+        ];
+        $voucher = $this->CustomerVoucherModel->getWhere($where)[0];
+        $status = 1;
+        $this->CustomerVoucherModel->updateWhere($where,['is_used' => $status,'used_date' => date('Y-m-d H:i:s')]);
+
+
+    }
+
+    public function set_used_gift($customer_gift_id){
+
+        $where = [
+            'customer_gift.customer_gift_id' => $customer_gift_id
+
+        ];
+        $gift = $this->CustomerGiftModel->getWhere($where)[0];
+      
+        $status = 1;
+        $this->CustomerGiftModel->updateWhere($where,['deleted' => $status]);
+
+
+    }
+
+    public function submit_order_voucher($byStripe = false)
+    {
+        if($_POST){
+            $error = false;
+            
+            if(!$error){
+
+                $where = [
+                    'customer_id' => $this->session->get('customer_id'),
+                ];
+                $customer = $this->CustomerModel->getWhere($where)[0];
+                if($customer['address'] == ""){
+                    die(json_encode([
+                        'status' => false,
+                        'message'=> "Please enter valid address"
+                    ]));
+                }
+                $shop = $this->shop;
+                $customer_data = [
+                    'full_name' => $customer['name'],
+                    'contact' => $customer['contact'],
+                    'address' => $customer['address'],
+                    'email' => $customer['email'],
+                    'city' => $customer['city'],
+                    'post_code' => $customer['post_code'],
+                    'shop_id' => $shop['shop_id'],
+                ];
+                
+                
+                $order_customer_id = $this->OrderCustomerModel->insertNew($customer_data);
+    
+                $voucher = $this->CustomerVoucherModel->getWhere(['customer_voucher.customer_voucher_id' => $_POST['customer_voucher_id']])[0];
+
+
+                $order_data = [
+                    'order_customer_id' => $order_customer_id,
+                    'orders_status_id' => 1,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'delivery_fee' => 0 , 
+                    'voucher_id' => $voucher['voucher_id'],
+                    'grand_total' => 0 ,
+                    'promo_id' => 0 ,
+                    'customer_id' => $this->session->get('customer_id'),
+                    'subtotal' => 0 ,
+                    'shop_id' => $shop['shop_id'],
+                ];
+
+                $order_id = $this->OrdersModel->insertNew($order_data);
+
+                $this->set_used_voucher($_POST['customer_voucher_id']);
+
+                $code = $this->generate_orders_code($order_id);
+                // $this->debug($_POST['product']);
+              
+                $where = [
+                    'shop_id' => $shop['shop_id'],
+                ];
+                $shop = $this->ShopModel->getWhere($where)[0];
+                $url = base_url() . "/main/payment/" .  $code;
+                // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
+                $this->send_notification_to_shop($shop['shop_id'],$order_id);
+                
+                // if($shop['email'] != ""){
+                //     $this->EmailModel->send_email($shop['email'],$order_id);
+                // }
+
+
+                die(json_encode(
+                    array(
+                        'status' => true,
+                        'url' => $url,
+                        'orders_id' => $order_id,
+                        )
+                )) ;
+            }else{
+                die(json_encode(
+                    array(
+                        'status' => false,
+                        'message' => $message,
+                        )
+                )) ;
+                
+            }
+        }
+    }
+
+    
+    public function submit_order_gift($byStripe = false)
+    {
+        if($_POST){
+            $error = false;
+            
+            if(!$error){
+
+                $where = [
+                    'customer_id' => $this->session->get('customer_id'),
+                ];
+                $customer = $this->CustomerModel->getWhere($where)[0];
+                if($customer['address'] == ""){
+                    die(json_encode([
+                        'status' => false,
+                        'message'=> "Please enter valid address"
+                    ]));
+                }
+                $shop = $this->shop;
+                $customer_data = [
+                    'full_name' => $customer['name'],
+                    'contact' => $customer['contact'],
+                    'address' => $customer['address'],
+                    'email' => $customer['email'],
+                    'city' => $customer['city'],
+                    'post_code' => $customer['post_code'],
+                    'shop_id' => $shop['shop_id'],
+                ];
+                
+                
+                $order_customer_id = $this->OrderCustomerModel->insertNew($customer_data);
+    
+                $gift = $this->CustomerGiftModel->getWhere(['customer_gift.customer_gift_id' => $_POST['customer_gift_id']])[0];
+
+
+                $order_data = [
+                    'order_customer_id' => $order_customer_id,
+                    'orders_status_id' => 1,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'delivery_fee' => 0 , 
+                    'gift_id' => $gift['gift_id'],
+                    'grand_total' => 0 ,
+                    'promo_id' => 0 ,
+                    'customer_id' => $this->session->get('customer_id'),
+                    'subtotal' => 0 ,
+                    'shop_id' => $shop['shop_id'],
+                ];
+
+                $order_id = $this->OrdersModel->insertNew($order_data);
+
+                $this->set_used_gift($_POST['customer_gift_id']);
+
+                $code = $this->generate_orders_code($order_id);
+                // $this->debug($_POST['product']);
+              
+                $where = [
+                    'shop_id' => $shop['shop_id'],
+                ];
+                $shop = $this->ShopModel->getWhere($where)[0];
+                $url = base_url() . "/main/payment/" .  $code;
+                // $shop_name = $this->ShopModel->getWhere($where)[0]['contact'];
+                $this->send_notification_to_shop($shop['shop_id'],$order_id);
+                
+                // if($shop['email'] != ""){
+                //     $this->EmailModel->send_email($shop['email'],$order_id);
+                // }
+
+
+                die(json_encode(
+                    array(
+                        'status' => true,
+                        'url' => $url,
+                        'orders_id' => $order_id,
+                        )
+                )) ;
+            }else{
+                die(json_encode(
+                    array(
+                        'status' => false,
+                        'message' => $message,
+                        )
+                )) ;
+                
+            }
+        }
+    }
+
     public function submit_order($byStripe = false)
     {
         if($_POST){

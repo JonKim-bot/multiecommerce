@@ -45,6 +45,7 @@
     $lang['others_voucher'] ='Other voucher';
     $lang['my_voucher'] ='My Voucher';
     $lang['my_gift'] ='My Gift';
+    
     $lang['others_gift'] ='Other gifts';
     $lang['delivery_fee'] = 'Delivery Fee';
     $lang['discounted'] = 'Discount';

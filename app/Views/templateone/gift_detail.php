@@ -109,6 +109,7 @@
                     text: "Please wait for admin to verify your gift and contact you",
                     type: 'success'
                 });
+                get_gift();
             });
         }
  </script>

@@ -38,9 +38,10 @@ class OrdersModel extends BaseModel
     function getWhere($where,$limit = "", $page = 1, $filter = array()){
         $this->builder = $this->db->table($this->tableName);
         $this->builder->select('orders.*, order_customer.full_name,order_customer.contact,order_customer.address,
-        order_customer.email,orders_status.orders_status,order_detail.product_name,
+        order_customer.email,orders_status.orders_status,order_detail.product_name,voucher.voucher_id,voucher.voucher,
+        gift.gift,gift.gift_id,
         order_detail.product_price,order_detail.product_quantity,order_detail.product_id,order_detail.product_total_price,
-        product.*,shop.shop_name,payment_method.payment_method,orders.created_at as created_date ,orders.created_at as created_date_,promo.code,promo.offer_amount
+        product.*,shop.shop_id,shop.shop_name,payment_method.payment_method,orders.created_at as created_date ,orders.created_at as created_date_,promo.code,promo.offer_amount
         ');
         $this->builder->join('shop', 'orders.shop_id = shop.shop_id');
         $this->builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
@@ -49,6 +50,8 @@ class OrdersModel extends BaseModel
         $this->builder->join('order_detail', 'order_detail.orders_id = orders.orders_id','left');
         $this->builder->join('product', 'product.product_id = order_detail.product_id','left');
         $this->builder->join('promo', 'promo.promo_id = orders.promo_id','left');
+        $this->builder->join('voucher', 'voucher.voucher_id = orders.voucher_id','left');
+        $this->builder->join('gift', 'gift.gift_id = orders.gift_id','left');
 
         $this->builder->groupBy('orders.orders_id');
         
@@ -227,6 +230,7 @@ class OrdersModel extends BaseModel
         $query = $builder->get();
         return count($query->getResultArray());
     }
+
     function get_new_registered_member_filter($shop_id,$date_from,$date_to){
         $where = [
             'customer.shop_id' => $shop_id,

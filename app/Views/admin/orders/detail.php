@@ -223,6 +223,26 @@
 
 
             <?php }   ?>
+
+            <?php if($orders['voucher_id'] > 0){ ?>
+              <tr>
+              <td>Voucher  : </td>
+              <td>
+              <a href="<?= base_url() . "/voucher/detail/" . $orders['voucher_id'] ?>"><?= $orders['voucher'] ?></a>
+              </td>
+            </tr>
+
+            <?php }   ?>
+
+            <?php if($orders['gift_id'] > 0){ ?>
+              <tr>
+              <td>Gift  : </td>
+              <td>
+              <a href="<?= base_url() . "/gift/detail/" . $orders['gift_id'] ?>"><?= $orders['gift'] ?></a>
+              </td>
+            </tr>
+
+            <?php }   ?>
                                                 <tr>
                                                    <th>Image</th>
 

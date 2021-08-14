@@ -9,7 +9,7 @@
                                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                                             </div>
                                             <div class="c-btnBOX">
-                                                <div class="c-btn view_voucher_detail" id="<?= $row['voucher_id'] ?>" is_self="1" ><?=  $lang['view'] ?></div>
+                                                <div class="c-btn view_voucher_detail" c_id= "<?= $row['customer_voucher_id'] ?>" id="<?= $row['voucher_id'] ?>" is_self="1" ><?=  $lang['view'] ?></div>
                                                 
                                             </div>
                                         </div>
@@ -30,7 +30,7 @@
                                                 <img src="<?= base_url() . $row['banner']?>" alt="">
                                             </div>
                                             <div class="c-btnBOX">
-                                                <div class="c-btn view_voucher_detail" id="<?= $row['voucher_id'] ?>" is_self="0"><?=  $lang['view'] ?></div>
+                                                <div class="c-btn view_voucher_detail" c_id= "0" id="<?= $row['voucher_id'] ?>" is_self="0"><?=  $lang['view'] ?></div>
                                                 <div class="c-btn c-red redeem_voucher_" amount = "<?= $row['redeem_point'] ?>" 
                             style="cursor:pointer" id="<?= $row['voucher_id'] ?>"><?= $lang['exchange'] ?></div>
                                             </div>
@@ -44,11 +44,13 @@
                        
 
 
+
                         <script>
 
 $(".view_voucher_detail").on("click", function() {
     $('#vouchermodal').modal('show');
-
+    var customer_voucher_id = $(this).attr('c_id');
+    $('#customer_voucher_id_').val(customer_voucher_id);
         var voucher_id = $(this).attr('id');
         var is_self = $(this).attr('is_self');
 

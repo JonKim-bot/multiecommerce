@@ -102,7 +102,6 @@ class EmailModel extends BaseModel
                 'orders_id' => $row['orders_id']
             ]);   
         }
-        
         $this->pageData['shop'] = $this->ShopModel->getWhere(['shop_id' => $orders[0]['shop_id']])[0];
         // $this->show_404_if_empty($admin);
         $this->pageData["orders"] = $orders[0];
