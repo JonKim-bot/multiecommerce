@@ -302,6 +302,11 @@
                         type: 'success'
                     })
                     window.location.reload();
+                }else{
+                    Swal.fire({
+                        text: data.message,
+                        type: 'error'
+                    })
                 }
 
 
@@ -323,7 +328,12 @@
                     })
                     window.location.reload();
                 }
-
+                else{
+                    Swal.fire({
+                        text: data.message,
+                        type: 'error'
+                    })
+                }
             });
         }
 
