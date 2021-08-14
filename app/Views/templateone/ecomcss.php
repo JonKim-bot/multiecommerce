@@ -11308,7 +11308,7 @@
     }
 
     .c-product .c-product-card .c-detail .features-caption p {
-        color: #000 !important;
+        color: #000;
         text-align: center;
     }
 

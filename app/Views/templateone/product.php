@@ -383,7 +383,7 @@
                                                                                             <input type="checkbox" class="c-single form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
                                                                                         </div>
                                                                                         <div>
-                                                                                            <p><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            <p class="optionName_"><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
                                                                                         </div>
                                                                                     </label>
                                                                                 </div>
@@ -600,10 +600,12 @@
         $("input:checkbox[name=type]:not(:checked)").parent().parent().parent().parent().css("background-color", "white");
         $(".form-radio:not(:checked)").parent().parent().parent().parent().css("background-color", "white");
         $("input:checkbox[name=type]:checked").each(function() {
-            $(this).parent().parent().parent().parent().css("background-color", "#efb000");
+
+            $(this).parent().parent().parent().parent().css("background-color", "<?= $shop['colour'] ?>");
         });
         $(".form-radio:checked").each(function() {
-            $(this).parent().parent().parent().parent().css("background-color", "#efb000");
+
+            $(this).parent().parent().parent().parent().css("background-color", "<?= $shop['colour'] ?>");
         });
     }
 
