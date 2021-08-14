@@ -273,6 +273,7 @@ class Main extends BaseController
         $shop = $this->shop;
         $where = [
             'gift.shop_id' => $shop['shop_id'],
+
             'DATE(gift.valid_until) >=' => date('Y-m-d'), 
 
         ];
@@ -1148,6 +1149,10 @@ class Main extends BaseController
 
         if (!empty($this->session->get("customer_data"))) {
             $where = [
+
+                'orders.voucher_id' => 0, 
+                'orders.gift_id' => 0, 
+
                 'orders.customer_id' => $this->session->get("customer_id"),
 
             ];
@@ -2089,6 +2094,7 @@ class Main extends BaseController
                     'voucher_id' => $voucher['voucher_id'],
                     'grand_total' => 0 ,
                     'promo_id' => 0 ,
+                    'is_paid' => 1,
                     'customer_id' => $this->session->get('customer_id'),
                     'subtotal' => 0 ,
                     'shop_id' => $shop['shop_id'],
@@ -2171,6 +2177,7 @@ class Main extends BaseController
                 $order_data = [
                     'order_customer_id' => $order_customer_id,
                     'orders_status_id' => 1,
+                    'is_paid' => 1,
                     'created_at' => date('Y-m-d H:i:s'),
                     'delivery_fee' => 0 , 
                     'gift_id' => $gift['gift_id'],

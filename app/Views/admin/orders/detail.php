@@ -123,7 +123,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Pick Up Method :</td>
-                                                <td><?= $orders['delivery_fee'] == 0 ? "Self Pick Up" : 'Delivery' ?></td>    
+                                                <td><?=  'Delivery' ?></td>    
                                             </tr>
                                            
                                             <tr>
