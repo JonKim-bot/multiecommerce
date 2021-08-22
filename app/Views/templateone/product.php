@@ -604,7 +604,6 @@
 
         $("input:checkbox[name=type]:checked").each(function() {
             $(this).parent().next().children().css("color", "white");
-
             $(this).parent().parent().parent().parent().css("background-color", "<?= $shop['colour'] ?>");
         });
         $(".form-radio:checked").each(function() {

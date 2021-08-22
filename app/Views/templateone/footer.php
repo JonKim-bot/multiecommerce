@@ -27,6 +27,7 @@
                                     <li><a class="c-footer-bold" href="https://webieasy.com/privacy_policy.php">Private policy</a></li>
                                     <li><a class="c-footer-bold" href="https://webieasy.com/return_refund_policy.php">RETURN & REFUND POLICY</a></li>
                                     <li><a class="c-footer-bold" href="https://webieasy.com/shipping_policy.php">Shipping policy</a></li>
+                                    
                                     <li><a class="c-footer-bold" href="https://webieasy.com/tnc.php">TERM AND CONDITIONS</a></li>
 
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>

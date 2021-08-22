@@ -116,6 +116,7 @@ class Main extends BaseController
 
         if (!empty($this->session->get("customer_data"))) {
             $this->pageData['customer_data'] = $this->session->get("customer_data");
+
         } else {
             
             $this->pageData['customer_data'] = array();
@@ -124,7 +125,8 @@ class Main extends BaseController
         $slug = $subdomain_arr[0];
 
 
-        $slug = 'capital-shop';
+
+        $slug = 'twelf';
         // $slug = 'testingname';
 
         $this->shop= $this->get_shop($slug);
@@ -1105,6 +1107,7 @@ class Main extends BaseController
                     ];
                     $orders_count =  count($this->OrdersModel->getWhere($where_ORDER));
                     if($orders_count >= $promo['limit_usage']){
+
                         die(json_encode(array(
 
                             'status' => false,
@@ -1301,11 +1304,12 @@ class Main extends BaseController
             
             // $this->premier_pay($_POST['orders_id']);
             // $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
-            $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];
-            // $this->hit_pay($_POST['orders_id']);
+            // $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];
+            $this->hit_pay($_POST['orders_id']);
                 //payment method link
             die(json_encode([
                 'status' => true,
+                
                 'url' => $url,
             ]));
         }
@@ -2382,14 +2386,16 @@ class Main extends BaseController
     }
 
     public function get_total(){
-        $cart = $this->session->get('cart');
+        $shop = $this->shop;
 
-        $total = 0;
+        $cart = $this->session->get('cart');
+        $total = 0 + $shop['delivery_fee'];
         $cart_count = 0;
         if(!empty($cart)){
             $cart_count = count($cart);
-            $total = array_sum(array_column($cart,'total'));
+            $total = array_sum(array_column($cart,'total')) + $total;
         }
+
         die(json_encode([
             'count' => $cart_count,
             'status' => true,
