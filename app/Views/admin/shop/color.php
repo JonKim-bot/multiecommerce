@@ -28,6 +28,7 @@
                         <i class="cil-arrow-circle-top c-icon minimize-card"></i>
                     </a>
                 </div>
+                
             </div>
             <div class="card-body">
                 <form role="form" method="POST" enctype="multipart/form-data" action="<?= base_url()?>/shop/color/<?=$shop["shop_id"]?>">

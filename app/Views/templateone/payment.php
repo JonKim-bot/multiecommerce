@@ -221,6 +221,9 @@
 <script>
    $(".radio").on('change', function(e) {
       $(".radio").css('background', 'white');
+      $(".payment_label").css('color', 'black');
+
+      $(this).children().css('color', 'white');
 
       $(this).css('background', '<?= $shop['colour'] ?>');
 
