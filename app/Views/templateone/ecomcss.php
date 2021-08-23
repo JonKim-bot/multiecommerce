@@ -11312,6 +11312,15 @@
         text-align: center;
     }
 
+    .c-product .c-product-card .c-detail .features-caption .long-desc {
+        padding: 1rem 0;
+    }
+
+    .c-product .c-product-card .c-detail .features-caption .long-desc p {
+        margin: 0;
+        font-size: 16px;
+    }
+
     .c-product .c-product-card .c-detail .features-caption .price {
         display: block !important;
         padding: 1rem 0;
@@ -11327,6 +11336,7 @@
 
     .c-product .c-product-card .c-detail .features-caption .c-discount .c-discount-text {
         margin-bottom: 0 !important;
+        font-size: 16px;
     }
 
     .c-product .c-product-card .c-detail .features-caption .c-btn {
@@ -11396,8 +11406,7 @@
     }
 
     .c-product .c-product-card .c-detail .features-caption .c-priceBOX .product__details__widget .quantity .add_qty {
-        background-color: var(--themecolor);
-        color: #fff;
+        background-color: #ebebeb;
     }
 
     .c-product .c-product-card .c-detail .features-caption .c-priceBOX .product__details__widget .quantity input {
@@ -11491,7 +11500,9 @@
     .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box {
         display: flex;
         align-items: center;
+        justify-content: center;
         cursor: pointer;
+        width: 100%;
     }
 
     .c-product .c-product-card .c-detail .features-caption .c-option .select-Categories .c-optionBOX .c-selectionBOX .c-selection .c-selection-box .c-sb-box .c-sbb-left {
@@ -11789,7 +11800,8 @@
     }
 
     .c-login-back .c-header h1 {
-        font-family: "HanYiChaoCuHeiJian-1";
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
     }
 
     .c-login-form {
@@ -11860,7 +11872,8 @@
     }
 
     .c-register-back .c-header h1 {
-        font-family: "HanYiChaoCuHeiJian-1";
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
     }
 
 
@@ -11873,7 +11886,8 @@
     }
 
     .c-profile-back .c-header h1 {
-        font-family: "HanYiChaoCuHeiJian-1";
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
     }
 
     .c-register-form {
@@ -11972,7 +11986,8 @@
     }
 
     .c-home .c-about .c-subtitle {
-        font-family: "HanYiChaoCuHeiJian-1";
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
         text-align: center;
         padding: 4rem 0 2rem;
     }
@@ -12012,7 +12027,8 @@
     }
 
     .c-home .c-home-listing .c-subtitle {
-        font-family: "HanYiChaoCuHeiJian-1";
+        font-family: "Poppins", sans-serif;
+        text-transform: uppercase;
         text-align: center;
         padding: 2rem 0 2rem;
     }
@@ -12496,6 +12512,9 @@
     .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-btn-left {
         border: 0;
         padding: 0.5rem;
+        background: #ebebeb;
+        color: #000 !important;
+        border-radius: 10px;
     }
 
     @media screen and (min-width: 768px) {
@@ -12507,6 +12526,9 @@
     .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-btn-right {
         border: 0;
         padding: 0.5rem;
+        background: #ebebeb;
+        color: #000 !important;
+        border-radius: 10px;
     }
 
     @media screen and (min-width: 768px) {
@@ -12516,11 +12538,12 @@
     }
 
     .shopping-cart .c-cart-item .c-cart-desc .c-quantity-box .c-quantity .c-input {
-        background-color: #333333;
-        color: #fff;
+        background-color: #fff;
+        color: #000;
         border: 0;
         border: 0;
         text-align: center;
+        font-weight: 900;
     }
 
     header .c-logo-mob .c-lm-img .c-dropdown-cart .c-pay-button-box {
