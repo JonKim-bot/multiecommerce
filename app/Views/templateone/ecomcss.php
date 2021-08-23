@@ -11397,6 +11397,7 @@
 
     .c-product .c-product-card .c-detail .features-caption .c-priceBOX .product__details__widget .quantity .add_qty {
         background-color: var(--themecolor);
+        color: #fff;
     }
 
     .c-product .c-product-card .c-detail .features-caption .c-priceBOX .product__details__widget .quantity input {
