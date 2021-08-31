@@ -126,8 +126,8 @@ class Main extends BaseController
 
 
 
-        $slug = 'capital-shop';
-        // $slug = 'testingname';
+        // $slug = 'capital-shop';
+        $slug = 'twelf';
 
         $this->shop= $this->get_shop($slug);
         $this->load_lang();
@@ -144,6 +144,7 @@ class Main extends BaseController
     
     public function load_lang()
     {
+
 
         $shop = $this->shop;
 
@@ -1304,8 +1305,8 @@ class Main extends BaseController
             
             // $this->premier_pay($_POST['orders_id']);
             // $url = base_url() . "/main/senang_pay/" . $_POST['orders_id'];
-            // $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];
-            $this->hit_pay($_POST['orders_id']);
+            $url = base_url() . "/main/gkash_pay/" . $_POST['orders_id'];
+            // $this->hit_pay($_POST['orders_id']);
                 //payment method link
             die(json_encode([
                 'status' => true,
