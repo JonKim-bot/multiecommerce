@@ -55,13 +55,15 @@
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['address'] ?> :</p>
                                         <a class="c-footer-light_" href="mailto:<?= $shop['email'] ?>?subject=Product Enquiry">
-                                        <?= $shop['address'] ?>
+                                        <!-- <?= $shop['address'] ?> -->
+                                        NO 16, JALAN PERMATANG 28, TAMAN DESA JAYA
                                         </a>
                                     </li>
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['contact_number'] ?> :</p>
                                         <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
-                                            <?= $shop['contact'] ?>
+                                            <!-- <?= $shop['contact'] ?> -->
+                                            0167889773
                                         </a>
                                     </li>
                                     <li>
@@ -71,6 +73,13 @@
                                         </a>
                                     </li>
 
+                                    <li>
+                                        <p class="c-footer-bold_">Company info:</p>
+                                        <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
+                                        PIEGEN SOFTWARE ENTERPRISE (JM0933786M)
+                                        </a>
+                                    </li>
+                                   
                                 </ul>
                             </div>
                         </div>
@@ -80,7 +89,7 @@
                             <div class="footer-tittle">
                                 <h4 class="c-footer-bold-title"><?= $lang['getintouch'] ?></h4>
                                 <ul class="c-social">
-                                    <li>
+                                    <!-- <li>
                                         <a href="<?= $shop['facebook'] ?>">
                                             <i class="fa fa-facebook-square fa-2x c-social-bold"></i>
                                         </a>
@@ -89,7 +98,7 @@
                                         <a href="<?= $shop['insta'] ?>">
                                             <i class="fa fa-instagram fa-2x c-social-bold"></i>
                                         </a>
-                                    </li>
+                                    </li> -->
 
                                 </ul>
                             </div>

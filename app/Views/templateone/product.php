@@ -450,6 +450,7 @@
                                                             <div class="latest-items-active">
                                                                 <!-- Single -->
                                                                 <?php foreach ($upsales_product as $row) { ?>
+                                                                
                                                                     <div class="properties pb-30">
                                                                         <div class="properties-card c-Cardflex">
                                                                             <div class="properties-img">
@@ -489,6 +490,7 @@
                                                                                                 <span style="text-decoration: line-through;">RM <?= $row['product_price'] ?></span>
                                                                                             </span>
                                                                                         <?php } else { ?>
+                                                                                            
                                                                                             <span>RM <?= $row['product_price'] ?>
                                                                                             </span>
                                                                                         <?php } ?>
