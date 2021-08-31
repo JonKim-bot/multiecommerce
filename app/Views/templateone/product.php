@@ -292,13 +292,18 @@
                                                 <div class="c-desc">
                                                     <p><?= $product['product_description'] ?></p>
                                                 </div>
+                                                <?php if($product['product_inner_title'] != ''){ ?>
                                                 <div class="c-name" style="margin-top:20px">
-                                                    <h4><?= $product['label_text'] ?></h4>
+                                                    <h4><?= $product['product_inner_title'] ?></h4>
                                                 </div>
+                                                <?php } ?>
+                                                <?php if($product['product_description_two'] != ''){ ?>
 
                                                 <div class="c-desc">
                                                     <p><?= $product['product_description_two'] ?></p>
                                                 </div>
+                                                <?php } ?>
+
                                             </div>
 
                                         </div>
@@ -329,13 +334,7 @@
                                                 <!-- <p>By Evan Winter</p> -->
                                                 <div class="long-desc">
                                                     <p>
-                                                        If you love #Japan, this is for you.
-                                                        Although it is not possible to travel abroad this year, the trend must continue.
-                                                        Oversized Shirt. If you love #Japan, this is for you.
-                                                        Although it is not possible to travel abroad this year, the trend must continue.
-                                                        Oversized Shirt. If you love #Japan, this is for you.
-                                                        Although it is not possible to travel abroad this year, the trend must continue.
-                                                        Oversized Shirt
+                                                        <?= $product['product_description_three'] ?>
                                                     </p>
                                                 </div>
                                                 <div class="price">

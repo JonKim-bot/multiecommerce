@@ -55,13 +55,7 @@
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table">
-                                                    <tr>
-                                                        <td><h3>Title</h3></td>
-                                                        <td><?= $banner[
-                                                            'title'
-                                                        ] ?></td>
-
-                                                    </tr>
+                                                    
                                                     <tr>
                                                         <td><h3>Type </h3></td>
                                                         <td style="font-size:25px"><?= $banner[

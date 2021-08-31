@@ -42,7 +42,7 @@
                                 <img src= "<?= base_url()  . $about['banner']?>" width="150px" />
 
                                 <div class="form-group">
-                                    <label for="about">Image (For home section two page)</label>
+                                    <label for="about">Image (For home section two page) 750x350</label>
                                     <input type="file" class="form-control" name="banner" placeholder="About" >
                                     <label for="" class="small text-danger">*Leave blank if not change image</label>
 

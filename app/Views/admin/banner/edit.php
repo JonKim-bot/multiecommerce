@@ -42,11 +42,15 @@
                                     <label for="">Decription</label>
                                     <textarea class="form-control" name="description" placeholder="Eg : Open since 1997 "><?= $banner['description']?></textarea>
                                 </div> -->
-                                
+                            
                                 <div class="form-group">
-                                <label for="">Type (enter 1 for desktop , 2 for mobile banner)</label>
+                                <label for="">Type
+
+                                banner(pc) - 1920 x 700
+Banner(mobile) -800 x 600
+                                </label>
                                     <select name="type_id" class="select" id=""  required>
-                                        <option <?= $banner['type_id'] == 1 ? 'selected' : ''?> value="1">Desktop</option>
+                                        <option <?= $banner['type_id'] == 1 ? 'selected' : ''?> value="1">Desktop </option>
                                         <option value="2" <?= $banner['type_id'] == 2 ? 'selected' : ''?>>Mobile</option>
                                     </select>
                                 </div>

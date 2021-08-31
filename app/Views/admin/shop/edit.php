@@ -58,13 +58,20 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="banner">Open</label>
+                        <label for="banner">Shop Open Closed</label>
                         <select name="is_active" class="select" id="" required>
                             <option  value="1" <?= $shop['is_active'] == 1 ? 'selected' :''?>>Open</option>
                             <option  value="0" <?= $shop['is_active'] == 0 ? 'selected' :''?>>Closed</option>
                         </select>
                     </div>
                  
+                                           
+                    <div class="form-group">
+                        <label for="">Closed Message (Only enter if shop status is closed)</label>
+                        <input type="text" class="form-control" name="closed_msg" value="<?= $shop['closed_msg'] ?>" placeholder="e.g. closed reason" required>
+                    </div>
+
+
                     <div class="form-group">
                         <label for="">Description</label>
                         <input type="text" class="form-control" name="description" value="<?= $shop['description'] ?>" placeholder="e.g. Capital Shop open since" required>
@@ -72,11 +79,7 @@
 
 
                     
-                                     
-                    <div class="form-group">
-                        <label for="">Closed Message</label>
-                        <input type="text" class="form-control" name="closed_msg" value="<?= $shop['closed_msg'] ?>" placeholder="e.g. closed reason" required>
-                    </div>
+              
                     <div class="form-group">
                         <label for="">Operating Time</label>
                         <input type="text" class="form-control" name="operating_hour" value="<?= $shop['operating_hour'] ?>" placeholder="e.g. Monday-Sunday - 8AM - 10PM" required>
@@ -87,7 +90,7 @@
                         <input type="number" class="form-control" name="contact" value="<?= $shop['contact'] ?>" placeholder="e.g. 012-123-1232" required>
                     </div>
                     <div class="form-group">
-                        <label for="">Delivery Fee (PER KM)</label>
+                        <label for="">Delivery Fee </label>
                         <input type="number" step="any" class="form-control" name="delivery_fee" value="<?= $shop['delivery_fee'] ?>" placeholder="e.g. RM 3" required>
                     </div>
                     <div class="form-group">
@@ -130,7 +133,7 @@
              
                     <div class="form-group">
                         <label for="">Address</label>
-                        <textarea class="form-control" name="address" id="address" placeholder="Address"><?= $shop['address'] ?>"</textarea>
+                        <textarea class="form-control" name="address" id="address" placeholder="Address"><?= $shop['address'] ?></textarea>
                     </div>
             
                     <div class="form-group mt-2">

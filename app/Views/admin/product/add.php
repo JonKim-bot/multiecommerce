@@ -63,6 +63,13 @@
                                     <label for="">Product Name</label>
                                     <input type="text" class="form-control" name="product" placeholder="e.g. Cake " required>
                                 </div>
+
+                                           
+                                <div class="form-group">
+                                    <label for="">Product Inner Title</label>
+                                    <input type="text" class="form-control" name="product_inner_title" placeholder="e.g. Hotnow " >
+                                </div>
+                                
                                 <div class="form-group">
                                 <label for="banner">Category</label>
 
@@ -83,6 +90,12 @@
                                     <label for="">Product Description Two</label>
                                     <textarea class="form-control " rows="10" name="product_description_two" placeholder="Eg : Special Cake "></textarea>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="">Product Description Three</label>
+                                    <textarea class="form-control " rows="10" name="product_description_three" placeholder="Eg : Special Cake "></textarea>
+                                </div>
+                        
                                 
                           
 

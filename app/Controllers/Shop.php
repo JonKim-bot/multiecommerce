@@ -529,6 +529,7 @@ class Shop extends BaseController
                 //         $banner = '/public/images/shop/' . $new_name;
                 //         $data['image'] = $banner;
                 //     } else {
+                    
                 //         $error = true;
                 //         $error_message = 'Upload failed.';
                 //     }

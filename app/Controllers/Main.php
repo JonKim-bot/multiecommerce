@@ -126,7 +126,7 @@ class Main extends BaseController
 
 
 
-        $slug = 'twelf';
+        $slug = 'capital-shop';
         // $slug = 'testingname';
 
         $this->shop= $this->get_shop($slug);

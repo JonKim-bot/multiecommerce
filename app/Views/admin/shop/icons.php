@@ -49,14 +49,15 @@
 
                     <img src= "<?= base_url()  . $shop['header_icon']?>" width="150px" />
 
+
 <div class="form-group">
-    <label for="icon">Header Icon / Loading icon</label>
+    <label for="icon">Header Icon / Loading icon (203 x 48)</label>
     <input type="file" class="form-control" name="header_icon" placeholder="Banner">
 </div>
                     <img src= "<?= base_url()  . $shop['icon']?>" width="150px" />
 
                     <div class="form-group">
-                        <label for="icon">Icon Shop</label>
+                        <label for="icon">Icon Shop (203 x 48)</label>
 
                         <input type="file" class="form-control" name="icon" placeholder="Banner">
                     </div>
@@ -64,7 +65,7 @@
                     <img src= "<?= base_url()  . $shop['footer_logo']?>" width="150px" />
 
                     <div class="form-group">
-                        <label for="icon">Icon Footer</label>
+                        <label for="icon">Icon Footer (203 x 48)</label>
                         <input type="file" class="form-control" name="icon_footer" placeholder="Banner">
                     </div>
 

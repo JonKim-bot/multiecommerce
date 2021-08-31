@@ -69,7 +69,6 @@
                     <use xlink:href="assets/brand/coreui-pro.svg#signet"></use>
 				</svg> -->
             <span class="c-sidebar-brand-full" style="font-size:20px;">Ecommerce </span>
-            <span class="c-sidebar-brand-minimized" style="font-size:20px;">JlnJln</span>
 
         </div>
         <?php
@@ -553,13 +552,12 @@
                         <span class="badge badge-pill badge-warning">15</span>
                     </a>
 
-                </li>
+                </li>-->
                 <li class="c-header-nav-item dropdown d-md-down-none mx-2">
-                    <a class="c-header-nav-link">
-                        <i class="cil-envelope-open c-icon"></i>
-                        <span class="badge badge-pill badge-info">7</span>
+                    <a class="c-header-nav-link btn-success btn" target="_blank" href="<?= base_url() ?>/main">
+                        Preview Shop
                     </a>
-                </li> -->
+                </li> 
 
                 <li class="c-header-nav-item dropdown">
                     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

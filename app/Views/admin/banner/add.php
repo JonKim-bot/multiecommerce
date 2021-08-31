@@ -47,8 +47,11 @@
                                 </div>
                              -->
                                 <div class="form-group">
-                                <label for="">Type (enter 1 for desktop , 2 for mobile banner)</label>
-                                    <select name="type_id" class="select" id=""  required>
+                                <label for="">Type
+
+banner(pc) - 1920 x 700
+Banner(mobile) -800 x 600
+</label>                                    <select name="type_id" class="select" id=""  required>
                                         <option value="1">Desktop</option>
                                         <option value="2">Mobile</option>
                                     </select>

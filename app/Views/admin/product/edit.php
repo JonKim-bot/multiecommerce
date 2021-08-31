@@ -35,27 +35,6 @@
                         </div>
                     </div> -->
                     <div class="form-group">
-                        <label for="">Product Label Text</label>
-                        <select name="label_text" class="select" id=""  >
-                        <option value="">None</option>
-
-                        <option value="Latest">Latest</option>
-                            <option value="Hotest">Hotest</option>
-                            <option  value="Trending">Trending</option>
-                            <option  value="最新">最新</option>
-                            <option  value="畅销">畅销</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="banner">Image</label>
-                        <input type="file" class="form-control" name="banner" placeholder="Banner">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Product Name</label>
-                        <input type="text" class="form-control" name="product" value="<?= $product['product_name'] ?>" placeholder="e.g. Cake " required>
-                    </div>
-                    <div class="form-group">
                         <label for="">Category
                             <?php $product_category ?>
                         </label>
@@ -76,12 +55,43 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="">Product Label Text</label>
+                        <select name="label_text" class="select" id=""  >
+                        <option value="">None</option>
+
+                        <option value="Latest" <?= $product['label_text'] == "Latest" ? 'selected' : '' ?>>Latest</option>
+                            <option value="Hotest" <?= $product['label_text'] == "Hotest" ? 'selected' : '' ?>>Hotest</option>
+                            <option  value="Trending" <?= $product['label_text'] == "Trending" ? 'selected' : '' ?>>Trending</option>
+                            <option  value="最新" <?= $product['label_text'] == "最新" ? 'selected' : '' ?>>最新</option>
+                            <option  value="畅销" <?= $product['label_text'] == "畅销" ? 'selected' : '' ?>>畅销</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="banner">Image</label>
+                        <input type="file" class="form-control" name="banner" placeholder="Banner">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Product Name</label>
+                        <input type="text" class="form-control" name="product" value="<?= $product['product_name'] ?>" placeholder="e.g. Cake " required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Product Inner Title</label>
+                        <input type="text" class="form-control" name="product_inner_title" value="<?= $product['product_inner_title'] ?>" placeholder="e.g. Hotnow " >
+                    </div>
+                    <div class="form-group">
                         <label for="">Product Description</label>
                         <textarea class="form-control " rows="10" name="product_description" placeholder="Eg : Special Cake "><?= $product['product_description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="">Product Description Two</label>
                         <textarea class="form-control " rows="10" name="product_description_two" placeholder="Eg : Special Cake "><?= $product['product_description_two'] ?></textarea>
+                    </div>
+               
+                    <div class="form-group">
+                        <label for="">Product Description Three</label>
+                        <textarea class="form-control " rows="10" name="product_description_three" placeholder="Eg : Special Cake "><?= $product['product_description_three'] ?></textarea>
                     </div>
                
        

@@ -52,13 +52,16 @@
                             <div class="footer-tittle">
                                 <h4 class="c-footer-bold-title"><?= $lang['contact_us'] ?></h4>
                                 <ul>
+                                <?php if($shop['address'] != ''){ ?>
+
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['address'] ?> :</p>
                                         <a class="c-footer-light_" href="mailto:<?= $shop['email'] ?>?subject=Product Enquiry">
-                                        <!-- <?= $shop['address'] ?> -->
-                                        NO 16, JALAN PERMATANG 28, TAMAN DESA JAYA
+                                        <?= $shop['address'] ?>
+                                        <!-- NO 16, JALAN PERMATANG 28, TAMAN DESA JAYA -->
                                         </a>
                                     </li>
+                                    <?php } ?>
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['contact_number'] ?> :</p>
                                         <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
@@ -68,14 +71,14 @@
                                     </li>
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['email'] ?> :</p>
-                                        <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
+                                        <a class="c-footer-light_" href="mailto:<?= $shop['contact'] ?>">
                                             <?= $shop['email'] ?>
                                         </a>
                                     </li>
 
                                     <li>
                                         <p class="c-footer-bold_">Company info:</p>
-                                        <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
+                                        <a class="c-footer-light_">
                                         PIEGEN SOFTWARE ENTERPRISE (JM0933786M)
                                         </a>
                                     </li>
@@ -89,16 +92,23 @@
                             <div class="footer-tittle">
                                 <h4 class="c-footer-bold-title"><?= $lang['getintouch'] ?></h4>
                                 <ul class="c-social">
-                                    <!-- <li>
+                                <?php if($shop['facebook'] != ''){ ?>
+
+                                    <li>
                                         <a href="<?= $shop['facebook'] ?>">
                                             <i class="fa fa-facebook-square fa-2x c-social-bold"></i>
                                         </a>
                                     </li>
+                                    <?php } ?>
+
+                                    <?php if($shop['insta'] != ''){ ?>
                                     <li>
+                                    
                                         <a href="<?= $shop['insta'] ?>">
                                             <i class="fa fa-instagram fa-2x c-social-bold"></i>
                                         </a>
-                                    </li> -->
+                                    </li>
+                                    <?php } ?>
 
                                 </ul>
                             </div>

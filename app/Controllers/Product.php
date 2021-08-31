@@ -63,6 +63,7 @@ class Product extends BaseController
 
 
         ];
+
         $product = $this->ProductModel->getWhere($where)[0];
         if($product['is_home'] == 1){
             $status = 0;
@@ -234,6 +235,8 @@ class Product extends BaseController
                     'product_price' => $input['product_price'],
                     'label_text' => $_POST['label_text'],
                     'product_description_two' => $_POST['product_description_two'],
+                    'product_description_three' => $_POST['product_description_three'],
+                    'product_inner_title' => $_POST['product_inner_title'],
 
                     'promo_price' => $input['promo_price'],
                     'created_by' => session()->get('login_id'),
@@ -473,6 +476,8 @@ class Product extends BaseController
                     'product_price' => $input['product_price'],
                     'promo_price' => $input['promo_price'],
                     'product_description_two' => $_POST['product_description_two'],
+                    'product_description_three' => $_POST['product_description_three'],
+                    'product_inner_title' => $_POST['product_inner_title'],
 
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
