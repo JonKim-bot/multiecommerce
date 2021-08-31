@@ -300,9 +300,9 @@
                                                     <p><?= $product['product_description_two'] ?></p>
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -327,16 +327,27 @@
                                                 <!-- <h1><?= $product['product_name'] ?></h1>
                                                 <p><?= $product['product_description'] ?></p> -->
                                                 <!-- <p>By Evan Winter</p> -->
+                                                <div class="long-desc">
+                                                    <p>
+                                                        If you love #Japan, this is for you.
+                                                        Although it is not possible to travel abroad this year, the trend must continue.
+                                                        Oversized Shirt. If you love #Japan, this is for you.
+                                                        Although it is not possible to travel abroad this year, the trend must continue.
+                                                        Oversized Shirt. If you love #Japan, this is for you.
+                                                        Although it is not possible to travel abroad this year, the trend must continue.
+                                                        Oversized Shirt
+                                                    </p>
+                                                </div>
                                                 <div class="price">
-                                                    <?php if($product['is_member'] == 1 && $product['is_promo'] == 1 && !empty($customer_data)){ ?>
-                                                            <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
-                                                            <p id="initial_price" style='display:none'><?= $product['promo_price'] ?></p>
+                                                    <?php if ($product['is_member'] == 1 && $product['is_promo'] == 1 && !empty($customer_data)) { ?>
+                                                        <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                        <p id="initial_price" style='display:none'><?= $product['promo_price'] ?></p>
 
-                                                            <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
-                                                    <?php }else if($product['is_promo'] == 1 && $product['is_member'] == 0){ ?>
-                                                            <p id="initial_price" style='display:none'><?= $product['promo_price'] ?></p>
-                                                            <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
-                                                            <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
+                                                        <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
+                                                    <?php } else if ($product['is_promo'] == 1 && $product['is_member'] == 0) { ?>
+                                                        <p id="initial_price" style='display:none'><?= $product['promo_price'] ?></p>
+                                                        <h2 id="product_price">RM <?= $product['promo_price'] ?></h2>
+                                                        <h2 style="text-decoration: line-through;">RM <?= $product['product_price'] ?></h2>
                                                     <?php } else { ?>
                                                         <p id="initial_price" style='display:none'><?= $product['product_price'] ?></p>
 
@@ -346,74 +357,74 @@
                                                 </div>
                                                 <?php if (in_array(1, $shop_function)) { ?>
 
-                                                <?php if(empty($customer_data)){ ?>
-                                                <div class="c-discount">
-                                                    <p class="c-discount-text"><?= $product['member_text'] ?></p>
-                                                 
-                                                </div>
-                                                <div class="c-btn">
-                                                    <a class="r-btn"  href="<?= base_url() ?>/main/signup">
-                                                        <?= $lang['join_as_member'] ?>
-                                                    </a>
-                                                </div>
-                                                <?php } ?>
-                                                <?php } ?>
-                                                
-                                                <?php if(!empty($product_option)){ ?>
-                                                <div class="c-option">
-                                                    <div class="select-Categories pb-30">
-                                                        <?php foreach ($product_option as $row) { ?>
-                                                            <div class="c-optionBOX">
-                                                                <div class="c-title">
-                                                                    <p class="menu_title"><?= $row['name']  ?>
-                                                                        <span style="color:red">
-                                                                            <?= $row['minimum_required'] == 1 ? "*Required" : "" ?>
-                                                                        </span>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="c-selectionBOX">
-                                                                    <?php if ($row['minimum_required'] != 1) { ?>
+                                                    <?php if (empty($customer_data)) { ?>
+                                                        <div class="c-discount">
+                                                            <p class="c-discount-text"><?= $product['member_text'] ?></p>
 
-                                                                        <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                            <!-- <div class="c-selectionBOX"> -->
-                                                                            <div class="c-selection">
-                                                                                <div class="form-check c-selection-box">
-                                                                                    <label class="form-check-label c-sb-box">
-                                                                                        <div class="c-sbb-left">
-                                                                                            <input type="checkbox" class="c-single form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <p class="optionName_"><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
-                                                                                        </div>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- </div> -->
-                                                                        <?php } ?>
-                                                                    <?php } else { ?>
-                                                                        <?php foreach ($row['selection'] as $rowselect) { ?>
-                                                                            <!-- <div class="c-selectionBOX"> -->
-                                                                            <div class="c-selection">
-                                                                                <div class="form-check c-selection-box">
-                                                                                    <label class="form-check-label c-sb-box">
-                                                                                        <div class="c-sbb-left">
-                                                                                            <input type="radio" class="c-single form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
-                                                                                        </div>
-                                                                                        <div>
-                                                                                            <p class="optionName_"><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
-                                                                                        </div>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- </div> -->
-                                                                        <?php } ?>
-                                                                    <?php } ?>
-                                                                </div>
+                                                        </div>
+                                                        <div class="c-btn">
+                                                            <a class="r-btn" href="<?= base_url() ?>/main/signup">
+                                                                <?= $lang['join_as_member'] ?>
+                                                            </a>
+                                                        </div>
+                                                    <?php } ?>
+                                                <?php } ?>
 
-                                                            </div>
-                                                        <?php } ?>
+                                                <?php if (!empty($product_option)) { ?>
+                                                    <div class="c-option">
+                                                        <div class="select-Categories pb-30">
+                                                            <?php foreach ($product_option as $row) { ?>
+                                                                <div class="c-optionBOX">
+                                                                    <div class="c-title">
+                                                                        <p class="menu_title"><?= $row['name']  ?>
+                                                                            <span style="color:red">
+                                                                                <?= $row['minimum_required'] == 1 ? "*Required" : "" ?>
+                                                                            </span>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="c-selectionBOX">
+                                                                        <?php if ($row['minimum_required'] != 1) { ?>
+
+                                                                            <?php foreach ($row['selection'] as $rowselect) { ?>
+                                                                                <!-- <div class="c-selectionBOX"> -->
+                                                                                <div class="c-selection">
+                                                                                    <div class="form-check c-selection-box">
+                                                                                        <label class="form-check-label c-sb-box">
+                                                                                            <div class="c-sbb-left">
+                                                                                                <input type="checkbox" class="c-single form-check-input" product_option_name="<?= $row['name'] ?>" min_required="<?= $row['minimum_required'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" name="type" value="<?= $rowselect['product_option_selection_id'] ?>">
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <p class="optionName_"><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- </div> -->
+                                                                            <?php } ?>
+                                                                        <?php } else { ?>
+                                                                            <?php foreach ($row['selection'] as $rowselect) { ?>
+                                                                                <!-- <div class="c-selectionBOX"> -->
+                                                                                <div class="c-selection">
+                                                                                    <div class="form-check c-selection-box">
+                                                                                        <label class="form-check-label c-sb-box">
+                                                                                            <div class="c-sbb-left">
+                                                                                                <input type="radio" class="c-single form-check-input form-radio" min_required="<?= $row['minimum_required'] ?>" product_option_name="<?= $row['name'] ?>" selection_name="<?= $rowselect['product_option_name'] ?>" product_option_id="<?= $row['product_option_id'] ?>" selection_price="<?= $rowselect['selection_price'] ?>" value="<?= $rowselect['product_option_selection_id'] ?>" name="<?= $row['product_option_id'] ?>">
+                                                                                            </div>
+                                                                                            <div>
+                                                                                                <p class="optionName_"><?= $rowselect['product_option_name'] ?> + RM <?= $rowselect['selection_price'] ?></p>
+                                                                                            </div>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- </div> -->
+                                                                            <?php } ?>
+                                                                        <?php } ?>
+                                                                    </div>
+
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 <?php } ?>
                                                 <div class="c-priceBOX">
                                                     <h2><?= $lang['quantity'] ?></h2>
@@ -428,7 +439,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="c-btn" >
+                                                <div class="c-btn">
                                                     <div class="r-btn add-to-cart-button" style="cursor:pointer">
                                                         <?= $lang['addto_cart'] ?>
                                                     </div>
@@ -437,51 +448,50 @@
                                                 <!--Books review Start -->
 
                                                 <?php if (in_array(3, $shop_function)) { ?>
-                                                    <?php if(!empty($upsales_product)){ ?>
-                                                    <section class="latest-items section-padding fix c-likes">
-                                                        <div class="row">
-                                                            <div class="col-xl-12">
-                                                                <div class="section-tittle text-center c-upsales-title">
-                                                                    <h2 class="c-title"><?= $lang['upsales'] ?></h2>
+                                                    <?php if (!empty($upsales_product)) { ?>
+                                                        <section class="latest-items section-padding fix c-likes">
+                                                            <div class="row">
+                                                                <div class="col-xl-12">
+                                                                    <div class="section-tittle text-center c-upsales-title">
+                                                                        <h2 class="c-title"><?= $lang['upsales'] ?></h2>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="">
-                                                            <div class="latest-items-active">
-                                                                <!-- Single -->
-                                                                <?php foreach ($upsales_product as $row) { ?>
-                                                                
-                                                                    <div class="properties pb-30">
-                                                                        <div class="properties-card c-Cardflex">
-                                                                            <div class="properties-img">
-                                                                                <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
-                                                                                    <img class="c-Pimg" src="<?= base_url() .  $row['image'] ?>" alt="">
-                                                                                </a>
-                                                                                <!-- <div class="socal_icon">
+                                                            <div class="">
+                                                                <div class="latest-items-active">
+                                                                    <!-- Single -->
+                                                                    <?php foreach ($upsales_product as $row) { ?>
+                                                                        <div class="properties pb-30">
+                                                                            <div class="properties-card c-Cardflex">
+                                                                                <div class="properties-img">
+                                                                                    <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                        <img class="c-Pimg" src="<?= base_url() .  $row['image'] ?>" alt="">
+                                                                                    </a>
+                                                                                    <!-- <div class="socal_icon">
 
                                                                                     <a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><i class="ti-zoom-in"></i></a>
                                                                                 </div> -->
-                                                                            </div>
-
-                                                                            <a class="c-name" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
-                                                                                <h4><?= $row['product_name'] ?></h4>
-                                                                            </a>
-                                                                            <a class="c-desc" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
-                                                                                <p style="color:black"><?= $row['product_description'] ?></p>
-                                                                            </a>
-                                                                            <a class="c-btm" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
-                                                                                <div class="c-btn"><?= $lang['learn_more'] ?></div>
-                                                                                <div class="c-price">
-                                                                                    <?php if ($row['is_promo'] == 1) { ?>
-                                                                                        <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
-                                                                                        <p class="t-price">RM <?= $row['promo_price'] ?></p>
-                                                                                    <?php } else { ?>
-                                                                                        <p class="t-price">RM <?= $row['product_price'] ?></p>
-                                                                                    <?php } ?>
                                                                                 </div>
-                                                                            </a>
-                                                                            <!-- <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3> -->
-                                                                            <!-- <div class="properties-caption properties-caption2">
+
+                                                                                <a class="c-name" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                    <h4><?= $row['product_name'] ?></h4>
+                                                                                </a>
+                                                                                <a class="c-desc" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                    <p style="color:black"><?= $row['product_description'] ?></p>
+                                                                                </a>
+                                                                                <a class="c-btm" href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>">
+                                                                                    <div class="c-btn"><?= $lang['learn_more'] ?></div>
+                                                                                    <div class="c-price">
+                                                                                        <?php if ($row['is_promo'] == 1) { ?>
+                                                                                            <p class="t-promo-price">RM <?= $row['product_price'] ?></p>
+                                                                                            <p class="t-price">RM <?= $row['promo_price'] ?></p>
+                                                                                        <?php } else { ?>
+                                                                                            <p class="t-price">RM <?= $row['product_price'] ?></p>
+                                                                                        <?php } ?>
+                                                                                    </div>
+                                                                                </a>
+                                                                                <!-- <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3> -->
+                                                                                <!-- <div class="properties-caption properties-caption2">
                                                                                 <h3><a href="<?= base_url() . "/main/product_detail/" .   $row['product_id'] ?>"><?= $row['product_name'] ?></a></h3>
                                                                                 <div class="properties-footer">
                                                                                     <div class="price">
@@ -497,13 +507,13 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div> -->
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                <?php } ?>
-                                                                <!-- Single -->
+                                                                    <?php } ?>
+                                                                    <!-- Single -->
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </section>
+                                                        </section>
                                                     <?php } ?>
 
                                                 <?php } ?>
@@ -589,7 +599,7 @@
 
     function calculate_product_price() {
         var total_selection_price = get_selected_value().selected_total_price;
-     
+
         var product_price = $('#initial_price').text().replace("RM", '');
         var product_price = parseFloat(product_price) + parseFloat(total_selection_price);
 
