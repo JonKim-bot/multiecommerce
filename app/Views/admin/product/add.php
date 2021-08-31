@@ -107,6 +107,22 @@
                                 </div>
 
                                 <?php } ?>
+                                <?php if(in_array(3,session()->get('shop_data')['shop_function'])){ ?>
+                                    <div class="form-group">
+                                        <label for="">Upsales
+                                        </label>
+                                        <select name="upsales_product_id[]" class="select" id="" multiple required>
+                                        <?php foreach($all_product as $row){ ?>
+                                                <option value="<?= $row['product_id'] ?>"><?= $row['product_name']?></option>
+
+                                            <?php 
+                                            
+                                        }
+                                            ?>
+                                        </select>
+
+                                    </div>
+                                    <?php } ?>
                             
                                 <div class="form-group">
                                     <label for="">Product Price</label>
@@ -124,7 +140,15 @@
                                 </div>
                                 </div>
 
+                                <div class="form-group">
 
+                                    <div class="form-check">
+                               
+                                        <input type="checkbox" class="form-check-input" name="is_member">
+
+                                        <label class="form-check-label">Tick if promo price for member only</label>
+                                    </div>
+                                    </div>
 
                                 <div class="form-group">
                                     <button class="btn btn-primary float-right" type="submit"> Submit</button>

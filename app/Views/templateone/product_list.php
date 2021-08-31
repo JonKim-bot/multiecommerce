@@ -19,7 +19,7 @@
                                 </div>
                             </div>
                             <div class="c-btm">
-                                <div class="c-btn">了解更多</div>
+                                <div class="c-btn"><?= $lang['learn_more'] ?></div>
                                 <div class="c-price">
                                 <?php if($row['is_member'] == 1 && $row['is_promo'] == 1 && !empty($customer_data)){ ?>
                                         <p class="t-promo-price">RM <?= $row['product_price'] ?></p>

@@ -55,6 +55,7 @@
     $lang['continue_shopping'] = '继续购物';
     $lang['payment_status'] = '付款状态';
     $lang['payment_method'] = '付款方法';
+    
     $lang['my_cart'] = '我的购物车';
 
     $lang['my_product'] = '我的产品';

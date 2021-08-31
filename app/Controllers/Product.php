@@ -247,11 +247,19 @@ class Product extends BaseController
                     $data['is_promo'] = 1;
                 }else{
                     $data['is_promo'] = 0;
-                    
+
                 }
+                if(!empty($_POST['is_member'])){
+                    $data['is_member'] = 1;
+                    $data['is_promo'] = 1;
+                }else{
+                    $data['is_member'] = 0;
+                }
+
                 if(!empty($_POST['member_text'])){
                     $data['member_text'] = ($_POST['member_text']);
                 }
+
                 // dd($data);
                 
                 $product_id = $this->ProductModel->insertNew($data);
@@ -268,7 +276,9 @@ class Product extends BaseController
                 }
                 
 
-                if (!empty($input['upsales_product_id'])) {
+                if (!empty($this->request->getPost('upsales_product_id'))) {
+
+                    // $this->debug($input['category']);
                     foreach ($input['upsales_product_id'] as $row) {
                         $data = [
                             'upsales_product_id' => $row,
@@ -514,6 +524,7 @@ class Product extends BaseController
                         $error_message = 'Upload failed.';
                     }
                 }
+                
 
                 $this->ProductModel->updateWhere($where, $data);
                 // $this->make_product_image($banner,$product_id);
