@@ -126,8 +126,8 @@ class Main extends BaseController
 
 
 
-        // $slug = 'capital-shop';
-        $slug = 'twelf';
+        $slug = 'capital-shop';
+        // $slug = 'twelf';
 
         $this->shop= $this->get_shop($slug);
         $this->load_lang();
@@ -2909,5 +2909,21 @@ class Main extends BaseController
             )));
         }
     }
+
+    function privacy_policy(){
+        $this->load_view('private_policy');
+
+    }
+
+    function tnc(){
+        $this->load_view('tnc');
+    }
     
+    function shipping_policy(){
+        $this->load_view('shipping_policy');
+
+    }
+    function return_refund_policy(){
+        $this->load_view('return_refund_policy');
+    }
 }

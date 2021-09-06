@@ -24,11 +24,11 @@
                             <div class="footer-tittle">
                                 <!-- <h4>Quick Links</h4> -->
                                 <ul>
-                                    <li><a class="c-footer-bold" href="https://webieasy.com/privacy_policy.php">Private policy</a></li>
-                                    <li><a class="c-footer-bold" href="https://webieasy.com/return_refund_policy.php">RETURN & REFUND POLICY</a></li>
-                                    <li><a class="c-footer-bold" href="https://webieasy.com/shipping_policy.php">Shipping policy</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/privacy_policy">Private policy</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/return_refund_policy">RETURN & REFUND POLICY</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/shipping_policy">Shipping policy</a></li>
                                     
-                                    <li><a class="c-footer-bold" href="https://webieasy.com/tnc.php">TERM AND CONDITIONS</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/tnc">TERM AND CONDITIONS</a></li>
 
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/index#product"><?= $lang['my_product'] ?></a></li>
@@ -172,6 +172,7 @@
 <script src="<?= base_url() ?>/assets/assetsecom/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js"></script>
