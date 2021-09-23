@@ -21,8 +21,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/themify-icons.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/slick.css">
     <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/nice-select.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/bcss.css">
+
     <!-- <link rel="stylesheet" href="<?= base_url() ?>/assets/assetsecom/css/custom.css"> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/floatwpp/floating-wpp.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

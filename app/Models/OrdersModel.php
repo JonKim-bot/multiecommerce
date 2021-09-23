@@ -47,6 +47,7 @@ class OrdersModel extends BaseModel
         $this->builder->join('payment_method', 'orders.payment_method_id = payment_method.payment_method_id','left');
         $this->builder->join('order_customer', 'order_customer.order_customer_id = orders.order_customer_id','left');
         $this->builder->join('orders_status', 'orders_status.orders_status_id = orders.orders_status_id','left');
+
         $this->builder->join('order_detail', 'order_detail.orders_id = orders.orders_id','left');
         $this->builder->join('product', 'product.product_id = order_detail.product_id','left');
         $this->builder->join('promo', 'promo.promo_id = orders.promo_id','left');
@@ -315,8 +316,8 @@ class OrdersModel extends BaseModel
     }
     function get_days($date_from,$date_to){
 
-        $date_from = strtotime($date_from,);
-        $date_to = strtotime($date_to,);
+        $date_from = strtotime($date_from);
+        $date_to = strtotime($date_to);
         $days = $date_to - $date_from;
         $days = ($days / (60 * 60 * 24));
 

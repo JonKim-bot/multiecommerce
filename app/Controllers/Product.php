@@ -51,6 +51,7 @@ class Product extends BaseController
             //  redirect()->to(base_url('access/login/'));
             $this->isMerchant = true;
             $where = [
+                
                 'product.shop_id' => session()->get('shop_data')['shop_id']
             ];
             $all_product = $this->ProductModel->getWhereRaw($where);
@@ -197,6 +198,7 @@ class Product extends BaseController
         }
 
     }
+
     public function add()
     {
         $where = [

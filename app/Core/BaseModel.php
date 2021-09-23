@@ -847,6 +847,7 @@ class BaseModel extends Model
     }
    
     function checkSlug($where){
+        
         $this->builder->select("*");
         $this->builder->from($this->tableName);
         $this->builder->where($where);

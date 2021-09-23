@@ -71,7 +71,6 @@
                                 <a id="apply_promo" class="text-white" style="padding-top:12px"><?= $lang['apply'] ?></a>
                                 <input type="hidden" id="promo_id" value="0">
                                 <input type="hidden" id="promo_type_id" value="0">
-
                             </form>
                         </div>
 

@@ -13,6 +13,7 @@ use App\Models\AboutModel;
 use App\Models\CategoryModel;
 use App\Models\ProductImageModel;
 use App\Models\OrdersModel;
+
 use App\Models\MerchantModel;
 use App\Models\AnnouncementModel;
 use App\Models\BrandModel;
@@ -114,6 +115,7 @@ class Main extends BaseController
         }
         
 
+
         if (!empty($this->session->get("customer_data"))) {
             $this->pageData['customer_data'] = $this->session->get("customer_data");
 
@@ -122,7 +124,9 @@ class Main extends BaseController
             $this->pageData['customer_data'] = array();
         }
         $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
+        
         $slug = $subdomain_arr[0];
+
 
 
 
@@ -529,6 +533,7 @@ class Main extends BaseController
         }
     }
     
+    
     public function validate_contact($contact){
         $input['contact'] = $contact;
         $input['contact'] = str_replace(" ","",$input['contact']);
@@ -677,6 +682,7 @@ class Main extends BaseController
         $this->validate_function(1,$this->pageData['shop_function']);
         $shop = $this->shop;
 
+
 		if($_POST){
 
 			$input = $this->request->getPost();
@@ -714,6 +720,7 @@ class Main extends BaseController
         $this->validate_function(1,$this->pageData['shop_function']);
 
         $this->pageData['point'] = $this->PointModel->get_balance($this->session->get('customer_id'));
+
 		if($_POST){
 
 			$input = $this->request->getPost();
@@ -1070,6 +1077,7 @@ class Main extends BaseController
         }
     }
     
+    
     public function apply_promo(){
 
         if(isset($_POST)){
@@ -1163,6 +1171,7 @@ class Main extends BaseController
             }
         }
     }
+
     function startsWith ($string, $startString) 
     { 
 
@@ -1197,6 +1206,7 @@ class Main extends BaseController
         $this->pageData['order_history'] = $order_history;
 
         $this->load_view('order_history',$shop);
+
 
 
     }
@@ -2871,6 +2881,7 @@ class Main extends BaseController
     public function minus_qty()
     {
         if ($_POST) {
+            
             $input = $this->request->getPost();
             $index = $input['index'];
             $cart = $this->session->get('cart');
@@ -2910,6 +2921,7 @@ class Main extends BaseController
         }
     }
 
+    
     function privacy_policy(){
         $this->load_view('private_policy');
 
