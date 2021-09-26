@@ -437,6 +437,21 @@
             <?php } ?>
        
              
+            <?php if(in_array(9,session()->get('shop_data')['shop_function'])){ ?>
+
+                    <li>
+                        <a class="c-sid ebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction/wallet">
+                            <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
+                            E-wallet
+                        </a>
+                    </li>
+                    <li>
+                        <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction/topup">
+                            <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
+                            E-wallet topup
+                        </a>
+                    </li>
+            <?php } ?>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">

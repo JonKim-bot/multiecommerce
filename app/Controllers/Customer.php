@@ -4,6 +4,7 @@ use App\Core\BaseController;
 use App\Models\CustomerModel;
 use App\Models\OrdersModel;
 use App\Models\PointModel ;
+use App\Models\WalletModel ;
 
 
 class Customer extends BaseController
@@ -17,7 +18,8 @@ class Customer extends BaseController
         $this->CustomerModel = new CustomerModel();
         $this->OrdersModel = new OrdersModel();
         $this->PointModel  = new PointModel ();
-      
+        $this->WalletModel  = new WalletModel ();
+
         if (session()->get('admin_data')['type'] == 'MERCHANT') {
             //  redirect()->to(base_url('access/login/'));
             $shop_data = session()->get('shop_data');
@@ -246,6 +248,9 @@ class Customer extends BaseController
         $this->pageData['transaction'] = $record;
         $this->pageData['total_point'] =  $this->PointModel->get_balance($customer_id);
 
+        $record = $this->WalletModel->get_transaction_by_customer($where);
+        $this->pageData['transaction_wallet'] = $record;
+        $this->pageData['total_wallet'] =  $this->WalletModel->get_balance($customer_id);
 
         echo view('admin/header', $this->pageData);
         echo view('admin/customer/detail');
