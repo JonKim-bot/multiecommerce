@@ -78,6 +78,8 @@ class BaseController extends Controller
         $this->ShopFunctionModel = new ShopFunctionModel();
 
     }
+
+
     public function getShopFunction($shop_id = ""){
         $shop_data = session()->get('shop_data');
 

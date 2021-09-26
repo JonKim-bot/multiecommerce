@@ -56,6 +56,15 @@ class CustomerModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }   
+    function getCustomerData($customer_id,$limit = "", $page = 1, $filter = array()){
+        $builder = $this->db->table($this->tableName);
+        $builder->select('customer.*, role.*');
+        $builder->join('role', 'role.role_id = customer.role_id');
+        $builder->where('customer.customer_id',$customer_id);
+        // $builder->groupBy('order_customer.full_name');
+        $query = $builder->get();
+        return $query->getResultArray()[0];
+    }   
     public function getGroupTotalSales($customer_id)
     {
         // SELF

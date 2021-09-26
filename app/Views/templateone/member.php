@@ -241,12 +241,12 @@
                 </div>
                 <div class="modal-body c-modal-body">
                     <div class="col-12 form-group p_star">
-                    <input type="text" class="form-control" placeholder="<?= $lang['topupamount'] ?>" name="name" required />
+                    <input type="text" class="form-control" id="amount" placeholder="<?= $lang['topupamount'] ?>" required />
                 </div>
 
                 </div>
                 <div class="modal-footer c-modal-footer">
-                    <button type="submit"   class="btn btn-secondary c-btn"><?= $lang['submit'] ?></button>
+                    <button type="submit"   class="topup btn btn-secondary c-btn" id="topup_button"><?= $lang['submit'] ?></button>
                 </div>
             </div>
         </div>
@@ -538,4 +538,69 @@
         }
         load_gift();
         load_voucher();
+
+
+
+        $("#topup_button").on('click', function() {
+
+        var postParam = {
+            amount: $('#amount').val(),
+        }
+      //premioer pay
+      // $.post("<?= base_url('main/make_payment') ?>", postParam, function(data){
+      //     data = JSON.parse(data);
+
+      //     if(payment_method_id == 3){
+      //             // pay by online banking
+      //         if(data.code == 0){
+      //             location.href = (data.data);
+      //         }else{
+      //             alert(data.message);
+      //         }
+      //     }else{
+      //         // pay by others
+      //         if(data.status){
+      //             window.open (data.url);
+      //         }
+      //     }
+      // });
+      //senang pay
+    //   $('#topup_button').text("Processing...");
+    //   $('#topup_button').prop('disabled', true);
+
+
+      $.post("<?= base_url('main/topup') ?>", postParam, function(data) {
+         data = JSON.parse(data);
+         $('#topup_button').text("Pay");
+         $('#topup_button').prop('disabled', false);
+            // pay by others
+        if (data.status) {
+            windowLocation(data.url);
+        }
+      });
+   });
+
+   function windowLocation(url) {
+      var X = setTimeout(function() {
+         window.location.replace(url);
+         return true;
+      }, 300);
+
+      if (window.location = url) {
+         clearTimeout(X);
+         return true;
+      } else {
+         if (window.location.href = url) {
+            clearTimeout(X);
+            return true;
+         } else {
+            clearTimeout(X);
+            window.location.replace(url);
+            return true;
+         }
+      }
+      return false;
+   };
+
+
     </script>

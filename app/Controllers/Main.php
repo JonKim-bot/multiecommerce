@@ -46,6 +46,8 @@ use App\Models\GiftModel;
 use App\Models\VoucherModel;
 use App\Models\CustomerVoucherModel;
 use App\Models\CustomerGiftModel;
+use App\Models\WalletModel;
+use App\Models\WalletTopupModel;
 
 class Main extends BaseController
 {
@@ -64,7 +66,11 @@ class Main extends BaseController
     {
         $this->NotificationResponseModel = new NotificationResponseModel();
         $this->ShopTokenModel = new ShopTokenModel();
+        $this->WalletTopupModel = new WalletTopupModel();
 
+        $this->WalletModel = new WalletModel();
+
+        
         $this->GiftModel = new GiftModel();
         $this->CustomerVoucherModel = new CustomerVoucherModel();
         $this->VoucherModel = new VoucherModel();
@@ -1285,8 +1291,45 @@ class Main extends BaseController
 
         curl_close($ch);
     }
+    public function topup(){
+        $shop = $this->shop;
+        $data = [
+            'customer_id' => $this->session->get('customer_id'),
+            'amount' => $_POST['amount'],
+            'shop_id' => $shop['shop_id'],
+        ];
 
+        $topup_id = $this->WalletTopupModel->insertNew($data);
+        $where = [
+            'wallet_topup.wallet_topup_id' => $topup_id,
+        ];
+        $this->WalletTopupModel->updateWhere($where,
+        ['reward' => $this->get_shop_reward($shop['shop_id'],$_POST['amount'])]
+        );
+        
+        $url = base_url() . "/main/gkash_pay_topup/" . $topup_id;
+        // $this->hit_pay($_POST['orders_id']);
+            //payment method link
+        die(json_encode([
+            'status' => true,
+            
+            'url' => $url,
+        ]));
+    }
 
+    public function get_shop_reward($shop_id,$amount){
+        $where = [
+            'topupreward.shop_id' => $shop_id,
+            'topupreward.above <=' => $amount,
+
+        ];
+        $reward = $this->TopuprewardModel->getReward($where);
+        if(!empty($reward)){
+            return $reward[0]['reward'];
+        }else{
+            return 0;
+        }
+    }
 
     public function make_payment(){
         $where = [
@@ -1381,30 +1424,31 @@ class Main extends BaseController
             if($_REQUEST){
 
                 $response = json_encode($_REQUEST, true);
-
                 if($_REQUEST['status'] == "88 - Transferred"){
 
                     $where = [
-                        'response' => $response,
+                        'cart_id' => $_REQUEST['cartid'],
                         'type' => 'callback sucess',
+
                     ];
-                    
+
                     $senang = $this->PremierResponseModel->getWhere($where);
                     if(empty($senang)){
     
                         $data = array(
                             'response' => $response,
                             'type' => 'callback sucess',
+                            'cart_id' => $_REQUEST['cartid'],
+
                         );
                         $this->PremierResponseModel->insertNew($data);
         
                         // return redirect()->to(url('success'));
-        
                         $this->call_back_to_order_gkash($_REQUEST['cartid']);
                     }
                 }else{
                     $where = [
-                        'response' => $response,
+                        'cart_id' => $_REQUEST['cartid'],
                         'type' => 'callback failed',
                     ];
                     
@@ -1414,6 +1458,7 @@ class Main extends BaseController
                         $data = array(
                             'response' => $response,
                             'type' => 'callback failed',
+                            'cart_id' => $_REQUEST['cartid'],
                         );
                         $this->PremierResponseModel->insertNew($data);
         
@@ -1782,6 +1827,30 @@ class Main extends BaseController
     public function member()
     {
         $shop = $this->shop;
+
+        
+        if(!empty($_GET['code'])){
+            $where_code = [
+                'wallet_topup.order_payment_id' => $_GET['code'],
+            ];
+            $orders_code_ = $this->WalletTopupModel->getWhere($where_code);
+            if(!empty($orders_code_)){
+                $orders_code_ = $orders_code_[0];
+                if($orders_code_['customer_id'] > 0){
+                    if (empty($this->session->get("customer_data"))) {
+                        $this->set_customer_session($orders_code_['customer_id']);
+                        // $this->payment($order_code);
+                        return redirect()->to(base_url($_SERVER["REQUEST_URI"], 'refresh'));
+                    }else{
+                        return redirect()->to(base_url('/main/member' ,'refresh'));
+
+                    }
+                }else{
+                    return redirect()->to(base_url('/main/member' , 'refresh'));
+    
+                }
+            }
+        }
 
         $this->validate_function(1,$this->pageData['shop_function']);
 
@@ -2456,7 +2525,7 @@ class Main extends BaseController
         return $transId;
     }
 
-    function update_order_payment_id($orders_id,$order_payment_id){
+    function update_order_payment_id($orders_id,$order_payment_id,$is_topup = 0){
         $where = [
             'orders.orders_id' => $orders_id
         ];
@@ -2467,9 +2536,85 @@ class Main extends BaseController
         $this->OrdersModel->updateWhere($where,$data); 
         $data['orders_id'] = $orders_id;    
         $data['is_order'] = 1;    
+        
+        if($is_topup == 1){
+            $where = [
+                'wallet_topup.wallet_topup_id' => $orders_id
+            ];
+            
+            $this->WalletTopupModel->updateWhere($where,
+            [
+                'order_payment_id' => $order_payment_id,
+            ]
+            ); 
+            $data['is_order'] = 0;    
+        }
 
         $this->OrdersLogModel->insertNew($data);    
     }
+
+
+    function gkash_pay_topup($topup_id){
+        $where = [
+            'wallet_topup.wallet_topup_id' => $topup_id
+        ];
+        $topup = $this->WalletTopupModel->getWhere($where)[0];
+
+        $orderId = $this->generateId();
+
+        $this->update_order_payment_id($topup_id,$orderId,1);
+
+        $shop = $this->get_shop($topup['shop_id'],true);
+
+        $detail = 'Topup amount ' . $topup['amount'] ; 
+        
+        $CID = 'M161-U-20320';
+        $signatureKey = 'hNyRMiIWlo8ijtd';
+        
+        $returnurl = base_url() . "/main/member?code=" . $orderId ;
+       
+        $callbackurl =   base_url() . '/main/gkash_callback';
+        // $returnurl ='http://capital-shop.piegendevelop.com/main';
+        // $callbackurl ='http://capital-shop.piegendevelop.com/main/call_back_to_order';
+        $signatureKey = strtoupper($signatureKey);
+        $CID = strtoupper($CID);
+        $orderId = strtoupper($orderId);
+
+        $customer = $this->CustomerModel->getCustomerData($topup['customer_id']);
+        $signature_arr = array(
+            $signatureKey,
+            $CID,
+            $orderId,
+            number_format($topup['amount'], 2, '', ''),
+            'MYR'
+        );
+    
+        $signature = hash('sha512', strtoupper(implode(";", $signature_arr)));
+        $data = array(
+            'cid' => $CID,
+            'currency' => "MYR",
+            'cart_id' => $orderId,
+            'detail' => $detail,
+            'return_url' => $returnurl,
+            'client_ip' => $_SERVER['REMOTE_ADDR'],
+            'address' => $customer['address'],
+            'callback_url' => $callbackurl,
+            'amount' => $topup['amount'],
+            'signature' => $signature,
+            'name' => $customer['name'],
+            'order_id' => $topup,
+            'post_url' => 'https://api-staging.pay.asia/api/paymentform.aspx',
+            'email' => $customer['email'],
+            // 'email' => 'yongrou74@hotmail.com',
+            'contact' => $customer['contact'],
+        );
+
+        $this->pageData['data'] = $data;
+       
+        echo view('admin/gkash', $this->pageData);
+
+    }
+
 
 
 
@@ -2832,6 +2977,29 @@ class Main extends BaseController
         }
 
     }
+
+    public function update_topup($topup_id){
+       
+        $where = [
+            'wallet_topup.wallet_topup_id' => $topup_id
+        ];
+
+        $data = array(
+            "is_paid" => 1,
+        );
+        $orders = $this->WalletTopupModel->updateWhere($where,$data);
+
+        $topup = $this->WalletTopupModel->getWhere($where)[0];
+
+        $this->WalletModel->wallet_in(
+            $topup['customer_id'],
+            $topup['amount'] + $topup['reward'],
+            'top up RM ' . $topup['amount'] .  " get reward " . $topup['reward'],
+            $topup['wallet_topup_id'],
+        );
+
+    }
+
     function call_back_to_order($order_id){
 
         
@@ -2856,14 +3024,17 @@ class Main extends BaseController
 
         $orderlog = $this->OrdersLogModel->getWhere($where)[0];
 
-        $where = [
-            'orders.orders_id' =>  $orderlog['orders_id']
-        ];
-        $orders = $this->OrdersModel->getWhere($where);
+        if($orderlog['is_order'] == 1){
 
-       
-
-        $this->update_order($orderlog['orders_id'],3);
+            $where = [
+                'orders.orders_id' =>  $orderlog['orders_id']
+            ];
+            $orders = $this->OrdersModel->getWhere($where);
+    
+            $this->update_order($orderlog['orders_id'],3);
+        }else{
+            $this->update_topup($orderlog['orders_id']);
+        }
         
     }
 
