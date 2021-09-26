@@ -416,7 +416,7 @@ class Shop extends BaseController
 
                 $data = [
                     'shop_name' => $input['shop'],
-                    'slug' => $this->slugify($input['shop']),
+                    // 'slug' => $this->slugify($input['shop']),
 
                     'shop_chinese_name' => $input['shop_name'],
                     // 'url' => $input['url'],

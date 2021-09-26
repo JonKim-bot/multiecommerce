@@ -23,6 +23,11 @@
     $lang['country'] ='Country';
     $lang['you_may_also_like'] ='Guess you like';
     $lang['change_photo'] ='Change photo';
+    $lang['topupreward'] ='Top up reward';
+    $lang['above'] = 'Top up above';
+    $lang['reward'] = 'Get reward';
+    $lang['topup'] = 'Top up now';
+    $lang['topupamount'] = 'Topup Amount';
 
     $lang['edit'] ='Edit';
     $lang['share_link'] ='Share Link';

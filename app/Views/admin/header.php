@@ -472,6 +472,15 @@
                             </a>
                         </li>
                         <?php } ?>
+                        <?php if(in_array(9,session()->get('shop_data')['shop_function'])){ ?>
+
+<li>
+    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'topupreward' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Topupreward">
+        <i class="fa fa-percent c-sidebar-nav-icon"></i>
+       Top up reward
+    </a>
+</li>
+<?php } ?>
                         <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
 
                         <li>

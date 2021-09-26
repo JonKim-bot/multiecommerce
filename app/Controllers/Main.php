@@ -13,6 +13,7 @@ use App\Models\AboutModel;
 use App\Models\CategoryModel;
 use App\Models\ProductImageModel;
 use App\Models\OrdersModel;
+use App\Models\TopuprewardModel;
 
 use App\Models\MerchantModel;
 use App\Models\AnnouncementModel;
@@ -69,7 +70,8 @@ class Main extends BaseController
         $this->VoucherModel = new VoucherModel();
         $this->CustomerGiftModel = new CustomerGiftModel();
         $this->ProductUpsalesModel = new ProductUpsalesModel();
-
+        $this->TopuprewardModel = new TopuprewardModel();
+        
         $this->SenangResponseModel = new SenangResponseModel();
 
         $this->PromoModel = new PromoModel();
@@ -129,6 +131,7 @@ class Main extends BaseController
 
 
 
+        // $slug = 'printzlife';
 
         $slug = 'capital-shop';
         // $slug = 'twelf';
@@ -1795,6 +1798,10 @@ class Main extends BaseController
             'point.customer_id' => $this->session->get('customer_id'),
         ];
         $point_history = $this->PointModel->get_transaction_by_customer($where);
+        $where  = [
+            'topupreward.shop_id' => $shop['shop_id']
+        ];
+        $this->pageData['topupreward'] = $this->TopuprewardModel->getWhere($where);
 
         $this->pageData['point_history'] = $point_history;
         $this->pageData['customer'] = $customer[0];

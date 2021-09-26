@@ -81,6 +81,15 @@
                                 </a>
                             </li>
                         <?php } ?>
+                        <?php if (in_array(9, $shop_function)) { ?>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-reward-tab" data-toggle="pill" href="#pills-reward" role="tab" aria-controls="pills-reward" aria-selected="false">
+                                    <?= $lang['topupreward'] ?>
+
+                                </a>
+                            </li>
+                        <?php } ?>
 
                     </ul>
                     <?php if (in_array(6, $shop_function)) { ?>
@@ -155,6 +164,36 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="pills-reward" role="tabpanel" aria-labelledby="pills-reward-tab">
+                        <div class="c-points">
+                        <div class="c-btn btn btn-primary" data-toggle="modal" data-target="#topupmodal">
+                                <?= $lang['topup'] ?>
+
+                            </div>
+                            <div class="table-responsive" style="height:300px">
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><?= $lang['above'] ?></th>
+                                            <th scope="col"><?= $lang['reward'] ?></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($topupreward as $row) { ?>
+                                            <tr>
+                                                <td><?= $row['above'] ?></td>
+
+                                                <td><?= $row['reward'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -190,6 +229,29 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="topupmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content c-modal-content">
+                <div class="modal-header c-modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                    <button type="button" class="close c-close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body c-modal-body">
+                    <div class="col-12 form-group p_star">
+                    <input type="text" class="form-control" placeholder="<?= $lang['topupamount'] ?>" name="name" required />
+                </div>
+
+                </div>
+                <div class="modal-footer c-modal-footer">
+                    <button type="submit"   class="btn btn-secondary c-btn"><?= $lang['submit'] ?></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="giftmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

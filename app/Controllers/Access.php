@@ -97,11 +97,14 @@ class Access extends BaseController
             }
 
 
+            $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
+        
+            $slug = $subdomain_arr[0];
 
             $data = array(
                 "shop_name" => $input['shop'],
                 // "shop_chinese_name" => $input['shop_name'],
-                "slug" => $this->slugify($input['shop']),
+                "slug" => $slug,//$this->slugify($input['shop']),
                 "email" => $input['email'],
                 // "operating_hour" => $input['operating_hour'],
                 "contact" => $input['contact'],

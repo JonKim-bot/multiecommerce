@@ -55,8 +55,13 @@
     $lang['continue_shopping'] = '继续购物';
     $lang['payment_status'] = '付款状态';
     $lang['payment_method'] = '付款方法';
-    
+    $lang['above'] = '充值超过';
+    $lang['reward'] = '获得额外分数';
+    $lang['topup'] = '点击充值！';
+    $lang['topupamount'] = '充值数量！';
+
     $lang['my_cart'] = '我的购物车';
+    $lang['topupreward'] ='充值优惠';
 
     $lang['my_product'] = '我的产品';
     $lang['filter'] = '搜索产品';
