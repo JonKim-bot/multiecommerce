@@ -28,6 +28,7 @@
     $lang['reward'] = 'Get reward';
     $lang['topup'] = 'Top up now';
     $lang['topupamount'] = 'Topup Amount';
+    $lang['ewallet'] = 'Ewallet amount';
 
     $lang['edit'] ='Edit';
     $lang['share_link'] ='Share Link';

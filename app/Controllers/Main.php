@@ -1350,9 +1350,43 @@ class Main extends BaseController
         $url=  "https://api.whatsapp.com/send?phone=" .$shop['contact']. "&text=" . $message;
 
 
-        if($_POST['payment_method_id'] != 3){
+        if($_POST['payment_method_id'] != 3 && $_POST['payment_method_id'] != 4){
 
             $this->update_orders_status($_POST['orders_id'],$_POST['payment_method_id']);
+            die(json_encode([
+                'status' => true,
+                'url' => $url,
+            ]));
+        }else if($_POST['payment_method_id']  == 4){
+
+            $customer = $this->session->get("customer_data");
+
+            if(empty($this->session->get("customer_data"))){
+                die(json_encode([
+                    'status' => false,
+                    'data' => 'Please login to user wallet purchase'
+                ]));
+
+            }
+
+            $balance = $this->WalletModel->get_balance($this->session->get("customer_id"));
+           
+            if($balance < $orders['grand_total']){
+                die(json_encode([
+                    'status' => false,
+                    'data' => 'Balance Not enought'
+                ]));
+            }
+
+            $remark = 'Payment for order ' . $orders['order_code'] . " on " . $customer['name'];
+            
+            $this->WalletModel->wallet_out(
+                $customer['customer_id'],
+                $orders['grand_total'],
+                $remark
+            );
+            $this->update_order( $orders['orders_id'] ,$_POST['payment_method_id']);
+            $url = base_url() . '/main/success';
             die(json_encode([
                 'status' => true,
                 'url' => $url,
@@ -1873,6 +1907,10 @@ class Main extends BaseController
         $this->pageData['topupreward'] = $this->TopuprewardModel->getWhere($where);
 
         $this->pageData['point_history'] = $point_history;
+
+        $this->pageData['wallet'] = $this->WalletModel->get_balance($this->session->get('customer_id'));
+
+
         $this->pageData['customer'] = $customer[0];
         $this->pageData['downline'] = $downline;
   

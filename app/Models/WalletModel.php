@@ -100,7 +100,6 @@ class WalletModel extends BaseModel
             'wallet_out' => $amount,
             'balance' => $balance - $amount,
             'remarks' => $remarks,
-            'voucher_id' => $voucher_id,
         ];
         // $customer_bank = $this->customer_model->get_customer_bank([
         //     'customer.customer_id' => $customer_id

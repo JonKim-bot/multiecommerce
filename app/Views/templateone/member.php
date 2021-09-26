@@ -100,6 +100,14 @@
                                 <h3><?= $point ?></h3>
                             </div>
                         </div>
+
+                        <div class="c-right">
+                            <div class="c-point">
+                                <p><?= $lang['ewallet'] ?></p>
+                                <h3><?= $wallet ?></h3>
+                            </div>
+                        </div>
+
                     <?php } ?>
                 </div>
                 <div class="tab-content c-pillCT" id="pills-tabContent">

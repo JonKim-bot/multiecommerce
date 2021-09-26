@@ -38,7 +38,7 @@
 
 	<footer class="site-footer" id="footer" style="padding-top:50px">
     <p class="lead">
-    <a class="btn btn-primary btn-sm text-white" href="https://<?= $shop['slug']?>.webieasy.com/main" role="button">Continue to homepage</a>
+    <a class="btn btn-primary btn-sm text-white" href="https://<?= $shop['slug']?>.webieasy.com" role="button">Continue to homepage</a>
   </p>	</footer>
 </body>
 </html>

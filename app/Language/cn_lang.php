@@ -59,6 +59,7 @@
     $lang['reward'] = '获得额外分数';
     $lang['topup'] = '点击充值！';
     $lang['topupamount'] = '充值数量！';
+    $lang['ewallet'] = 'Ewallet';
 
     $lang['my_cart'] = '我的购物车';
     $lang['topupreward'] ='充值优惠';

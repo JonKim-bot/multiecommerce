@@ -131,7 +131,7 @@
                      </div>
                      <div class="col-lg-4 col-md-12">
                         <div class="cart__right c-cart-right text-dark">
-                           <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
+                        <?php if (($orders['payment_method_id'] == 456 ) && $orders['is_paid'] == "1") { ?>
                            <?php
                            } else { ?>
                               <div class="">
@@ -150,7 +150,7 @@
                                  <?php
                                  } ?>
                                  <div class="d-flex justify-content-end">
-                                 <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
+                                 <?php if (($orders['payment_method_id'] == 3 || $orders['payment_method_id'] == 4) && $orders['is_paid'] == "1") { ?>
                                     <a class="btn btn-payment" id="" style=""><?= $lang['paid'] ?></a>
                                  <?php
                                  } else { ?>
@@ -176,7 +176,7 @@
                   } else { ?>
                      <div class="col-lg-12 col-md-12">
                         <div class="c-cart-center text-center text-dark">
-                           <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
+                        <?php if (($orders['payment_method_id'] == 3 || $orders['payment_method_id'] == 4) && $orders['is_paid'] == "1") { ?>
                            <?php
                            } else { ?>
                               <div class="">
@@ -198,7 +198,7 @@
                            } ?>
                               </div>
                               <div class="c-paymentBTNBOX">
-                                 <?php if ($orders['payment_method_id'] == 3 && $orders['is_paid'] == "1") { ?>
+                                 <?php if (($orders['payment_method_id'] == 3 || $orders['payment_method_id'] == 4) && $orders['is_paid'] == "1") { ?>
                                     <a class="btn c-paymentBTN" id="" style=""><?= $lang['paid'] ?></a>
                                  <?php
                                  } else { ?>
@@ -272,6 +272,12 @@
             // pay by others
             if (data.status) {
                windowLocation(data.url);
+            }else{
+               Swal.fire({
+                  title: "Error",
+                  text: data.data,
+                  type: 'error'
+               })
             }
          }
       });
@@ -303,6 +309,8 @@
       var online_banking = document.getElementById('payment_method_1');
       var cod = document.getElementById('payment_method_2');
       var credit_card = document.getElementById('payment_method_3');
+      var ewallet = document.getElementById('payment_method_4');
+
       if (online_banking != null && online_banking.checked) {
 
          return "1";
@@ -314,7 +322,11 @@
 
          return "3";
 
-      } else {
+      }   else if (ewallet != null && ewallet.checked) {
+
+      return "4";
+
+      }else {
 
          Swal.fire({
             title: "Error",

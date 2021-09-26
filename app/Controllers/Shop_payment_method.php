@@ -6,6 +6,7 @@ use App\Core\BaseController;
 use App\Models\ShopPaymentMethodModel;
 use App\Models\PaymentMethodModel;
 use App\Models\ShopModel;
+use App\Models\ShopFunctionModel;
 
 class Shop_payment_method extends BaseController
 {
@@ -14,6 +15,7 @@ class Shop_payment_method extends BaseController
         $this->pageData = [];
         $this->PaymentMethodModel = new PaymentMethodModel();
         $this->ShopModel = new ShopModel();
+        $this->ShopFunctionModel = new ShopFunctionModel();
 
         $this->ShopPaymentMethodModel = new ShopPaymentMethodModel();
         if (
@@ -25,6 +27,16 @@ class Shop_payment_method extends BaseController
                 base_url() .
                 "/access/login';</script>";
         }
+        if (session()->get('admin_data')['type'] == 'MERCHANT') {
+            //  redirect()->to(base_url('access/login/'));
+            $this->isMerchant = true;
+            $shop_data = session()->get('shop_data');
+            $this->shop_data = $shop_data;
+            $shop_function = $this->getShopFunction();
+            $this->shop_function = $shop_function;
+          
+        }
+
     }
 
     // public function change_status($payment_method_id){
@@ -79,6 +91,7 @@ class Shop_payment_method extends BaseController
         //         }
         //     }
         // }
+        $shop_function = $this->shop_function;
         $where = [
             'shop_id' => $this->shop_id,
             // 'active' =>'1',
@@ -90,7 +103,19 @@ class Shop_payment_method extends BaseController
         );
         // $this->debug($shop_payment_method);
         $this->pageData['shop_payment_method'] = $shop_payment_method;
-        $payment_method = $this->PaymentMethodModel->getAll();
+
+        if($this->check_exist_function(9,$shop_function)){
+           
+            $payment_method = $this->PaymentMethodModel->getAll();
+        }else{
+            $where = [
+                'payment_method.payment_method_id !=' => 4 
+            ];
+            $payment_method = $this->PaymentMethodModel->getWhere($where);
+
+        }
+
+        
         $this->pageData['payment_method'] = $payment_method;
         //
         echo view('admin/header', $this->pageData);
