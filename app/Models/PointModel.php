@@ -218,6 +218,8 @@ class PointModel extends BaseModel
         if (!empty($where)) {
             $this->builder->where($where);
         }
+        $this->builder->limit(100);
+
         if ($limit != '') {
             $count = $this->getCount($filter);
             $offset = ($page - 1) * $limit;
@@ -255,6 +257,8 @@ class PointModel extends BaseModel
             $this->builder->where($where);
         }
         $this->builder->whereIn('point.customer_id', $wherein);
+        $this->builder->limit(100);
+
         $query = $this->builder->get();
         return $query->getResultArray();
     }
@@ -275,6 +279,8 @@ class PointModel extends BaseModel
         if (!empty($where)) {
             $this->builder->where($where);
         }
+        $this->builder->limit(100);
+
 
         $query = $this->builder->get();
         return $query->getResultArray();

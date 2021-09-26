@@ -7,12 +7,17 @@ use App\Core\BaseController;
 use App\Models\PointModel;
 use App\Models\CreditModel;
 use App\Models\CreditTopUpModel;
+use App\Models\WalletModel;
+use App\Models\WalletTopupModel;
 
 class Transaction extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
+        $this->WalletModel = new WalletModel();
+        $this->WalletTopupModel = new WalletTopupModel();
+
         $this->PointModel = new PointModel();
         $this->CreditModel = new CreditModel();
         $this->CreditTopUpModel = new CreditTopUpModel();
@@ -78,7 +83,6 @@ class Transaction extends BaseController
             'customer.shop_id' => $this->shop_id
         ];
         $record = $this->PointModel->get_transaction_by_customer($where);
-        
         $this->pageData['transaction'] = $record;
 
         echo view('admin/header', $this->pageData);
@@ -86,6 +90,37 @@ class Transaction extends BaseController
         echo view('admin/footer');
     }
     
+    public function wallet()
+    {
+      
+        $where = [
+            'customer.shop_id' => $this->shop_id
+        ];
+        $record = $this->WalletModel->get_transaction_by_customer($where);
+        
+        $this->pageData['transaction'] = $record;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/wallet/all');
+        echo view('admin/footer');
+    }
+
+    public function topup()
+    {
+      
+        $where = [
+            'wallet_topup.shop_id' => $this->shop_id,
+            'wallet_topup.is_paid' => 1,
+
+        ];
+        $record = $this->WalletTopupModel->get_transaction_by_customer($where);
+        $this->pageData['transaction'] = $record;
+
+        echo view('admin/header', $this->pageData);
+        echo view('admin/wallet/wtopup');
+        echo view('admin/footer');
+    }
+
     public function approve($credit_topup_id){
 
         $where = array(
