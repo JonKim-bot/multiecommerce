@@ -36,6 +36,7 @@ use App\Models\OrderDetailOptionModel;
 use App\Models\PromoModel;
 use App\Models\CustomerModel;
 use App\Models\ProductUpsalesModel;
+use App\Models\ShopRateModel;
 
  
 use App\Models\ContactModel;
@@ -67,6 +68,7 @@ class Main extends BaseController
         $this->NotificationResponseModel = new NotificationResponseModel();
         $this->ShopTokenModel = new ShopTokenModel();
         $this->WalletTopupModel = new WalletTopupModel();
+        $this->ShopRateModel = new ShopRateModel();
 
         $this->WalletModel = new WalletModel();
 
