@@ -3735,19 +3735,19 @@
 
     @media only screen and (min-width: 768px) and (max-width: 991px) {
         .slider-height {
-            min-height: 550px
+            min-height: 700px
         }
     }
 
     @media only screen and (min-width: 576px) and (max-width: 767px) {
         .slider-height {
-            min-height: 500px
+            min-height: 700px
         }
     }
 
     @media (max-width: 575px) {
         .slider-height {
-            min-height: 410px
+            min-height: 700px
         }
     }
 
@@ -11964,6 +11964,107 @@
 
     .c-home .c-slider-btn {
         border-radius: 15px;
+    }
+
+
+
+    .c-home .c-section-banner-pc {
+        display: none;
+    }
+
+    @media screen and (min-width: 992px) {
+        .c-home .c-section-banner-pc {
+            display: block;
+        }
+    }
+
+    .c-home .c-section-banner-pc .c-carousel {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .c-home .c-section-banner-pc .c-carousel .c-carouselimg {
+        position: relative;
+        width: 100%;
+    }
+
+    .c-home .c-section-banner-pc .c-carousel .c-carouselimg img {
+        width: 100%;
+    }
+
+    .c-home .c-section-banner-pc .slick-prev {
+        left: 0 !important;
+        z-index: 1;
+        /* height: 30px !important; */
+        height: 100px;
+        width: 50px;
+        background: rgba(41, 38, 33, 0.2);
+        -webkit-transition: all .4s ease-out 0s;
+        -moz-transition: all .4s ease-out 0s;
+        -ms-transition: all .4s ease-out 0s;
+        -o-transition: all .4s ease-out 0s;
+        transition: all .4s ease-out 0s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* @media screen and (min-width: 768px) {
+        .c-home .c-section-banner-pc .slick-prev {
+            left: 30px !important;
+        }
+    } */
+
+    .c-home .c-section-banner-pc .slick-prev:hover {
+        background: #292621;
+    }
+
+    .c-home .c-section-banner-pc .slick-prev:before {
+        content: "\f053" !important;
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        opacity: 1 !important;
+        font-size: 20px;
+        line-height: 60px;
+        color: #fff !important;
+    }
+
+    .c-home .c-section-banner-pc .slick-next {
+        right: 0 !important;
+        z-index: 1;
+        /* height: 30px !important; */
+        height: 100px;
+        width: 50px;
+        background: rgba(41, 38, 33, 0.2);
+        -webkit-transition: all .4s ease-out 0s;
+        -moz-transition: all .4s ease-out 0s;
+        -ms-transition: all .4s ease-out 0s;
+        -o-transition: all .4s ease-out 0s;
+        transition: all .4s ease-out 0s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .c-home .c-section-banner-pc .slick-next:hover {
+        background: #292621;
+    }
+
+    /* @media screen and (min-width: 768px) {
+        .c-home .c-section-banner-pc .slick-next {
+            right: 30px !important;
+        }
+    } */
+
+    .c-home .c-section-banner-pc .slick-next:before {
+        content: "\f054" !important;
+        font-family: "Font Awesome 5 Free" !important;
+        font-weight: 900;
+        opacity: 1 !important;
+        font-size: 20px;
+        line-height: 60px;
+        color: #fff !important;
     }
 
     .c-home .c-about {

@@ -34,6 +34,7 @@
 
     <!-- Slick-Silder-->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
 
 
     <script src="https://kit.fontawesome.com/3d15aa1b08.js" crossorigin="anonymous"></script>

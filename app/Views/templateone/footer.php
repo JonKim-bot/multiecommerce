@@ -193,6 +193,16 @@
             slidesToScroll: 1,
         });
     });
+    $(document).ready(function() {
+        $('.slick-home-pc').slick({
+            autoplay: true,
+            autoplaySpeed: 5000,
+            dots: false,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        });
+    });
     $(function () {
             $('#myButton').floatingWhatsApp({
                 phone: '<?= $shop['contact'] ?>',

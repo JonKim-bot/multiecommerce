@@ -1,38 +1,29 @@
 <main>
     <div class="c-home">
         <!-- slider Area Start-->
-        <section class="slider-area c-slider">
-            <div class="slider-active">
-                <!-- Single Slider -->
+        <div class="c-section-banner-pc">
+            <div class="slick-home-pc m-0">
                 <?php foreach ($banner as $row) { ?>
-                    <div class="single-slider slider-height d-flex align-items-center" style="background-image: url(<?= base_url() . $row['banner'] ?>);">
-                        <div class="container">
-                            <div class="rowr">
-                                <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-8  col-sm-10">
-                                    <div class="hero-caption text-center">
-                                        <!-- <span>Fashion Sale</span> -->
-                                        <!-- <h1 data-animation="bounceIn" data-delay="0.2s"><?= $row['title'] ?></h1> -->
-                                        <!-- <p data-animation="fadeInUp" data-delay="0.4s"><?= $row['description'] ?></p> -->
-                                        <!-- <a href="<?= base_url() ?>/main/product" class="btn_1 hero-btn c-slider-btn" data-animation="fadeInUp" data-delay="0.7s">Shop Now</a> -->
-                                    </div>
-                                </div>
-                            </div>
+
+                    <div class="c-carousel ">
+                        <div class="c-carouselimg">
+                            <img src="<?= base_url() . $row['banner'] ?>" class="" alt="">
                         </div>
-                        
                     </div>
                 <?php } ?>
+
             </div>
-        </section>
+        </div>
         <div class="c-section-banner-mob">
             <div class="slick-home-mob m-0">
-            <?php foreach ($banner_mobile as $row) { ?>
+                <?php foreach ($banner_mobile as $row) { ?>
 
-                <div class="c-carousel ">
-                    <div class="c-carouselimg">
-                        <img src="<?= base_url() . $row['banner'] ?>" class="" alt="">
+                    <div class="c-carousel ">
+                        <div class="c-carouselimg">
+                            <img src="<?= base_url() . $row['banner'] ?>" class="" alt="">
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
 
             </div>
         </div>
