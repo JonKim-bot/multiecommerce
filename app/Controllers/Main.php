@@ -157,6 +157,8 @@ class Main extends BaseController
 
     }
     
+
+
     public function load_lang()
     {
 

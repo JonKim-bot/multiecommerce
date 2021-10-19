@@ -49,7 +49,6 @@ class Shop extends BaseController
 
     }
 
-    
 
     public function index()
     {

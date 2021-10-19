@@ -24,9 +24,9 @@
                             <div class="footer-tittle">
                                 <!-- <h4>Quick Links</h4> -->
                                 <ul>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/privacy_policy">Private policy</a></li>
+                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/privacy_policy">Privacy policy</a></li>
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/return_refund_policy">RETURN & REFUND POLICY</a></li>
-                                    <li><a class="c-footer-bold" href="<?= base_url() ?>/main/shipping_policy">Shipping policy</a></li>
+                                    <!-- <li><a class="c-footer-bold" href="<?= base_url() ?>/main/shipping_policy">Shipping policy</a></li> -->
                                     
                                     <li><a class="c-footer-bold" href="<?= base_url() ?>/main/tnc">TERM AND CONDITIONS</a></li>
 
@@ -65,8 +65,8 @@
                                     <li>
                                         <p class="c-footer-bold_"><?= $lang['contact_number'] ?> :</p>
                                         <a class="c-footer-light_" href="tel:<?= $shop['contact'] ?>">
-                                            <!-- <?= $shop['contact'] ?> -->
-                                            0167889773
+                                            <?= $shop['contact'] ?>
+                                            <!-- 0167889773 -->
                                         </a>
                                     </li>
                                     <li>

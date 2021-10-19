@@ -34,6 +34,9 @@ class ShopModel extends BaseModel
         $query = $builder->get();
         return $query->getResultArray();
     }
+    
+
+
     function getWhereLike($like,$where = "", $limit = '', $page = 1, $filter = array())
     {
         $builder = $this->db->table($this->tableName);

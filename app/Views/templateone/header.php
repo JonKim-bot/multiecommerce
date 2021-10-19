@@ -194,7 +194,7 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo ">
-                            <a class="c-logo" href="<?= base_url() ?>/main/index">
+                            <a class="c-logo" href="<?= base_url() ?>">
                                 <img src="<?= base_url() . $shop['icon'] ?>" alt="">
                             </a>
                         </div>
@@ -203,7 +203,7 @@
                             <div class="main-menu d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="c-li" href="<?= base_url() ?>/main/index"><?= $lang['home'] ?></a></li>
+                                        <li><a class="c-li" href="<?= base_url() ?>"><?= $lang['home'] ?></a></li>
                                         <!-- <li><a href="<?= base_url() ?>/main/product">我的产品</a></li> -->
 
                                         <!-- <li><a href="<?= base_url() ?>/main/cart">Cart</a></li> -->

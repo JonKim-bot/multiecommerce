@@ -439,10 +439,10 @@
              
             <?php if(in_array(9,session()->get('shop_data')['shop_function'])){ ?>
 
-                    <li>
-                        <a class="c-sid ebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction/wallet">
+                <li>
+                        <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction/wallet">
                             <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
-                            E-wallet
+                            E-wallet 
                         </a>
                     </li>
                     <li>
@@ -578,7 +578,7 @@
 
                 </li>-->
                 <li class="c-header-nav-item dropdown d-md-down-none mx-2">
-                    <a class="c-header-nav-link btn-success btn" target="_blank" href="<?= base_url() ?>/main">
+                    <a class="c-header-nav-link btn-success btn" target="_blank" href="<?= base_url() ?>">
                         Preview Shop
                     </a>
                 </li> 
