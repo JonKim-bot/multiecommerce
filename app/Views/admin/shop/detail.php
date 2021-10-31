@@ -276,10 +276,37 @@
                                                             <?php } ?>
 
                                                         </ul></td>
+                                                       
 
                                                     </tr>
                                                     
                                                    
+                                                    <tr>
+                                                    <td><h3>Login Date</h3></td>
+
+<td><ul>
+    <?php if (
+        !empty(
+            $login_log
+        )
+    ) { ?>
+    <?php foreach (
+        $login_log
+        as $row
+    ) { ?>
+    <li>
+        <a >
+    
+        <?= $row[
+            'created_date'
+        ] ?>
+        </a>
+    </li>
+    <?php } ?>
+    <?php } ?>
+
+</ul></td>
+                                                    </tr>
                                                     
                                                 </table>
                                             </div>

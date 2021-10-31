@@ -36,13 +36,24 @@ label{
                     <h2>Your Shop Detail</h2>
 
                     <div class="form-group">
+                                    <label for="">Version</label>
+                                    <input type="text" class="form-control" name="version" placeholder="1" value="1" readonly>
+                                </div>
+                    <div class="form-group">
                                     <label for="">Shop English Name</label>
                                     <input type="text" class="form-control" name="shop" placeholder="e.g. Restaurant Lim" required>
                                 </div>
-                                <!-- <div class="form-group">
-                                    <label for="">Shop Chinese Name (If shop name got chinese character enter here)</label>
-                                    <input type="text" class="form-control" name="shop_name" placeholder="e.g. Restaurant 中文">
-                                </div> -->
+                                  
+                                <div class="form-group">
+                                    <label for="">Package</label>
+                                    <select name="package" class="select" id=""  >
+
+                                    <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option  value="C">C</option>
+                                    </select>
+                                </div>
+                                
                                 <!-- <div class="form-group">
                                     <label for="">Operating Time</label>
                                     <input type="text" class="form-control" name="operating_hour"  placeholder="e.g. Monday-Sunday - 8AM - 10PM" required>

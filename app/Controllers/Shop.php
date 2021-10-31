@@ -11,13 +11,18 @@ use App\Models\TagModel;
 use App\Models\ShopTagModel;
 use App\Models\ShopFunctionModel;
 use App\Models\FunctionModel;
+use App\Models\LoginLogModel;
+use App\Models\OrdersModel;
 
-
+ 
 class Shop extends BaseController
 {
     public function __construct()
     {
         $this->pageData = [];
+        $this->LoginLogModel = new LoginLogModel();
+        $this->OrdersModel = new OrdersModel();
+
         $this->ShopModel = new ShopModel();
         $this->MerchantModel = new MerchantModel();
         $this->BankModel = new BankModel();
@@ -48,7 +53,33 @@ class Shop extends BaseController
         // $this->debug( $this->isMerchant);
 
     }
+    public function retention_rate(){
 
+        $package =
+        ($_GET and isset($_GET['package']))
+                ? $_GET['package']
+                : "A";
+
+        $where = [
+            'shop.package' => $package
+        ];
+        
+        $login_log = $this->LoginLogModel->getLoginLog($where);
+        $version = $this->ShopModel->getVersion();
+
+        // $getNumberOfMerchantWhogotfirstsales = 0;
+        $getNumberOfMerchantWhogotfirstsales = $this->ShopModel->getNumberOfMerchantWhogotfirstsales($where);
+        $retention_rate = ($login_log) / ($getNumberOfMerchantWhogotfirstsales);
+        $this->pageData['login_log'] = $login_log;
+        $this->pageData['version'] = $retention_rate;
+        $this->pageData['retention_rate'] = $retention_rate;
+        $this->pageData['getNumberOfMerchantWhogotfirstsales'] = $getNumberOfMerchantWhogotfirstsales;
+
+        $this->pageData['version'] = $version;
+        echo view('admin/header', $this->pageData);
+        echo view('admin/shop/retention_rate');
+        echo view('admin/footer');
+    }
 
     public function index()
     {
@@ -56,17 +87,21 @@ class Shop extends BaseController
             $shop = $this->ShopModel->getWhere([
                 'shop_id' => $this->shop_id,
             ]);
-            
+            $this->pageData['shop'] = $shop;
+
+            echo view('admin/header', $this->pageData);
+            echo view('admin/shop/all');
+            echo view('admin/footer');
         } else {
             $shop = $this->ShopModel->getAll();
+            $this->pageData['shop'] = $shop;
 
+            echo view('admin/header', $this->pageData);
+            echo view('admin/shop/all_admin');
+            echo view('admin/footer');
 
         }
-        $this->pageData['shop'] = $shop;
-
-        echo view('admin/header', $this->pageData);
-        echo view('admin/shop/all');
-        echo view('admin/footer');
+  
     }
 
 
@@ -160,6 +195,18 @@ class Shop extends BaseController
         echo view('admin/footer');
     }
 
+    public function mark_paid($shop_id)
+    {
+        $where = ['shop_id' => $shop_id];
+        $shop_status = $this->ShopModel->getWhere($where)[0];
+        if ($shop_status['payment_status'] == 1) {
+            $is_delivery = 0;
+        } else {
+            $is_delivery = 1;
+        }
+        $this->ShopModel->updateWhere($where, ['payment_status' => $is_delivery]);
+        return redirect()->to(base_url('shop', 'refresh'));
+    }
     public function is_active_delivery()
     {
         $where = ['shop_id' => $this->shop_id];
@@ -217,6 +264,11 @@ class Shop extends BaseController
         if (!empty($merchant)) {
             $this->pageData['merchant'] = $merchant;
         }
+        $where = [
+            'login_log.shop_id' => $shop_id
+        ];
+        $login_log = $this->LoginLogModel->getWhere($where);
+        $this->pageData['login_log'] = $login_log;
 
         echo view('admin/header', $this->pageData);
         echo view('admin/shop/detail');
@@ -430,6 +482,7 @@ class Shop extends BaseController
                     'operating_hour' => $input['operating_hour'],
                     'contact' => $input['contact'],
                     'delivery_fee' => $input['delivery_fee'],
+                    'delivery_fee_east' => $input['delivery_fee_east'],
                     'description' => $input['description'],
 
                     // 'bank_holder_name' => $input['bank_holder_name'],
@@ -444,6 +497,7 @@ class Shop extends BaseController
                 if(session()->get('admin_data')['type'] != "MERCHANT"){
 
                     $this->ShopFunctionModel->hardDeleteWhere([ 'shop_function.shop_id' => $shop_id]);
+                    $data['package'] = $_POST['package'];
                     if(!empty($input['shop_function'])){
                         foreach($input['shop_function'] as $row_function){
                             

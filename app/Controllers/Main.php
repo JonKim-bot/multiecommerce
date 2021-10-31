@@ -1051,6 +1051,24 @@ class Main extends BaseController
         $pages = ceil($total_product / $max_per_page);
         return $pages;
     }
+
+    public function get_delivery_fee(){
+        $shop = $this->shop;
+        if($_POST){
+            if($_POST['delivery_place'] == 1){
+                
+                die(json_encode([
+                    'status' => true,
+                    'data' => $shop['delivery_fee']
+                ]));
+            }else{
+                die(json_encode([
+                    'status' => true,
+                    'data' => $shop['delivery_fee_east']
+                ]));
+            }
+        }
+    }
     public function check_if_member_new($promo){
         if(!empty($this->session->get('customer_id'))){
             $where = [
@@ -2516,9 +2534,19 @@ class Main extends BaseController
 
     public function get_total(){
         $shop = $this->shop;
+        if(!empty($_POST['delivery_place'])){
 
+            if($_POST['delivery_place'] == 1){
+                $delivery_fee =  $shop['delivery_fee'];
+            }else{
+                $delivery_fee =  $shop['delivery_fee_east'];
+            }
+        }else{
+            $delivery_fee =  $shop['delivery_fee'];
+
+        }
         $cart = $this->session->get('cart');
-        $total = 0 + $shop['delivery_fee'];
+        $total = 0 + $delivery_fee;
         $cart_count = 0;
         if(!empty($cart)){
             $cart_count = count($cart);
@@ -2527,6 +2555,7 @@ class Main extends BaseController
 
         die(json_encode([
             'count' => $cart_count,
+            'delivery_fee' => $delivery_fee,
             'status' => true,
             'data' => $total
         ]));

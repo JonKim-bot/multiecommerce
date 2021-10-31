@@ -454,7 +454,7 @@
         $('#subtotal').text("RM " + subtotal);
         $('#discount').text("RM " + '0');
         if (promo_type_id == 1) {
-            $('#delivery_fee').text("RM " + "<?= $shop['delivery_fee'] ?>");
+            $('#delivery_fee').text("RM " + get_delivery_fee());
         }
         get_total();
     }
@@ -470,13 +470,34 @@
         });
     }
 
+    function get_delivery_fee_(){
+        var delivery_place = $('.delivery_place').val();
+        var delivery_fee = 0;
+        $.post("<?= base_url('main/get_delivery_fee') ?>", { delivery_place : delivery_place}, function(data) {
+            data = JSON.parse(data);
+            $('#delivery_fee').text("RM " + data.data);
+            delivery_fee = data.data;
+        });
+        // alert(delivery_fee);
+        return delivery_fee;
+
+    }
+
+    function get_delivery_fee(){
+        var  delivery_fee = $('#delivery_fee').text();
+        return delivery_fee.replace("RM",'');
+
+    }
+
     function get_total() {
         $('#check_out_btn').hide();
+        var delivery_place = $('.delivery_place').val();
 
-        $.post("<?= base_url('main/get_total') ?>", {}, function(data) {
+        $.post("<?= base_url('main/get_total') ?>", { delivery_place : delivery_place}, function(data) {
             data = JSON.parse(data);
             var grand_total = (data.data).toFixed(2);
-            var subtotal = grand_total - <?= $shop['delivery_fee'] ?>;
+            // alert(get_delivery_fee());
+            var subtotal = grand_total - data.delivery_fee;
             $('.numberCircle').text(data.count);
             $('#grand_total').text("RM " + grand_total);
             $('#subtotal').text("RM " + subtotal.toFixed(2));
@@ -506,6 +527,7 @@
             get_total();
             check_promo();
             get_total();
+            get_delivery_fee();
 
 
         });
@@ -584,6 +606,14 @@
         });
     }
     get_product_list();
+
+    $('.delivery_place').on('change', function() {
+        get_delivery_fee_();
+        get_ajax_cart();
+        get_header_cart();
+        get_total();
+    });
+
 
 
     $('.property-controls a').on('click', function() {

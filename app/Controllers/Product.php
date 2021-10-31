@@ -58,6 +58,7 @@ class Product extends BaseController
             $this->pageData['all_product'] = $all_product;
         }
     }
+
     public function change_status_home($product_id){
         $where = [
             'product_id' => $product_id
@@ -72,6 +73,22 @@ class Product extends BaseController
             $status = 1;
         }
         $this->ProductModel->updateWhere($where,['is_home' => $status]);
+
+        return redirect()->to(base_url('product', "refresh"));
+
+    }
+
+    
+    public function copy($product_id){
+        $where = [
+            'product_id' => $product_id
+        ];
+
+        $product = $this->ProductModel->getWhere($where)[0];
+        unset($product['product_id']);
+        unset($product['category_id']);
+
+        $this->ProductModel->insertNew($product);
 
         return redirect()->to(base_url('product', "refresh"));
 

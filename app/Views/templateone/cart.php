@@ -87,6 +87,17 @@
                                                                                                             ? $_SESSION['customer_data']['name']
                                                                                                             : '' ?>" placeholder="<?= $lang['receiver'] ?>" name="name" required />
                                         </div>
+                                          
+                                        <div class="single-input-fields">
+                                            <label class="c-label">Delivery place</label>
+
+                                                <select name="delivery_place" class="form-control delivery_place" id=""  >
+                                                <option selected value="1">West Malaysia</option>
+                                                <option  value="2">East Malaysia</option>
+
+                                                </select>
+                                        </div>
+                                        
 
                                         <div class="col-12 form-group p_star">
                                             <input type="tel" class="form-control" id="number" value="<?= isset($_SESSION['customer_data'])

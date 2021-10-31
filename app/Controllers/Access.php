@@ -14,6 +14,7 @@ use App\Models\BankModel;
 use App\Models\TagModel;
 use App\Models\ShopModel;
 use App\Models\ShopTagModel;
+use App\Models\LoginLogModel;
 
 class Access extends BaseController
 {
@@ -24,6 +25,7 @@ class Access extends BaseController
         $this->BankModel = new BankModel();
         $this->TagModel = new TagModel();
 
+        $this->LoginLogModel = new LoginLogModel();
 
         $this->AdminModel = new AdminModel();
         $this->MerchantModel = new MerchantModel();
@@ -41,6 +43,19 @@ class Access extends BaseController
             //  redirect()->to(base_url('access/login/'));
             echo "<script>location.href='".base_url()."/admin';</script>";
         }
+        $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
+        
+        $slug = $subdomain_arr[0];
+
+        $slug = 'newshopman';
+        $where = [
+            'shop.slug' => $slug,
+        ];
+        $shop = $this->ShopModel->getWhere($where);
+        if(!empty($shop)){
+            $this->debug("Shop already registered");
+        }
+
     }
     function startsWith ($string, $startString) 
     { 
@@ -106,6 +121,8 @@ class Access extends BaseController
                 // "shop_chinese_name" => $input['shop_name'],
                 "slug" => $slug,//$this->slugify($input['shop']),
                 "email" => $input['email'],
+                "version" => $input['version'],
+                'package' => $input['package'],
                 // "operating_hour" => $input['operating_hour'],
                 "contact" => $input['contact'],
                 // "delivery_fee" => $input['delivery_fee'],
@@ -193,8 +210,8 @@ class Access extends BaseController
                 // $this->debug($data);
                 // dd($data);
 
-                $this->MerchantModel->insertNew($data);
-
+                $merchant_id = $this->MerchantModel->insertNew($data);
+            
                 return redirect()->to(base_url('/access/loginMerchant', "refresh"));
 
             }
@@ -399,6 +416,12 @@ class Access extends BaseController
                 $shop = $this->ShopModel->getWhere($where);
                 $shop[0]['shop_function'] = $this->getShopFunction($admin_data['shop_id']);
                 $session->set('shop_data',$shop[0]);
+                $data = [
+                    'merchant_id' =>  $login_id,
+                    'shop_id' => $shop[0]['shop_id'],
+                    'created_date' => date('Y-m-d H:i:s'),
+                ];
+                $this->LoginLogModel->insertNew($data);
 
 
                 if($admin_data['type'] == "ADMIN"){

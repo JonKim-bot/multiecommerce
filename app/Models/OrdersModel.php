@@ -75,6 +75,8 @@ class OrdersModel extends BaseModel
         return $query->getResultArray();
     }
 
+
+
     // function getAvaliableVoucher($customer_id,$amount){
     //     $where = [
     //         'orders.grand_total >=' => $amount,

@@ -90,8 +90,12 @@
                         <input type="number" class="form-control" name="contact" value="<?= $shop['contact'] ?>" placeholder="e.g. 012-123-1232" required>
                     </div>
                     <div class="form-group">
-                        <label for="">Delivery Fee </label>
+                        <label for="">Delivery Fee West</label>
                         <input type="number" step="any" class="form-control" name="delivery_fee" value="<?= $shop['delivery_fee'] ?>" placeholder="e.g. RM 3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Delivery Fee East</label>
+                        <input type="number" step="any" class="form-control" name="delivery_fee_east" value="<?= $shop['delivery_fee_east'] ?>" placeholder="e.g. RM 3" required>
                     </div>
                     <div class="form-group">
                         <label for="">Email</label>
@@ -116,9 +120,21 @@
                         </select>
 
                     </div>
+
+
+                    <div class="form-group">
+                        <label for="">Package</label>
+                        <select name="package" class="select" id=""  >
+
+                        <option value="A" <?= $shop['package'] == "A" ? 'selected' : '' ?>>A</option>
+                            <option value="B"  <?= $shop['package'] == "B" ? 'selected' : '' ?>>B</option>
+                            <option  value="C" <?= $shop['package'] == "C" ? 'selected' : '' ?>>C</option>
+                        </select>
+                    </div>
+
                     <?php } ?>
-                    
-                 
+            
+
 
          
                     <div class="form-group">
