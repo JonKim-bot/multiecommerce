@@ -100,6 +100,7 @@ class Main extends BaseController
         $this->AnnouncementModel = new AnnouncementModel();
         $this->BrandModel = new BrandModel();
         $this->PaymentMethod = new PaymentMethodModel();
+
         $this->ProductImageModel = new ProductImageModel();
         $this->OrdersStatusModel = new OrdersStatusModel();
         $this->ProductOptionSelectionModel = new ProductOptionSelectionModel();
@@ -2638,9 +2639,12 @@ class Main extends BaseController
         $shop = $this->get_shop($topup['shop_id'],true);
 
         $detail = 'Topup amount ' . $topup['amount'] ; 
+
+        $CID = 'M102-U-51805';
         
-        $CID = 'M161-U-20320';
-        $signatureKey = 'hNyRMiIWlo8ijtd';
+        $signatureKey = '2NwT30GQNV7ky3v';
+        // $CID = 'M161-U-20320';
+        // $signatureKey = 'hNyRMiIWlo8ijtd';
         
         $returnurl = base_url() . "/main/member?code=" . $orderId ;
        
@@ -2699,8 +2703,8 @@ class Main extends BaseController
         $shop = $this->get_shop($orders['shop_id'],true);
         $detail = 'Pay for order ' . $orders['order_code']; 
         
-        $CID = 'M161-U-20320';
-        $signatureKey = 'hNyRMiIWlo8ijtd';
+        $CID = 'M102-U-51805';
+        $signatureKey = '2NwT30GQNV7ky3v';
         
         // $CID = 'M161-U-33';
         // $signatureKey = 'oAhVwtUxfrop4cI';

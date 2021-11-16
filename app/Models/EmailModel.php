@@ -83,7 +83,7 @@ class EmailModel extends BaseModel
             } else {
     
                 $message = $email->printDebugger();
-                die($message);
+                // die($message);
             }
         }
     }
@@ -120,7 +120,7 @@ class EmailModel extends BaseModel
         } else {
 
             $message = $email->printDebugger();
-            die($message);
+            // die($message);
         }
     }
 
