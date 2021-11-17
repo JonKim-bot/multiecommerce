@@ -2703,11 +2703,11 @@ class Main extends BaseController
         $shop = $this->get_shop($orders['shop_id'],true);
         $detail = 'Pay for order ' . $orders['order_code']; 
         
-        $CID = 'M102-U-51805';
-        $signatureKey = '2NwT30GQNV7ky3v';
+        // $CID = 'M102-U-51805';
+        // $signatureKey = '2NwT30GQNV7ky3v';
         
-        // $CID = 'M161-U-33';
-        // $signatureKey = 'oAhVwtUxfrop4cI';
+        $CID = 'M161-U-33';
+        $signatureKey = 'oAhVwtUxfrop4cI';
         
         $returnurl = base_url() . "/main/payment/"  . $orders['order_code'] . "/?code=" . $orderId  ;
         $callbackurl =   base_url() . '/main/gkash_callback';
@@ -2739,7 +2739,9 @@ class Main extends BaseController
             'signature' => $signature,
             'name' => $orders['full_name'],
             'order_id' => $orderId,
-            'post_url' => 'https://api.gkash.my/api/paymentform.aspx',
+            'post_url' => 'https://api-staging.pay.asia/api/payment/submit',
+
+            // 'post_url' => 'https://api.gkash.my/api/paymentform.aspx',
             'email' => $orders['email'],
             // 'email' => 'yongrou74@hotmail.com',
             'contact' => $orders['contact'],
