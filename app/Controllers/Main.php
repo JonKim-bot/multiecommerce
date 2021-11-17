@@ -2739,7 +2739,7 @@ class Main extends BaseController
             'signature' => $signature,
             'name' => $orders['full_name'],
             'order_id' => $orderId,
-            'post_url' => 'https://api-staging.pay.asia/api/paymentform.aspx',
+            'post_url' => 'https://api.gkash.my/api/paymentform.aspx',
             'email' => $orders['email'],
             // 'email' => 'yongrou74@hotmail.com',
             'contact' => $orders['contact'],
