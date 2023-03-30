@@ -380,10 +380,8 @@ class Access extends BaseController
 
             $admin = $this->MerchantModel->getWhere($where);
             // $user = $this->UserModel->getWhere($where);
-
             if (!empty($admin)) {
                 $login = $this->MerchantModel->login($input["username"], $input["password"]);
-                
                 if (!empty($login)) {
                     $admin_data = $login[0];
                     $login_id = $login[0]["merchant_id"];
@@ -398,6 +396,8 @@ class Access extends BaseController
                 $error = true;
                 $this->pageData["error"] = "Invalid Username and Password";
             }
+
+
 
             if (!empty($admin_data) and $admin_data["deleted"] == 1) {
                 $error = true;
@@ -421,13 +421,15 @@ class Access extends BaseController
                     'shop_id' => $shop[0]['shop_id'],
                     'created_date' => date('Y-m-d H:i:s'),
                 ];
-                $this->LoginLogModel->insertNew($data);
+                // $this->LoginLogModel->insertNew($data);
 
 
                 if($admin_data['type'] == "ADMIN"){
                     return redirect()->to( base_url('admin', "refresh") );
                 } else if($admin_data['type'] == "MERCHANT"){
-                    return redirect()->to( base_url('orders?dateFrom='.date('Y-m-d').'&'.'dateTo='.date('Y-m-d'), "refresh") );
+                    return redirect()->to( base_url('ProductCategory', "refresh") );
+
+                    // return redirect()->to( base_url('orders?dateFrom='.date('Y-m-d').'&'.'dateTo='.date('Y-m-d'), "refresh") );
                 }
             }
 

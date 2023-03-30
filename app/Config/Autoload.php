@@ -24,7 +24,6 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 	 * NOTE: If you use an identical key in $psr4 or $classmap, then
 	 * the values in this file will overwrite the framework's values.
 	 */
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -54,7 +53,6 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 			'App'         => APPPATH,                // To ensure filters, etc still found,
 			APP_NAMESPACE => APPPATH,                // For custom namespace
 			'Config'      => APPPATH . 'Config',
-			// 'Dompdf'      => APPPATH . 'ThirdParty/dompdf/src', // adding this
 		];
 
 		/**
@@ -74,7 +72,7 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 		 *   ];
 		 */
 		$classmap = [
-			'fpdf' => APPPATH . "/ThirdParty/fpdf/fpdf.php"
+			'FPDF' => APPPATH .'Libraries/fpdf/fpdf.php'
 		];
 
 		//--------------------------------------------------------------------

@@ -54,9 +54,7 @@ class Merchant extends BaseController
             // $this->debug($input);
 
             $error = false;
-
-            $exists = $this->checkExists($input["username"]);
-            // $this->debug($exists);
+            $exists = $this->checkExistsMerchant($input["username"]);
 
             if ($exists) {
                 $error = true;
@@ -96,7 +94,7 @@ class Merchant extends BaseController
                 $data = array(
                     'role_id' => 2,
                     'name' => $input['name'],
-                    'shop_id' => $input['shop_id'],
+                    'shop_id' => 1,
                     'username' => $input['username'],
                     'contact' => $input['contact'],
                     'email' => $input['email'],

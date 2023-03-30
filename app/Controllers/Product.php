@@ -504,10 +504,6 @@ class Product extends BaseController
                     'label_text' => $_POST['label_text'],
                     'product_price' => $input['product_price'],
                     'promo_price' => $input['promo_price'],
-                    'product_description_two' => $_POST['product_description_two'],
-                    'product_description_three' => $_POST['product_description_three'],
-                    'product_inner_title' => $_POST['product_inner_title'],
-
                     'modified_date' => date('Y-m-d H:i:s'),
                     'modified_by' => session()->get('login_id'),
                 ];

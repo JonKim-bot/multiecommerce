@@ -43,12 +43,12 @@
                                                 <div class="table-responsive">
                                                     <table class="table m-0">
                                                         <tbody>
-                                                            <tr>
+                                                            <!-- <tr>
                                                                 <th scope="row">Shop Name</th>
                                                                 <td><?= $shop[
                                                                     'shop_name'
                                                                 ] ?></td>
-                                                            </tr>
+                                                            </tr> -->
                                                             <tr>
                                                                 <th scope="row">Contact</th>
                                                                 <td><?= $shop[
@@ -62,7 +62,7 @@
                                                                 ] ?></td>
                                                             </tr>
                                                            
-                                                            <tr>
+                                                            <!-- <tr>
                                                                 <th scope="row">Link</th>
                                                                 <td>
                                                                 <a href="<?= base_url() .
@@ -74,7 +74,7 @@
     $shop['shop_id'] ?></a>    
                                                                 </td>
                                                             </tr>
-                                                            
+                                                             -->
                                                         </tbody>
                                                     </table>
                                                 </div>

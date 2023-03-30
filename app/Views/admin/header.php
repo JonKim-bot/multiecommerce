@@ -94,19 +94,19 @@
 
             }
             </style>
-                <li class="c-sidebar-nav-item">
+                <!-- <li class="c-sidebar-nav-item">
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'admin' ? 'c-active' : null) ?>" href="<?= base_url() ?>/admin">
                         <i class="cil-user c-sidebar-nav-icon"></i>
                         Admin
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'merchant' ? 'c-active' : null) ?>" href="<?= base_url() ?>/merchant">
                         <i class="cil-user c-sidebar-nav-icon"></i>
                         Merchant
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'OrderCustomer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/OrderCustomer">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
                         Customer
@@ -136,7 +136,7 @@
                     </a>
                 </li> -->
 
-                
+<!--                 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shop' ? 'c-active' : null) ?>" href="<?= base_url() ?>/shop">
                         <i class="cil-user c-sidebar-nav-icon"></i>
@@ -194,12 +194,7 @@
                 </li>
 
               
-                <!-- <li>
-                    <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
-                        <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
-                        Brand 
-                    </a>
-                </li> -->
+              
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'sms' ? 'c-active' : null) ?>" href="<?= base_url() ?>/sms">
@@ -278,7 +273,7 @@
                         <i class="fa fa-credit-card c-sidebar-nav-icon"></i>
                         Promocode
                     </a>
-                </li>
+                </li> -->
           
                 
                 
@@ -289,7 +284,7 @@
              <?php
             if (session()->get('admin_data')['type'] == "MERCHANT") {
             ?>
-                        <li class="c-sidebar-nav-title">Shop Content</li>
+                        <!-- <li class="c-sidebar-nav-title">Shop Content</li>
                         <li>
                     <a class="c-sidebar-nav-link " href="<?= base_url() ?>/shop/icons/1">
                         <i class="fa fa-store c-sidebar-nav-icon"></i>
@@ -355,7 +350,7 @@
                         About (For login page)
                     </a>
                 </li>
-              
+               -->
                 <li class="c-sidebar-nav-title">Product</li>
 
                 <li>
@@ -377,28 +372,28 @@
                         Contact 
                     </a>
                 </li> -->
-                <li class="c-sidebar-nav-title">Customer</li>
+                <!-- <li class="c-sidebar-nav-title">Customer</li>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'OrderCustomer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/OrderCustomer">
                         <i class="fa fa-shopping-cart c-sidebar-nav-icon"></i>
                         Customer
                     </a>
-                </li>
+                </li> -->
 
                
                 <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
 
-                    <li>
+                    <!-- <li>
                         <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'customer' ? 'c-active' : null) ?>" href="<?= base_url() ?>/customer">
                             <i class="fa fa-users c-sidebar-nav-icon"></i>
                             Member
                         </a>
-                    </li>
+                    </li> -->
                 <?php } ?>
                  
 
-                <li class="c-sidebar-nav-title">Orders</li>
+                <!-- <li class="c-sidebar-nav-title">Orders</li>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orders' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orders?dateFrom=<?= date('Y-m-d') ?>&dateTo=<?= date('Y-m-d') ?>">
@@ -407,7 +402,7 @@
                     </a>
                 </li>
 
-              
+               -->
 <!--               
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'brand' ? 'c-active' : null) ?>" href="<?= base_url() ?>/brand">
@@ -417,12 +412,12 @@
                 </li> -->
                 <?php if(in_array(5,session()->get('shop_data')['shop_function'])){ ?>
 
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'sms' ? 'c-active' : null) ?>" href="<?= base_url() ?>/sms">
                         <i class="fa fa-cc-jcb c-sidebar-nav-icon"></i>
                         SMS 
                     </a>
-                </li>
+                </li> -->
                 <?php } ?>
            
                 <li>
@@ -439,7 +434,7 @@
              
             <?php if(in_array(9,session()->get('shop_data')['shop_function'])){ ?>
 
-                <li>
+                <!-- <li>
                         <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'wallet' ? 'c-active' : null) ?>" href="<?= base_url() ?>/transaction/wallet">
                             <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
                             E-wallet 
@@ -450,79 +445,79 @@
                             <i class="fa fa-thumbs-up c-sidebar-nav-icon"></i>
                             E-wallet topup
                         </a>
-                    </li>
+                    </li> -->
             <?php } ?>
 
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis">
                         <i class="fa fa-building c-sidebar-nav-icon"></i>
                        Store Perfomance
                     </a>
-                </li>
+                </li> -->
                 <?php if(in_array(7,session()->get('shop_data')['shop_function'])){ ?>
 
-                <li>
+                <!-- <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'orderanalysis' ? 'c-active' : null) ?>" href="<?= base_url() ?>/orderanalysis/detail">
                         <i class="fa fa-search c-sidebar-nav-icon"></i>
                         Order Analysis
                     </a>
-                </li>
+                </li> -->
                 <?php } ?>
               
-                <li class="c-sidebar-nav-title">Promotion</li>
+                <!-- <li class="c-sidebar-nav-title">Promotion</li>
 
                 <li>
                     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'promo' ? 'c-active' : null) ?>" href="<?= base_url() ?>/promo">
                         <i class="fa fa-credit-card c-sidebar-nav-icon"></i>
                         Promocode
                     </a>
-                </li>
+                </li> -->
             
                 <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
 
-                        <li>
+                        <!-- <li>
                             <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'shoprate' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Shoprate">
                                 <i class="fa fa-percent c-sidebar-nav-icon"></i>
                                 Member rate 
                             </a>
-                        </li>
+                        </li> -->
                         <?php } ?>
                         <?php if(in_array(9,session()->get('shop_data')['shop_function'])){ ?>
 
-<li>
+<!-- <li>
     <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'topupreward' ? 'c-active' : null) ?>" href="<?= base_url() ?>/Topupreward">
         <i class="fa fa-percent c-sidebar-nav-icon"></i>
        Top up reward
     </a>
-</li>
+</li> -->
 <?php } ?>
                         <?php if(in_array(1,session()->get('shop_data')['shop_function'])){ ?>
-
+<!-- 
                         <li>
                             <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'voucher' ? 'c-active' : null) ?>" href="<?= base_url() ?>/voucher">
                                 <i class="fa fa-bookmark-o c-sidebar-nav-icon"></i>
                                 Voucher
                             </a>
-                        </li>
+                        </li> -->
                         <?php } ?>
 
                         <?php if(in_array(2,session()->get('shop_data')['shop_function'])){ ?>
-
+<!-- 
                         <li>
                             <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'gift' ? 'c-active' : null) ?>" href="<?= base_url() ?>/gift">
                                 <i class="fa fa-bookmark c-sidebar-nav-icon"></i>
                                 Gift
                             </a>
-                        </li>
+                        </li> -->
                         <?php } ?>
                         <?php if(in_array(8,session()->get('shop_data')['shop_function'])){ ?>
 
-                        <li>
+                        <!-- <li>
                             <a class="c-sidebar-nav-link <?= ($uri->getSegment(1) == 'referal' ? 'c-active' : null) ?>" href="<?= base_url() ?>/referal">
                                 <i class="fa fa-cog c-sidebar-nav-icon"></i>
                                 Referral
                             </a>
-                        </li>
+                        </li> -->
                         <?php } ?>
             <?php
             } 
@@ -577,11 +572,11 @@
                     </a>
 
                 </li>-->
-                <li class="c-header-nav-item dropdown d-md-down-none mx-2">
+                <!-- <li class="c-header-nav-item dropdown d-md-down-none mx-2">
                     <a class="c-header-nav-link btn-success btn" target="_blank" href="<?= base_url() ?>">
                         Preview Shop
                     </a>
-                </li> 
+                </li>  -->
 
                 <li class="c-header-nav-item dropdown">
                     <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">

@@ -16,7 +16,7 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php'))
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-// $routes->setDefaultController('Dashboard');
+$routes->setDefaultController('Dashboard');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -30,42 +30,32 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->match(['get','post','put','delete'],'/main', 'Main::index/(:text)');
-// $routes->match(['get','post','put','delete'],'/', 'Home::index/');
+$routes->get('/', 'Access::loginAdmin');
 
 //Dashboard Routes
-$routes->match(['get','post','put','delete'], '/dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->match(['get','post','put','delete'], 'dashboard', 'Dashboard::index', ['filter' => 'auth']);
+// $routes->match(['get','post','put','delete'], '/', 'Dashboard::index', ['filter' => 'auth']);
+// $routes->match(['get','post','put','delete'], 'dashboard', 'Dashboard::index', ['filter' => 'auth']);
 
-//Admin Routes
+// //Admin Routes
 // $routes->match(['get','post','put','delete'], 'admin', 'Admin::index', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'admin/add', 'Admin::add', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'admin/detail/(:num)', 'Admin::detail/$1', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'admin/edit/(:num)', 'Admin::edit/$1', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'admin/delete/(:num)', 'Admin::delete/$1', ['filter' => 'auth']);
 
-//User Routes
-$routes->match(['get','post','put','delete'], 'user', 'User::index', ['filter' => 'auth']);
-$routes->match(['get','post','put','delete'], 'user/add', 'User::add', ['filter' => 'auth']);
-$routes->match(['get','post','put','delete'], 'user/detail/(:num)', 'User::detail/$1', ['filter' => 'auth']);
-$routes->match(['get','post','put','delete'], 'user/edit/(:num)', 'User::edit/$1', ['filter' => 'auth']);
-$routes->match(['get','post','put','delete'], 'user/delete/(:num)', 'User::delete/$1', ['filter' => 'auth']);
+// //User Routes
+// $routes->match(['get','post','put','delete'], 'user', 'User::index', ['filter' => 'auth']);
+// $routes->match(['get','post','put','delete'], 'user/add', 'User::add', ['filter' => 'auth']);
+// $routes->match(['get','post','put','delete'], 'user/detail/(:num)', 'User::detail/$1', ['filter' => 'auth']);
+// $routes->match(['get','post','put','delete'], 'user/edit/(:num)', 'User::edit/$1', ['filter' => 'auth']);
+// $routes->match(['get','post','put','delete'], 'user/delete/(:num)', 'User::delete/$1', ['filter' => 'auth']);
 
-//Product Routes
+// //Product Routes
 // $routes->match(['get','post','put','delete'], 'product', 'Product::index', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'product/add', 'Product::add', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'product/detail/(:num)', 'Product::detail/$1', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'product/edit/(:num)', 'Product::edit/$1', ['filter' => 'auth']);
 // $routes->match(['get','post','put','delete'], 'product/delete/(:num)', 'Product::delete/$1', ['filter' => 'auth']);
-
-
-// //Promo Routes
-// $routes->match(['get','post','put','delete'], 'promo', 'Promo::index', ['filter' => 'auth']);
-// $routes->match(['get','post','put','delete'], 'promo/add', 'Promo::add', ['filter' => 'auth']);
-// $routes->match(['get','post','put','delete'], 'promo/detail/(:num)', 'Promo::detail/$1', ['filter' => 'auth']);
-// $routes->match(['get','post','put','delete'], 'promo/edit/(:num)', 'Promo::edit/$1', ['filter' => 'auth']);
-// $routes->match(['get','post','put','delete'], 'promo/delete/(:num)', 'Promo::delete/$1', ['filter' => 'auth']);
-
 
 /**
  * --------------------------------------------------------------------

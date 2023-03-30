@@ -41,7 +41,7 @@
                                     <?= $error; ?>						
                                 </div>
                             <?php }?>
-                           <div class="form-group">
+                           <!-- <div class="form-group">
                                 <label for="banner">Shop</label>
 
                                 <select name="shop_id" class="select" id="" required>
@@ -50,7 +50,7 @@
 
                                     <?php }?>
                                     </select>
-                                </div>
+                                </div> -->
                             <div class="form-group">
                                 <label for="">Username</label>
                                 <input type="text" class="form-control" name="username" placeholder="Username" required>

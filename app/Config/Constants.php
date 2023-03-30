@@ -12,12 +12,7 @@
 // existing namespaces of App\* namespaced-classes.
 //
 defined('APP_NAMESPACE') || define('APP_NAMESPACE', 'App');
-// $subdomain_arr = explode('.', $_SERVER['HTTP_HOST'], 2);
 
-// $slug = $subdomain_arr[0];
-// $baseURL = 'http://'.$slug.'.localhost.com/';
-
-// defined('BASE') || define('BASE',$baseURL);
 /*
 |--------------------------------------------------------------------------
 | Composer Path

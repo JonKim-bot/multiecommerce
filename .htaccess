@@ -1,6 +1,13 @@
 # Disable directory browsing
 Options All -Indexes
 
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+#Set headers to access CORS Requests / allowing localhost only
+Header always add Access-Control-Allow-Origin "*"
+Header always add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+Header always add Access-Control-Allow-Methods "PUT, GET, POST, DELETE, OPTIONS"
+
 # ----------------------------------------------------------------------
 # Rewrite engine
 # ----------------------------------------------------------------------
@@ -20,13 +27,10 @@ Options All -Indexes
 	RewriteCond %{REQUEST_FILENAME} !-d
     	RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-	RewriteCond %{HTTPS} off
-	RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-		
 	# Rewrite "www.example.com -> example.com"
 	RewriteCond %{HTTPS} !=on
 	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-	RewriteRule ^ https://www.%1%{REQUEST_URI} [R=301,L]
+	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
 
 	# Checks to see if the user is attempting to access a valid file,
     # such as an image or css document, if this isn't true it sends the
@@ -50,5 +54,3 @@ Options All -Indexes
     ServerSignature Off
 # Disable server signature end
 
-Header add Access-Control-Allow-Origin "*"
-Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"

@@ -47,21 +47,21 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = "smtp.googlemail.com";
+	public $SMTPHost = "smtp.hostinger.com";
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var string
 	 */
-	public $SMTPUser = "piegensoftware20@gmail.com";
+	public $SMTPUser = "noreply@idomoos.com";
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var string
 	 */
-	public $SMTPPass = 'walaodiam';
+	public $SMTPPass = 'Boitan123=';
 
 	/**
 	 * SMTP Port

@@ -75,23 +75,10 @@
                         <label for="">Product Name</label>
                         <input type="text" class="form-control" name="product" value="<?= $product['product_name'] ?>" placeholder="e.g. Cake " required>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="">Product Inner Title</label>
-                        <input type="text" class="form-control" name="product_inner_title" value="<?= $product['product_inner_title'] ?>" placeholder="e.g. Hotnow " >
-                    </div>
+                   
                     <div class="form-group">
                         <label for="">Product Description</label>
                         <textarea class="form-control " rows="10" name="product_description" placeholder="Eg : Special Cake "><?= $product['product_description'] ?></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Product Description Two</label>
-                        <textarea class="form-control " rows="10" name="product_description_two" placeholder="Eg : Special Cake "><?= $product['product_description_two'] ?></textarea>
-                    </div>
-               
-                    <div class="form-group">
-                        <label for="">Product Description Three</label>
-                        <textarea class="form-control " rows="10" name="product_description_three" placeholder="Eg : Special Cake "><?= $product['product_description_three'] ?></textarea>
                     </div>
                
        

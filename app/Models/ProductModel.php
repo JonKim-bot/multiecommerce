@@ -44,7 +44,7 @@ class ProductModel extends BaseModel
 
         return $query->getResultArray();
     }
-    function getWhereIn($where, $page = 1,$limit = 6, $filter = array()){
+    function getWhereIn($where, $page = 1,$limit = 100000, $filter = array()){
         $builder = $this->db->table($this->tableName);
        
         $sql = ('SELECT product.*,GROUP_CONCAT(product_category.category_id) AS category_id FROM product LEFT JOIN product_category ON product_category.product_id = product.product_id 

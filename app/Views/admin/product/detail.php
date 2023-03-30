@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                 <div class="card">
             <div class="card-header">
                 Product Options
@@ -142,11 +142,11 @@
                 
 
             </div>
-        </div>
+        </div> -->
         
                 </div>
             </div>
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
                 <div class="card">
             <div class="card-header">
                 Product Image
@@ -208,7 +208,7 @@
                 </div>
                 </div>
                     
-                    </div>
+                    </div> -->
     
 
             <div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="optionModalLabel" aria-hidden="true">
@@ -240,9 +240,6 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                    
-                    </div>
     
                 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

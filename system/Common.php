@@ -1087,6 +1087,7 @@ if (! function_exists('view'))
 						->render($name, $options, $saveData);
 	}
 }
+
 if (! function_exists('view_cell'))
 {
 	/**

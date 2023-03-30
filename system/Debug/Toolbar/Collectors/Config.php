@@ -56,15 +56,13 @@ class Config
 	public static function display(): array
 	{
 		$config = config(App::class);
-		$base_url = 'asd.asd';
+
 		return [
 			'ciVersion'   => CodeIgniter::CI_VERSION,
 			'phpVersion'  => phpversion(),
 			'phpSAPI'     => php_sapi_name(),
 			'environment' => ENVIRONMENT,
 			'baseURL'     => $config->baseURL,
-			// 'baseURL'     => $base_url,
-
 			'timezone'    => app_timezone(),
 			'locale'      => Services::request()->getLocale(),
 			'cspEnabled'  => $config->CSPEnabled,
