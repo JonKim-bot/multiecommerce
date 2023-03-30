@@ -25,8 +25,11 @@ class API extends BaseController
         if(!empty($_POST['keyword'])){
             $where['product_name'] = $_POST['keyword'];
         }
-        
-        $product = $this->ProductModel->getWhereIn($where);
+        if(empty($where)){
+            $product = $this->ProductModel->getAll();
+        }else{
+            $product = $this->ProductModel->getWhereIn($where);
+        }
         die(json_encode(
             [
                 'status' => true,
